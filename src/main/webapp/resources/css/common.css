@@ -1,0 +1,28 @@
+/*!
+ * Docs Boostrap Template general styles
+ * Copyright 2015 Bernardo Mart�nez Garrido
+ * Licensed under the MIT License (http://www.opensource.org/licenses/mit-license.php)
+ *
+ * This file contains general-use styles, meant to be applied to all the pages on the site.
+ */
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin: 2em;
+    border: 1px solid #e7e7e7;
+    border-radius: 4px;
+    background-color: #fcfcfc;
+    color: #595959;
+}
+
+#main-section {
+    padding-left: 2em;
+    padding-right: 2em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+    background-color: white;
+}
