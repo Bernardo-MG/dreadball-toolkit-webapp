@@ -17,6 +17,7 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.repository.availability;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
+
 import com.wandrell.tabletop.dreadball.model.availability.asset.TeamTypeAssetsAvailability;
 import com.wandrell.tabletop.dreadball.model.persistence.availability.asset.JPATeamTypeAssetsAvailability;
 

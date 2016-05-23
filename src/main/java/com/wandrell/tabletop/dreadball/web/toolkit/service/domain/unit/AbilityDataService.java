@@ -14,31 +14,31 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.faction;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
-import com.wandrell.tabletop.dreadball.model.faction.TeamRule;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
 
 /**
- * Interface for a service which handles {@link TeamRule} instances.
+ * Interface for a service which handles {@link Ability} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamRuleDataService {
+public interface AbilityDataService {
 
 	/**
-	 * Returns all {@code TeamRule} instances.
-	 * 
-	 * @return all {@code TeamRule} instances
-	 */
-	public Iterable<? extends TeamRule> getAllTeamRules();
-
-	/**
-	 * Acquires an {@code TeamRule} based on its id.
+	 * Acquires an {@code Ability} based on its id.
 	 * 
 	 * @param id
-	 *            the {@code TeamRule} id
-	 * @return the {@code TeamRule} with that id
+	 *            the {@code Ability} id
+	 * @return the {@code Ability} with that id
 	 */
-	public TeamRule getTeamRuleById(final Integer id);
+	public Ability getAbilityById(final Integer id);
+
+	/**
+	 * Returns all {@code Ability} instances.
+	 * 
+	 * @return all {@code Ability} instances
+	 */
+	public Iterable<? extends Ability> getAllAbilities();
 
 }

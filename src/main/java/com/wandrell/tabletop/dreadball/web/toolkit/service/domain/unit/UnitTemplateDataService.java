@@ -14,31 +14,31 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.unit;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
-import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
+import com.wandrell.tabletop.dreadball.model.unit.UnitTemplate;
 
 /**
- * Interface for a service which handles {@link Ability} instances.
+ * Interface for a service which handles {@link UnitTemplate} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface AbilityDataService {
+public interface UnitTemplateDataService {
 
 	/**
-	 * Acquires an {@code Ability} based on its id.
+	 * Returns all {@code Unit} instances.
+	 * 
+	 * @return all {@code Unit} instances
+	 */
+	public Iterable<? extends UnitTemplate> getAllUnits();
+
+	/**
+	 * Acquires an {@code Unit} based on its id.
 	 * 
 	 * @param id
-	 *            the {@code Ability} id
-	 * @return the {@code Ability} with that id
+	 *            the {@code Unit} id
+	 * @return the {@code Unit} with that id
 	 */
-	public Ability getAbilityById(final Integer id);
-
-	/**
-	 * Returns all {@code Ability} instances.
-	 * 
-	 * @return all {@code Ability} instances
-	 */
-	public Iterable<? extends Ability> getAllAbilities();
+	public UnitTemplate getUnitById(final Integer id);
 
 }

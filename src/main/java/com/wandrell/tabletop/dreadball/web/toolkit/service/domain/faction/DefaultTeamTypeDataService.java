@@ -14,37 +14,35 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.availability.jpa;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.faction;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.availability.unit.TeamTypeUnitAvailability;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.TeamTypeUnitAvailabilityRepository;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.availability.TeamTypeUnitAvailabilityDataService;
+import com.wandrell.tabletop.dreadball.model.faction.TeamType;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.faction.TeamTypeRepository;
 
 /**
- * Implementation of {@link TeamTypeUnitAvailabilityDataService} working behind
- * the scenes with JPA.
+ * Implementation of {@link TeamTypeDataService} working behind the scenes with
+ * JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
  * process.
  * 
  * @author Bernardo Martínez Garrido
  */
-@Service("teamTypeUnitAvailabilityDataService")
-public final class JPATeamTypeUnitAvailabilityDataService implements TeamTypeUnitAvailabilityDataService {
+@Service("teamTypeDataService")
+public final class DefaultTeamTypeDataService implements TeamTypeDataService {
 
 	/**
-	 * Repository for the {@code TeamTypeUnitAvailability} instances.
+	 * Repository for the {@code TeamType} instances.
 	 */
-	private final TeamTypeUnitAvailabilityRepository unitAvaRepository;
+	private final TeamTypeRepository teamRepository;
 
 	/**
-	 * Constructs a {@code JPATeamTypeUnitAvailabilityService} with the
-	 * specified repository.
+	 * Constructs a {@code JPATeamTypeService} with the specified repository.
 	 * <p>
 	 * Said repository is meant to be injected through Spring.
 	 * 
@@ -52,14 +50,14 @@ public final class JPATeamTypeUnitAvailabilityDataService implements TeamTypeUni
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public JPATeamTypeUnitAvailabilityDataService(final TeamTypeUnitAvailabilityRepository repository) {
+	public DefaultTeamTypeDataService(final TeamTypeRepository repository) {
 		super();
 
-		unitAvaRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
+		teamRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
 	}
 
 	@Override
-	public final Iterable<? extends TeamTypeUnitAvailability> getAllTeamTypeUnitAvailabilities() {
+	public final Iterable<? extends TeamType> getAllTeamTypes() {
 		return getRepository().findAll();
 	}
 
@@ -68,12 +66,12 @@ public final class JPATeamTypeUnitAvailabilityDataService implements TeamTypeUni
 	 * 
 	 * @return the repository being used by the service
 	 */
-	private final TeamTypeUnitAvailabilityRepository getRepository() {
-		return unitAvaRepository;
+	private final TeamTypeRepository getRepository() {
+		return teamRepository;
 	}
 
 	@Override
-	public final TeamTypeUnitAvailability getTeamTypeUnitAvailabilityById(final Integer id) {
+	public final TeamType getTeamTypeById(final Integer id) {
 		return getRepository().findOne(id);
 	}
 

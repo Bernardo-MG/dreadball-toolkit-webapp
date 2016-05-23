@@ -6,12 +6,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
-    public HomeController() {
-    }
+	public HomeController() {
+	}
 
-    @RequestMapping("/")
-    public String showIndex() {
-        return "welcome";
-    }
+	@RequestMapping("/")
+	public String showIndex() {
+		return "welcome";
+	}
 
 }

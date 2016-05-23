@@ -14,31 +14,31 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.unit;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
-import com.wandrell.tabletop.dreadball.model.unit.UnitTemplate;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 
 /**
- * Interface for a service which handles {@link UnitTemplate} instances.
+ * Interface for a service which handles {@link AffinityGroup} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface UnitTemplateDataService {
+public interface AffinityGroupDataService {
 
 	/**
-	 * Returns all {@code Unit} instances.
-	 * 
-	 * @return all {@code Unit} instances
-	 */
-	public Iterable<? extends UnitTemplate> getAllUnits();
-
-	/**
-	 * Acquires an {@code Unit} based on its id.
+	 * Acquires an {@code AffinityGroup} based on its id.
 	 * 
 	 * @param id
-	 *            the {@code Unit} id
-	 * @return the {@code Unit} with that id
+	 *            the {@code AffinityGroup} id
+	 * @return the {@code AffinityGroup} with that id
 	 */
-	public UnitTemplate getUnitById(final Integer id);
+	public AffinityGroup getAffinityGroupById(final Integer id);
+
+	/**
+	 * Returns all {@code AffinityGroup} instances.
+	 * 
+	 * @return all {@code AffinityGroup} instances
+	 */
+	public Iterable<? extends AffinityGroup> getAllAffinityGroups();
 
 }

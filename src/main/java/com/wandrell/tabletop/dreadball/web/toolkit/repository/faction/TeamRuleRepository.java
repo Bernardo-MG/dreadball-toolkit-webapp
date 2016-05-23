@@ -17,6 +17,7 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.repository.faction;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
+
 import com.wandrell.tabletop.dreadball.model.faction.TeamRule;
 import com.wandrell.tabletop.dreadball.model.persistence.faction.JPATeamRule;
 

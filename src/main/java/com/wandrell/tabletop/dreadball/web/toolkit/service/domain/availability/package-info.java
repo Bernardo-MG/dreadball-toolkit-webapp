@@ -14,6 +14,6 @@
  * the License.
  */
 /**
- * Provides service interfaces and implementations for units.
+ * Provides service interfaces and implementations for availabilities.
  */
-package com.wandrell.tabletop.dreadball.web.toolkit.service.unit;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability;

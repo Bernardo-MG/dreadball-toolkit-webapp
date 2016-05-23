@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.availability;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.TeamTypeUnitAvailability;
 

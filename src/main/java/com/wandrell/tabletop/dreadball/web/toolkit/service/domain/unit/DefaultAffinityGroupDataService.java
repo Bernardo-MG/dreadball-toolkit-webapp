@@ -14,19 +14,18 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.unit.jpa;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.unit.UnitTemplate;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitTemplateRepository;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.unit.UnitTemplateDataService;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
 
 /**
- * Implementation of {@link UnitTemplateDataService} working behind the scenes
+ * Implementation of {@link AffinityGroupDataService} working behind the scenes
  * with JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
@@ -34,16 +33,17 @@ import com.wandrell.tabletop.dreadball.web.toolkit.service.unit.UnitTemplateData
  * 
  * @author Bernardo Martínez Garrido
  */
-@Service("unitDataService")
-public final class JPAUnitTemplateDataService implements UnitTemplateDataService {
+@Service("affinityGroupDataService")
+public final class DefaultAffinityGroupDataService implements AffinityGroupDataService {
 
 	/**
-	 * Repository for the {@code Unit} instances.
+	 * Repository for the {@code AffinityGroup} instances.
 	 */
-	private final UnitTemplateRepository unitRepository;
+	private final AffinityGroupRepository affinityRepository;
 
 	/**
-	 * Constructs a {@code JPAUnitService} with the specified repository.
+	 * Constructs a {@code JPAAffinityGroupService} with the specified
+	 * repository.
 	 * <p>
 	 * Said repository is meant to be injected through Spring.
 	 * 
@@ -51,14 +51,19 @@ public final class JPAUnitTemplateDataService implements UnitTemplateDataService
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public JPAUnitTemplateDataService(final UnitTemplateRepository repository) {
+	public DefaultAffinityGroupDataService(final AffinityGroupRepository repository) {
 		super();
 
-		unitRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
+		affinityRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
 	}
 
 	@Override
-	public final Iterable<? extends UnitTemplate> getAllUnits() {
+	public final AffinityGroup getAffinityGroupById(final Integer id) {
+		return getRepository().findOne(id);
+	}
+
+	@Override
+	public final Iterable<? extends AffinityGroup> getAllAffinityGroups() {
 		return getRepository().findAll();
 	}
 
@@ -67,13 +72,8 @@ public final class JPAUnitTemplateDataService implements UnitTemplateDataService
 	 * 
 	 * @return the repository being used by the service
 	 */
-	private final UnitTemplateRepository getRepository() {
-		return unitRepository;
-	}
-
-	@Override
-	public final UnitTemplate getUnitById(final Integer id) {
-		return getRepository().findOne(id);
+	private final AffinityGroupRepository getRepository() {
+		return affinityRepository;
 	}
 
 }

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.faction;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.faction;
 
 import com.wandrell.tabletop.dreadball.model.faction.TeamType;
 

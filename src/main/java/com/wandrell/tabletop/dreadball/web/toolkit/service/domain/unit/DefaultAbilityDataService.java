@@ -14,19 +14,18 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.faction.jpa;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.faction.TeamRule;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.faction.TeamRuleRepository;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.faction.TeamRuleDataService;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AbilityRepository;
 
 /**
- * Implementation of {@link TeamRuleDataService} working behind the scenes with
+ * Implementation of {@link AbilityDataService} working behind the scenes with
  * JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
@@ -34,16 +33,16 @@ import com.wandrell.tabletop.dreadball.web.toolkit.service.faction.TeamRuleDataS
  * 
  * @author Bernardo Martínez Garrido
  */
-@Service("teamRuleDataService")
-public final class JPATeamRuleDataService implements TeamRuleDataService {
+@Service("abilityDataService")
+public final class DefaultAbilityDataService implements AbilityDataService {
 
 	/**
-	 * Repository for the {@code TeamRule} instances.
+	 * Repository for the {@code Ability} instances.
 	 */
-	private final TeamRuleRepository ruleRepository;
+	private final AbilityRepository abilityRepository;
 
 	/**
-	 * Constructs a {@code JPATeamRuleService} with the specified repository.
+	 * Constructs a {@code JPAAbilityService} with the specified repository.
 	 * <p>
 	 * Said repository is meant to be injected through Spring.
 	 * 
@@ -51,14 +50,19 @@ public final class JPATeamRuleDataService implements TeamRuleDataService {
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public JPATeamRuleDataService(final TeamRuleRepository repository) {
+	public DefaultAbilityDataService(final AbilityRepository repository) {
 		super();
 
-		ruleRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
+		abilityRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
 	}
 
 	@Override
-	public final Iterable<? extends TeamRule> getAllTeamRules() {
+	public final Ability getAbilityById(final Integer id) {
+		return getRepository().findOne(id);
+	}
+
+	@Override
+	public final Iterable<? extends Ability> getAllAbilities() {
 		return getRepository().findAll();
 	}
 
@@ -67,13 +71,8 @@ public final class JPATeamRuleDataService implements TeamRuleDataService {
 	 * 
 	 * @return the repository being used by the service
 	 */
-	private final TeamRuleRepository getRepository() {
-		return ruleRepository;
-	}
-
-	@Override
-	public final TeamRule getTeamRuleById(final Integer id) {
-		return getRepository().findOne(id);
+	private final AbilityRepository getRepository() {
+		return abilityRepository;
 	}
 
 }

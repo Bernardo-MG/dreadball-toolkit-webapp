@@ -14,31 +14,31 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.unit;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.faction;
 
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.faction.TeamRule;
 
 /**
- * Interface for a service which handles {@link AffinityGroup} instances.
+ * Interface for a service which handles {@link TeamRule} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface AffinityGroupDataService {
+public interface TeamRuleDataService {
 
 	/**
-	 * Acquires an {@code AffinityGroup} based on its id.
+	 * Returns all {@code TeamRule} instances.
+	 * 
+	 * @return all {@code TeamRule} instances
+	 */
+	public Iterable<? extends TeamRule> getAllTeamRules();
+
+	/**
+	 * Acquires an {@code TeamRule} based on its id.
 	 * 
 	 * @param id
-	 *            the {@code AffinityGroup} id
-	 * @return the {@code AffinityGroup} with that id
+	 *            the {@code TeamRule} id
+	 * @return the {@code TeamRule} with that id
 	 */
-	public AffinityGroup getAffinityGroupById(final Integer id);
-
-	/**
-	 * Returns all {@code AffinityGroup} instances.
-	 * 
-	 * @return all {@code AffinityGroup} instances
-	 */
-	public Iterable<? extends AffinityGroup> getAllAffinityGroups();
+	public TeamRule getTeamRuleById(final Integer id);
 
 }

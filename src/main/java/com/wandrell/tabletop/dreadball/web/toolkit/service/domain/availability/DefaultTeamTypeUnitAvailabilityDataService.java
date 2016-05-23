@@ -14,37 +14,36 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.unit.jpa;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.unit.AffinityGroupDataService;
+import com.wandrell.tabletop.dreadball.model.availability.unit.TeamTypeUnitAvailability;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.TeamTypeUnitAvailabilityRepository;
 
 /**
- * Implementation of {@link AffinityGroupDataService} working behind the scenes
- * with JPA.
+ * Implementation of {@link TeamTypeUnitAvailabilityDataService} working behind
+ * the scenes with JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
  * process.
  * 
  * @author Bernardo Martínez Garrido
  */
-@Service("affinityGroupDataService")
-public final class JPAAffinityGroupDataService implements AffinityGroupDataService {
+@Service("teamTypeUnitAvailabilityDataService")
+public final class DefaultTeamTypeUnitAvailabilityDataService implements TeamTypeUnitAvailabilityDataService {
 
 	/**
-	 * Repository for the {@code AffinityGroup} instances.
+	 * Repository for the {@code TeamTypeUnitAvailability} instances.
 	 */
-	private final AffinityGroupRepository affinityRepository;
+	private final TeamTypeUnitAvailabilityRepository unitAvaRepository;
 
 	/**
-	 * Constructs a {@code JPAAffinityGroupService} with the specified
-	 * repository.
+	 * Constructs a {@code JPATeamTypeUnitAvailabilityService} with the
+	 * specified repository.
 	 * <p>
 	 * Said repository is meant to be injected through Spring.
 	 * 
@@ -52,19 +51,14 @@ public final class JPAAffinityGroupDataService implements AffinityGroupDataServi
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public JPAAffinityGroupDataService(final AffinityGroupRepository repository) {
+	public DefaultTeamTypeUnitAvailabilityDataService(final TeamTypeUnitAvailabilityRepository repository) {
 		super();
 
-		affinityRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
+		unitAvaRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
 	}
 
 	@Override
-	public final AffinityGroup getAffinityGroupById(final Integer id) {
-		return getRepository().findOne(id);
-	}
-
-	@Override
-	public final Iterable<? extends AffinityGroup> getAllAffinityGroups() {
+	public final Iterable<? extends TeamTypeUnitAvailability> getAllTeamTypeUnitAvailabilities() {
 		return getRepository().findAll();
 	}
 
@@ -73,8 +67,13 @@ public final class JPAAffinityGroupDataService implements AffinityGroupDataServi
 	 * 
 	 * @return the repository being used by the service
 	 */
-	private final AffinityGroupRepository getRepository() {
-		return affinityRepository;
+	private final TeamTypeUnitAvailabilityRepository getRepository() {
+		return unitAvaRepository;
+	}
+
+	@Override
+	public final TeamTypeUnitAvailability getTeamTypeUnitAvailabilityById(final Integer id) {
+		return getRepository().findOne(id);
 	}
 
 }
