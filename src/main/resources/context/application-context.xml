@@ -8,20 +8,19 @@
    <!-- Imports -->
    <import resource="classpath:context/persistence.xml" />
    <import resource="classpath:context/service.xml" />
-   <import resource="classpath:context/tools-config.xml" />
 
    <!-- Profile-based configuration -->
    <beans profile="h2">
       <!-- H2 in-memory database -->
       <!-- To be used for development -->
       <context:property-placeholder
-         location="classpath:context/persistence-h2.properties, classpath:context/persistence-access.properties" />
+         location="classpath:config/persistence-h2.properties, classpath:config/persistence-access.properties" />
    </beans>
    <beans profile="mysql">
       <!-- MySQL database -->
       <!-- To be used for deployment -->
       <context:property-placeholder
-         location="classpath:context/persistence-mysql.properties, classpath:context/persistence-access.properties" />
+         location="classpath:config/persistence-mysql.properties, classpath:config/persistence-access.properties" />
    </beans>
 
 </beans>

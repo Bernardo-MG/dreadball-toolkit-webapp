@@ -126,8 +126,6 @@
             <activeByDefault>true</activeByDefault>
          </activation>
          <properties>
-            <!-- Dependencies versions -->
-            <h2.version>1.4.191</h2.version>
             <!-- Access data -->
             <database.url>jdbc:h2:mem:dreadball_toolkit</database.url>
             <database.username>sa</database.username>
@@ -149,8 +147,6 @@
          <!-- Prepares the project to make use of an H2 in-memory database -->
          <id>mysql</id>
          <properties>
-            <!-- Dependencies versions -->
-            <mysql.version>5.1.38</mysql.version>
             <!-- Access data -->
             <database.url>jdbc:mysql://localhost:3306/dreadball_toolkit</database.url>
             <database.username>root</database.username>
@@ -246,6 +242,7 @@
       <dandelion.datatables.version>1.1.0</dandelion.datatables.version>
       <guava.version>19.0</guava.version>
       <hamcrest.version>1.3</hamcrest.version>
+      <h2.version>1.4.191</h2.version>
       <hibernate.version>5.1.0.Final</hibernate.version>
       <hibernate.validator.version>5.2.4.FINAL</hibernate.validator.version>
       <hikari.version>2.3.11</hikari.version>
@@ -256,12 +253,13 @@
       <jstl.version>1.2.1</jstl.version>
       <log4j.version>2.5</log4j.version>
       <mockito.version>1.10.19</mockito.version>
+      <mysql.version>5.1.38</mysql.version>
       <servlet.version>3.1.0</servlet.version>
       <slf4j.version>1.7.21</slf4j.version>
       <spring.data.version>1.10.1.RELEASE</spring.data.version>
       <spring.version>4.2.6.RELEASE</spring.version>
-      <tabletop.dreadball.model.default.version>0.2.0</tabletop.dreadball.model.default.version>
-      <tabletop.dreadball.model.persistence.version>0.2.1</tabletop.dreadball.model.persistence.version>
+      <dreadball.model.version>0.2.0</dreadball.model.version>
+      <dreadball.persistence.version>0.2.1</dreadball.persistence.version>
       <taglibs.version>1.2.5</taglibs.version>
       <testng.version>6.9.10</testng.version>
       <usertype.version>5.0.0.GA</usertype.version>
@@ -287,13 +285,13 @@
          <!-- Dreadball Default Model -->
          <groupId>com.wandrell.tabletop.dreadball</groupId>
          <artifactId>dreadball-model-default</artifactId>
-         <version>${tabletop.dreadball.model.default.version}</version>
+         <version>${dreadball.model.version}</version>
       </dependency>
       <dependency>
          <!-- Dreadball Persistence Model -->
          <groupId>com.wandrell.tabletop.dreadball</groupId>
          <artifactId>dreadball-model-persistence</artifactId>
-         <version>${tabletop.dreadball.model.persistence.version}</version>
+         <version>${dreadball.persistence.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================== SPRING ==================== -->
@@ -657,10 +655,10 @@
                <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
                <webResources>
                   <resource>
-                     <!-- Persistence access data -->
+                     <!-- Persistence access data is filtered -->
                      <filtering>true</filtering>
-                     <directory>${project.basedir}/src/main/resources/context</directory>
-                     <targetPath>WEB-INF/classes/context</targetPath>
+                     <directory>${project.basedir}/src/main/resources/config</directory>
+                     <targetPath>WEB-INF/classes/config</targetPath>
                      <includes>
                         <include>persistence-access.properties</include>
                      </includes>
