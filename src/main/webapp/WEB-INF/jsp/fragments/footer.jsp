@@ -8,8 +8,6 @@
         License</a></p>
     <p>v1.0.0 | Check the code at <a href="#" title="GitHub" aria-label="GitHub"><span
             class="fa fa-github" aria-hidden="true"></span></a></p>
-    <p>Powered by <a href="http://www.w3schools.com/html/html5_intro.asp">HTML5</a> and <a
-            href="http://getbootstrap.com/">Bootstrap</a></p>
 </footer>
 
 <spring:url value="/resources/lib/jquery/jquery-1.11.3.min.js" var="jQueryUrl"/>
