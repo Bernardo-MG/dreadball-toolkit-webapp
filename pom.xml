@@ -246,6 +246,7 @@
       <hibernate.version>5.1.0.Final</hibernate.version>
       <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
       <hikari.version>2.3.11</hikari.version>
+      <jackson.version>2.7.4</jackson.version>
       <jodaTime.hibernate.version>1.4</jodaTime.hibernate.version>
       <jodaTime.jsp.version>1.1.1</jodaTime.jsp.version>
       <jodaTime.version>2.9.3</jodaTime.version>
@@ -268,6 +269,7 @@
       <webjars.fontAwesome.version>4.6.2</webjars.fontAwesome.version>
       <webjars.html5shiv.version>3.7.3</webjars.html5shiv.version>
       <webjars.jquery.version>2.2.4</webjars.jquery.version>
+      <webjars.locator.version>0.31</webjars.locator.version>
       <!-- Plugins versions -->
       <plugin.changes.version>2.11</plugin.changes.version>
       <plugin.jetty.version>9.3.6.v20151106</plugin.jetty.version>
@@ -442,6 +444,12 @@
          <artifactId>jquery</artifactId>
          <version>${webjars.jquery.version}</version>
       </dependency>
+      <dependency>
+         <!-- Webjars Locator -->
+         <groupId>org.webjars</groupId>
+         <artifactId>webjars-locator</artifactId>
+         <version>${webjars.locator.version}</version>
+      </dependency>
       <!-- ============================================== -->
       <!-- ================== JSTL ====================== -->
       <!-- ============================================== -->
@@ -565,6 +573,12 @@
          <groupId>com.fasterxml</groupId>
          <artifactId>classmate</artifactId>
          <version>${classmate.version}</version>
+      </dependency>
+      <dependency>
+         <!-- FasterXML ClassMate -->
+         <groupId>com.fasterxml.jackson.core</groupId>
+         <artifactId>jackson-annotations</artifactId>
+         <version>${jackson.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ======= TEST ENVIRONMENT DEPENDENCIES ======== -->

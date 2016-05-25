@@ -14,8 +14,15 @@
 
    <mvc:annotation-driven conversion-service="conversionService" />
 
-   <mvc:resources mapping="/resources/**" location="/resources/" />
-   <mvc:resources mapping="/webjars/**" location="classpath:/META-INF/resources/webjars/" />
+   <mvc:resources mapping="/static/**" location="/webjars/, /resources/">
+      <mvc:cache-control cache-public="true" max-age="2592000" />
+      <mvc:resource-chain resource-cache="true">
+         <mvc:resolvers>
+            <bean
+               class="org.springframework.web.servlet.resource.WebJarsResourceResolver" />
+         </mvc:resolvers>
+      </mvc:resource-chain>
+   </mvc:resources>
 
    <mvc:default-servlet-handler />
 

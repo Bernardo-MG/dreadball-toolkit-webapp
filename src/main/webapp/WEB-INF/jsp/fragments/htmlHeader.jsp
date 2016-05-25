@@ -17,18 +17,18 @@
     <meta name="author" content="Bernardo Martínez Garrido">
 
     <!-- CSS -->
-    <spring:url value="/webjars/bootstrap/3.3.6/css/bootstrap.min.css" var="bootstrapCss"/>
+    <spring:url value="/static/bootstrap/css/bootstrap.min.css" var="bootstrapCss"/>
     <link rel="stylesheet" href="${ bootstrapCss }">
-    <spring:url value="/webjars/bootswatch-simplex/3.3.5+4/css/bootstrap.min.css" var="bootstrapCss"/>
+    <spring:url value="/static/bootswatch-simplex/css/bootstrap.min.css" var="bootstrapCss"/>
     <link rel="stylesheet" href="${ bootstrapCss }">
-    <spring:url value="/webjars/font-awesome/4.6.2/css/font-awesome.min.css" var="fontAwesomeCss"/>
+    <spring:url value="/static/font-awesome/css/font-awesome.min.css" var="fontAwesomeCss"/>
     <link rel="stylesheet" href="${ fontAwesomeCss }">
     <!-- Docs Template style -->
-    <spring:url value="/resources/css/style.css" var="mainCss"/>
+    <spring:url value="/static/css/style.css" var="mainCss"/>
     <link rel="stylesheet" href="${ mainCss }">
 
     <!-- HTML5 Shiv. For IE6-8 support of HTML5 elements -->
-    <spring:url value="/webjars/html5shiv/3.7.3/html5shiv.min.js" var="html5shiv"/>
+    <spring:url value="/webjars/html5shiv/html5shiv.min.js" var="html5shiv"/>
     <!--[if lt IE 9]>
     <script src="${ html5shiv }"></script>
     <![endif]-->
