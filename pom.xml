@@ -80,9 +80,9 @@
    <profiles>
       <profile>
          <!-- Profile for the Eclipse Maven plugin -->
-         <!-- Sets the POM so this plugin does not give the usual unregistered goals
+         <!-- Sets the POM so this plugin does not give the usual unregistered goals 
             errors -->
-         <!-- It will be activated automatically on Eclipse if this has the m2e plugin,
+         <!-- It will be activated automatically on Eclipse if this has the m2e plugin, 
             by detecting the version property -->
          <id>eclipse-maven</id>
          <activation>
@@ -96,7 +96,7 @@
                   <plugin>
                      <!-- m2e lifecycle mapping -->
                      <!-- This is used to configure the Maven plugin for Eclipse. -->
-                     <!-- Among other things, it allows registering goals, which
+                     <!-- Among other things, it allows registering goals, which 
                         Eclipse would otherwise reject. -->
                      <!-- It has no real effect on Maven. -->
                      <groupId>org.eclipse.m2e</groupId>
@@ -104,11 +104,11 @@
                      <version>${plugin.lifecycle.version}</version>
                      <configuration>
                         <!-- Sample fix for plugin executions -->
-                        <!-- This is to be used in case a Maven plugins gives problems
+                        <!-- This is to be used in case a Maven plugins gives problems 
                            in Eclipse -->
-                        <!-- <lifecycleMappingMetadata> <pluginExecutions> <pluginExecution>
-                           <pluginExecutionFilter> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId>
-                           <versionRange>[0.5,)</versionRange> <goals> <goal>prepare-agent</goal> </goals> </pluginExecutionFilter>
+                        <!-- <lifecycleMappingMetadata> <pluginExecutions> <pluginExecution> 
+                           <pluginExecutionFilter> <groupId>org.jacoco</groupId> <artifactId>jacoco-maven-plugin</artifactId> 
+                           <versionRange>[0.5,)</versionRange> <goals> <goal>prepare-agent</goal> </goals> </pluginExecutionFilter> 
                            <action> <ignore /> </action> </pluginExecution> </pluginExecutions> </lifecycleMappingMetadata> -->
                         <downloadSources>true</downloadSources>
                         <downloadJavadocs>true</downloadJavadocs>
@@ -263,6 +263,11 @@
       <taglibs.version>1.2.5</taglibs.version>
       <testng.version>6.9.10</testng.version>
       <usertype.version>5.0.0.GA</usertype.version>
+      <webjars.bootstrap.version>3.3.6</webjars.bootstrap.version>
+      <webjars.bootswatch.simplex.version>3.3.5+4</webjars.bootswatch.simplex.version>
+      <webjars.fontAwesome.version>4.6.2</webjars.fontAwesome.version>
+      <webjars.html5shiv.version>3.7.3</webjars.html5shiv.version>
+      <webjars.jquery.version>2.2.4</webjars.jquery.version>
       <!-- Plugins versions -->
       <plugin.changes.version>2.11</plugin.changes.version>
       <plugin.jetty.version>9.3.6.v20151106</plugin.jetty.version>
@@ -403,6 +408,39 @@
          <artifactId>javax.servlet.jsp-api</artifactId>
          <version>${jsp.version}</version>
          <scope>provided</scope>
+      </dependency>
+      <!-- ============================================== -->
+      <!-- ================ WEBJARS ===================== -->
+      <!-- ============================================== -->
+      <dependency>
+         <!-- Bootstrap -->
+         <groupId>org.webjars</groupId>
+         <artifactId>bootstrap</artifactId>
+         <version>${webjars.bootstrap.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Bootswatch Simplex -->
+         <groupId>org.webjars</groupId>
+         <artifactId>bootswatch-simplex</artifactId>
+         <version>${webjars.bootswatch.simplex.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Font Awesome -->
+         <groupId>org.webjars</groupId>
+         <artifactId>font-awesome</artifactId>
+         <version>${webjars.fontAwesome.version}</version>
+      </dependency>
+      <dependency>
+         <!-- HTML5 Shiv -->
+         <groupId>org.webjars</groupId>
+         <artifactId>html5shiv</artifactId>
+         <version>${webjars.html5shiv.version}</version>
+      </dependency>
+      <dependency>
+         <!-- JQuery -->
+         <groupId>org.webjars</groupId>
+         <artifactId>jquery</artifactId>
+         <version>${webjars.jquery.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================== JSTL ====================== -->

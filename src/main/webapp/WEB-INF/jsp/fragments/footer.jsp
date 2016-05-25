@@ -10,9 +10,9 @@
             class="fa fa-github" aria-hidden="true"></span></a></p>
 </footer>
 
-<spring:url value="/resources/lib/jquery/jquery-1.11.3.min.js" var="jQueryUrl"/>
+<spring:url value="/webjars/jquery/2.2.4/jquery.min.js" var="jQueryUrl"/>
 <script src="${ jQueryUrl }"></script>
-<spring:url value="/resources/lib/bootstrap/js/bootstrap.min.js" var="bootstrapUrl"/>
+<spring:url value="/webjars/bootstrap/3.3.6/js/bootstrap.min.js" var="bootstrapUrl"/>
 <script src="${ bootstrapUrl }"></script>
 <spring:url value="/resources/js/chevron-toggle.js" var="chevronUrl"/>
 <script src="${ chevronUrl }"></script>
