@@ -18,3 +18,5 @@
 <script src="${ chevronUrl }"></script>
 <spring:url value="/static/js/smooth-scroll.js" var="smoothScrollUrl"/>
 <script src="${ smoothScrollUrl }"></script>
+<spring:url value="/static/js/initialize.js" var="initializeJsUrl"/>
+<script src="${ initializeJsUrl }"></script>
