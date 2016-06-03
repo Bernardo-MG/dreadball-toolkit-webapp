@@ -9,6 +9,9 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+   <!-- Imports -->
+   <import resource="classpath:context/view.xml" />
+   
    <context:component-scan
       base-package="com.wandrell.tabletop.dreadball.web.toolkit.controller" />
 
@@ -33,19 +36,5 @@
    <bean id="messageSource"
       class="org.springframework.context.support.ResourceBundleMessageSource"
       p:basename="messages/messages" />
-
-   <mvc:view-resolvers>
-      <mvc:content-negotiation use-not-acceptable="true">
-         <mvc:default-views>
-            <bean class="org.springframework.web.servlet.view.JstlView">
-               <property name="url" value="" />
-            </bean>
-         </mvc:default-views>
-      </mvc:content-negotiation>
-
-      <!-- Registering BeanNameViewResolver and InternalViewResolver -->
-      <mvc:bean-name />
-      <mvc:jsp prefix="/WEB-INF/jsp/" suffix=".jsp" />
-   </mvc:view-resolvers>
 
 </beans>
