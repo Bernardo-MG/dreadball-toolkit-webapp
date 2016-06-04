@@ -12,6 +12,10 @@
    <!-- Imports -->
    <import resource="classpath:context/view.xml" />
    
+   <!-- Properties -->
+   <context:property-placeholder
+         location="classpath:config/view.properties" />
+   
    <context:component-scan
       base-package="com.wandrell.tabletop.dreadball.web.toolkit.controller" />
 

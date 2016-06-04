@@ -242,9 +242,8 @@
       <guava.version>19.0</guava.version>
       <hamcrest.version>1.3</hamcrest.version>
       <h2.version>1.4.192</h2.version>
-      <hibernate.entityManager.version>5.1.0.Final</hibernate.entityManager.version>
       <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
-      <hibernate.version>5.2.0.Final</hibernate.version>
+      <hibernate.version>5.1.0.Final</hibernate.version>
       <hikari.version>2.4.6</hikari.version>
       <jackson.version>2.7.4</jackson.version>
       <jodaTime.hibernate.version>1.4</jodaTime.hibernate.version>
@@ -378,7 +377,7 @@
          <!-- Hibernate Entity Manager -->
          <groupId>org.hibernate</groupId>
          <artifactId>hibernate-entitymanager</artifactId>
-         <version>${hibernate.entityManager.version}</version>
+         <version>${hibernate.version}</version>
       </dependency>
       <dependency>
          <!-- Hibernate validator -->

@@ -14,13 +14,15 @@
       <!-- H2 in-memory database -->
       <!-- To be used for development -->
       <context:property-placeholder
-         location="classpath:config/persistence-h2.properties, classpath:config/persistence-access.properties" />
+         location="classpath:config/persistence-h2.properties, 
+                   classpath:config/persistence-access.properties" />
    </beans>
    <beans profile="mysql">
       <!-- MySQL database -->
       <!-- To be used for deployment -->
       <context:property-placeholder
-         location="classpath:config/persistence-mysql.properties, classpath:config/persistence-access.properties" />
+         location="classpath:config/persistence-mysql.properties, 
+                   classpath:config/persistence-access.properties" />
    </beans>
 
 </beans>

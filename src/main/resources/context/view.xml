@@ -9,14 +9,13 @@
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
 
-   <bean id="templateResolver"
-      class="org.thymeleaf.spring4.templateresolver.SpringResourceTemplateResolver">
-      <property name="prefix" value="/WEB-INF/templates/" />
-      <property name="suffix" value=".html" />
-      <property name="templateMode" value="HTML5" />
+   <bean id="templateResolver" class="${template.resolver.class}">
+      <property name="prefix" value="${template.prefix}" />
+      <property name="suffix" value="${template.suffix}" />
+      <property name="templateMode" value="${template.mode}" />
    </bean>
 
-   <bean id="templateEngine" class="org.thymeleaf.spring4.SpringTemplateEngine">
+   <bean id="templateEngine" class="${template.engine.class}">
       <property name="templateResolvers">
          <set>
             <ref bean="templateResolver" />
@@ -25,36 +24,28 @@
       <property name="enableSpringELCompiler" value="true" />
    </bean>
 
-   <bean id="thymeleafViewResolver" class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
+   <bean id="thymeleafViewResolver" class="${template.viewResolver.class}">
       <property name="templateEngine" ref="templateEngine" />
+      <property name="order" value="2" />
       <property name="characterEncoding" value="UTF-8" />
    </bean>
 
-   <bean class="org.springframework.web.servlet.view.ContentNegotiatingViewResolver">
-      <property name="contentNegotiationManager" ref="cnManager" />
-
+   <bean id="contentNegotiatingViewResolver" class="${view.resolver.class}">
+      <property name="contentNegotiationManager" ref="contentNegotiationManager" />
       <property name="viewResolvers">
          <list>
-            <bean class="org.thymeleaf.spring4.view.ThymeleafViewResolver">
-               <property name="templateEngine" ref="templateEngine" />
-               <property name="order" value="2" />
-               <property name="characterEncoding" value="UTF-8" />
-            </bean>
+            <ref bean="thymeleafViewResolver" />
          </list>
       </property>
    </bean>
 
-   <bean id="cnManager"
-      class="org.springframework.web.accept.ContentNegotiationManagerFactoryBean">
+   <bean id="contentNegotiationManager" class="${view.contentNegotiationManager.class}">
       <property name="favorPathExtension" value="true" />
       <property name="ignoreAcceptHeader" value="true" />
       <property name="defaultContentType" value="text/html" />
-
       <property name="mediaTypes">
          <map>
             <entry key="html" value="text/html" />
-            <entry key="xml" value="application/xml" />
-            <entry key="atom" value="application/atom+xml" />
          </map>
       </property>
    </bean>
