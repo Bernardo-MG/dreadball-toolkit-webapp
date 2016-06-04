@@ -62,6 +62,11 @@ public final class DefaultTeamTypeAssetsAvailabilityDataService implements TeamT
 		return getRepository().findAll();
 	}
 
+	@Override
+	public final TeamTypeAssetsAvailability getTeamTypeAssetsAvailabilityById(final Integer id) {
+		return getRepository().findOne(id);
+	}
+
 	/**
 	 * Returns the repository being used by the service.
 	 * 
@@ -69,11 +74,6 @@ public final class DefaultTeamTypeAssetsAvailabilityDataService implements TeamT
 	 */
 	private final TeamTypeAssetsAvailabilityRepository getRepository() {
 		return assetRepository;
-	}
-
-	@Override
-	public final TeamTypeAssetsAvailability getTeamTypeAssetsAvailabilityById(final Integer id) {
-		return getRepository().findOne(id);
 	}
 
 }

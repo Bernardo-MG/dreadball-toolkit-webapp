@@ -61,6 +61,11 @@ public final class DefaultTeamTypeDataService implements TeamTypeDataService {
 		return getRepository().findAll();
 	}
 
+	@Override
+	public final TeamType getTeamTypeById(final Integer id) {
+		return getRepository().findOne(id);
+	}
+
 	/**
 	 * Returns the repository being used by the service.
 	 * 
@@ -68,11 +73,6 @@ public final class DefaultTeamTypeDataService implements TeamTypeDataService {
 	 */
 	private final TeamTypeRepository getRepository() {
 		return teamRepository;
-	}
-
-	@Override
-	public final TeamType getTeamTypeById(final Integer id) {
-		return getRepository().findOne(id);
 	}
 
 }

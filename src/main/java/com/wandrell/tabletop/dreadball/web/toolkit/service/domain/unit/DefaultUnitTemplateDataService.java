@@ -61,6 +61,11 @@ public final class DefaultUnitTemplateDataService implements UnitTemplateDataSer
 		return getRepository().findAll();
 	}
 
+	@Override
+	public final UnitTemplate getUnitById(final Integer id) {
+		return getRepository().findOne(id);
+	}
+
 	/**
 	 * Returns the repository being used by the service.
 	 * 
@@ -68,11 +73,6 @@ public final class DefaultUnitTemplateDataService implements UnitTemplateDataSer
 	 */
 	private final UnitTemplateRepository getRepository() {
 		return unitRepository;
-	}
-
-	@Override
-	public final UnitTemplate getUnitById(final Integer id) {
-		return getRepository().findOne(id);
 	}
 
 }
