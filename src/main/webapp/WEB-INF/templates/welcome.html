@@ -10,20 +10,19 @@
 
    <section id="main-section" class="container-fluid">
       <header class="page-header">
-         <h1>Dreadball Webapp Template</h1>
+         <h1 th:text="#{application.title}">Webapp Title</h1>
       </header>
-      <p>A template demo to prepare an UI for a webapp offering
-         several utilities for Dreadball.</p>
 
       <section id="game_selection">
          <div class="row">
-            <h2>Pick a game</h2>
+            <h2 th:text="#{main.pick.game}">Pick a game</h2>
             <div class="btn-group" role="group" aria-label="Choose game">
                <button type="button"
                   onclick="location.href = './dbo_team_pick.html';"
-                  class="btn btn-default" id="dreadball">Dreadball</button>
+                  class="btn btn-default" id="dreadball"
+                  th:text="#{dreadball.dbo.title}">DBO</button>
                <button type="button" class="btn btn-default"
-                  id="dreadball_xtreme">Dreadball Xtreme</button>
+                  id="dreadball_xtreme" th:text="#{dreadball.dbx.title}">DBX</button>
             </div>
          </div>
       </section>
