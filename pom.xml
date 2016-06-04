@@ -496,19 +496,19 @@
       <!-- ================ DANDELION =================== -->
       <!-- ============================================== -->
       <dependency>
-         <!-- Dandlion JSP -->
+         <!-- Dandelion Thymeleaf -->
          <groupId>com.github.dandelion</groupId>
-         <artifactId>dandelion-jsp</artifactId>
+         <artifactId>dandelion-thymeleaf</artifactId>
          <version>${dandelion.version}</version>
       </dependency>
       <dependency>
-         <!-- Dandlion datatables JSP -->
+         <!-- Dandelion datatables Thymeleaf -->
          <groupId>com.github.dandelion</groupId>
-         <artifactId>datatables-jsp</artifactId>
+         <artifactId>datatables-thymeleaf</artifactId>
          <version>${dandelion.datatables.version}</version>
       </dependency>
       <dependency>
-         <!-- Dandlion datatables itext -->
+         <!-- Dandelion datatables itext -->
          <groupId>com.github.dandelion</groupId>
          <artifactId>datatables-export-itext</artifactId>
          <version>${dandelion.datatables.version}</version>
