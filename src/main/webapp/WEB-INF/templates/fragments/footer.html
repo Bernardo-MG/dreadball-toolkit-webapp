@@ -1,4 +1,4 @@
-<footer th:fragment="footer" class="container-fluid">
+<footer th:fragment="footer">
    <p>
       <span class="fa fa-copyright"></span>2015 <a id="author-link"
          href="https://github.com/Bernardo-MG">Bernardo Martínez
@@ -7,8 +7,10 @@
          License</a>
    </p>
    <p>
-      v1.0.0 | Check the code at <a href="#" title="GitHub"
-         aria-label="GitHub"><span class="fa fa-github"
-         aria-hidden="true"></span></a>
+      Check the code at <a
+         href="https://github.com/Bernardo-MG/dreadball-toolkit-webpage"
+         title="GitHub" aria-label="GitHub"><span
+         class="fa fa-github" aria-hidden="true"></span></a>
    </p>
+   <div th:include="fragments/scripts :: scripts" />
 </footer>

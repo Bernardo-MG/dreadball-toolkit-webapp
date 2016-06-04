@@ -17,9 +17,6 @@ $(document).ready(function() {
 	// Sets up chevron toggling
 	initChevronToggle();
 
-	// Numbers headings
-	numberHeadings();
-
 	// Sets up smooth scroll
 	initSmoothScroll();
 

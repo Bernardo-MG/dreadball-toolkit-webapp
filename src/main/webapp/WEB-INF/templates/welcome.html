@@ -4,9 +4,7 @@
 
 <head th:include="fragments/header :: header" />
 <body>
-   <header class="header">
-      <head th:include="fragments/menu :: menu" />
-   </header>
+   <header class="header" th:include="fragments/menu :: menu"/>
 
    <section id="main-section" class="container-fluid">
       <header class="page-header">
@@ -27,8 +25,7 @@
          </div>
       </section>
    </section>
-   <footer th:include="fragments/footer :: footer" />
-   <div th:include="fragments/scripts :: scripts" />
+   <footer class="container-fluid" th:include="fragments/footer :: footer" />
 </body>
 
 </html>
