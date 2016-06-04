@@ -251,7 +251,7 @@
       <jodaTime.version>2.9.3</jodaTime.version>
       <jsp.version>2.3.1</jsp.version>
       <jstl.version>1.2.1</jstl.version>
-      <log4j.version>2.5</log4j.version>
+      <log4j.version>2.6</log4j.version>
       <mockito.version>1.10.19</mockito.version>
       <mysql.version>6.0.2</mysql.version>
       <servlet.version>3.1.0</servlet.version>
@@ -266,7 +266,7 @@
       <usertype.version>5.0.0.GA</usertype.version>
       <webjars.bootstrap.version>3.3.6</webjars.bootstrap.version>
       <webjars.bootswatch.simplex.version>3.3.5+4</webjars.bootswatch.simplex.version>
-      <webjars.fontAwesome.version>4.6.2</webjars.fontAwesome.version>
+      <webjars.fontAwesome.version>4.6.3</webjars.fontAwesome.version>
       <webjars.html5shiv.version>3.7.3</webjars.html5shiv.version>
       <webjars.jquery.version>2.2.4</webjars.jquery.version>
       <webjars.locator.version>0.31</webjars.locator.version>
@@ -276,7 +276,7 @@
       <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
       <plugin.war.version>2.6</plugin.war.version>
       <!-- Maven Site -->
-      <site.skin.version>0.2.4</site.skin.version>
+      <site.skin.version>0.3.0</site.skin.version>
       <!-- Testing server -->
       <server.test.path>/dreadball</server.test.path>
    </properties>
