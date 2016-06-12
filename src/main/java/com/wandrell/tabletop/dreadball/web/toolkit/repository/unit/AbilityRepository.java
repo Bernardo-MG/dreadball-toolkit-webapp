@@ -18,7 +18,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.unit;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.wandrell.tabletop.dreadball.model.persistence.unit.stats.JPAAbility;
+import com.wandrell.tabletop.dreadball.model.persistence.unit.stats.PersistentAbility;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
 
 /**
@@ -26,6 +26,6 @@ import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface AbilityRepository extends PagingAndSortingRepository<JPAAbility, Integer> {
+public interface AbilityRepository extends PagingAndSortingRepository<PersistentAbility, Integer> {
 
 }

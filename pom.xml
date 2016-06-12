@@ -239,6 +239,8 @@
       <classmate.version>1.3.1</classmate.version>
       <dandelion.version>1.1.1</dandelion.version>
       <dandelion.datatables.version>1.1.0</dandelion.datatables.version>
+      <dreadball.model.version>0.3.0</dreadball.model.version>
+      <dreadball.persistence.version>0.3.0</dreadball.persistence.version>
       <guava.version>19.0</guava.version>
       <hamcrest.version>1.3</hamcrest.version>
       <h2.version>1.4.192</h2.version>
@@ -258,8 +260,6 @@
       <slf4j.version>1.7.21</slf4j.version>
       <spring.data.version>1.10.1.RELEASE</spring.data.version>
       <spring.version>4.2.6.RELEASE</spring.version>
-      <dreadball.model.version>0.2.0</dreadball.model.version>
-      <dreadball.persistence.version>0.2.1</dreadball.persistence.version>
       <taglibs.version>1.2.5</taglibs.version>
       <testng.version>6.9.10</testng.version>
       <thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>

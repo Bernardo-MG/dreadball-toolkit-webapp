@@ -18,14 +18,13 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.unit;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.wandrell.tabletop.dreadball.model.persistence.unit.JPAUnitTemplate;
-import com.wandrell.tabletop.dreadball.model.unit.UnitTemplate;
+import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentUnit;
 
 /**
  * Interface representing the repository for the {@link UnitTemplate} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface UnitTemplateRepository extends PagingAndSortingRepository<JPAUnitTemplate, Integer> {
+public interface UnitRepository extends PagingAndSortingRepository<PersistentUnit, Integer> {
 
 }

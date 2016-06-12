@@ -19,13 +19,13 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.faction;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.wandrell.tabletop.dreadball.model.faction.TeamType;
-import com.wandrell.tabletop.dreadball.model.persistence.faction.JPATeamType;
+import com.wandrell.tabletop.dreadball.model.persistence.faction.PersistentTeamType;
 
 /**
  * Interface representing the repository for the {@link TeamType} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamTypeRepository extends PagingAndSortingRepository<JPATeamType, Integer> {
+public interface TeamTypeRepository extends PagingAndSortingRepository<PersistentTeamType, Integer> {
 
 }

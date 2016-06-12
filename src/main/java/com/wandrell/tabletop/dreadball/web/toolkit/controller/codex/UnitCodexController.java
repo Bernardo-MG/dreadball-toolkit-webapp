@@ -8,16 +8,16 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitTemplateRepository;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitRepository;
 
 @Controller
 @RequestMapping("/codex/unit")
 public class UnitCodexController {
 
-	final UnitTemplateRepository unitRepo;
+	final UnitRepository unitRepo;
 
 	@Autowired
-	public UnitCodexController(final UnitTemplateRepository unitRepository) {
+	public UnitCodexController(final UnitRepository unitRepository) {
 		super();
 
 		unitRepo = checkNotNull(unitRepository);
@@ -30,7 +30,7 @@ public class UnitCodexController {
 		return "unitsList";
 	}
 
-	private final UnitTemplateRepository getUnitRepository() {
+	private final UnitRepository getUnitRepository() {
 		return unitRepo;
 	}
 

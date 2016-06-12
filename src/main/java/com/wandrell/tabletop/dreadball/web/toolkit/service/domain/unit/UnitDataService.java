@@ -16,21 +16,21 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
-import com.wandrell.tabletop.dreadball.model.unit.UnitTemplate;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
  * Interface for a service which handles {@link UnitTemplate} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface UnitTemplateDataService {
+public interface UnitDataService {
 
 	/**
 	 * Returns all {@code Unit} instances.
 	 * 
 	 * @return all {@code Unit} instances
 	 */
-	public Iterable<? extends UnitTemplate> getAllUnits();
+	public Iterable<? extends Unit> getAllUnits();
 
 	/**
 	 * Acquires an {@code Unit} based on its id.
@@ -39,6 +39,6 @@ public interface UnitTemplateDataService {
 	 *            the {@code Unit} id
 	 * @return the {@code Unit} with that id
 	 */
-	public UnitTemplate getUnitById(final Integer id);
+	public Unit getUnitById(final Integer id);
 
 }

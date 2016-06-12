@@ -18,7 +18,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.unit;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.wandrell.tabletop.dreadball.model.persistence.unit.JPAAffinityGroup;
+import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 
 /**
@@ -27,6 +27,6 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface AffinityGroupRepository extends PagingAndSortingRepository<JPAAffinityGroup, Integer> {
+public interface AffinityGroupRepository extends PagingAndSortingRepository<PersistentAffinityGroup, Integer> {
 
 }

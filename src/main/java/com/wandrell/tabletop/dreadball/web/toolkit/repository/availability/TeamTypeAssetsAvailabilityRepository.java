@@ -19,7 +19,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.availability;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.wandrell.tabletop.dreadball.model.availability.asset.TeamTypeAssetsAvailability;
-import com.wandrell.tabletop.dreadball.model.persistence.availability.asset.JPATeamTypeAssetsAvailability;
+import com.wandrell.tabletop.dreadball.model.persistence.availability.asset.PersistentTeamTypeAssetsAvailability;
 
 /**
  * Interface representing the repository for the
@@ -28,6 +28,6 @@ import com.wandrell.tabletop.dreadball.model.persistence.availability.asset.JPAT
  * @author Bernardo Martínez Garrido
  */
 public interface TeamTypeAssetsAvailabilityRepository
-		extends PagingAndSortingRepository<JPATeamTypeAssetsAvailability, Integer> {
+		extends PagingAndSortingRepository<PersistentTeamTypeAssetsAvailability, Integer> {
 
 }

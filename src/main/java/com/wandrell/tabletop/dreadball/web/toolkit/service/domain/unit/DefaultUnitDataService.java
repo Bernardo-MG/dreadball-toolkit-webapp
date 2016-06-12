@@ -21,12 +21,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.unit.UnitTemplate;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitTemplateRepository;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitRepository;
 
 /**
- * Implementation of {@link UnitTemplateDataService} working behind the scenes
- * with JPA.
+ * Implementation of {@link UnitDataService} working behind the scenes with JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
  * process.
@@ -34,12 +33,12 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitTemplateR
  * @author Bernardo Martínez Garrido
  */
 @Service("unitDataService")
-public final class DefaultUnitTemplateDataService implements UnitTemplateDataService {
+public final class DefaultUnitDataService implements UnitDataService {
 
 	/**
 	 * Repository for the {@code Unit} instances.
 	 */
-	private final UnitTemplateRepository unitRepository;
+	private final UnitRepository unitRepository;
 
 	/**
 	 * Constructs a {@code JPAUnitService} with the specified repository.
@@ -50,19 +49,19 @@ public final class DefaultUnitTemplateDataService implements UnitTemplateDataSer
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public DefaultUnitTemplateDataService(final UnitTemplateRepository repository) {
+	public DefaultUnitDataService(final UnitRepository repository) {
 		super();
 
 		unitRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
 	}
 
 	@Override
-	public final Iterable<? extends UnitTemplate> getAllUnits() {
+	public final Iterable<? extends Unit> getAllUnits() {
 		return getRepository().findAll();
 	}
 
 	@Override
-	public final UnitTemplate getUnitById(final Integer id) {
+	public final Unit getUnitById(final Integer id) {
 		return getRepository().findOne(id);
 	}
 
@@ -71,7 +70,7 @@ public final class DefaultUnitTemplateDataService implements UnitTemplateDataSer
 	 * 
 	 * @return the repository being used by the service
 	 */
-	private final UnitTemplateRepository getRepository() {
+	private final UnitRepository getRepository() {
 		return unitRepository;
 	}
 

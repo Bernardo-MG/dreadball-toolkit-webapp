@@ -19,13 +19,13 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.faction;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.wandrell.tabletop.dreadball.model.faction.TeamRule;
-import com.wandrell.tabletop.dreadball.model.persistence.faction.JPATeamRule;
+import com.wandrell.tabletop.dreadball.model.persistence.faction.PersistentTeamRule;
 
 /**
  * Interface representing the repository for the {@link TeamRule} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamRuleRepository extends PagingAndSortingRepository<JPATeamRule, Integer> {
+public interface TeamRuleRepository extends PagingAndSortingRepository<PersistentTeamRule, Integer> {
 
 }
