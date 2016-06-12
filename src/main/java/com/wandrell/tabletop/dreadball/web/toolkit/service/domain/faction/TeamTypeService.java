@@ -16,29 +16,29 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.faction;
 
-import com.wandrell.tabletop.dreadball.model.faction.TeamRule;
+import com.wandrell.tabletop.dreadball.model.faction.TeamType;
 
 /**
- * Interface for a service which handles {@link TeamRule} instances.
+ * Interface for a service which handles {@link TeamType} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamRuleDataService {
+public interface TeamTypeService {
 
 	/**
-	 * Returns all {@code TeamRule} instances.
+	 * Returns all {@code TeamType} instances.
 	 * 
-	 * @return all {@code TeamRule} instances
+	 * @return all {@code TeamType} instances
 	 */
-	public Iterable<? extends TeamRule> getAllTeamRules();
+	public Iterable<? extends TeamType> getAllTeamTypes();
 
 	/**
-	 * Acquires an {@code TeamRule} based on its id.
+	 * Acquires an {@code TeamType} based on its id.
 	 * 
 	 * @param id
-	 *            the {@code TeamRule} id
-	 * @return the {@code TeamRule} with that id
+	 *            the {@code TeamType} id
+	 * @return the {@code TeamType} with that id
 	 */
-	public TeamRule getTeamRuleById(final Integer id);
+	public TeamType getTeamTypeById(final Integer id);
 
 }

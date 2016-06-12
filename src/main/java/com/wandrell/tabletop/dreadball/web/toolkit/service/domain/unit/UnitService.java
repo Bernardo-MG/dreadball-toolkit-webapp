@@ -14,31 +14,31 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.faction;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
-import com.wandrell.tabletop.dreadball.model.faction.TeamType;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
- * Interface for a service which handles {@link TeamType} instances.
+ * Interface for a service which handles {@link UnitTemplate} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamTypeDataService {
+public interface UnitService {
 
 	/**
-	 * Returns all {@code TeamType} instances.
+	 * Returns all {@code Unit} instances.
 	 * 
-	 * @return all {@code TeamType} instances
+	 * @return all {@code Unit} instances
 	 */
-	public Iterable<? extends TeamType> getAllTeamTypes();
+	public Iterable<? extends Unit> getAllUnits();
 
 	/**
-	 * Acquires an {@code TeamType} based on its id.
+	 * Acquires an {@code Unit} based on its id.
 	 * 
 	 * @param id
-	 *            the {@code TeamType} id
-	 * @return the {@code TeamType} with that id
+	 *            the {@code Unit} id
+	 * @return the {@code Unit} with that id
 	 */
-	public TeamType getTeamTypeById(final Integer id);
+	public Unit getUnitById(final Integer id);
 
 }

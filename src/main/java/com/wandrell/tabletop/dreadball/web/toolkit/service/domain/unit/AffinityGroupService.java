@@ -16,29 +16,29 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
-import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 
 /**
- * Interface for a service which handles {@link Ability} instances.
+ * Interface for a service which handles {@link AffinityGroup} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface AbilityDataService {
+public interface AffinityGroupService {
 
 	/**
-	 * Acquires an {@code Ability} based on its id.
+	 * Acquires an {@code AffinityGroup} based on its id.
 	 * 
 	 * @param id
-	 *            the {@code Ability} id
-	 * @return the {@code Ability} with that id
+	 *            the {@code AffinityGroup} id
+	 * @return the {@code AffinityGroup} with that id
 	 */
-	public Ability getAbilityById(final Integer id);
+	public AffinityGroup getAffinityGroupById(final Integer id);
 
 	/**
-	 * Returns all {@code Ability} instances.
+	 * Returns all {@code AffinityGroup} instances.
 	 * 
-	 * @return all {@code Ability} instances
+	 * @return all {@code AffinityGroup} instances
 	 */
-	public Iterable<? extends Ability> getAllAbilities();
+	public Iterable<? extends AffinityGroup> getAllAffinityGroups();
 
 }

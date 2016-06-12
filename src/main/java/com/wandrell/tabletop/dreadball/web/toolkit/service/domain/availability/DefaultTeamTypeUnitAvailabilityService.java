@@ -25,8 +25,8 @@ import com.wandrell.tabletop.dreadball.model.availability.unit.TeamTypeUnitAvail
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.TeamTypeUnitAvailabilityRepository;
 
 /**
- * Implementation of {@link TeamTypeUnitAvailabilityDataService} working behind
- * the scenes with JPA.
+ * Implementation of {@link TeamTypeUnitAvailabilityService} working behind the
+ * scenes with JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
  * process.
@@ -34,7 +34,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.TeamT
  * @author Bernardo Martínez Garrido
  */
 @Service("teamTypeUnitAvailabilityDataService")
-public final class DefaultTeamTypeUnitAvailabilityDataService implements TeamTypeUnitAvailabilityDataService {
+public final class DefaultTeamTypeUnitAvailabilityService implements TeamTypeUnitAvailabilityService {
 
 	/**
 	 * Repository for the {@code TeamTypeUnitAvailability} instances.
@@ -51,7 +51,7 @@ public final class DefaultTeamTypeUnitAvailabilityDataService implements TeamTyp
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public DefaultTeamTypeUnitAvailabilityDataService(final TeamTypeUnitAvailabilityRepository repository) {
+	public DefaultTeamTypeUnitAvailabilityService(final TeamTypeUnitAvailabilityRepository repository) {
 		super();
 
 		unitAvaRepository = checkNotNull(repository, "Received a null pointer as abilities repository");

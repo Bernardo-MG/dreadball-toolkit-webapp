@@ -14,35 +14,34 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.faction;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.faction.TeamType;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.faction.TeamTypeRepository;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitRepository;
 
 /**
- * Implementation of {@link TeamTypeDataService} working behind the scenes with
- * JPA.
+ * Implementation of {@link UnitService} working behind the scenes with JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
  * process.
  * 
  * @author Bernardo Martínez Garrido
  */
-@Service("teamTypeDataService")
-public final class DefaultTeamTypeDataService implements TeamTypeDataService {
+@Service("unitDataService")
+public final class DefaultUnitService implements UnitService {
 
 	/**
-	 * Repository for the {@code TeamType} instances.
+	 * Repository for the {@code Unit} instances.
 	 */
-	private final TeamTypeRepository teamRepository;
+	private final UnitRepository unitRepository;
 
 	/**
-	 * Constructs a {@code JPATeamTypeService} with the specified repository.
+	 * Constructs a {@code JPAUnitService} with the specified repository.
 	 * <p>
 	 * Said repository is meant to be injected through Spring.
 	 * 
@@ -50,19 +49,19 @@ public final class DefaultTeamTypeDataService implements TeamTypeDataService {
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public DefaultTeamTypeDataService(final TeamTypeRepository repository) {
+	public DefaultUnitService(final UnitRepository repository) {
 		super();
 
-		teamRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
+		unitRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
 	}
 
 	@Override
-	public final Iterable<? extends TeamType> getAllTeamTypes() {
+	public final Iterable<? extends Unit> getAllUnits() {
 		return getRepository().findAll();
 	}
 
 	@Override
-	public final TeamType getTeamTypeById(final Integer id) {
+	public final Unit getUnitById(final Integer id) {
 		return getRepository().findOne(id);
 	}
 
@@ -71,8 +70,8 @@ public final class DefaultTeamTypeDataService implements TeamTypeDataService {
 	 * 
 	 * @return the repository being used by the service
 	 */
-	private final TeamTypeRepository getRepository() {
-		return teamRepository;
+	private final UnitRepository getRepository() {
+		return unitRepository;
 	}
 
 }

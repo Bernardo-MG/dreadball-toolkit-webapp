@@ -21,11 +21,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AbilityRepository;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
 
 /**
- * Implementation of {@link AbilityDataService} working behind the scenes with
+ * Implementation of {@link AffinityGroupService} working behind the scenes with
  * JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
@@ -33,16 +33,17 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AbilityReposi
  * 
  * @author Bernardo Martínez Garrido
  */
-@Service("abilityDataService")
-public final class DefaultAbilityDataService implements AbilityDataService {
+@Service("affinityGroupDataService")
+public final class DefaultAffinityGroupService implements AffinityGroupService {
 
 	/**
-	 * Repository for the {@code Ability} instances.
+	 * Repository for the {@code AffinityGroup} instances.
 	 */
-	private final AbilityRepository abilityRepository;
+	private final AffinityGroupRepository affinityRepository;
 
 	/**
-	 * Constructs a {@code JPAAbilityService} with the specified repository.
+	 * Constructs a {@code JPAAffinityGroupService} with the specified
+	 * repository.
 	 * <p>
 	 * Said repository is meant to be injected through Spring.
 	 * 
@@ -50,19 +51,19 @@ public final class DefaultAbilityDataService implements AbilityDataService {
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public DefaultAbilityDataService(final AbilityRepository repository) {
+	public DefaultAffinityGroupService(final AffinityGroupRepository repository) {
 		super();
 
-		abilityRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
+		affinityRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
 	}
 
 	@Override
-	public final Ability getAbilityById(final Integer id) {
+	public final AffinityGroup getAffinityGroupById(final Integer id) {
 		return getRepository().findOne(id);
 	}
 
 	@Override
-	public final Iterable<? extends Ability> getAllAbilities() {
+	public final Iterable<? extends AffinityGroup> getAllAffinityGroups() {
 		return getRepository().findAll();
 	}
 
@@ -71,8 +72,8 @@ public final class DefaultAbilityDataService implements AbilityDataService {
 	 * 
 	 * @return the repository being used by the service
 	 */
-	private final AbilityRepository getRepository() {
-		return abilityRepository;
+	private final AffinityGroupRepository getRepository() {
+		return affinityRepository;
 	}
 
 }

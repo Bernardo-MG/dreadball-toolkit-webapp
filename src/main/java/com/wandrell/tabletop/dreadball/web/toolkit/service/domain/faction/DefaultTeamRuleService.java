@@ -14,36 +14,34 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.unit;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.faction;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
+import com.wandrell.tabletop.dreadball.model.faction.TeamRule;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.faction.TeamRuleRepository;
 
 /**
- * Implementation of {@link AffinityGroupDataService} working behind the scenes
- * with JPA.
+ * Implementation of {@link TeamRuleService} working behind the scenes with JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
  * process.
  * 
  * @author Bernardo Martínez Garrido
  */
-@Service("affinityGroupDataService")
-public final class DefaultAffinityGroupDataService implements AffinityGroupDataService {
+@Service("teamRuleDataService")
+public final class DefaultTeamRuleService implements TeamRuleService {
 
 	/**
-	 * Repository for the {@code AffinityGroup} instances.
+	 * Repository for the {@code TeamRule} instances.
 	 */
-	private final AffinityGroupRepository affinityRepository;
+	private final TeamRuleRepository ruleRepository;
 
 	/**
-	 * Constructs a {@code JPAAffinityGroupService} with the specified
-	 * repository.
+	 * Constructs a {@code JPATeamRuleService} with the specified repository.
 	 * <p>
 	 * Said repository is meant to be injected through Spring.
 	 * 
@@ -51,20 +49,20 @@ public final class DefaultAffinityGroupDataService implements AffinityGroupDataS
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public DefaultAffinityGroupDataService(final AffinityGroupRepository repository) {
+	public DefaultTeamRuleService(final TeamRuleRepository repository) {
 		super();
 
-		affinityRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
+		ruleRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
 	}
 
 	@Override
-	public final AffinityGroup getAffinityGroupById(final Integer id) {
-		return getRepository().findOne(id);
-	}
-
-	@Override
-	public final Iterable<? extends AffinityGroup> getAllAffinityGroups() {
+	public final Iterable<? extends TeamRule> getAllTeamRules() {
 		return getRepository().findAll();
+	}
+
+	@Override
+	public final TeamRule getTeamRuleById(final Integer id) {
+		return getRepository().findOne(id);
 	}
 
 	/**
@@ -72,8 +70,8 @@ public final class DefaultAffinityGroupDataService implements AffinityGroupDataS
 	 * 
 	 * @return the repository being used by the service
 	 */
-	private final AffinityGroupRepository getRepository() {
-		return affinityRepository;
+	private final TeamRuleRepository getRepository() {
+		return ruleRepository;
 	}
 
 }

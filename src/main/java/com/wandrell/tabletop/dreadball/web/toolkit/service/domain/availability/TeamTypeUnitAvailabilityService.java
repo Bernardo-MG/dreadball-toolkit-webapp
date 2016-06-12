@@ -16,30 +16,30 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability;
 
-import com.wandrell.tabletop.dreadball.model.availability.asset.TeamTypeAssetsAvailability;
+import com.wandrell.tabletop.dreadball.model.availability.unit.TeamTypeUnitAvailability;
 
 /**
- * Interface for a service which handles {@link TeamTypeAssetsAvailability}
+ * Interface for a service which handles {@link TeamTypeUnitAvailability}
  * instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamTypeAssetsAvailabilityDataService {
+public interface TeamTypeUnitAvailabilityService {
 
 	/**
-	 * Returns all {@code TeamTypeAssetsAvailability} instances.
+	 * Returns all {@code TeamTypeUnitAvailability} instances.
 	 * 
-	 * @return all {@code TeamTypeAssetsAvailability} instances
+	 * @return all {@code TeamTypeUnitAvailability} instances
 	 */
-	public Iterable<? extends TeamTypeAssetsAvailability> getAllTeamTypeAssetsAvailabilities();
+	public Iterable<? extends TeamTypeUnitAvailability> getAllTeamTypeUnitAvailabilities();
 
 	/**
-	 * Acquires an {@code TeamTypeAssetsAvailability} based on its id.
+	 * Acquires an {@code TeamTypeUnitAvailability} based on its id.
 	 * 
 	 * @param id
-	 *            the {@code TeamTypeAssetsAvailability} id
-	 * @return the {@code TeamTypeAssetsAvailability} with that id
+	 *            the {@code TeamTypeUnitAvailability} id
+	 * @return the {@code TeamTypeUnitAvailability} with that id
 	 */
-	public TeamTypeAssetsAvailability getTeamTypeAssetsAvailabilityById(final Integer id);
+	public TeamTypeUnitAvailability getTeamTypeUnitAvailabilityById(final Integer id);
 
 }

@@ -25,8 +25,8 @@ import com.wandrell.tabletop.dreadball.model.availability.asset.TeamTypeAssetsAv
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.TeamTypeAssetsAvailabilityRepository;
 
 /**
- * Implementation of {@link TeamTypeAssetsAvailabilityDataService} working
- * behind the scenes with JPA.
+ * Implementation of {@link TeamTypeAssetsAvailabilityService} working behind
+ * the scenes with JPA.
  * <p>
  * This is prepared to be used with Spring, as part of the dependency injection
  * process.
@@ -34,7 +34,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.TeamT
  * @author Bernardo Martínez Garrido
  */
 @Service("teamTypeAssetsAvailabilityDataService")
-public final class DefaultTeamTypeAssetsAvailabilityDataService implements TeamTypeAssetsAvailabilityDataService {
+public final class DefaultTeamTypeAssetsAvailabilityService implements TeamTypeAssetsAvailabilityService {
 
 	/**
 	 * Repository for the {@code TeamTypeAssetsAvailability} instances.
@@ -51,7 +51,7 @@ public final class DefaultTeamTypeAssetsAvailabilityDataService implements TeamT
 	 *            the repository to be used by the service
 	 */
 	@Autowired
-	public DefaultTeamTypeAssetsAvailabilityDataService(final TeamTypeAssetsAvailabilityRepository repository) {
+	public DefaultTeamTypeAssetsAvailabilityService(final TeamTypeAssetsAvailabilityRepository repository) {
 		super();
 
 		assetRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
