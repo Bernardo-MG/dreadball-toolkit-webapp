@@ -247,19 +247,19 @@
       <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
       <hibernate.version>5.1.0.Final</hibernate.version>
       <hikari.version>2.4.6</hikari.version>
-      <jackson.version>2.7.4</jackson.version>
+      <jackson.version>2.7.5</jackson.version>
       <jodaTime.hibernate.version>1.4</jodaTime.hibernate.version>
       <jodaTime.jsp.version>1.1.1</jodaTime.jsp.version>
       <jodaTime.version>2.9.4</jodaTime.version>
       <jsp.version>2.3.1</jsp.version>
       <jstl.version>1.2.1</jstl.version>
-      <log4j.version>2.6</log4j.version>
+      <log4j.version>2.6.1</log4j.version>
       <mockito.version>1.10.19</mockito.version>
       <mysql.version>6.0.2</mysql.version>
       <servlet.version>3.1.0</servlet.version>
       <slf4j.version>1.7.21</slf4j.version>
       <spring.data.version>1.10.1.RELEASE</spring.data.version>
-      <spring.version>4.2.6.RELEASE</spring.version>
+      <spring.version>4.3.0.RELEASE</spring.version>
       <taglibs.version>1.2.5</taglibs.version>
       <testng.version>6.9.10</testng.version>
       <thymeleaf.version>3.0.0.RELEASE</thymeleaf.version>
@@ -268,7 +268,7 @@
       <webjars.bootswatch.simplex.version>3.3.5+4</webjars.bootswatch.simplex.version>
       <webjars.fontAwesome.version>4.6.3</webjars.fontAwesome.version>
       <webjars.html5shiv.version>3.7.3</webjars.html5shiv.version>
-      <webjars.jquery.version>2.2.4</webjars.jquery.version>
+      <webjars.jquery.version>3.0.0</webjars.jquery.version>
       <webjars.locator.version>0.31</webjars.locator.version>
       <!-- Plugins versions -->
       <plugin.changes.version>2.12</plugin.changes.version>
