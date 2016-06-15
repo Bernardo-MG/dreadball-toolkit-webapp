@@ -268,7 +268,7 @@
       <webjars.bootswatch.simplex.version>3.3.5+4</webjars.bootswatch.simplex.version>
       <webjars.fontAwesome.version>4.6.3</webjars.fontAwesome.version>
       <webjars.html5shiv.version>3.7.3</webjars.html5shiv.version>
-      <webjars.jquery.version>3.0.0</webjars.jquery.version>
+      <webjars.jquery.version>2.2.4</webjars.jquery.version>
       <webjars.locator.version>0.31</webjars.locator.version>
       <!-- Plugins versions -->
       <plugin.changes.version>2.12</plugin.changes.version>
