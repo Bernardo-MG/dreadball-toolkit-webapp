@@ -66,6 +66,7 @@ DROP TABLE IF EXISTS sponsors;
 -- Unit tables
 
 DROP TABLE IF EXISTS units;
+DROP TABLE IF EXISTS simple_units;
 DROP TABLE IF EXISTS affinity_units;
 DROP TABLE IF EXISTS composite_affinity_units;
 DROP TABLE IF EXISTS advancement_units;
@@ -190,24 +191,10 @@ CREATE TABLE composite_affinity_units (
     cost_stranger           INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE TABLE affinity_units (
-    id                      INTEGER PRIMARY KEY,
-    template_name           VARCHAR(30) NOT NULL UNIQUE,
-    name                    VARCHAR(30) NOT NULL DEFAULT '',
-    armor                   INTEGER NOT NULL DEFAULT 0,
-    movement                INTEGER NOT NULL DEFAULT 0,
-    skill                   INTEGER NOT NULL DEFAULT 0,
-    speed                   INTEGER NOT NULL DEFAULT 0,
-    strength                INTEGER NOT NULL DEFAULT 0,
-    position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
-    giant                   BOOLEAN NOT NULL DEFAULT FALSE,
-    cost_ally               INTEGER NOT NULL DEFAULT 0,
-    cost_friend             INTEGER NOT NULL DEFAULT 0,
-    cost_stranger           INTEGER NOT NULL DEFAULT 0
-);
-
 CREATE TABLE units (
     id                      INTEGER PRIMARY KEY,
+    unit_type               VARCHAR(30) NOT NULL,
+    name                    VARCHAR(30) NOT NULL,
     template_name           VARCHAR(30) NOT NULL UNIQUE,
     cost                    INTEGER NOT NULL DEFAULT 0,
     armor                   INTEGER NOT NULL DEFAULT 0,
@@ -217,6 +204,18 @@ CREATE TABLE units (
     strength                INTEGER NOT NULL DEFAULT 0,
     position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
     giant                   BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+CREATE TABLE simple_units (
+    id                      INTEGER PRIMARY KEY,
+    FOREIGN KEY (id) REFERENCES units(id)
+);
+
+CREATE TABLE affinity_units (
+    id                      INTEGER PRIMARY KEY,
+    cost_ally               INTEGER NOT NULL DEFAULT 0,
+    cost_friend             INTEGER NOT NULL DEFAULT 0,
+    cost_stranger           INTEGER NOT NULL DEFAULT 0
 );
 
 

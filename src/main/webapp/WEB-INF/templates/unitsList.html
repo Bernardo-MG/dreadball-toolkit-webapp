@@ -11,7 +11,7 @@
          <thead>
             <tr>
                <th>Team</th>
-               <th dt:property="position">Role</th>
+               <th dt:property="role">Role</th>
                <th dt:property="attributes.move">Move</th>
                <th dt:property="attributes.strength">Strength</th>
                <th dt:property="attributes.speed">Speed</th>
@@ -24,7 +24,7 @@
          <tbody>
             <tr th:each="player : ${players}">
                <td></td>
-               <td th:text="${player?.position}">Jack</td>
+               <td th:text="${player?.role}">Jack</td>
                <td th:text="${player?.attributes?.movement}">5</td>
                <td th:text="${player?.attributes?.strength}">5+</td>
                <td th:text="${player?.attributes?.speed}">3+</td>
