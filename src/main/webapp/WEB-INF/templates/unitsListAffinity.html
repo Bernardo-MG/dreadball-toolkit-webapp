@@ -10,28 +10,34 @@
       <table class="table table-striped display" dt:table="true">
          <thead>
             <tr>
-               <th>Team</th>
                <th dt:property="role">Role</th>
                <th dt:property="attributes.move">Move</th>
                <th dt:property="attributes.strength">Strength</th>
                <th dt:property="attributes.speed">Speed</th>
                <th dt:property="attributes.skill">Skill</th>
                <th dt:property="attributes.armor">Armor</th>
-               <th>Notes</th>
-               <th dt:property="cost">Cost</th>
+               <th dt:property="abilities">Abilities</th>
+               <th dt:property="affinityGroups">Affinities</th>
+               <th dt:property="hatedAffinityGroups">Hated affinities</th>
+               <th dt:property="strangerCost">Stranger cost</th>
+               <th dt:property="allyCost">Ally cost</th>
+               <th dt:property="friendCost">Friend cost</th>
             </tr>
          </thead>
          <tbody>
             <tr th:each="player : ${players}">
-               <td></td>
                <td th:text="${player?.role}">Jack</td>
                <td th:text="${player?.attributes?.movement}">5</td>
                <td th:text="${player?.attributes?.strength}">5+</td>
                <td th:text="${player?.attributes?.speed}">3+</td>
                <td th:text="${player?.attributes?.skill}">4+</td>
                <td th:text="${player?.attributes?.armor}">4+</td>
-               <td></td>
-               <td dt:property="player?.cost">9mc</td>
+               <td th:text="${player?.abilities}"></td>
+               <td th:text="${player?.affinityGroups}"></td>
+               <td th:text="${player?.hatedAffinityGroups}"></td>
+               <th th:text="${player?.strangerCost}">10</th>
+               <th th:text="${player?.allyCost}">20</th>
+               <th th:text="${player?.friendCost}">30</th>
             </tr>
          </tbody>
       </table>

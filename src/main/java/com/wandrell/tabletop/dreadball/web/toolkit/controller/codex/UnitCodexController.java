@@ -8,16 +8,17 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitRepository;
 
 @Controller
 @RequestMapping("/codex/unit")
 public class UnitCodexController {
 
-	final UnitRepository unitRepo;
+	final AffinityUnitRepository unitRepo;
 
 	@Autowired
-	public UnitCodexController(final UnitRepository unitRepository) {
+	public UnitCodexController(final AffinityUnitRepository unitRepository) {
 		super();
 
 		unitRepo = checkNotNull(unitRepository);
@@ -27,10 +28,10 @@ public class UnitCodexController {
 	public final String getAllUnits(final ModelMap model) {
 		model.put("players", getUnitRepository().findAll());
 
-		return "unitsList";
+		return "unitsListAffinity";
 	}
 
-	private final UnitRepository getUnitRepository() {
+	private final AffinityUnitRepository getUnitRepository() {
 		return unitRepo;
 	}
 
