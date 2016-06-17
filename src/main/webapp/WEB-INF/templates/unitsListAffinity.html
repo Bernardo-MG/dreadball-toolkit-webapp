@@ -10,6 +10,7 @@
       <table class="table table-striped display" dt:table="true">
          <thead>
             <tr>
+               <th dt:property="unit">Unit name</th>
                <th dt:property="role">Role</th>
                <th dt:property="attributes.move">Move</th>
                <th dt:property="attributes.strength">Strength</th>
@@ -26,6 +27,7 @@
          </thead>
          <tbody>
             <tr th:each="player : ${players}">
+               <td th:text="${player?.templateName}">Template name</td>
                <td th:text="${player?.role}">Jack</td>
                <td th:text="${player?.attributes?.movement}">5</td>
                <td th:text="${player?.attributes?.strength}">5+</td>
