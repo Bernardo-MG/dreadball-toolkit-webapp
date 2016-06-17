@@ -866,7 +866,7 @@ INSERT INTO unit_abilities (unit_id, ability_id) VALUES (119, 78);
 
 -- Hobgoblins: stench
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (120, 69);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (120, 69);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (121, 69);
 
 -- Human (female) jack: running interference
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (123, 60);
@@ -943,6 +943,282 @@ INSERT INTO unit_abilities (unit_id, ability_id) VALUES (158, 8);
 
 -- Z'zor guard: steady
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (156, 68);
+
+-- ---------------
+-- Unit affinities
+-- ---------------
+
+-- Ada-Lorana: proud
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (100, 18);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (101, 18);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (102, 18);
+
+-- Ada-Lorana guard: guard
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (100, 9);
+
+-- Ada-Lorana jack: jack
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (101, 12);
+
+-- Ada-Lorana striker: striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (102, 22);
+
+-- Asterian: cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (103, 5);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (104, 5);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (105, 5);
+
+-- Asterian guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (103, 25);
+
+-- Asterian jack: asterian
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (104, 2);
+
+-- Asterian striker: striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (104, 22);
+
+-- Kalyshi: asterian
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (106, 2);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (107, 2);
+
+-- Kalyshi jack: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (106, 25);
+
+-- Kalyshi striker: big picture
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (107, 3);
+
+-- Convicts: convict
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (108, 4);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (109, 4);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (110, 4);
+
+-- Convict guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (108, 25);
+
+-- Convict jack: greedy
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (109, 8);
+
+-- Convict striker: cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (110, 5);
+
+-- Crystallans: proud
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (111, 18);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (112, 18);
+
+-- Crystallan guard: guard
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (111, 9);
+
+-- Crystallan jack: alien
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (111, 1);
+
+-- Forge fathers: forge father
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (113, 7);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (114, 7);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (115, 7);
+
+-- Forge father guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (113, 25);
+
+-- Forge father jack: dreadball
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (114, 6);
+
+-- Forge father striker: striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (114, 22);
+
+-- Brokkrs: forge father
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (116, 7);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (117, 7);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (118, 7);
+
+-- Brokkr guard: guard
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (116, 9);
+
+-- Brokkr jack: worker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (117, 27);
+
+-- Brokkr striker: cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (118, 5);
+
+-- Hobgoblin hulk guard: psycho, vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (119, 19);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (119, 25);
+
+-- Hobgoblin: outcast
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (120, 19);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (121, 19);
+
+-- Hobgoblin jack: greedy
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (120, 8);
+
+-- Hobgoblin striker: cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (121, 5);
+
+-- Human (male): dreadball
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (122, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (123, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (124, 6);
+
+-- Human (male) guard: guard
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (122, 9);
+
+-- Human (male) jack: jack
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (123, 12);
+
+-- Human (male) striker: striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (124, 22);
+
+-- Human (female): dreadball
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (125, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (126, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (127, 6);
+
+-- Human (female) guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (125, 25);
+
+-- Human (female) jack: cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (126, 5);
+
+-- Human (female) striker: striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (127, 22);
+
+-- Judwan: proud, striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (128, 18);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (128, 22);
+
+-- Koris guard: hunter, vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (129, 10);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (129, 25);
+
+-- Koris jack: alien, tech guy
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (130, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (130, 23);
+
+-- Koris jack: cunning, tech guy
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (131, 5);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (131, 23);
+
+-- Marauder guard: guard, psycho
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (132, 9);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (132, 19);
+
+-- Marauder jack: outcast, worker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (133, 15);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (133, 27);
+
+-- Martians: vicious, weird science, alien
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (134, 25);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (134, 26);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (134, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (135, 25);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (135, 26);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (135, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (136, 25);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (136, 26);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (136, 1);
+
+-- Nameless: alien
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (137, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (138, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (139, 1);
+
+-- Nameless sticky guard: cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (137, 5);
+
+-- Nameless hard guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (138, 25);
+
+-- Nameless striker: striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (139, 22);
+
+-- Rebs: rebel
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (140, 20);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (141, 20);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (142, 20);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (143, 20);
+
+-- Reb rin guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (140, 25);
+
+-- Reb gaelian jack: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (141, 15);
+
+-- Reb sorak jack: alien
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (142, 1);
+
+-- Reb raralat striker: cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (143, 5);
+
+-- Robots: mr roboto, tech guys
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (144, 14);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (144, 23);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (145, 14);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (145, 23);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (146, 14);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (146, 23);
+
+-- Sphyr: dreadball
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (147, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (148, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (149, 6);
+
+-- Sphyr guard: hunter
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (147, 10);
+
+-- Sphyr jack: proud
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (148, 18);
+
+-- Sphyr striker: alien
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (148, 1);
+
+-- Teraton: alien
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (150, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (151, 1);
+
+-- Teraton guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (150, 25);
+
+-- Teraton jack: proud
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (151, 18);
+
+-- Tsudochan: alien, weird science
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (152, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (152, 26);
+
+-- Veer-myn: outcast
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (153, 15);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (154, 15);
+
+-- Veer-myn guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (153, 25);
+
+-- Veer-myn striker: striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (154, 22);
+
+-- Zees: pirate, cunning, weird science
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (155, 16);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (155, 5);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (155, 26);
+
+-- Z'zor: insectoid
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (156, 11);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (157, 11);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (158, 11);
+
+-- Z'zor guard: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (156, 25);
+
+-- Z'zor jack: worker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (157, 27);
+
+-- Z'zor jack: cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (158, 5);
+
+-- ---------------------
+-- Unit hated affinities
+-- ---------------------
+
+-- Crystallans: hates forge fathers
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (111, 7);
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (112, 7);
 
 -- ****************************************
 --               TEAM RULES
