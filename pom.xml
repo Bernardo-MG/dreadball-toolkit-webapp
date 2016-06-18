@@ -266,6 +266,7 @@
       <usertype.version>5.0.0.GA</usertype.version>
       <webjars.bootstrap.version>3.3.6</webjars.bootstrap.version>
       <webjars.bootswatch.simplex.version>3.3.5+4</webjars.bootswatch.simplex.version>
+      <webjars.datatables.version>1.10.11</webjars.datatables.version>
       <webjars.fontAwesome.version>4.6.3</webjars.fontAwesome.version>
       <webjars.html5shiv.version>3.7.3</webjars.html5shiv.version>
       <webjars.jquery.version>2.2.4</webjars.jquery.version>
@@ -425,6 +426,12 @@
          <groupId>org.webjars</groupId>
          <artifactId>bootswatch-simplex</artifactId>
          <version>${webjars.bootswatch.simplex.version}</version>
+      </dependency>
+      <dependency>
+         <!-- Datatables -->
+         <groupId>org.webjars</groupId>
+         <artifactId>datatables</artifactId>
+         <version>${webjars.datatables.version}</version>
       </dependency>
       <dependency>
          <!-- Font Awesome -->

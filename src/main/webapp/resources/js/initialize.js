@@ -23,4 +23,8 @@ $(document).ready(function() {
 	// Initializes tooltips
 	$('[data-toggle="tooltip"]').tooltip();
 
+	$('.dataTable').DataTable({
+		"scrollX" : true
+	});
+
 });
