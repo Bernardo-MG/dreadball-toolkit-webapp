@@ -20,6 +20,16 @@
 -- original and Xtreme versions.
 -- ****************************************
 
+-- ****************************************
+-- A note aboud ids.
+--
+-- For the units, the following id ranges have been used:
+-- DBO players: 0 to 99
+-- DBX players: 100 to 199
+-- DBO MVPs and giants: 200 to 299
+-- DBX MVPs, giants and free agents: 300 to 399
+-- ****************************************
+
 
 -- ****************************************
 --                ABILITIES
