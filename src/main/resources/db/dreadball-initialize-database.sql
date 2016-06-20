@@ -46,7 +46,6 @@ DROP TABLE IF EXISTS sponsor_affinity_avas_affinity_groups;
 -- Availabilities tables
 
 DROP TABLE IF EXISTS team_type_unit_avas;
-DROP TABLE IF EXISTS team_type_mvp_avas;
 
 DROP TABLE IF EXISTS team_type_asset_avas;
 
@@ -278,14 +277,6 @@ CREATE TABLE team_type_asset_avas (
     off_coach               BOOLEAN NOT NULL DEFAULT FALSE,
     sup_coach               BOOLEAN NOT NULL DEFAULT FALSE,
     FOREIGN KEY (team_type_id) REFERENCES team_types (id) ON DELETE CASCADE
-);
-
-CREATE TABLE team_type_mvp_avas (
-    id                      INTEGER PRIMARY KEY,
-    team_type_id            INTEGER NOT NULL DEFAULT 0,
-    unit_id                 INTEGER NOT NULL DEFAULT 0,
-    FOREIGN KEY (team_type_id) REFERENCES team_types (id) ON DELETE CASCADE,
-    FOREIGN KEY (unit_id) REFERENCES units (id) ON DELETE CASCADE
 );
 
 CREATE TABLE team_type_unit_avas (
