@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitRepository;
 
 @Controller
 @RequestMapping("/codex/unit")
