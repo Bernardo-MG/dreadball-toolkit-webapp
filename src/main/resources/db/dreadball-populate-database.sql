@@ -1592,3 +1592,110 @@ INSERT INTO team_type_asset_avas (id, team_type_id,
     max_card, max_cheerleader, max_dice,
     def_coach, off_coach, sup_coach)
     VALUES (25, 25, 10, 8, 8, 6, 0, 0, 0, 7, 7, 7, FALSE, FALSE, FALSE);
+
+-- -------------------------
+-- Affinities availabilities
+-- -------------------------
+
+-- Sponsor affinities groups
+INSERT INTO sponsor_affinity_avas(id, name, rank_increase)
+    VALUES (1, 'A', true);
+INSERT INTO sponsor_affinity_avas(id, name, rank_increase)
+    VALUES (2, 'B', true);
+INSERT INTO sponsor_affinity_avas(id, name, rank_increase)
+    VALUES (3, 'C', false);
+INSERT INTO sponsor_affinity_avas(id, name, rank_increase)
+    VALUES (4, 'D', true);
+INSERT INTO sponsor_affinity_avas(id, name, rank_increase)
+    VALUES (5, 'E', false);
+
+-- Group A affinities: alien, cunning, plant, reluctant, striker
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (1, 1);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (1, 5);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (1, 17);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (1, 21);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (1, 22);
+
+-- Group B affinities: dreadball, big picture, psycho, rebel, worker
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (2, 6);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (2, 3);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (2, 19);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (2, 20);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (2, 27);
+
+-- Group C affinities: asterian, convict, forge father, guard, tech guys, vat brothers
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (3, 2);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (3, 4);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (3, 7);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (3, 9);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (3, 23);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (3, 24);
+
+-- Group D affinities: insectoid, jack, mr roboto, proud, vicious
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (4, 11);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (4, 12);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (4, 14);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (4, 18);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (4, 25);
+
+-- Group E affinities: greedy, hunter, machine mind, outcast, pirate, weird science
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (5, 8);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (5, 10);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (5, 13);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (5, 15);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (5, 16);
+INSERT INTO sponsor_affinity_avas_affinity_groups(
+    sponsor_affinity_ava_id, affinity_id)
+    VALUES (5, 26);
