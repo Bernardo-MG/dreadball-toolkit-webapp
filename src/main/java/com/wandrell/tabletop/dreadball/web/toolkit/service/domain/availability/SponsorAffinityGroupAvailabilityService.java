@@ -1,5 +1,5 @@
 /**
- * Copyright 2016 the original author or authors
+ * Copyright 2015 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -16,30 +16,22 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability;
 
-import com.wandrell.tabletop.dreadball.model.availability.asset.TeamTypeAssetsAvailability;
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
 
 /**
- * Interface for a service which handles {@link TeamTypeAssetsAvailability}
- * instances.
+ * Interface for a service which handles
+ * {@link SponsorAffinityGroupAvailability} instances.
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamTypeAssetsAvailabilityService {
+public interface SponsorAffinityGroupAvailabilityService {
 
 	/**
 	 * Returns all {@code TeamTypeAssetsAvailability} instances.
 	 * 
 	 * @return all {@code TeamTypeAssetsAvailability} instances
 	 */
-	public Iterable<? extends TeamTypeAssetsAvailability> getAllTeamTypeAssetsAvailabilities();
-
-	/**
-	 * Acquires an {@code TeamTypeAssetsAvailability} based on its id.
-	 * 
-	 * @param id
-	 *            the {@code TeamTypeAssetsAvailability} id
-	 * @return the {@code TeamTypeAssetsAvailability} with that id
-	 */
-	public TeamTypeAssetsAvailability getTeamTypeAssetsAvailabilityById(final Integer id);
+	public Iterable<? extends PersistentSponsorAffinityGroupAvailability> getAllSponsorAffinityGroupAvailabilities();
 
 }

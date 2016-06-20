@@ -60,11 +60,6 @@ public final class DefaultTeamRuleService implements TeamRuleService {
 		return getRepository().findAll();
 	}
 
-	@Override
-	public final TeamRule getTeamRuleById(final Integer id) {
-		return getRepository().findOne(id);
-	}
-
 	/**
 	 * Returns the repository being used by the service.
 	 * 
@@ -72,6 +67,11 @@ public final class DefaultTeamRuleService implements TeamRuleService {
 	 */
 	private final TeamRuleRepository getRepository() {
 		return ruleRepository;
+	}
+
+	@Override
+	public final TeamRule getTeamRuleById(final Integer id) {
+		return getRepository().findOne(id);
 	}
 
 }

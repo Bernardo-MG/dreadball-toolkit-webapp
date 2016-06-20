@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head th:include="fragments/header :: header" />
+<body>
+	<header class="header" th:include="fragments/menu :: menu" />
+
+	<section id="main-section" class="container-fluid">
+		<div class="panel panel-default">
+			<div class="panel-heading">Sponsor groups</div>
+			<div class="panel-body">
+				<div class="col-md-12">Pick your sponsor descriptors. These
+					will mark the player prices.</div>
+				<div class="col-md-2" th:each="affinityColumn : ${affinities}">
+					<div class="col-md-12" th:text="${affinityColumn?.name}">Column
+						A</div>
+					<div class="list-group">
+						<button type="button" class="list-group-item"
+							th:each="affinity : ${affinityColumn?.affinityGroups}"
+							th:text="${affinity?.name}">Cunning</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<footer class="container-fluid" th:include="fragments/footer :: footer" />
+</body>
+
+</html>

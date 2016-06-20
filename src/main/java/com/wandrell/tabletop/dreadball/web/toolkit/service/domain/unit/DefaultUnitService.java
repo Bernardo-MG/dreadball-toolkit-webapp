@@ -60,11 +60,6 @@ public final class DefaultUnitService implements UnitService {
 		return getRepository().findAll();
 	}
 
-	@Override
-	public final Unit getUnitById(final Integer id) {
-		return getRepository().findOne(id);
-	}
-
 	/**
 	 * Returns the repository being used by the service.
 	 * 
@@ -72,6 +67,11 @@ public final class DefaultUnitService implements UnitService {
 	 */
 	private final UnitRepository getRepository() {
 		return unitRepository;
+	}
+
+	@Override
+	public final Unit getUnitById(final Integer id) {
+		return getRepository().findOne(id);
 	}
 
 }
