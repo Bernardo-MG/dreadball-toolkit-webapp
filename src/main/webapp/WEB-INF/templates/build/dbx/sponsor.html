@@ -8,17 +8,19 @@
 
 	<section id="main-section" class="container-fluid">
 		<div class="panel panel-default">
-			<div class="panel-heading">Sponsor groups</div>
+			<div class="panel-heading">
+				Sponsor affinity groups <span class="tooltip-text"
+					data-toggle="tooltip" data-placement="top"
+					title="These will affect the players costs"><i
+					class="fa fa-question-circle" aria-hidden="true"></i></span>
+			</div>
 			<div class="panel-body">
-				<div class="col-md-12">Pick your sponsor descriptors. These
-					will mark the player prices.</div>
 				<div class="col-md-2" th:each="affinityColumn : ${affinities}">
-					<div class="col-md-12" th:text="${affinityColumn?.name}">Column
-						A</div>
-					<div class="list-group">
-						<button type="button" class="list-group-item"
-							th:each="affinity : ${affinityColumn?.affinityGroups}"
-							th:text="${affinity?.name}">Cunning</button>
+					<div th:each="affinity : ${affinityColumn?.affinityGroups}"
+						class="radio">
+						<label><input type="radio"
+							th:name="${affinityColumn?.name}" th:value="${affinity?.name}" /><span
+							th:text="${affinity?.name}">Affinity group</span></label>
 					</div>
 				</div>
 			</div>
