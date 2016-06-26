@@ -10,6 +10,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -31,12 +32,14 @@ public class DbxTeamBuilderController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public final String checkSponsorInfo(final ModelMap model, @Valid final SponsorForm sponsorForm,
-			final BindingResult bindingResult) {
+	public final String checkSponsorInfo(final ModelMap model,
+			@ModelAttribute("form") @Valid final SponsorForm form, final BindingResult bindingResult) {
 		final String path;
 
 		if (bindingResult.hasErrors()) {
-			path = "redirect:/builder/team/dbx";
+			model.put("affinities",
+					getSponsorAffinityGroupAvailabilityService().getAllSponsorAffinityGroupAvailabilities());
+			path = "build/dbx/sponsor";
 		} else {
 			path = "build/dbx/players";
 		}
@@ -54,7 +57,8 @@ public class DbxTeamBuilderController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public final String showSponsorForm(final ModelMap model, final SponsorForm sponsorForm) {
+	public final String showSponsorForm(final ModelMap model,
+			@ModelAttribute("form") final SponsorForm form) {
 		model.put("affinities",
 				getSponsorAffinityGroupAvailabilityService().getAllSponsorAffinityGroupAvailabilities());
 

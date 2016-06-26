@@ -9,16 +9,21 @@
 	<section id="main-section" class="container-fluid">
 		<h1>Sponsor creation</h1>
 		<section id="create_sponsor" class="form-well">
-			<form action="#" th:action="@{/builder/team/dbx}" th:object="${sponsorForm}"
-				method="post" role="form" class="form">
+			<form action="#" th:action="@{/builder/team/dbx}"
+				th:object="${form}" method="post" role="form" class="form">
 				<div class="col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">Sponsor info</div>
 						<div class="panel-body">
-							<div class="form-group">
-								<label for="sponsorName">Name</label> <input type="text"
-									th:field="*{sponsorName}" class="form-control"
-									placeholder="Sponsor name">
+							<div class="form-group"
+								th:classappend="${#fields.hasErrors('sponsorName')} ? 'error'">
+								<label class="control-label" for="sponsorName">Name</label>
+								<div class="controls">
+									<input type="text" th:field="*{sponsorName}"
+										class="form-control" placeholder="Sponsor name">
+									<p th:if="${#fields.hasErrors('sponsorName')}"
+										class="label label-danger" th:errors="*{sponsorName}">Error</p>
+								</div>
 							</div>
 							<div class="form-group">
 								<label for="rank">Rank</label> <input type="text"
