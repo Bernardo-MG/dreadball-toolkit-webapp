@@ -34,15 +34,16 @@
 					<td th:text="${player?.attributes?.speed}">3+</td>
 					<td th:text="${player?.attributes?.skill}">4+</td>
 					<td th:text="${player?.attributes?.armor}">4+</td>
-					<td><span
+					<td><span th:remove="tag"
 						th:each="ability,iterStat : ${player?.abilities}"
 						th:text="${iterStat.count &lt; #lists.size(player.abilities)}? ${ability.name} + ', ' : ${ability.name}">Ability</span></td>
-					<td><span
+					<td><span th:remove="tag"
 						th:each="affinity,iterStat : ${player?.affinityGroups}"
 						th:text="${iterStat.count &lt; #lists.size(player.affinityGroups)}? ${affinity.name} + ', ' : ${affinity.name}">Affinity</span></td>
-					<td><span
+					<td><span th:remove="tag"
 						th:each="hatedAffinity,iterStat : ${player?.hatedAffinityGroups}"
-						th:text="${iterStat.count &lt; #lists.size(player.hatedAffinityGroups)}? ${hatedAffinity.name} + ', ' : ${hatedAffinity.name}">Hated affinity</span></td>
+						th:text="${iterStat.count &lt; #lists.size(player.hatedAffinityGroups)}? ${hatedAffinity.name} + ', ' : ${hatedAffinity.name}">Hated
+							affinity</span></td>
 					<th th:text="${player?.strangerCost}">10</th>
 					<th th:text="${player?.allyCost}">20</th>
 					<th th:text="${player?.friendCost}">30</th>
