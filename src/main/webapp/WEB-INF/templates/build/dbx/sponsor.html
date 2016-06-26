@@ -7,24 +7,53 @@
 	<header class="header" th:include="fragments/menu :: menu" />
 
 	<section id="main-section" class="container-fluid">
-		<div class="panel panel-default">
-			<div class="panel-heading">
-				Sponsor affinity groups <span class="tooltip-text"
-					data-toggle="tooltip" data-placement="top"
-					title="These will affect the players costs"><i
-					class="fa fa-question-circle" aria-hidden="true"></i></span>
-			</div>
-			<div class="panel-body">
-				<div class="col-md-2" th:each="affinityColumn : ${affinities}">
-					<div th:each="affinity : ${affinityColumn?.affinityGroups}"
-						class="radio">
-						<label><input type="radio"
-							th:name="${affinityColumn?.name}" th:value="${affinity?.name}" /><span
-							th:text="${affinity?.name}">Affinity group</span></label>
+		<h1>Sponsor creation</h1>
+		<section id="create_sponsor" class="form-well">
+			<form action="#" th:action="@{/builder/team/dbx}" th:object="${sponsorForm}"
+				method="post" role="form" class="form">
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">Sponsor info</div>
+						<div class="panel-body">
+							<div class="form-group">
+								<label for="sponsorName">Name</label> <input type="text"
+									th:field="*{sponsorName}" class="form-control"
+									placeholder="Sponsor name">
+							</div>
+							<div class="form-group">
+								<label for="rank">Rank</label> <input type="text"
+									class="form-control" id="rank" value="5" disabled="true">
+							</div>
+						</div>
 					</div>
 				</div>
-			</div>
-		</div>
+				<div class="col-md-12">
+					<div class="panel panel-default">
+						<div class="panel-heading">
+							Sponsor affinity groups <span class="tooltip-text"
+								data-toggle="tooltip" data-placement="top"
+								title="These will affect the players costs"><i
+								class="fa fa-question-circle" aria-hidden="true"></i></span>
+						</div>
+						<div class="panel-body">
+							<div class="col-md-2" th:each="affinityColumn : ${affinities}">
+								<div th:each="affinity : ${affinityColumn?.affinityGroups}"
+									class="radio">
+									<label><input type="radio"
+										th:name="${affinityColumn?.name}" th:value="${affinity?.name}" /><span
+										th:text="${affinity?.name}">Affinity group</span></label>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div id="pick_sponsor" class="row">
+					<div class="col-md-12">
+						<button type="submit">Submit</button>
+					</div>
+				</div>
+			</form>
+		</section>
 	</section>
 
 	<footer class="container-fluid" th:include="fragments/footer :: footer" />

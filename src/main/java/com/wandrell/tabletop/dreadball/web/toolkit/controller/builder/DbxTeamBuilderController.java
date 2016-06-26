@@ -2,12 +2,16 @@ package com.wandrell.tabletop.dreadball.web.toolkit.controller.builder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability.SponsorAffinityGroupAvailabilityService;
 
 @Controller
@@ -24,16 +28,30 @@ public class DbxTeamBuilderController {
 				"Received a null pointer as sponsor affinities availabilities service");
 	}
 
-	@RequestMapping(method = RequestMethod.GET)
-	public final String createSponsor(final ModelMap model) {
-		model.put("affinities",
-				getSponsorAffinityGroupAvailabilityService().getAllSponsorAffinityGroupAvailabilities());
+	@RequestMapping(method = RequestMethod.POST)
+	public final String checkSponsorInfo(final ModelMap model, @Valid final SponsorForm sponsorForm,
+			final BindingResult bindingResult) {
+		final String path;
 
-		return "build/dbx/sponsor";
+		if (bindingResult.hasErrors()) {
+			path = "redirect:/builder/team/dbx";
+		} else {
+			path = "build/dbx/players";
+		}
+
+		return path;
 	}
 
 	private final SponsorAffinityGroupAvailabilityService getSponsorAffinityGroupAvailabilityService() {
 		return affinitiesAvasService;
+	}
+
+	@RequestMapping(method = RequestMethod.GET)
+	public final String showSponsorForm(final ModelMap model, final SponsorForm sponsorForm) {
+		model.put("affinities",
+				getSponsorAffinityGroupAvailabilityService().getAllSponsorAffinityGroupAvailabilities());
+
+		return "build/dbx/sponsor";
 	}
 
 }
