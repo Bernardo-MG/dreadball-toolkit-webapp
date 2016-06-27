@@ -4,10 +4,12 @@ package com.wandrell.tabletop.dreadball.web.toolkit.service.builder;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 
+@Service("dbxTeamBuilderService")
 public final class DefaultDbxTeamBuilderService
         implements DbxTeamBuilderService {
 
