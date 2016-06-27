@@ -9,30 +9,31 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
+import com.wandrell.tabletop.dreadball.web.toolkit.service.codex.UnitCodexService;
 
 @Controller
 @RequestMapping("/codex/unit")
 public class UnitCodexController {
 
-    final AffinityUnitRepository unitRepo;
+    private final UnitCodexService unitCodexService;
 
     @Autowired
-    public UnitCodexController(final AffinityUnitRepository unitRepository) {
+    public UnitCodexController(final UnitCodexService service) {
         super();
 
-        unitRepo = checkNotNull(unitRepository);
+        unitCodexService = checkNotNull(service,
+                "Received a null pointer as unit service");
     }
 
     @RequestMapping(method = RequestMethod.GET)
     public final String getAllUnits(final ModelMap model) {
-        model.put("players", getUnitRepository().findAll());
+        model.put("players", getUnitCodexService().getAllUnits());
 
         return "unitsListAffinity";
     }
 
-    private final AffinityUnitRepository getUnitRepository() {
-        return unitRepo;
+    private final UnitCodexService getUnitCodexService() {
+        return unitCodexService;
     }
 
 }
