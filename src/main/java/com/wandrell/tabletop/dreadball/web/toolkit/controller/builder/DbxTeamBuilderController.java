@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dreadball.web.toolkit.controller.builder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -21,47 +22,51 @@ import com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability.S
 @RequestMapping("/builder/team/dbx")
 public class DbxTeamBuilderController {
 
-	private final SponsorAffinityGroupAvailabilityService affinitiesAvasService;
+    private final SponsorAffinityGroupAvailabilityService affinitiesAvasService;
 
-	@Autowired
-	public DbxTeamBuilderController(final SponsorAffinityGroupAvailabilityService affinitiesService) {
-		super();
+    @Autowired
+    public DbxTeamBuilderController(
+            final SponsorAffinityGroupAvailabilityService affinitiesService) {
+        super();
 
-		affinitiesAvasService = checkNotNull(affinitiesService,
-				"Received a null pointer as sponsor affinities availabilities service");
-	}
+        affinitiesAvasService = checkNotNull(affinitiesService,
+                "Received a null pointer as sponsor affinities availabilities service");
+    }
 
-	@RequestMapping(method = RequestMethod.POST)
-	public final String checkSponsorInfo(final ModelMap model, @ModelAttribute("form") @Valid final SponsorForm form,
-			final BindingResult bindingResult) {
-		final String path;
+    @RequestMapping(method = RequestMethod.POST)
+    public final String checkSponsorInfo(final ModelMap model,
+            @ModelAttribute("form") @Valid final SponsorForm form,
+            final BindingResult bindingResult) {
+        final String path;
 
-		if (bindingResult.hasErrors()) {
-			model.put("affinities",
-					getSponsorAffinityGroupAvailabilityService().getAllSponsorAffinityGroupAvailabilities());
-			path = "build/dbx/sponsor";
-		} else {
-			path = "build/dbx/players";
-		}
+        if (bindingResult.hasErrors()) {
+            model.put("affinities", getSponsorAffinityGroupAvailabilityService()
+                    .getAllSponsorAffinityGroupAvailabilities());
+            path = "build/dbx/sponsor";
+        } else {
+            path = "build/dbx/players";
+        }
 
-		return path;
-	}
+        return path;
+    }
 
-	@InitBinder
-	public final void setAllowedFields(final WebDataBinder dataBinder) {
-		dataBinder.setDisallowedFields("id");
-	}
+    @InitBinder
+    public final void setAllowedFields(final WebDataBinder dataBinder) {
+        dataBinder.setDisallowedFields("id");
+    }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public final String showSponsorForm(final ModelMap model, @ModelAttribute("form") final SponsorForm form) {
-		model.put("affinities",
-				getSponsorAffinityGroupAvailabilityService().getAllSponsorAffinityGroupAvailabilities());
+    @RequestMapping(method = RequestMethod.GET)
+    public final String showSponsorForm(final ModelMap model,
+            @ModelAttribute("form") final SponsorForm form) {
+        model.put("affinities", getSponsorAffinityGroupAvailabilityService()
+                .getAllSponsorAffinityGroupAvailabilities());
 
-		return "build/dbx/sponsor";
-	}
+        return "build/dbx/sponsor";
+    }
 
-	private final SponsorAffinityGroupAvailabilityService getSponsorAffinityGroupAvailabilityService() {
-		return affinitiesAvasService;
-	}
+    private final SponsorAffinityGroupAvailabilityService
+            getSponsorAffinityGroupAvailabilityService() {
+        return affinitiesAvasService;
+    }
 
 }

@@ -25,6 +25,7 @@ import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentUnit;
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface UnitRepository extends PagingAndSortingRepository<PersistentUnit, Integer> {
+public interface UnitRepository
+        extends PagingAndSortingRepository<PersistentUnit, Integer> {
 
 }

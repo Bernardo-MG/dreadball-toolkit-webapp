@@ -27,6 +27,7 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface AffinityGroupRepository extends PagingAndSortingRepository<PersistentAffinityGroup, Integer> {
+public interface AffinityGroupRepository
+        extends PagingAndSortingRepository<PersistentAffinityGroup, Integer> {
 
 }

@@ -26,6 +26,7 @@ import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface AbilityRepository extends PagingAndSortingRepository<PersistentAbility, Integer> {
+public interface AbilityRepository
+        extends PagingAndSortingRepository<PersistentAbility, Integer> {
 
 }

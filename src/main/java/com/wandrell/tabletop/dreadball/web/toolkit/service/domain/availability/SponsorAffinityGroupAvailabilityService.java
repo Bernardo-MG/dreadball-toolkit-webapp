@@ -27,11 +27,12 @@ import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.Persi
  */
 public interface SponsorAffinityGroupAvailabilityService {
 
-	/**
-	 * Returns all {@code TeamTypeAssetsAvailability} instances.
-	 * 
-	 * @return all {@code TeamTypeAssetsAvailability} instances
-	 */
-	public Iterable<? extends PersistentSponsorAffinityGroupAvailability> getAllSponsorAffinityGroupAvailabilities();
+    /**
+     * Returns all {@code TeamTypeAssetsAvailability} instances.
+     * 
+     * @return all {@code TeamTypeAssetsAvailability} instances
+     */
+    public Iterable<? extends PersistentSponsorAffinityGroupAvailability>
+            getAllSponsorAffinityGroupAvailabilities();
 
 }

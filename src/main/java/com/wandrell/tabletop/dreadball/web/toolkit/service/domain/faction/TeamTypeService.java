@@ -25,20 +25,20 @@ import com.wandrell.tabletop.dreadball.model.faction.TeamType;
  */
 public interface TeamTypeService {
 
-	/**
-	 * Returns all {@code TeamType} instances.
-	 * 
-	 * @return all {@code TeamType} instances
-	 */
-	public Iterable<? extends TeamType> getAllTeamTypes();
+    /**
+     * Returns all {@code TeamType} instances.
+     * 
+     * @return all {@code TeamType} instances
+     */
+    public Iterable<? extends TeamType> getAllTeamTypes();
 
-	/**
-	 * Acquires an {@code TeamType} based on its id.
-	 * 
-	 * @param id
-	 *            the {@code TeamType} id
-	 * @return the {@code TeamType} with that id
-	 */
-	public TeamType getTeamTypeById(final Integer id);
+    /**
+     * Acquires an {@code TeamType} based on its id.
+     * 
+     * @param id
+     *            the {@code TeamType} id
+     * @return the {@code TeamType} with that id
+     */
+    public TeamType getTeamTypeById(final Integer id);
 
 }

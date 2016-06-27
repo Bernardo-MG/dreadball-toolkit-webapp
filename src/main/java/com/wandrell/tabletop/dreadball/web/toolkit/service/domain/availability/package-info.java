@@ -16,4 +16,5 @@
 /**
  * Provides service interfaces and implementations for availabilities.
  */
+
 package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability;

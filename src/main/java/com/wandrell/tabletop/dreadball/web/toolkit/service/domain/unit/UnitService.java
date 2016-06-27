@@ -25,20 +25,20 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
  */
 public interface UnitService {
 
-	/**
-	 * Returns all {@code Unit} instances.
-	 * 
-	 * @return all {@code Unit} instances
-	 */
-	public Iterable<? extends Unit> getAllUnits();
+    /**
+     * Returns all {@code Unit} instances.
+     * 
+     * @return all {@code Unit} instances
+     */
+    public Iterable<? extends Unit> getAllUnits();
 
-	/**
-	 * Acquires an {@code Unit} based on its id.
-	 * 
-	 * @param id
-	 *            the {@code Unit} id
-	 * @return the {@code Unit} with that id
-	 */
-	public Unit getUnitById(final Integer id);
+    /**
+     * Acquires an {@code Unit} based on its id.
+     * 
+     * @param id
+     *            the {@code Unit} id
+     * @return the {@code Unit} with that id
+     */
+    public Unit getUnitById(final Integer id);
 
 }

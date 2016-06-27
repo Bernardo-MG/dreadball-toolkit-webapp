@@ -34,46 +34,51 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.TeamT
  * @author Bernardo Martínez Garrido
  */
 @Service("teamTypeUnitAvailabilityDataService")
-public final class DefaultTeamTypeUnitAvailabilityService implements TeamTypeUnitAvailabilityService {
+public final class DefaultTeamTypeUnitAvailabilityService
+        implements TeamTypeUnitAvailabilityService {
 
-	/**
-	 * Repository for the {@code TeamTypeUnitAvailability} instances.
-	 */
-	private final TeamTypeUnitAvailabilityRepository unitAvaRepository;
+    /**
+     * Repository for the {@code TeamTypeUnitAvailability} instances.
+     */
+    private final TeamTypeUnitAvailabilityRepository unitAvaRepository;
 
-	/**
-	 * Constructs a {@code JPATeamTypeUnitAvailabilityService} with the
-	 * specified repository.
-	 * <p>
-	 * Said repository is meant to be injected through Spring.
-	 * 
-	 * @param repository
-	 *            the repository to be used by the service
-	 */
-	@Autowired
-	public DefaultTeamTypeUnitAvailabilityService(final TeamTypeUnitAvailabilityRepository repository) {
-		super();
+    /**
+     * Constructs a {@code JPATeamTypeUnitAvailabilityService} with the
+     * specified repository.
+     * <p>
+     * Said repository is meant to be injected through Spring.
+     * 
+     * @param repository
+     *            the repository to be used by the service
+     */
+    @Autowired
+    public DefaultTeamTypeUnitAvailabilityService(
+            final TeamTypeUnitAvailabilityRepository repository) {
+        super();
 
-		unitAvaRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
-	}
+        unitAvaRepository = checkNotNull(repository,
+                "Received a null pointer as abilities repository");
+    }
 
-	@Override
-	public final Iterable<? extends TeamTypeUnitAvailability> getAllTeamTypeUnitAvailabilities() {
-		return getRepository().findAll();
-	}
+    @Override
+    public final Iterable<? extends TeamTypeUnitAvailability>
+            getAllTeamTypeUnitAvailabilities() {
+        return getRepository().findAll();
+    }
 
-	@Override
-	public final TeamTypeUnitAvailability getTeamTypeUnitAvailabilityById(final Integer id) {
-		return getRepository().findOne(id);
-	}
+    @Override
+    public final TeamTypeUnitAvailability
+            getTeamTypeUnitAvailabilityById(final Integer id) {
+        return getRepository().findOne(id);
+    }
 
-	/**
-	 * Returns the repository being used by the service.
-	 * 
-	 * @return the repository being used by the service
-	 */
-	private final TeamTypeUnitAvailabilityRepository getRepository() {
-		return unitAvaRepository;
-	}
+    /**
+     * Returns the repository being used by the service.
+     * 
+     * @return the repository being used by the service
+     */
+    private final TeamTypeUnitAvailabilityRepository getRepository() {
+        return unitAvaRepository;
+    }
 
 }

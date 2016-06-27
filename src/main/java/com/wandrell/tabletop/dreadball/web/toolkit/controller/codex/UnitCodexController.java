@@ -1,3 +1,4 @@
+
 package com.wandrell.tabletop.dreadball.web.toolkit.controller.codex;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -14,24 +15,24 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
 @RequestMapping("/codex/unit")
 public class UnitCodexController {
 
-	final AffinityUnitRepository unitRepo;
+    final AffinityUnitRepository unitRepo;
 
-	@Autowired
-	public UnitCodexController(final AffinityUnitRepository unitRepository) {
-		super();
+    @Autowired
+    public UnitCodexController(final AffinityUnitRepository unitRepository) {
+        super();
 
-		unitRepo = checkNotNull(unitRepository);
-	}
+        unitRepo = checkNotNull(unitRepository);
+    }
 
-	@RequestMapping(method = RequestMethod.GET)
-	public final String getAllUnits(final ModelMap model) {
-		model.put("players", getUnitRepository().findAll());
+    @RequestMapping(method = RequestMethod.GET)
+    public final String getAllUnits(final ModelMap model) {
+        model.put("players", getUnitRepository().findAll());
 
-		return "unitsListAffinity";
-	}
+        return "unitsListAffinity";
+    }
 
-	private final AffinityUnitRepository getUnitRepository() {
-		return unitRepo;
-	}
+    private final AffinityUnitRepository getUnitRepository() {
+        return unitRepo;
+    }
 
 }

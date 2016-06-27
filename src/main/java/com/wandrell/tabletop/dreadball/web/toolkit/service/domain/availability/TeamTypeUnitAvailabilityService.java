@@ -26,20 +26,22 @@ import com.wandrell.tabletop.dreadball.model.availability.unit.TeamTypeUnitAvail
  */
 public interface TeamTypeUnitAvailabilityService {
 
-	/**
-	 * Returns all {@code TeamTypeUnitAvailability} instances.
-	 * 
-	 * @return all {@code TeamTypeUnitAvailability} instances
-	 */
-	public Iterable<? extends TeamTypeUnitAvailability> getAllTeamTypeUnitAvailabilities();
+    /**
+     * Returns all {@code TeamTypeUnitAvailability} instances.
+     * 
+     * @return all {@code TeamTypeUnitAvailability} instances
+     */
+    public Iterable<? extends TeamTypeUnitAvailability>
+            getAllTeamTypeUnitAvailabilities();
 
-	/**
-	 * Acquires an {@code TeamTypeUnitAvailability} based on its id.
-	 * 
-	 * @param id
-	 *            the {@code TeamTypeUnitAvailability} id
-	 * @return the {@code TeamTypeUnitAvailability} with that id
-	 */
-	public TeamTypeUnitAvailability getTeamTypeUnitAvailabilityById(final Integer id);
+    /**
+     * Acquires an {@code TeamTypeUnitAvailability} based on its id.
+     * 
+     * @param id
+     *            the {@code TeamTypeUnitAvailability} id
+     * @return the {@code TeamTypeUnitAvailability} with that id
+     */
+    public TeamTypeUnitAvailability
+            getTeamTypeUnitAvailabilityById(final Integer id);
 
 }

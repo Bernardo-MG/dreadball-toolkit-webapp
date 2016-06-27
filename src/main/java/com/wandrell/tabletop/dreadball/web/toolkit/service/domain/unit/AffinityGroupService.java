@@ -25,20 +25,20 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
  */
 public interface AffinityGroupService {
 
-	/**
-	 * Acquires an {@code AffinityGroup} based on its id.
-	 * 
-	 * @param id
-	 *            the {@code AffinityGroup} id
-	 * @return the {@code AffinityGroup} with that id
-	 */
-	public AffinityGroup getAffinityGroupById(final Integer id);
+    /**
+     * Acquires an {@code AffinityGroup} based on its id.
+     * 
+     * @param id
+     *            the {@code AffinityGroup} id
+     * @return the {@code AffinityGroup} with that id
+     */
+    public AffinityGroup getAffinityGroupById(final Integer id);
 
-	/**
-	 * Returns all {@code AffinityGroup} instances.
-	 * 
-	 * @return all {@code AffinityGroup} instances
-	 */
-	public Iterable<? extends AffinityGroup> getAllAffinityGroups();
+    /**
+     * Returns all {@code AffinityGroup} instances.
+     * 
+     * @return all {@code AffinityGroup} instances
+     */
+    public Iterable<? extends AffinityGroup> getAllAffinityGroups();
 
 }

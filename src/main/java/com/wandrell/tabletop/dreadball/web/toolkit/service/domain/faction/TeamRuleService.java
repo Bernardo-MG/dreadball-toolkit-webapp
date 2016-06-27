@@ -25,20 +25,20 @@ import com.wandrell.tabletop.dreadball.model.faction.TeamRule;
  */
 public interface TeamRuleService {
 
-	/**
-	 * Returns all {@code TeamRule} instances.
-	 * 
-	 * @return all {@code TeamRule} instances
-	 */
-	public Iterable<? extends TeamRule> getAllTeamRules();
+    /**
+     * Returns all {@code TeamRule} instances.
+     * 
+     * @return all {@code TeamRule} instances
+     */
+    public Iterable<? extends TeamRule> getAllTeamRules();
 
-	/**
-	 * Acquires an {@code TeamRule} based on its id.
-	 * 
-	 * @param id
-	 *            the {@code TeamRule} id
-	 * @return the {@code TeamRule} with that id
-	 */
-	public TeamRule getTeamRuleById(final Integer id);
+    /**
+     * Acquires an {@code TeamRule} based on its id.
+     * 
+     * @param id
+     *            the {@code TeamRule} id
+     * @return the {@code TeamRule} with that id
+     */
+    public TeamRule getTeamRuleById(final Integer id);
 
 }

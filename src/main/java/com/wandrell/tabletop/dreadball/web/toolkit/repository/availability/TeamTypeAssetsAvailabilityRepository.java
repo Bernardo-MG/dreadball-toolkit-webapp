@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dreadball.model.persistence.availability.asset.Pers
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamTypeAssetsAvailabilityRepository
-		extends PagingAndSortingRepository<PersistentTeamTypeAssetsAvailability, Integer> {
+public interface TeamTypeAssetsAvailabilityRepository extends
+        PagingAndSortingRepository<PersistentTeamTypeAssetsAvailability, Integer> {
 
 }

@@ -35,43 +35,44 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.UnitRepositor
 @Service("unitDataService")
 public final class DefaultUnitService implements UnitService {
 
-	/**
-	 * Repository for the {@code Unit} instances.
-	 */
-	private final UnitRepository unitRepository;
+    /**
+     * Repository for the {@code Unit} instances.
+     */
+    private final UnitRepository unitRepository;
 
-	/**
-	 * Constructs a {@code JPAUnitService} with the specified repository.
-	 * <p>
-	 * Said repository is meant to be injected through Spring.
-	 * 
-	 * @param repository
-	 *            the repository to be used by the service
-	 */
-	@Autowired
-	public DefaultUnitService(final UnitRepository repository) {
-		super();
+    /**
+     * Constructs a {@code JPAUnitService} with the specified repository.
+     * <p>
+     * Said repository is meant to be injected through Spring.
+     * 
+     * @param repository
+     *            the repository to be used by the service
+     */
+    @Autowired
+    public DefaultUnitService(final UnitRepository repository) {
+        super();
 
-		unitRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
-	}
+        unitRepository = checkNotNull(repository,
+                "Received a null pointer as abilities repository");
+    }
 
-	@Override
-	public final Iterable<? extends Unit> getAllUnits() {
-		return getRepository().findAll();
-	}
+    @Override
+    public final Iterable<? extends Unit> getAllUnits() {
+        return getRepository().findAll();
+    }
 
-	@Override
-	public final Unit getUnitById(final Integer id) {
-		return getRepository().findOne(id);
-	}
+    @Override
+    public final Unit getUnitById(final Integer id) {
+        return getRepository().findOne(id);
+    }
 
-	/**
-	 * Returns the repository being used by the service.
-	 * 
-	 * @return the repository being used by the service
-	 */
-	private final UnitRepository getRepository() {
-		return unitRepository;
-	}
+    /**
+     * Returns the repository being used by the service.
+     * 
+     * @return the repository being used by the service
+     */
+    private final UnitRepository getRepository() {
+        return unitRepository;
+    }
 
 }

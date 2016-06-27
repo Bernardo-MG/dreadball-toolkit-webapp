@@ -16,4 +16,5 @@
 /**
  * Provides interfaces and implementations of repositories for factions.
  */
+
 package com.wandrell.tabletop.dreadball.web.toolkit.repository.faction;

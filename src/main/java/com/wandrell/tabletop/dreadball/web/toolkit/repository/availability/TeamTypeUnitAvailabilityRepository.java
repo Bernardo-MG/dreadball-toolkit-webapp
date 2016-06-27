@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.Persi
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamTypeUnitAvailabilityRepository
-		extends PagingAndSortingRepository<PersistentTeamTypeUnitAvailability, Integer> {
+public interface TeamTypeUnitAvailabilityRepository extends
+        PagingAndSortingRepository<PersistentTeamTypeUnitAvailability, Integer> {
 
 }

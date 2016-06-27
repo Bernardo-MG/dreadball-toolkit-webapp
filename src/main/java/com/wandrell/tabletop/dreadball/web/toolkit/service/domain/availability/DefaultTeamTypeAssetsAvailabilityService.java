@@ -34,46 +34,51 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.TeamT
  * @author Bernardo Martínez Garrido
  */
 @Service("teamTypeAssetsAvailabilityDataService")
-public final class DefaultTeamTypeAssetsAvailabilityService implements TeamTypeAssetsAvailabilityService {
+public final class DefaultTeamTypeAssetsAvailabilityService
+        implements TeamTypeAssetsAvailabilityService {
 
-	/**
-	 * Repository for the {@code TeamTypeAssetsAvailability} instances.
-	 */
-	private final TeamTypeAssetsAvailabilityRepository assetRepository;
+    /**
+     * Repository for the {@code TeamTypeAssetsAvailability} instances.
+     */
+    private final TeamTypeAssetsAvailabilityRepository assetRepository;
 
-	/**
-	 * Constructs a {@code JPATeamTypeAssetsAvailabilityService} with the
-	 * specified repository.
-	 * <p>
-	 * Said repository is meant to be injected through Spring.
-	 * 
-	 * @param repository
-	 *            the repository to be used by the service
-	 */
-	@Autowired
-	public DefaultTeamTypeAssetsAvailabilityService(final TeamTypeAssetsAvailabilityRepository repository) {
-		super();
+    /**
+     * Constructs a {@code JPATeamTypeAssetsAvailabilityService} with the
+     * specified repository.
+     * <p>
+     * Said repository is meant to be injected through Spring.
+     * 
+     * @param repository
+     *            the repository to be used by the service
+     */
+    @Autowired
+    public DefaultTeamTypeAssetsAvailabilityService(
+            final TeamTypeAssetsAvailabilityRepository repository) {
+        super();
 
-		assetRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
-	}
+        assetRepository = checkNotNull(repository,
+                "Received a null pointer as abilities repository");
+    }
 
-	@Override
-	public final Iterable<? extends TeamTypeAssetsAvailability> getAllTeamTypeAssetsAvailabilities() {
-		return getRepository().findAll();
-	}
+    @Override
+    public final Iterable<? extends TeamTypeAssetsAvailability>
+            getAllTeamTypeAssetsAvailabilities() {
+        return getRepository().findAll();
+    }
 
-	@Override
-	public final TeamTypeAssetsAvailability getTeamTypeAssetsAvailabilityById(final Integer id) {
-		return getRepository().findOne(id);
-	}
+    @Override
+    public final TeamTypeAssetsAvailability
+            getTeamTypeAssetsAvailabilityById(final Integer id) {
+        return getRepository().findOne(id);
+    }
 
-	/**
-	 * Returns the repository being used by the service.
-	 * 
-	 * @return the repository being used by the service
-	 */
-	private final TeamTypeAssetsAvailabilityRepository getRepository() {
-		return assetRepository;
-	}
+    /**
+     * Returns the repository being used by the service.
+     * 
+     * @return the repository being used by the service
+     */
+    private final TeamTypeAssetsAvailabilityRepository getRepository() {
+        return assetRepository;
+    }
 
 }

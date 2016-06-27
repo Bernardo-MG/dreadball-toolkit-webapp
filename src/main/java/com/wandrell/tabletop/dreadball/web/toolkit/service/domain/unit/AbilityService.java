@@ -25,20 +25,20 @@ import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
  */
 public interface AbilityService {
 
-	/**
-	 * Acquires an {@code Ability} based on its id.
-	 * 
-	 * @param id
-	 *            the {@code Ability} id
-	 * @return the {@code Ability} with that id
-	 */
-	public Ability getAbilityById(final Integer id);
+    /**
+     * Acquires an {@code Ability} based on its id.
+     * 
+     * @param id
+     *            the {@code Ability} id
+     * @return the {@code Ability} with that id
+     */
+    public Ability getAbilityById(final Integer id);
 
-	/**
-	 * Returns all {@code Ability} instances.
-	 * 
-	 * @return all {@code Ability} instances
-	 */
-	public Iterable<? extends Ability> getAllAbilities();
+    /**
+     * Returns all {@code Ability} instances.
+     * 
+     * @return all {@code Ability} instances
+     */
+    public Iterable<? extends Ability> getAllAbilities();
 
 }

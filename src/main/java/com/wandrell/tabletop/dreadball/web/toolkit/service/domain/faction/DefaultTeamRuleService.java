@@ -35,43 +35,44 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.faction.TeamRuleRe
 @Service("teamRuleDataService")
 public final class DefaultTeamRuleService implements TeamRuleService {
 
-	/**
-	 * Repository for the {@code TeamRule} instances.
-	 */
-	private final TeamRuleRepository ruleRepository;
+    /**
+     * Repository for the {@code TeamRule} instances.
+     */
+    private final TeamRuleRepository ruleRepository;
 
-	/**
-	 * Constructs a {@code JPATeamRuleService} with the specified repository.
-	 * <p>
-	 * Said repository is meant to be injected through Spring.
-	 * 
-	 * @param repository
-	 *            the repository to be used by the service
-	 */
-	@Autowired
-	public DefaultTeamRuleService(final TeamRuleRepository repository) {
-		super();
+    /**
+     * Constructs a {@code JPATeamRuleService} with the specified repository.
+     * <p>
+     * Said repository is meant to be injected through Spring.
+     * 
+     * @param repository
+     *            the repository to be used by the service
+     */
+    @Autowired
+    public DefaultTeamRuleService(final TeamRuleRepository repository) {
+        super();
 
-		ruleRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
-	}
+        ruleRepository = checkNotNull(repository,
+                "Received a null pointer as abilities repository");
+    }
 
-	@Override
-	public final Iterable<? extends TeamRule> getAllTeamRules() {
-		return getRepository().findAll();
-	}
+    @Override
+    public final Iterable<? extends TeamRule> getAllTeamRules() {
+        return getRepository().findAll();
+    }
 
-	@Override
-	public final TeamRule getTeamRuleById(final Integer id) {
-		return getRepository().findOne(id);
-	}
+    @Override
+    public final TeamRule getTeamRuleById(final Integer id) {
+        return getRepository().findOne(id);
+    }
 
-	/**
-	 * Returns the repository being used by the service.
-	 * 
-	 * @return the repository being used by the service
-	 */
-	private final TeamRuleRepository getRepository() {
-		return ruleRepository;
-	}
+    /**
+     * Returns the repository being used by the service.
+     * 
+     * @return the repository being used by the service
+     */
+    private final TeamRuleRepository getRepository() {
+        return ruleRepository;
+    }
 
 }

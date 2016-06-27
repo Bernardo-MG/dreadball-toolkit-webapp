@@ -26,6 +26,7 @@ import com.wandrell.tabletop.dreadball.model.persistence.faction.PersistentTeamT
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface TeamTypeRepository extends PagingAndSortingRepository<PersistentTeamType, Integer> {
+public interface TeamTypeRepository
+        extends PagingAndSortingRepository<PersistentTeamType, Integer> {
 
 }

@@ -13,6 +13,7 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
+
 package com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability;
 
 import static com.google.common.base.Preconditions.checkNotNull;
@@ -24,25 +25,28 @@ import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.Persi
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 
 @Service("sponsorAffinityGroupAvailabilityService")
-public final class DefaultSponsorAffinityGroupAvailabilityService implements SponsorAffinityGroupAvailabilityService {
+public final class DefaultSponsorAffinityGroupAvailabilityService
+        implements SponsorAffinityGroupAvailabilityService {
 
-	private final SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
+    private final SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
 
-	@Autowired
-	public DefaultSponsorAffinityGroupAvailabilityService(final SponsorAffinityGroupAvailabilityRepository repository) {
-		super();
+    @Autowired
+    public DefaultSponsorAffinityGroupAvailabilityService(
+            final SponsorAffinityGroupAvailabilityRepository repository) {
+        super();
 
-		affinityAvasRepository = checkNotNull(repository,
-				"Received a null pointer as affinity availabilities repository");
-	}
+        affinityAvasRepository = checkNotNull(repository,
+                "Received a null pointer as affinity availabilities repository");
+    }
 
-	@Override
-	public final Iterable<? extends PersistentSponsorAffinityGroupAvailability> getAllSponsorAffinityGroupAvailabilities() {
-		return getRepository().findAll();
-	}
+    @Override
+    public final Iterable<? extends PersistentSponsorAffinityGroupAvailability>
+            getAllSponsorAffinityGroupAvailabilities() {
+        return getRepository().findAll();
+    }
 
-	private final SponsorAffinityGroupAvailabilityRepository getRepository() {
-		return affinityAvasRepository;
-	}
+    private final SponsorAffinityGroupAvailabilityRepository getRepository() {
+        return affinityAvasRepository;
+    }
 
 }

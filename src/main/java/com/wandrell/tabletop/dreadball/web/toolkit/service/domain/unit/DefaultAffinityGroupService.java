@@ -36,44 +36,46 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroup
 @Service("affinityGroupDataService")
 public final class DefaultAffinityGroupService implements AffinityGroupService {
 
-	/**
-	 * Repository for the {@code AffinityGroup} instances.
-	 */
-	private final AffinityGroupRepository affinityRepository;
+    /**
+     * Repository for the {@code AffinityGroup} instances.
+     */
+    private final AffinityGroupRepository affinityRepository;
 
-	/**
-	 * Constructs a {@code JPAAffinityGroupService} with the specified
-	 * repository.
-	 * <p>
-	 * Said repository is meant to be injected through Spring.
-	 * 
-	 * @param repository
-	 *            the repository to be used by the service
-	 */
-	@Autowired
-	public DefaultAffinityGroupService(final AffinityGroupRepository repository) {
-		super();
+    /**
+     * Constructs a {@code JPAAffinityGroupService} with the specified
+     * repository.
+     * <p>
+     * Said repository is meant to be injected through Spring.
+     * 
+     * @param repository
+     *            the repository to be used by the service
+     */
+    @Autowired
+    public DefaultAffinityGroupService(
+            final AffinityGroupRepository repository) {
+        super();
 
-		affinityRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
-	}
+        affinityRepository = checkNotNull(repository,
+                "Received a null pointer as abilities repository");
+    }
 
-	@Override
-	public final AffinityGroup getAffinityGroupById(final Integer id) {
-		return getRepository().findOne(id);
-	}
+    @Override
+    public final AffinityGroup getAffinityGroupById(final Integer id) {
+        return getRepository().findOne(id);
+    }
 
-	@Override
-	public final Iterable<? extends AffinityGroup> getAllAffinityGroups() {
-		return getRepository().findAll();
-	}
+    @Override
+    public final Iterable<? extends AffinityGroup> getAllAffinityGroups() {
+        return getRepository().findAll();
+    }
 
-	/**
-	 * Returns the repository being used by the service.
-	 * 
-	 * @return the repository being used by the service
-	 */
-	private final AffinityGroupRepository getRepository() {
-		return affinityRepository;
-	}
+    /**
+     * Returns the repository being used by the service.
+     * 
+     * @return the repository being used by the service
+     */
+    private final AffinityGroupRepository getRepository() {
+        return affinityRepository;
+    }
 
 }

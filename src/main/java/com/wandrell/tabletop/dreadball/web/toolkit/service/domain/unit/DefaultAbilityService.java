@@ -35,43 +35,44 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AbilityReposi
 @Service("abilityDataService")
 public final class DefaultAbilityService implements AbilityService {
 
-	/**
-	 * Repository for the {@code Ability} instances.
-	 */
-	private final AbilityRepository abilityRepository;
+    /**
+     * Repository for the {@code Ability} instances.
+     */
+    private final AbilityRepository abilityRepository;
 
-	/**
-	 * Constructs a {@code JPAAbilityService} with the specified repository.
-	 * <p>
-	 * Said repository is meant to be injected through Spring.
-	 * 
-	 * @param repository
-	 *            the repository to be used by the service
-	 */
-	@Autowired
-	public DefaultAbilityService(final AbilityRepository repository) {
-		super();
+    /**
+     * Constructs a {@code JPAAbilityService} with the specified repository.
+     * <p>
+     * Said repository is meant to be injected through Spring.
+     * 
+     * @param repository
+     *            the repository to be used by the service
+     */
+    @Autowired
+    public DefaultAbilityService(final AbilityRepository repository) {
+        super();
 
-		abilityRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
-	}
+        abilityRepository = checkNotNull(repository,
+                "Received a null pointer as abilities repository");
+    }
 
-	@Override
-	public final Ability getAbilityById(final Integer id) {
-		return getRepository().findOne(id);
-	}
+    @Override
+    public final Ability getAbilityById(final Integer id) {
+        return getRepository().findOne(id);
+    }
 
-	@Override
-	public final Iterable<? extends Ability> getAllAbilities() {
-		return getRepository().findAll();
-	}
+    @Override
+    public final Iterable<? extends Ability> getAllAbilities() {
+        return getRepository().findAll();
+    }
 
-	/**
-	 * Returns the repository being used by the service.
-	 * 
-	 * @return the repository being used by the service
-	 */
-	private final AbilityRepository getRepository() {
-		return abilityRepository;
-	}
+    /**
+     * Returns the repository being used by the service.
+     * 
+     * @return the repository being used by the service
+     */
+    private final AbilityRepository getRepository() {
+        return abilityRepository;
+    }
 
 }

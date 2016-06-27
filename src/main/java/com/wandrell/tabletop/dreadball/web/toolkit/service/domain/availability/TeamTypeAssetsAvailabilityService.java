@@ -26,20 +26,22 @@ import com.wandrell.tabletop.dreadball.model.availability.asset.TeamTypeAssetsAv
  */
 public interface TeamTypeAssetsAvailabilityService {
 
-	/**
-	 * Returns all {@code TeamTypeAssetsAvailability} instances.
-	 * 
-	 * @return all {@code TeamTypeAssetsAvailability} instances
-	 */
-	public Iterable<? extends TeamTypeAssetsAvailability> getAllTeamTypeAssetsAvailabilities();
+    /**
+     * Returns all {@code TeamTypeAssetsAvailability} instances.
+     * 
+     * @return all {@code TeamTypeAssetsAvailability} instances
+     */
+    public Iterable<? extends TeamTypeAssetsAvailability>
+            getAllTeamTypeAssetsAvailabilities();
 
-	/**
-	 * Acquires an {@code TeamTypeAssetsAvailability} based on its id.
-	 * 
-	 * @param id
-	 *            the {@code TeamTypeAssetsAvailability} id
-	 * @return the {@code TeamTypeAssetsAvailability} with that id
-	 */
-	public TeamTypeAssetsAvailability getTeamTypeAssetsAvailabilityById(final Integer id);
+    /**
+     * Acquires an {@code TeamTypeAssetsAvailability} based on its id.
+     * 
+     * @param id
+     *            the {@code TeamTypeAssetsAvailability} id
+     * @return the {@code TeamTypeAssetsAvailability} with that id
+     */
+    public TeamTypeAssetsAvailability
+            getTeamTypeAssetsAvailabilityById(final Integer id);
 
 }

@@ -25,6 +25,7 @@ import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinity
  * 
  * @author Bernardo Martínez Garrido
  */
-public interface AffinityUnitRepository extends PagingAndSortingRepository<PersistentAffinityUnit, Integer> {
+public interface AffinityUnitRepository
+        extends PagingAndSortingRepository<PersistentAffinityUnit, Integer> {
 
 }

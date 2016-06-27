@@ -35,43 +35,44 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.faction.TeamTypeRe
 @Service("teamTypeDataService")
 public final class DefaultTeamTypeService implements TeamTypeService {
 
-	/**
-	 * Repository for the {@code TeamType} instances.
-	 */
-	private final TeamTypeRepository teamRepository;
+    /**
+     * Repository for the {@code TeamType} instances.
+     */
+    private final TeamTypeRepository teamRepository;
 
-	/**
-	 * Constructs a {@code JPATeamTypeService} with the specified repository.
-	 * <p>
-	 * Said repository is meant to be injected through Spring.
-	 * 
-	 * @param repository
-	 *            the repository to be used by the service
-	 */
-	@Autowired
-	public DefaultTeamTypeService(final TeamTypeRepository repository) {
-		super();
+    /**
+     * Constructs a {@code JPATeamTypeService} with the specified repository.
+     * <p>
+     * Said repository is meant to be injected through Spring.
+     * 
+     * @param repository
+     *            the repository to be used by the service
+     */
+    @Autowired
+    public DefaultTeamTypeService(final TeamTypeRepository repository) {
+        super();
 
-		teamRepository = checkNotNull(repository, "Received a null pointer as abilities repository");
-	}
+        teamRepository = checkNotNull(repository,
+                "Received a null pointer as abilities repository");
+    }
 
-	@Override
-	public final Iterable<? extends TeamType> getAllTeamTypes() {
-		return getRepository().findAll();
-	}
+    @Override
+    public final Iterable<? extends TeamType> getAllTeamTypes() {
+        return getRepository().findAll();
+    }
 
-	@Override
-	public final TeamType getTeamTypeById(final Integer id) {
-		return getRepository().findOne(id);
-	}
+    @Override
+    public final TeamType getTeamTypeById(final Integer id) {
+        return getRepository().findOne(id);
+    }
 
-	/**
-	 * Returns the repository being used by the service.
-	 * 
-	 * @return the repository being used by the service
-	 */
-	private final TeamTypeRepository getRepository() {
-		return teamRepository;
-	}
+    /**
+     * Returns the repository being used by the service.
+     * 
+     * @return the repository being used by the service
+     */
+    private final TeamTypeRepository getRepository() {
+        return teamRepository;
+    }
 
 }
