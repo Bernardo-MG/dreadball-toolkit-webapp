@@ -40,6 +40,7 @@ public class DbxTeamBuilderController {
         final String path;
 
         if (bindingResult.hasErrors()) {
+            // Affinity groups for the sponsors
             model.put("affinities", getSponsorAffinityGroupAvailabilityService()
                     .getAllSponsorAffinityGroupAvailabilities());
             path = "build/dbx/sponsor";
@@ -58,6 +59,7 @@ public class DbxTeamBuilderController {
     @RequestMapping(method = RequestMethod.GET)
     public final String showSponsorForm(final ModelMap model,
             @ModelAttribute("form") final SponsorForm form) {
+        // Affinity groups for the sponsors
         model.put("affinities", getSponsorAffinityGroupAvailabilityService()
                 .getAllSponsorAffinityGroupAvailabilities());
 
