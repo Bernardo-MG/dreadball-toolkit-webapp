@@ -16,21 +16,20 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.domain.availability.SponsorAffinityGroupAvailabilityService;
+import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilderService;
 
 @Controller
 @RequestMapping("/builder/team/dbx")
 public class DbxTeamBuilderController {
 
-    private final SponsorAffinityGroupAvailabilityService affinitiesAvasService;
+    private final DbxTeamBuilderService dbxTeamBuilderService;
 
     @Autowired
-    public DbxTeamBuilderController(
-            final SponsorAffinityGroupAvailabilityService affinitiesService) {
+    public DbxTeamBuilderController(final DbxTeamBuilderService service) {
         super();
 
-        affinitiesAvasService = checkNotNull(affinitiesService,
-                "Received a null pointer as sponsor affinities availabilities service");
+        dbxTeamBuilderService = checkNotNull(service,
+                "Received a null pointer as DBX team builder service");
     }
 
     @RequestMapping(method = RequestMethod.POST)
@@ -41,8 +40,8 @@ public class DbxTeamBuilderController {
 
         if (bindingResult.hasErrors()) {
             // Affinity groups for the sponsors
-            model.put("affinities", getSponsorAffinityGroupAvailabilityService()
-                    .getAllSponsorAffinityGroupAvailabilities());
+            model.put("affinities",
+                    getDbxTeamBuilderService().getSponsorAffinityGroups());
             path = "build/dbx/sponsor";
         } else {
             path = "build/dbx/players";
@@ -60,15 +59,14 @@ public class DbxTeamBuilderController {
     public final String showSponsorForm(final ModelMap model,
             @ModelAttribute("form") final SponsorForm form) {
         // Affinity groups for the sponsors
-        model.put("affinities", getSponsorAffinityGroupAvailabilityService()
-                .getAllSponsorAffinityGroupAvailabilities());
+        model.put("affinities",
+                getDbxTeamBuilderService().getSponsorAffinityGroups());
 
         return "build/dbx/sponsor";
     }
 
-    private final SponsorAffinityGroupAvailabilityService
-            getSponsorAffinityGroupAvailabilityService() {
-        return affinitiesAvasService;
+    private final DbxTeamBuilderService getDbxTeamBuilderService() {
+        return dbxTeamBuilderService;
     }
 
 }
