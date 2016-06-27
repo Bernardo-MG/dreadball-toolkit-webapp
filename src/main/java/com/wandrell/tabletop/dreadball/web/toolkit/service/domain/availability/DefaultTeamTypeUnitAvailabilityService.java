@@ -62,6 +62,11 @@ public final class DefaultTeamTypeUnitAvailabilityService implements TeamTypeUni
 		return getRepository().findAll();
 	}
 
+	@Override
+	public final TeamTypeUnitAvailability getTeamTypeUnitAvailabilityById(final Integer id) {
+		return getRepository().findOne(id);
+	}
+
 	/**
 	 * Returns the repository being used by the service.
 	 * 
@@ -69,11 +74,6 @@ public final class DefaultTeamTypeUnitAvailabilityService implements TeamTypeUni
 	 */
 	private final TeamTypeUnitAvailabilityRepository getRepository() {
 		return unitAvaRepository;
-	}
-
-	@Override
-	public final TeamTypeUnitAvailability getTeamTypeUnitAvailabilityById(final Integer id) {
-		return getRepository().findOne(id);
 	}
 
 }

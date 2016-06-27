@@ -32,8 +32,8 @@ public class DbxTeamBuilderController {
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
-	public final String checkSponsorInfo(final ModelMap model,
-			@ModelAttribute("form") @Valid final SponsorForm form, final BindingResult bindingResult) {
+	public final String checkSponsorInfo(final ModelMap model, @ModelAttribute("form") @Valid final SponsorForm form,
+			final BindingResult bindingResult) {
 		final String path;
 
 		if (bindingResult.hasErrors()) {
@@ -47,22 +47,21 @@ public class DbxTeamBuilderController {
 		return path;
 	}
 
-	private final SponsorAffinityGroupAvailabilityService getSponsorAffinityGroupAvailabilityService() {
-		return affinitiesAvasService;
-	}
-
 	@InitBinder
 	public final void setAllowedFields(final WebDataBinder dataBinder) {
 		dataBinder.setDisallowedFields("id");
 	}
 
 	@RequestMapping(method = RequestMethod.GET)
-	public final String showSponsorForm(final ModelMap model,
-			@ModelAttribute("form") final SponsorForm form) {
+	public final String showSponsorForm(final ModelMap model, @ModelAttribute("form") final SponsorForm form) {
 		model.put("affinities",
 				getSponsorAffinityGroupAvailabilityService().getAllSponsorAffinityGroupAvailabilities());
 
 		return "build/dbx/sponsor";
+	}
+
+	private final SponsorAffinityGroupAvailabilityService getSponsorAffinityGroupAvailabilityService() {
+		return affinitiesAvasService;
 	}
 
 }
