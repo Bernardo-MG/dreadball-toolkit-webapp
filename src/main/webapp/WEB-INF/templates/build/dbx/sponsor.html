@@ -9,8 +9,8 @@
 	<section id="main-section" class="container-fluid">
 		<h1>Sponsor creation</h1>
 		<section id="create_sponsor" class="form-well">
-			<form action="#" th:action="@{/builder/team/dbx}"
-				th:object="${form}" method="post" role="form" class="form">
+			<form action="#" th:action="@{/builder/team/dbx}" th:object="${form}"
+				method="post" role="form" class="form">
 				<div class="col-md-12">
 					<div class="panel panel-default">
 						<div class="panel-heading">Sponsor info</div>
@@ -45,8 +45,15 @@
 								<div th:each="affinity : ${affinityColumn?.affinityGroups}"
 									class="radio">
 									<label><input type="radio"
-										th:name="affinity + ${affinityColumn?.name}" th:value="${affinity?.name}" /><span
+										th:name="affinity + ${affinityColumn?.name}"
+										th:value="${affinity?.name}" /><span
 										th:text="${affinity?.name}">Affinity group</span></label>
+								</div>
+								<div th:if="${affinityColumn.isIncludingRankIncrease()}"
+									class="radio">
+									<label><input type="radio"
+										th:name="affinity + ${affinityColumn?.name}" th:value="rank" /><span
+										th:text="rank">+1 Rank</span></label>
 								</div>
 							</div>
 						</div>
