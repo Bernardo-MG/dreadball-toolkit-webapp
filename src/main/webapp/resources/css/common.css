@@ -13,16 +13,16 @@ html {
 
 body {
     margin: 2em;
+    color: #595959;
+    background-color: #fcfcfc;
     border: 1px solid #e7e7e7;
     border-radius: 4px;
-    background-color: #fcfcfc;
-    color: #595959;
 }
 
-#main-section {
-    padding-left: 2em;
-    padding-right: 2em;
+body > section {
     padding-top: 1em;
+    padding-right: 2em;
     padding-bottom: 1em;
+    padding-left: 2em;
     background-color: white;
 }
