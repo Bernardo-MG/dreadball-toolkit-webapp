@@ -44,6 +44,7 @@ public class DbxTeamBuilderController {
                     getDbxTeamBuilderService().getSponsorAffinityGroups());
             path = "build/dbx/sponsor";
         } else {
+            model.put("sponsor", getDbxTeamBuilderService().getSponsor(form));
             path = "build/dbx/players";
         }
 

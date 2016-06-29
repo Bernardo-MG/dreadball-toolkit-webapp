@@ -30,4 +30,6 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 public interface AffinityGroupRepository
         extends PagingAndSortingRepository<PersistentAffinityGroup, Integer> {
 
+    AffinityGroup findByName(final String name);
+
 }
