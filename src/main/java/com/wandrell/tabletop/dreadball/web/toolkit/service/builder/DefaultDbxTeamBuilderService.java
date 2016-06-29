@@ -12,9 +12,11 @@ import org.springframework.stereotype.Service;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
 @Service("dbxTeamBuilderService")
 public final class DefaultDbxTeamBuilderService
@@ -24,16 +26,21 @@ public final class DefaultDbxTeamBuilderService
 
     private final AffinityGroupRepository                    affinitiesRepository;
 
+    private final AffinityUnitRepository                     unitRepository;
+
     @Autowired
     public DefaultDbxTeamBuilderService(
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
-            final AffinityGroupRepository affinitiesRepo) {
+            final AffinityGroupRepository affinitiesRepo,
+            final AffinityUnitRepository unitRepo) {
         super();
 
         affinityAvasRepository = checkNotNull(affinityAvasRepo,
                 "Received a null pointer as affinity availabilities repository");
         affinitiesRepository = checkNotNull(affinitiesRepo,
                 "Received a null pointer as affinities repository");
+        unitRepository = checkNotNull(unitRepo,
+                "Received a null pointer as units repository");
     }
 
     @Override
@@ -75,12 +82,22 @@ public final class DefaultDbxTeamBuilderService
         return getRepository().findAll();
     }
 
+    @Override
+    public final Iterable<? extends Unit>
+            getSponsorAvailableUnits(final Sponsor sponsor) {
+        return getUnitRepository().findAll();
+    }
+
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
     }
 
     private final SponsorAffinityGroupAvailabilityRepository getRepository() {
         return affinityAvasRepository;
+    }
+
+    private final AffinityUnitRepository getUnitRepository() {
+        return unitRepository;
     }
 
 }

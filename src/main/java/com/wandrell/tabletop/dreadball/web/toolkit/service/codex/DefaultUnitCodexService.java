@@ -12,14 +12,13 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
 @Service("unitCodexService")
 public final class DefaultUnitCodexService implements UnitCodexService {
 
-    private final AffinityUnitRepository unitRepo;
+    private final AffinityUnitRepository unitRepository;
 
     @Autowired
-    public DefaultUnitCodexService(
-            final AffinityUnitRepository unitRepository) {
+    public DefaultUnitCodexService(final AffinityUnitRepository unitRepo) {
         super();
 
-        unitRepo = checkNotNull(unitRepository,
+        unitRepository = checkNotNull(unitRepo,
                 "Received null pointer as units repository");
     }
 
@@ -29,7 +28,7 @@ public final class DefaultUnitCodexService implements UnitCodexService {
     }
 
     private final AffinityUnitRepository getUnitRepository() {
-        return unitRepo;
+        return unitRepository;
     }
 
 }

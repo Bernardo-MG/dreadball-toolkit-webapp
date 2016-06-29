@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilderService;
 
@@ -37,6 +38,7 @@ public class DbxTeamBuilderController {
             @ModelAttribute("form") @Valid final SponsorForm form,
             final BindingResult bindingResult) {
         final String path;
+        final Sponsor sponsor;
 
         if (bindingResult.hasErrors()) {
             // Affinity groups for the sponsors
@@ -44,7 +46,12 @@ public class DbxTeamBuilderController {
                     getDbxTeamBuilderService().getSponsorAffinityGroups());
             path = "build/dbx/sponsor";
         } else {
-            model.put("sponsor", getDbxTeamBuilderService().getSponsor(form));
+            sponsor = getDbxTeamBuilderService().getSponsor(form);
+
+            model.put("sponsor", sponsor);
+            model.put("units", getDbxTeamBuilderService()
+                    .getSponsorAvailableUnits(sponsor));
+
             path = "build/dbx/players";
         }
 
