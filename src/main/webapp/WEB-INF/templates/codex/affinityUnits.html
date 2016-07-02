@@ -44,9 +44,9 @@
 						th:each="hatedAffinity,iterStat : ${player?.hatedAffinityGroups}"
 						th:text="${iterStat.count &lt; #lists.size(player.hatedAffinityGroups)}? ${hatedAffinity.name} + ', ' : ${hatedAffinity.name}">Hated
 							affinity</span></td>
-					<th th:text="${player?.strangerCost}">10</th>
-					<th th:text="${player?.allyCost}">20</th>
-					<th th:text="${player?.friendCost}">30</th>
+					<td th:text="${player?.strangerCost}">10</td>
+					<td th:text="${player?.allyCost}">20</td>
+					<td th:text="${player?.friendCost}">30</td>
 				</tr>
 			</tbody>
 		</table>
