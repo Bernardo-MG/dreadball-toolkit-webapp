@@ -134,7 +134,7 @@ CREATE TABLE affinity_unit_components (
 
 CREATE TABLE component_positions (
     component_id            INTEGER,
-      position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
+    position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
     FOREIGN KEY (component_id) REFERENCES unit_components (id) ON DELETE CASCADE
 );
 
@@ -150,6 +150,7 @@ CREATE TABLE composite_advancement_units (
     strength                INTEGER NOT NULL DEFAULT 0,
     position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
     giant                   BOOLEAN NOT NULL DEFAULT FALSE,
+    mvp                     BOOLEAN NOT NULL DEFAULT FALSE,
     experience              INTEGER NOT NULL DEFAULT 0,
     rank                    INTEGER NOT NULL DEFAULT 0,
     grafted_implant_id      INTEGER,
@@ -168,6 +169,7 @@ CREATE TABLE advancement_units (
     strength                INTEGER NOT NULL DEFAULT 0,
     position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
     giant                   BOOLEAN NOT NULL DEFAULT FALSE,
+    mvp                     BOOLEAN NOT NULL DEFAULT FALSE,
     experience              INTEGER NOT NULL DEFAULT 0,
     rank                    INTEGER NOT NULL DEFAULT 0,
     grafted_implant_id      INTEGER,
@@ -185,6 +187,7 @@ CREATE TABLE composite_affinity_units (
     strength                INTEGER NOT NULL DEFAULT 0,
     position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
     giant                   BOOLEAN NOT NULL DEFAULT FALSE,
+    mvp                     BOOLEAN NOT NULL DEFAULT FALSE,
     cost_ally               INTEGER NOT NULL DEFAULT 0,
     cost_friend             INTEGER NOT NULL DEFAULT 0,
     cost_stranger           INTEGER NOT NULL DEFAULT 0
@@ -202,7 +205,8 @@ CREATE TABLE units (
     speed                   INTEGER NOT NULL DEFAULT 0,
     strength                INTEGER NOT NULL DEFAULT 0,
     position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
-    giant                   BOOLEAN NOT NULL DEFAULT FALSE
+    giant                   BOOLEAN NOT NULL DEFAULT FALSE,
+    mvp                     BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE simple_units (
