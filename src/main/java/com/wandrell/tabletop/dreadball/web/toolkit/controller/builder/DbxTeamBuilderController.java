@@ -66,6 +66,8 @@ public class DbxTeamBuilderController {
     @RequestMapping(method = RequestMethod.GET)
     public final String showSponsorForm(final ModelMap model,
             @ModelAttribute("form") final SponsorForm form) {
+        // Initial sponsor rank
+        model.put("initialRank", getDbxTeamBuilderService().getInitialRank());
         // Affinity groups for the sponsors
         model.put("affinities",
                 getDbxTeamBuilderService().getSponsorAffinityGroups());

@@ -50,6 +50,11 @@ public final class DefaultDbxTeamBuilderService
     }
 
     @Override
+    public final Integer getInitialRank() {
+        return initialRank;
+    }
+
+    @Override
     public final Sponsor getSponsor(final SponsorForm form) {
         final Sponsor sponsor;
         final Collection<String> affinities = new LinkedList<String>();
@@ -95,10 +100,6 @@ public final class DefaultDbxTeamBuilderService
 
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
-    }
-
-    private final Integer getInitialRank() {
-        return initialRank;
     }
 
     private final SponsorAffinityGroupAvailabilityRepository getRepository() {

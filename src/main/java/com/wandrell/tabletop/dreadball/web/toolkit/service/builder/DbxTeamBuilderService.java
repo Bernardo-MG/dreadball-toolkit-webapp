@@ -8,6 +8,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 
 public interface DbxTeamBuilderService {
 
+    public Integer getInitialRank();
+
     public Sponsor getSponsor(final SponsorForm form);
 
     public Iterable<? extends SponsorAffinityGroupAvailability>
