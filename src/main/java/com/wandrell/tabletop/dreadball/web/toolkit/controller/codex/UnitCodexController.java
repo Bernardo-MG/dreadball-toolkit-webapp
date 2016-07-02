@@ -29,7 +29,7 @@ public class UnitCodexController {
     public final String getAllUnits(final ModelMap model) {
         model.put("players", getUnitCodexService().getAllUnits());
 
-        return "unitsListAffinity";
+        return "codex/affinityUnits";
     }
 
     private final UnitCodexService getUnitCodexService() {
