@@ -7,6 +7,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
@@ -28,11 +29,14 @@ public final class DefaultDbxTeamBuilderService
 
     private final AffinityUnitRepository                     unitRepository;
 
+    private final Integer                                    initialRank;
+
     @Autowired
     public DefaultDbxTeamBuilderService(
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
             final AffinityGroupRepository affinitiesRepo,
-            final AffinityUnitRepository unitRepo) {
+            final AffinityUnitRepository unitRepo,
+            @Value("${sponsor.rank.initial}") final Integer rank) {
         super();
 
         affinityAvasRepository = checkNotNull(affinityAvasRepo,
@@ -41,6 +45,8 @@ public final class DefaultDbxTeamBuilderService
                 "Received a null pointer as affinities repository");
         unitRepository = checkNotNull(unitRepo,
                 "Received a null pointer as units repository");
+
+        initialRank = checkNotNull(rank, "Received a null pointer as rank");
     }
 
     @Override
@@ -52,8 +58,7 @@ public final class DefaultDbxTeamBuilderService
 
         sponsor.setName(form.getSponsorName());
 
-        // TODO: Load this value from configuration
-        sponsor.setRank(5);
+        sponsor.setRank(getInitialRank());
 
         // TODO: The affinities should come as a list
         // Loads affinities
@@ -90,6 +95,10 @@ public final class DefaultDbxTeamBuilderService
 
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
+    }
+
+    private final Integer getInitialRank() {
+        return initialRank;
     }
 
     private final SponsorAffinityGroupAvailabilityRepository getRepository() {

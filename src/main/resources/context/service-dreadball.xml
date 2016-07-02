@@ -5,4 +5,8 @@
       http://www.springframework.org/schema/context 
       http://www.springframework.org/schema/context/spring-context.xsd">
 
+   <!-- Services -->
+   <context:component-scan
+      base-package="com.wandrell.tabletop.dreadball.web.toolkit.service" />
+
 </beans>
