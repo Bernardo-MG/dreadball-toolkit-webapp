@@ -49,7 +49,7 @@ public class DbxTeamBuilderController {
             sponsor = getDbxTeamBuilderService().getSponsor(form);
 
             model.put("sponsor", sponsor);
-            model.put("units", getDbxTeamBuilderService()
+            model.put("availablePlayers", getDbxTeamBuilderService()
                     .getSponsorAvailableUnits(sponsor));
 
             path = "build/dbx/players";
