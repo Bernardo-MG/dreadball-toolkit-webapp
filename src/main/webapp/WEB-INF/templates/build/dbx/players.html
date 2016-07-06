@@ -99,146 +99,25 @@
 								<td></td>
 								<td></td>
 								<td></td>
-								<td>84</td>
+								<td th:text="${team?.valoration}">84</td>
 							</tr>
 						</tfoot>
 						<tbody>
-							<tr>
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
-								<td>1</td>
-								<td class="table-action"><span contenteditable>Marauder
-										Guard</span></td>
-								<td>Marauder Guard</td>
-								<td>Guard</td>
-								<td>5</td>
-								<td>3+</td>
-								<td>4+</td>
-								<td>5+</td>
-								<td>4+</td>
-								<td></td>
-								<td>13</td>
-							</tr>
-							<tr>
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
-								<td>2</td>
-								<td class="table-action"><span contenteditable>Marauder
-										Guard</span></td>
-								<td>Marauder Guard</td>
-								<td>Guard</td>
-								<td>5</td>
-								<td>3+</td>
-								<td>4+</td>
-								<td>5+</td>
-								<td>4+</td>
-								<td></td>
-								<td>13</td>
-							</tr>
-							<tr>
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
-								<td>3</td>
-								<td class="table-action"><span contenteditable>Marauder
-										Guard</span></td>
-								<td>Marauder Guard</td>
-								<td>Guard</td>
-								<td>5</td>
-								<td>3+</td>
-								<td>4+</td>
-								<td>5+</td>
-								<td>4+</td>
-								<td></td>
-								<td>13</td>
-							</tr>
-							<tr>
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
-								<td>4</td>
-								<td class="table-action"><span contenteditable>Marauder
-										Jack</span></td>
-								<td>Marauder Jack</td>
-								<td>Jack</td>
-								<td>5</td>
-								<td>5+</td>
-								<td>3+</td>
-								<td>4+</td>
-								<td>4+</td>
-								<td></td>
-								<td>9</td>
-							</tr>
-							<tr>
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
-								<td>5</td>
-								<td class="table-action"><span contenteditable>Marauder
-										Jack</span></td>
-								<td>Marauder Jack</td>
-								<td>Jack</td>
-								<td>5</td>
-								<td>5+</td>
-								<td>3+</td>
-								<td>4+</td>
-								<td>4+</td>
-								<td></td>
-								<td>9</td>
-							</tr>
-							<tr>
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
-								<td>6</td>
-								<td class="table-action"><span contenteditable>Marauder
-										Jack</span></td>
-								<td>Marauder Jack</td>
-								<td>Jack</td>
-								<td>5</td>
-								<td>5+</td>
-								<td>3+</td>
-								<td>4+</td>
-								<td>4+</td>
-								<td></td>
-								<td>9</td>
-							</tr>
-							<tr>
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
-								<td>7</td>
-								<td class="table-action"><span contenteditable>Marauder
-										Jack</span></td>
-								<td>Marauder Jack</td>
-								<td>Jack</td>
-								<td>5</td>
-								<td>5+</td>
-								<td>3+</td>
-								<td>4+</td>
-								<td>4+</td>
-								<td></td>
-								<td>9</td>
-							</tr>
-							<tr>
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
-								<td>8</td>
-								<td class="table-action"><span contenteditable>Marauder
-										Jack</span></td>
-								<td>Marauder Jack</td>
-								<td>Jack</td>
-								<td>5</td>
-								<td>5+</td>
-								<td>3+</td>
-								<td>4+</td>
-								<td>4+</td>
-								<td></td>
-								<td>9</td>
-							</tr>
-							<tr>
+							<tr th:each="player : ${team?.players}">
 								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
 								<td>9</td>
-								<td>Number 88</td>
-								<td><i class="fa fa-star" aria-hidden="true"></i></td>
-								<td>Jack</td>
-								<td>8</td>
-								<td>4+</td>
-								<td>2+</td>
-								<td>4+</td>
-								<td>4+</td>
-								<td><span class="tooltip-text" data-toggle="tooltip"
-									data-placement="top" title="Ability description">Mind
-										Like Water</span>, <span class="tooltip-text" data-toggle="tooltip"
-									data-placement="top" title="Ability description">Jump</span></td>
-								<td>8</td>
+								<td th:text="${player?.templateName}">Unit name</td>
+								<td th:text="${player?.templateName}">Template name</td>
+								<td th:text="${player?.role}">Jack</td>
+								<td th:text="${player?.attributes?.movement}">5</td>
+								<td th:text="${player?.attributes?.strength}">5+</td>
+								<td th:text="${player?.attributes?.speed}">3+</td>
+								<td th:text="${player?.attributes?.skill}">4+</td>
+								<td th:text="${player?.attributes?.armor}">4+</td>
+								<td><span th:remove="tag"
+									th:each="ability,iterStat : ${player?.abilities}"
+									th:text="${iterStat.count &lt; #lists.size(player.abilities)}? ${ability.name} + ', ' : ${ability.name}">Ability</span></td>
+								<td th:text="${player?.cost}">10</td>
 							</tr>
 						</tbody>
 					</table>

@@ -13,6 +13,10 @@ import org.springframework.stereotype.Service;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.team.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
@@ -108,6 +112,24 @@ public final class DefaultDbxTeamBuilderService
 
     private final AffinityUnitRepository getUnitRepository() {
         return unitRepository;
+    }
+
+    @Override
+    public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
+        final SponsorTeam team;
+        
+        team = new DefaultSponsorTeam(sponsor, getSponsorTeamValorationCalculator());
+        
+        return team;
+    }
+    
+    private final TeamValorationCalculator<SponsorTeam> getSponsorTeamValorationCalculator(){
+        final TeamValorationCalculator<SponsorTeam> calculator;
+        
+        // TODO: Load the actual values from somewhere
+        calculator = new SponsorTeamValorationCalculator(1,2,3,4,5,6);
+        
+        return calculator;
     }
 
 }
