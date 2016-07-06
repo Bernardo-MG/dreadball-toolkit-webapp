@@ -24,6 +24,11 @@ $(document).ready(function() {
 	$('[data-toggle="tooltip"]').tooltip();
 
 	$('.dataTable').DataTable({
+		"order" : [],
+		"columnDefs" : [ {
+			"targets" : 'no-sort',
+			"orderable" : false,
+		} ]
 	});
 
 });
