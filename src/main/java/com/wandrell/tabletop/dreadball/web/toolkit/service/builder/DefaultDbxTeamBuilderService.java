@@ -102,6 +102,16 @@ public final class DefaultDbxTeamBuilderService
         return getUnitRepository().findAll();
     }
 
+    @Override
+    public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
+        final SponsorTeam team;
+
+        team = new DefaultSponsorTeam(sponsor,
+                getSponsorTeamValorationCalculator());
+
+        return team;
+    }
+
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
     }
@@ -110,26 +120,18 @@ public final class DefaultDbxTeamBuilderService
         return affinityAvasRepository;
     }
 
-    private final AffinityUnitRepository getUnitRepository() {
-        return unitRepository;
+    private final TeamValorationCalculator<SponsorTeam>
+            getSponsorTeamValorationCalculator() {
+        final TeamValorationCalculator<SponsorTeam> calculator;
+
+        // TODO: Load the actual values from somewhere
+        calculator = new SponsorTeamValorationCalculator(1, 2, 3, 4, 5, 6);
+
+        return calculator;
     }
 
-    @Override
-    public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
-        final SponsorTeam team;
-        
-        team = new DefaultSponsorTeam(sponsor, getSponsorTeamValorationCalculator());
-        
-        return team;
-    }
-    
-    private final TeamValorationCalculator<SponsorTeam> getSponsorTeamValorationCalculator(){
-        final TeamValorationCalculator<SponsorTeam> calculator;
-        
-        // TODO: Load the actual values from somewhere
-        calculator = new SponsorTeamValorationCalculator(1,2,3,4,5,6);
-        
-        return calculator;
+    private final AffinityUnitRepository getUnitRepository() {
+        return unitRepository;
     }
 
 }
