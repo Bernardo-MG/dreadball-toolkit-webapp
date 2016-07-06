@@ -135,6 +135,7 @@
 							<table class="table table-striped display dataTable">
 								<thead>
 									<tr>
+										<th></th>
 										<th>Unit name</th>
 										<th>Role</th>
 										<th>Move</th>
@@ -148,6 +149,8 @@
 								</thead>
 								<tbody>
 									<tr th:each="player : ${availablePlayers}">
+										<td><i class="fa fa-plus-circle table-action"
+											aria-hidden="true"></i></td>
 										<td th:text="${player?.templateName}">Template name</td>
 										<td th:text="${player?.role}">Jack</td>
 										<td th:text="${player?.attributes?.movement}">5</td>
