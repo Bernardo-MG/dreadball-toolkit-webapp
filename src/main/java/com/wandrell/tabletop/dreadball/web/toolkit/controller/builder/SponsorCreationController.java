@@ -71,11 +71,14 @@ public class SponsorCreationController {
         return path;
     }
 
+    @ModelAttribute(BEAN_SPONSOR)
+    public final SponsorForm getSponsorForm() {
+        return new SponsorForm();
+    }
+
     @RequestMapping(method = RequestMethod.GET)
     public final String showSponsorForm(final ModelMap model,
-            @ModelAttribute(BEAN_SPONSOR) final SponsorForm form,
             final SessionStatus status) {
-
         // Clears session
         status.setComplete();
 
