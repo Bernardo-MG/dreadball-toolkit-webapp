@@ -89,7 +89,7 @@ public class SponsorCreationController {
         return dbxTeamBuilderService;
     }
 
-    private void loadNextStepModel(final ModelMap model,
+    private final void loadNextStepModel(final ModelMap model,
             final HttpSession session, final SponsorForm form) {
         final Sponsor sponsor;
         final SponsorTeam team;

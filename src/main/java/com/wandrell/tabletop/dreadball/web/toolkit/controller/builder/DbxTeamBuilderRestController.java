@@ -29,7 +29,7 @@ public class DbxTeamBuilderRestController {
     }
 
     @RequestMapping(path = "/players", method = RequestMethod.PUT)
-    public final Map<Integer, ? extends Unit> greeting(
+    public final Map<Integer, ? extends Unit> addPlayer(
             @RequestParam(value = "templateName",
                     defaultValue = "") final String templateName,
             @SessionAttribute("team") final SponsorTeam team) {
