@@ -7,13 +7,15 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class HomeController {
 
+    private static final String PATH_WELCOME = "welcome";
+
     public HomeController() {
         super();
     }
 
     @RequestMapping("/")
     public String showIndex() {
-        return "welcome";
+        return PATH_WELCOME;
     }
 
 }

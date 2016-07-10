@@ -24,21 +24,21 @@ import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilde
 @RequestMapping("/builder/team/dbx")
 public class SponsorCreationController {
 
-    private static final String         BEAN_SPONSOR          = "form";
+    private static final String         BEAN_SPONSOR            = "form";
 
-    private static final String         PATH_SPONSOR          = "build/dbx/sponsor";
+    private static final String         PATH_SPONSOR            = "build/dbx/sponsor";
 
-    private static final String         PATH_NEXT             = "build/dbx/players";
+    private static final String         PATH_NEXT               = "build/dbx/players";
 
-    private static final String         KEY_SPONSOR           = "sponsor";
+    private static final String         PARAM_SPONSOR           = "sponsor";
 
-    private static final String         KEY_TEAM              = "team";
+    private static final String         PARAM_TEAM              = "team";
 
-    private static final String         KEY_AVAILABLE_PLAYERS = "availablePlayers";
+    private static final String         PARAM_AVAILABLE_PLAYERS = "availablePlayers";
 
-    private static final String         KEY_INITIAL_RANK      = "initialRank";
+    private static final String         PARAM_INITIAL_RANK      = "initialRank";
 
-    private static final String         KEY_AFFINITIES        = "affinities";
+    private static final String         PARAM_AFFINITIES        = "affinities";
 
     private final DbxTeamBuilderService dbxTeamBuilderService;
 
@@ -97,20 +97,20 @@ public class SponsorCreationController {
         sponsor = getDbxTeamBuilderService().getSponsor(form);
         team = getDbxTeamBuilderService().getSponsorTeam(sponsor);
 
-        session.setAttribute(KEY_TEAM, team);
+        session.setAttribute(PARAM_TEAM, team);
 
-        model.put(KEY_SPONSOR, sponsor);
-        model.put(KEY_TEAM, team);
-        model.put(KEY_AVAILABLE_PLAYERS,
+        model.put(PARAM_SPONSOR, sponsor);
+        model.put(PARAM_TEAM, team);
+        model.put(PARAM_AVAILABLE_PLAYERS,
                 getDbxTeamBuilderService().getSponsorTeamAvailableUnits(team));
     }
 
     private final void loadSponsorModel(final ModelMap model) {
         // Initial sponsor rank
-        model.put(KEY_INITIAL_RANK,
+        model.put(PARAM_INITIAL_RANK,
                 getDbxTeamBuilderService().getInitialRank());
         // Affinity groups for the sponsors
-        model.put(KEY_AFFINITIES,
+        model.put(PARAM_AFFINITIES,
                 getDbxTeamBuilderService().getSponsorAffinityGroups());
     }
 

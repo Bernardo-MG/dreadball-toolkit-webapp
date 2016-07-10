@@ -19,6 +19,10 @@ import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilde
 @RequestMapping("/builder/team/dbx")
 public class DbxTeamBuilderRestController {
 
+    private static final String         PARAM_TEAM          = "team";
+
+    private static final String         PARAM_TEMPLATE_NAME = "templateName";
+
     private final DbxTeamBuilderService dbxTeamBuilderService;
 
     public DbxTeamBuilderRestController(final DbxTeamBuilderService service) {
@@ -30,9 +34,9 @@ public class DbxTeamBuilderRestController {
 
     @RequestMapping(path = "/players", method = RequestMethod.PUT)
     public final Map<Integer, ? extends Unit> addPlayer(
-            @RequestParam(value = "templateName",
+            @RequestParam(name = PARAM_TEMPLATE_NAME,
                     defaultValue = "") final String templateName,
-            @SessionAttribute("team") final SponsorTeam team) {
+            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
         final Unit unit;
 
         unit = getDbxTeamBuilderService().getUnit(templateName);

@@ -15,6 +15,10 @@ import com.wandrell.tabletop.dreadball.web.toolkit.service.codex.UnitCodexServic
 @RequestMapping("/codex/unit")
 public class UnitCodexController {
 
+    private static final String    PATH_AFFINITY_UNITS = "codex/affinityUnits";
+
+    private static final String    PARAM_PLAYERS       = "players";
+
     private final UnitCodexService unitCodexService;
 
     @Autowired
@@ -27,9 +31,9 @@ public class UnitCodexController {
 
     @RequestMapping(method = RequestMethod.GET)
     public final String getAllUnits(final ModelMap model) {
-        model.put("players", getUnitCodexService().getAllUnits());
+        model.put(PARAM_PLAYERS, getUnitCodexService().getAllUnits());
 
-        return "codex/affinityUnits";
+        return PATH_AFFINITY_UNITS;
     }
 
     private final UnitCodexService getUnitCodexService() {
