@@ -16,9 +16,11 @@ public interface DbxTeamBuilderService {
     public Iterable<? extends SponsorAffinityGroupAvailability>
             getSponsorAffinityGroups();
 
-    public Iterable<? extends Unit>
-            getSponsorAvailableUnits(final Sponsor sponsor);
-
     public SponsorTeam getSponsorTeam(final Sponsor sponsor);
+
+    public Iterable<? extends Unit>
+            getSponsorTeamAvailableUnits(final SponsorTeam team);
+
+    public Unit getUnit(final String templateName);
 
 }

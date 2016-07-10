@@ -97,12 +97,6 @@ public final class DefaultDbxTeamBuilderService
     }
 
     @Override
-    public final Iterable<? extends Unit>
-            getSponsorAvailableUnits(final Sponsor sponsor) {
-        return getUnitRepository().findAll();
-    }
-
-    @Override
     public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
         final SponsorTeam team;
 
@@ -110,6 +104,17 @@ public final class DefaultDbxTeamBuilderService
                 getSponsorTeamValorationCalculator());
 
         return team;
+    }
+
+    @Override
+    public final Iterable<? extends Unit>
+            getSponsorTeamAvailableUnits(final SponsorTeam team) {
+        return getUnitRepository().findAll();
+    }
+
+    @Override
+    public final Unit getUnit(final String templateName) {
+        return getUnitRepository().findByTemplateName(templateName);
     }
 
     private final AffinityGroupRepository getAffinityGroupRepository() {

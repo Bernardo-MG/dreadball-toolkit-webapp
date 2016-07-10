@@ -107,7 +107,6 @@
 						</tfoot>
 						<tbody>
 							<tr th:each="player : ${team?.players}">
-								<td><i class="fa fa-trash table-action" aria-hidden="true"></i></td>
 								<td>9</td>
 								<td th:text="${player?.templateName}">Unit name</td>
 								<td th:text="${player?.templateName}">Template name</td>
@@ -132,7 +131,7 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h2>Available players</h2>
-							<table class="table table-striped display dataTable">
+							<table class="table table-striped display dataTable addPlayer">
 								<thead>
 									<tr>
 										<th class="no-sort"></th>
@@ -172,7 +171,12 @@
 		</form>
 	</section>
 
-	<footer class="container-fluid" th:include="fragments/footer :: footer" />
+	<footer>
+		<div class="container-fluid"
+			th:include="fragments/footer :: footer" />
+		<div th:include="fragments/scripts :: general" />
+		<div th:include="fragments/scripts :: dbx-teamEdit" />
+	</footer>
 </body>
 
 </html>

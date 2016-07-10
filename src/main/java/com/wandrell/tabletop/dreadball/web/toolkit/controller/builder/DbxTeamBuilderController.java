@@ -3,6 +3,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.controller.builder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
@@ -37,7 +39,7 @@ public class DbxTeamBuilderController {
     @RequestMapping(method = RequestMethod.POST)
     public final String checkSponsorInfo(final ModelMap model,
             @ModelAttribute("form") @Valid final SponsorForm form,
-            final BindingResult bindingResult) {
+            final BindingResult bindingResult, final HttpSession session) {
         final String path;
         final Sponsor sponsor;
         final SponsorTeam team;
@@ -51,10 +53,12 @@ public class DbxTeamBuilderController {
             sponsor = getDbxTeamBuilderService().getSponsor(form);
             team = getDbxTeamBuilderService().getSponsorTeam(sponsor);
 
+            session.setAttribute("team", team);
+
             model.put("sponsor", sponsor);
             model.put("team", team);
             model.put("availablePlayers", getDbxTeamBuilderService()
-                    .getSponsorAvailableUnits(sponsor));
+                    .getSponsorTeamAvailableUnits(team));
 
             path = "build/dbx/players";
         }
@@ -69,7 +73,12 @@ public class DbxTeamBuilderController {
 
     @RequestMapping(method = RequestMethod.GET)
     public final String showSponsorForm(final ModelMap model,
-            @ModelAttribute("form") final SponsorForm form) {
+            @ModelAttribute("form") final SponsorForm form,
+            final SessionStatus status) {
+
+        // Clears session
+        status.setComplete();
+
         // Initial sponsor rank
         model.put("initialRank", getDbxTeamBuilderService().getInitialRank());
         // Affinity groups for the sponsors

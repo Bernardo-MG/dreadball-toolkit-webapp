@@ -28,4 +28,6 @@ import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinity
 public interface AffinityUnitRepository
         extends PagingAndSortingRepository<PersistentAffinityUnit, Integer> {
 
+    public PersistentAffinityUnit findByTemplateName(final String templateName);
+
 }
