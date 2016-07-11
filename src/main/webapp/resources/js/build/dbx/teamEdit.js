@@ -9,12 +9,16 @@
 
 $(document).ready(function() {
 	$(".addPlayer").click(function(event) {
-		addPlayerFromTable();
+		var row = $(this).parent().parent();
+		addPlayerFromTable(row.index());
 	});
 });
 
-function addPlayerFromTable() {
-	addPlayer("template");
+function addPlayerFromTable(row) {
+	var table = $("#availableUnits").DataTable();
+	var template = table.row(row).data()[0];
+
+	addPlayer(template);
 }
 
 function addPlayer(template) {
@@ -22,15 +26,14 @@ function addPlayer(template) {
 
 	$.ajax({
 		url : ajaxUrl,
-		type: 'PUT',
+		type : 'PUT',
 		data : {
 			templateName : template
 		},
 		success : function(data) {
-			alert('Data sent');
 		},
 		error : function() {
-			alert('An error occurred');
+			console.log('An error occurred while adding a unit through AJAX');
 		}
 	});
 }

@@ -131,9 +131,10 @@
 					<div class="row">
 						<div class="col-md-12">
 							<h2>Available players</h2>
-							<table class="table table-striped display dataTable addPlayer">
+							<table id="availableUnits" class="table table-striped display dataTable">
 								<thead>
 									<tr>
+										<th class="hidden no-sort">Template</th>
 										<th class="no-sort"></th>
 										<th>Unit name</th>
 										<th>Role</th>
@@ -148,7 +149,8 @@
 								</thead>
 								<tbody>
 									<tr th:each="player : ${availablePlayers}">
-										<td><i class="fa fa-plus-circle table-action"
+										<td th:text="${player?.templateName}">Template name</td>
+										<td><i class="fa fa-plus-circle table-action addPlayer"
 											aria-hidden="true"></i></td>
 										<td th:text="${player?.templateName}">Template name</td>
 										<td th:text="${player?.role}">Jack</td>
@@ -172,8 +174,7 @@
 	</section>
 
 	<footer>
-		<div class="container-fluid"
-			th:include="fragments/footer :: footer" />
+		<div class="container-fluid" th:include="fragments/footer :: footer" />
 		<div th:include="fragments/scripts :: general" />
 		<div th:include="fragments/scripts :: dbx-teamEdit" />
 	</footer>

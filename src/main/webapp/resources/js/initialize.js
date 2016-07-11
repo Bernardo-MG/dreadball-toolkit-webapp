@@ -21,13 +21,16 @@ $(document).ready(function() {
 	initSmoothScroll();
 
 	// Initializes tooltips
-	$('[data-toggle="tooltip"]').tooltip();
+	$("[data-toggle='tooltip']").tooltip();
 
-	$('.dataTable').DataTable({
+	$(".dataTable").DataTable({
 		"order" : [],
 		"columnDefs" : [ {
-			"targets" : 'no-sort',
+			"targets" : "no-sort",
 			"orderable" : false,
+		}, {
+			"targets" : "hidden",
+			"visible" : false,
 		} ]
 	});
 
