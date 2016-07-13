@@ -31,12 +31,37 @@ function addPlayer(template) {
 			templateName : template
 		},
 		success : function(result) {
-			console.log(result);
-			var team = JSON.parse(result);
-			alert(team);
+			loadTeamUnits(result);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
 		}
 	});
+}
+
+function loadTeamUnits(players){
+	var table = $("#teamUnits");
+	var tbody = table.children('tbody');
+	var row;
+	
+	tbody.empty();
+	
+	$.each(players, function( k, v ) {
+			row = "<tr>" 
+				+ "<td><i class=\"fa fa-trash table-action\" aria-hidden=\"true\"></i></td>"
+				+ "<td>" + k + "</td>"
+				+ "<td>" + players[1].template_name + "</td>"
+				+ "<td></td>"
+				+ "<td></td>"
+				+ "<td></td>"
+				+ "<td></td>"
+				+ "<td></td>"
+				+ "<td></td>"
+				+ "<td></td>"
+				+ "<td></td>"
+				+ "<td></td>"
+				+ "</tr>";
+			
+			tbody.last().append(row);
+		});
 }
