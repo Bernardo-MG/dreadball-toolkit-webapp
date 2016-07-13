@@ -73,6 +73,7 @@ public class SponsorCreationController {
 
     @ModelAttribute(BEAN_SPONSOR)
     public final SponsorForm getSponsorForm() {
+        // TODO: Acquire through the service
         return new SponsorForm();
     }
 

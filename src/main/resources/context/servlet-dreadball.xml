@@ -12,6 +12,7 @@
    <!-- Imports -->
    <import resource="classpath:context/view.xml" />
    <import resource="classpath:context/service-dreadball.xml" />
+   <import resource="classpath:context/json.xml" />
    
    <!-- Properties -->
    <context:property-placeholder
@@ -21,7 +22,14 @@
    <context:component-scan
       base-package="com.wandrell.tabletop.dreadball.web.toolkit.controller" />
 
-   <mvc:annotation-driven conversion-service="conversionService" />
+   <mvc:annotation-driven conversion-service="conversionService" >
+      <mvc:message-converters>
+         <bean
+            class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+            <property name="objectMapper" ref="dreadballObjectMapper" />
+         </bean>
+      </mvc:message-converters>
+   </mvc:annotation-driven>
 
    <mvc:resources mapping="/static/**" location="/webjars/, /resources/">
       <mvc:cache-control cache-public="true" max-age="2592000" />

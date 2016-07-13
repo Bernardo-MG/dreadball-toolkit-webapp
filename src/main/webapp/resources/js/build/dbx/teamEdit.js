@@ -26,11 +26,14 @@ function addPlayer(template) {
 
 	$.ajax({
 		url : ajaxUrl,
-		type : 'PUT',
+		type : 'POST',
 		data : {
 			templateName : template
 		},
-		success : function(data) {
+		success : function(result) {
+			console.log(result);
+			var team = JSON.parse(result);
+			alert(team);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');

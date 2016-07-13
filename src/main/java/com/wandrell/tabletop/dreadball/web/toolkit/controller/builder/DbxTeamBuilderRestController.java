@@ -32,7 +32,7 @@ public class DbxTeamBuilderRestController {
                 "Received a null pointer as DBX team builder service");
     }
 
-    @RequestMapping(path = "/players", method = RequestMethod.PUT)
+    @RequestMapping(path = "/players", method = RequestMethod.POST)
     public final Map<Integer, ? extends Unit> addPlayer(
             @RequestParam(name = PARAM_TEMPLATE_NAME,
                     defaultValue = "") final String templateName,
