@@ -13,7 +13,9 @@ import org.springframework.stereotype.Service;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.team.DefaultRankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.team.TeamValorationCalculator;
@@ -101,7 +103,7 @@ public final class DefaultDbxTeamBuilderService
         final SponsorTeam team;
 
         team = new DefaultSponsorTeam(sponsor,
-                getSponsorTeamValorationCalculator());
+                getSponsorTeamValorationCalculator(), getRankCostCalculator());
 
         return team;
     }
@@ -119,6 +121,14 @@ public final class DefaultDbxTeamBuilderService
 
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
+    }
+
+    private final RankCostCalculator getRankCostCalculator() {
+        final RankCostCalculator calculator;
+
+        calculator = new DefaultRankCostCalculator(1, 2, 3, 4, 5, 6);
+
+        return calculator;
     }
 
     private final SponsorAffinityGroupAvailabilityRepository getRepository() {
