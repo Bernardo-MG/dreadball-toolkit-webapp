@@ -46,20 +46,30 @@ function loadTeamUnits(players){
 	
 	tbody.empty();
 	
-	$.each(players, function( k, v ) {
+	$.each(players, function( position, unit ) {
+			var abilities = "";
+			
+			jQuery.each(unit.abilities, function(index, ability) {
+			    if(index > 0){
+			    	abilities += ", ";
+			    }
+			    
+			    abilities += ability.name;
+			});
+			
 			row = "<tr>" 
 				+ "<td><i class=\"fa fa-trash table-action\" aria-hidden=\"true\"></i></td>"
-				+ "<td>" + k + "</td>"
-				+ "<td>" + players[1].template_name + "</td>"
-				+ "<td></td>"
-				+ "<td></td>"
-				+ "<td></td>"
-				+ "<td></td>"
-				+ "<td></td>"
-				+ "<td></td>"
-				+ "<td></td>"
-				+ "<td></td>"
-				+ "<td></td>"
+				+ "<td>" + position + "</td>"
+				+ "<td>" + unit.template_name + "</td>"
+				+ "<td>" + unit.template_name + "</td>"
+				+ "<td>" + unit.role + "</td>"
+				+ "<td>" + unit.attributes.movement + "</td>"
+				+ "<td>" + unit.attributes.speed + "</td>"
+				+ "<td>" + unit.attributes.strength + "</td>"
+				+ "<td>" + unit.attributes.skill + "</td>"
+				+ "<td>" + unit.attributes.armor + "</td>"
+				+ "<td>" + abilities + "</td>"
+				+ "<td>" + unit.cost + "</td>"
 				+ "</tr>";
 			
 			tbody.last().append(row);

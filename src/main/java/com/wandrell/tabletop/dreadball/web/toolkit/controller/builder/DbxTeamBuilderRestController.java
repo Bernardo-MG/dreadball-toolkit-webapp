@@ -41,8 +41,7 @@ public class DbxTeamBuilderRestController {
 
         unit = getDbxTeamBuilderService().getUnit(templateName);
         if (unit != null) {
-            // TODO: The position should be calculated correctly
-            team.addPlayer(unit, team.getPlayers().size() + 1);
+            team.addPlayer(unit);
         }
 
         return team.getPlayers();
