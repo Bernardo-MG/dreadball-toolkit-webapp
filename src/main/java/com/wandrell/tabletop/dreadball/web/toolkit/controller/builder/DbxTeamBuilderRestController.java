@@ -40,10 +40,15 @@ public class DbxTeamBuilderRestController {
                     defaultValue = "") final String templateName,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
         final Unit unit;
+        final Integer maxUnits;
 
-        unit = getDbxTeamBuilderService().getUnit(templateName);
-        if (unit != null) {
-            team.addPlayer(unit);
+        maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
+
+        if (team.getPlayers().size() < maxUnits) {
+            unit = getDbxTeamBuilderService().getUnit(templateName);
+            if (unit != null) {
+                team.addPlayer(unit);
+            }
         }
 
         return team.getPlayers();

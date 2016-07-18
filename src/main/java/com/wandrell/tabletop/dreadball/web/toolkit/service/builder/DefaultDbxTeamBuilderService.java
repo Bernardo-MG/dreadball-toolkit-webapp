@@ -37,12 +37,15 @@ public final class DefaultDbxTeamBuilderService
 
     private final Integer                                    initialRank;
 
+    private final Integer                                    maxPlayers;
+
     @Autowired
     public DefaultDbxTeamBuilderService(
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
             final AffinityGroupRepository affinitiesRepo,
             final AffinityUnitRepository unitRepo,
-            @Value("${sponsor.rank.initial}") final Integer rank) {
+            @Value("${sponsor.rank.initial}") final Integer rank,
+            @Value("${sponsor.players.max}") final Integer playersMax) {
         super();
 
         affinityAvasRepository = checkNotNull(affinityAvasRepo,
@@ -53,11 +56,18 @@ public final class DefaultDbxTeamBuilderService
                 "Received a null pointer as units repository");
 
         initialRank = checkNotNull(rank, "Received a null pointer as rank");
+        maxPlayers = checkNotNull(playersMax,
+                "Received a null pointer as maximum number of players");
     }
 
     @Override
     public final Integer getInitialRank() {
         return initialRank;
+    }
+
+    @Override
+    public final Integer getMaxTeamUnits() {
+        return maxPlayers;
     }
 
     @Override

@@ -11,6 +11,8 @@ public interface DbxTeamBuilderService {
 
     public Integer getInitialRank();
 
+    public Integer getMaxTeamUnits();
+
     public Sponsor getSponsor(final SponsorForm form);
 
     public Iterable<? extends SponsorAffinityGroupAvailability>
