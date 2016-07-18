@@ -19,7 +19,11 @@ import com.wandrell.tabletop.dreadball.model.team.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.team.TeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.web.toolkit.model.AffinityLevel;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
@@ -58,6 +62,27 @@ public final class DefaultDbxTeamBuilderService
         initialRank = checkNotNull(rank, "Received a null pointer as rank");
         maxPlayers = checkNotNull(playersMax,
                 "Received a null pointer as maximum number of players");
+    }
+
+    @Override
+    public final void addUnit(final SponsorTeam team,
+            final String templateName) {
+        final AffinityUnit repoUnit;
+        final Integer cost;
+        final Unit unit;
+
+        repoUnit = getUnitRepository().findByTemplateName(templateName);
+
+        if (repoUnit != null) {
+            cost = getUnitCost(team.getSponsor(), repoUnit);
+
+            unit = new DefaultUnit(repoUnit.getTemplateName(), cost,
+                    repoUnit.getRole(), repoUnit.getAttributes(),
+                    repoUnit.getAbilities(), repoUnit.getMvp(),
+                    repoUnit.getGiant());
+
+            team.addPlayer(unit);
+        }
     }
 
     @Override
@@ -121,16 +146,52 @@ public final class DefaultDbxTeamBuilderService
     @Override
     public final Iterable<? extends Unit>
             getSponsorTeamAvailableUnits(final SponsorTeam team) {
-        return getUnitRepository().findAll();
-    }
+        final Collection<Unit> units;
+        Integer cost;
+        Unit unit;
 
-    @Override
-    public final Unit getUnit(final String templateName) {
-        return getUnitRepository().findByTemplateName(templateName);
+        units = new LinkedList<Unit>();
+        for (final AffinityUnit repoUnit : getUnitRepository().findAll()) {
+            cost = getUnitCost(team.getSponsor(), repoUnit);
+
+            unit = new DefaultUnit(repoUnit.getTemplateName(), cost,
+                    repoUnit.getRole(), repoUnit.getAttributes(),
+                    repoUnit.getAbilities(), repoUnit.getMvp(),
+                    repoUnit.getGiant());
+
+            units.add(unit);
+        }
+
+        return units;
     }
 
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
+    }
+
+    private final AffinityLevel getAffinityLevel(final Sponsor sponsor,
+            final AffinityUnit unit) {
+        final AffinityLevel affinity;
+        final Collection<AffinityGroup> sponsorAffinities;
+        Integer coincidences;
+
+        sponsorAffinities = sponsor.getAffinityGroups();
+        coincidences = 0;
+        for (final AffinityGroup affinityGroup : unit.getAffinityGroups()) {
+            if (sponsorAffinities.contains(affinityGroup)) {
+                coincidences++;
+            }
+        }
+
+        if (coincidences >= 2) {
+            affinity = AffinityLevel.FRIEND;
+        } else if (coincidences == 1) {
+            affinity = AffinityLevel.ALLY;
+        } else {
+            affinity = AffinityLevel.STRANGER;
+        }
+
+        return affinity;
     }
 
     private final RankCostCalculator getRankCostCalculator() {
@@ -153,6 +214,27 @@ public final class DefaultDbxTeamBuilderService
         calculator = new SponsorTeamValorationCalculator(1, 2, 3, 4, 5, 6);
 
         return calculator;
+    }
+
+    private final Integer getUnitCost(final Sponsor sponsor,
+            final AffinityUnit unit) {
+        final AffinityLevel affinityLevel;
+        final Integer cost;
+
+        affinityLevel = getAffinityLevel(sponsor, unit);
+
+        switch (affinityLevel) {
+            case FRIEND:
+                cost = unit.getFriendCost();
+                break;
+            case ALLY:
+                cost = unit.getAllyCost();
+                break;
+            default:
+                cost = unit.getStrangerCost();
+        }
+
+        return cost;
     }
 
     private final AffinityUnitRepository getUnitRepository() {

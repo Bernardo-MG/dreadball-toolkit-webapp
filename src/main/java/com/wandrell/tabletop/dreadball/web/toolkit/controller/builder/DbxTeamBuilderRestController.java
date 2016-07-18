@@ -39,16 +39,12 @@ public class DbxTeamBuilderRestController {
             @RequestParam(name = PARAM_TEMPLATE_NAME,
                     defaultValue = "") final String templateName,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        final Unit unit;
         final Integer maxUnits;
 
         maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
 
         if (team.getPlayers().size() < maxUnits) {
-            unit = getDbxTeamBuilderService().getUnit(templateName);
-            if (unit != null) {
-                team.addPlayer(unit);
-            }
+            getDbxTeamBuilderService().addUnit(team, templateName);
         }
 
         return team.getPlayers();

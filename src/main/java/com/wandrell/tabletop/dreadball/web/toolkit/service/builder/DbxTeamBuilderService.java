@@ -9,6 +9,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 
 public interface DbxTeamBuilderService {
 
+    public void addUnit(final SponsorTeam team, final String templateName);
+
     public Integer getInitialRank();
 
     public Integer getMaxTeamUnits();
@@ -22,7 +24,5 @@ public interface DbxTeamBuilderService {
 
     public Iterable<? extends Unit>
             getSponsorTeamAvailableUnits(final SponsorTeam team);
-
-    public Unit getUnit(final String templateName);
 
 }
