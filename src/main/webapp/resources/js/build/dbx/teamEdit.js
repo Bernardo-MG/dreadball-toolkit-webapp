@@ -12,6 +12,11 @@ $(document).ready(function() {
 		var row = $(this).parent().parent();
 		addPlayerFromTable(row.index());
 	});
+
+	$(document).on("click", ".removePlayer", function() {
+		var row = $(this).parent().parent();
+		removePlayerFromTable(row);
+	});
 });
 
 function addPlayerFromTable(row) {
@@ -19,6 +24,13 @@ function addPlayerFromTable(row) {
 	var template = table.row(row).data()[0];
 
 	addPlayer(template);
+}
+
+function removePlayerFromTable(row) {
+	var table = $("#teamUnits");
+	var position = row.find("td").eq(1).html();
+
+	removePlayer(position);
 }
 
 function addPlayer(template) {
@@ -35,6 +47,21 @@ function addPlayer(template) {
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
+		}
+	});
+}
+
+function removePlayer(pos) {
+	var ajaxUrl = $(location).attr('href') + "/players" + "?position=" + pos ;
+
+	$.ajax({
+		url : ajaxUrl,
+		type : 'DELETE',
+		success : function(result) {
+			loadTeamUnits(result);
+		},
+		error : function() {
+			console.log('An error occurred while removing a unit through AJAX');
 		}
 	});
 }
@@ -58,7 +85,7 @@ function loadTeamUnits(players){
 			});
 			
 			row = "<tr>" 
-				+ "<td><i class=\"fa fa-trash table-action\" aria-hidden=\"true\"></i></td>"
+				+ "<td><i class=\"fa fa-trash table-action removePlayer\" aria-hidden=\"true\"></i></td>"
 				+ "<td>" + position + "</td>"
 				+ "<td>" + unit.template_name + "</td>"
 				+ "<td>" + unit.template_name + "</td>"

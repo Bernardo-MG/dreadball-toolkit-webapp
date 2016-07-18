@@ -23,6 +23,8 @@ public class DbxTeamBuilderRestController {
 
     private static final String         PARAM_TEMPLATE_NAME = "templateName";
 
+    private static final String         PARAM_POSITION      = "position";
+
     private final DbxTeamBuilderService dbxTeamBuilderService;
 
     public DbxTeamBuilderRestController(final DbxTeamBuilderService service) {
@@ -43,6 +45,16 @@ public class DbxTeamBuilderRestController {
         if (unit != null) {
             team.addPlayer(unit);
         }
+
+        return team.getPlayers();
+    }
+
+    @RequestMapping(path = "/players", method = RequestMethod.DELETE)
+    public final Map<Integer, ? extends Unit> removePlayer(
+            @RequestParam(name = PARAM_POSITION,
+                    defaultValue = "-1") final Integer position,
+            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
+        team.removePlayer(position);
 
         return team.getPlayers();
     }
