@@ -64,12 +64,12 @@ public class SpringDbxValuesService implements DbxValuesService {
     }
 
     @Override
-    public final Integer getDreadballDieCost() {
+    public final Integer getCoachingDieCost() {
         return dreadballDieCost;
     }
 
     @Override
-    public final Integer getDreadballDieRankCost() {
+    public final Integer getCoachingDieRankCost() {
         return dreadballDieRankCost;
     }
 

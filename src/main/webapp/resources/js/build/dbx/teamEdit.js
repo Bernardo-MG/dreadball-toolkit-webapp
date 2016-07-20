@@ -17,6 +17,30 @@ $(document).ready(function() {
 		var row = $(this).parent().parent();
 		removePlayerFromTable(row);
 	});
+
+	$("#dice").on("change paste keyup", function() {
+		setDice($(this).val());
+	});
+
+	$("#sabotageCards").on("change paste keyup", function() {
+		setSabotageCards($(this).val());
+	});
+
+	$("#moveCards").on("change paste keyup", function() {
+		setSpecialMoveCards($(this).val());
+	});
+
+	$("#wagers").on("change paste keyup", function() {
+		setWagers($(this).val());
+	});
+
+	$("#cheerleaders").on("change paste keyup", function() {
+		setCheerleaders($(this).val());
+	});
+
+	$("#mediBots").on("change paste keyup", function() {
+		setMediBots($(this).val());
+	});
 });
 
 function addPlayerFromTable(row) {
@@ -52,53 +76,182 @@ function addPlayer(template) {
 }
 
 function removePlayer(pos) {
-	var ajaxUrl = $(location).attr('href') + "/players" + "?position=" + pos ;
+	var ajaxUrl = $(location).attr('href') + "/players" + "?position=" + pos;
+
+	$
+			.ajax({
+				url : ajaxUrl,
+				type : 'DELETE',
+				success : function(team) {
+					loadTeamUnits(team.players);
+				},
+				error : function() {
+					console
+							.log('An error occurred while removing a unit through AJAX');
+				}
+			});
+}
+
+function setDice(dice) {
+	var ajaxUrl = $(location).attr('href') + "/assets/dice";
 
 	$.ajax({
 		url : ajaxUrl,
-		type : 'DELETE',
+		type : 'PUT',
+		data : {
+			dice : dice
+		},
 		success : function(team) {
-			loadTeamUnits(team.players);
 		},
 		error : function() {
-			console.log('An error occurred while removing a unit through AJAX');
+			console.log('An error occurred while adding a unit through AJAX');
 		}
 	});
 }
 
-function loadTeamUnits(players){
+function setSabotageCards(cards) {
+	var ajaxUrl = $(location).attr('href') + "/assets/sabotage";
+
+	$.ajax({
+		url : ajaxUrl,
+		type : 'PUT',
+		data : {
+			cards : cards
+		},
+		success : function(team) {
+		},
+		error : function() {
+			console.log('An error occurred while adding a unit through AJAX');
+		}
+	});
+}
+
+function setSpecialMoveCards(cards) {
+	var ajaxUrl = $(location).attr('href') + "/assets/move";
+
+	$.ajax({
+		url : ajaxUrl,
+		type : 'PUT',
+		data : {
+			cards : cards
+		},
+		success : function(team) {
+		},
+		error : function() {
+			console.log('An error occurred while adding a unit through AJAX');
+		}
+	});
+}
+
+function setWagers(wagers) {
+	var ajaxUrl = $(location).attr('href') + "/assets/wager";
+
+	$.ajax({
+		url : ajaxUrl,
+		type : 'PUT',
+		data : {
+			wagers : wagers
+		},
+		success : function(team) {
+		},
+		error : function() {
+			console.log('An error occurred while adding a unit through AJAX');
+		}
+	});
+}
+
+function setCheerleaders(cheerleaders) {
+	var ajaxUrl = $(location).attr('href') + "/assets/cheerleader";
+
+	$.ajax({
+		url : ajaxUrl,
+		type : 'PUT',
+		data : {
+			cheerleaders : cheerleaders
+		},
+		success : function(team) {
+		},
+		error : function() {
+			console.log('An error occurred while adding a unit through AJAX');
+		}
+	});
+}
+
+function setMediBots(medibots) {
+	var ajaxUrl = $(location).attr('href') + "/assets/cheerleader";
+
+	$.ajax({
+		url : ajaxUrl,
+		type : 'PUT',
+		data : {
+			medibots : medibots
+		},
+		success : function(team) {
+		},
+		error : function() {
+			console.log('An error occurred while adding a unit through AJAX');
+		}
+	});
+}
+
+function loadTeamUnits(units) {
 	var table = $("#teamUnits");
 	var tbody = table.children('tbody');
 	var row;
-	
+
 	tbody.empty();
-	
-	$.each(players, function( position, unit ) {
-			var abilities = "";
-			
-			jQuery.each(unit.abilities, function(index, ability) {
-			    if(index > 0){
-			    	abilities += ", ";
-			    }
-			    
-			    abilities += ability.name;
-			});
-			
-			row = "<tr>" 
-				+ "<td><i class=\"fa fa-trash table-action removePlayer\" aria-hidden=\"true\"></i></td>"
-				+ "<td>" + position + "</td>"
-				+ "<td>" + unit.template_name + "</td>"
-				+ "<td>" + unit.template_name + "</td>"
-				+ "<td>" + unit.role + "</td>"
-				+ "<td>" + unit.attributes.movement + "</td>"
-				+ "<td>" + unit.attributes.speed + "</td>"
-				+ "<td>" + unit.attributes.strength + "</td>"
-				+ "<td>" + unit.attributes.skill + "</td>"
-				+ "<td>" + unit.attributes.armor + "</td>"
-				+ "<td>" + abilities + "</td>"
-				+ "<td>" + unit.cost + "</td>"
-				+ "</tr>";
-			
-			tbody.last().append(row);
-		});
+
+	$.each(units, function(position, unit) {
+		addUnitToTable(position, unit);
+	});
+}
+
+function addUnitToTable(position, unit) {
+	var abilities = "";
+
+	jQuery.each(unit.abilities, function(index, ability) {
+		if (index > 0) {
+			abilities += ", ";
+		}
+
+		abilities += ability.name;
+	});
+
+	row = "<tr>"
+			+ "<td><i class=\"fa fa-trash table-action removePlayer\" aria-hidden=\"true\"></i></td>"
+			+ "<td>"
+			+ position
+			+ "</td>"
+			+ "<td>"
+			+ unit.template_name
+			+ "</td>"
+			+ "<td>"
+			+ unit.template_name
+			+ "</td>"
+			+ "<td>"
+			+ unit.role
+			+ "</td>"
+			+ "<td>"
+			+ unit.attributes.movement
+			+ "</td>"
+			+ "<td>"
+			+ unit.attributes.speed
+			+ "</td>"
+			+ "<td>"
+			+ unit.attributes.strength
+			+ "</td>"
+			+ "<td>"
+			+ unit.attributes.skill
+			+ "</td>"
+			+ "<td>"
+			+ unit.attributes.armor
+			+ "</td>"
+			+ "<td>"
+			+ abilities
+			+ "</td>"
+			+ "<td>"
+			+ unit.cost
+			+ "</td>" + "</tr>";
+
+	tbody.last().append(row);
 }

@@ -7,9 +7,9 @@ public interface DbxValuesService {
 
     public Integer getCheerleaderRankCost();
 
-    public Integer getDreadballDieCost();
+    public Integer getCoachingDieCost();
 
-    public Integer getDreadballDieRankCost();
+    public Integer getCoachingDieRankCost();
 
     public Integer getInitialRank();
 

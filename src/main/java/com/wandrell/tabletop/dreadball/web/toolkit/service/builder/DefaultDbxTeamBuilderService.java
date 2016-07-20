@@ -196,7 +196,7 @@ public final class DefaultDbxTeamBuilderService
         final RankCostCalculator calculator;
 
         calculator = new DefaultRankCostCalculator(
-                getDbxValuesService().getDreadballDieRankCost(),
+                getDbxValuesService().getCoachingDieRankCost(),
                 getDbxValuesService().getSabotageCardRankCost(),
                 getDbxValuesService().getSpecialMoveCardRankCost(),
                 getDbxValuesService().getCheerleaderRankCost(),
@@ -215,7 +215,7 @@ public final class DefaultDbxTeamBuilderService
         final TeamValorationCalculator<SponsorTeam> calculator;
 
         calculator = new SponsorTeamValorationCalculator(
-                getDbxValuesService().getDreadballDieCost(),
+                getDbxValuesService().getCoachingDieCost(),
                 getDbxValuesService().getSabotageCardCost(),
                 getDbxValuesService().getSpecialMoveCardCost(),
                 getDbxValuesService().getCheerleaderCost(),
