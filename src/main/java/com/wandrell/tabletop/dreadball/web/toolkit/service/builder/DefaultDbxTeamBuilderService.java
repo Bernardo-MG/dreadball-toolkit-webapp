@@ -7,7 +7,6 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
@@ -39,17 +38,14 @@ public final class DefaultDbxTeamBuilderService
 
     private final AffinityUnitRepository                     unitRepository;
 
-    private final Integer                                    initialRank;
-
-    private final Integer                                    maxPlayers;
+    private final DbxValuesService                           valuesService;
 
     @Autowired
     public DefaultDbxTeamBuilderService(
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
             final AffinityGroupRepository affinitiesRepo,
             final AffinityUnitRepository unitRepo,
-            @Value("${sponsor.rank.initial}") final Integer rank,
-            @Value("${sponsor.players.max}") final Integer playersMax) {
+            final DbxValuesService valuesServ) {
         super();
 
         affinityAvasRepository = checkNotNull(affinityAvasRepo,
@@ -58,10 +54,8 @@ public final class DefaultDbxTeamBuilderService
                 "Received a null pointer as affinities repository");
         unitRepository = checkNotNull(unitRepo,
                 "Received a null pointer as units repository");
-
-        initialRank = checkNotNull(rank, "Received a null pointer as rank");
-        maxPlayers = checkNotNull(playersMax,
-                "Received a null pointer as maximum number of players");
+        valuesService = checkNotNull(valuesServ,
+                "Received a null pointer as units repository");
     }
 
     @Override
@@ -87,12 +81,12 @@ public final class DefaultDbxTeamBuilderService
 
     @Override
     public final Integer getInitialRank() {
-        return initialRank;
+        return getDbxValuesService().getInitialRank();
     }
 
     @Override
     public final Integer getMaxTeamUnits() {
-        return maxPlayers;
+        return getDbxValuesService().getMaxTeamUnits();
     }
 
     @Override
@@ -194,10 +188,20 @@ public final class DefaultDbxTeamBuilderService
         return affinity;
     }
 
+    private final DbxValuesService getDbxValuesService() {
+        return valuesService;
+    }
+
     private final RankCostCalculator getRankCostCalculator() {
         final RankCostCalculator calculator;
 
-        calculator = new DefaultRankCostCalculator(1, 2, 3, 4, 5, 6);
+        calculator = new DefaultRankCostCalculator(
+                getDbxValuesService().getDreadballDieRankCost(),
+                getDbxValuesService().getSabotageCardRankCost(),
+                getDbxValuesService().getSpecialMoveCardRankCost(),
+                getDbxValuesService().getCheerleaderRankCost(),
+                getDbxValuesService().getWagerRankCost(),
+                getDbxValuesService().getMediBotRankCost());
 
         return calculator;
     }
@@ -210,8 +214,13 @@ public final class DefaultDbxTeamBuilderService
             getSponsorTeamValorationCalculator() {
         final TeamValorationCalculator<SponsorTeam> calculator;
 
-        // TODO: Load the actual values from somewhere
-        calculator = new SponsorTeamValorationCalculator(1, 2, 3, 4, 5, 6);
+        calculator = new SponsorTeamValorationCalculator(
+                getDbxValuesService().getDreadballDieCost(),
+                getDbxValuesService().getSabotageCardCost(),
+                getDbxValuesService().getSpecialMoveCardCost(),
+                getDbxValuesService().getCheerleaderCost(),
+                getDbxValuesService().getWagerCost(),
+                getDbxValuesService().getMediBotCost());
 
         return calculator;
     }
