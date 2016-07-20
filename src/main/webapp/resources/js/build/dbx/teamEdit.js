@@ -8,7 +8,7 @@
  */
 
 $(document).ready(function() {
-	$(".addPlayer").click(function(event) {
+	$(document).on("click", ".addPlayer", function() {
 		var row = $(this).parent().parent();
 		addPlayerFromTable(row.index());
 	});
