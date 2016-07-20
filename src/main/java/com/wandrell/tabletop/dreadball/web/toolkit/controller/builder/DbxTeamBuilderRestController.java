@@ -3,8 +3,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.controller.builder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Map;
-
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -12,7 +10,6 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilderService;
 
 @RestController
@@ -35,7 +32,7 @@ public class DbxTeamBuilderRestController {
     }
 
     @RequestMapping(path = "/players", method = RequestMethod.POST)
-    public final Map<Integer, ? extends Unit> addPlayer(
+    public final SponsorTeam addPlayer(
             @RequestParam(name = PARAM_TEMPLATE_NAME,
                     defaultValue = "") final String templateName,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
@@ -47,17 +44,17 @@ public class DbxTeamBuilderRestController {
             getDbxTeamBuilderService().addUnit(team, templateName);
         }
 
-        return team.getPlayers();
+        return team;
     }
 
     @RequestMapping(path = "/players", method = RequestMethod.DELETE)
-    public final Map<Integer, ? extends Unit> removePlayer(
+    public final SponsorTeam removePlayer(
             @RequestParam(name = PARAM_POSITION,
                     defaultValue = "-1") final Integer position,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
         team.removePlayer(position);
 
-        return team.getPlayers();
+        return team;
     }
 
     private final DbxTeamBuilderService getDbxTeamBuilderService() {

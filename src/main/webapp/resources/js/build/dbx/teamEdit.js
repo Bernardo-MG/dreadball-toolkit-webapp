@@ -42,8 +42,8 @@ function addPlayer(template) {
 		data : {
 			templateName : template
 		},
-		success : function(result) {
-			loadTeamUnits(result);
+		success : function(team) {
+			loadTeamUnits(team.players);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
@@ -57,8 +57,8 @@ function removePlayer(pos) {
 	$.ajax({
 		url : ajaxUrl,
 		type : 'DELETE',
-		success : function(result) {
-			loadTeamUnits(result);
+		success : function(team) {
+			loadTeamUnits(team.players);
 		},
 		error : function() {
 			console.log('An error occurred while removing a unit through AJAX');
