@@ -38,7 +38,7 @@ $(document).ready(function() {
 		setCheerleaders($(this).val());
 	});
 
-	$("#mediBots").on("change paste keyup", function() {
+	$("#medibots").on("change paste keyup", function() {
 		setMediBots($(this).val());
 	});
 });
@@ -102,6 +102,8 @@ function setDice(dice) {
 			dice : dice
 		},
 		success : function(team) {
+			$("#dice").val(team.dice);
+			loadTeamAssetCost(team);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
@@ -119,6 +121,8 @@ function setSabotageCards(cards) {
 			cards : cards
 		},
 		success : function(team) {
+			$("#sabotageCards").val(team.sabotage_cards);
+			loadTeamAssetCost(team);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
@@ -136,6 +140,8 @@ function setSpecialMoveCards(cards) {
 			cards : cards
 		},
 		success : function(team) {
+			$("#moveCards").val(team.special_move_cards);
+			loadTeamAssetCost(team);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
@@ -153,6 +159,8 @@ function setWagers(wagers) {
 			wagers : wagers
 		},
 		success : function(team) {
+			$("#wagers").val(team.wagers);
+			loadTeamAssetCost(team);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
@@ -170,6 +178,8 @@ function setCheerleaders(cheerleaders) {
 			cheerleaders : cheerleaders
 		},
 		success : function(team) {
+			$("#cheerleaders").val(team.cheerleaders);
+			loadTeamAssetCost(team);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
@@ -178,7 +188,7 @@ function setCheerleaders(cheerleaders) {
 }
 
 function setMediBots(medibots) {
-	var ajaxUrl = $(location).attr('href') + "/assets/cheerleader";
+	var ajaxUrl = $(location).attr('href') + "/assets/medibots";
 
 	$.ajax({
 		url : ajaxUrl,
@@ -187,6 +197,8 @@ function setMediBots(medibots) {
 			medibots : medibots
 		},
 		success : function(team) {
+			$("#medibots").val(team.medibots);
+			loadTeamAssetCost(team);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
@@ -204,6 +216,11 @@ function loadTeamUnits(units) {
 	$.each(units, function(position, unit) {
 		addUnitToTable(position, unit);
 	});
+}
+
+function loadTeamAssetCost(team) {
+	$("#spentRank").val(team.rank_cost);
+	$("#teamValue").val(team.valoration);
 }
 
 function addUnitToTable(position, unit) {

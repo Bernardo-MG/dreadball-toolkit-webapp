@@ -95,7 +95,7 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
-    @RequestMapping(path = "/assets/medibot",
+    @RequestMapping(path = "/assets/medibots",
             method = { RequestMethod.POST, RequestMethod.PUT })
     public final SponsorTeam setMedibots(
             @RequestParam(name = PARAM_MEDIBOTS,
