@@ -224,6 +224,7 @@ function loadTeamAssetCost(team) {
 }
 
 function addUnitToTable(position, unit) {
+	var tbody = $("#teamUnits").children('tbody');
 	var abilities = "";
 
 	jQuery.each(unit.abilities, function(index, ability) {
