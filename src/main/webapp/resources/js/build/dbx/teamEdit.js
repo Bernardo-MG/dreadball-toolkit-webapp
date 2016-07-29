@@ -68,6 +68,7 @@ function addPlayer(template) {
 		},
 		success : function(team) {
 			loadTeamUnits(team.players);
+			$("#teamValue").val(team.valoration);
 		},
 		error : function() {
 			console.log('An error occurred while adding a unit through AJAX');
@@ -84,6 +85,7 @@ function removePlayer(pos) {
 				type : 'DELETE',
 				success : function(team) {
 					loadTeamUnits(team.players);
+					$("#teamValue").val(team.valoration);
 				},
 				error : function() {
 					console
