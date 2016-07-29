@@ -3,6 +3,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.controller.builder;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -36,6 +37,7 @@ public class DbxTeamBuilderRestController {
 
     private final DbxTeamBuilderService dbxTeamBuilderService;
 
+    @Autowired
     public DbxTeamBuilderRestController(final DbxTeamBuilderService service) {
         super();
 

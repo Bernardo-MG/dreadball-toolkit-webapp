@@ -12,11 +12,9 @@ import org.springframework.stereotype.Service;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.model.team.DefaultRankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.team.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
@@ -40,12 +38,18 @@ public final class DefaultDbxTeamBuilderService
 
     private final DbxValuesService                           valuesService;
 
+    private final RankCostCalculator                         rankCostCalculator;
+
+    private final TeamValorationCalculator<SponsorTeam>      valorationCalculator;
+
     @Autowired
     public DefaultDbxTeamBuilderService(
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
             final AffinityGroupRepository affinitiesRepo,
             final AffinityUnitRepository unitRepo,
-            final DbxValuesService valuesServ) {
+            final DbxValuesService valuesServ,
+            final TeamValorationCalculator<SponsorTeam> valorationCalc,
+            final RankCostCalculator rankCalc) {
         super();
 
         affinityAvasRepository = checkNotNull(affinityAvasRepo,
@@ -56,6 +60,10 @@ public final class DefaultDbxTeamBuilderService
                 "Received a null pointer as units repository");
         valuesService = checkNotNull(valuesServ,
                 "Received a null pointer as units repository");
+        valorationCalculator = checkNotNull(valorationCalc,
+                "Received a null pointer as valoration calculator");
+        rankCostCalculator = checkNotNull(rankCalc,
+                "Received a null pointer as rank cost calculator");
     }
 
     @Override
@@ -193,17 +201,7 @@ public final class DefaultDbxTeamBuilderService
     }
 
     private final RankCostCalculator getRankCostCalculator() {
-        final RankCostCalculator calculator;
-
-        calculator = new DefaultRankCostCalculator(
-                getDbxValuesService().getCoachingDieRankCost(),
-                getDbxValuesService().getSabotageCardRankCost(),
-                getDbxValuesService().getSpecialMoveCardRankCost(),
-                getDbxValuesService().getCheerleaderRankCost(),
-                getDbxValuesService().getWagerRankCost(),
-                getDbxValuesService().getMediBotRankCost());
-
-        return calculator;
+        return rankCostCalculator;
     }
 
     private final SponsorAffinityGroupAvailabilityRepository getRepository() {
@@ -212,17 +210,7 @@ public final class DefaultDbxTeamBuilderService
 
     private final TeamValorationCalculator<SponsorTeam>
             getSponsorTeamValorationCalculator() {
-        final TeamValorationCalculator<SponsorTeam> calculator;
-
-        calculator = new SponsorTeamValorationCalculator(
-                getDbxValuesService().getCoachingDieCost(),
-                getDbxValuesService().getSabotageCardCost(),
-                getDbxValuesService().getSpecialMoveCardCost(),
-                getDbxValuesService().getCheerleaderCost(),
-                getDbxValuesService().getWagerCost(),
-                getDbxValuesService().getMediBotCost());
-
-        return calculator;
+        return valorationCalculator;
     }
 
     private final Integer getUnitCost(final Sponsor sponsor,

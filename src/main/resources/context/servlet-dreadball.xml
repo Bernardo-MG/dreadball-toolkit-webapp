@@ -12,6 +12,7 @@
    <!-- Imports -->
    <import resource="classpath:context/view.xml" />
    <import resource="classpath:context/service-dreadball.xml" />
+   <import resource="classpath:context/utils-dreadball.xml" />
    <import resource="classpath:context/json.xml" />
    
    <!-- Properties -->

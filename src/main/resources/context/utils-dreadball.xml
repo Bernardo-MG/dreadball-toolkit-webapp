@@ -1,0 +1,27 @@
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xsi:schemaLocation="http://www.springframework.org/schema/beans
+      http://www.springframework.org/schema/beans/spring-beans.xsd
+      http://www.springframework.org/schema/context 
+      http://www.springframework.org/schema/context/spring-context.xsd">
+
+   <!-- Calculators -->
+   <bean name="dbxRankCostCalculator" class="${sponsor.calculator.rank.class}">
+      <constructor-arg value="${sponsor.asset.die.rank}" />
+      <constructor-arg value="${sponsor.asset.sabotage.rank}" />
+      <constructor-arg value="${sponsor.asset.move.rank}" />
+      <constructor-arg value="${sponsor.asset.cheerleader.rank}" />
+      <constructor-arg value="${sponsor.asset.wager.rank}" />
+      <constructor-arg value="${sponsor.asset.medibot.rank}" />
+   </bean>
+   
+   <bean name="dbxValorationCalculator" class="${sponsor.calculator.valoration.class}">
+      <constructor-arg value="${sponsor.asset.die.cost}" />
+      <constructor-arg value="${sponsor.asset.sabotage.cost}" />
+      <constructor-arg value="${sponsor.asset.move.cost}" />
+      <constructor-arg value="${sponsor.asset.cheerleader.cost}" />
+      <constructor-arg value="${sponsor.asset.wager.cost}" />
+      <constructor-arg value="${sponsor.asset.medibot.cost}" />
+   </bean>
+
+</beans>
