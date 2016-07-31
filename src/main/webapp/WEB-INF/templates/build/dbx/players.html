@@ -4,195 +4,210 @@
 
 <head th:include="fragments/header :: header" />
 <body>
-	<header class="header" th:include="fragments/menu :: menu" />
+   <header class="header" th:include="fragments/menu :: menu" />
 
-	<section id="main-section" class="container-fluid">
+   <section id="main-section" class="container-fluid">
 
-		<form role="form">
-			<div class="panel panel-default">
-				<div class="panel-body">
-					<div class="form-group col-sm-6">
-						<label for="teamName" class="col-sm-2 control-label">Sponsor
-							Name</label>
-						<div class="col-sm-10">
-							<input class="form-control" id="sponsorName"
-								th:value="${sponsor?.name}">
-						</div>
-					</div>
-					<div class="form-group col-sm-6">
-						<label for="teamValue" class="col-sm-3 control-label">Team
-							value</label>
-						<div class="col-sm-9">
-							<input class="form-control" id="teamValue"
-								th:value="${team?.valoration}" disabled>
-						</div>
-					</div>
-				</div>
-			</div>
-            <div class="panel panel-default">
-                <div class="panel-heading">Rank</div>
-                <div class="panel-body">
-                    <div class="form-group col-sm-6">
-                        <label for="rank" class="col-sm-3 control-label">Rank</label>
-                        <div class="col-sm-9">
-                            <input class="form-control" id="rank" th:value="${team?.sponsor?.rank}" disabled>
-                        </div>
-                    </div>
-                    <div class="form-group col-sm-6">
-                        <label for="spentRank" class="col-sm-3 control-label">Spent rank</label>
-                        <div class="col-sm-9">
-                            <input class="form-control" id="spentRank" th:value="${team?.rankCost}" disabled>
-                        </div>
-                    </div>
-                </div>
+      <form role="form">
+         <div class="panel panel-default">
+            <div class="panel-body">
+               <div class="form-group col-sm-6">
+                  <label for="teamName" class="col-sm-2 control-label">Sponsor
+                     Name</label>
+                  <div class="col-sm-10">
+                     <input class="form-control" id="sponsorName"
+                        th:value="${sponsor?.name}">
+                  </div>
+               </div>
+               <div class="form-group col-sm-6">
+                  <label for="teamValue" class="col-sm-3 control-label">Team
+                     value</label>
+                  <div class="col-sm-9">
+                     <input class="form-control" id="teamValue"
+                        th:value="${team?.valoration}" disabled>
+                  </div>
+               </div>
             </div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Assets</div>
-				<div class="panel-body">
-					<div class="form-group col-md-12">
-						<div class="form-group col-md-2">
-							<label for="dice" class="control-label">Coaching Dice</label> <input
-								type="number" th:value="${team?.coachingDice}" id="dice"
-								class="form-control input-sm">
-						</div>
-						<div class="form-group col-md-2">
-							<label for="moveCards" class="control-label">Special Move
-								Card</label> <input type="number" th:value="${team?.specialMoveCards}"
-								id="moveCards" class="form-control input-sm">
-						</div>
-						<div class="form-group col-md-2">
-							<label for="sabotageCards" class="control-label">Sabotage
-								Card</label> <input type="number" th:value="${team?.sabotageCards}"
-								id="sabotageCards" class="form-control input-sm">
-						</div>
-						<div class="form-group col-md-2">
-							<label for="wagers" class="control-label">Wager</label> <input
-								type="number" th:value="${team?.wagers}" id="wagers"
-								class="form-control input-sm">
-						</div>
-						<div class="form-group col-md-2">
-							<label for="cheerleaders" class="control-label">Cheerleaders</label>
-							<input type="number" th:value="${team?.cheerleaders}"
-								id="cheerleaders" class="form-control input-sm">
-						</div>
-						<div class="form-group col-md-2">
-							<label for="medibots" class="control-label">Medi-bots</label> <input
-								type="number" th:value="${team?.mediBots}" id="medibots"
-								class="form-control input-sm">
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Players</div>
-				<div class="panel-body">
-					<table id="teamUnits" class="table table-striped">
-						<thead>
-							<tr>
-								<th></th>
-								<th>Number</th>
-								<th>Name</th>
-								<th>Type</th>
-								<th>Role</th>
-								<th>Move</th>
-								<th>Strength</th>
-								<th>Speed</th>
-								<th>Skill</th>
-								<th>Armor</th>
-								<th>Abilities</th>
-								<th>Value</th>
-							</tr>
-						</thead>
-						<tfoot>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td th:text="${team?.valoration}">84</td>
-							</tr>
-						</tfoot>
-						<tbody>
-							<tr th:each="player : ${team?.players}">
-								<td>9</td>
-								<td th:text="${player?.templateName}">Unit name</td>
-								<td th:text="${player?.templateName}">Template name</td>
-								<td th:text="${player?.role}">Jack</td>
-								<td th:text="${player?.attributes?.movement}">5</td>
-								<td th:text="${player?.attributes?.strength}">5+</td>
-								<td th:text="${player?.attributes?.speed}">3+</td>
-								<td th:text="${player?.attributes?.skill}">4+</td>
-								<td th:text="${player?.attributes?.armor}">4+</td>
-								<td><span th:remove="tag"
-									th:each="ability,iterStat : ${player?.abilities}"
-									th:text="${iterStat.count &lt; #lists.size(player.abilities)}? ${ability.name} + ', ' : ${ability.name}">Ability</span></td>
-								<td th:text="${player?.cost}">10</td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-			</div>
-			<div class="panel panel-default">
-				<div class="panel-heading">Add players</div>
-				<div class="panel-body">
-					<div class="row">
-						<div class="col-md-12">
-							<h2>Available players</h2>
-							<table id="availableUnits"
-								class="table table-striped display dataTable">
-								<thead>
-									<tr>
-										<th class="hidden no-sort">Template</th>
-										<th class="no-sort"></th>
-										<th>Unit name</th>
-										<th>Role</th>
-										<th>Move</th>
-										<th>Strength</th>
-										<th>Speed</th>
-										<th>Skill</th>
-										<th>Armor</th>
-										<th>Abilities</th>
-										<th>Cost</th>
-									</tr>
-								</thead>
-								<tbody>
-									<tr th:each="player : ${availablePlayers}">
-										<td th:text="${player?.templateName}">Template name</td>
-										<td><i class="fa fa-plus-circle table-action addPlayer"
-											aria-hidden="true"></i></td>
-										<td th:text="${player?.templateName}">Template name</td>
-										<td th:text="${player?.role}">Jack</td>
-										<td th:text="${player?.attributes?.movement}">5</td>
-										<td th:text="${player?.attributes?.strength}">5+</td>
-										<td th:text="${player?.attributes?.speed}">3+</td>
-										<td th:text="${player?.attributes?.skill}">4+</td>
-										<td th:text="${player?.attributes?.armor}">4+</td>
-										<td><span th:remove="tag"
-											th:each="ability,iterStat : ${player?.abilities}"
-											th:text="${iterStat.count &lt; #lists.size(player.abilities)}? ${ability.name} + ', ' : ${ability.name}">Ability</span></td>
-										<td th:text="${player?.cost}">10</td>
-									</tr>
-								</tbody>
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-		</form>
-	</section>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">Rank</div>
+            <div class="panel-body">
+               <div class="form-group col-sm-6">
+                  <label for="rank" class="col-sm-3 control-label">Rank</label>
+                  <div class="col-sm-9">
+                     <input class="form-control" id="rank"
+                        th:value="${team?.sponsor?.rank}" disabled>
+                  </div>
+               </div>
+               <div class="form-group col-sm-6">
+                  <label for="spentRank" class="col-sm-3 control-label">Spent
+                     rank</label>
+                  <div class="col-sm-9">
+                     <input class="form-control" id="spentRank"
+                        th:value="${team?.rankCost}" disabled>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">Assets</div>
+            <div class="panel-body">
+               <div class="form-group col-md-12">
+                  <div class="form-group col-md-2">
+                     <label for="dice" class="control-label">Coaching
+                        Dice</label> <input type="number"
+                        th:value="${team?.coachingDice}" id="dice"
+                        class="form-control input-sm">
+                  </div>
+                  <div class="form-group col-md-2">
+                     <label for="moveCards" class="control-label">Special
+                        Move Card</label> <input type="number"
+                        th:value="${team?.specialMoveCards}"
+                        id="moveCards" class="form-control input-sm">
+                  </div>
+                  <div class="form-group col-md-2">
+                     <label for="sabotageCards" class="control-label">Sabotage
+                        Card</label> <input type="number"
+                        th:value="${team?.sabotageCards}"
+                        id="sabotageCards" class="form-control input-sm">
+                  </div>
+                  <div class="form-group col-md-2">
+                     <label for="wagers" class="control-label">Wager</label>
+                     <input type="number" th:value="${team?.wagers}"
+                        id="wagers" class="form-control input-sm">
+                  </div>
+                  <div class="form-group col-md-2">
+                     <label for="cheerleaders" class="control-label">Cheerleaders</label>
+                     <input type="number"
+                        th:value="${team?.cheerleaders}"
+                        id="cheerleaders" class="form-control input-sm">
+                  </div>
+                  <div class="form-group col-md-2">
+                     <label for="medibots" class="control-label">Medi-bots</label>
+                     <input type="number" th:value="${team?.mediBots}"
+                        id="medibots" class="form-control input-sm">
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">Players</div>
+            <div class="panel-body">
+               <table id="teamUnits" class="table table-striped">
+                  <thead>
+                     <tr>
+                        <th></th>
+                        <th>Number</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Role</th>
+                        <th>Move</th>
+                        <th>Strength</th>
+                        <th>Speed</th>
+                        <th>Skill</th>
+                        <th>Armor</th>
+                        <th>Abilities</th>
+                        <th>Value</th>
+                     </tr>
+                  </thead>
+                  <tfoot>
+                     <tr>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td></td>
+                        <td th:text="${team?.valoration}">84</td>
+                     </tr>
+                  </tfoot>
+                  <tbody>
+                     <tr th:each="player : ${team?.players}">
+                        <td>9</td>
+                        <td th:text="${player?.templateName}">Unit
+                           name</td>
+                        <td th:text="${player?.templateName}">Template
+                           name</td>
+                        <td th:text="${player?.role}">Jack</td>
+                        <td th:text="${player?.attributes?.movement}">5</td>
+                        <td th:text="${player?.attributes?.strength}">5+</td>
+                        <td th:text="${player?.attributes?.speed}">3+</td>
+                        <td th:text="${player?.attributes?.skill}">4+</td>
+                        <td th:text="${player?.attributes?.armor}">4+</td>
+                        <td><span th:remove="tag"
+                           th:each="ability,iterStat : ${player?.abilities}"
+                           th:text="${iterStat.count &lt; #lists.size(player.abilities)}? ${ability.name} + ', ' : ${ability.name}">Ability</span></td>
+                        <td th:text="${player?.cost}">10</td>
+                     </tr>
+                  </tbody>
+               </table>
+            </div>
+         </div>
+         <div class="panel panel-default">
+            <div class="panel-heading">Add players</div>
+            <div class="panel-body">
+               <div class="row">
+                  <div class="col-md-12">
+                     <h2>Available players</h2>
+                     <table id="availableUnits"
+                        class="table table-striped display dataTable">
+                        <thead>
+                           <tr>
+                              <th class="hidden no-sort">Template</th>
+                              <th class="no-sort"></th>
+                              <th>Unit name</th>
+                              <th>Role</th>
+                              <th>Move</th>
+                              <th>Strength</th>
+                              <th>Speed</th>
+                              <th>Skill</th>
+                              <th>Armor</th>
+                              <th>Abilities</th>
+                              <th>Cost</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr th:each="player : ${availablePlayers}">
+                              <td th:text="${player?.templateName}">Template
+                                 name</td>
+                              <td><i
+                                 class="fa fa-plus-circle table-action addPlayer"
+                                 aria-hidden="true"></i></td>
+                              <td th:text="${player?.templateName}">Template
+                                 name</td>
+                              <td th:text="${player?.role}">Jack</td>
+                              <td
+                                 th:text="${player?.attributes?.movement}">5</td>
+                              <td
+                                 th:text="${player?.attributes?.strength}">5+</td>
+                              <td th:text="${player?.attributes?.speed}">3+</td>
+                              <td th:text="${player?.attributes?.skill}">4+</td>
+                              <td th:text="${player?.attributes?.armor}">4+</td>
+                              <td><span th:remove="tag"
+                                 th:each="ability,iterStat : ${player?.abilities}"
+                                 th:text="${iterStat.count &lt; #lists.size(player.abilities)}? ${ability.name} + ', ' : ${ability.name}">Ability</span></td>
+                              <td th:text="${player?.cost}">10</td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </form>
+   </section>
 
-	<footer>
-		<div class="container-fluid" th:include="fragments/footer :: footer" />
-		<div th:include="fragments/scripts :: general" />
-		<div th:include="fragments/scripts :: dbx-teamEdit" />
-	</footer>
+   <footer>
+      <div class="container-fluid"
+         th:include="fragments/footer :: footer" />
+      <div th:include="fragments/scripts :: general" />
+      <div th:include="fragments/scripts :: dbx-teamEdit" />
+   </footer>
 </body>
 
 </html>
