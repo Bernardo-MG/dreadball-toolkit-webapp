@@ -10,25 +10,25 @@
       <table class="table table-striped display dataTable">
          <thead>
             <tr>
-               <th>Unit name</th>
-               <th>Role</th>
-               <th>Move</th>
-               <th>Strength</th>
-               <th>Speed</th>
-               <th>Skill</th>
-               <th>Armor</th>
-               <th>Abilities</th>
-               <th>Affinities</th>
-               <th>Hated affinities</th>
-               <th>Stranger cost</th>
-               <th>Ally cost</th>
-               <th>Friend cost</th>
+               <th th:text="#{label.playerName}">Player</th>
+               <th th:text="#{label.role}">Role</th>
+               <th th:text="#{label.attribute.move}">Move</th>
+               <th th:text="#{label.attribute.strength}">Strength</th>
+               <th th:text="#{label.attribute.speed}">Speed</th>
+               <th th:text="#{label.attribute.skill}">Skill</th>
+               <th th:text="#{label.attribute.armor}">Armor</th>
+               <th th:text="#{label.abilities}">Abilities</th>
+               <th th:text="#{label.affinities}">Affinities</th>
+               <th th:text="#{label.hatedAffinities}">Hated affinities</th>
+               <th th:text="#{label.cost.stranger}">Stranger cost</th>
+               <th th:text="#{label.cost.ally}">Ally cost</th>
+               <th th:text="#{label.cost.friend}">Friend cost</th>
             </tr>
          </thead>
          <tbody>
             <tr th:each="player : ${players}">
                <td th:text="${player?.templateName}">Template name</td>
-               <td th:text="${player?.role}">Jack</td>
+               <td th:text="#{${player?.role?.toString().toLowerCase()}}">Jack</td>
                <td th:text="${player?.attributes?.movement}">5</td>
                <td th:text="${player?.attributes?.strength}">5+</td>
                <td th:text="${player?.attributes?.speed}">3+</td>
@@ -36,13 +36,13 @@
                <td th:text="${player?.attributes?.armor}">4+</td>
                <td><span th:remove="tag"
                   th:each="ability,iterStat : ${player?.abilities}"
-                  th:text="${iterStat.count &lt; #lists.size(player.abilities)}? ${ability.name} + ', ' : ${ability.name}">Ability</span></td>
+                  th:text="${iterStat.count &lt; #lists.size(player.abilities)}? #{${ability.name}} + ', ' : #{${ability.name}}">Ability</span></td>
                <td><span th:remove="tag"
                   th:each="affinity,iterStat : ${player?.affinityGroups}"
-                  th:text="${iterStat.count &lt; #lists.size(player.affinityGroups)}? ${affinity.name} + ', ' : ${affinity.name}">Affinity</span></td>
+                  th:text="${iterStat.count &lt; #lists.size(player.affinityGroups)}? #{${affinity.name}} + ', ' : #{${affinity.name}}">Affinity</span></td>
                <td><span th:remove="tag"
                   th:each="hatedAffinity,iterStat : ${player?.hatedAffinityGroups}"
-                  th:text="${iterStat.count &lt; #lists.size(player.hatedAffinityGroups)}? ${hatedAffinity.name} + ', ' : ${hatedAffinity.name}">Hated
+                  th:text="${iterStat.count &lt; #lists.size(player.hatedAffinityGroups)}? #{${hatedAffinity.name}} + ', ' : #{${hatedAffinity.name}}">Hated
                      affinity</span></td>
                <td th:text="${player?.strangerCost}">10</td>
                <td th:text="${player?.allyCost}">20</td>
