@@ -7,18 +7,22 @@
    <header class="header" th:include="fragments/menu :: menu" />
 
    <section id="main-section" class="container-fluid">
-      <h1>Sponsor creation</h1>
+      <h1 th:text="#{dbx.builder.title.sponsor}">Sponsor creation
+         title</h1>
       <section id="create_sponsor" class="form-well">
          <form action="#" th:action="@{/builder/team/dbx}"
             th:object="${form}" method="post" role="form" class="form">
             <div class="col-md-12">
                <div class="panel panel-default">
-                  <div class="panel-heading">Sponsor info</div>
+                  <div class="panel-heading"
+                     th:text="#{dbx.builder.title.sponsorInfo}">Sponsor
+                     info section</div>
                   <div class="panel-body">
                      <!-- Sponsor name input -->
                      <div class="form-group"
                         th:classappend="${#fields.hasErrors('sponsorName')} ? 'error'">
-                        <label class="control-label" for="sponsorName">Name</label>
+                        <label class="control-label" for="sponsorName"
+                           th:text="#{label.name}">Name</label>
                         <div class="controls">
                            <input type="text" th:field="*{sponsorName}"
                               class="form-control"
@@ -32,8 +36,8 @@
                      </div>
                      <div class="form-group">
                         <!-- Sponsor initial rank -->
-                        <label for="rank">Rank</label> <input
-                           type="text" class="form-control"
+                        <label for="rank" th:text="#{label.rank}">Rank</label>
+                        <input type="text" class="form-control"
                            id="initialRank" th:value="${initialRank}"
                            disabled>
                      </div>
@@ -42,9 +46,11 @@
             </div>
             <div class="col-md-12">
                <div class="panel panel-default">
-                  <div class="panel-heading">
-                     Sponsor affinity groups <span class="tooltip-text"
-                        data-toggle="tooltip" data-placement="top"
+                  <div class="panel-heading"
+                     th:text="#{dbx.builder.title.sponsorAffinityGroups}">
+                     Sponsor affinity groups section<span
+                        class="tooltip-text" data-toggle="tooltip"
+                        data-placement="top"
                         title="These will affect the players costs"><i
                         class="fa fa-question-circle" aria-hidden="true"></i></span>
                   </div>
@@ -60,7 +66,7 @@
                            <label><input type="radio"
                               th:name="${affinityColName}"
                               th:value="${affinity?.name}" /><span
-                              th:text="${affinity?.name}">Affinity
+                              th:text="#{${affinity?.name}}">Affinity
                                  group</span></label>
                         </div>
                         <div
@@ -70,7 +76,8 @@
                            <label><input type="radio"
                               th:name="${affinityColName}"
                               th:value="rank" class="increaseRank" /><span
-                              th:text="rank">+1 Rank</span></label>
+                              th:text="#{dbx.builder.label.increaseRank}">+1
+                                 Rank</span></label>
                         </div>
                         <!-- Validation errors -->
                         <p
@@ -83,7 +90,7 @@
             </div>
             <div id="pick_sponsor" class="row">
                <div class="col-md-12">
-                  <button type="submit">Submit</button>
+                  <button type="submit" th:text="#{button.submit}">Submit</button>
                </div>
             </div>
          </form>

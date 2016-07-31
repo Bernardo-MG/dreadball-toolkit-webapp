@@ -13,19 +13,6 @@ $(document).ready(function() {
 	});
 });
 
-function increaseRank(increase) {
-	var rankInput = $('#initialRank');
-	var initialRank = rankInput.val();
-
-	if (increase) {
-		initialRank++;
-	} else if (initialRank > 0) {
-		initialRank--;
-	}
-
-	rankInput.val(initialRank);
-}
-
 function refreshRank() {
 	var selected = $('input:checked');
 	var rankInput = $('#initialRank');
