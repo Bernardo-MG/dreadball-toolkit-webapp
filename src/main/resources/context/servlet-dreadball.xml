@@ -24,7 +24,8 @@
    <context:component-scan
       base-package="com.wandrell.tabletop.dreadball.web.toolkit.controller" />
 
-   <mvc:annotation-driven conversion-service="conversionService">
+   <mvc:annotation-driven conversion-service="conversionService"
+      validator="validator">
       <mvc:message-converters>
          <bean
             class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
@@ -49,9 +50,15 @@
       class="org.springframework.format.support.FormattingConversionServiceFactoryBean">
    </bean>
 
+   <bean id="validator"
+      class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+      <property name="validationMessageSource" ref="messageSource" />
+   </bean>
+
    <bean id="messageSource"
       class="org.springframework.context.support.ResourceBundleMessageSource">
-      <property name="basenames" value="messages/application,messages/dreadball,messages/affinity-groups" />
+      <property name="basenames"
+         value="messages/application,messages/dreadball,messages/affinity-groups,messages/validation" />
    </bean>
 
 </beans>
