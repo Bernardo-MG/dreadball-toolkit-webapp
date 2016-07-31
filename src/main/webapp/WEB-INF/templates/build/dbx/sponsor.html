@@ -51,10 +51,10 @@
                   <div class="panel-body">
                      <!-- Affinity groups -->
                      <div class="col-md-2"
-                        th:each="affinityColumn : ${affinities}">
+                        th:each="affinityColumn : ${affinities}"
+                        th:with="affinityColName=${'affinity' + affinityColumn?.name}">
                         <div
                            th:each="affinity : ${affinityColumn?.affinityGroups}"
-                           th:with="affinityColName=${'affinity' + affinityColumn?.name}"
                            class="radio">
                            <!-- Affinity group option -->
                            <label><input type="radio"
@@ -72,6 +72,11 @@
                               th:value="rank" class="increaseRank" /><span
                               th:text="rank">+1 Rank</span></label>
                         </div>
+                        <!-- Validation errors -->
+                        <p
+                           th:if="${#fields.hasErrors('__${affinityColName}__')}"
+                           class="label label-danger"
+                           th:errors="*{__${affinityColName}__}">Error</p>
                      </div>
                   </div>
                </div>
