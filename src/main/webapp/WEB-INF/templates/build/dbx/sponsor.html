@@ -46,12 +46,13 @@
             </div>
             <div class="col-md-12">
                <div class="panel panel-default">
-                  <div class="panel-heading"
-                     th:text="#{dbx.builder.title.sponsorAffinityGroups}">
-                     Sponsor affinity groups section<span
+                  <div class="panel-heading">
+                     <span th:remove="tag"
+                        th:text="#{dbx.builder.title.sponsorAffinityGroups}">Sponsor
+                        affinity groups section</span> <span
                         class="tooltip-text" data-toggle="tooltip"
                         data-placement="top"
-                        title="These will affect the players costs"><i
+                        th:title="#{dbx.builder.tooltip.sponsorAffinities}"><i
                         class="fa fa-question-circle" aria-hidden="true"></i></span>
                   </div>
                   <div class="panel-body">
