@@ -24,6 +24,7 @@ $(document).ready(function() {
 	$("[data-toggle='tooltip']").tooltip();
 
 	$(".dataTable").DataTable({
+		"renderer" : "bootstrap",
 		"order" : [],
 		"columnDefs" : [ {
 			"targets" : "no-sort",
