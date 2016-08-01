@@ -64,8 +64,8 @@
                            class="radio">
                            <!-- Affinity group option -->
                            <label><input type="radio"
-                              th:name="${affinityColName}"
-                              th:value="${affinity?.name}" /><span
+                              th:value="${affinity?.name}"
+                              th:field="*{__${affinityColName}__}" /><span
                               th:text="#{${affinity?.name}}">Affinity
                                  group</span></label>
                         </div>
