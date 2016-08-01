@@ -58,7 +58,7 @@
    <bean id="messageSource"
       class="org.springframework.context.support.ResourceBundleMessageSource">
       <property name="basenames"
-         value="messages/application,messages/dreadball,messages/affinity-groups,messages/validation,messages/role,messages/ability,messages/ability-description" />
+         value="messages/application,messages/dreadball,messages/affinity-groups,messages/validation,messages/role,messages/ability,messages/ability-description,messages/unit" />
    </bean>
 
 </beans>

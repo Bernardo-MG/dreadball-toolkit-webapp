@@ -28,7 +28,7 @@
          </thead>
          <tbody>
             <tr th:each="player : ${players}">
-               <td th:text="${player?.templateName}">Template name</td>
+               <td th:text="#{${player?.templateName}}">Template name</td>
                <td
                   th:text="#{${player?.role?.toString().toLowerCase()}}">Jack</td>
                <td th:text="${player?.attributes?.movement}">5</td>
