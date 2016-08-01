@@ -19,7 +19,8 @@
                <th th:text="#{label.attribute.armor}">Armor</th>
                <th th:text="#{label.abilities}">Abilities</th>
                <th th:text="#{label.affinities}">Affinities</th>
-               <th th:text="#{label.hatedAffinities}">Hated affinities</th>
+               <th th:text="#{label.hatedAffinities}">Hated
+                  affinities</th>
                <th th:text="#{label.cost.stranger}">Stranger cost</th>
                <th th:text="#{label.cost.ally}">Ally cost</th>
                <th th:text="#{label.cost.friend}">Friend cost</th>
@@ -28,7 +29,8 @@
          <tbody>
             <tr th:each="player : ${players}">
                <td th:text="${player?.templateName}">Template name</td>
-               <td th:text="#{${player?.role?.toString().toLowerCase()}}">Jack</td>
+               <td
+                  th:text="#{${player?.role?.toString().toLowerCase()}}">Jack</td>
                <td th:text="${player?.attributes?.movement}">5</td>
                <td th:text="${player?.attributes?.strength}">5+</td>
                <td th:text="${player?.attributes?.speed}">3+</td>
@@ -36,14 +38,31 @@
                <td th:text="${player?.attributes?.armor}">4+</td>
                <td><span th:remove="tag"
                   th:each="ability,iterStat : ${player?.abilities}"
-                  th:text="${iterStat.count &lt; #lists.size(player.abilities)}? #{${ability.name}} + ', ' : #{${ability.name}}">Ability</span></td>
+                  th:with="index=${iterStat.count}"> <span
+                     class="tooltip-text" data-toggle="tooltip"
+                     data-placement="top"
+                     th:title="#{${ability.name}+'.description'}"
+                     th:text="#{${ability.name}}">Ability</span> <span
+                     th:remove="tag"
+                     th:if="${index &lt; #lists.size(player.abilities)}"
+                     th:text="', '"></span>
+               </span></td>
                <td><span th:remove="tag"
                   th:each="affinity,iterStat : ${player?.affinityGroups}"
-                  th:text="${iterStat.count &lt; #lists.size(player.affinityGroups)}? #{${affinity.name}} + ', ' : #{${affinity.name}}">Affinity</span></td>
+                  th:with="index=${iterStat.count}"> <span
+                     th:remove="tag" th:text="#{${affinity.name}}">Affinity</span>
+                     <span th:remove="tag"
+                     th:if="${index &lt; #lists.size(player?.affinityGroups)}"
+                     th:text="', '"></span>
+               </span></td>
                <td><span th:remove="tag"
-                  th:each="hatedAffinity,iterStat : ${player?.hatedAffinityGroups}"
-                  th:text="${iterStat.count &lt; #lists.size(player.hatedAffinityGroups)}? #{${hatedAffinity.name}} + ', ' : #{${hatedAffinity.name}}">Hated
-                     affinity</span></td>
+                  th:each="affinity,iterStat : ${player?.hatedAffinityGroups}"
+                  th:with="index=${iterStat.count}"> <span
+                     th:remove="tag" th:text="#{${affinity.name}}">Hated
+                        affinity</span> <span th:remove="tag"
+                     th:if="${index &lt; #lists.size(player?.hatedAffinityGroups)}"
+                     th:text="', '"></span>
+               </span></td>
                <td th:text="${player?.strangerCost}">10</td>
                <td th:text="${player?.allyCost}">20</td>
                <td th:text="${player?.friendCost}">30</td>
