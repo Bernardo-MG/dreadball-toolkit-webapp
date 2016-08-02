@@ -45,7 +45,11 @@ $(document).ready(function() {
 
 function addPlayerFromTable(row) {
 	var table = $("#availableUnits").DataTable();
-	var template = table.row(row).data()[0];
+	var info = table.page.info();
+	var page = info.page;
+	var pageSize = info.length;
+	var index = (page * pageSize) + row;
+	var template = table.row(index).data()[0];
 
 	addPlayer(template);
 }
