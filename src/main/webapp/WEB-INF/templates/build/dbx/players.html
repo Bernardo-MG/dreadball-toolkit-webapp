@@ -12,8 +12,8 @@
          <div class="panel panel-default">
             <div class="panel-body">
                <div class="form-group col-sm-6">
-                  <label for="teamName" class="col-sm-2 control-label">Sponsor
-                     Name</label>
+                  <label class="control-label" for="sponsorName"
+                           th:text="#{label.name}">Name</label>
                   <div class="col-sm-10">
                      <input class="form-control" id="sponsorName"
                         th:value="${sponsor?.name}">

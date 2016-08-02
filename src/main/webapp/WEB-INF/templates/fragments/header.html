@@ -12,12 +12,12 @@
 <!-- IE Compatibility tag -->
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-<title>Dreadball Toolkit</title>
+<title th:text="#{application.title}">Webapp title</title>
 
 <!-- Metadata -->
-<meta name="description" content="Dreadball Toolkit">
-<meta name="keywords" content="Dreadball, team builder">
-<meta name="author" content="Bernardo Martínez Garrido">
+<meta name="description" th:content="${projectDescription}">
+<meta name="keywords" th:content="${projectKeywords}">
+<meta name="author" th:content="${projectAuthor}">
 
 <!-- CSS -->
 <link rel="stylesheet"

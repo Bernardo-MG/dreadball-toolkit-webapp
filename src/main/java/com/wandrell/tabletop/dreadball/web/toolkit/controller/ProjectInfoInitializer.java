@@ -29,6 +29,12 @@ public final class ProjectInfoInitializer {
     @Value("${project.scm.url}")
     private String scmUrl;
 
+    @Value("${project.description}")
+    private String projectDescription;
+
+    @Value("${project.keywords}")
+    private String projectKeywords;
+
     public ProjectInfoInitializer() {
         super();
     }
@@ -51,6 +57,16 @@ public final class ProjectInfoInitializer {
     @ModelAttribute("projectAuthorUrl")
     public final String getProjectAuthorUrl() {
         return authorUrl;
+    }
+
+    @ModelAttribute("projectDescription")
+    public final String getProjectDescription() {
+        return projectDescription;
+    }
+
+    @ModelAttribute("projectKeywords")
+    public final String getProjectKeywords() {
+        return projectKeywords;
     }
 
     @ModelAttribute("projectVersion")
