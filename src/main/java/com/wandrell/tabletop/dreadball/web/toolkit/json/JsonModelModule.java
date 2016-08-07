@@ -27,19 +27,26 @@ public final class JsonModelModule extends SimpleModule {
 
     @Override
     public final void setupModule(final SetupContext context) {
+        setupMixIns(context);
+    }
+
+    private final void setupMixIns(final SetupContext context) {
+        // Factions
         context.setMixInAnnotations(Sponsor.class, SponsorMixIn.class);
 
+        // Stats
+        context.setMixInAnnotations(Ability.class, AbilityMixIn.class);
+        context.setMixInAnnotations(Attributes.class, AttributesMixIn.class);
         context.setMixInAnnotations(AffinityGroup.class,
                 AffinityGroupMixIn.class);
 
+        // Teams
         context.setMixInAnnotations(SponsorTeam.class, SponsorTeamMixIn.class);
 
+        // Units
         context.setMixInAnnotations(Unit.class, UnitMixIn.class);
         context.setMixInAnnotations(AffinityUnit.class,
                 AffinityUnitMixIn.class);
-
-        context.setMixInAnnotations(Ability.class, AbilityMixIn.class);
-        context.setMixInAnnotations(Attributes.class, AttributesMixIn.class);
     }
 
 }
