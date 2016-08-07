@@ -19,7 +19,7 @@ public final class DreadballObjectMapper extends ObjectMapper {
 
         checkNotNull(module, "Received a null pointer as JSON module");
 
-        registerModule(new JsonModelModule());
+        registerModule(module);
     }
 
 }
