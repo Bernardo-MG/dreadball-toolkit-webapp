@@ -253,7 +253,7 @@ function addUnitToTable(position, unit) {
 			+ unit.template_name
 			+ "</td>"
 			+ "<td>"
-			+ unit.role
+			+ unit.role_i18n
 			+ "</td>"
 			+ "<td>"
 			+ unit.attributes.movement

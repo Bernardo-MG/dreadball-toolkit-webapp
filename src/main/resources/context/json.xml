@@ -12,6 +12,7 @@
 
    <bean id="jsonModelModule"
       class="com.wandrell.tabletop.dreadball.web.toolkit.json.JsonModelModule">
+      <constructor-arg ref="messageSource" />
    </bean>
 
 </beans>
