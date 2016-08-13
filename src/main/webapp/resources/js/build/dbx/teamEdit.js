@@ -247,10 +247,10 @@ function addUnitToTable(position, unit) {
 			+ position
 			+ "</td>"
 			+ "<td>"
-			+ unit.template_name
+			+ unit.name
 			+ "</td>"
 			+ "<td>"
-			+ unit.template_name
+			+ unit.template_name_i18n
 			+ "</td>"
 			+ "<td>"
 			+ unit.role_i18n

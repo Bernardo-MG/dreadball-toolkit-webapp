@@ -7,6 +7,8 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.MessageSource;
+import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
@@ -42,6 +44,8 @@ public final class DefaultDbxTeamBuilderService
 
     private final TeamValorationCalculator<SponsorTeam>      valorationCalculator;
 
+    private final MessageSource                              messageSource;
+
     @Autowired
     public DefaultDbxTeamBuilderService(
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
@@ -49,7 +53,7 @@ public final class DefaultDbxTeamBuilderService
             final AffinityUnitRepository unitRepo,
             final DbxValuesService valuesServ,
             final TeamValorationCalculator<SponsorTeam> valorationCalc,
-            final RankCostCalculator rankCalc) {
+            final RankCostCalculator rankCalc, final MessageSource ms) {
         super();
 
         affinityAvasRepository = checkNotNull(affinityAvasRepo,
@@ -64,6 +68,8 @@ public final class DefaultDbxTeamBuilderService
                 "Received a null pointer as valoration calculator");
         rankCostCalculator = checkNotNull(rankCalc,
                 "Received a null pointer as rank cost calculator");
+        messageSource = checkNotNull(ms,
+                "Received a null pointer as message source");
     }
 
     @Override
@@ -72,16 +78,21 @@ public final class DefaultDbxTeamBuilderService
         final AffinityUnit repoUnit;
         final Integer cost;
         final Unit unit;
+        final String name;
 
         repoUnit = getUnitRepository().findByTemplateName(templateName);
 
         if (repoUnit != null) {
+            name = getMessageSource().getMessage(repoUnit.getTemplateName(),
+                    null, LocaleContextHolder.getLocale());
             cost = getUnitCost(team.getSponsor(), repoUnit);
 
             unit = new DefaultUnit(repoUnit.getTemplateName(), cost,
                     repoUnit.getRole(), repoUnit.getAttributes(),
                     repoUnit.getAbilities(), repoUnit.getMvp(),
                     repoUnit.getGiant());
+
+            ((DefaultUnit) unit).setName(name);
 
             team.addPlayer(unit);
         }
@@ -198,6 +209,10 @@ public final class DefaultDbxTeamBuilderService
 
     private final DbxValuesService getDbxValuesService() {
         return valuesService;
+    }
+
+    private final MessageSource getMessageSource() {
+        return messageSource;
     }
 
     private final RankCostCalculator getRankCostCalculator() {

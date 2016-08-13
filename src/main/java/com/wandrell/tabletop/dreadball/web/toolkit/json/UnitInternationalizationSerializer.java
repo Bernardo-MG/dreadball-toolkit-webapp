@@ -40,6 +40,11 @@ public final class UnitInternationalizationSerializer
                     getMessageSource().getMessage(
                             ((Unit) value).getRole().toString().toLowerCase(),
                             null, LocaleContextHolder.getLocale()));
+
+            gen.writeStringField("template_name_i18n",
+                    getMessageSource().getMessage(
+                            ((Unit) value).getTemplateName(), null,
+                            LocaleContextHolder.getLocale()));
         }
         gen.writeEndObject();
     }
