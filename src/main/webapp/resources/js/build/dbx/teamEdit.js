@@ -232,13 +232,20 @@ function loadTeamAssetCost(team) {
 function addUnitToTable(position, unit) {
 	var tbody = $("#teamUnits").children('tbody');
 	var abilities = "";
+	var abilityName;
+	var abilityDesc;
 
 	jQuery.each(unit.abilities, function(index, ability) {
 		if (index > 0) {
 			abilities += ", ";
 		}
+		
+		abilityName = ability.name_i18n;
+		abilityDesc = ability.description_i18n;
 
-		abilities += ability.name;
+		abilities += "<span class=\"tooltip-text\" data-toggle=\"tooltip\" data-placement=\"top\"";
+		abilities += "title=\"" + abilityDesc + "\"";
+		abilities += ">" + abilityName + "</span>";
 	});
 
 	row = "<tr>"

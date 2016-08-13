@@ -14,6 +14,7 @@ import com.fasterxml.jackson.databind.SerializerProvider;
 import com.fasterxml.jackson.databind.ser.impl.ObjectIdWriter;
 import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
 
 public final class UnitInternationalizationSerializer
         extends BeanSerializerBase {
@@ -44,6 +45,16 @@ public final class UnitInternationalizationSerializer
             gen.writeStringField("template_name_i18n",
                     getMessageSource().getMessage(
                             ((Unit) value).getTemplateName(), null,
+                            LocaleContextHolder.getLocale()));
+        }
+        if (value instanceof Ability) {
+            gen.writeStringField("name_i18n",
+                    getMessageSource().getMessage(((Ability) value).getName(),
+                            null, LocaleContextHolder.getLocale()));
+
+            gen.writeStringField("description_i18n",
+                    getMessageSource().getMessage(
+                            ((Ability) value).getName() + ".description", null,
                             LocaleContextHolder.getLocale()));
         }
         gen.writeEndObject();

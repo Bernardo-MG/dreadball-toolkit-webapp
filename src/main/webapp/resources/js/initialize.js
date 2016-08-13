@@ -21,7 +21,9 @@ $(document).ready(function() {
 	initSmoothScroll();
 
 	// Initializes tooltips
-	$("[data-toggle='tooltip']").tooltip();
+	$('body').tooltip({
+	    selector: '[data-toggle=tooltip]'
+	});
 
 	$(".dataTable").DataTable({
 		"renderer" : "bootstrap",
