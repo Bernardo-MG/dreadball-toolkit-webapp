@@ -20,10 +20,24 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 
+/**
+ * Maps the beans for Jackson.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public final class DreadballObjectMapper extends ObjectMapper {
 
+    /**
+     * Serialization id.
+     */
     private static final long serialVersionUID = 7809888101081207633L;
 
+    /**
+     * Constructs the mapper with the specified parameters.
+     * 
+     * @param module
+     *            module with the mapper configuration
+     */
     public DreadballObjectMapper(final JsonModelModule module) {
         super();
 

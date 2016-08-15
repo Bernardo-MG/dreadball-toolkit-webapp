@@ -19,15 +19,23 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.unit;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 
 /**
- * Interface representing the repository for the {@link UnitTemplate} instances.
+ * Affinity units repository.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface AffinityUnitRepository
         extends PagingAndSortingRepository<PersistentAffinityUnit, Integer> {
 
-    public PersistentAffinityUnit findByTemplateName(final String templateName);
+    /**
+     * Returns the affinity unit with the specified template name.
+     * 
+     * @param name
+     *            template name to search for
+     * @return the affinity unit with the specified template name
+     */
+    public AffinityUnit findByTemplateName(final String name);
 
 }

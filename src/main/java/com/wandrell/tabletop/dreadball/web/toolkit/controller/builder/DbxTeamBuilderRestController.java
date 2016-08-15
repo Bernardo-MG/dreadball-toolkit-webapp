@@ -28,30 +28,73 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilderService;
 
+/**
+ * Controller for the DBX team building AJAX operations.
+ * <p>
+ * The team to be edited is stored as a session variable.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @RestController
 @RequestMapping("/builder/team/dbx")
 public class DbxTeamBuilderRestController {
 
+    /**
+     * Parameter name for the team.
+     */
     private static final String         PARAM_TEAM          = "team";
 
+    /**
+     * Parameter name for the template name.
+     */
     private static final String         PARAM_TEMPLATE_NAME = "templateName";
 
+    /**
+     * Parameter name for the dice.
+     */
     private static final String         PARAM_DICE          = "dice";
 
+    /**
+     * Parameter name for the position.
+     */
     private static final String         PARAM_POSITION      = "position";
 
+    /**
+     * Parameter name for the sabotage cards.
+     */
     private static final String         PARAM_SABOTAGES     = "cards";
 
+    /**
+     * Parameter name for the special move cards.
+     */
     private static final String         PARAM_MOVES         = "cards";
 
+    /**
+     * Parameter name for the wagers.
+     */
     private static final String         PARAM_WAGERS        = "wagers";
 
+    /**
+     * Parameter name for the medibots.
+     */
     private static final String         PARAM_MEDIBOTS      = "medibots";
 
+    /**
+     * Parameter name for the cheerleaders.
+     */
     private static final String         PARAM_CHEERLEADERS  = "cheerleaders";
 
+    /**
+     * DBX team building service.
+     */
     private final DbxTeamBuilderService dbxTeamBuilderService;
 
+    /**
+     * Constructs a controller with the specified dependencies.
+     * 
+     * @param service
+     *            the DBX team builder service
+     */
     @Autowired
     public DbxTeamBuilderRestController(final DbxTeamBuilderService service) {
         super();
@@ -60,15 +103,25 @@ public class DbxTeamBuilderRestController {
                 "Received a null pointer as DBX team builder service");
     }
 
+    /**
+     * Adds a player to the team.
+     * 
+     * @param templateName
+     *            template name of the player to add
+     * @param team
+     *            team where the player will be added
+     * @return the team with the new player
+     */
     @RequestMapping(path = "/players", method = RequestMethod.POST)
     public final SponsorTeam addPlayer(
             @RequestParam(name = PARAM_TEMPLATE_NAME,
                     defaultValue = "") final String templateName,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        final Integer maxUnits;
+        final Integer maxUnits; // Maximum number of units allowed
 
         maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
 
+        // TODO: Instead of enforcing the maximum send a warning
         if (team.getPlayers().size() < maxUnits) {
             getDbxTeamBuilderService().addUnit(team, templateName);
         }
@@ -76,6 +129,15 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
+    /**
+     * Removes a player from the team.
+     * 
+     * @param position
+     *            numeric position of the player in the team
+     * @param team
+     *            team containing the player
+     * @return the team without the removed player
+     */
     @RequestMapping(path = "/players", method = RequestMethod.DELETE)
     public final SponsorTeam removePlayer(
             @RequestParam(name = PARAM_POSITION,
@@ -86,6 +148,15 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
+    /**
+     * Sets the number of cheerleaders in the team.
+     * 
+     * @param cheerleaders
+     *            number of cheerleaders to set in the team
+     * @param team
+     *            the team where the cheerleaders will be set
+     * @return the team with the cheerleaders set
+     */
     @RequestMapping(path = "/assets/cheerleader",
             method = { RequestMethod.POST, RequestMethod.PUT })
     public final SponsorTeam setCheerleaders(
@@ -99,6 +170,15 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
+    /**
+     * Sets the number of dice in the team.
+     * 
+     * @param dice
+     *            number of dice to set in the team
+     * @param team
+     *            the team where the dice will be set
+     * @return the team with the dice set
+     */
     @RequestMapping(path = "/assets/dice",
             method = { RequestMethod.POST, RequestMethod.PUT })
     public final SponsorTeam setDreadballDice(
@@ -112,19 +192,37 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
+    /**
+     * Sets the number of medibots in the team.
+     * 
+     * @param medibots
+     *            number of medibots to set in the team
+     * @param team
+     *            the team where the medibots will be set
+     * @return the team with the medibots set
+     */
     @RequestMapping(path = "/assets/medibots",
             method = { RequestMethod.POST, RequestMethod.PUT })
     public final SponsorTeam setMedibots(
             @RequestParam(name = PARAM_MEDIBOTS,
-                    defaultValue = "-1") final Integer medibot,
+                    defaultValue = "-1") final Integer medibots,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        if (medibot >= 0) {
-            team.setMediBots(medibot);
+        if (medibots >= 0) {
+            team.setMediBots(medibots);
         }
 
         return team;
     }
 
+    /**
+     * Sets the number of sabotage cards in the team.
+     * 
+     * @param sabotage
+     *            number of sabotage cards to set in the team
+     * @param team
+     *            the team where the sabotage cards will be set
+     * @return the team with the sabotage cards set
+     */
     @RequestMapping(path = "/assets/sabotage",
             method = { RequestMethod.POST, RequestMethod.PUT })
     public final SponsorTeam setSabotageCards(
@@ -138,6 +236,15 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
+    /**
+     * Sets the number of special move cards in the team.
+     * 
+     * @param move
+     *            number of special move cards to set in the team
+     * @param team
+     *            the team where the special move cards will be set
+     * @return the team with the special move cards set
+     */
     @RequestMapping(path = "/assets/move",
             method = { RequestMethod.POST, RequestMethod.PUT })
     public final SponsorTeam setSpecialMoveCards(
@@ -151,19 +258,33 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
+    /**
+     * Sets the number of wagers in the team.
+     * 
+     * @param wagers
+     *            number of wagers to set in the team
+     * @param team
+     *            the team where the wagers will be set
+     * @return the team with the wagers set
+     */
     @RequestMapping(path = "/assets/wager",
             method = { RequestMethod.POST, RequestMethod.PUT })
     public final SponsorTeam setWagers(
             @RequestParam(name = PARAM_WAGERS,
-                    defaultValue = "-1") final Integer wager,
+                    defaultValue = "-1") final Integer wagers,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        if (wager >= 0) {
-            team.setWagers(wager);
+        if (wagers >= 0) {
+            team.setWagers(wagers);
         }
 
         return team;
     }
 
+    /**
+     * Returns the DBX team builder service.
+     * 
+     * @return the DBX team builder service
+     */
     private final DbxTeamBuilderService getDbxTeamBuilderService() {
         return dbxTeamBuilderService;
     }

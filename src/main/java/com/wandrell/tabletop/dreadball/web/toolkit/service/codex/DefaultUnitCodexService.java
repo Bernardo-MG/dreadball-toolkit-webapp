@@ -24,26 +24,46 @@ import org.springframework.stereotype.Service;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
+/**
+ * Default implementation of the unit codex service.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @Service("unitCodexService")
 public final class DefaultUnitCodexService implements UnitCodexService {
 
-    private final AffinityUnitRepository unitRepository;
+    /**
+     * Affinity units repository.
+     */
+    private final AffinityUnitRepository affinityUnitRepository;
 
+    /**
+     * Constructs a service with the specified arguments.
+     * 
+     * @param affinityUnitRepo
+     *            the affinity units repository
+     */
     @Autowired
-    public DefaultUnitCodexService(final AffinityUnitRepository unitRepo) {
+    public DefaultUnitCodexService(
+            final AffinityUnitRepository affinityUnitRepo) {
         super();
 
-        unitRepository = checkNotNull(unitRepo,
+        affinityUnitRepository = checkNotNull(affinityUnitRepo,
                 "Received null pointer as units repository");
     }
 
     @Override
-    public final Iterable<? extends AffinityUnit> getAllUnits() {
-        return getUnitRepository().findAll();
+    public final Iterable<? extends AffinityUnit> getAllAffinityUnits() {
+        return getAffinityUnitRepository().findAll();
     }
 
-    private final AffinityUnitRepository getUnitRepository() {
-        return unitRepository;
+    /**
+     * Returns the affinity unit repository.
+     * 
+     * @return the affinity unit repository
+     */
+    private final AffinityUnitRepository getAffinityUnitRepository() {
+        return affinityUnitRepository;
     }
 
 }

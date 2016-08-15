@@ -43,24 +43,68 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.Spons
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
+/**
+ * Default implementation of the DBX team builder service.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @Service("dbxTeamBuilderService")
 public final class DefaultDbxTeamBuilderService
         implements DbxTeamBuilderService {
 
+    /**
+     * Sponsor affinity groups availabilities repository.
+     */
     private final SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
 
+    /**
+     * Affinity groups repository.
+     */
     private final AffinityGroupRepository                    affinitiesRepository;
 
+    /**
+     * Affinity units repository.
+     */
     private final AffinityUnitRepository                     unitRepository;
 
+    /**
+     * DBX values service.
+     */
     private final DbxValuesService                           valuesService;
 
+    /**
+     * Rank cost calculator.
+     */
     private final RankCostCalculator                         rankCostCalculator;
 
+    /**
+     * Team valoration calculator.
+     */
     private final TeamValorationCalculator<SponsorTeam>      valorationCalculator;
 
+    /**
+     * Message source.
+     */
     private final MessageSource                              messageSource;
 
+    /**
+     * Creates a DBX team builder with the specified dependencies.
+     * 
+     * @param affinityAvasRepo
+     *            sponsor affinity groups availabilities repository
+     * @param affinitiesRepo
+     *            affinity groups repository
+     * @param unitRepo
+     *            affinity units repository
+     * @param valuesServ
+     *            DBX values service
+     * @param valorationCalc
+     *            team valoration calculator
+     * @param rankCalc
+     *            rank cost calculator
+     * @param ms
+     *            message source
+     */
     @Autowired
     public DefaultDbxTeamBuilderService(
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
@@ -90,22 +134,22 @@ public final class DefaultDbxTeamBuilderService
     @Override
     public final void addUnit(final SponsorTeam team,
             final String templateName) {
-        final AffinityUnit repoUnit;
-        final Integer cost;
-        final Unit unit;
-        final String name;
+        final AffinityUnit affUnit; // Unit from the repository
+        final Integer cost;         // Unit cost
+        final Unit unit;            // Unit to add
+        final String name;          // Unit name
 
-        repoUnit = getUnitRepository().findByTemplateName(templateName);
+        affUnit = getUnitRepository().findByTemplateName(templateName);
 
-        if (repoUnit != null) {
-            name = getMessageSource().getMessage(repoUnit.getTemplateName(),
+        if (affUnit != null) {
+            name = getMessageSource().getMessage(affUnit.getTemplateName(),
                     null, LocaleContextHolder.getLocale());
-            cost = getUnitCost(team.getSponsor(), repoUnit);
+            cost = getUnitCost(team.getSponsor(), affUnit);
 
-            unit = new DefaultUnit(repoUnit.getTemplateName(), cost,
-                    repoUnit.getRole(), repoUnit.getAttributes(),
-                    repoUnit.getAbilities(), repoUnit.getMvp(),
-                    repoUnit.getGiant());
+            unit = new DefaultUnit(affUnit.getTemplateName(), cost,
+                    affUnit.getRole(), affUnit.getAttributes(),
+                    affUnit.getAbilities(), affUnit.getMvp(),
+                    affUnit.getGiant());
 
             ((DefaultUnit) unit).setName(name);
 
@@ -125,8 +169,8 @@ public final class DefaultDbxTeamBuilderService
 
     @Override
     public final Sponsor getSponsor(final SponsorForm form) {
-        final Sponsor sponsor;
-        final Collection<String> affinities = new LinkedList<String>();
+        final Sponsor sponsor;               // Created sponsor
+        final Collection<String> affinities; // Affinities list
 
         sponsor = new DefaultSponsor();
 
@@ -136,17 +180,20 @@ public final class DefaultDbxTeamBuilderService
 
         // TODO: The affinities should come as a list
         // Loads affinities
+        affinities = new LinkedList<String>();
         affinities.add(form.getAffinityA());
         affinities.add(form.getAffinityB());
         affinities.add(form.getAffinityC());
         affinities.add(form.getAffinityD());
         affinities.add(form.getAffinityE());
 
+        // Searchs for rank increase tags
         while (affinities.contains("rank")) {
             sponsor.setRank(sponsor.getRank() + 1);
             affinities.remove("rank");
         }
 
+        // Creates the affinities
         for (final String affinity : affinities) {
             sponsor.addAffinityGroup(
                     getAffinityGroupRepository().findByName(affinity));
@@ -158,12 +205,12 @@ public final class DefaultDbxTeamBuilderService
     @Override
     public final Iterable<? extends SponsorAffinityGroupAvailability>
             getSponsorAffinityGroups() {
-        return getRepository().findAll();
+        return getSponsorAffinityGroupAvailabilityRepository().findAll();
     }
 
     @Override
     public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
-        final SponsorTeam team;
+        final SponsorTeam team; // Created team
 
         team = new DefaultSponsorTeam(sponsor,
                 getSponsorTeamValorationCalculator(), getRankCostCalculator());
@@ -174,9 +221,9 @@ public final class DefaultDbxTeamBuilderService
     @Override
     public final Iterable<? extends Unit>
             getSponsorTeamAvailableUnits(final SponsorTeam team) {
-        final Collection<Unit> units;
-        Integer cost;
-        Unit unit;
+        final Collection<Unit> units; // Available units
+        Integer cost;                 // Unit cost
+        Unit unit;                    // Available unit
 
         units = new LinkedList<Unit>();
         for (final AffinityUnit repoUnit : getUnitRepository().findAll()) {
@@ -199,9 +246,9 @@ public final class DefaultDbxTeamBuilderService
 
     private final AffinityLevel getAffinityLevel(final Sponsor sponsor,
             final AffinityUnit unit) {
-        final AffinityLevel affinity;
-        final Collection<AffinityGroup> sponsorAffinities;
-        Integer coincidences;
+        final AffinityLevel level; // Affinity level
+        final Collection<AffinityGroup> sponsorAffinities; // Affinities
+        Integer coincidences;      // Affinity coincidences
 
         sponsorAffinities = sponsor.getAffinityGroups();
         coincidences = 0;
@@ -212,41 +259,76 @@ public final class DefaultDbxTeamBuilderService
         }
 
         if (coincidences >= 2) {
-            affinity = AffinityLevel.FRIEND;
+            level = AffinityLevel.FRIEND;
         } else if (coincidences == 1) {
-            affinity = AffinityLevel.ALLY;
+            level = AffinityLevel.ALLY;
         } else {
-            affinity = AffinityLevel.STRANGER;
+            level = AffinityLevel.STRANGER;
         }
 
-        return affinity;
+        return level;
     }
 
+    /**
+     * Returns the DBX values service.
+     * 
+     * @return the DBX values service
+     */
     private final DbxValuesService getDbxValuesService() {
         return valuesService;
     }
 
+    /**
+     * Returns the message source.
+     * 
+     * @return the message source
+     */
     private final MessageSource getMessageSource() {
         return messageSource;
     }
 
+    /**
+     * Returns the rank cost calculator.
+     * 
+     * @return the rank cost calculator
+     */
     private final RankCostCalculator getRankCostCalculator() {
         return rankCostCalculator;
     }
 
-    private final SponsorAffinityGroupAvailabilityRepository getRepository() {
+    /**
+     * Returns the Sponsor affinity groups availabilities repository.
+     * 
+     * @return the Sponsor affinity groups availabilities repository
+     */
+    private final SponsorAffinityGroupAvailabilityRepository
+            getSponsorAffinityGroupAvailabilityRepository() {
         return affinityAvasRepository;
     }
 
+    /**
+     * Returns the team valoration calculator.
+     * 
+     * @return the team valoration calculator
+     */
     private final TeamValorationCalculator<SponsorTeam>
             getSponsorTeamValorationCalculator() {
         return valorationCalculator;
     }
 
+    /**
+     * Returns the unit cost.
+     * 
+     * @param sponsor
+     *            Sponsor to find out the unit cost
+     * @param unit
+     *            unt to find out the cost
+     * @return the cost of the unit for the Sponsor
+     */
     private final Integer getUnitCost(final Sponsor sponsor,
             final AffinityUnit unit) {
-        final AffinityLevel affinityLevel;
-        final Integer cost;
+        final AffinityLevel affinityLevel; // Affinity level
+        final Integer cost;                // Unit cost
 
         affinityLevel = getAffinityLevel(sponsor, unit);
 
@@ -264,6 +346,11 @@ public final class DefaultDbxTeamBuilderService
         return cost;
     }
 
+    /**
+     * Returns the affinity unit repository.
+     * 
+     * @return the affinity unit repository
+     */
     private final AffinityUnitRepository getUnitRepository() {
         return unitRepository;
     }

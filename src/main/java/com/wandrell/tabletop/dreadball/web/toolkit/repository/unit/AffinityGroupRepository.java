@@ -22,14 +22,20 @@ import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinity
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 
 /**
- * Interface representing the repository for the {@link AffinityGroup}
- * instances.
+ * Affinity groups repository.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface AffinityGroupRepository
         extends PagingAndSortingRepository<PersistentAffinityGroup, Integer> {
 
-    AffinityGroup findByName(final String name);
+    /**
+     * Returns the affinity group with the specified name.
+     * 
+     * @param name
+     *            name to search for
+     * @return the affinity group with the specified name
+     */
+    public AffinityGroup findByName(final String name);
 
 }

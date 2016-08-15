@@ -18,8 +18,18 @@ package com.wandrell.tabletop.dreadball.web.toolkit.service.codex;
 
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 
+/**
+ * Service for the units codex.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public interface UnitCodexService {
 
-    public Iterable<? extends AffinityUnit> getAllUnits();
+    /**
+     * Returns all the affinity units.
+     * 
+     * @return all the affinity units
+     */
+    public Iterable<? extends AffinityUnit> getAllAffinityUnits();
 
 }

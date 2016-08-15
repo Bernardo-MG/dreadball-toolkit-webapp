@@ -20,15 +20,29 @@ import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.InitBinder;
 
+/**
+ * Initializes all the controllers with a common configuration.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @ControllerAdvice
 public final class GlobalBindingInitializer {
 
+    /**
+     * Default constructor.
+     */
     public GlobalBindingInitializer() {
         super();
     }
 
+    /**
+     * Sets the fields which can't be bound.
+     * 
+     * @param dataBinder
+     *            data binder
+     */
     @InitBinder
-    public final void setAllowedFields(final WebDataBinder dataBinder) {
+    public final void setDisallowedFields(final WebDataBinder dataBinder) {
         dataBinder.setDisallowedFields("id");
     }
 

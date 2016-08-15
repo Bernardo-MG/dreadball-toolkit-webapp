@@ -16,10 +16,25 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.service.builder;
 
+/**
+ * Service for the DBX values.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public interface DbxValuesService {
 
+    /**
+     * Returns the initial rank.
+     * 
+     * @return the initial rank
+     */
     public Integer getInitialRank();
 
+    /**
+     * Returns the maximum number of units a Sponsor may have.
+     * 
+     * @return the Sponsors maximum number of units
+     */
     public Integer getMaxTeamUnits();
 
 }

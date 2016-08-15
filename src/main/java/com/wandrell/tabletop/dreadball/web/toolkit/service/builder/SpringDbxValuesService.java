@@ -19,15 +19,29 @@ package com.wandrell.tabletop.dreadball.web.toolkit.service.builder;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+/**
+ * Default implementation of the DBX values service.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @Service("dbxValuesService")
 public class SpringDbxValuesService implements DbxValuesService {
 
+    /**
+     * Initial rank.
+     */
     @Value("${sponsor.rank.initial}")
     private Integer initialRank;
 
+    /**
+     * Maximum number of units a Sponsor may have
+     */
     @Value("${sponsor.players.max}")
     private Integer maxTeamUnits;
 
+    /**
+     * Default constructor.
+     */
     public SpringDbxValuesService() {
         super();
     }

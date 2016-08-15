@@ -31,13 +31,32 @@ import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
 
+/**
+ * Internationalizes data during JSON serialization.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public final class UnitInternationalizationSerializer
         extends BeanSerializerBase {
 
+    /**
+     * Serialization id.
+     */
     private static final long   serialVersionUID = -4564768381234004926L;
 
+    /**
+     * The message source used for internationalization.
+     */
     private final MessageSource messageSource;
 
+    /**
+     * Constructs a serializer with the specified parameters.
+     * 
+     * @param source
+     *            serializer base
+     * @param ms
+     *            message source
+     */
     public UnitInternationalizationSerializer(final BeanSerializerBase source,
             final MessageSource ms) {
         super(source);
@@ -88,6 +107,11 @@ public final class UnitInternationalizationSerializer
         return null;
     }
 
+    /**
+     * Returns the message source.
+     * 
+     * @return the message source
+     */
     private final MessageSource getMessageSource() {
         return messageSource;
     }

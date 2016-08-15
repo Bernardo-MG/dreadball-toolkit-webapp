@@ -41,12 +41,30 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
 
+/**
+ * Contains all the Jackson configuration needed to set up a JSON mapper for
+ * Dreadball.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public final class JsonModelModule extends SimpleModule {
 
+    /**
+     * Serialization id.
+     */
     private static final long   serialVersionUID = 1405374344133040810L;
 
+    /**
+     * Message source.
+     */
     private final MessageSource messageSource;
 
+    /**
+     * Constructs the module with the specified parameters.
+     * 
+     * @param ms
+     *            the message source
+     */
     public JsonModelModule(final MessageSource ms) {
         super();
 
@@ -78,10 +96,21 @@ public final class JsonModelModule extends SimpleModule {
         });
     }
 
+    /**
+     * Returns the message source.
+     * 
+     * @return the message source
+     */
     private final MessageSource getMessageSource() {
         return messageSource;
     }
 
+    /**
+     * Sets the mix-ins into the received context.
+     * 
+     * @param context
+     *            the context where the mix-ins will be set
+     */
     private final void setupMixIns(final SetupContext context) {
         // Factions
         context.setMixInAnnotations(Sponsor.class, SponsorMixIn.class);

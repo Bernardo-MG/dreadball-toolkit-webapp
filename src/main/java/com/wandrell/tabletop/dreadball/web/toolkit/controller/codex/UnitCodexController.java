@@ -26,16 +26,36 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wandrell.tabletop.dreadball.web.toolkit.service.codex.UnitCodexService;
 
+/**
+ * Controller for the unit codex views.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @Controller
 @RequestMapping("/codex/unit")
 public class UnitCodexController {
 
-    private static final String    PATH_AFFINITY_UNITS = "codex/affinityUnits";
+    /**
+     * Name for the affinity units view.
+     */
+    private static final String    VIEW_AFFINITY_UNITS = "codex/affinityUnits";
 
+    /**
+     * Parameter name for the players.
+     */
     private static final String    PARAM_PLAYERS       = "players";
 
+    /**
+     * Unit codex service.
+     */
     private final UnitCodexService unitCodexService;
 
+    /**
+     * Constructs a controller with the specified dependencies.
+     * 
+     * @param service
+     *            the unit codex service
+     */
     @Autowired
     public UnitCodexController(final UnitCodexService service) {
         super();
@@ -44,13 +64,25 @@ public class UnitCodexController {
                 "Received a null pointer as unit service");
     }
 
+    /**
+     * Returns the view for all the affinity units.
+     * 
+     * @param model
+     *            model map
+     * @return the view for all the affinity units
+     */
     @RequestMapping(method = RequestMethod.GET)
-    public final String getAllUnits(final ModelMap model) {
-        model.put(PARAM_PLAYERS, getUnitCodexService().getAllUnits());
+    public final String getAllAffinityUnits(final ModelMap model) {
+        model.put(PARAM_PLAYERS, getUnitCodexService().getAllAffinityUnits());
 
-        return PATH_AFFINITY_UNITS;
+        return VIEW_AFFINITY_UNITS;
     }
 
+    /**
+     * Returns the unit codex service.
+     * 
+     * @return the unit codex service
+     */
     private final UnitCodexService getUnitCodexService() {
         return unitCodexService;
     }

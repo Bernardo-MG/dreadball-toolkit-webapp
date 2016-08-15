@@ -35,28 +35,68 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilderService;
 
+/**
+ * Controller for the DBX Sponsor building view.
+ * <p>
+ * The team to be edited is stored as a session variable.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @Controller
 @RequestMapping("/builder/team/dbx")
 public class SponsorCreationController {
 
+    /**
+     * Sponsor bean parameter name.
+     */
     private static final String         BEAN_SPONSOR            = "form";
 
-    private static final String         PATH_SPONSOR            = "build/dbx/sponsor";
+    /**
+     * Name for the sponsor view.
+     */
+    private static final String         VIEW_SPONSOR            = "build/dbx/sponsor";
 
-    private static final String         PATH_NEXT               = "build/dbx/players";
+    /**
+     * Name for the view after the sponsor view.
+     */
+    private static final String         VIEW_NEXT               = "build/dbx/players";
 
+    /**
+     * Parameter name for the sponsor.
+     */
     private static final String         PARAM_SPONSOR           = "sponsor";
 
+    /**
+     * Parameter name for the team.
+     */
     private static final String         PARAM_TEAM              = "team";
 
+    /**
+     * Parameter name for the available players.
+     */
     private static final String         PARAM_AVAILABLE_PLAYERS = "availablePlayers";
 
+    /**
+     * Parameter name for the initial rank.
+     */
     private static final String         PARAM_INITIAL_RANK      = "initialRank";
 
+    /**
+     * Parameter name for the affinities.
+     */
     private static final String         PARAM_AFFINITIES        = "affinities";
 
+    /**
+     * DBX team builder service.
+     */
     private final DbxTeamBuilderService dbxTeamBuilderService;
 
+    /**
+     * Constructs a controller with the specified dependencies.
+     * 
+     * @param service
+     *            the DBX team builder service
+     */
     @Autowired
     public SponsorCreationController(final DbxTeamBuilderService service) {
         super();
@@ -65,33 +105,65 @@ public class SponsorCreationController {
                 "Received a null pointer as DBX team builder service");
     }
 
+    /**
+     * Checks the sponsor info before moving to the next view.
+     * <p>
+     * If the data is invalid then the view returns to the Sponsor edition view,
+     * otherwise it moves to the next view.
+     * 
+     * @param model
+     *            model map
+     * @param sponsor
+     *            sponsor form data
+     * @param bindingResult
+     *            binding result data
+     * @param session
+     *            session data
+     * @return the name for the view to show
+     */
     @RequestMapping(method = RequestMethod.POST)
     public final String checkSponsorInfo(final ModelMap model,
-            @ModelAttribute(BEAN_SPONSOR) @Valid final SponsorForm form,
+            @ModelAttribute(BEAN_SPONSOR) @Valid final SponsorForm sponsor,
             final BindingResult bindingResult, final HttpSession session) {
         final String path;
 
         if (bindingResult.hasErrors()) {
+            // Invalid sponsor data
+
             // Loads required data into the model
             loadSponsorModel(model);
             // Returns to the sponsor creation view
-            path = PATH_SPONSOR;
+            path = VIEW_SPONSOR;
         } else {
             // Loads required data into the model and session
-            loadNextStepModel(model, session, form);
+            loadNextStepModel(model, session, sponsor);
 
-            path = PATH_NEXT;
+            path = VIEW_NEXT;
         }
 
         return path;
     }
 
+    /**
+     * Returns the initial Sponsor form data.
+     * 
+     * @return the initial Sponsor form data
+     */
     @ModelAttribute(BEAN_SPONSOR)
     public final SponsorForm getSponsorForm() {
         // TODO: Acquire through the service
         return new SponsorForm();
     }
 
+    /**
+     * Shows the sponsor edition view.
+     * 
+     * @param model
+     *            model map
+     * @param status
+     *            session status
+     * @return the name for the sponsor edition view
+     */
     @RequestMapping(method = RequestMethod.GET)
     public final String showSponsorForm(final ModelMap model,
             final SessionStatus status) {
@@ -101,17 +173,32 @@ public class SponsorCreationController {
         // Loads required data into the model
         loadSponsorModel(model);
 
-        return PATH_SPONSOR;
+        return VIEW_SPONSOR;
     }
 
+    /**
+     * Returns the DBX team builder service.
+     * 
+     * @return the DBX team builder service
+     */
     private final DbxTeamBuilderService getDbxTeamBuilderService() {
         return dbxTeamBuilderService;
     }
 
+    /**
+     * Loads the model data required for the next step.
+     * 
+     * @param model
+     *            model map
+     * @param session
+     *            session data
+     * @param form
+     *            Sponsor form data
+     */
     private final void loadNextStepModel(final ModelMap model,
             final HttpSession session, final SponsorForm form) {
-        final Sponsor sponsor;
-        final SponsorTeam team;
+        final Sponsor sponsor;  // Sponsor data
+        final SponsorTeam team; // Sponsor team
 
         sponsor = getDbxTeamBuilderService().getSponsor(form);
         team = getDbxTeamBuilderService().getSponsorTeam(sponsor);
@@ -124,6 +211,12 @@ public class SponsorCreationController {
                 getDbxTeamBuilderService().getSponsorTeamAvailableUnits(team));
     }
 
+    /**
+     * Loads the model data required for the Sponsor edition view.
+     * 
+     * @param model
+     *            model map
+     */
     private final void loadSponsorModel(final ModelMap model) {
         // Initial sponsor rank
         model.put(PARAM_INITIAL_RANK,

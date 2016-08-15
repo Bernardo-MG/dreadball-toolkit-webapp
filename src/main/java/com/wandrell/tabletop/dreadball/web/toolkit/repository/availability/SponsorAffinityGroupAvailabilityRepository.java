@@ -18,14 +18,12 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.availability;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
 
 /**
- * Interface representing the repository for the
- * {@link SponsorAffinityGroupAvailability} instances.
+ * Repository for Sponsor affinity groups.
  * 
- * @author Bernardo Martínez Garrido
+ * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface SponsorAffinityGroupAvailabilityRepository extends
         PagingAndSortingRepository<PersistentSponsorAffinityGroupAvailability, Integer> {}

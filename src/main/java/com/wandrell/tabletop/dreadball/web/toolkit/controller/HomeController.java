@@ -19,18 +19,34 @@ package com.wandrell.tabletop.dreadball.web.toolkit.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+/**
+ * Controller for home view.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @Controller
 public class HomeController {
 
-    private static final String PATH_WELCOME = "welcome";
+    /**
+     * Name for the welcome view.
+     */
+    private static final String VIEW_WELCOME = "welcome";
 
+    /**
+     * Default constructor.
+     */
     public HomeController() {
         super();
     }
 
+    /**
+     * Shows the welcome view.
+     * 
+     * @return the welcome view
+     */
     @RequestMapping("/")
-    public String showIndex() {
-        return PATH_WELCOME;
+    public String showWelcome() {
+        return VIEW_WELCOME;
     }
 
 }
