@@ -355,6 +355,7 @@ public final class DefaultDbxTeamBuilderService
                 break;
             default:
                 cost = unit.getStrangerCost();
+                break;
         }
 
         return cost;
