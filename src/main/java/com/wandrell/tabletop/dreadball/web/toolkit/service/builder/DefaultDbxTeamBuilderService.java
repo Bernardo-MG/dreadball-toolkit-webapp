@@ -243,7 +243,7 @@ public final class DefaultDbxTeamBuilderService
     /**
      * Returns the affinity groups repository.
      * 
-     * @return
+     * @return the affinity groups repository
      */
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;

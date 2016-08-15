@@ -123,7 +123,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Sets the affinity A
+     * Sets the affinity A.
      * 
      * @param affinity
      *            the affinity A
@@ -133,7 +133,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Sets the affinity B
+     * Sets the affinity B.
      * 
      * @param affinity
      *            the affinity B
@@ -143,7 +143,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Sets the affinity C
+     * Sets the affinity C.
      * 
      * @param affinity
      *            the affinity C
@@ -153,7 +153,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Sets the affinity D
+     * Sets the affinity D.
      * 
      * @param affinity
      *            the affinity D
@@ -163,7 +163,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Sets the affinity E
+     * Sets the affinity E.
      * 
      * @param affinity
      *            the affinity E
@@ -173,7 +173,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Sets the Sponsor name
+     * Sets the Sponsor name.
      * 
      * @param name
      *            the Sponsor name
