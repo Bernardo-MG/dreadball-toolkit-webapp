@@ -26,4 +26,6 @@ import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.Persi
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface SponsorAffinityGroupAvailabilityRepository extends
-        PagingAndSortingRepository<PersistentSponsorAffinityGroupAvailability, Integer> {}
+        PagingAndSortingRepository<PersistentSponsorAffinityGroupAvailability, Integer> {
+
+}

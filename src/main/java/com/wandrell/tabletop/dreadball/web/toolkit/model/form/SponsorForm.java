@@ -125,61 +125,61 @@ public final class SponsorForm {
     /**
      * Sets the affinity A
      * 
-     * @param affinityA
+     * @param affinity
      *            the affinity A
      */
-    public final void setAffinityA(final String affinityA) {
-        this.affinityA = affinityA;
+    public final void setAffinityA(final String affinity) {
+        this.affinityA = affinity;
     }
 
     /**
      * Sets the affinity B
      * 
-     * @param affinityB
+     * @param affinity
      *            the affinity B
      */
-    public final void setAffinityB(final String affinityB) {
-        this.affinityB = affinityB;
+    public final void setAffinityB(final String affinity) {
+        this.affinityB = affinity;
     }
 
     /**
      * Sets the affinity C
      * 
-     * @param affinityC
+     * @param affinity
      *            the affinity C
      */
-    public final void setAffinityC(final String affinityC) {
-        this.affinityC = affinityC;
+    public final void setAffinityC(final String affinity) {
+        this.affinityC = affinity;
     }
 
     /**
      * Sets the affinity D
      * 
-     * @param affinityD
+     * @param affinity
      *            the affinity D
      */
-    public final void setAffinityD(final String affinityD) {
-        this.affinityD = affinityD;
+    public final void setAffinityD(final String affinity) {
+        this.affinityD = affinity;
     }
 
     /**
      * Sets the affinity E
      * 
-     * @param affinityE
+     * @param affinity
      *            the affinity E
      */
-    public final void setAffinityE(final String affinityE) {
-        this.affinityE = affinityE;
+    public final void setAffinityE(final String affinity) {
+        this.affinityE = affinity;
     }
 
     /**
      * Sets the Sponsor name
      * 
-     * @param sponsorName
+     * @param name
      *            the Sponsor name
      */
-    public final void setSponsorName(final String sponsorName) {
-        this.sponsorName = sponsorName;
+    public final void setSponsorName(final String name) {
+        this.sponsorName = name;
     }
 
 }

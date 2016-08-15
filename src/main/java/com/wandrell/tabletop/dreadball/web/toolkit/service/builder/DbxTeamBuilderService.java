@@ -73,7 +73,7 @@ public interface DbxTeamBuilderService {
             getSponsorAffinityGroups();
 
     /**
-     * Creates an Sponsor team from the specified Sponsor
+     * Creates an Sponsor team from the specified Sponsor.
      * 
      * @param sponsor
      *            Sponsor for the team

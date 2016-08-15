@@ -240,10 +240,24 @@ public final class DefaultDbxTeamBuilderService
         return units;
     }
 
+    /**
+     * Returns the affinity groups repository.
+     * 
+     * @return
+     */
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
     }
 
+    /**
+     * Returns the affinity level between a Sponsor and a unit.
+     * 
+     * @param sponsor
+     *            Sponsor to find out the affinity level
+     * @param unit
+     *            unit to find out the affinity level
+     * @return the affinity level between the Sponsor and the unit
+     */
     private final AffinityLevel getAffinityLevel(final Sponsor sponsor,
             final AffinityUnit unit) {
         final AffinityLevel level; // Affinity level

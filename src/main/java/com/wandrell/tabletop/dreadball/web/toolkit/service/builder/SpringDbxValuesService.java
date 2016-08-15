@@ -34,7 +34,7 @@ public class SpringDbxValuesService implements DbxValuesService {
     private Integer initialRank;
 
     /**
-     * Maximum number of units a Sponsor may have
+     * Maximum number of units a Sponsor may have.
      */
     @Value("${sponsor.players.max}")
     private Integer maxTeamUnits;
