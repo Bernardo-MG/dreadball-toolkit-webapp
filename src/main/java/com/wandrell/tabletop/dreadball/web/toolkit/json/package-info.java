@@ -14,7 +14,10 @@
  * the License.
  */
 /**
- * Availabilities repositories.
+ * Json-related classes.
+ * <p>
+ * As the project makes use of Jackson, these will be classes to be used by
+ * Jackson.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.repository.availability;
+package com.wandrell.tabletop.dreadball.web.toolkit.json;

@@ -14,7 +14,7 @@
  * the License.
  */
 /**
- * Availabilities repositories.
+ * Team building controllers.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.repository.availability;
+package com.wandrell.tabletop.dreadball.web.toolkit.controller.builder;

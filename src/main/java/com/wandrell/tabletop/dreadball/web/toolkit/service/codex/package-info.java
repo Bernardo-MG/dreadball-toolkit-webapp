@@ -14,7 +14,7 @@
  * the License.
  */
 /**
- * Availabilities repositories.
+ * Codex services.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.repository.availability;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.codex;
