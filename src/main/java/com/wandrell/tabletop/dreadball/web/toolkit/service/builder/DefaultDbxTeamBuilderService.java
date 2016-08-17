@@ -134,17 +134,19 @@ public final class DefaultDbxTeamBuilderService
     @Override
     public final void addUnit(final SponsorTeam team,
             final String templateName) {
-        final AffinityUnit affUnit; // Unit from the repository
-        final Integer cost;         // Unit cost
-        final Unit unit;            // Unit to add
-        final String name;          // Unit name
+        final AffinityUnit affUnit;  // Unit from the repository
+        final Integer cost;          // Unit cost
+        final Unit unit;             // Unit to add
+        final String name;           // Unit name
+        AffinityLevel affinityLevel; // Affinity level relationship
 
         affUnit = getUnitRepository().findByTemplateName(templateName);
 
         if (affUnit != null) {
             name = getMessageSource().getMessage(affUnit.getTemplateName(),
                     null, LocaleContextHolder.getLocale());
-            cost = getUnitCost(team.getSponsor(), affUnit);
+            affinityLevel = getAffinityLevel(team.getSponsor(), affUnit);
+            cost = getUnitCost(affinityLevel, affUnit);
 
             unit = new DefaultUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
@@ -155,6 +157,41 @@ public final class DefaultDbxTeamBuilderService
 
             team.addPlayer(unit);
         }
+    }
+
+    /**
+     * Returns the affinity level between a Sponsor and a unit.
+     * 
+     * @param sponsor
+     *            Sponsor to find out the affinity level
+     * @param unit
+     *            unit to find out the affinity level
+     * @return the affinity level between the Sponsor and the unit
+     */
+    @Override
+    public final AffinityLevel getAffinityLevel(final Sponsor sponsor,
+            final AffinityUnit unit) {
+        final AffinityLevel level; // Affinity level
+        final Collection<AffinityGroup> sponsorAffinities; // Affinities
+        Integer coincidences;      // Affinity coincidences
+
+        sponsorAffinities = sponsor.getAffinityGroups();
+        coincidences = 0;
+        for (final AffinityGroup affinityGroup : unit.getAffinityGroups()) {
+            if (sponsorAffinities.contains(affinityGroup)) {
+                coincidences++;
+            }
+        }
+
+        if (coincidences >= 2) {
+            level = AffinityLevel.FRIEND;
+        } else if (coincidences == 1) {
+            level = AffinityLevel.ALLY;
+        } else {
+            level = AffinityLevel.STRANGER;
+        }
+
+        return level;
     }
 
     @Override
@@ -224,20 +261,42 @@ public final class DefaultDbxTeamBuilderService
         final Collection<Unit> units; // Available units
         Integer cost;                 // Unit cost
         Unit unit;                    // Available unit
+        AffinityLevel affinityLevel;  // Affinity level relationship
 
         units = new LinkedList<Unit>();
-        for (final AffinityUnit repoUnit : getUnitRepository().findAll()) {
-            cost = getUnitCost(team.getSponsor(), repoUnit);
+        for (final AffinityUnit affUnit : getUnitRepository().findAll()) {
+            affinityLevel = getAffinityLevel(team.getSponsor(), affUnit);
+            cost = getUnitCost(affinityLevel, affUnit);
 
-            unit = new DefaultUnit(repoUnit.getTemplateName(), cost,
-                    repoUnit.getRole(), repoUnit.getAttributes(),
-                    repoUnit.getAbilities(), repoUnit.getMvp(),
-                    repoUnit.getGiant());
+            unit = new DefaultUnit(affUnit.getTemplateName(), cost,
+                    affUnit.getRole(), affUnit.getAttributes(),
+                    affUnit.getAbilities(), affUnit.getMvp(),
+                    affUnit.getGiant());
 
             units.add(unit);
         }
 
         return units;
+    }
+
+    @Override
+    public final Integer getUnitCost(final AffinityLevel affinityLevel,
+            final AffinityUnit unit) {
+        final Integer cost;                // Unit cost
+
+        switch (affinityLevel) {
+            case FRIEND:
+                cost = unit.getFriendCost();
+                break;
+            case ALLY:
+                cost = unit.getAllyCost();
+                break;
+            default:
+                cost = unit.getStrangerCost();
+                break;
+        }
+
+        return cost;
     }
 
     /**
@@ -247,40 +306,6 @@ public final class DefaultDbxTeamBuilderService
      */
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
-    }
-
-    /**
-     * Returns the affinity level between a Sponsor and a unit.
-     * 
-     * @param sponsor
-     *            Sponsor to find out the affinity level
-     * @param unit
-     *            unit to find out the affinity level
-     * @return the affinity level between the Sponsor and the unit
-     */
-    private final AffinityLevel getAffinityLevel(final Sponsor sponsor,
-            final AffinityUnit unit) {
-        final AffinityLevel level; // Affinity level
-        final Collection<AffinityGroup> sponsorAffinities; // Affinities
-        Integer coincidences;      // Affinity coincidences
-
-        sponsorAffinities = sponsor.getAffinityGroups();
-        coincidences = 0;
-        for (final AffinityGroup affinityGroup : unit.getAffinityGroups()) {
-            if (sponsorAffinities.contains(affinityGroup)) {
-                coincidences++;
-            }
-        }
-
-        if (coincidences >= 2) {
-            level = AffinityLevel.FRIEND;
-        } else if (coincidences == 1) {
-            level = AffinityLevel.ALLY;
-        } else {
-            level = AffinityLevel.STRANGER;
-        }
-
-        return level;
     }
 
     /**
@@ -328,37 +353,6 @@ public final class DefaultDbxTeamBuilderService
     private final TeamValorationCalculator<SponsorTeam>
             getSponsorTeamValorationCalculator() {
         return valorationCalculator;
-    }
-
-    /**
-     * Returns the unit cost.
-     * 
-     * @param sponsor
-     *            Sponsor to find out the unit cost
-     * @param unit
-     *            unt to find out the cost
-     * @return the cost of the unit for the Sponsor
-     */
-    private final Integer getUnitCost(final Sponsor sponsor,
-            final AffinityUnit unit) {
-        final AffinityLevel affinityLevel; // Affinity level
-        final Integer cost;                // Unit cost
-
-        affinityLevel = getAffinityLevel(sponsor, unit);
-
-        switch (affinityLevel) {
-            case FRIEND:
-                cost = unit.getFriendCost();
-                break;
-            case ALLY:
-                cost = unit.getAllyCost();
-                break;
-            default:
-                cost = unit.getStrangerCost();
-                break;
-        }
-
-        return cost;
     }
 
     /**

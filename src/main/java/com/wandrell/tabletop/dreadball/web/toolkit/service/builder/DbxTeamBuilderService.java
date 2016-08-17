@@ -19,6 +19,8 @@ package com.wandrell.tabletop.dreadball.web.toolkit.service.builder;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 
@@ -40,6 +42,18 @@ public interface DbxTeamBuilderService {
      *            name of the template to add
      */
     public void addUnit(final SponsorTeam team, final String templateName);
+
+    /**
+     * Returns the affinity level between a Sponsor and a unit.
+     * 
+     * @param sponsor
+     *            Sponsor to find out the affinity level
+     * @param unit
+     *            unit to find out the affinity level
+     * @return the affinity level between the Sponsor and the unit
+     */
+    public AffinityLevel getAffinityLevel(final Sponsor sponsor,
+            final AffinityUnit unit);
 
     /**
      * Returns the initial rank for Sponsors.
@@ -90,5 +104,17 @@ public interface DbxTeamBuilderService {
      */
     public Iterable<? extends Unit>
             getSponsorTeamAvailableUnits(final SponsorTeam team);
+
+    /**
+     * Returns the unit cost.
+     * 
+     * @param affinityLevel
+     *            affinity level to search the cost for
+     * @param unit
+     *            unit to find out the cost
+     * @return the cost of the unit for the affinity level
+     */
+    public Integer getUnitCost(final AffinityLevel affinityLevel,
+            final AffinityUnit unit);
 
 }
