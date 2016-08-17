@@ -140,6 +140,9 @@ public final class DefaultDbxTeamBuilderService
         final String name;           // Unit name
         AffinityLevel affinityLevel; // Affinity level relationship
 
+        checkNotNull(team, "Received a null pointer as team");
+        checkNotNull(templateName, "Received a null pointer as template name");
+
         affUnit = getUnitRepository().findByTemplateName(templateName);
 
         if (affUnit != null) {
@@ -175,6 +178,9 @@ public final class DefaultDbxTeamBuilderService
         final Collection<AffinityGroup> sponsorAffinities; // Affinities
         Integer coincidences;      // Affinity coincidences
 
+        checkNotNull(sponsor, "Received a null pointer as sponsor");
+        checkNotNull(unit, "Received a null pointer as unit");
+
         sponsorAffinities = sponsor.getAffinityGroups();
         coincidences = 0;
         for (final AffinityGroup affinityGroup : unit.getAffinityGroups()) {
@@ -208,6 +214,8 @@ public final class DefaultDbxTeamBuilderService
     public final Sponsor getSponsor(final SponsorForm form) {
         final Sponsor sponsor;               // Created sponsor
         final Collection<String> affinities; // Affinities list
+
+        checkNotNull(form, "Received a null pointer as sponsor form");
 
         sponsor = new DefaultSponsor();
 
@@ -249,6 +257,8 @@ public final class DefaultDbxTeamBuilderService
     public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
         final SponsorTeam team; // Created team
 
+        checkNotNull(sponsor, "Received a null pointer as sponsor");
+
         team = new DefaultSponsorTeam(sponsor,
                 getSponsorTeamValorationCalculator(), getRankCostCalculator());
 
@@ -262,6 +272,8 @@ public final class DefaultDbxTeamBuilderService
         Integer cost;                 // Unit cost
         Unit unit;                    // Available unit
         AffinityLevel affinityLevel;  // Affinity level relationship
+
+        checkNotNull(team, "Received a null pointer as team");
 
         units = new LinkedList<Unit>();
         for (final AffinityUnit affUnit : getUnitRepository().findAll()) {
@@ -283,6 +295,10 @@ public final class DefaultDbxTeamBuilderService
     public final Integer getUnitCost(final AffinityLevel affinityLevel,
             final AffinityUnit unit) {
         final Integer cost;                // Unit cost
+
+        checkNotNull(affinityLevel,
+                "Received a null pointer as affinity level");
+        checkNotNull(unit, "Received a null pointer as unit");
 
         switch (affinityLevel) {
             case FRIEND:
