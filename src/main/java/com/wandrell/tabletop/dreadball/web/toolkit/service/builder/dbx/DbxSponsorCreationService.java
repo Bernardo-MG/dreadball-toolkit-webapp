@@ -16,16 +16,25 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
 
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 
 /**
- * Service used to instantiate model classes.
+ * Facade service for the DBX team builder.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DbxModelService {
+public interface DbxSponsorCreationService {
+
+    /**
+     * Returns the initial rank.
+     * 
+     * @return the initial rank
+     */
+    public Integer getInitialRank();
 
     /**
      * Creates an Sponsor from the form data.
@@ -37,6 +46,14 @@ public interface DbxModelService {
     public Sponsor getSponsor(final SponsorForm form);
 
     /**
+     * Returns all the Sponsor affinity groups sets.
+     * 
+     * @return the Sponsor affinity groups sets
+     */
+    public Iterable<? extends SponsorAffinityGroupAvailability>
+            getSponsorAffinityGroups();
+
+    /**
      * Creates an Sponsor team from the specified Sponsor.
      * 
      * @param sponsor
@@ -44,5 +61,15 @@ public interface DbxModelService {
      * @return a Sponsor team for the specified Sponsor
      */
     public SponsorTeam getSponsorTeam(final Sponsor sponsor);
+
+    /**
+     * Returns all the units available for the specified Sponsor team.
+     * 
+     * @param team
+     *            Sponsor team to search the availabilities
+     * @return the units available to the team
+     */
+    public Iterable<? extends Unit>
+            getSponsorTeamAvailableUnits(final SponsorTeam team);
 
 }

@@ -24,13 +24,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
 public interface DbxValuesService {
 
     /**
-     * Returns the initial rank.
-     * 
-     * @return the initial rank
-     */
-    public Integer getInitialRank();
-
-    /**
      * Returns the maximum number of units a Sponsor may have.
      * 
      * @return the Sponsors maximum number of units

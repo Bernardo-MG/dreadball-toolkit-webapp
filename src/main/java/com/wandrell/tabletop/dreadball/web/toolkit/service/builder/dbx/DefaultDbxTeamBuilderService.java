@@ -23,16 +23,12 @@ import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxValuesFactory;
-import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
 
@@ -46,34 +42,24 @@ public final class DefaultDbxTeamBuilderService
         implements DbxTeamBuilderService {
 
     /**
-     * DBX availabilities service.
-     */
-    private final DbxAvailabilitiesService avasService;
-
-    /**
      * Message source.
      */
-    private final MessageSource            messageSource;
-
-    /**
-     * DBX model service
-     */
-    private final DbxModelFactory          modelService;
+    private final MessageSource          messageSource;
 
     /**
      * DBX rules service.
      */
-    private final DbxRules                 rulesService;
+    private final DbxRules               rulesService;
 
     /**
      * Affinity units repository.
      */
-    private final AffinityUnitRepository   unitRepository;
+    private final AffinityUnitRepository unitRepository;
 
     /**
      * DBX values service.
      */
-    private final DbxValuesFactory         valuesService;
+    private final DbxValuesFactory       valuesService;
 
     /**
      * Creates a DBX team builder with the specified dependencies.
@@ -95,18 +81,12 @@ public final class DefaultDbxTeamBuilderService
      */
     @Autowired
     public DefaultDbxTeamBuilderService(final DbxRules rulesServ,
-            final DbxModelFactory dbxModelServ,
-            final DbxAvailabilitiesService avasServ,
             final AffinityUnitRepository unitRepo,
             final DbxValuesFactory valuesServ, final MessageSource ms) {
         super();
 
         rulesService = checkNotNull(rulesServ,
                 "Received a null pointer as rules service");
-        modelService = checkNotNull(dbxModelServ,
-                "Received a null pointer as model service");
-        avasService = checkNotNull(avasServ,
-                "Received a null pointer as availabilities service");
 
         unitRepository = checkNotNull(unitRepo,
                 "Received a null pointer as units repository");
@@ -152,43 +132,8 @@ public final class DefaultDbxTeamBuilderService
     }
 
     @Override
-    public final Integer getInitialRank() {
-        return getDbxValuesService().getInitialRank();
-    }
-
-    @Override
     public final Integer getMaxTeamUnits() {
         return getDbxValuesService().getMaxTeamUnits();
-    }
-
-    @Override
-    public final Sponsor getSponsor(final SponsorForm form) {
-        return getDbxModelService().getSponsor(form);
-    }
-
-    @Override
-    public final Iterable<? extends SponsorAffinityGroupAvailability>
-            getSponsorAffinityGroups() {
-        return getDbxAvailabilitiesService().getSponsorAffinityGroups();
-    }
-
-    @Override
-    public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
-        return getDbxModelService().getSponsorTeam(sponsor);
-    }
-
-    @Override
-    public final Iterable<? extends Unit>
-            getSponsorTeamAvailableUnits(final SponsorTeam team) {
-        return getDbxAvailabilitiesService().getSponsorTeamAvailableUnits(team);
-    }
-
-    private final DbxAvailabilitiesService getDbxAvailabilitiesService() {
-        return avasService;
-    }
-
-    private final DbxModelFactory getDbxModelService() {
-        return modelService;
     }
 
     private final DbxRules getDbxRulesService() {

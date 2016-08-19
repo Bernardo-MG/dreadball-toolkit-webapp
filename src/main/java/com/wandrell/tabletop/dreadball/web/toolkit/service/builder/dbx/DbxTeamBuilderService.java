@@ -23,8 +23,7 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DbxTeamBuilderService
-        extends DbxValuesService, DbxModelService, DbxAvailabilitiesService {
+public interface DbxTeamBuilderService extends DbxValuesService {
 
     /**
      * Adds a unit to the specified team.

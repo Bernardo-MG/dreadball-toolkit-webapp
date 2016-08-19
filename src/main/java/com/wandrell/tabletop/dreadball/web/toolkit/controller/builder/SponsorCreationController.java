@@ -33,7 +33,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxTeamBuilderService;
+import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxSponsorCreationService;
 
 /**
  * Controller for the DBX Sponsor building view.
@@ -49,47 +49,47 @@ public class SponsorCreationController {
     /**
      * Sponsor bean parameter name.
      */
-    private static final String         BEAN_SPONSOR            = "form";
+    private static final String             BEAN_SPONSOR            = "form";
 
     /**
      * Parameter name for the affinities.
      */
-    private static final String         PARAM_AFFINITIES        = "affinities";
+    private static final String             PARAM_AFFINITIES        = "affinities";
 
     /**
      * Parameter name for the available players.
      */
-    private static final String         PARAM_AVAILABLE_PLAYERS = "availablePlayers";
+    private static final String             PARAM_AVAILABLE_PLAYERS = "availablePlayers";
 
     /**
      * Parameter name for the initial rank.
      */
-    private static final String         PARAM_INITIAL_RANK      = "initialRank";
+    private static final String             PARAM_INITIAL_RANK      = "initialRank";
 
     /**
      * Parameter name for the sponsor.
      */
-    private static final String         PARAM_SPONSOR           = "sponsor";
+    private static final String             PARAM_SPONSOR           = "sponsor";
 
     /**
      * Parameter name for the team.
      */
-    private static final String         PARAM_TEAM              = "team";
+    private static final String             PARAM_TEAM              = "team";
 
     /**
      * Name for the view after the sponsor view.
      */
-    private static final String         VIEW_NEXT               = "build/dbx/players";
+    private static final String             VIEW_NEXT               = "build/dbx/players";
 
     /**
      * Name for the sponsor view.
      */
-    private static final String         VIEW_SPONSOR            = "build/dbx/sponsor";
+    private static final String             VIEW_SPONSOR            = "build/dbx/sponsor";
 
     /**
      * DBX team builder service.
      */
-    private final DbxTeamBuilderService dbxTeamBuilderService;
+    private final DbxSponsorCreationService sponsorCreationService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -98,11 +98,11 @@ public class SponsorCreationController {
      *            the DBX team builder service
      */
     @Autowired
-    public SponsorCreationController(final DbxTeamBuilderService service) {
+    public SponsorCreationController(final DbxSponsorCreationService service) {
         super();
 
-        dbxTeamBuilderService = checkNotNull(service,
-                "Received a null pointer as DBX team builder service");
+        sponsorCreationService = checkNotNull(service,
+                "Received a null pointer as sponsor creation service");
     }
 
     /**
@@ -181,8 +181,8 @@ public class SponsorCreationController {
      * 
      * @return the DBX team builder service
      */
-    private final DbxTeamBuilderService getDbxTeamBuilderService() {
-        return dbxTeamBuilderService;
+    private final DbxSponsorCreationService getDbxSponsorCreationService() {
+        return sponsorCreationService;
     }
 
     /**
@@ -200,15 +200,15 @@ public class SponsorCreationController {
         final Sponsor sponsor;  // Sponsor data
         final SponsorTeam team; // Sponsor team
 
-        sponsor = getDbxTeamBuilderService().getSponsor(form);
-        team = getDbxTeamBuilderService().getSponsorTeam(sponsor);
+        sponsor = getDbxSponsorCreationService().getSponsor(form);
+        team = getDbxSponsorCreationService().getSponsorTeam(sponsor);
 
         session.setAttribute(PARAM_TEAM, team);
 
         model.put(PARAM_SPONSOR, sponsor);
         model.put(PARAM_TEAM, team);
-        model.put(PARAM_AVAILABLE_PLAYERS,
-                getDbxTeamBuilderService().getSponsorTeamAvailableUnits(team));
+        model.put(PARAM_AVAILABLE_PLAYERS, getDbxSponsorCreationService()
+                .getSponsorTeamAvailableUnits(team));
     }
 
     /**
@@ -220,10 +220,10 @@ public class SponsorCreationController {
     private final void loadSponsorModel(final ModelMap model) {
         // Initial sponsor rank
         model.put(PARAM_INITIAL_RANK,
-                getDbxTeamBuilderService().getInitialRank());
+                getDbxSponsorCreationService().getInitialRank());
         // Affinity groups for the sponsors
         model.put(PARAM_AFFINITIES,
-                getDbxTeamBuilderService().getSponsorAffinityGroups());
+                getDbxSponsorCreationService().getSponsorAffinityGroups());
     }
 
 }
