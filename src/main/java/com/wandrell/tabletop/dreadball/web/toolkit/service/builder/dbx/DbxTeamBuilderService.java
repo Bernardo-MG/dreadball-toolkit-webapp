@@ -23,7 +23,7 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DbxTeamBuilderService extends DbxValuesService {
+public interface DbxTeamBuilderService {
 
     /**
      * Adds a unit to the specified team.
@@ -36,5 +36,12 @@ public interface DbxTeamBuilderService extends DbxValuesService {
      *            name of the template to add
      */
     public void addUnit(final SponsorTeam team, final String templateName);
+
+    /**
+     * Returns the maximum number of units a Sponsor may have.
+     * 
+     * @return the Sponsors maximum number of units
+     */
+    public Integer getMaxTeamUnits();
 
 }
