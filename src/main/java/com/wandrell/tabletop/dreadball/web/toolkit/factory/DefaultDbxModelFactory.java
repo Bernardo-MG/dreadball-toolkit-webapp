@@ -6,6 +6,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -28,6 +30,11 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
     private final AffinityGroupRepository               affinitiesRepository;
 
     /**
+     * Initial rank.
+     */
+    private final Integer                               initialRank;
+
+    /**
      * Rank cost calculator.
      */
     private final RankCostCalculator                    rankCostCalculator;
@@ -37,22 +44,17 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
      */
     private final TeamValorationCalculator<SponsorTeam> valorationCalculator;
 
-    /**
-     * DBX values service.
-     */
-    private final DbxValuesFactory                      valuesFactory;
-
-    public DefaultDbxModelFactory(final DbxValuesFactory valuesFact,
-            final AffinityGroupRepository affinitiesRepo,
+    public DefaultDbxModelFactory(final AffinityGroupRepository affinitiesRepo,
+            @Value("${sponsor.rank.initial}") final Integer rank,
             final TeamValorationCalculator<SponsorTeam> valorationCalc,
             final RankCostCalculator rankCalc) {
         super();
 
-        valuesFactory = checkNotNull(valuesFact,
-                "Received a null pointer as values factory");
-
         affinitiesRepository = checkNotNull(affinitiesRepo,
                 "Received a null pointer as affinities repository");
+
+        initialRank = checkNotNull(rank,
+                "Received a null pointer as initial rank");
 
         valorationCalculator = checkNotNull(valorationCalc,
                 "Received a null pointer as valoration calculator");
@@ -71,7 +73,7 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
 
         sponsor.setName(form.getSponsorName());
 
-        sponsor.setRank(getDbxValuesFactory().getInitialRank());
+        sponsor.setRank(getInitialRank());
 
         // TODO: The affinities should come as a list
         // Loads affinities
@@ -127,13 +129,8 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
         return affinitiesRepository;
     }
 
-    /**
-     * Returns the DBX values service.
-     * 
-     * @return the DBX values service
-     */
-    private final DbxValuesFactory getDbxValuesFactory() {
-        return valuesFactory;
+    private final Integer getInitialRank() {
+        return initialRank;
     }
 
     /**

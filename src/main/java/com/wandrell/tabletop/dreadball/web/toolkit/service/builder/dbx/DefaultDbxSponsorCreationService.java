@@ -6,6 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
@@ -15,7 +16,6 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxValuesFactory;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
@@ -29,6 +29,11 @@ public class DefaultDbxSponsorCreationService
      * Sponsor affinity groups availabilities repository.
      */
     private final SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
+
+    /**
+     * Initial rank.
+     */
+    private final Integer                                    initialRank;
 
     /**
      * DBX model factory
@@ -45,16 +50,11 @@ public class DefaultDbxSponsorCreationService
      */
     private final AffinityUnitRepository                     unitRepository;
 
-    /**
-     * DBX values service.
-     */
-    private final DbxValuesFactory                           valuesService;
-
     public DefaultDbxSponsorCreationService(
             final AffinityUnitRepository unitRepo,
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
-            final DbxRules rulesServ, final DbxModelFactory dbxModelFact,
-            final DbxValuesFactory valuesServ) {
+            @Value("${sponsor.rank.initial}") final Integer rank,
+            final DbxRules rulesServ, final DbxModelFactory dbxModelFact) {
         super();
 
         unitRepository = checkNotNull(unitRepo,
@@ -62,17 +62,18 @@ public class DefaultDbxSponsorCreationService
         affinityAvasRepository = checkNotNull(affinityAvasRepo,
                 "Received a null pointer as affinity availabilities repository");
 
+        initialRank = checkNotNull(rank,
+                "Received a null pointer as initial rank");
+
         rulesService = checkNotNull(rulesServ,
                 "Received a null pointer as rules service");
         modelFactory = checkNotNull(dbxModelFact,
                 "Received a null pointer as model factory");
-        valuesService = checkNotNull(valuesServ,
-                "Received a null pointer as units factory");
     }
 
     @Override
     public final Integer getInitialRank() {
-        return getDbxValuesService().getInitialRank();
+        return initialRank;
     }
 
     @Override
@@ -124,15 +125,6 @@ public class DefaultDbxSponsorCreationService
 
     private final DbxRules getDbxRulesService() {
         return rulesService;
-    }
-
-    /**
-     * Returns the DBX values service.
-     * 
-     * @return the DBX values service
-     */
-    private final DbxValuesFactory getDbxValuesService() {
-        return valuesService;
     }
 
     /**

@@ -19,6 +19,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
@@ -29,7 +30,6 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxValuesFactory;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
 
@@ -41,6 +41,11 @@ import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
 @Service("dbxTeamBuilderService")
 public final class DefaultDbxTeamBuilderService
         implements DbxTeamBuilderService {
+
+    /**
+     * Maximum number of units a Sponsor may have.
+     */
+    private final Integer                maxTeamUnits;
 
     /**
      * Message source.
@@ -63,11 +68,6 @@ public final class DefaultDbxTeamBuilderService
     private final AffinityUnitRepository unitRepository;
 
     /**
-     * DBX values service.
-     */
-    private final DbxValuesFactory       valuesService;
-
-    /**
      * Creates a DBX team builder with the specified dependencies.
      * 
      * @param affinityAvasRepo
@@ -88,8 +88,9 @@ public final class DefaultDbxTeamBuilderService
     @Autowired
     public DefaultDbxTeamBuilderService(final DbxRules rulesServ,
             final AffinityUnitRepository unitRepo,
-            final DbxValuesFactory valuesServ,
-            final DbxModelFactory dbxModelFact, final MessageSource ms) {
+            final DbxModelFactory dbxModelFact,
+            @Value("${sponsor.players.max}") final Integer maxTeam,
+            final MessageSource ms) {
         super();
 
         rulesService = checkNotNull(rulesServ,
@@ -97,10 +98,11 @@ public final class DefaultDbxTeamBuilderService
 
         unitRepository = checkNotNull(unitRepo,
                 "Received a null pointer as units repository");
-        valuesService = checkNotNull(valuesServ,
-                "Received a null pointer as units repository");
         modelFactory = checkNotNull(dbxModelFact,
                 "Received a null pointer as model factory");
+
+        maxTeamUnits = checkNotNull(maxTeam,
+                "Received a null pointer as max team units");
 
         messageSource = checkNotNull(ms,
                 "Received a null pointer as message source");
@@ -141,7 +143,7 @@ public final class DefaultDbxTeamBuilderService
 
     @Override
     public final Integer getMaxTeamUnits() {
-        return getDbxValuesService().getMaxTeamUnits();
+        return maxTeamUnits;
     }
 
     private final DbxModelFactory getDbxModelFactory() {
@@ -150,15 +152,6 @@ public final class DefaultDbxTeamBuilderService
 
     private final DbxRules getDbxRulesService() {
         return rulesService;
-    }
-
-    /**
-     * Returns the DBX values service.
-     * 
-     * @return the DBX values service
-     */
-    private final DbxValuesFactory getDbxValuesService() {
-        return valuesService;
     }
 
     /**
