@@ -207,6 +207,7 @@ public class SponsorCreationController {
 
         model.put(PARAM_SPONSOR, sponsor);
         model.put(PARAM_TEAM, team);
+        // TODO: This should be loaded in the next step
         model.put(PARAM_AVAILABLE_PLAYERS, getDbxSponsorCreationService()
                 .getSponsorTeamAvailableUnits(team));
     }

@@ -28,6 +28,7 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxValuesFactory;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
@@ -45,6 +46,11 @@ public final class DefaultDbxTeamBuilderService
      * Message source.
      */
     private final MessageSource          messageSource;
+
+    /**
+     * DBX model factory
+     */
+    private final DbxModelFactory        modelFactory;
 
     /**
      * DBX rules service.
@@ -82,7 +88,8 @@ public final class DefaultDbxTeamBuilderService
     @Autowired
     public DefaultDbxTeamBuilderService(final DbxRules rulesServ,
             final AffinityUnitRepository unitRepo,
-            final DbxValuesFactory valuesServ, final MessageSource ms) {
+            final DbxValuesFactory valuesServ,
+            final DbxModelFactory dbxModelFact, final MessageSource ms) {
         super();
 
         rulesService = checkNotNull(rulesServ,
@@ -92,6 +99,8 @@ public final class DefaultDbxTeamBuilderService
                 "Received a null pointer as units repository");
         valuesService = checkNotNull(valuesServ,
                 "Received a null pointer as units repository");
+        modelFactory = checkNotNull(dbxModelFact,
+                "Received a null pointer as model factory");
 
         messageSource = checkNotNull(ms,
                 "Received a null pointer as message source");
@@ -119,8 +128,7 @@ public final class DefaultDbxTeamBuilderService
                     .getAffinityLevel(team.getSponsor(), affUnit);
             cost = getDbxRulesService().getUnitCost(affinityLevel, affUnit);
 
-            // TODO: Move to the model service
-            unit = new DefaultUnit(affUnit.getTemplateName(), cost,
+            unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
                     affUnit.getAbilities(), affUnit.getMvp(),
                     affUnit.getGiant());
@@ -134,6 +142,10 @@ public final class DefaultDbxTeamBuilderService
     @Override
     public final Integer getMaxTeamUnits() {
         return getDbxValuesService().getMaxTeamUnits();
+    }
+
+    private final DbxModelFactory getDbxModelFactory() {
+        return modelFactory;
     }
 
     private final DbxRules getDbxRulesService() {

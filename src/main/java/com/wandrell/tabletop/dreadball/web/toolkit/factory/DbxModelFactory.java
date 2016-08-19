@@ -16,8 +16,14 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.factory;
 
+import java.util.Collection;
+
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.Role;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 
 /**
@@ -44,5 +50,29 @@ public interface DbxModelFactory {
      * @return a Sponsor team for the specified Sponsor
      */
     public SponsorTeam getSponsorTeam(final Sponsor sponsor);
+
+    /**
+     * Creates a Unit from the specified arguments.
+     * 
+     * @param nameTemplate
+     *            the unit's base template name
+     * @param cost
+     *            cost of the unit
+     * @param role
+     *            team position role of the unit
+     * @param attributes
+     *            unit attributes
+     * @param abilities
+     *            unit abilities
+     * @param mvp
+     *            flag indicating if this is a MVP
+     * @param giant
+     *            flag indicating if this is a giant
+     * @return a new Unit
+     */
+    public Unit getUnit(final String nameTemplate, final Integer cost,
+            final Role role, final Attributes attributes,
+            final Collection<Ability> abilities, final Boolean mvp,
+            final Boolean giant);
 
 }

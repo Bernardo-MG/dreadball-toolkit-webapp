@@ -12,6 +12,11 @@ import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.TeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
+import com.wandrell.tabletop.dreadball.model.unit.Role;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
 
@@ -102,6 +107,15 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
                 getSponsorTeamValorationCalculator(), getRankCostCalculator());
 
         return team;
+    }
+
+    @Override
+    public final Unit getUnit(final String nameTemplate, final Integer cost,
+            final Role role, final Attributes attributes,
+            final Collection<Ability> abilities, final Boolean mvp,
+            final Boolean giant) {
+        return new DefaultUnit(nameTemplate, cost, role, attributes, abilities,
+                mvp, giant);
     }
 
     /**

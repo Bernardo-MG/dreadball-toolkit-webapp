@@ -13,7 +13,6 @@ import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.web.toolkit.factory.DbxValuesFactory;
@@ -32,9 +31,9 @@ public class DefaultDbxSponsorCreationService
     private final SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
 
     /**
-     * DBX model service
+     * DBX model factory
      */
-    private final DbxModelFactory                            modelService;
+    private final DbxModelFactory                            modelFactory;
 
     /**
      * DBX rules.
@@ -54,7 +53,7 @@ public class DefaultDbxSponsorCreationService
     public DefaultDbxSponsorCreationService(
             final AffinityUnitRepository unitRepo,
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
-            final DbxRules rulesServ, final DbxModelFactory dbxModelServ,
+            final DbxRules rulesServ, final DbxModelFactory dbxModelFact,
             final DbxValuesFactory valuesServ) {
         super();
 
@@ -65,7 +64,7 @@ public class DefaultDbxSponsorCreationService
 
         rulesService = checkNotNull(rulesServ,
                 "Received a null pointer as rules service");
-        modelService = checkNotNull(dbxModelServ,
+        modelFactory = checkNotNull(dbxModelFact,
                 "Received a null pointer as model factory");
         valuesService = checkNotNull(valuesServ,
                 "Received a null pointer as units factory");
@@ -78,7 +77,7 @@ public class DefaultDbxSponsorCreationService
 
     @Override
     public final Sponsor getSponsor(final SponsorForm form) {
-        return getDbxModelService().getSponsor(form);
+        return getDbxModelFactory().getSponsor(form);
     }
 
     @Override
@@ -89,7 +88,7 @@ public class DefaultDbxSponsorCreationService
 
     @Override
     public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
-        return getDbxModelService().getSponsorTeam(sponsor);
+        return getDbxModelFactory().getSponsorTeam(sponsor);
     }
 
     @Override
@@ -108,8 +107,7 @@ public class DefaultDbxSponsorCreationService
                     .getAffinityLevel(team.getSponsor(), affUnit);
             cost = getDbxRulesService().getUnitCost(affinityLevel, affUnit);
 
-            // TODO: Move to the model service
-            unit = new DefaultUnit(affUnit.getTemplateName(), cost,
+            unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
                     affUnit.getAbilities(), affUnit.getMvp(),
                     affUnit.getGiant());
@@ -120,8 +118,8 @@ public class DefaultDbxSponsorCreationService
         return units;
     }
 
-    private final DbxModelFactory getDbxModelService() {
-        return modelService;
+    private final DbxModelFactory getDbxModelFactory() {
+        return modelFactory;
     }
 
     private final DbxRules getDbxRulesService() {
