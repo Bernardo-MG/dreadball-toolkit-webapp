@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.codex;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -30,7 +30,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service("unitCodexService")
-public final class DefaultUnitCodexService implements UnitCodexService {
+public final class DefaultUnitCodex implements UnitCodex {
 
     /**
      * Affinity units repository.
@@ -44,8 +44,7 @@ public final class DefaultUnitCodexService implements UnitCodexService {
      *            the affinity units repository
      */
     @Autowired
-    public DefaultUnitCodexService(
-            final AffinityUnitRepository affinityUnitRepo) {
+    public DefaultUnitCodex(final AffinityUnitRepository affinityUnitRepo) {
         super();
 
         affinityUnitRepository = checkNotNull(affinityUnitRepo,

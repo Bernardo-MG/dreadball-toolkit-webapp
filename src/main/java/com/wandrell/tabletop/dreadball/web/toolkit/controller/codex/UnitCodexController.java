@@ -24,7 +24,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.wandrell.tabletop.dreadball.web.toolkit.service.codex.UnitCodexService;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.UnitCodex;
 
 /**
  * Controller for the unit codex views.
@@ -38,17 +38,17 @@ public class UnitCodexController {
     /**
      * Parameter name for the players.
      */
-    private static final String    PARAM_PLAYERS       = "players";
+    private static final String PARAM_PLAYERS       = "players";
 
     /**
      * Name for the affinity units view.
      */
-    private static final String    VIEW_AFFINITY_UNITS = "codex/affinityUnits";
+    private static final String VIEW_AFFINITY_UNITS = "codex/affinityUnits";
 
     /**
      * Unit codex service.
      */
-    private final UnitCodexService unitCodexService;
+    private final UnitCodex     unitCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -57,7 +57,7 @@ public class UnitCodexController {
      *            the unit codex service
      */
     @Autowired
-    public UnitCodexController(final UnitCodexService service) {
+    public UnitCodexController(final UnitCodex service) {
         super();
 
         unitCodexService = checkNotNull(service,
@@ -83,7 +83,7 @@ public class UnitCodexController {
      * 
      * @return the unit codex service
      */
-    private final UnitCodexService getUnitCodexService() {
+    private final UnitCodex getUnitCodexService() {
         return unitCodexService;
     }
 

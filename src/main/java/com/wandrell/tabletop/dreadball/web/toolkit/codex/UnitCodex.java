@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.codex;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex;
 
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 
@@ -23,7 +23,7 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface UnitCodexService {
+public interface UnitCodex {
 
     /**
      * Returns all the affinity units.

@@ -17,4 +17,4 @@
  * Codex services.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.codex;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex;
