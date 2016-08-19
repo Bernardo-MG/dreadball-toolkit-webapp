@@ -14,18 +14,16 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.builder;
+package com.wandrell.tabletop.dreadball.web.toolkit.factory;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
 
 /**
  * Default implementation of the DBX values service.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service("dbxValuesService")
-public class SpringDbxValuesService implements DbxValuesService {
+public class SpringDbxValuesFactory implements DbxValuesFactory {
 
     /**
      * Initial rank.
@@ -42,7 +40,7 @@ public class SpringDbxValuesService implements DbxValuesService {
     /**
      * Default constructor.
      */
-    public SpringDbxValuesService() {
+    public SpringDbxValuesFactory() {
         super();
     }
 

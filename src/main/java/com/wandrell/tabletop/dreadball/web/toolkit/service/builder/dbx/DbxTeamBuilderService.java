@@ -14,27 +14,28 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.builder;
+package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
+
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 
 /**
- * Service for the DBX values.
+ * Facade service for the DBX team builder.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DbxValuesService {
+public interface DbxTeamBuilderService
+        extends DbxValuesService, DbxModelService, DbxAvailabilitiesService {
 
     /**
-     * Returns the initial rank.
+     * Adds a unit to the specified team.
+     * <p>
+     * The unit will be acquired through its template name.
      * 
-     * @return the initial rank
+     * @param team
+     *            team where the unit will be added
+     * @param templateName
+     *            name of the template to add
      */
-    public Integer getInitialRank();
-
-    /**
-     * Returns the maximum number of units a Sponsor may have.
-     * 
-     * @return the Sponsors maximum number of units
-     */
-    public Integer getMaxTeamUnits();
+    public void addUnit(final SponsorTeam team, final String templateName);
 
 }

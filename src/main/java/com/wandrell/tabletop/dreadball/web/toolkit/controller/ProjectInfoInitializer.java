@@ -29,18 +29,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 public final class ProjectInfoInitializer {
 
     /**
-     * Project version.
-     */
-    @Value("${project.version}")
-    private String projectVersion;
-
-    /**
-     * Project year.
-     */
-    @Value("${project.year}")
-    private String projectYear;
-
-    /**
      * Project author name.
      */
     @Value("${project.author.name}")
@@ -65,12 +53,6 @@ public final class ProjectInfoInitializer {
     private String licenseUrl;
 
     /**
-     * Project license SCM URL.
-     */
-    @Value("${project.scm.url}")
-    private String scmUrl;
-
-    /**
      * Project description.
      */
     @Value("${project.description}")
@@ -81,6 +63,24 @@ public final class ProjectInfoInitializer {
      */
     @Value("${project.keywords}")
     private String projectKeywords;
+
+    /**
+     * Project version.
+     */
+    @Value("${project.version}")
+    private String projectVersion;
+
+    /**
+     * Project year.
+     */
+    @Value("${project.year}")
+    private String projectYear;
+
+    /**
+     * Project license SCM URL.
+     */
+    @Value("${project.scm.url}")
+    private String scmUrl;
 
     /**
      * Default constructor.

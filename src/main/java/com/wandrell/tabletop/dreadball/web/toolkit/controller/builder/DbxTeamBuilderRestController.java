@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilderService;
+import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxTeamBuilderService;
 
 /**
  * Controller for the DBX team building AJAX operations.
@@ -40,19 +40,24 @@ import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilde
 public class DbxTeamBuilderRestController {
 
     /**
-     * Parameter name for the team.
+     * Parameter name for the cheerleaders.
      */
-    private static final String         PARAM_TEAM          = "team";
-
-    /**
-     * Parameter name for the template name.
-     */
-    private static final String         PARAM_TEMPLATE_NAME = "templateName";
+    private static final String         PARAM_CHEERLEADERS  = "cheerleaders";
 
     /**
      * Parameter name for the dice.
      */
     private static final String         PARAM_DICE          = "dice";
+
+    /**
+     * Parameter name for the medibots.
+     */
+    private static final String         PARAM_MEDIBOTS      = "medibots";
+
+    /**
+     * Parameter name for the special move cards.
+     */
+    private static final String         PARAM_MOVES         = "cards";
 
     /**
      * Parameter name for the position.
@@ -65,24 +70,19 @@ public class DbxTeamBuilderRestController {
     private static final String         PARAM_SABOTAGES     = "cards";
 
     /**
-     * Parameter name for the special move cards.
+     * Parameter name for the team.
      */
-    private static final String         PARAM_MOVES         = "cards";
+    private static final String         PARAM_TEAM          = "team";
+
+    /**
+     * Parameter name for the template name.
+     */
+    private static final String         PARAM_TEMPLATE_NAME = "templateName";
 
     /**
      * Parameter name for the wagers.
      */
     private static final String         PARAM_WAGERS        = "wagers";
-
-    /**
-     * Parameter name for the medibots.
-     */
-    private static final String         PARAM_MEDIBOTS      = "medibots";
-
-    /**
-     * Parameter name for the cheerleaders.
-     */
-    private static final String         PARAM_CHEERLEADERS  = "cheerleaders";
 
     /**
      * DBX team building service.

@@ -33,7 +33,7 @@ import org.springframework.web.bind.support.SessionStatus;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilderService;
+import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxTeamBuilderService;
 
 /**
  * Controller for the DBX Sponsor building view.
@@ -52,24 +52,9 @@ public class SponsorCreationController {
     private static final String         BEAN_SPONSOR            = "form";
 
     /**
-     * Name for the sponsor view.
+     * Parameter name for the affinities.
      */
-    private static final String         VIEW_SPONSOR            = "build/dbx/sponsor";
-
-    /**
-     * Name for the view after the sponsor view.
-     */
-    private static final String         VIEW_NEXT               = "build/dbx/players";
-
-    /**
-     * Parameter name for the sponsor.
-     */
-    private static final String         PARAM_SPONSOR           = "sponsor";
-
-    /**
-     * Parameter name for the team.
-     */
-    private static final String         PARAM_TEAM              = "team";
+    private static final String         PARAM_AFFINITIES        = "affinities";
 
     /**
      * Parameter name for the available players.
@@ -82,9 +67,24 @@ public class SponsorCreationController {
     private static final String         PARAM_INITIAL_RANK      = "initialRank";
 
     /**
-     * Parameter name for the affinities.
+     * Parameter name for the sponsor.
      */
-    private static final String         PARAM_AFFINITIES        = "affinities";
+    private static final String         PARAM_SPONSOR           = "sponsor";
+
+    /**
+     * Parameter name for the team.
+     */
+    private static final String         PARAM_TEAM              = "team";
+
+    /**
+     * Name for the view after the sponsor view.
+     */
+    private static final String         VIEW_NEXT               = "build/dbx/players";
+
+    /**
+     * Name for the sponsor view.
+     */
+    private static final String         VIEW_SPONSOR            = "build/dbx/sponsor";
 
     /**
      * DBX team builder service.

@@ -14,29 +14,21 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.service.builder;
+package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.rules;
 
 import java.util.Collection;
 import java.util.LinkedList;
 
 import org.mockito.Mockito;
-import org.springframework.context.MessageSource;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.model.team.RankCostCalculator;
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.team.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxTeamBuilderService;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DbxValuesService;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.DefaultDbxTeamBuilderService;
+import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
+import com.wandrell.tabletop.dreadball.web.toolkit.rules.DefaultDbxRules;
+import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxTeamBuilderService;
 
 import junit.framework.Assert;
 
@@ -55,48 +47,18 @@ import junit.framework.Assert;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDefaultDbxTeamBuilderServiceAffinityLevel {
+public final class TestDefaultDbxRulesAffinityLevel {
 
     /**
      * Service being tested.
      */
-    private DbxTeamBuilderService dbxTeamBuilderService;
+    private final DbxRules dbxTeamBuilderService = new DefaultDbxRules();
 
     /**
      * Default constructor.
      */
-    public TestDefaultDbxTeamBuilderServiceAffinityLevel() {
+    public TestDefaultDbxRulesAffinityLevel() {
         super();
-    }
-
-    /**
-     * Sets up the tested service.
-     */
-    @SuppressWarnings("unchecked")
-    @BeforeTest
-    public final void setUpService() {
-        final SponsorAffinityGroupAvailabilityRepository sponsorAffinityGroupAvailabilityRepository;
-        final AffinityGroupRepository affinityGroupRepository;
-        final AffinityUnitRepository affinityUnitRepository;
-        final DbxValuesService dbxValuesService;
-        final TeamValorationCalculator<SponsorTeam> teamValorationCalculator;
-        final RankCostCalculator rankCostCalculator;
-        final MessageSource messageSource;
-
-        sponsorAffinityGroupAvailabilityRepository = Mockito
-                .mock(SponsorAffinityGroupAvailabilityRepository.class);
-        affinityGroupRepository = Mockito.mock(AffinityGroupRepository.class);
-        affinityUnitRepository = Mockito.mock(AffinityUnitRepository.class);
-        dbxValuesService = Mockito.mock(DbxValuesService.class);
-        teamValorationCalculator = Mockito.mock(TeamValorationCalculator.class);
-        rankCostCalculator = Mockito.mock(RankCostCalculator.class);
-        messageSource = Mockito.mock(MessageSource.class);
-
-        dbxTeamBuilderService = new DefaultDbxTeamBuilderService(
-                sponsorAffinityGroupAvailabilityRepository,
-                affinityGroupRepository, affinityUnitRepository,
-                dbxValuesService, teamValorationCalculator, rankCostCalculator,
-                messageSource);
     }
 
     /**

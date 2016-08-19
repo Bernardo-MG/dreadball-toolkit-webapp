@@ -36,14 +36,14 @@ import com.wandrell.tabletop.dreadball.web.toolkit.service.codex.UnitCodexServic
 public class UnitCodexController {
 
     /**
-     * Name for the affinity units view.
-     */
-    private static final String    VIEW_AFFINITY_UNITS = "codex/affinityUnits";
-
-    /**
      * Parameter name for the players.
      */
     private static final String    PARAM_PLAYERS       = "players";
+
+    /**
+     * Name for the affinity units view.
+     */
+    private static final String    VIEW_AFFINITY_UNITS = "codex/affinityUnits";
 
     /**
      * Unit codex service.
