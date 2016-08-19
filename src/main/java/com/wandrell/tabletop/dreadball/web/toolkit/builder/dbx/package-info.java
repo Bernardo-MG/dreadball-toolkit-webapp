@@ -17,4 +17,4 @@
  * Team building services.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;

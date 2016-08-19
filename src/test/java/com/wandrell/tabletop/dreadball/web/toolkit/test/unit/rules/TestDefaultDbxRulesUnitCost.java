@@ -21,14 +21,14 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.rules.DefaultDbxRules;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxTeamBuilderService;
 
 import junit.framework.Assert;
 
 /**
- * Unit tests for {@link DbxTeamBuilderService} testing the {@code getUnitCost}
+ * Unit tests for {@link DbxTeamBuilder} testing the {@code getUnitCost}
  * method.
  * <p>
  * Checks the following cases:

@@ -32,8 +32,8 @@ import org.springframework.web.bind.support.SessionStatus;
 
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxSponsorCreationService;
 
 /**
  * Controller for the DBX Sponsor building view.
@@ -89,7 +89,7 @@ public class SponsorCreationController {
     /**
      * DBX team builder service.
      */
-    private final DbxSponsorCreationService sponsorCreationService;
+    private final DbxSponsorBuilder sponsorCreationService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -98,7 +98,7 @@ public class SponsorCreationController {
      *            the DBX team builder service
      */
     @Autowired
-    public SponsorCreationController(final DbxSponsorCreationService service) {
+    public SponsorCreationController(final DbxSponsorBuilder service) {
         super();
 
         sponsorCreationService = checkNotNull(service,
@@ -181,7 +181,7 @@ public class SponsorCreationController {
      * 
      * @return the DBX team builder service
      */
-    private final DbxSponsorCreationService getDbxSponsorCreationService() {
+    private final DbxSponsorBuilder getDbxSponsorCreationService() {
         return sponsorCreationService;
     }
 

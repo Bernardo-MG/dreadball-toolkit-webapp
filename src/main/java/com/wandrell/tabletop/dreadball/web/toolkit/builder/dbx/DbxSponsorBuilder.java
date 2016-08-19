@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DbxSponsorCreationService {
+public interface DbxSponsorBuilder {
 
     /**
      * Returns the initial rank.

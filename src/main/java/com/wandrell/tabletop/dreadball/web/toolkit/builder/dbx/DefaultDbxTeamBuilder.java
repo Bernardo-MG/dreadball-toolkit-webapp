@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -39,8 +39,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service("dbxTeamBuilderService")
-public final class DefaultDbxTeamBuilderService
-        implements DbxTeamBuilderService {
+public final class DefaultDbxTeamBuilder
+        implements DbxTeamBuilder {
 
     /**
      * Maximum number of units a Sponsor may have.
@@ -86,7 +86,7 @@ public final class DefaultDbxTeamBuilderService
      *            message source
      */
     @Autowired
-    public DefaultDbxTeamBuilderService(final DbxRules rulesServ,
+    public DefaultDbxTeamBuilder(final DbxRules rulesServ,
             final AffinityUnitRepository unitRepo,
             final DbxModelFactory dbxModelFact,
             @Value("${sponsor.players.max}") final Integer maxTeam,

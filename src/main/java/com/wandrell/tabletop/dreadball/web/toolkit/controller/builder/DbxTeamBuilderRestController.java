@@ -26,7 +26,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxTeamBuilderService;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.DbxTeamBuilder;
 
 /**
  * Controller for the DBX team building AJAX operations.
@@ -87,7 +87,7 @@ public class DbxTeamBuilderRestController {
     /**
      * DBX team building service.
      */
-    private final DbxTeamBuilderService dbxTeamBuilderService;
+    private final DbxTeamBuilder dbxTeamBuilderService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -96,7 +96,7 @@ public class DbxTeamBuilderRestController {
      *            the DBX team builder service
      */
     @Autowired
-    public DbxTeamBuilderRestController(final DbxTeamBuilderService service) {
+    public DbxTeamBuilderRestController(final DbxTeamBuilder service) {
         super();
 
         dbxTeamBuilderService = checkNotNull(service,
@@ -285,7 +285,7 @@ public class DbxTeamBuilderRestController {
      * 
      * @return the DBX team builder service
      */
-    private final DbxTeamBuilderService getDbxTeamBuilderService() {
+    private final DbxTeamBuilder getDbxTeamBuilderService() {
         return dbxTeamBuilderService;
     }
 

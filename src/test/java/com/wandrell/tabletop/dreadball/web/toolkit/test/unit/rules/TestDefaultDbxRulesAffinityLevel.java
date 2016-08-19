@@ -26,14 +26,14 @@ import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.rules.DefaultDbxRules;
-import com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx.DbxTeamBuilderService;
 
 import junit.framework.Assert;
 
 /**
- * Unit tests for {@link DbxTeamBuilderService} testing the
+ * Unit tests for {@link DbxTeamBuilder} testing the
  * {@code getAffinityLevel} method.
  * <p>
  * Checks the following cases:

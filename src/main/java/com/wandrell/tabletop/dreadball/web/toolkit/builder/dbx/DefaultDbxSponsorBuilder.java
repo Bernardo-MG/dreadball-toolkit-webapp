@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -22,8 +22,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
 import com.wandrell.tabletop.dreadball.web.toolkit.rules.DbxRules;
 
 @Service("dbxSponsorCreationService")
-public class DefaultDbxSponsorCreationService
-        implements DbxSponsorCreationService {
+public class DefaultDbxSponsorBuilder
+        implements DbxSponsorBuilder {
 
     /**
      * Sponsor affinity groups availabilities repository.
@@ -50,7 +50,7 @@ public class DefaultDbxSponsorCreationService
      */
     private final AffinityUnitRepository                     unitRepository;
 
-    public DefaultDbxSponsorCreationService(
+    public DefaultDbxSponsorBuilder(
             final AffinityUnitRepository unitRepo,
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
             @Value("${sponsor.rank.initial}") final Integer rank,

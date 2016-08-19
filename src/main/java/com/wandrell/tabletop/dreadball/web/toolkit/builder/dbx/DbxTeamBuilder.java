@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.service.builder.dbx;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 
@@ -23,7 +23,7 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DbxTeamBuilderService {
+public interface DbxTeamBuilder {
 
     /**
      * Adds a unit to the specified team.
