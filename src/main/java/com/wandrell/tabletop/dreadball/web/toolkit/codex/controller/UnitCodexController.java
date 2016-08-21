@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.controller.codex;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -24,7 +24,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.wandrell.tabletop.dreadball.web.toolkit.codex.UnitCodex;
+import com.wandrell.tabletop.dreadball.codex.UnitCodex;
 
 /**
  * Controller for the unit codex views.

@@ -14,27 +14,24 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
+package com.wandrell.tabletop.dreadball.factory;
 
-import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+import java.util.Collection;
+
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 
 /**
- * Facade service for the DBX team builder.
+ * Service used to instantiate model classes.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DbxSponsorBuilder {
-
-    /**
-     * Returns the initial rank.
-     * 
-     * @return the initial rank
-     */
-    public Integer getInitialRank();
+public interface DbxModelFactory {
 
     /**
      * Creates an Sponsor from the form data.
@@ -46,14 +43,6 @@ public interface DbxSponsorBuilder {
     public Sponsor getSponsor(final SponsorForm form);
 
     /**
-     * Returns all the Sponsor affinity groups sets.
-     * 
-     * @return the Sponsor affinity groups sets
-     */
-    public Iterable<? extends SponsorAffinityGroupAvailability>
-            getSponsorAffinityGroups();
-
-    /**
      * Creates an Sponsor team from the specified Sponsor.
      * 
      * @param sponsor
@@ -63,13 +52,27 @@ public interface DbxSponsorBuilder {
     public SponsorTeam getSponsorTeam(final Sponsor sponsor);
 
     /**
-     * Returns all the units available for the specified Sponsor team.
+     * Creates a Unit from the specified arguments.
      * 
-     * @param team
-     *            Sponsor team to search the availabilities
-     * @return the units available to the team
+     * @param nameTemplate
+     *            the unit's base template name
+     * @param cost
+     *            cost of the unit
+     * @param role
+     *            team position role of the unit
+     * @param attributes
+     *            unit attributes
+     * @param abilities
+     *            unit abilities
+     * @param mvp
+     *            flag indicating if this is a MVP
+     * @param giant
+     *            flag indicating if this is a giant
+     * @return a new Unit
      */
-    public Iterable<? extends Unit>
-            getSponsorTeamAvailableUnits(final SponsorTeam team);
+    public Unit getUnit(final String nameTemplate, final Integer cost,
+            final Role role, final Attributes attributes,
+            final Collection<Ability> abilities, final Boolean mvp,
+            final Boolean giant);
 
 }

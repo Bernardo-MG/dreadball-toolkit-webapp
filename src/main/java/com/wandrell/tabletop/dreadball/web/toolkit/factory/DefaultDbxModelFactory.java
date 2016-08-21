@@ -7,7 +7,9 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -22,6 +24,7 @@ import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
 
+@Component
 public class DefaultDbxModelFactory implements DbxModelFactory {
 
     /**

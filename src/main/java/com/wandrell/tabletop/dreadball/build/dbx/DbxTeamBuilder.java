@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
+package com.wandrell.tabletop.dreadball.build.dbx;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 

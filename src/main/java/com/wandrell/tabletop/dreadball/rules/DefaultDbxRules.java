@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.rules;
+package com.wandrell.tabletop.dreadball.rules;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

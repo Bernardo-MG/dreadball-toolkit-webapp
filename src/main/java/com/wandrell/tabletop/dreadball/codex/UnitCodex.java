@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex;
+package com.wandrell.tabletop.dreadball.codex;
 
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 

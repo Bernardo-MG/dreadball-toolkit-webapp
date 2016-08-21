@@ -14,7 +14,7 @@
  * the License.
  */
 /**
- * Codex controllers.
+ * Team building controllers.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.controller.codex;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
