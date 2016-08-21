@@ -40,73 +40,43 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service("dbxTeamBuilderService")
-public final class DefaultDbxTeamBuilder
-        implements DbxTeamBuilder {
-
-    /**
-     * Maximum number of units a Sponsor may have.
-     */
-    private final Integer                maxTeamUnits;
-
-    /**
-     * Message source.
-     */
-    private final MessageSource          messageSource;
-
-    /**
-     * DBX model factory
-     */
-    private final DbxModelFactory        modelFactory;
+public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
 
     /**
      * DBX rules service.
      */
-    private final DbxRules               rulesService;
+    @Autowired
+    private DbxRules               dbxRules;
+
+    /**
+     * Maximum number of units a Sponsor may have.
+     */
+    @Value("${sponsor.players.max}")
+    private Integer                maxTeamUnits;
+
+    /**
+     * Message source.
+     */
+    @Autowired
+    private MessageSource          messageSource;
+
+    /**
+     * DBX model factory
+     */
+    @Autowired
+    private DbxModelFactory        modelFactory;
 
     /**
      * Affinity units repository.
      */
-    private final AffinityUnitRepository unitRepository;
+    @Autowired
+    private AffinityUnitRepository unitRepository;
 
     /**
      * Creates a DBX team builder with the specified dependencies.
-     * 
-     * @param affinityAvasRepo
-     *            sponsor affinity groups availabilities repository
-     * @param affinitiesRepo
-     *            affinity groups repository
-     * @param unitRepo
-     *            affinity units repository
-     * @param valuesServ
-     *            DBX values service
-     * @param valorationCalc
-     *            team valoration calculator
-     * @param rankCalc
-     *            rank cost calculator
-     * @param ms
-     *            message source
      */
-    @Autowired
-    public DefaultDbxTeamBuilder(final DbxRules rulesServ,
-            final AffinityUnitRepository unitRepo,
-            final DbxModelFactory dbxModelFact,
-            @Value("${sponsor.players.max}") final Integer maxTeam,
-            final MessageSource ms) {
+    public DefaultDbxTeamBuilder() {
         super();
-
-        rulesService = checkNotNull(rulesServ,
-                "Received a null pointer as rules service");
-
-        unitRepository = checkNotNull(unitRepo,
-                "Received a null pointer as units repository");
-        modelFactory = checkNotNull(dbxModelFact,
-                "Received a null pointer as model factory");
-
-        maxTeamUnits = checkNotNull(maxTeam,
-                "Received a null pointer as max team units");
-
-        messageSource = checkNotNull(ms,
-                "Received a null pointer as message source");
     }
 
     @Override
@@ -121,15 +91,15 @@ public final class DefaultDbxTeamBuilder
         checkNotNull(team, "Received a null pointer as team");
         checkNotNull(templateName, "Received a null pointer as template name");
 
-        affUnit = getUnitRepository().findByTemplateName(templateName);
+        affUnit = getAffinityUnitRepository().findByTemplateName(templateName);
 
         if (affUnit != null) {
             // TODO: Is this internationalization step really needed here?
             name = getMessageSource().getMessage(affUnit.getTemplateName(),
                     null, LocaleContextHolder.getLocale());
-            affinityLevel = getDbxRulesService()
-                    .getAffinityLevel(team.getSponsor(), affUnit);
-            cost = getDbxRulesService().getUnitCost(affinityLevel, affUnit);
+            affinityLevel = getDbxRules().getAffinityLevel(team.getSponsor(),
+                    affUnit);
+            cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
 
             unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
@@ -147,12 +117,21 @@ public final class DefaultDbxTeamBuilder
         return maxTeamUnits;
     }
 
+    /**
+     * Returns the affinity unit repository.
+     * 
+     * @return the affinity unit repository
+     */
+    private final AffinityUnitRepository getAffinityUnitRepository() {
+        return unitRepository;
+    }
+
     private final DbxModelFactory getDbxModelFactory() {
         return modelFactory;
     }
 
-    private final DbxRules getDbxRulesService() {
-        return rulesService;
+    private final DbxRules getDbxRules() {
+        return dbxRules;
     }
 
     /**
@@ -162,15 +141,6 @@ public final class DefaultDbxTeamBuilder
      */
     private final MessageSource getMessageSource() {
         return messageSource;
-    }
-
-    /**
-     * Returns the affinity unit repository.
-     * 
-     * @return the affinity unit repository
-     */
-    private final AffinityUnitRepository getUnitRepository() {
-        return unitRepository;
     }
 
 }

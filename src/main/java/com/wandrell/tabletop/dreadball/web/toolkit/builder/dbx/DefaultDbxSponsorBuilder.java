@@ -6,6 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,53 +24,40 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.Spons
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
 @Service("dbxSponsorCreationService")
-public class DefaultDbxSponsorBuilder
-        implements DbxSponsorBuilder {
+public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
 
     /**
      * Sponsor affinity groups availabilities repository.
      */
-    private final SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
-
-    /**
-     * Initial rank.
-     */
-    private final Integer                                    initialRank;
+    @Autowired
+    private SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
 
     /**
      * DBX model factory
      */
-    private final DbxModelFactory                            modelFactory;
+    @Autowired
+    private DbxModelFactory                            dbxModelFact;
 
     /**
      * DBX rules.
      */
-    private final DbxRules                                   rulesService;
+    @Autowired
+    private DbxRules                                   dbxRules;
+
+    /**
+     * Initial rank.
+     */
+    @Value("${sponsor.rank.initial}")
+    private Integer                                    initialRank;
 
     /**
      * Affinity units repository.
      */
-    private final AffinityUnitRepository                     unitRepository;
+    @Autowired
+    private AffinityUnitRepository                     unitRepository;
 
-    public DefaultDbxSponsorBuilder(
-            final AffinityUnitRepository unitRepo,
-            final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
-            @Value("${sponsor.rank.initial}") final Integer rank,
-            final DbxRules rulesServ, final DbxModelFactory dbxModelFact) {
+    public DefaultDbxSponsorBuilder() {
         super();
-
-        unitRepository = checkNotNull(unitRepo,
-                "Received a null pointer as units repository");
-        affinityAvasRepository = checkNotNull(affinityAvasRepo,
-                "Received a null pointer as affinity availabilities repository");
-
-        initialRank = checkNotNull(rank,
-                "Received a null pointer as initial rank");
-
-        rulesService = checkNotNull(rulesServ,
-                "Received a null pointer as rules service");
-        modelFactory = checkNotNull(dbxModelFact,
-                "Received a null pointer as model factory");
     }
 
     @Override
@@ -104,10 +92,11 @@ public class DefaultDbxSponsorBuilder
         checkNotNull(team, "Received a null pointer as team");
 
         units = new LinkedList<Unit>();
-        for (final AffinityUnit affUnit : getUnitRepository().findAll()) {
-            affinityLevel = getDbxRulesService()
-                    .getAffinityLevel(team.getSponsor(), affUnit);
-            cost = getDbxRulesService().getUnitCost(affinityLevel, affUnit);
+        for (final AffinityUnit affUnit : getAffinityUnitRepository()
+                .findAll()) {
+            affinityLevel = getDbxRules().getAffinityLevel(team.getSponsor(),
+                    affUnit);
+            cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
 
             unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
@@ -120,12 +109,21 @@ public class DefaultDbxSponsorBuilder
         return units;
     }
 
-    private final DbxModelFactory getDbxModelFactory() {
-        return modelFactory;
+    /**
+     * Returns the affinity unit repository.
+     * 
+     * @return the affinity unit repository
+     */
+    private final AffinityUnitRepository getAffinityUnitRepository() {
+        return unitRepository;
     }
 
-    private final DbxRules getDbxRulesService() {
-        return rulesService;
+    private final DbxModelFactory getDbxModelFactory() {
+        return dbxModelFact;
+    }
+
+    private final DbxRules getDbxRules() {
+        return dbxRules;
     }
 
     /**
@@ -136,14 +134,5 @@ public class DefaultDbxSponsorBuilder
     private final SponsorAffinityGroupAvailabilityRepository
             getSponsorAffinityGroupAvailabilityRepository() {
         return affinityAvasRepository;
-    }
-
-    /**
-     * Returns the affinity unit repository.
-     * 
-     * @return the affinity unit repository
-     */
-    private final AffinityUnitRepository getUnitRepository() {
-        return unitRepository;
     }
 }

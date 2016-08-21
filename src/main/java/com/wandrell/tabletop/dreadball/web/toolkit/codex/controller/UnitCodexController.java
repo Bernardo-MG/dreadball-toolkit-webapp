@@ -16,8 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -48,20 +46,14 @@ public class UnitCodexController {
     /**
      * Unit codex service.
      */
-    private final UnitCodex     unitCodexService;
+    @Autowired
+    private UnitCodex           unitCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
-     * 
-     * @param service
-     *            the unit codex service
      */
-    @Autowired
-    public UnitCodexController(final UnitCodex service) {
+    public UnitCodexController() {
         super();
-
-        unitCodexService = checkNotNull(service,
-                "Received a null pointer as unit service");
     }
 
     /**

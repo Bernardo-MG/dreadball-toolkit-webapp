@@ -16,8 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -42,65 +40,59 @@ public class DbxTeamBuilderRestController {
     /**
      * Parameter name for the cheerleaders.
      */
-    private static final String         PARAM_CHEERLEADERS  = "cheerleaders";
+    private static final String PARAM_CHEERLEADERS  = "cheerleaders";
 
     /**
      * Parameter name for the dice.
      */
-    private static final String         PARAM_DICE          = "dice";
+    private static final String PARAM_DICE          = "dice";
 
     /**
      * Parameter name for the medibots.
      */
-    private static final String         PARAM_MEDIBOTS      = "medibots";
+    private static final String PARAM_MEDIBOTS      = "medibots";
 
     /**
      * Parameter name for the special move cards.
      */
-    private static final String         PARAM_MOVES         = "cards";
+    private static final String PARAM_MOVES         = "cards";
 
     /**
      * Parameter name for the position.
      */
-    private static final String         PARAM_POSITION      = "position";
+    private static final String PARAM_POSITION      = "position";
 
     /**
      * Parameter name for the sabotage cards.
      */
-    private static final String         PARAM_SABOTAGES     = "cards";
+    private static final String PARAM_SABOTAGES     = "cards";
 
     /**
      * Parameter name for the team.
      */
-    private static final String         PARAM_TEAM          = "team";
+    private static final String PARAM_TEAM          = "team";
 
     /**
      * Parameter name for the template name.
      */
-    private static final String         PARAM_TEMPLATE_NAME = "templateName";
+    private static final String PARAM_TEMPLATE_NAME = "templateName";
 
     /**
      * Parameter name for the wagers.
      */
-    private static final String         PARAM_WAGERS        = "wagers";
+    private static final String PARAM_WAGERS        = "wagers";
 
     /**
      * DBX team building service.
      */
-    private final DbxTeamBuilder dbxTeamBuilderService;
+    @Autowired
+    private DbxTeamBuilder      dbxTeamBuilderService;
 
     /**
      * Constructs a controller with the specified dependencies.
-     * 
-     * @param service
-     *            the DBX team builder service
      */
-    @Autowired
-    public DbxTeamBuilderRestController(final DbxTeamBuilder service) {
+    public DbxTeamBuilderRestController() {
         super();
-
-        dbxTeamBuilderService = checkNotNull(service,
-                "Received a null pointer as DBX team builder service");
     }
 
     /**

@@ -16,8 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -49,60 +47,54 @@ public class SponsorCreationController {
     /**
      * Sponsor bean parameter name.
      */
-    private static final String             BEAN_SPONSOR            = "form";
+    private static final String BEAN_SPONSOR            = "form";
 
     /**
      * Parameter name for the affinities.
      */
-    private static final String             PARAM_AFFINITIES        = "affinities";
+    private static final String PARAM_AFFINITIES        = "affinities";
 
     /**
      * Parameter name for the available players.
      */
-    private static final String             PARAM_AVAILABLE_PLAYERS = "availablePlayers";
+    private static final String PARAM_AVAILABLE_PLAYERS = "availablePlayers";
 
     /**
      * Parameter name for the initial rank.
      */
-    private static final String             PARAM_INITIAL_RANK      = "initialRank";
+    private static final String PARAM_INITIAL_RANK      = "initialRank";
 
     /**
      * Parameter name for the sponsor.
      */
-    private static final String             PARAM_SPONSOR           = "sponsor";
+    private static final String PARAM_SPONSOR           = "sponsor";
 
     /**
      * Parameter name for the team.
      */
-    private static final String             PARAM_TEAM              = "team";
+    private static final String PARAM_TEAM              = "team";
 
     /**
      * Name for the view after the sponsor view.
      */
-    private static final String             VIEW_NEXT               = "build/dbx/players";
+    private static final String VIEW_NEXT               = "build/dbx/players";
 
     /**
      * Name for the sponsor view.
      */
-    private static final String             VIEW_SPONSOR            = "build/dbx/sponsor";
+    private static final String VIEW_SPONSOR            = "build/dbx/sponsor";
 
     /**
      * DBX team builder service.
      */
-    private final DbxSponsorBuilder sponsorCreationService;
+    @Autowired
+    private DbxSponsorBuilder   sponsorCreationService;
 
     /**
      * Constructs a controller with the specified dependencies.
-     * 
-     * @param service
-     *            the DBX team builder service
      */
-    @Autowired
-    public SponsorCreationController(final DbxSponsorBuilder service) {
+    public SponsorCreationController() {
         super();
-
-        sponsorCreationService = checkNotNull(service,
-                "Received a null pointer as sponsor creation service");
     }
 
     /**

@@ -6,6 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -30,39 +31,29 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
     /**
      * Affinity groups repository.
      */
-    private final AffinityGroupRepository               affinitiesRepository;
+    @Autowired
+    private AffinityGroupRepository               affinitiesRepository;
 
     /**
      * Initial rank.
      */
-    private final Integer                               initialRank;
+    @Value("${sponsor.rank.initial}")
+    private Integer                               initialRank;
 
     /**
      * Rank cost calculator.
      */
-    private final RankCostCalculator                    rankCostCalculator;
+    @Autowired
+    private RankCostCalculator                    rankCostCalculator;
 
     /**
      * Team valoration calculator.
      */
-    private final TeamValorationCalculator<SponsorTeam> valorationCalculator;
+    @Autowired
+    private TeamValorationCalculator<SponsorTeam> valorationCalculator;
 
-    public DefaultDbxModelFactory(final AffinityGroupRepository affinitiesRepo,
-            @Value("${sponsor.rank.initial}") final Integer rank,
-            final TeamValorationCalculator<SponsorTeam> valorationCalc,
-            final RankCostCalculator rankCalc) {
+    public DefaultDbxModelFactory() {
         super();
-
-        affinitiesRepository = checkNotNull(affinitiesRepo,
-                "Received a null pointer as affinities repository");
-
-        initialRank = checkNotNull(rank,
-                "Received a null pointer as initial rank");
-
-        valorationCalculator = checkNotNull(valorationCalc,
-                "Received a null pointer as valoration calculator");
-        rankCostCalculator = checkNotNull(rankCalc,
-                "Received a null pointer as rank cost calculator");
     }
 
     @Override

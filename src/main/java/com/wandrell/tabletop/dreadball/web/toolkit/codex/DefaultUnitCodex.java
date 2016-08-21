@@ -16,8 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.codex;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +34,8 @@ public final class DefaultUnitCodex implements UnitCodex {
     /**
      * Affinity units repository.
      */
-    private final AffinityUnitRepository affinityUnitRepository;
+    @Autowired
+    private AffinityUnitRepository affinityUnitRepository;
 
     /**
      * Constructs a service with the specified arguments.
@@ -44,12 +43,8 @@ public final class DefaultUnitCodex implements UnitCodex {
      * @param affinityUnitRepo
      *            the affinity units repository
      */
-    @Autowired
-    public DefaultUnitCodex(final AffinityUnitRepository affinityUnitRepo) {
+    public DefaultUnitCodex() {
         super();
-
-        affinityUnitRepository = checkNotNull(affinityUnitRepo,
-                "Received null pointer as units repository");
     }
 
     @Override
