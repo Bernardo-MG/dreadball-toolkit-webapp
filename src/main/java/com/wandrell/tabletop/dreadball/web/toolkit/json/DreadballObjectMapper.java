@@ -18,6 +18,9 @@ package com.wandrell.tabletop.dreadball.web.toolkit.json;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
+
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 /**
@@ -25,6 +28,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@Component
 public final class DreadballObjectMapper extends ObjectMapper {
 
     /**
@@ -38,6 +42,7 @@ public final class DreadballObjectMapper extends ObjectMapper {
      * @param module
      *            module with the mapper configuration
      */
+    @Autowired
     public DreadballObjectMapper(final JsonModelModule module) {
         super();
 

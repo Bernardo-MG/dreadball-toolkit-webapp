@@ -16,9 +16,9 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.json;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
+import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.BeanDescription;
 import com.fasterxml.jackson.databind.JsonSerializer;
@@ -47,29 +47,25 @@ import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@Component
 public final class JsonModelModule extends SimpleModule {
 
     /**
      * Serialization id.
      */
-    private static final long   serialVersionUID = 1405374344133040810L;
+    private static final long serialVersionUID = 1405374344133040810L;
 
     /**
      * Message source.
      */
-    private final MessageSource messageSource;
+    @Autowired
+    private MessageSource     messageSource;
 
     /**
      * Constructs the module with the specified parameters.
-     * 
-     * @param ms
-     *            the message source
      */
-    public JsonModelModule(final MessageSource ms) {
+    public JsonModelModule() {
         super();
-
-        messageSource = checkNotNull(ms,
-                "Received a null pointer as message source");
     }
 
     @Override
