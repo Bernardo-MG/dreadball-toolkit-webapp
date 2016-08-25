@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.controller;
+package com.wandrell.spring.web.controller;
 
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.ControllerAdvice;
