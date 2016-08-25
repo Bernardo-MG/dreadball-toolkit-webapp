@@ -7,12 +7,12 @@ jdk:
 # JDK 8 is set to deploy the docs and artifacts
   - oraclejdk8
 env:
-  - DEPLOY=true
-  - DEPLOY_DOCS=true
+  - SERVER=jetty DEPLOY_DOCS=true
+  - SERVER=tomcat7
 
 before_install:
   # Gets scripts
-  - git clone -b v0.1.4 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
+  - git clone -b v0.1.6 --single-branch https://github.com/Bernardo-MG/ci-shell-scripts.git ~/.scripts
   # Sets scripts as executable
   - chmod -R +x ~/.scripts/*
   # Prepares CI environment
@@ -22,7 +22,7 @@ before_script:
   - ~/.scripts/java/maven/create-maven-settings.sh $VERSION_TYPE
 script:
   # Unit and integration tests are run
-  - mvn clean verify -P h2
+  - mvn clean verify -P h2,$SERVER
 after_success:
   # Documentation deployment script
-  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS
+  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS deployment,$SERVER
