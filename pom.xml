@@ -262,36 +262,23 @@
                   </configuration>
                   <executions>
                      <execution>
-                        <id>start-jetty-it</id>
+                        <id>start-tomcat</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                           <goal>start</goal>
+                           <goal>run</goal>
                         </goals>
                         <configuration>
-                           <scanIntervalSeconds>0</scanIntervalSeconds>
-                           <daemon>true</daemon>
-                           <useTestScope>true</useTestScope>
-                           <webApp>
-                              <overrideDescriptor>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/web.xml</overrideDescriptor>
-                           </webApp>
+                           <fork>true</fork>
                         </configuration>
                      </execution>
                      <execution>
-                        <id>stop-jetty-it</id>
+                        <id>stop-tomcat</id>
                         <phase>post-integration-test</phase>
                         <goals>
-                           <goal>stop</goal>
+                           <goal>shutdown</goal>
                         </goals>
                      </execution>
                   </executions>
-                  <dependencies>
-                     <dependency>
-                        <!-- Spring beans -->
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                        <version>${spring.version}</version>
-                     </dependency>
-                  </dependencies>
                </plugin>
             </plugins>
          </build>
