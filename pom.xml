@@ -262,23 +262,36 @@
                   </configuration>
                   <executions>
                      <execution>
-                        <id>start-tomcat</id>
+                        <id>start-jetty-it</id>
                         <phase>pre-integration-test</phase>
                         <goals>
-                           <goal>run</goal>
+                           <goal>start</goal>
                         </goals>
                         <configuration>
-                           <fork>true</fork>
+                           <scanIntervalSeconds>0</scanIntervalSeconds>
+                           <daemon>true</daemon>
+                           <useTestScope>true</useTestScope>
+                           <webApp>
+                              <overrideDescriptor>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/web.xml</overrideDescriptor>
+                           </webApp>
                         </configuration>
                      </execution>
                      <execution>
-                        <id>stop-tomcat</id>
+                        <id>stop-jetty-it</id>
                         <phase>post-integration-test</phase>
                         <goals>
-                           <goal>shutdown</goal>
+                           <goal>stop</goal>
                         </goals>
                      </execution>
                   </executions>
+                  <dependencies>
+                     <dependency>
+                        <!-- Spring beans -->
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                        <version>${spring.version}</version>
+                     </dependency>
+                  </dependencies>
                </plugin>
             </plugins>
          </build>
@@ -744,7 +757,7 @@
    <!-- ********************************************** -->
 
    <build>
-      <defaultGoal>clean package jetty:run</defaultGoal>
+      <defaultGoal>clean package</defaultGoal>
       <resources>
          <resource>
             <directory>src/main/resources/</directory>
