@@ -24,7 +24,7 @@
 
    <context-param>
       <param-name>spring.profiles.active</param-name>
-      <param-value>${spring.profile.database}</param-value>
+      <param-value>@spring.profile.database@</param-value>
    </context-param>
 
    <listener>

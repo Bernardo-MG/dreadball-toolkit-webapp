@@ -281,6 +281,8 @@
                         </goals>
                         <configuration>
                            <fork>true</fork>
+                           <useTestClasspath>true</useTestClasspath>
+                           <tomcatWebXml>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/web.xml</tomcatWebXml>
                         </configuration>
                      </execution>
                      <execution>
@@ -863,6 +865,13 @@
                      </includes>
                   </resource>
                </webResources>
+               <!-- Variables to to override will be delimited with a @. -->
+               <!-- This avoids collisions with Spring variables. -->
+               <!-- So instead of replacing ${project.name} Maven will replace @project.name@. -->
+               <useDefaultDelimiters>false</useDefaultDelimiters>
+               <delimiters>
+                  <delimiter>@</delimiter>
+               </delimiters>
             </configuration>
          </plugin>
          <plugin>
