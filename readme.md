@@ -23,7 +23,7 @@ Documentation is also generated from the latest snapshot, taken from the 'develo
 The documentation site sources come along the source code (as it is a Maven site), so it is always possible to generate them using the following Maven command:
 
 ```
-$ mvn verify site -P h2
+$ mvn verify site -P h2,jetty
 ```
 
 The verify phase is required, as otherwise some of the reports won't be created.
@@ -47,20 +47,24 @@ The project can be installed by creating the war file and deploying it into a se
 
 ### Running
 
-To just run the web service, useful for testing, the following command can be used:
+To run the project locally in an embedded server just use the following Maven command for Jetty:
 
 ```
-$ mvn jetty:run-war -P h2
+$ mvn jetty:run-war -P h2,jetty
 ```
 
-This will set up the web service to use the H2 in-memory database.
+Or this one for Tomcat:
+
+```
+$ mvn tomcat7:run-war -P h2,tomcat7
+```
 
 ### Testing
 
 The integration tests require a database, which can be set up automatically if using the H2 profile. For this reason these tests should be run with the following command:
 
 ```
-$ mvn verify -P h2
+$ mvn verify -P h2,jetty
 ```
 
 ### Packaging the WAR
@@ -68,7 +72,7 @@ $ mvn verify -P h2
 When creating the WAR file the database connection credentials should be set:
 
 ```
-$ mvn package -P mysql -Ddatabase.username=username -Ddatabase.password=password -Ddatabase.url=jdbc:mysql://localhost:3306/dreadball_toolkit
+$ mvn package -P mysql -Ddatabase.username=[username] -Ddatabase.password=[password] -Ddatabase.url=jdbc:mysql://localhost:3306/dreadball_toolkit
 ```
 
 ## Collaborate
