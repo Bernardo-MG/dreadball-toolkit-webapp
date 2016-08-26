@@ -274,7 +274,7 @@
                   </configuration>
                   <executions>
                      <execution>
-                        <id>start-tomcat</id>
+                        <id>start-tomcat-it</id>
                         <phase>pre-integration-test</phase>
                         <goals>
                            <goal>run</goal>
@@ -286,7 +286,7 @@
                         </configuration>
                      </execution>
                      <execution>
-                        <id>stop-tomcat</id>
+                        <id>stop-tomcat-it</id>
                         <phase>post-integration-test</phase>
                         <goals>
                            <goal>shutdown</goal>
