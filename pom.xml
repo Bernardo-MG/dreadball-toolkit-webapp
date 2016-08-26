@@ -231,6 +231,10 @@
                         <configuration>
                            <scanIntervalSeconds>0</scanIntervalSeconds>
                            <daemon>true</daemon>
+                           <useTestScope>true</useTestScope>
+                           <webApp>
+                              <overrideDescriptor>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/web.xml</overrideDescriptor>
+                           </webApp>
                         </configuration>
                      </execution>
                      <execution>
@@ -241,6 +245,14 @@
                         </goals>
                      </execution>
                   </executions>
+                  <dependencies>
+                     <dependency>
+                        <!-- Spring beans -->
+                        <groupId>org.springframework</groupId>
+                        <artifactId>spring-beans</artifactId>
+                        <version>${spring.version}</version>
+                     </dependency>
+                  </dependencies>
                </plugin>
             </plugins>
          </build>
