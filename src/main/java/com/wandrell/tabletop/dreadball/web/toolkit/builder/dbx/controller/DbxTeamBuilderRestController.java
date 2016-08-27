@@ -173,7 +173,7 @@ public class DbxTeamBuilderRestController {
      */
     @RequestMapping(path = "/assets/dice",
             method = { RequestMethod.POST, RequestMethod.PUT })
-    public final SponsorTeam setDreadballDice(
+    public final SponsorTeam setDice(
             @RequestParam(name = PARAM_DICE,
                     defaultValue = "-1") final Integer dice,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {

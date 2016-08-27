@@ -112,7 +112,7 @@ function setDice(dice) {
 			loadTeamAssetCost(team);
 		},
 		error : function() {
-			console.log('An error occurred while adding a unit through AJAX');
+			console.log('An error occurred while setting the dice through AJAX');
 		}
 	});
 }
@@ -131,7 +131,7 @@ function setSabotageCards(cards) {
 			loadTeamAssetCost(team);
 		},
 		error : function() {
-			console.log('An error occurred while adding a unit through AJAX');
+			console.log('An error occurred while setting the sabotage cards through AJAX');
 		}
 	});
 }
@@ -150,7 +150,7 @@ function setSpecialMoveCards(cards) {
 			loadTeamAssetCost(team);
 		},
 		error : function() {
-			console.log('An error occurred while adding a unit through AJAX');
+			console.log('An error occurred while setting the special move cards through AJAX');
 		}
 	});
 }
@@ -169,7 +169,7 @@ function setWagers(wagers) {
 			loadTeamAssetCost(team);
 		},
 		error : function() {
-			console.log('An error occurred while adding a unit through AJAX');
+			console.log('An error occurred while setting the wagers through AJAX');
 		}
 	});
 }
@@ -188,7 +188,7 @@ function setCheerleaders(cheerleaders) {
 			loadTeamAssetCost(team);
 		},
 		error : function() {
-			console.log('An error occurred while adding a unit through AJAX');
+			console.log('An error occurred while setting the cheerleaders through AJAX');
 		}
 	});
 }
@@ -207,7 +207,7 @@ function setMediBots(medibots) {
 			loadTeamAssetCost(team);
 		},
 		error : function() {
-			console.log('An error occurred while adding a unit through AJAX');
+			console.log('An error occurred while setting the medibots through AJAX');
 		}
 	});
 }
