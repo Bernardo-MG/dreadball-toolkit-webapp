@@ -70,7 +70,8 @@ public final class JsonModelModule extends SimpleModule {
         setupMixIns(context);
 
         context.addBeanSerializerModifier(
-                new InternationalizationBeanSerializerModifier(getMessageSource()));
+                new InternationalizationBeanSerializerModifier(
+                        getMessageSource()));
     }
 
     /**

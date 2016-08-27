@@ -173,10 +173,10 @@ public class DbxTeamBuilderRestController {
      */
     @RequestMapping(path = "/assets/dice",
             method = { RequestMethod.POST, RequestMethod.PUT })
-    public final SponsorTeam setDice(
-            @RequestParam(name = PARAM_DICE,
+    public final SponsorTeam
+            setDice(@RequestParam(name = PARAM_DICE,
                     defaultValue = "-1") final Integer dice,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
+                    @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
         if (dice >= 0) {
             team.setCoachingDice(dice);
         }
