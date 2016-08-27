@@ -20,12 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
-import com.fasterxml.jackson.databind.BeanDescription;
-import com.fasterxml.jackson.databind.JsonSerializer;
-import com.fasterxml.jackson.databind.SerializationConfig;
 import com.fasterxml.jackson.databind.module.SimpleModule;
-import com.fasterxml.jackson.databind.ser.BeanSerializerModifier;
-import com.fasterxml.jackson.databind.ser.std.BeanSerializerBase;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.json.faction.SponsorMixIn;
 import com.wandrell.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
@@ -74,22 +69,8 @@ public final class JsonModelModule extends SimpleModule {
 
         setupMixIns(context);
 
-        context.addBeanSerializerModifier(new BeanSerializerModifier() {
-
-            @Override
-            public final JsonSerializer<?> modifySerializer(
-                    final SerializationConfig config,
-                    final BeanDescription beanDesc,
-                    final JsonSerializer<?> serializer) {
-                if (serializer instanceof BeanSerializerBase) {
-                    return new UnitInternationalizationSerializer(
-                            (BeanSerializerBase) serializer,
-                            getMessageSource());
-                }
-                return serializer;
-
-            }
-        });
+        context.addBeanSerializerModifier(
+                new InternationalizationBeanSerializerModifier(getMessageSource()));
     }
 
     /**
