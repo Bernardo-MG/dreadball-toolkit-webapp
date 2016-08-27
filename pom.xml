@@ -219,7 +219,6 @@
                      <webApp>
                         <contextPath>${server.test.path}</contextPath>
                      </webApp>
-                     <contextXml>${project.build.outputDirectory}/jetty/jetty.xml</contextXml>
                   </configuration>
                   <executions>
                      <execution>
@@ -245,14 +244,6 @@
                         </goals>
                      </execution>
                   </executions>
-                  <dependencies>
-                     <dependency>
-                        <!-- Spring beans -->
-                        <groupId>org.springframework</groupId>
-                        <artifactId>spring-beans</artifactId>
-                        <version>${spring.version}</version>
-                     </dependency>
-                  </dependencies>
                </plugin>
             </plugins>
          </build>
