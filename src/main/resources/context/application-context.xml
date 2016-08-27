@@ -7,7 +7,6 @@
 
    <!-- Imports -->
    <import resource="classpath:context/persistence.xml" />
-   <import resource="classpath:context/service.xml" />
    
    <!-- Profile-based configuration -->
    <beans profile="h2">

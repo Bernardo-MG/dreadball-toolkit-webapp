@@ -31,26 +31,29 @@
    <mvc:annotation-driven conversion-service="conversionService"
       validator="validator">
       <mvc:message-converters>
-         <bean class="${converter.json.class}">
-            <property name="objectMapper" ref="dreadballObjectMapper" />
-         </bean>
+         <ref bean="jsonMessageConverter" />
       </mvc:message-converters>
    </mvc:annotation-driven>
+
+   <bean id="jsonMessageConverter" class="${converter.json.class}">
+      <property name="objectMapper" ref="dreadballObjectMapper" />
+   </bean>
 
    <!-- Static resources -->
    <mvc:resources mapping="/static/**" location="/webjars/, /resources/">
       <mvc:cache-control cache-public="true" max-age="2592000" />
       <mvc:resource-chain resource-cache="true">
          <mvc:resolvers>
-            <bean class="${resolver.webjars.class}" />
+            <ref bean="webjarsResolver" />
          </mvc:resolvers>
       </mvc:resource-chain>
    </mvc:resources>
 
+   <bean id="webjarsResolver" class="${resolver.webjars.class}" />
+
    <mvc:default-servlet-handler />
 
-   <bean id="conversionService" class="${conversion.service.class}">
-   </bean>
+   <bean id="conversionService" class="${conversion.service.class}"/>
 
    <bean id="validator" class="${validator.factory.class}">
       <property name="validationMessageSource" ref="messageSource" />
