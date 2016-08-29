@@ -33,8 +33,8 @@ import com.wandrell.tabletop.dreadball.rules.DefaultDbxRules;
 import junit.framework.Assert;
 
 /**
- * Unit tests for {@link DbxTeamBuilder} testing the
- * {@code getAffinityLevel} method.
+ * Unit tests for {@link DbxTeamBuilder} testing the {@code getAffinityLevel}
+ * method.
  * <p>
  * Checks the following cases:
  * <ol>
