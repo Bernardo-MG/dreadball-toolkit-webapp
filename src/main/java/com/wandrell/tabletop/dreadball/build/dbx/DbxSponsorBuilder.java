@@ -34,7 +34,7 @@ public interface DbxSponsorBuilder {
      * 
      * @return the Sponsor affinity groups sets
      */
-    public Iterable<? extends SponsorAffinityGroupAvailability>
+    public Iterable<SponsorAffinityGroupAvailability>
             getAvailableAffinityGroups();
 
     /**
@@ -60,8 +60,7 @@ public interface DbxSponsorBuilder {
      *            Sponsor to search the availabilities
      * @return the units available to the Sponsor
      */
-    public Iterable<? extends Unit>
-            getSponsorAvailableUnits(final Sponsor sponsor);
+    public Iterable<Unit> getSponsorAvailableUnits(final Sponsor sponsor);
 
     /**
      * Creates an Sponsor team from the specified Sponsor.

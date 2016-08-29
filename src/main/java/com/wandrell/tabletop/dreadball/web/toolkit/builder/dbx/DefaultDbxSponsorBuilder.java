@@ -61,9 +61,18 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     }
 
     @Override
-    public final Iterable<? extends SponsorAffinityGroupAvailability>
+    public final Iterable<SponsorAffinityGroupAvailability>
             getAvailableAffinityGroups() {
-        return getSponsorAffinityGroupAvailabilityRepository().findAll();
+        final Collection<SponsorAffinityGroupAvailability> affs;
+
+        affs = new LinkedList<SponsorAffinityGroupAvailability>();
+        for (final SponsorAffinityGroupAvailability aff : getSponsorAffinityGroupAvailabilityRepository()
+                .findAll()) {
+            // TODO: Copy these to new beans
+            affs.add(aff);
+        }
+
+        return affs;
     }
 
     @Override
@@ -77,7 +86,7 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     }
 
     @Override
-    public final Iterable<? extends Unit>
+    public final Iterable<Unit>
             getSponsorAvailableUnits(final Sponsor sponsor) {
         final Collection<Unit> units; // Available units
         Integer cost;                 // Unit cost
