@@ -84,6 +84,7 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
             affinities.remove("rank");
         }
 
+        // TODO: Maybe the factory should not use the repository
         // Creates the affinities
         for (final String affinity : affinities) {
             sponsor.addAffinityGroup(

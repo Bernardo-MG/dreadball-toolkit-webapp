@@ -23,17 +23,19 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
+import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 
 /**
- * Integration tests for {@link DbxSponsorBuilder}.
+ * Integration tests for {@link DbxTeamBuilder}.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>Acquiring the available units returns the expected values</li>
+ * <li>Adding an existing unit works as expected</li>
+ * <li>Adding a not existing unit does nothing</li>
  * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -45,36 +47,56 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
         "classpath:config/persistence-access.properties",
         "classpath:config/service-dreadball.properties",
         "classpath:config/builder-team-dbx.properties" })
-public class ITDefaultDbxSponsorBuilder
+public class ITDbxTeamBuilder
         extends AbstractTransactionalTestNGSpringContextTests {
 
     /**
      * Builder to test.
      */
     @Autowired
-    private DbxSponsorBuilder builder;
+    private DbxTeamBuilder  builder;
+
+    @Autowired
+    private DbxModelFactory modelFactory;
 
     /**
      * Default constructor.
      */
-    public ITDefaultDbxSponsorBuilder() {
+    public ITDbxTeamBuilder() {
         super();
     }
 
     /**
-     * Tests that acquiring the available units returns the expected values.
+     * Tests that adding an existing unit works as expected.
      */
     @Test
-    public final void testGetSponsorAvailableUnits() {
-        final Iterable<? extends Unit> units; // Sponsor units
-        final Sponsor sponsor;                // Sponsor to get the units for
+    public final void testGetSponsorAvailableUnits_AddUnit_Existing_Added() {
+        final Sponsor sponsor;  // Sponsor for the team
+        final SponsorTeam team; // Team for the test
 
         sponsor = new DefaultSponsor();
+        team = modelFactory.getSponsorTeam(sponsor);
 
-        units = builder.getSponsorAvailableUnits(sponsor);
+        builder.addUnit(team, "ada-lorana_guard_affinity");
 
-        // TODO: Verify it returns the expected values
-        Assert.assertNotNull(units);
+        Assert.assertEquals(team.getPlayers().size(), 1);
+    }
+
+    /**
+     * Tests that adding a not existing unit does nothing.
+     */
+    @Test
+    public final void
+            testGetSponsorAvailableUnits_AddUnit_NotExisting_NotAdded() {
+        final Sponsor sponsor;  // Sponsor for the team
+        final SponsorTeam team; // Team for the test
+
+        sponsor = new DefaultSponsor();
+        team = modelFactory.getSponsorTeam(sponsor);
+
+        builder.addUnit(team, "-");
+
+        Assert.assertEquals(team.getPlayers().size(), 0);
     }
 
 }
