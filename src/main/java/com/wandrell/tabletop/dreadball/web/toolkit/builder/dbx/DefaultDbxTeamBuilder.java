@@ -21,6 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
@@ -85,7 +86,7 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
         final AffinityUnit affUnit;  // Unit from the repository
         final Integer cost;          // Unit cost
         final Unit unit;             // Unit to add
-        final String name;           // Unit name
+        String name;           // Unit name
         AffinityLevel affinityLevel; // Affinity level relationship
 
         checkNotNull(team, "Received a null pointer as team");
@@ -95,8 +96,12 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
 
         if (affUnit != null) {
             // TODO: Is this internationalization step really needed here?
-            name = getMessageSource().getMessage(affUnit.getTemplateName(),
-                    null, LocaleContextHolder.getLocale());
+            try {
+                name = getMessageSource().getMessage(affUnit.getTemplateName(),
+                        null, LocaleContextHolder.getLocale());
+            } catch (final NoSuchMessageException e) {
+                name = affUnit.getTemplateName();
+            }
             affinityLevel = getDbxRules().getAffinityLevel(team.getSponsor(),
                     affUnit);
             cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
