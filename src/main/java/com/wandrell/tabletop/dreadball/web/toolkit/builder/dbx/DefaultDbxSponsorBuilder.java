@@ -61,6 +61,12 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     }
 
     @Override
+    public final Iterable<? extends SponsorAffinityGroupAvailability>
+            getAvailableAffinityGroups() {
+        return getSponsorAffinityGroupAvailabilityRepository().findAll();
+    }
+
+    @Override
     public final Integer getInitialRank() {
         return initialRank;
     }
@@ -71,32 +77,18 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     }
 
     @Override
-    public final Iterable<? extends SponsorAffinityGroupAvailability>
-            getSponsorAffinityGroups() {
-        return getSponsorAffinityGroupAvailabilityRepository().findAll();
-    }
-
-    @Override
-    public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
-        return getDbxModelFactory().getSponsorTeam(sponsor);
-    }
-
-    @Override
     public final Iterable<? extends Unit>
-            getSponsorTeamAvailableUnits(final SponsorTeam team) {
+            getSponsorAvailableUnits(final Sponsor sponsor) {
         final Collection<Unit> units; // Available units
         Integer cost;                 // Unit cost
         Unit unit;                    // Available unit
-        AffinityLevel affinityLevel;  // Affinity level relationship
 
-        checkNotNull(team, "Received a null pointer as team");
+        checkNotNull(sponsor, "Received a null pointer as sponsor");
 
         units = new LinkedList<Unit>();
         for (final AffinityUnit affUnit : getAffinityUnitRepository()
                 .findAll()) {
-            affinityLevel = getDbxRules().getAffinityLevel(team.getSponsor(),
-                    affUnit);
-            cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
+            cost = getUnitCost(sponsor, affUnit);
 
             unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
@@ -107,6 +99,11 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
         }
 
         return units;
+    }
+
+    @Override
+    public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
+        return getDbxModelFactory().getSponsorTeam(sponsor);
     }
 
     /**
@@ -134,5 +131,23 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     private final SponsorAffinityGroupAvailabilityRepository
             getSponsorAffinityGroupAvailabilityRepository() {
         return affinityAvasRepository;
+    }
+
+    /**
+     * Returns the actual cost for a unit for a sponsor.
+     * 
+     * @param sponsor
+     *            sponsor to set the cost
+     * @param unit
+     *            unit to find the cost for
+     * @return the cost of the unit for the sponsor
+     */
+    private final Integer getUnitCost(final Sponsor sponsor,
+            final AffinityUnit unit) {
+        AffinityLevel affinityLevel;  // Affinity level relationship
+
+        affinityLevel = getDbxRules().getAffinityLevel(sponsor, unit);
+
+        return getDbxRules().getUnitCost(affinityLevel, unit);
     }
 }

@@ -143,7 +143,6 @@ public class SponsorCreationController {
      */
     @ModelAttribute(BEAN_SPONSOR)
     public final SponsorForm getSponsorForm() {
-        // TODO: Acquire through the service
         return new SponsorForm();
     }
 
@@ -201,7 +200,7 @@ public class SponsorCreationController {
         model.put(PARAM_TEAM, team);
         // TODO: This should be loaded in the next step
         model.put(PARAM_AVAILABLE_PLAYERS, getDbxSponsorCreationService()
-                .getSponsorTeamAvailableUnits(team));
+                .getSponsorAvailableUnits(sponsor));
     }
 
     /**
@@ -216,7 +215,7 @@ public class SponsorCreationController {
                 getDbxSponsorCreationService().getInitialRank());
         // Affinity groups for the sponsors
         model.put(PARAM_AFFINITIES,
-                getDbxSponsorCreationService().getSponsorAffinityGroups());
+                getDbxSponsorCreationService().getAvailableAffinityGroups());
     }
 
 }

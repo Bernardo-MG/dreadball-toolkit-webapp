@@ -30,6 +30,14 @@ import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
 public interface DbxSponsorBuilder {
 
     /**
+     * Returns all the Sponsor affinity groups sets.
+     * 
+     * @return the Sponsor affinity groups sets
+     */
+    public Iterable<? extends SponsorAffinityGroupAvailability>
+            getAvailableAffinityGroups();
+
+    /**
      * Returns the initial rank.
      * 
      * @return the initial rank
@@ -46,12 +54,14 @@ public interface DbxSponsorBuilder {
     public Sponsor getSponsor(final SponsorForm form);
 
     /**
-     * Returns all the Sponsor affinity groups sets.
+     * Returns all the units available for the specified Sponsor team.
      * 
-     * @return the Sponsor affinity groups sets
+     * @param sponsor
+     *            Sponsor to search the availabilities
+     * @return the units available to the Sponsor
      */
-    public Iterable<? extends SponsorAffinityGroupAvailability>
-            getSponsorAffinityGroups();
+    public Iterable<? extends Unit>
+            getSponsorAvailableUnits(final Sponsor sponsor);
 
     /**
      * Creates an Sponsor team from the specified Sponsor.
@@ -61,15 +71,5 @@ public interface DbxSponsorBuilder {
      * @return a Sponsor team for the specified Sponsor
      */
     public SponsorTeam getSponsorTeam(final Sponsor sponsor);
-
-    /**
-     * Returns all the units available for the specified Sponsor team.
-     * 
-     * @param team
-     *            Sponsor team to search the availabilities
-     * @return the units available to the team
-     */
-    public Iterable<? extends Unit>
-            getSponsorTeamAvailableUnits(final SponsorTeam team);
 
 }
