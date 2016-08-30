@@ -27,6 +27,7 @@
 
 -- Aggregation tables
 
+DROP TABLE IF EXISTS unit_abilities;
 DROP TABLE IF EXISTS component_abilities;
 
 
@@ -34,6 +35,9 @@ DROP TABLE IF EXISTS component_abilities;
 
 DROP TABLE IF EXISTS abilities;
 
+-- Unit tables
+
+DROP TABLE IF EXISTS units;
 
 -- Component tables
 

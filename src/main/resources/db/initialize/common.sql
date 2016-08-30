@@ -33,8 +33,26 @@ CREATE TABLE abilities (
 );
 
 
--- Component tables
+-- Unit tables
 
+CREATE TABLE units (
+    id                      INTEGER PRIMARY KEY,
+    unit_type               VARCHAR(30) NOT NULL,
+    name                    VARCHAR(30) NOT NULL,
+    template_name           VARCHAR(30) NOT NULL UNIQUE,
+    cost                    INTEGER NOT NULL DEFAULT 0,
+    armor                   INTEGER NOT NULL DEFAULT 0,
+    movement                INTEGER NOT NULL DEFAULT 0,
+    skill                   INTEGER NOT NULL DEFAULT 0,
+    speed                   INTEGER NOT NULL DEFAULT 0,
+    strength                INTEGER NOT NULL DEFAULT 0,
+    position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
+    giant                   BOOLEAN NOT NULL DEFAULT FALSE,
+    mvp                     BOOLEAN NOT NULL DEFAULT FALSE
+);
+
+
+-- Component tables
 
 CREATE TABLE component_locations (
     id                      INTEGER PRIMARY KEY,
@@ -62,6 +80,13 @@ CREATE TABLE component_positions (
 
 
 -- Aggregation tables
+
+CREATE TABLE unit_abilities (
+    unit_id                 INTEGER,
+    ability_id              INTEGER,
+    FOREIGN KEY (ability_id) REFERENCES abilities (id) ON DELETE CASCADE,
+    FOREIGN KEY (unit_id) REFERENCES units (id) ON DELETE CASCADE
+);
 
 CREATE TABLE component_abilities (
     component_id            INTEGER,

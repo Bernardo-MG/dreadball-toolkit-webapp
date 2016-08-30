@@ -27,7 +27,6 @@
 
 -- Unit tables
 
-
 CREATE TABLE composite_advancement_units (
     id                      INTEGER PRIMARY KEY,
     template_name           VARCHAR(30) NOT NULL DEFAULT '',
@@ -64,22 +63,6 @@ CREATE TABLE advancement_units (
     rank                    INTEGER NOT NULL DEFAULT 0,
     grafted_implant_id      INTEGER,
     FOREIGN KEY (grafted_implant_id) REFERENCES unit_components (id) ON DELETE CASCADE
-);
-
-CREATE TABLE units (
-    id                      INTEGER PRIMARY KEY,
-    unit_type               VARCHAR(30) NOT NULL,
-    name                    VARCHAR(30) NOT NULL,
-    template_name           VARCHAR(30) NOT NULL UNIQUE,
-    cost                    INTEGER NOT NULL DEFAULT 0,
-    armor                   INTEGER NOT NULL DEFAULT 0,
-    movement                INTEGER NOT NULL DEFAULT 0,
-    skill                   INTEGER NOT NULL DEFAULT 0,
-    speed                   INTEGER NOT NULL DEFAULT 0,
-    strength                INTEGER NOT NULL DEFAULT 0,
-    position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
-    giant                   BOOLEAN NOT NULL DEFAULT FALSE,
-    mvp                     BOOLEAN NOT NULL DEFAULT FALSE
 );
 
 CREATE TABLE simple_units (
@@ -134,13 +117,6 @@ CREATE TABLE team_type_unit_avas (
 
 
 -- Aggregation tables
-
-CREATE TABLE unit_abilities (
-    unit_id                 INTEGER,
-    ability_id              INTEGER,
-    FOREIGN KEY (ability_id) REFERENCES abilities (id) ON DELETE CASCADE,
-    FOREIGN KEY (unit_id) REFERENCES units (id) ON DELETE CASCADE
-);
 
 CREATE TABLE team_type_rules (
     team_type_id            INTEGER,
