@@ -69,8 +69,12 @@
 
     <!-- Database initializer -->
     <jdbc:initialize-database data-source="dataSource">
-        <jdbc:script location="${jdbc.initLocation}" />
-        <jdbc:script location="${jdbc.dataLocation}" />
+        <jdbc:script location="${jdbc.script.init.common}" />
+        <jdbc:script location="${jdbc.script.init.dbo}" />
+        <jdbc:script location="${jdbc.script.init.dbx}" />
+        <jdbc:script location="${jdbc.script.load.common}" />
+        <jdbc:script location="${jdbc.script.load.dbo}" />
+        <jdbc:script location="${jdbc.script.load.dbx}" />
     </jdbc:initialize-database>
 
 </beans>
