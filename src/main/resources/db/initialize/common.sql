@@ -21,28 +21,6 @@
 
 
 -- ****************************************
---                DROPS
--- ****************************************
-
-
--- Aggregation tables
-
-DROP TABLE IF EXISTS component_abilities;
-
-
--- Common tables
-
-DROP TABLE IF EXISTS abilities;
-
-
--- Component tables
-
-DROP TABLE IF EXISTS unit_components;
-DROP TABLE IF EXISTS component_positions;
-DROP TABLE IF EXISTS component_locations;
-
-
--- ****************************************
 --                CREATION
 -- ****************************************
 

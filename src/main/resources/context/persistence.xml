@@ -69,6 +69,9 @@
 
     <!-- Database initializer -->
     <jdbc:initialize-database data-source="dataSource">
+        <jdbc:script location="${jdbc.script.drop.common}" />
+        <jdbc:script location="${jdbc.script.drop.dbo}" />
+        <jdbc:script location="${jdbc.script.drop.dbx}" />
         <jdbc:script location="${jdbc.script.init.common}" />
         <jdbc:script location="${jdbc.script.init.dbo}" />
         <jdbc:script location="${jdbc.script.init.dbx}" />

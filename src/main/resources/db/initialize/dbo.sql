@@ -21,38 +21,6 @@
 
 
 -- ****************************************
---                DROPS
--- ****************************************
-
-
--- Aggregation tables
-
-DROP TABLE IF EXISTS unit_abilities;
-DROP TABLE IF EXISTS team_type_rules;
-DROP TABLE IF EXISTS composite_unit_components;
-
-
--- Availabilities tables
-
-DROP TABLE IF EXISTS team_type_unit_avas;
-DROP TABLE IF EXISTS team_type_asset_avas;
-
-
--- Team tables
-
-DROP TABLE IF EXISTS team_types;
-DROP TABLE IF EXISTS team_rules;
-
-
--- Unit tables
-
-DROP TABLE IF EXISTS units;
-DROP TABLE IF EXISTS simple_units;
-DROP TABLE IF EXISTS advancement_units;
-DROP TABLE IF EXISTS composite_advancement_units;
-
-
--- ****************************************
 --                CREATION
 -- ****************************************
 

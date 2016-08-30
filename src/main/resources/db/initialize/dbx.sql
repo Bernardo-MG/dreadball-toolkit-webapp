@@ -21,38 +21,6 @@
 
 
 -- ****************************************
---                DROPS
--- ****************************************
-
-
--- Aggregation tables
-
-DROP TABLE IF EXISTS unit_affinities;
-DROP TABLE IF EXISTS unit_hated_affinities;
-DROP TABLE IF EXISTS sponsor_affinity_groups;
-DROP TABLE IF EXISTS sponsor_affinity_avas_affinity_groups;
-
-
--- Availabilities tables
-
-DROP TABLE IF EXISTS sponsor_affinity_avas;
-DROP TABLE IF EXISTS sponsor_asset_avas;
-
-
--- Team tables
-
-DROP TABLE IF EXISTS sponsors;
-
-
--- Unit tables
-
-DROP TABLE IF EXISTS affinity_units;
-DROP TABLE IF EXISTS composite_affinity_units;
-DROP TABLE IF EXISTS affinity_unit_components;
-DROP TABLE IF EXISTS affinity_groups;
-
-
--- ****************************************
 --                CREATION
 -- ****************************************
 
