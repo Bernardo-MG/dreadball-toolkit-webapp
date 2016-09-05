@@ -29,35 +29,49 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     /**
      * Sponsor affinity groups availabilities repository.
      */
-    @Autowired
-    private SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
+    private final SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
 
     /**
      * DBX model factory
      */
-    @Autowired
-    private DbxModelFactory                            dbxModelFact;
+    private final DbxModelFactory                            dbxModelFact;
 
     /**
      * DBX rules.
      */
-    @Autowired
-    private DbxRules                                   dbxRules;
+    private final DbxRules                                   dbxRules;
 
     /**
      * Initial rank.
      */
     @Value("${sponsor.rank.initial}")
-    private Integer                                    initialRank;
+    private final Integer                                    initialRank;
 
     /**
      * Affinity units repository.
      */
-    @Autowired
-    private AffinityUnitRepository                     unitRepository;
+    private final AffinityUnitRepository                     unitRepository;
 
-    public DefaultDbxSponsorBuilder() {
+    @Autowired
+    public DefaultDbxSponsorBuilder(final DbxModelFactory modelFact,
+            final DbxRules rules,
+            final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo,
+            final AffinityUnitRepository unitRepo,
+            @Value("${sponsor.rank.initial}") final Integer rank) {
         super();
+
+        dbxModelFact = checkNotNull(modelFact,
+                "Received a null pointer as model factory");
+        dbxRules = checkNotNull(rules,
+                "Received a null pointer as rules service");
+
+        affinityAvasRepository = checkNotNull(affinityAvasRepo,
+                "Received a null pointer as affinities availabilities repository");
+        unitRepository = checkNotNull(unitRepo,
+                "Received a null pointer as units repository");
+
+        initialRank = checkNotNull(rank,
+                "Received a null pointer as initial rank");
     }
 
     @Override
