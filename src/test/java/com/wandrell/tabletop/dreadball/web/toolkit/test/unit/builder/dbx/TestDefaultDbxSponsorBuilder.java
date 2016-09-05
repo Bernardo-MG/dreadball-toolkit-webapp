@@ -19,6 +19,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.builder.dbx;
 import java.util.Collection;
 import java.util.LinkedList;
 
+import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -28,7 +29,8 @@ import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
@@ -41,12 +43,24 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.Spons
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
 /**
- * Integration tests for {@link DbxSponsorBuilder}.
+ * Unit tests for {@link DbxSponsorBuilder}.
  * <p>
  * Checks the following cases:
  * <ol>
- * <li>Acquiring the available units returns the expected values</li>
+ * <li>Acquiring the available units works with the dependencies and their data
+ * correctly, and returns the expected values</li>
  * </ol>
+ * <p>
+ * These tests make use of a specific mocked context, which will contain three
+ * units, being each of them a friend, an ally and a stranger to the sponsor.
+ * <p>
+ * The costs for a friend, an ally and a stranger will be 1, 2 and 3
+ * respectively.
+ * <p>
+ * The tested method will receive nearly empty arguments for this reason, the
+ * tests will verify that the method handles the data received through the
+ * dependencies correctly.
+ * <p>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -59,15 +73,101 @@ public class TestDefaultDbxSponsorBuilder {
         super();
     }
 
-    private final DbxSponsorBuilder getDbxSponsorBuilder() {
-        final DbxModelFactory modelFact;
-        final DbxRules rules;
-        final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo;
+    /**
+     * Tests that acquiring the available units works with the dependencies and
+     * their data correctly, and returns the expected values.
+     */
+    @Test
+    public final void testGetSponsorAvailableUnits() {
+        final DbxSponsorBuilder builder;      // Builder to test
+        final Iterable<? extends Unit> units; // Sponsor units
+        final Sponsor sponsor;                // Sponsor to get the units for
+        Integer cost;                         // Resulting cost
+
+        // Creates the builder with the mocked dependencies
+        builder = getDbxSponsorBuilder();
+
+        // The actual contents of the sponsor does not matter
+        // This is because the test data is received through the mocked
+        // dependencies
+        sponsor = Mockito.mock(Sponsor.class);
+
+        // Calls the method to test
+        units = builder.getSponsorAvailableUnits(sponsor);
+
+        // Calculates the final cost
+        cost = 0;
+        for (final Unit unit : units) {
+            cost += unit.getCost();
+        }
+
+        Assert.assertEquals(cost, (Integer) 6);
+    }
+
+    /**
+     * Returns the mocked affinity units repository.
+     * <p>
+     * This repository will contain three units. The actual values contained in
+     * these units does not matter, only their number.
+     * 
+     * @return the mocked affinity units repository
+     */
+    private final AffinityUnitRepository getAffinityUnitRepository() {
         final AffinityUnitRepository unitRepo;
-        final Integer rank;
-        final DbxSponsorBuilder builder;
         final Collection<PersistentAffinityUnit> units;
-        PersistentAffinityUnit unit;
+
+        unitRepo = Mockito.mock(AffinityUnitRepository.class);
+
+        // Only the number of units matters
+        units = new LinkedList<PersistentAffinityUnit>();
+        units.add(new PersistentAffinityUnit());
+        units.add(new PersistentAffinityUnit());
+        units.add(new PersistentAffinityUnit());
+
+        Mockito.when(unitRepo.findAll()).thenReturn(units);
+
+        return unitRepo;
+    }
+
+    /**
+     * Returns the mocked DBX rules service.
+     * <p>
+     * It is prepared to handle three units, and will return values as if these
+     * units were a friend, and ally and a stranger, in that order.
+     * 
+     * @return the mocked DBX rules service
+     */
+    private final DbxRules getDbxRules() {
+        final DbxRules rules;
+
+        rules = Mockito.mock(DbxRules.class);
+
+        // Remember: the test is prepared for three units
+
+        // The affinities will be: friend, ally and stranger
+        Mockito.when(rules.getAffinityLevel(Matchers.any(Sponsor.class),
+                Matchers.any(AffinityUnit.class)))
+                .thenReturn(AffinityLevel.FRIEND, AffinityLevel.ALLY,
+                        AffinityLevel.STRANGER);
+
+        // The costs will be: 1, 2 and 3
+        Mockito.when(rules.getUnitCost(Matchers.any(AffinityLevel.class),
+                Matchers.any(AffinityUnit.class))).thenReturn(1, 2, 3);
+
+        return rules;
+    }
+
+    /**
+     * Returns the DBX sponsor builder to test, with mocked dependencies.
+     * 
+     * @return the DBX sponsor builder with mocked dependencies
+     */
+    private final DbxSponsorBuilder getDbxSponsorBuilder() {
+        final DbxModelFactory modelFact;       // Model factory
+        final DbxRules rules;                  // Rules service
+        final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo;
+        final AffinityUnitRepository unitRepo; // Units repository
+        final Integer rank;                    // Initial rank
 
         modelFact = new DbxModelFactory() {
 
@@ -92,84 +192,14 @@ public class TestDefaultDbxSponsorBuilder {
 
         };
 
-        rules = Mockito.mock(DbxRules.class);
+        rules = getDbxRules();
         affinityAvasRepo = Mockito
                 .mock(SponsorAffinityGroupAvailabilityRepository.class);
-
-        unitRepo = Mockito.mock(AffinityUnitRepository.class);
-
-        units = new LinkedList<PersistentAffinityUnit>();
-
-        unit = new PersistentAffinityUnit();
-        unit.setFriendCost(1);
-        unit.setAllyCost(2);
-        unit.setStrangerCost(3);
-        units.add(unit);
-
-        unit = new PersistentAffinityUnit();
-        unit.setFriendCost(1);
-        unit.setAllyCost(2);
-        unit.setStrangerCost(3);
-        units.add(unit);
-
-        unit = new PersistentAffinityUnit();
-        unit.setFriendCost(1);
-        unit.setAllyCost(2);
-        unit.setStrangerCost(3);
-        units.add(unit);
-
-        Mockito.when(unitRepo.findAll()).thenReturn(units);
-
+        unitRepo = getAffinityUnitRepository();
         rank = 0;
 
-        builder = new DefaultDbxSponsorBuilder(modelFact, rules,
-                affinityAvasRepo, unitRepo, rank);
-
-        return builder;
-    }
-
-    /**
-     * Tests that acquiring the available units returns the expected values.
-     */
-    @Test
-    public final void testGetSponsorAvailableUnits() {
-        final Iterable<? extends Unit> units; // Sponsor units
-        final Sponsor sponsor;                // Sponsor to get the units for
-        final Collection<AffinityGroup> affs;
-        final DbxSponsorBuilder builder;
-        AffinityGroup affinity;
-
-        builder = getDbxSponsorBuilder();
-
-        sponsor = Mockito.mock(Sponsor.class);
-        affs = new LinkedList<AffinityGroup>();
-
-        affinity = Mockito.mock(AffinityGroup.class);
-        Mockito.when(affinity.getName()).thenReturn("alien");
-        affs.add(affinity);
-
-        affinity = Mockito.mock(AffinityGroup.class);
-        Mockito.when(affinity.getName()).thenReturn("dreadball");
-        affs.add(affinity);
-
-        affinity = Mockito.mock(AffinityGroup.class);
-        Mockito.when(affinity.getName()).thenReturn("insectoid");
-        affs.add(affinity);
-
-        affinity = Mockito.mock(AffinityGroup.class);
-        Mockito.when(affinity.getName()).thenReturn("psycho");
-        affs.add(affinity);
-
-        affinity = Mockito.mock(AffinityGroup.class);
-        Mockito.when(affinity.getName()).thenReturn("vicious");
-        affs.add(affinity);
-
-        Mockito.when(sponsor.getAffinityGroups()).thenReturn(affs);
-
-        units = builder.getSponsorAvailableUnits(sponsor);
-
-        // TODO: Verify it returns the expected costs
-        Assert.assertNotNull(units);
+        return new DefaultDbxSponsorBuilder(modelFact, rules, affinityAvasRepo,
+                unitRepo, rank);
     }
 
 }
