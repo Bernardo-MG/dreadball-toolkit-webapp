@@ -59,6 +59,8 @@ Or this one for Tomcat:
 $ mvn tomcat7:run-war -P h2,tomcat7
 ```
 
+After this the project will be accessible at [http://localhost:8080/dreadball/].
+
 ### Testing
 
 The integration tests require a database, which can be set up automatically if using the H2 profile. For this reason these tests should be run with the following command:
