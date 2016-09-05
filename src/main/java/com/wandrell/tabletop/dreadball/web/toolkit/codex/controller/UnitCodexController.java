@@ -19,8 +19,8 @@ package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.wandrell.tabletop.dreadball.codex.UnitCodex;
 
@@ -63,7 +63,7 @@ public class UnitCodexController {
      *            model map
      * @return the view for all the affinity units
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public final String getAllAffinityUnits(final ModelMap model) {
         model.put(PARAM_PLAYERS, getUnitCodexService().getAllAffinityUnits());
 

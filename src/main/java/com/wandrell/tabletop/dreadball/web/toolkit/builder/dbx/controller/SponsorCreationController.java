@@ -23,9 +23,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
@@ -113,7 +114,7 @@ public class SponsorCreationController {
      *            session data
      * @return the name for the view to show
      */
-    @RequestMapping(method = RequestMethod.POST)
+    @PostMapping
     public final String checkSponsorInfo(final ModelMap model,
             @ModelAttribute(BEAN_SPONSOR) @Valid final SponsorForm sponsor,
             final BindingResult bindingResult, final HttpSession session) {
@@ -155,7 +156,7 @@ public class SponsorCreationController {
      *            session status
      * @return the name for the sponsor edition view
      */
-    @RequestMapping(method = RequestMethod.GET)
+    @GetMapping
     public final String showSponsorForm(final ModelMap model,
             final SessionStatus status) {
         // Clears session

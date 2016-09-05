@@ -17,8 +17,10 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
@@ -104,7 +106,7 @@ public class DbxTeamBuilderRestController {
      *            team where the player will be added
      * @return the team with the new player
      */
-    @RequestMapping(path = "/players", method = RequestMethod.POST)
+    @PostMapping(path = "/players")
     public final SponsorTeam addPlayer(
             @RequestParam(name = PARAM_TEMPLATE_NAME,
                     defaultValue = "") final String templateName,
@@ -130,7 +132,7 @@ public class DbxTeamBuilderRestController {
      *            team containing the player
      * @return the team without the removed player
      */
-    @RequestMapping(path = "/players", method = RequestMethod.DELETE)
+    @DeleteMapping(path = "/players")
     public final SponsorTeam removePlayer(
             @RequestParam(name = PARAM_POSITION,
                     defaultValue = "-1") final Integer position,
@@ -149,8 +151,7 @@ public class DbxTeamBuilderRestController {
      *            the team where the cheerleaders will be set
      * @return the team with the cheerleaders set
      */
-    @RequestMapping(path = "/assets/cheerleader",
-            method = { RequestMethod.POST, RequestMethod.PUT })
+    @PutMapping(path = "/assets/cheerleader")
     public final SponsorTeam setCheerleaders(
             @RequestParam(name = PARAM_CHEERLEADERS,
                     defaultValue = "-1") final Integer cheerleaders,
@@ -171,8 +172,7 @@ public class DbxTeamBuilderRestController {
      *            the team where the dice will be set
      * @return the team with the dice set
      */
-    @RequestMapping(path = "/assets/dice",
-            method = { RequestMethod.POST, RequestMethod.PUT })
+    @PutMapping(path = "/assets/dice")
     public final SponsorTeam
             setDice(@RequestParam(name = PARAM_DICE,
                     defaultValue = "-1") final Integer dice,
@@ -193,8 +193,7 @@ public class DbxTeamBuilderRestController {
      *            the team where the medibots will be set
      * @return the team with the medibots set
      */
-    @RequestMapping(path = "/assets/medibots",
-            method = { RequestMethod.POST, RequestMethod.PUT })
+    @PutMapping(path = "/assets/medibots")
     public final SponsorTeam setMedibots(
             @RequestParam(name = PARAM_MEDIBOTS,
                     defaultValue = "-1") final Integer medibots,
@@ -215,8 +214,7 @@ public class DbxTeamBuilderRestController {
      *            the team where the sabotage cards will be set
      * @return the team with the sabotage cards set
      */
-    @RequestMapping(path = "/assets/sabotage",
-            method = { RequestMethod.POST, RequestMethod.PUT })
+    @PutMapping(path = "/assets/sabotage")
     public final SponsorTeam setSabotageCards(
             @RequestParam(name = PARAM_SABOTAGES,
                     defaultValue = "-1") final Integer sabotage,
@@ -237,8 +235,7 @@ public class DbxTeamBuilderRestController {
      *            the team where the special move cards will be set
      * @return the team with the special move cards set
      */
-    @RequestMapping(path = "/assets/move",
-            method = { RequestMethod.POST, RequestMethod.PUT })
+    @PutMapping(path = "/assets/move")
     public final SponsorTeam setSpecialMoveCards(
             @RequestParam(name = PARAM_MOVES,
                     defaultValue = "-1") final Integer move,
@@ -259,8 +256,7 @@ public class DbxTeamBuilderRestController {
      *            the team where the wagers will be set
      * @return the team with the wagers set
      */
-    @RequestMapping(path = "/assets/wager",
-            method = { RequestMethod.POST, RequestMethod.PUT })
+    @PutMapping(path = "/assets/wager")
     public final SponsorTeam setWagers(
             @RequestParam(name = PARAM_WAGERS,
                     defaultValue = "-1") final Integer wagers,
