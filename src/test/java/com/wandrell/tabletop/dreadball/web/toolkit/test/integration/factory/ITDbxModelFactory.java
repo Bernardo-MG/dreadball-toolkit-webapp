@@ -25,7 +25,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 
 /**
  * Integration tests for {@link DbxModelFactory}.

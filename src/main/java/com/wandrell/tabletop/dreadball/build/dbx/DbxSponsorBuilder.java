@@ -20,7 +20,7 @@ import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGr
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.web.toolkit.model.form.SponsorForm;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 
 /**
  * Facade service for the DBX team builder.

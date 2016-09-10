@@ -14,7 +14,7 @@
  * the License.
  */
 /**
- * Forms beans.
+ * Assets data used in the forms.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.model.form;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.asset;

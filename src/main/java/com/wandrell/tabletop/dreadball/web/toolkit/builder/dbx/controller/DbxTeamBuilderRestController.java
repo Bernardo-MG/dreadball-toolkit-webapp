@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.web.toolkit.model.form.asset.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.asset.SponsorTeamAssets;
 
 /**
  * Controller for the DBX team building AJAX operations.

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.model.form;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
