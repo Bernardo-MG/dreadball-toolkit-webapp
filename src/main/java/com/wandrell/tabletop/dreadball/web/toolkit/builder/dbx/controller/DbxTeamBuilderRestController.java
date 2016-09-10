@@ -17,9 +17,11 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -27,6 +29,7 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.web.toolkit.model.form.asset.SponsorTeamAssets;
 
 /**
  * Controller for the DBX team building AJAX operations.
@@ -40,34 +43,9 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 public class DbxTeamBuilderRestController {
 
     /**
-     * Parameter name for the cheerleaders.
-     */
-    private static final String PARAM_CHEERLEADERS  = "cheerleaders";
-
-    /**
-     * Parameter name for the dice.
-     */
-    private static final String PARAM_DICE          = "dice";
-
-    /**
-     * Parameter name for the medibots.
-     */
-    private static final String PARAM_MEDIBOTS      = "medibots";
-
-    /**
-     * Parameter name for the special move cards.
-     */
-    private static final String PARAM_MOVES         = "cards";
-
-    /**
      * Parameter name for the position.
      */
     private static final String PARAM_POSITION      = "position";
-
-    /**
-     * Parameter name for the sabotage cards.
-     */
-    private static final String PARAM_SABOTAGES     = "cards";
 
     /**
      * Parameter name for the team.
@@ -78,11 +56,6 @@ public class DbxTeamBuilderRestController {
      * Parameter name for the template name.
      */
     private static final String PARAM_TEMPLATE_NAME = "templateName";
-
-    /**
-     * Parameter name for the wagers.
-     */
-    private static final String PARAM_WAGERS        = "wagers";
 
     /**
      * DBX team building service.
@@ -106,7 +79,8 @@ public class DbxTeamBuilderRestController {
      *            team where the player will be added
      * @return the team with the new player
      */
-    @PostMapping(path = "/players")
+    @PostMapping(path = "/players", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam addPlayer(
             @RequestParam(name = PARAM_TEMPLATE_NAME,
                     defaultValue = "") final String templateName,
@@ -132,7 +106,9 @@ public class DbxTeamBuilderRestController {
      *            team containing the player
      * @return the team without the removed player
      */
-    @DeleteMapping(path = "/players")
+    @DeleteMapping(path = "/players",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam removePlayer(
             @RequestParam(name = PARAM_POSITION,
                     defaultValue = "-1") final Integer position,
@@ -151,14 +127,13 @@ public class DbxTeamBuilderRestController {
      *            the team where the cheerleaders will be set
      * @return the team with the cheerleaders set
      */
-    @PutMapping(path = "/assets/cheerleader")
+    @PutMapping(path = "/assets/cheerleader",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam setCheerleaders(
-            @RequestParam(name = PARAM_CHEERLEADERS,
-                    defaultValue = "-1") final Integer cheerleaders,
+            @RequestBody final SponsorTeamAssets assets,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        if (cheerleaders >= 0) {
-            team.setCheerleaders(cheerleaders);
-        }
+        team.setCheerleaders(assets.getCheerleaders());
 
         return team;
     }
@@ -172,14 +147,13 @@ public class DbxTeamBuilderRestController {
      *            the team where the dice will be set
      * @return the team with the dice set
      */
-    @PutMapping(path = "/assets/dice")
-    public final SponsorTeam
-            setDice(@RequestParam(name = PARAM_DICE,
-                    defaultValue = "-1") final Integer dice,
-                    @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        if (dice >= 0) {
-            team.setCoachingDice(dice);
-        }
+    @PutMapping(path = "/assets/dice",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final SponsorTeam setDice(
+            @RequestBody final SponsorTeamAssets assets,
+            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
+        team.setCoachingDice(assets.getCoachingDice());
 
         return team;
     }
@@ -193,14 +167,13 @@ public class DbxTeamBuilderRestController {
      *            the team where the medibots will be set
      * @return the team with the medibots set
      */
-    @PutMapping(path = "/assets/medibots")
+    @PutMapping(path = "/assets/medibots",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam setMedibots(
-            @RequestParam(name = PARAM_MEDIBOTS,
-                    defaultValue = "-1") final Integer medibots,
+            @RequestBody final SponsorTeamAssets assets,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        if (medibots >= 0) {
-            team.setMediBots(medibots);
-        }
+        team.setMediBots(assets.getMediBots());
 
         return team;
     }
@@ -214,14 +187,13 @@ public class DbxTeamBuilderRestController {
      *            the team where the sabotage cards will be set
      * @return the team with the sabotage cards set
      */
-    @PutMapping(path = "/assets/sabotage")
+    @PutMapping(path = "/assets/sabotage",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam setSabotageCards(
-            @RequestParam(name = PARAM_SABOTAGES,
-                    defaultValue = "-1") final Integer sabotage,
+            @RequestBody final SponsorTeamAssets assets,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        if (sabotage >= 0) {
-            team.setSabotageCards(sabotage);
-        }
+        team.setSabotageCards(assets.getSabotageCards());
 
         return team;
     }
@@ -235,14 +207,13 @@ public class DbxTeamBuilderRestController {
      *            the team where the special move cards will be set
      * @return the team with the special move cards set
      */
-    @PutMapping(path = "/assets/move")
+    @PutMapping(path = "/assets/move",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam setSpecialMoveCards(
-            @RequestParam(name = PARAM_MOVES,
-                    defaultValue = "-1") final Integer move,
+            @RequestBody final SponsorTeamAssets assets,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        if (move >= 0) {
-            team.setSpecialMoveCards(move);
-        }
+        team.setSpecialMoveCards(assets.getSpecialMoveCards());
 
         return team;
     }
@@ -256,14 +227,13 @@ public class DbxTeamBuilderRestController {
      *            the team where the wagers will be set
      * @return the team with the wagers set
      */
-    @PutMapping(path = "/assets/wager")
+    @PutMapping(path = "/assets/wager",
+            consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam setWagers(
-            @RequestParam(name = PARAM_WAGERS,
-                    defaultValue = "-1") final Integer wagers,
+            @RequestBody final SponsorTeamAssets assets,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        if (wagers >= 0) {
-            team.setWagers(wagers);
-        }
+        team.setWagers(assets.getWagers());
 
         return team;
     }

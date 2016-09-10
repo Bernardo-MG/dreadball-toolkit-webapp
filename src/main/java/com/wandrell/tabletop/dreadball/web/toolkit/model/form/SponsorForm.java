@@ -69,7 +69,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Retuns the affinity A.
+     * Returns the affinity A.
      * 
      * @return the affinity A
      */
@@ -78,7 +78,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Retuns the affinity B.
+     * Returns the affinity B.
      * 
      * @return the affinity B
      */
@@ -87,7 +87,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Retuns the affinity C.
+     * Returns the affinity C.
      * 
      * @return the affinity C
      */
@@ -96,7 +96,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Retuns the affinity D.
+     * Returns the affinity D.
      * 
      * @return the affinity D
      */
@@ -105,7 +105,7 @@ public final class SponsorForm {
     }
 
     /**
-     * Retuns the affinity E.
+     * Returns the affinity E.
      * 
      * @return the affinity E
      */

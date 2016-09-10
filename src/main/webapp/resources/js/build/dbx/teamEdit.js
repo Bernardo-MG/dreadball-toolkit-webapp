@@ -103,10 +103,13 @@ function setDice(dice) {
 
 	$.ajax({
 		url : ajaxUrl,
-		type : 'PUT',
-		data : {
-			dice : dice
-		},
+		type: 'PUT',
+		dataType: 'json',
+		contentType: 'application/json;',
+		processData:false,
+		data : JSON.stringify({
+			coachingDice : dice
+		}),
 		success : function(team) {
 			$("#dice").val(team.dice);
 			loadTeamAssetCost(team);
@@ -123,9 +126,12 @@ function setSabotageCards(cards) {
 	$.ajax({
 		url : ajaxUrl,
 		type : 'PUT',
-		data : {
-			cards : cards
-		},
+		dataType: 'json',
+		contentType: 'application/json;',
+		processData:false,
+		data : JSON.stringify({
+			sabotageCards : cards
+		}),
 		success : function(team) {
 			$("#sabotageCards").val(team.sabotage_cards);
 			loadTeamAssetCost(team);
@@ -142,9 +148,12 @@ function setSpecialMoveCards(cards) {
 	$.ajax({
 		url : ajaxUrl,
 		type : 'PUT',
-		data : {
-			cards : cards
-		},
+		dataType: 'json',
+		contentType: 'application/json;',
+		processData:false,
+		data : JSON.stringify({
+			specialMoveCards : cards
+		}),
 		success : function(team) {
 			$("#moveCards").val(team.special_move_cards);
 			loadTeamAssetCost(team);
@@ -161,9 +170,12 @@ function setWagers(wagers) {
 	$.ajax({
 		url : ajaxUrl,
 		type : 'PUT',
-		data : {
+		dataType: 'json',
+		contentType: 'application/json;',
+		processData:false,
+		data : JSON.stringify({
 			wagers : wagers
-		},
+		}),
 		success : function(team) {
 			$("#wagers").val(team.wagers);
 			loadTeamAssetCost(team);
@@ -180,9 +192,12 @@ function setCheerleaders(cheerleaders) {
 	$.ajax({
 		url : ajaxUrl,
 		type : 'PUT',
-		data : {
+		dataType: 'json',
+		contentType: 'application/json;',
+		processData:false,
+		data : JSON.stringify({
 			cheerleaders : cheerleaders
-		},
+		}),
 		success : function(team) {
 			$("#cheerleaders").val(team.cheerleaders);
 			loadTeamAssetCost(team);
@@ -199,9 +214,12 @@ function setMediBots(medibots) {
 	$.ajax({
 		url : ajaxUrl,
 		type : 'PUT',
-		data : {
-			medibots : medibots
-		},
+		dataType: 'json',
+		contentType: 'application/json;',
+		processData:false,
+		data : JSON.stringify({
+			mediBots : medibots
+		}),
 		success : function(team) {
 			$("#medibots").val(team.medibots);
 			loadTeamAssetCost(team);
