@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.asset;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean;
 
 /**
  * Form data for the Sponsor team assets.

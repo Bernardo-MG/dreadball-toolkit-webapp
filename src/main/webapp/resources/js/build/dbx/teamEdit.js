@@ -67,9 +67,12 @@ function addPlayer(template) {
 	$.ajax({
 		url : ajaxUrl,
 		type : 'POST',
-		data : {
+		dataType: 'json',
+		contentType: 'application/json;',
+		processData:false,
+		data : JSON.stringify({
 			templateName : template
-		},
+		}),
 		success : function(team) {
 			loadTeamUnits(team.players);
 			$("#teamValue").val(team.valoration);
@@ -81,21 +84,26 @@ function addPlayer(template) {
 }
 
 function removePlayer(pos) {
-	var ajaxUrl = $(location).attr('href') + "/players" + "?position=" + pos;
+	var ajaxUrl = $(location).attr('href') + "/players";
 
-	$
-			.ajax({
-				url : ajaxUrl,
-				type : 'DELETE',
-				success : function(team) {
-					loadTeamUnits(team.players);
-					$("#teamValue").val(team.valoration);
-				},
-				error : function() {
-					console
-							.log('An error occurred while removing a unit through AJAX');
-				}
-			});
+	$.ajax({
+		url : ajaxUrl,
+		type : 'DELETE',
+		dataType: 'json',
+		contentType: 'application/json;',
+		processData:false,
+		data : JSON.stringify({
+			position : pos
+		}),
+		success : function(team) {
+			loadTeamUnits(team.players);
+			$("#teamValue").val(team.valoration);
+		},
+		error : function() {
+			console
+					.log('An error occurred while removing a unit through AJAX');
+		}
+	});
 }
 
 function setDice(dice) {

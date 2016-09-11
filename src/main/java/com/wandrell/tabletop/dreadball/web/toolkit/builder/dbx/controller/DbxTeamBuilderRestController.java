@@ -23,13 +23,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.asset.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
 
 /**
  * Controller for the DBX team building AJAX operations.
@@ -43,19 +43,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.a
 public class DbxTeamBuilderRestController {
 
     /**
-     * Parameter name for the position.
-     */
-    private static final String PARAM_POSITION      = "position";
-
-    /**
      * Parameter name for the team.
      */
-    private static final String PARAM_TEAM          = "team";
-
-    /**
-     * Parameter name for the template name.
-     */
-    private static final String PARAM_TEMPLATE_NAME = "templateName";
+    private static final String PARAM_TEAM = "team";
 
     /**
      * DBX team building service.
@@ -82,8 +72,7 @@ public class DbxTeamBuilderRestController {
     @PostMapping(path = "/players", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam addPlayer(
-            @RequestParam(name = PARAM_TEMPLATE_NAME,
-                    defaultValue = "") final String templateName,
+            @RequestBody final SponsorTeamPlayer player,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
         final Integer maxUnits; // Maximum number of units allowed
 
@@ -91,7 +80,7 @@ public class DbxTeamBuilderRestController {
 
         // TODO: Instead of enforcing the maximum send a warning
         if (team.getPlayers().size() < maxUnits) {
-            getDbxTeamBuilderService().addUnit(team, templateName);
+            getDbxTeamBuilderService().addUnit(team, player.getTemplateName());
         }
 
         return team;
@@ -110,10 +99,9 @@ public class DbxTeamBuilderRestController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam removePlayer(
-            @RequestParam(name = PARAM_POSITION,
-                    defaultValue = "-1") final Integer position,
+            @RequestBody final SponsorTeamPlayer player,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        team.removePlayer(position);
+        team.removePlayer(player.getPosition());
 
         return team;
     }
