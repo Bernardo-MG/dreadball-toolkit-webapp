@@ -18,7 +18,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
@@ -46,38 +45,50 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     /**
      * DBX rules service.
      */
-    @Autowired
-    private DbxRules               dbxRules;
+    private final DbxRules               dbxRules;
 
     /**
      * Maximum number of units a Sponsor may have.
      */
-    @Value("${sponsor.players.max}")
-    private Integer                maxTeamUnits;
+    private final Integer                maxTeamUnits;
 
     /**
      * Message source.
      */
-    @Autowired
-    private MessageSource          messageSource;
+    private final MessageSource          messageSource;
 
     /**
      * DBX model factory
      */
-    @Autowired
-    private DbxModelFactory        modelFactory;
+    private final DbxModelFactory        modelFactory;
 
     /**
      * Affinity units repository.
      */
-    @Autowired
-    private AffinityUnitRepository unitRepository;
+    private final AffinityUnitRepository unitRepository;
 
     /**
      * Creates a DBX team builder with the specified dependencies.
      */
-    public DefaultDbxTeamBuilder() {
+    public DefaultDbxTeamBuilder(final DbxModelFactory modelFact,
+            final DbxRules rules, final AffinityUnitRepository unitRepo,
+            @Value("${sponsor.players.max}") final Integer maxUnits,
+            final MessageSource msgSource) {
         super();
+
+        modelFactory = checkNotNull(modelFact,
+                "Received a null pointer as model factory");
+        dbxRules = checkNotNull(rules,
+                "Received a null pointer as rules service");
+
+        unitRepository = checkNotNull(unitRepo,
+                "Received a null pointer as units repository");
+
+        maxTeamUnits = checkNotNull(maxUnits,
+                "Received a null pointer as team units maximum");
+
+        messageSource = checkNotNull(msgSource,
+                "Received a null pointer as message source");
     }
 
     @Override
