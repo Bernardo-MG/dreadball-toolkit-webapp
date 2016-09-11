@@ -19,17 +19,13 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.MessageSource;
-import org.springframework.context.NoSuchMessageException;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
@@ -53,11 +49,6 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     private final Integer                maxTeamUnits;
 
     /**
-     * Message source.
-     */
-    private final MessageSource          messageSource;
-
-    /**
      * DBX model factory
      */
     private final DbxModelFactory        modelFactory;
@@ -72,8 +63,7 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
      */
     public DefaultDbxTeamBuilder(final DbxModelFactory modelFact,
             final DbxRules rules, final AffinityUnitRepository unitRepo,
-            @Value("${sponsor.players.max}") final Integer maxUnits,
-            final MessageSource msgSource) {
+            @Value("${sponsor.players.max}") final Integer maxUnits) {
         super();
 
         modelFactory = checkNotNull(modelFact,
@@ -86,51 +76,39 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
 
         maxTeamUnits = checkNotNull(maxUnits,
                 "Received a null pointer as team units maximum");
-
-        messageSource = checkNotNull(msgSource,
-                "Received a null pointer as message source");
     }
 
     @Override
-    public final void addUnit(final SponsorTeam team,
+    public final Integer getMaxTeamUnits() {
+        return maxTeamUnits;
+    }
+
+    @Override
+    public final Unit getUnit(final Sponsor sponsor,
             final String templateName) {
         final AffinityUnit affUnit;  // Unit from the repository
         final Integer cost;          // Unit cost
         final Unit unit;             // Unit to add
-        String name;           // Unit name
         AffinityLevel affinityLevel; // Affinity level relationship
 
-        checkNotNull(team, "Received a null pointer as team");
+        checkNotNull(sponsor, "Received a null pointer as sponsor");
         checkNotNull(templateName, "Received a null pointer as template name");
 
         affUnit = getAffinityUnitRepository().findByTemplateName(templateName);
 
         if (affUnit != null) {
-            // TODO: Is this internationalization step really needed here?
-            try {
-                name = getMessageSource().getMessage(affUnit.getTemplateName(),
-                        null, LocaleContextHolder.getLocale());
-            } catch (final NoSuchMessageException e) {
-                name = affUnit.getTemplateName();
-            }
-            affinityLevel = getDbxRules().getAffinityLevel(team.getSponsor(),
-                    affUnit);
+            affinityLevel = getDbxRules().getAffinityLevel(sponsor, affUnit);
             cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
 
             unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
                     affUnit.getAbilities(), affUnit.getMvp(),
                     affUnit.getGiant());
-
-            ((DefaultUnit) unit).setName(name);
-
-            team.addPlayer(unit);
+        } else {
+            unit = null;
         }
-    }
 
-    @Override
-    public final Integer getMaxTeamUnits() {
-        return maxTeamUnits;
+        return unit;
     }
 
     /**
@@ -148,15 +126,6 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
 
     private final DbxRules getDbxRules() {
         return dbxRules;
-    }
-
-    /**
-     * Returns the message source.
-     * 
-     * @return the message source
-     */
-    private final MessageSource getMessageSource() {
-        return messageSource;
     }
 
 }

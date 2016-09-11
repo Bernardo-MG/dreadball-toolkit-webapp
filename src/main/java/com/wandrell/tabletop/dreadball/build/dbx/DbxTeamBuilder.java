@@ -16,7 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx;
 
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
  * Facade service for the DBX team builder.
@@ -26,22 +27,22 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 public interface DbxTeamBuilder {
 
     /**
-     * Adds a unit to the specified team.
-     * <p>
-     * The unit will be acquired through its template name.
-     * 
-     * @param team
-     *            team where the unit will be added
-     * @param templateName
-     *            name of the template to add
-     */
-    public void addUnit(final SponsorTeam team, final String templateName);
-
-    /**
      * Returns the maximum number of units a Sponsor may have.
      * 
      * @return the Sponsors maximum number of units
      */
     public Integer getMaxTeamUnits();
+
+    /**
+     * Returns the unit created from the specified template and set up for the
+     * received sponsor.
+     * 
+     * @param sponsor
+     *            Sponsor for which the unit is prepared
+     * @param templateName
+     *            template to create the unit from
+     * @return
+     */
+    public Unit getUnit(final Sponsor sponsor, final String templateName);
 
 }

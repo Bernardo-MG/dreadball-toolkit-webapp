@@ -24,10 +24,9 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
  * Integration tests for {@link DbxTeamBuilder}.
@@ -54,10 +53,7 @@ public class ITDbxTeamBuilder
      * Builder to test.
      */
     @Autowired
-    private DbxTeamBuilder  builder;
-
-    @Autowired
-    private DbxModelFactory modelFactory;
+    private DbxTeamBuilder builder;
 
     /**
      * Default constructor.
@@ -70,33 +66,31 @@ public class ITDbxTeamBuilder
      * Tests that adding an existing unit works as expected.
      */
     @Test
-    public final void testGetSponsorAvailableUnits_AddUnit_Existing_Added() {
-        final Sponsor sponsor;  // Sponsor for the team
-        final SponsorTeam team; // Team for the test
+    public final void testGetSponsorAvailableUnits_GetUnit_Existing_Created() {
+        final Sponsor sponsor; // Sponsor for the team
+        final Unit unit;       // Created unit
 
         sponsor = new DefaultSponsor();
-        team = modelFactory.getSponsorTeam(sponsor);
 
-        builder.addUnit(team, "ada-lorana_guard_affinity");
+        unit = builder.getUnit(sponsor, "ada-lorana_guard_affinity");
 
-        Assert.assertEquals(team.getPlayers().size(), 1);
+        Assert.assertEquals(unit.getTemplateName(),
+                "ada-lorana_guard_affinity");
     }
 
     /**
      * Tests that adding a not existing unit does nothing.
      */
     @Test
-    public final void
-            testGetSponsorAvailableUnits_AddUnit_NotExisting_NotAdded() {
-        final Sponsor sponsor;  // Sponsor for the team
-        final SponsorTeam team; // Team for the test
+    public final void testGetSponsorAvailableUnits_GetUnit_NotExisting_Null() {
+        final Sponsor sponsor; // Sponsor for the team
+        final Unit unit;       // Created unit
 
         sponsor = new DefaultSponsor();
-        team = modelFactory.getSponsorTeam(sponsor);
 
-        builder.addUnit(team, "-");
+        unit = builder.getUnit(sponsor, "-");
 
-        Assert.assertEquals(team.getPlayers().size(), 0);
+        Assert.assertNull(unit);
     }
 
 }
