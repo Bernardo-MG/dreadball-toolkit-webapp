@@ -74,8 +74,8 @@ public class DbxTeamBuilderRestController {
     /**
      * Adds a player to the team.
      * 
-     * @param templateName
-     *            template name of the player to add
+     * @param player
+     *            data of the player to add
      * @param team
      *            team where the player will be added
      * @return the team with the new player
@@ -115,8 +115,8 @@ public class DbxTeamBuilderRestController {
     /**
      * Removes a player from the team.
      * 
-     * @param position
-     *            numeric position of the player in the team
+     * @param player
+     *            data of the player to remove
      * @param team
      *            team containing the player
      * @return the team without the removed player

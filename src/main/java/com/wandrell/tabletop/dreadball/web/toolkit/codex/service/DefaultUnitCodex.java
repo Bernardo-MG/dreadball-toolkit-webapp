@@ -39,9 +39,6 @@ public final class DefaultUnitCodex implements UnitCodex {
 
     /**
      * Constructs a service with the specified arguments.
-     * 
-     * @param affinityUnitRepo
-     *            the affinity units repository
      */
     public DefaultUnitCodex() {
         super();

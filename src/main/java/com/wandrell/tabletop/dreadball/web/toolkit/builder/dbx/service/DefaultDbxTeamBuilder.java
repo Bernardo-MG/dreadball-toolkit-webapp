@@ -60,6 +60,15 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
 
     /**
      * Creates a DBX team builder with the specified dependencies.
+     * 
+     * @param modelFact
+     *            model factory
+     * @param rules
+     *            rules service
+     * @param unitRepo
+     *            units repository
+     * @param maxUnits
+     *            maximum allowed units
      */
     public DefaultDbxTeamBuilder(final DbxModelFactory modelFact,
             final DbxRules rules, final AffinityUnitRepository unitRepo,

@@ -41,7 +41,7 @@ public interface DbxTeamBuilder {
      *            Sponsor for which the unit is prepared
      * @param templateName
      *            template to create the unit from
-     * @return
+     * @return the unit created
      */
     public Unit getUnit(final Sponsor sponsor, final String templateName);
 
