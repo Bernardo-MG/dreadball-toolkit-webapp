@@ -133,121 +133,38 @@ public class DbxTeamBuilderRestController {
     }
 
     /**
-     * Sets the number of cheerleaders in the team.
+     * Sets the assets in the team.
      * 
-     * @param cheerleaders
-     *            number of cheerleaders to set in the team
-     * @param team
-     *            the team where the cheerleaders will be set
-     * @return the team with the cheerleaders set
-     */
-    @PutMapping(path = "/assets/cheerleader",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeam setCheerleaders(
-            @RequestBody final SponsorTeamAssets assets,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        team.setCheerleaders(assets.getCheerleaders());
-
-        return team;
-    }
-
-    /**
-     * Sets the number of dice in the team.
-     * 
-     * @param dice
-     *            number of dice to set in the team
+     * @param assets
+     *            the assets to set on the team
      * @param team
      *            the team where the dice will be set
-     * @return the team with the dice set
+     * @return the team with the new assets set
      */
-    @PutMapping(path = "/assets/dice",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
+    @PutMapping(path = "/assets", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeam setDice(
+    public final SponsorTeam setAssets(
             @RequestBody final SponsorTeamAssets assets,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        team.setCoachingDice(assets.getCoachingDice());
 
-        return team;
-    }
-
-    /**
-     * Sets the number of medibots in the team.
-     * 
-     * @param medibots
-     *            number of medibots to set in the team
-     * @param team
-     *            the team where the medibots will be set
-     * @return the team with the medibots set
-     */
-    @PutMapping(path = "/assets/medibots",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeam setMedibots(
-            @RequestBody final SponsorTeamAssets assets,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        team.setMediBots(assets.getMediBots());
-
-        return team;
-    }
-
-    /**
-     * Sets the number of sabotage cards in the team.
-     * 
-     * @param sabotage
-     *            number of sabotage cards to set in the team
-     * @param team
-     *            the team where the sabotage cards will be set
-     * @return the team with the sabotage cards set
-     */
-    @PutMapping(path = "/assets/sabotage",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeam setSabotageCards(
-            @RequestBody final SponsorTeamAssets assets,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        team.setSabotageCards(assets.getSabotageCards());
-
-        return team;
-    }
-
-    /**
-     * Sets the number of special move cards in the team.
-     * 
-     * @param move
-     *            number of special move cards to set in the team
-     * @param team
-     *            the team where the special move cards will be set
-     * @return the team with the special move cards set
-     */
-    @PutMapping(path = "/assets/move",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeam setSpecialMoveCards(
-            @RequestBody final SponsorTeamAssets assets,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        team.setSpecialMoveCards(assets.getSpecialMoveCards());
-
-        return team;
-    }
-
-    /**
-     * Sets the number of wagers in the team.
-     * 
-     * @param wagers
-     *            number of wagers to set in the team
-     * @param team
-     *            the team where the wagers will be set
-     * @return the team with the wagers set
-     */
-    @PutMapping(path = "/assets/wager",
-            consumes = MediaType.APPLICATION_JSON_VALUE,
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeam setWagers(
-            @RequestBody final SponsorTeamAssets assets,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        team.setWagers(assets.getWagers());
+        if (assets.getCheerleaders() != null) {
+            team.setCheerleaders(assets.getCheerleaders());
+        }
+        if (assets.getCoachingDice() != null) {
+            team.setCoachingDice(assets.getCoachingDice());
+        }
+        if (assets.getMediBots() != null) {
+            team.setMediBots(assets.getMediBots());
+        }
+        if (assets.getSabotageCards() != null) {
+            team.setSabotageCards(assets.getSabotageCards());
+        }
+        if (assets.getSpecialMoveCards() != null) {
+            team.setSpecialMoveCards(assets.getSpecialMoveCards());
+        }
+        if (assets.getWagers() != null) {
+            team.setWagers(assets.getWagers());
+        }
 
         return team;
     }

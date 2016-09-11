@@ -107,7 +107,7 @@ function removePlayer(pos) {
 }
 
 function setDice(dice) {
-	var ajaxUrl = $(location).attr('href') + "/assets/dice";
+	var ajaxUrl = $(location).attr('href') + "/assets";
 
 	$.ajax({
 		url : ajaxUrl,
@@ -129,7 +129,7 @@ function setDice(dice) {
 }
 
 function setSabotageCards(cards) {
-	var ajaxUrl = $(location).attr('href') + "/assets/sabotage";
+	var ajaxUrl = $(location).attr('href') + "/assets";
 
 	$.ajax({
 		url : ajaxUrl,
@@ -151,7 +151,7 @@ function setSabotageCards(cards) {
 }
 
 function setSpecialMoveCards(cards) {
-	var ajaxUrl = $(location).attr('href') + "/assets/move";
+	var ajaxUrl = $(location).attr('href') + "/assets";
 
 	$.ajax({
 		url : ajaxUrl,
@@ -173,7 +173,7 @@ function setSpecialMoveCards(cards) {
 }
 
 function setWagers(wagers) {
-	var ajaxUrl = $(location).attr('href') + "/assets/wager";
+	var ajaxUrl = $(location).attr('href') + "/assets";
 
 	$.ajax({
 		url : ajaxUrl,
@@ -195,7 +195,7 @@ function setWagers(wagers) {
 }
 
 function setCheerleaders(cheerleaders) {
-	var ajaxUrl = $(location).attr('href') + "/assets/cheerleader";
+	var ajaxUrl = $(location).attr('href') + "/assets";
 
 	$.ajax({
 		url : ajaxUrl,
@@ -217,7 +217,7 @@ function setCheerleaders(cheerleaders) {
 }
 
 function setMediBots(medibots) {
-	var ajaxUrl = $(location).attr('href') + "/assets/medibots";
+	var ajaxUrl = $(location).attr('href') + "/assets";
 
 	$.ajax({
 		url : ajaxUrl,
