@@ -37,8 +37,8 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.DefaultDbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.DefaultDbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 

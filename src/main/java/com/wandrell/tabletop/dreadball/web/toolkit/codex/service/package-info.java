@@ -14,7 +14,7 @@
  * the License.
  */
 /**
- * Team building services.
+ * Codex services.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
