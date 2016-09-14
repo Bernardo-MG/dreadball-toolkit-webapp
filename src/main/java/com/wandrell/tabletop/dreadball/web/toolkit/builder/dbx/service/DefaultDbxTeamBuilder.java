@@ -23,7 +23,7 @@ import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
@@ -93,20 +93,20 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     }
 
     @Override
-    public final Unit getUnit(final Sponsor sponsor,
-            final String templateName) {
+    public final Unit getUnit(final String templateName,
+            final Iterable<AffinityGroup> affinities) {
         final AffinityUnit affUnit;  // Unit from the repository
         final Integer cost;          // Unit cost
         final Unit unit;             // Unit to add
         AffinityLevel affinityLevel; // Affinity level relationship
 
-        checkNotNull(sponsor, "Received a null pointer as sponsor");
         checkNotNull(templateName, "Received a null pointer as template name");
+        checkNotNull(affinities, "Received a null pointer as affinities");
 
         affUnit = getAffinityUnitRepository().findByTemplateName(templateName);
 
         if (affUnit != null) {
-            affinityLevel = getDbxRules().getAffinityLevel(sponsor, affUnit);
+            affinityLevel = getDbxRules().getAffinityLevel(affUnit, affinities);
             cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
 
             unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,

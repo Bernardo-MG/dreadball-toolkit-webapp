@@ -18,9 +18,6 @@ package com.wandrell.tabletop.dreadball.rules;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Collection;
-
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
@@ -37,19 +34,17 @@ public class DefaultDbxRules implements DbxRules {
     }
 
     @Override
-    public final AffinityLevel getAffinityLevel(final Sponsor sponsor,
-            final AffinityUnit unit) {
+    public final AffinityLevel getAffinityLevel(final AffinityUnit unit,
+            final Iterable<AffinityGroup> affinities) {
         final AffinityLevel level; // Affinity level
-        final Collection<AffinityGroup> sponsorAffinities; // Affinities
         Integer coincidences;      // Affinity coincidences
 
-        checkNotNull(sponsor, "Received a null pointer as sponsor");
+        checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(unit, "Received a null pointer as unit");
 
-        sponsorAffinities = sponsor.getAffinityGroups();
         coincidences = 0;
-        for (final AffinityGroup affinityGroup : unit.getAffinityGroups()) {
-            if (sponsorAffinities.contains(affinityGroup)) {
+        for (final AffinityGroup affinityGroup : affinities) {
+            if (unit.getAffinityGroups().contains(affinityGroup)) {
                 coincidences++;
             }
         }

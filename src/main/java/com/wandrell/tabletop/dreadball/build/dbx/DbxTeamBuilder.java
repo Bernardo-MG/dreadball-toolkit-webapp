@@ -16,7 +16,7 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx;
 
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
@@ -35,14 +35,18 @@ public interface DbxTeamBuilder {
 
     /**
      * Returns the unit created from the specified template and set up for the
-     * received sponsor.
+     * correct affinity level.
+     * <p>
+     * The affinity level will be marked by the received affinities, and the
+     * affinities owned by the unit.
      * 
-     * @param sponsor
-     *            Sponsor for which the unit is prepared
      * @param templateName
      *            template to create the unit from
+     * @param affinities
+     *            affinities to find out the affinity level
      * @return the unit created
      */
-    public Unit getUnit(final Sponsor sponsor, final String templateName);
+    public Unit getUnit(final String templateName,
+            final Iterable<AffinityGroup> affinities);
 
 }

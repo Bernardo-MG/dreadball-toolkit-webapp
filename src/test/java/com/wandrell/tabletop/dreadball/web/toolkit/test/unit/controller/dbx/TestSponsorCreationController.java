@@ -3,6 +3,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.dbx;
 
 import java.util.LinkedList;
 
+import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -35,16 +36,16 @@ public class TestSponsorCreationController {
         service = Mockito.mock(DbxSponsorBuilder.class);
 
         sponsor = Mockito.mock(Sponsor.class);
-        Mockito.when(service.getSponsor(Mockito.any(SponsorForm.class)))
+        Mockito.when(service.getSponsor(Matchers.any(SponsorForm.class)))
                 .thenReturn(sponsor);
 
         team = Mockito.mock(SponsorTeam.class);
-        Mockito.when(service.getSponsorTeam(Mockito.any(Sponsor.class)))
+        Mockito.when(service.getSponsorTeam(Matchers.any(Sponsor.class)))
                 .thenReturn(team);
 
         units = new LinkedList<Unit>();
         Mockito.when(
-                service.getSponsorAvailableUnits(Mockito.any(Sponsor.class)))
+                service.getSponsorAvailableUnits(Matchers.any(Sponsor.class)))
                 .thenReturn(units);
 
         controller = new SponsorCreationController(service);

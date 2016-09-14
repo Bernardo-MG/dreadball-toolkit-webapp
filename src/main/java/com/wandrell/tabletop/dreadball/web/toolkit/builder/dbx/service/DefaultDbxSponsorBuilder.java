@@ -169,7 +169,8 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
             final AffinityUnit unit) {
         final AffinityLevel affinityLevel;  // Affinity level relationship
 
-        affinityLevel = getDbxRules().getAffinityLevel(sponsor, unit);
+        affinityLevel = getDbxRules().getAffinityLevel(unit,
+                sponsor.getAffinityGroups());
 
         return getDbxRules().getUnitCost(affinityLevel, unit);
     }

@@ -145,10 +145,9 @@ public class TestDefaultDbxSponsorBuilder {
         // Remember: the test is prepared for three units
 
         // The affinities will be: friend, ally and stranger
-        Mockito.when(rules.getAffinityLevel(Matchers.any(Sponsor.class),
-                Matchers.any(AffinityUnit.class)))
-                .thenReturn(AffinityLevel.FRIEND, AffinityLevel.ALLY,
-                        AffinityLevel.STRANGER);
+        Mockito.when(rules.getAffinityLevel(Matchers.any(AffinityUnit.class),
+                Matchers.any(Iterable.class))).thenReturn(AffinityLevel.FRIEND,
+                        AffinityLevel.ALLY, AffinityLevel.STRANGER);
 
         // The costs will be: 1, 2 and 3
         Mockito.when(rules.getUnitCost(Matchers.any(AffinityLevel.class),

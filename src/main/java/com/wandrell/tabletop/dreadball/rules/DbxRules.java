@@ -16,7 +16,7 @@
 
 package com.wandrell.tabletop.dreadball.rules;
 
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 
@@ -28,16 +28,19 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 public interface DbxRules {
 
     /**
-     * Returns the affinity level between a Sponsor and a unit.
+     * Returns the affinity level for a unit and a specific group of affinities.
+     * <p>
+     * The number of affinities from the list owned by the unit will mark the
+     * affinity level.
      * 
-     * @param sponsor
-     *            Sponsor to find out the affinity level
      * @param unit
      *            unit to find out the affinity level
+     * @param affinities
+     *            affinities to find out the affinity level
      * @return the affinity level between the Sponsor and the unit
      */
-    public AffinityLevel getAffinityLevel(final Sponsor sponsor,
-            final AffinityUnit unit);
+    public AffinityLevel getAffinityLevel(final AffinityUnit unit,
+            final Iterable<AffinityGroup> affinities);
 
     /**
      * Returns the unit cost.
