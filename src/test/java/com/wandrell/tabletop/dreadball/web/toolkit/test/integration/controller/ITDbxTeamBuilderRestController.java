@@ -2,14 +2,11 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.test.integration.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTestNGSpringContextTests;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
@@ -41,14 +38,15 @@ public class ITDbxTeamBuilderRestController
     public void setup() {}
 
     @Test
-    public void testGetAllUnits() throws Exception {
+    public void testSetAssets() throws Exception {
         mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
-        // TODO: The result should not be empty
-        mockMvc.perform(MockMvcRequestBuilders
-                .put("/builder/team/dbx/assets/cheerleader")
-                .contentType(MediaType.TEXT_PLAIN).content("1".getBytes()))
-                .andExpect(MockMvcResultMatchers.content().string(""));
+        // TODO: Make this work
+        // mockMvc.perform(MockMvcRequestBuilders.put("/builder/team/dbx/assets")
+        // .contentType(MediaType.APPLICATION_JSON)
+        // .content("{dice:1}".getBytes("UTF-8")))
+        // .andExpect(MockMvcResultMatchers.content()
+        // .contentType(MediaType.APPLICATION_JSON));
     }
 
 }
