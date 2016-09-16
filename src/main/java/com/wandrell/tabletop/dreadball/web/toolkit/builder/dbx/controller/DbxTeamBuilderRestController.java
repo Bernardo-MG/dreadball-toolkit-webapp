@@ -17,9 +17,6 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
-import org.springframework.context.NoSuchMessageException;
-import org.springframework.context.i18n.LocaleContextHolder;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -31,7 +28,6 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
@@ -59,12 +55,6 @@ public class DbxTeamBuilderRestController {
     private DbxTeamBuilder      dbxTeamBuilderService;
 
     /**
-     * Message source.
-     */
-    @Autowired
-    private MessageSource       messageSource;
-
-    /**
      * Constructs a controller with the specified dependencies.
      */
     public DbxTeamBuilderRestController() {
@@ -87,7 +77,6 @@ public class DbxTeamBuilderRestController {
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
         final Integer maxUnits; // Maximum number of units allowed
         final Unit unit;        // Unit to add
-        String name;            // Unit name
 
         maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
 
@@ -95,16 +84,6 @@ public class DbxTeamBuilderRestController {
         if (team.getPlayers().size() < maxUnits) {
             unit = getDbxTeamBuilderService().getUnit(player.getTemplateName(),
                     team.getSponsor().getAffinityGroups());
-
-            // TODO: Is this internationalization step really needed here?
-            try {
-                name = getMessageSource().getMessage(player.getTemplateName(),
-                        null, LocaleContextHolder.getLocale());
-            } catch (final NoSuchMessageException e) {
-                name = player.getTemplateName();
-            }
-
-            ((DefaultUnit) unit).setName(name);
 
             team.addPlayer(unit);
         }
@@ -176,15 +155,6 @@ public class DbxTeamBuilderRestController {
      */
     private final DbxTeamBuilder getDbxTeamBuilderService() {
         return dbxTeamBuilderService;
-    }
-
-    /**
-     * Returns the message source.
-     * 
-     * @return the message source
-     */
-    private final MessageSource getMessageSource() {
-        return messageSource;
     }
 
 }

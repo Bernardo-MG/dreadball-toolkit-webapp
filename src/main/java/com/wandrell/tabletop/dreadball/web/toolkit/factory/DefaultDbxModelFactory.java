@@ -111,8 +111,13 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
             final Role role, final Attributes attributes,
             final Collection<Ability> abilities, final Boolean mvp,
             final Boolean giant) {
-        return new DefaultUnit(nameTemplate, cost, role, attributes, abilities,
+        final DefaultUnit unit;
+
+        unit = new DefaultUnit(nameTemplate, cost, role, attributes, abilities,
                 mvp, giant);
+        unit.setName(nameTemplate);
+
+        return unit;
     }
 
     /**
