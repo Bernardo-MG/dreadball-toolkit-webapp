@@ -39,7 +39,7 @@ import junit.framework.Assert;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class TestDefaultDbxRulesUnitCost {
+public final class TestDefaultDbxRulesUnitCost {
 
     /**
      * Service being tested.

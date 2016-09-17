@@ -45,7 +45,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class TestSponsorCreationControllerSendForm {
+public final class TestSponsorCreationControllerSendForm {
 
     /**
      * Mocked MVC context.

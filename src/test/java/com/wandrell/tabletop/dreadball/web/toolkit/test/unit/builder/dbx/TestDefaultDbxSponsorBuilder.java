@@ -64,7 +64,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class TestDefaultDbxSponsorBuilder {
+public final class TestDefaultDbxSponsorBuilder {
 
     /**
      * Default constructor.
@@ -137,6 +137,7 @@ public class TestDefaultDbxSponsorBuilder {
      * 
      * @return the mocked DBX rules service
      */
+    @SuppressWarnings("unchecked")
     private final DbxRules getDbxRules() {
         final DbxRules rules;
 

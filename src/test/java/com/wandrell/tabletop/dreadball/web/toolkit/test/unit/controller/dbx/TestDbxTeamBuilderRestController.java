@@ -49,7 +49,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class TestDbxTeamBuilderRestController {
+public final class TestDbxTeamBuilderRestController {
 
     /**
      * Mocked MVC context.
@@ -72,7 +72,7 @@ public class TestDbxTeamBuilderRestController {
     }
 
     @Test
-    public void testSetAssets() throws Exception {
+    public final void testSetAssets() throws Exception {
         final SponsorTeamAssets assets;
 
         assets = new SponsorTeamAssets();

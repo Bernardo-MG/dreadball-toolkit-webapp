@@ -39,7 +39,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class TestSponsorFormValidation {
+public final class TestSponsorFormValidation {
 
     /**
      * Validator for validating the bean.

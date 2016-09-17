@@ -44,7 +44,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
         "classpath:config/persistence-access.properties",
         "classpath:config/service-dreadball.properties",
         "classpath:config/builder-team-dbx.properties" })
-public class ITDbxModelFactory
+public final class ITDbxModelFactory
         extends AbstractTransactionalTestNGSpringContextTests {
 
     /**

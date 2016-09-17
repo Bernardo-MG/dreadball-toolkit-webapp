@@ -39,7 +39,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.Sponso
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class TestSponsorCreationControllerShowForm {
+public final class TestSponsorCreationControllerShowForm {
 
     /**
      * Mocked MVC context.
