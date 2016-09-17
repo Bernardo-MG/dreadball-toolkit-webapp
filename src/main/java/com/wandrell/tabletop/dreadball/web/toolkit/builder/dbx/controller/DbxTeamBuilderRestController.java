@@ -16,6 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -56,9 +58,15 @@ public class DbxTeamBuilderRestController {
 
     /**
      * Constructs a controller with the specified dependencies.
+     * 
+     * @param service
+     *            team builder service
      */
-    public DbxTeamBuilderRestController() {
+    public DbxTeamBuilderRestController(final DbxTeamBuilder service) {
         super();
+
+        dbxTeamBuilderService = checkNotNull(service,
+                "Received a null pointer as team builder service");
     }
 
     /**
