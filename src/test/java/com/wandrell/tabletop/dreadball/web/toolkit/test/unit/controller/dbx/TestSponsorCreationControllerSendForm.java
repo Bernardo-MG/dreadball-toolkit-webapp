@@ -64,8 +64,7 @@ public class TestSponsorCreationControllerSendForm {
      */
     @BeforeTest
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(getSponsorCreationController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
     }
 
     /**
@@ -102,7 +101,7 @@ public class TestSponsorCreationControllerSendForm {
      * 
      * @return a mocked controller
      */
-    private final SponsorCreationController getSponsorCreationController() {
+    private final SponsorCreationController getController() {
         final DbxSponsorBuilder service; // Mocked service
         final Sponsor sponsor;           // Mocked sponsor
         final SponsorTeam team;          // Mocked sponsor team

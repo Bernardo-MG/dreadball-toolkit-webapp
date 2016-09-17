@@ -58,8 +58,7 @@ public class TestSponsorCreationControllerShowForm {
      */
     @BeforeTest
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(getSponsorCreationController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
     }
 
     /**
@@ -89,7 +88,7 @@ public class TestSponsorCreationControllerShowForm {
      * 
      * @return a mocked controller
      */
-    private final SponsorCreationController getSponsorCreationController() {
+    private final SponsorCreationController getController() {
         final DbxSponsorBuilder service; // Mocked sponsor builder service
 
         service = Mockito.mock(DbxSponsorBuilder.class);

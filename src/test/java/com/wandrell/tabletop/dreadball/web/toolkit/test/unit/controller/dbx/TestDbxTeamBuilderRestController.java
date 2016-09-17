@@ -31,7 +31,7 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
@@ -56,26 +56,30 @@ public class TestDbxTeamBuilderRestController {
         return mapper.writeValueAsBytes(object);
     }
 
+    /**
+     * Mocked MVC context.
+     */
+    private MockMvc mockMvc;
+
+    /**
+     * Default constructor.
+     */
     public TestDbxTeamBuilderRestController() {
         super();
     }
 
+    /**
+     * Sets up the mocked MVC context.
+     */
     @BeforeTest
-    public void setup() {}
+    public final void setUpMockContext() {
+        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+    }
 
     @Test
     public void testSetAssets() throws Exception {
-        final MockMvc mockMvc;
-        final DbxTeamBuilderRestController controller;
-        final DbxTeamBuilder builder;
         final SponsorTeamAssets assets;
         final Map<String, Object> sessionAttrs;
-
-        builder = Mockito.mock(DbxTeamBuilder.class);
-
-        controller = new DbxTeamBuilderRestController(builder);
-
-        mockMvc = MockMvcBuilders.standaloneSetup(controller).build();
 
         assets = new SponsorTeamAssets();
 
@@ -85,7 +89,7 @@ public class TestDbxTeamBuilderRestController {
         // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
         // TODO: Mock this better
         sessionAttrs.put("team",
-                new DefaultSponsorTeam(Mockito.mock(Sponsor.class),
+                new DefaultSponsorTeam(new DefaultSponsor(),
                         Mockito.mock(TeamValorationCalculator.class),
                         Mockito.mock(RankCostCalculator.class)));
 
@@ -95,6 +99,21 @@ public class TestDbxTeamBuilderRestController {
                 .content(convertObjectToJsonBytes(assets)))
                 .andExpect(MockMvcResultMatchers.content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8));
+    }
+
+    /**
+     * Returns a mocked controller.
+     * <p>
+     * It can create mocked sponsor, sponsor team and units.
+     * 
+     * @return a mocked controller
+     */
+    private final DbxTeamBuilderRestController getController() {
+        final DbxTeamBuilder builder;
+
+        builder = Mockito.mock(DbxTeamBuilder.class);
+
+        return new DbxTeamBuilderRestController(builder);
     }
 
 }
