@@ -23,6 +23,7 @@ import java.util.Map;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -50,12 +51,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  */
 public class TestDbxTeamBuilderRestController {
 
-    private static byte[] convertObjectToJsonBytes(Object object)
-            throws IOException {
-        ObjectMapper mapper = new ObjectMapper();
-        return mapper.writeValueAsBytes(object);
-    }
-
     /**
      * Mocked MVC context.
      */
@@ -79,26 +74,13 @@ public class TestDbxTeamBuilderRestController {
     @Test
     public void testSetAssets() throws Exception {
         final SponsorTeamAssets assets;
-        final Map<String, Object> sessionAttrs;
 
         assets = new SponsorTeamAssets();
 
         assets.setCoachingDice(1);
 
-        sessionAttrs = new LinkedHashMap<>();
-        // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
-        // TODO: Mock this better
-        sessionAttrs.put("team",
-                new DefaultSponsorTeam(new DefaultSponsor(),
-                        Mockito.mock(TeamValorationCalculator.class),
-                        Mockito.mock(RankCostCalculator.class)));
-
-        mockMvc.perform(MockMvcRequestBuilders.put("/builder/team/dbx/assets")
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .sessionAttrs(sessionAttrs)
-                .content(convertObjectToJsonBytes(assets)))
-                .andExpect(MockMvcResultMatchers.content()
-                        .contentType(MediaType.APPLICATION_JSON_UTF8));
+        mockMvc.perform(getRequest(assets)).andExpect(MockMvcResultMatchers
+                .content().contentType(MediaType.APPLICATION_JSON_UTF8));
     }
 
     /**
@@ -114,6 +96,44 @@ public class TestDbxTeamBuilderRestController {
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         return new DbxTeamBuilderRestController(builder);
+    }
+
+    /**
+     * Returns a request builder for posting the specified assets.
+     * 
+     * @param assets
+     *            assets for the request
+     * @return a request builder with the specified assets
+     */
+    private final RequestBuilder getRequest(final SponsorTeamAssets assets)
+            throws IOException {
+        final byte[] content;
+
+        content = new ObjectMapper().writeValueAsBytes(assets);
+
+        return MockMvcRequestBuilders.put("/builder/team/dbx/assets")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .sessionAttrs(getSessionAttributes()).content(content);
+    }
+
+    /**
+     * Returns the session attributes required for the controller to work.
+     * 
+     * @return the session attributes required by the controller
+     */
+    @SuppressWarnings("unchecked")
+    private final Map<String, Object> getSessionAttributes() {
+        final Map<String, Object> sessionAttrs;
+
+        sessionAttrs = new LinkedHashMap<>();
+        // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
+        // TODO: Mock this better
+        sessionAttrs.put("team",
+                new DefaultSponsorTeam(new DefaultSponsor(),
+                        Mockito.mock(TeamValorationCalculator.class),
+                        Mockito.mock(RankCostCalculator.class)));
+
+        return sessionAttrs;
     }
 
 }
