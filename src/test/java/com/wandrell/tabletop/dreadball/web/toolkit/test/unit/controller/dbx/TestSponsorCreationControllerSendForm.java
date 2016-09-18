@@ -54,6 +54,16 @@ public final class TestSponsorCreationControllerSendForm {
     private static final String URL_FORM  = "/builder/team/dbx";
 
     /**
+     * The sponsor form view.
+     */
+    private static final String VIEW_FORM = "builder/dbx/sponsor";
+
+    /**
+     * The view after the form.
+     */
+    private static final String VIEW_NEXT = "builder/dbx/players";
+
+    /**
      * Mocked MVC context.
      */
     private MockMvc             mockMvc;
@@ -90,6 +100,25 @@ public final class TestSponsorCreationControllerSendForm {
         // The response model contains the expected attributes
         result.andExpect(
                 MockMvcResultMatchers.model().attributeExists(FORM_BEAN));
+
+        // The response contains the expected errors
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeHasFieldErrors(FORM_BEAN, "affinityA"));
+    }
+
+    /**
+     * Tests that after receiving form data missing an affinity the view is
+     * again the form view.
+     */
+    @Test
+    public final void testSendFormData_MissingAffinity_NoViewChange()
+            throws Exception {
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getMissingAffinityFormRequest());
+
+        // The view is valid
+        result.andExpect(MockMvcResultMatchers.view().name(VIEW_FORM));
     }
 
     /**
@@ -109,6 +138,25 @@ public final class TestSponsorCreationControllerSendForm {
         // The response model contains the expected attributes
         result.andExpect(
                 MockMvcResultMatchers.model().attributeExists(FORM_BEAN));
+
+        // The response contains the expected errors
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeHasFieldErrors(FORM_BEAN, "sponsorName"));
+    }
+
+    /**
+     * Tests that after receiving form data missing an affinity the view is
+     * again the form view.
+     */
+    @Test
+    public final void testSendFormData_NoSponsorName_NoViewChange()
+            throws Exception {
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getNoSponsorNameFormRequest());
+
+        // The view is valid
+        result.andExpect(MockMvcResultMatchers.view().name(VIEW_FORM));
     }
 
     /**
@@ -147,8 +195,7 @@ public final class TestSponsorCreationControllerSendForm {
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The view is valid
-        result.andExpect(
-                MockMvcResultMatchers.view().name("builder/dbx/players"));
+        result.andExpect(MockMvcResultMatchers.view().name(VIEW_NEXT));
     }
 
     /**
