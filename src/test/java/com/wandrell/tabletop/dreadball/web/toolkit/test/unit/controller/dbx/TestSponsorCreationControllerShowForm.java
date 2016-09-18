@@ -19,6 +19,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.dbx;
 import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -30,11 +31,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.Sponso
 
 /**
  * Unit tests for {@link SponsorCreationController}.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>The form view loads the expected attributes into the model</li>
- * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -77,10 +73,16 @@ public final class TestSponsorCreationControllerShowForm {
      */
     @Test
     public final void testShowForm_ExpectedAttributeModel() throws Exception {
-        mockMvc.perform(getViewRequest())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.model()
-                        .attributeExists(FORM_BEAN));
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getViewRequest());
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The response model contains the expected attributes
+        result.andExpect(
+                MockMvcResultMatchers.model().attributeExists(FORM_BEAN));
     }
 
     /**

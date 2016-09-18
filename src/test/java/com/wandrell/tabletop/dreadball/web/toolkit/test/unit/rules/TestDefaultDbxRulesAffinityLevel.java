@@ -34,15 +34,6 @@ import junit.framework.Assert;
 /**
  * Unit tests for {@link DbxTeamBuilder} testing the {@code getAffinityLevel}
  * method.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>When there are no affinities the level is 'stranger'</li>
- * <li>When the sponsor has no affinities the level is 'stranger'</li>
- * <li>When the unit has no affinities the level is 'stranger'</li>
- * <li>When one affinity is shared the level is 'ally'</li>
- * <li>When three affinities are shared the level is 'friend'</li>
- * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

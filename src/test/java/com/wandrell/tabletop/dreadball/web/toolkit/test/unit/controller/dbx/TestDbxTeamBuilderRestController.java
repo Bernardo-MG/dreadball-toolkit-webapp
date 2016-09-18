@@ -41,11 +41,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 
 /**
  * Unit tests for {@link DbxTeamBuilderRestController}.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li></li>
- * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -78,7 +73,10 @@ public final class TestDbxTeamBuilderRestController {
      */
     @BeforeTest
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
     }
 
     @Test
@@ -89,8 +87,7 @@ public final class TestDbxTeamBuilderRestController {
 
         assets.setCoachingDice(1);
 
-        mockMvc.perform(getRequest(assets)).andExpect(MockMvcResultMatchers
-                .content().contentType(MediaType.APPLICATION_JSON_UTF8));
+        mockMvc.perform(getRequest(assets));
     }
 
     /**

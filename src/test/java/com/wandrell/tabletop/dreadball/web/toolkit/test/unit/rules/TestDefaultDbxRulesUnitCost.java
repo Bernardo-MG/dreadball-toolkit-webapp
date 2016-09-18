@@ -29,13 +29,6 @@ import junit.framework.Assert;
 
 /**
  * Unit tests for {@link DbxTeamBuilder} testing the {@code getUnitCost} method.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>When the affinity is 'stranger' then the cost is the stranger cost</li>
- * <li>When the affinity is 'ally' then the cost is the ally cost</li>
- * <li>When the affinity is 'friend' then the cost is the friend cost</li>
- * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

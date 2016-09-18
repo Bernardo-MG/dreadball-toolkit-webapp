@@ -30,12 +30,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 
 /**
  * Unit tests for {@link SponsorForm} validation.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>The name being empty causes a validation error</li>
- * <li>The affinities being empty causes a validation error</li>
- * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

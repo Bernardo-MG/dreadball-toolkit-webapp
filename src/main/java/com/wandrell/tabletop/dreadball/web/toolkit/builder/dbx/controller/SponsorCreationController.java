@@ -135,6 +135,7 @@ public class SponsorCreationController {
             loadSponsorModel(model);
             // Returns to the sponsor creation view
             path = VIEW_SPONSOR;
+            // TODO: Maybe it should return a bad request status?
         } else {
             // Loads required data into the model and session
             loadNextStepModel(model, session, sponsor);

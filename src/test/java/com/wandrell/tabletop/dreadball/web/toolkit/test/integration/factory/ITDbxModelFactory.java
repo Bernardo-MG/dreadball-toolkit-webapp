@@ -29,11 +29,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 
 /**
  * Integration tests for {@link DbxModelFactory}.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>A Sponsor can be created from the Sponsor form</li>
- * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

@@ -44,23 +44,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
 
 /**
  * Unit tests for {@link DbxSponsorBuilder}.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li>Acquiring the available units works with the dependencies and their data
- * correctly, and returns the expected values</li>
- * </ol>
- * <p>
- * These tests make use of a specific mocked context, which will contain three
- * units, being each of them a friend, an ally and a stranger to the sponsor.
- * <p>
- * The costs for a friend, an ally and a stranger will be 1, 2 and 3
- * respectively.
- * <p>
- * The tested method will receive nearly empty arguments for this reason, the
- * tests will verify that the method handles the data received through the
- * dependencies correctly.
- * <p>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

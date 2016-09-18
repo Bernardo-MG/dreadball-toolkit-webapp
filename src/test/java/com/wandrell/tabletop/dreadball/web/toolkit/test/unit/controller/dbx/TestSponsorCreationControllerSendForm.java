@@ -22,6 +22,7 @@ import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -37,20 +38,20 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 
 /**
  * Unit tests for {@link SponsorCreationController}.
- * <p>
- * Checks the following cases:
- * <ol>
- * <li></li>
- * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestSponsorCreationControllerSendForm {
 
     /**
+     * The name of the sponsor form bean.
+     */
+    private static final String FORM_BEAN = "form";
+
+    /**
      * Form view URL.
      */
-    private static final String URL_FORM = "/builder/team/dbx";
+    private static final String URL_FORM  = "/builder/team/dbx";
 
     /**
      * Mocked MVC context.
@@ -73,20 +74,63 @@ public final class TestSponsorCreationControllerSendForm {
     }
 
     /**
+     * Tests that after receiving form data missing an affinity the expected
+     * attributes are loaded into the model.
+     */
+    @Test
+    public final void testSendFormData_MissingAffinity_ExpectedAttributeModel()
+            throws Exception {
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getMissingAffinityFormRequest());
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The response model contains the expected attributes
+        result.andExpect(
+                MockMvcResultMatchers.model().attributeExists(FORM_BEAN));
+    }
+
+    /**
+     * Tests that after receiving form data missing the sponsor name the
+     * expected attributes are loaded into the model.
+     */
+    @Test
+    public final void testSendFormData_NoSponsorName_ExpectedAttributeModel()
+            throws Exception {
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getNoSponsorNameFormRequest());
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The response model contains the expected attributes
+        result.andExpect(
+                MockMvcResultMatchers.model().attributeExists(FORM_BEAN));
+    }
+
+    /**
      * Tests that after receiving valid form data the expected attributes are
      * loaded into the model.
      */
     @Test
     public final void testSendFormData_Valid_ExpectedAttributeModel()
             throws Exception {
-        mockMvc.perform(getSendValidFormRequest())
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(
-                        MockMvcResultMatchers.model().attributeExists("team"))
-                .andExpect(MockMvcResultMatchers.model()
-                        .attributeExists("sponsor"))
-                .andExpect(MockMvcResultMatchers.model()
-                        .attributeExists("availablePlayers"));
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getValidFormRequest());
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The response model contains the expected attributes
+        result.andExpect(MockMvcResultMatchers.model().attributeExists("team"));
+        result.andExpect(
+                MockMvcResultMatchers.model().attributeExists("sponsor"));
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeExists("availablePlayers"));
     }
 
     /**
@@ -94,10 +138,17 @@ public final class TestSponsorCreationControllerSendForm {
      */
     @Test
     public final void testSendFormData_Valid_ExpectedView() throws Exception {
+        final ResultActions result; // Request result
+
         // TODO: Just verify it is not this same view
-        mockMvc.perform(getSendValidFormRequest())
-                .andExpect(MockMvcResultMatchers.status().isOk()).andExpect(
-                        MockMvcResultMatchers.view().name("build/dbx/players"));
+        result = mockMvc.perform(getValidFormRequest());
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The view is valid
+        result.andExpect(
+                MockMvcResultMatchers.view().name("build/dbx/players"));
     }
 
     /**
@@ -135,11 +186,34 @@ public final class TestSponsorCreationControllerSendForm {
     }
 
     /**
+     * Returns a request builder for posting form data with a missing affinity.
+     * 
+     * @return a request builder with form data missing an affinity
+     */
+    private final RequestBuilder getMissingAffinityFormRequest() {
+        return MockMvcRequestBuilders.post(URL_FORM)
+                .param("sponsorName", "sponsor").param("affinityB", "aff")
+                .param("affinityC", "aff").param("affinityD", "aff")
+                .param("affinityE", "aff");
+    }
+
+    /**
+     * Returns a request builder for posting form data without a sponsor name.
+     * 
+     * @return a request builder with form data without a sponsor name
+     */
+    private final RequestBuilder getNoSponsorNameFormRequest() {
+        return MockMvcRequestBuilders.post(URL_FORM).param("affinityA", "aff")
+                .param("affinityB", "aff").param("affinityC", "aff")
+                .param("affinityD", "aff").param("affinityE", "aff");
+    }
+
+    /**
      * Returns a request builder for posting valid form data.
      * 
      * @return a request builder with valid form data
      */
-    private final RequestBuilder getSendValidFormRequest() {
+    private final RequestBuilder getValidFormRequest() {
         return MockMvcRequestBuilders.post(URL_FORM)
                 .param("sponsorName", "sponsor").param("affinityA", "aff")
                 .param("affinityB", "aff").param("affinityC", "aff")
