@@ -52,9 +52,19 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 public final class TestDbxTeamBuilderRestController {
 
     /**
+     * The name of the team bean.
+     */
+    private static final String TEAM_BEAN  = "team";
+
+    /**
+     * Form view URL.
+     */
+    private static final String URL_ASSETS = "/builder/team/dbx/assets";
+
+    /**
      * Mocked MVC context.
      */
-    private MockMvc mockMvc;
+    private MockMvc             mockMvc;
 
     /**
      * Default constructor.
@@ -111,7 +121,7 @@ public final class TestDbxTeamBuilderRestController {
 
         content = new ObjectMapper().writeValueAsBytes(assets);
 
-        return MockMvcRequestBuilders.put("/builder/team/dbx/assets")
+        return MockMvcRequestBuilders.put(URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes()).content(content);
     }
@@ -128,7 +138,7 @@ public final class TestDbxTeamBuilderRestController {
         sessionAttrs = new LinkedHashMap<>();
         // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
         // TODO: Mock this better
-        sessionAttrs.put("team",
+        sessionAttrs.put(TEAM_BEAN,
                 new DefaultSponsorTeam(new DefaultSponsor(),
                         Mockito.mock(TeamValorationCalculator.class),
                         Mockito.mock(RankCostCalculator.class)));

@@ -34,7 +34,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.Sponso
  * Checks the following cases:
  * <ol>
  * <li>The form view loads the expected attributes into the model</li>
- * <li>The form view uses the expected view</li>
  * </ol>
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -42,9 +41,19 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.Sponso
 public final class TestSponsorCreationControllerShowForm {
 
     /**
+     * The name of the sponsor form bean.
+     */
+    private static final String FORM_BEAN = "form";
+
+    /**
+     * Form view URL.
+     */
+    private static final String URL_FORM  = "/builder/team/dbx";
+
+    /**
      * Mocked MVC context.
      */
-    private MockMvc mockMvc;
+    private MockMvc             mockMvc;
 
     /**
      * Default constructor;
@@ -63,22 +72,15 @@ public final class TestSponsorCreationControllerShowForm {
 
     /**
      * Tests that the form view loads the expected attributes into the model.
+     * <p>
+     * The form requires a bean which will contain all its data.
      */
     @Test
     public final void testShowForm_ExpectedAttributeModel() throws Exception {
         mockMvc.perform(getViewRequest())
-                .andExpect(MockMvcResultMatchers.status().isOk()).andExpect(
-                        MockMvcResultMatchers.model().attributeExists("form"));
-    }
-
-    /**
-     * Tests that the form view uses the expected view.
-     */
-    @Test
-    public final void testShowForm_ExpectedView() throws Exception {
-        mockMvc.perform(getViewRequest())
-                .andExpect(MockMvcResultMatchers.status().isOk()).andExpect(
-                        MockMvcResultMatchers.view().name("build/dbx/sponsor"));
+                .andExpect(MockMvcResultMatchers.status().isOk())
+                .andExpect(MockMvcResultMatchers.model()
+                        .attributeExists(FORM_BEAN));
     }
 
     /**
@@ -102,7 +104,7 @@ public final class TestSponsorCreationControllerShowForm {
      * @return a request builder for the form view
      */
     private final RequestBuilder getViewRequest() {
-        return MockMvcRequestBuilders.get("/builder/team/dbx");
+        return MockMvcRequestBuilders.get(URL_FORM);
     }
 
 }

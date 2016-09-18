@@ -48,9 +48,14 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 public final class TestSponsorCreationControllerSendForm {
 
     /**
+     * Form view URL.
+     */
+    private static final String URL_FORM = "/builder/team/dbx";
+
+    /**
      * Mocked MVC context.
      */
-    private MockMvc mockMvc;
+    private MockMvc             mockMvc;
 
     /**
      * Default constructor;
@@ -68,13 +73,13 @@ public final class TestSponsorCreationControllerSendForm {
     }
 
     /**
-     * Tests that after received valid form data the expected attributes are
+     * Tests that after receiving valid form data the expected attributes are
      * loaded into the model.
      */
     @Test
     public final void testSendFormData_Valid_ExpectedAttributeModel()
             throws Exception {
-        mockMvc.perform(getValidFormRequest())
+        mockMvc.perform(getSendValidFormRequest())
                 .andExpect(MockMvcResultMatchers.status().isOk())
                 .andExpect(
                         MockMvcResultMatchers.model().attributeExists("team"))
@@ -89,7 +94,8 @@ public final class TestSponsorCreationControllerSendForm {
      */
     @Test
     public final void testSendFormData_Valid_ExpectedView() throws Exception {
-        mockMvc.perform(getValidFormRequest())
+        // TODO: Just verify it is not this same view
+        mockMvc.perform(getSendValidFormRequest())
                 .andExpect(MockMvcResultMatchers.status().isOk()).andExpect(
                         MockMvcResultMatchers.view().name("build/dbx/players"));
     }
@@ -133,8 +139,8 @@ public final class TestSponsorCreationControllerSendForm {
      * 
      * @return a request builder with valid form data
      */
-    private final RequestBuilder getValidFormRequest() {
-        return MockMvcRequestBuilders.post("/builder/team/dbx")
+    private final RequestBuilder getSendValidFormRequest() {
+        return MockMvcRequestBuilders.post(URL_FORM)
                 .param("sponsorName", "sponsor").param("affinityA", "aff")
                 .param("affinityB", "aff").param("affinityC", "aff")
                 .param("affinityD", "aff").param("affinityE", "aff");

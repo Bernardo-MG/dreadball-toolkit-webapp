@@ -168,6 +168,7 @@ public class SponsorCreationController {
     public final String showSponsorForm(final ModelMap model,
             final SessionStatus status) {
         // Clears session
+        // TODO: Is this required here? Maybe a controller advice should be used
         status.setComplete();
 
         // Loads required data into the model
