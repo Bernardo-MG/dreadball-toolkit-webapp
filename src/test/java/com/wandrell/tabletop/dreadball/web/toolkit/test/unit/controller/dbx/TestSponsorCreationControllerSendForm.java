@@ -148,7 +148,7 @@ public final class TestSponsorCreationControllerSendForm {
 
         // The view is valid
         result.andExpect(
-                MockMvcResultMatchers.view().name("build/dbx/players"));
+                MockMvcResultMatchers.view().name("builder/dbx/players"));
     }
 
     /**

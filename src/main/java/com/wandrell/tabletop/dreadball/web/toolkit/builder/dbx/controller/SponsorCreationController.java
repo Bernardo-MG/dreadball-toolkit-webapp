@@ -80,12 +80,12 @@ public class SponsorCreationController {
     /**
      * Name for the view after the sponsor view.
      */
-    private static final String     VIEW_NEXT               = "build/dbx/players";
+    private static final String     VIEW_NEXT               = "builder/dbx/players";
 
     /**
      * Name for the sponsor view.
      */
-    private static final String     VIEW_SPONSOR            = "build/dbx/sponsor";
+    private static final String     VIEW_SPONSOR            = "builder/dbx/sponsor";
 
     /**
      * DBX team builder service.
