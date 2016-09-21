@@ -24,6 +24,7 @@ import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -81,13 +82,17 @@ public final class TestDbxTeamBuilderRestController {
 
     @Test
     public final void testSetAssets() throws Exception {
-        final SponsorTeamAssets assets;
+        final ResultActions result;     // Request result
+        final SponsorTeamAssets assets; // Assets for the team
 
         assets = new SponsorTeamAssets();
 
         assets.setCoachingDice(1);
 
-        mockMvc.perform(getRequest(assets));
+        result = mockMvc.perform(getRequest(assets));
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status().isOk());
     }
 
     /**

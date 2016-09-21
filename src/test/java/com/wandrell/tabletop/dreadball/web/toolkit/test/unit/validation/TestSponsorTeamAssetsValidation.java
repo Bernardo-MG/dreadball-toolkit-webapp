@@ -26,14 +26,14 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 
 /**
- * Unit tests for {@link SponsorForm} validation.
+ * Unit tests for {@link SponsorTeamAssets} validation.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorFormValidation {
+public final class TestSponsorTeamAssetsValidation {
 
     /**
      * Validator for validating the bean.
@@ -43,7 +43,7 @@ public final class TestSponsorFormValidation {
     /**
      * Default constructor.
      */
-    public TestSponsorFormValidation() {
+    public TestSponsorTeamAssetsValidation() {
         super();
     }
 
@@ -56,45 +56,47 @@ public final class TestSponsorFormValidation {
     }
 
     /**
-     * Tests that the affinities being empty causes a validation error.
+     * Tests that the assets being negative causes a validation error.
      */
     @Test
-    public final void testValidation_NoAffinities_Error() {
-        final SponsorForm form; // Tested form
-        final Set<ConstraintViolation<SponsorForm>> errors;
+    public final void testValidation_NegativeAssets_Error() {
+        final SponsorTeamAssets assets; // Tested assets
+        final Set<ConstraintViolation<SponsorTeamAssets>> errors;
 
-        form = new SponsorForm();
+        assets = new SponsorTeamAssets();
 
-        form.setSponsorName("-");
+        assets.setCheerleaders(-1);
+        assets.setCoachingDice(-1);
+        assets.setMediBots(-1);
+        assets.setSabotageCards(-1);
+        assets.setSpecialMoveCards(-1);
+        assets.setWagers(-1);
 
-        errors = validator.validate(form);
+        errors = validator.validate(assets);
 
-        Assert.assertEquals(errors.size(), 5);
+        Assert.assertEquals(errors.size(), 6);
     }
 
     /**
-     * Tests that the name being empty causes a validation error.
+     * Tests that the assets being null causes a validation error.
      */
     @Test
-    public final void testValidation_NoName_Error() {
-        final SponsorForm form; // Tested form
-        final Set<ConstraintViolation<SponsorForm>> errors;
-        final ConstraintViolation<SponsorForm> error;
+    public final void testValidation_NullAssets_Error() {
+        final SponsorTeamAssets assets; // Tested assets
+        final Set<ConstraintViolation<SponsorTeamAssets>> errors;
 
-        form = new SponsorForm();
+        assets = new SponsorTeamAssets();
 
-        form.setAffinityA("-");
-        form.setAffinityB("-");
-        form.setAffinityC("-");
-        form.setAffinityD("-");
-        form.setAffinityE("-");
+        assets.setCheerleaders(null);
+        assets.setCoachingDice(null);
+        assets.setMediBots(null);
+        assets.setSabotageCards(null);
+        assets.setSpecialMoveCards(null);
+        assets.setWagers(null);
 
-        errors = validator.validate(form);
+        errors = validator.validate(assets);
 
-        Assert.assertEquals(errors.size(), 1);
-
-        error = errors.iterator().next();
-        Assert.assertEquals(error.getPropertyPath().toString(), "sponsorName");
+        Assert.assertEquals(errors.size(), 6);
     }
 
     /**
