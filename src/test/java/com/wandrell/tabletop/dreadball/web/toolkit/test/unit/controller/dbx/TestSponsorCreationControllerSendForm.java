@@ -37,7 +37,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.Sponso
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 
 /**
- * Unit tests for {@link SponsorCreationController}.
+ * Unit tests for {@link SponsorCreationController}, checking the methods for
+ * sending the form data.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

@@ -42,11 +42,12 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTea
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 
 /**
- * Unit tests for {@link DbxTeamBuilderRestController}.
+ * Unit tests for {@link DbxTeamBuilderRestController}, checking the methods for
+ * setting the team assets.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDbxTeamBuilderRestController {
+public final class TestDbxTeamBuilderRestControllerSetAssets {
 
     /**
      * The name of the team bean.
@@ -66,7 +67,7 @@ public final class TestDbxTeamBuilderRestController {
     /**
      * Default constructor.
      */
-    public TestDbxTeamBuilderRestController() {
+    public TestDbxTeamBuilderRestControllerSetAssets() {
         super();
     }
 

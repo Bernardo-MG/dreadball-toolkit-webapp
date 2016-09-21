@@ -30,7 +30,8 @@ import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 
 /**
- * Unit tests for {@link SponsorCreationController}.
+ * Unit tests for {@link SponsorCreationController}, checking the methods for
+ * showing the form.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
