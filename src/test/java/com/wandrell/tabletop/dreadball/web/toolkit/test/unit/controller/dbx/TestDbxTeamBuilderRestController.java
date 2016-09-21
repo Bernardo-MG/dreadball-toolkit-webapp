@@ -75,29 +75,75 @@ public final class TestDbxTeamBuilderRestController {
      */
     @BeforeTest
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController())
-                .alwaysExpect(MockMvcResultMatchers.content()
-                        .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
     }
 
+    /**
+     * Tests that when the data and the context is correct the assets can be
+     * set.
+     */
     @Test
-    public final void testSetAssets() throws Exception {
+    public final void testSetAssets_NoSessionTeam_ValidData_Rejected()
+            throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamAssets assets; // Assets for the team
 
         assets = new SponsorTeamAssets();
 
-        assets.setCoachingDice(1);
+        assets.setCheerleaders(1);
+        assets.setCoachingDice(2);
+        assets.setMediBots(3);
+        assets.setSabotageCards(4);
+        assets.setSpecialMoveCards(5);
+        assets.setWagers(6);
 
-        result = mockMvc.perform(getRequest(assets));
+        result = mockMvc.perform(getNoSessionRequest(assets));
+
+        // The operation was rejected
+        result.andExpect(MockMvcResultMatchers.status().isBadRequest());
+    }
+
+    /**
+     * Tests that when the data and the context is correct the assets can be
+     * set.
+     */
+    @Test
+    public final void testSetAssets_ValidContext_ValidData_Accepted()
+            throws Exception {
+        final ResultActions result;     // Request result
+        final SponsorTeamAssets assets; // Assets for the team
+
+        assets = new SponsorTeamAssets();
+
+        assets.setCheerleaders(1);
+        assets.setCoachingDice(2);
+        assets.setMediBots(3);
+        assets.setSabotageCards(4);
+        assets.setSpecialMoveCards(5);
+        assets.setWagers(6);
+
+        result = mockMvc.perform(getValidRequest(assets));
 
         // The operation was accepted
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
+        // The response is a JSON message
+        result.andExpect(MockMvcResultMatchers.content()
+                .contentType(MediaType.APPLICATION_JSON_UTF8));
+
         // The assets were set correctly
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.coachingDice",
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.cheerleaders",
                 Matchers.is(1)));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.coachingDice",
+                Matchers.is(2)));
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$.mediBots", Matchers.is(3)));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.sabotageCards",
+                Matchers.is(4)));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.specialMoveCards",
+                Matchers.is(5)));
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$.wagers", Matchers.is(6)));
     }
 
     /**
@@ -116,21 +162,23 @@ public final class TestDbxTeamBuilderRestController {
     }
 
     /**
-     * Returns a request builder for posting the specified assets.
+     * Returns a request builder for posting the specified assets with an
+     * invalid context.
+     * <p>
+     * The created request will be missing session data.
      * 
      * @param assets
      *            assets for the request
      * @return a request builder with the specified assets
      */
-    private final RequestBuilder getRequest(final SponsorTeamAssets assets)
-            throws IOException {
+    private final RequestBuilder getNoSessionRequest(
+            final SponsorTeamAssets assets) throws IOException {
         final byte[] content;
 
         content = new ObjectMapper().writeValueAsBytes(assets);
 
         return MockMvcRequestBuilders.put(URL_ASSETS)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .sessionAttrs(getSessionAttributes()).content(content);
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
     /**
@@ -151,6 +199,26 @@ public final class TestDbxTeamBuilderRestController {
                         Mockito.mock(RankCostCalculator.class)));
 
         return sessionAttrs;
+    }
+
+    /**
+     * Returns a request builder for posting the specified assets.
+     * <p>
+     * The created request will contain the valid context.
+     * 
+     * @param assets
+     *            assets for the request
+     * @return a request builder with the specified assets
+     */
+    private final RequestBuilder getValidRequest(final SponsorTeamAssets assets)
+            throws IOException {
+        final byte[] content;
+
+        content = new ObjectMapper().writeValueAsBytes(assets);
+
+        return MockMvcRequestBuilders.put(URL_ASSETS)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .sessionAttrs(getSessionAttributes()).content(content);
     }
 
 }
