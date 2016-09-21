@@ -154,12 +154,12 @@ function setAssets(coachingDice, sabotageCards, specialMoveCards, wagers, cheerl
 			mediBots : mediBots
 		}),
 		success : function(team) {
-			$("#dice").val(team.dice);
-			$("#sabotageCards").val(team.sabotage_cards);
-			$("#moveCards").val(team.special_move_cards);
+			$("#dice").val(team.coachingDice);
+			$("#sabotageCards").val(team.sabotageCards);
+			$("#moveCards").val(team.specialMoveCards);
 			$("#wagers").val(team.wagers);
 			$("#cheerleaders").val(team.cheerleaders);
-			$("#medibots").val(team.medibots);
+			$("#medibots").val(team.mediBots);
 			loadTeamAssetCost(team);
 		},
 		error : function() {
@@ -181,7 +181,7 @@ function loadTeamUnits(units) {
 }
 
 function loadTeamAssetCost(team) {
-	$("#spentRank").val(team.rank_cost);
+	$("#spentRank").val(team.rankCost);
 	$("#teamValue").val(team.valoration);
 }
 
