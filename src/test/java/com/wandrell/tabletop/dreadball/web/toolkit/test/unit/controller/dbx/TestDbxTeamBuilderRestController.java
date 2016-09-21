@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.hamcrest.Matchers;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -93,6 +94,10 @@ public final class TestDbxTeamBuilderRestController {
 
         // The operation was accepted
         result.andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The assets were set correctly
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.coachingDice",
+                Matchers.is(1)));
     }
 
     /**

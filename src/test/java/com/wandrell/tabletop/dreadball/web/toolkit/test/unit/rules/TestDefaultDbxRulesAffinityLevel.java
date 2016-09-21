@@ -20,6 +20,7 @@ import java.util.Collection;
 import java.util.LinkedList;
 
 import org.mockito.Mockito;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
@@ -28,8 +29,6 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.rules.DefaultDbxRules;
-
-import junit.framework.Assert;
 
 /**
  * Unit tests for {@link DbxTeamBuilder} testing the {@code getAffinityLevel}
