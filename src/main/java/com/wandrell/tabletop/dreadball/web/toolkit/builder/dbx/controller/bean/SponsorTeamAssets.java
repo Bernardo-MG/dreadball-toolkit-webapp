@@ -16,6 +16,9 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean;
 
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotNull;
+
 /**
  * Form data for the Sponsor team assets.
  * 
@@ -26,32 +29,44 @@ public class SponsorTeamAssets {
     /**
      * Number of cheerleaders.
      */
-    private Integer cheerleaders;
+    @NotNull
+    @Min(0)
+    private Integer cheerleaders     = 0;
 
     /**
      * Number of coaching dice.
      */
-    private Integer coachingDice;
+    @NotNull
+    @Min(0)
+    private Integer coachingDice     = 0;
 
     /**
      * Number of medi-bots.
      */
-    private Integer mediBots;
+    @NotNull
+    @Min(0)
+    private Integer mediBots         = 0;
 
     /**
      * Number of sabotage cards.
      */
-    private Integer sabotageCards;
+    @NotNull
+    @Min(0)
+    private Integer sabotageCards    = 0;
 
     /**
      * Number of special move cards.
      */
-    private Integer specialMoveCards;
+    @NotNull
+    @Min(0)
+    private Integer specialMoveCards = 0;
 
     /**
      * Number of wagers.
      */
-    private Integer wagers;
+    @NotNull
+    @Min(0)
+    private Integer wagers           = 0;
 
     /**
      * Default constructor.

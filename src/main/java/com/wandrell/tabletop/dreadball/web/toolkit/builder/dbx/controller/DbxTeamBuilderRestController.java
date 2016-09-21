@@ -18,8 +18,11 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -82,18 +85,23 @@ public class DbxTeamBuilderRestController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam addPlayer(
             @RequestBody final SponsorTeamPlayer player,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
+            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
+            final BindingResult bindingResult) {
         final Integer maxUnits; // Maximum number of units allowed
         final Unit unit;        // Unit to add
 
-        maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
+        // TODO: Maybe the response status should change if the data is invalid
+        if (!bindingResult.hasErrors()) {
+            maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
 
-        // TODO: Instead of enforcing the maximum send a warning
-        if (team.getPlayers().size() < maxUnits) {
-            unit = getDbxTeamBuilderService().getUnit(player.getTemplateName(),
-                    team.getSponsor().getAffinityGroups());
+            // TODO: Instead of enforcing the maximum send a warning
+            if (team.getPlayers().size() < maxUnits) {
+                unit = getDbxTeamBuilderService().getUnit(
+                        player.getTemplateName(),
+                        team.getSponsor().getAffinityGroups());
 
-            team.addPlayer(unit);
+                team.addPlayer(unit);
+            }
         }
 
         return team;
@@ -113,8 +121,13 @@ public class DbxTeamBuilderRestController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam removePlayer(
             @RequestBody final SponsorTeamPlayer player,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
-        team.removePlayer(player.getPosition());
+            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
+            final BindingResult bindingResult) {
+
+        // TODO: Maybe the response status should change if the data is invalid
+        if (!bindingResult.hasErrors()) {
+            team.removePlayer(player.getPosition());
+        }
 
         return team;
     }
@@ -132,24 +145,16 @@ public class DbxTeamBuilderRestController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam setAssets(
             @RequestBody final SponsorTeamAssets assets,
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team) {
+            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
+            final BindingResult bindingResult) {
 
-        if (assets.getCheerleaders() != null) {
+        // TODO: Maybe the response status should change if the data is invalid
+        if (!bindingResult.hasErrors()) {
             team.setCheerleaders(assets.getCheerleaders());
-        }
-        if (assets.getCoachingDice() != null) {
             team.setCoachingDice(assets.getCoachingDice());
-        }
-        if (assets.getMediBots() != null) {
             team.setMediBots(assets.getMediBots());
-        }
-        if (assets.getSabotageCards() != null) {
             team.setSabotageCards(assets.getSabotageCards());
-        }
-        if (assets.getSpecialMoveCards() != null) {
             team.setSpecialMoveCards(assets.getSpecialMoveCards());
-        }
-        if (assets.getWagers() != null) {
             team.setWagers(assets.getWagers());
         }
 

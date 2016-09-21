@@ -19,27 +19,57 @@ $(document).ready(function() {
 	});
 
 	$("#dice").on("change paste keyup", function() {
-		setDice($(this).val());
+		setAssets($("#dice").val(),
+				$("#sabotageCards").val(),
+				$("#moveCards").val(),
+				$("#wagers").val(),
+				$("#cheerleaders").val(),
+				$("#medibots").val());
 	});
 
 	$("#sabotageCards").on("change paste keyup", function() {
-		setSabotageCards($(this).val());
+		setAssets($("#dice").val(),
+				$("#sabotageCards").val(),
+				$("#moveCards").val(),
+				$("#wagers").val(),
+				$("#cheerleaders").val(),
+				$("#medibots").val());
 	});
 
 	$("#moveCards").on("change paste keyup", function() {
-		setSpecialMoveCards($(this).val());
+		setAssets($("#dice").val(),
+				$("#sabotageCards").val(),
+				$("#moveCards").val(),
+				$("#wagers").val(),
+				$("#cheerleaders").val(),
+				$("#medibots").val());
 	});
 
 	$("#wagers").on("change paste keyup", function() {
-		setWagers($(this).val());
+		setAssets($("#dice").val(),
+				$("#sabotageCards").val(),
+				$("#moveCards").val(),
+				$("#wagers").val(),
+				$("#cheerleaders").val(),
+				$("#medibots").val());
 	});
 
 	$("#cheerleaders").on("change paste keyup", function() {
-		setCheerleaders($(this).val());
+		setAssets($("#dice").val(),
+				$("#sabotageCards").val(),
+				$("#moveCards").val(),
+				$("#wagers").val(),
+				$("#cheerleaders").val(),
+				$("#medibots").val());
 	});
 
 	$("#medibots").on("change paste keyup", function() {
-		setMediBots($(this).val());
+		setAssets($("#dice").val(),
+				$("#sabotageCards").val(),
+				$("#moveCards").val(),
+				$("#wagers").val(),
+				$("#cheerleaders").val(),
+				$("#medibots").val());
 	});
 });
 
@@ -106,134 +136,34 @@ function removePlayer(pos) {
 	});
 }
 
-function setDice(dice) {
+function setAssets(coachingDice, sabotageCards, specialMoveCards, wagers, cheerleaders, mediBots) {
 	var ajaxUrl = $(location).attr('href') + "/assets";
 
 	$.ajax({
 		url : ajaxUrl,
-		type: 'PUT',
+		type : 'PUT',
 		dataType: 'json',
 		contentType: 'application/json;',
 		processData:false,
 		data : JSON.stringify({
-			coachingDice : dice
+			coachingDice : coachingDice,
+			sabotageCards : sabotageCards,
+			specialMoveCards : specialMoveCards,
+			wagers : wagers,
+			cheerleaders : cheerleaders,
+			mediBots : mediBots
 		}),
 		success : function(team) {
 			$("#dice").val(team.dice);
-			loadTeamAssetCost(team);
-		},
-		error : function() {
-			console.log('An error occurred while setting the dice through AJAX');
-		}
-	});
-}
-
-function setSabotageCards(cards) {
-	var ajaxUrl = $(location).attr('href') + "/assets";
-
-	$.ajax({
-		url : ajaxUrl,
-		type : 'PUT',
-		dataType: 'json',
-		contentType: 'application/json;',
-		processData:false,
-		data : JSON.stringify({
-			sabotageCards : cards
-		}),
-		success : function(team) {
 			$("#sabotageCards").val(team.sabotage_cards);
-			loadTeamAssetCost(team);
-		},
-		error : function() {
-			console.log('An error occurred while setting the sabotage cards through AJAX');
-		}
-	});
-}
-
-function setSpecialMoveCards(cards) {
-	var ajaxUrl = $(location).attr('href') + "/assets";
-
-	$.ajax({
-		url : ajaxUrl,
-		type : 'PUT',
-		dataType: 'json',
-		contentType: 'application/json;',
-		processData:false,
-		data : JSON.stringify({
-			specialMoveCards : cards
-		}),
-		success : function(team) {
 			$("#moveCards").val(team.special_move_cards);
-			loadTeamAssetCost(team);
-		},
-		error : function() {
-			console.log('An error occurred while setting the special move cards through AJAX');
-		}
-	});
-}
-
-function setWagers(wagers) {
-	var ajaxUrl = $(location).attr('href') + "/assets";
-
-	$.ajax({
-		url : ajaxUrl,
-		type : 'PUT',
-		dataType: 'json',
-		contentType: 'application/json;',
-		processData:false,
-		data : JSON.stringify({
-			wagers : wagers
-		}),
-		success : function(team) {
 			$("#wagers").val(team.wagers);
-			loadTeamAssetCost(team);
-		},
-		error : function() {
-			console.log('An error occurred while setting the wagers through AJAX');
-		}
-	});
-}
-
-function setCheerleaders(cheerleaders) {
-	var ajaxUrl = $(location).attr('href') + "/assets";
-
-	$.ajax({
-		url : ajaxUrl,
-		type : 'PUT',
-		dataType: 'json',
-		contentType: 'application/json;',
-		processData:false,
-		data : JSON.stringify({
-			cheerleaders : cheerleaders
-		}),
-		success : function(team) {
 			$("#cheerleaders").val(team.cheerleaders);
-			loadTeamAssetCost(team);
-		},
-		error : function() {
-			console.log('An error occurred while setting the cheerleaders through AJAX');
-		}
-	});
-}
-
-function setMediBots(medibots) {
-	var ajaxUrl = $(location).attr('href') + "/assets";
-
-	$.ajax({
-		url : ajaxUrl,
-		type : 'PUT',
-		dataType: 'json',
-		contentType: 'application/json;',
-		processData:false,
-		data : JSON.stringify({
-			mediBots : medibots
-		}),
-		success : function(team) {
 			$("#medibots").val(team.medibots);
 			loadTeamAssetCost(team);
 		},
 		error : function() {
-			console.log('An error occurred while setting the medibots through AJAX');
+			console.log('An error occurred while setting the sabotage cards through AJAX');
 		}
 	});
 }
