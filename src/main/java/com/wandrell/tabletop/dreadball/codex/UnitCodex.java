@@ -30,6 +30,6 @@ public interface UnitCodex {
      * 
      * @return all the affinity units
      */
-    public Iterable<? extends AffinityUnit> getAllAffinityUnits();
+    public Iterable<AffinityUnit> getAllAffinityUnits();
 
 }
