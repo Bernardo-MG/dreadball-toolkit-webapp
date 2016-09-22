@@ -14,10 +14,11 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.dbx;
+package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.builder.dbx;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 import org.hamcrest.Matchers;
@@ -38,8 +39,13 @@ import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
+import com.wandrell.tabletop.dreadball.model.unit.Role;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
+import com.wandrell.tabletop.dreadball.model.unit.stats.MutableAttributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
 
 /**
  * Unit tests for {@link DbxTeamBuilderRestController}, checking the methods for
@@ -47,7 +53,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDbxTeamBuilderRestControllerSetAssets {
+public final class TestDbxTeamBuilderRestControllerAddPlayers {
 
     /**
      * The name of the team bean.
@@ -57,7 +63,7 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
     /**
      * Form view URL.
      */
-    private static final String URL_ASSETS = "/builder/team/dbx/assets";
+    private static final String URL_ASSETS = "/builder/team/dbx/players";
 
     /**
      * Mocked MVC context.
@@ -67,10 +73,8 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
     /**
      * Default constructor.
      */
-    public TestDbxTeamBuilderRestControllerSetAssets() {
+    public TestDbxTeamBuilderRestControllerAddPlayers() {
         super();
-        // TODO: Missing tests
-        // - Validation tests
     }
 
     /**
@@ -86,46 +90,35 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
      * set.
      */
     @Test
-    public final void testSetAssets_NoSessionTeam_ValidData_Rejected()
+    public final void testAddPlayer_NoSessionTeam_ValidData_Rejected()
             throws Exception {
         final ResultActions result;     // Request result
-        final SponsorTeamAssets assets; // Assets for the team
+        final SponsorTeamPlayer player; // Assets for the team
 
-        assets = new SponsorTeamAssets();
+        player = new SponsorTeamPlayer();
 
-        assets.setCheerleaders(1);
-        assets.setCoachingDice(2);
-        assets.setMediBots(3);
-        assets.setSabotageCards(4);
-        assets.setSpecialMoveCards(5);
-        assets.setWagers(6);
+        player.setTemplateName("template");
 
-        result = mockMvc.perform(getNoSessionRequest(assets));
+        result = mockMvc.perform(getNoSessionRequest(player));
 
         // The operation was rejected
         result.andExpect(MockMvcResultMatchers.status().isBadRequest());
     }
 
     /**
-     * Tests that when the data and the context is correct the assets can be
-     * set.
+     * Tests that when the data and the context is correct players can be added.
      */
     @Test
-    public final void testSetAssets_ValidContext_ValidData_Accepted()
+    public final void testAddPlayer_ValidContext_ValidData_Accepted()
             throws Exception {
         final ResultActions result;     // Request result
-        final SponsorTeamAssets assets; // Assets for the team
+        final SponsorTeamPlayer player; // Assets for the team
 
-        assets = new SponsorTeamAssets();
+        player = new SponsorTeamPlayer();
 
-        assets.setCheerleaders(1);
-        assets.setCoachingDice(2);
-        assets.setMediBots(3);
-        assets.setSabotageCards(4);
-        assets.setSpecialMoveCards(5);
-        assets.setWagers(6);
+        player.setTemplateName("template");
 
-        result = mockMvc.perform(getValidRequest(assets));
+        result = mockMvc.perform(getValidRequest(player));
 
         // The operation was accepted
         result.andExpect(MockMvcResultMatchers.status().isOk());
@@ -134,19 +127,14 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
         result.andExpect(MockMvcResultMatchers.content()
                 .contentType(MediaType.APPLICATION_JSON_UTF8));
 
+        // TODO: Check that there are no more entries
         // The assets were set correctly
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.cheerleaders",
-                Matchers.is(1)));
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.coachingDice",
-                Matchers.is(2)));
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.mediBots", Matchers.is(3)));
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.sabotageCards",
-                Matchers.is(4)));
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.specialMoveCards",
-                Matchers.is(5)));
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.wagers", Matchers.is(6)));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players.1",
+                Matchers.anything()));
+
+        // TODO: Should be
+        // result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+        // Matchers.hasKey(1)));
     }
 
     /**
@@ -156,10 +144,24 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
      * 
      * @return a mocked controller
      */
+    @SuppressWarnings("unchecked")
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
+        final Unit unit;
+        final Integer maxUnits;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
+
+        // TODO: Mock this better
+        unit = new DefaultUnit("", 0, Role.GUARD, new MutableAttributes(),
+                new LinkedList<Ability>(), false, false);
+
+        Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
+                org.mockito.Matchers.anyCollection())).thenReturn(unit);
+
+        maxUnits = Integer.MAX_VALUE;
+
+        Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
 
         return new DbxTeamBuilderRestController(builder);
     }
@@ -170,17 +172,17 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
      * <p>
      * The created request will be missing session data.
      * 
-     * @param assets
-     *            assets for the request
-     * @return a request builder with the specified assets
+     * @param player
+     *            player data for the request
+     * @return a request builder with the specified player data
      */
     private final RequestBuilder getNoSessionRequest(
-            final SponsorTeamAssets assets) throws IOException {
+            final SponsorTeamPlayer player) throws IOException {
         final byte[] content;
 
-        content = new ObjectMapper().writeValueAsBytes(assets);
+        content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.put(URL_ASSETS)
+        return MockMvcRequestBuilders.post(URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
@@ -209,17 +211,17 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
      * <p>
      * The created request will contain the valid context.
      * 
-     * @param assets
-     *            assets for the request
-     * @return a request builder with the specified assets
+     * @param player
+     *            player data for the request
+     * @return a request builder with the specified player data
      */
-    private final RequestBuilder getValidRequest(final SponsorTeamAssets assets)
+    private final RequestBuilder getValidRequest(final SponsorTeamPlayer player)
             throws IOException {
         final byte[] content;
 
-        content = new ObjectMapper().writeValueAsBytes(assets);
+        content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.put(URL_ASSETS)
+        return MockMvcRequestBuilders.post(URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes()).content(content);
     }

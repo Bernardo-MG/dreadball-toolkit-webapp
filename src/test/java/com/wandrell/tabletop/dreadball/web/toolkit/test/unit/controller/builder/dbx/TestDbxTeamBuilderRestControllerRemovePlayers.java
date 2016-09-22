@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.dbx;
+package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.builder.dbx;
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
