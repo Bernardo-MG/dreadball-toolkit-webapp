@@ -7,12 +7,6 @@
  * Mostly it takes care of AJAX calls.
  */
 
-$(document).ready(function() {
-	$(document).on("change", "input:radio", function() {
-		refreshRank();
-	});
-});
-
 function refreshRank() {
 	var selected = $('input:checked');
 	var rankInput = $('#initialRank');
@@ -28,3 +22,9 @@ function refreshRank() {
 
 	rankInput.val(5 + rankBonus);
 }
+
+$(document).ready(function() {
+	$(document).on("change", "input:radio", function() {
+		refreshRank();
+	});
+});
