@@ -100,7 +100,11 @@ public class DbxTeamBuilderRestController {
                         player.getTemplateName(),
                         team.getSponsor().getAffinityGroups());
 
-                team.addPlayer(unit);
+                // TODO: Maybe the response status should change if the unit
+                // does not exist
+                if (unit != null) {
+                    team.addPlayer(unit);
+                }
             }
         }
 
