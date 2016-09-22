@@ -37,6 +37,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
@@ -53,7 +54,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDbxTeamBuilderRestControllerAddPlayers {
+public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
     /**
      * The name of the team bean.
@@ -73,7 +74,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
     /**
      * Default constructor.
      */
-    public TestDbxTeamBuilderRestControllerAddPlayers() {
+    public TestDbxTeamBuilderRestControllerRemovePlayers() {
         super();
     }
 
@@ -97,7 +98,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
 
         player = new SponsorTeamPlayer();
 
-        player.setTemplateName("template");
+        player.setPosition(1);
 
         result = mockMvc.perform(getNoSessionRequest(player));
 
@@ -116,7 +117,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
 
         player = new SponsorTeamPlayer();
 
-        player.setTemplateName("template");
+        player.setPosition(1);
 
         result = mockMvc.perform(getValidRequest(player));
 
@@ -127,14 +128,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
         result.andExpect(MockMvcResultMatchers.content()
                 .contentType(MediaType.APPLICATION_JSON_UTF8));
 
-        // TODO: Check that there are no more entries
         // The assets were set correctly
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.players.1",
-                Matchers.anything()));
-
-        // TODO: Should be
-        // result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
-        // Matchers.hasKey(1)));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+                Matchers.not(Matchers.hasKey(1))));
     }
 
     /**
@@ -182,7 +178,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.post(URL_ASSETS)
+        return MockMvcRequestBuilders.delete(URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
@@ -194,14 +190,23 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
     @SuppressWarnings("unchecked")
     private final Map<String, Object> getSessionAttributes() {
         final Map<String, Object> sessionAttrs;
+        final SponsorTeam team;
+        final Unit unit;
+
+        team = new DefaultSponsorTeam(new DefaultSponsor(),
+                Mockito.mock(TeamValorationCalculator.class),
+                Mockito.mock(RankCostCalculator.class));
+
+        // TODO: Mock this better
+        unit = new DefaultUnit("", 0, Role.GUARD, new MutableAttributes(),
+                new LinkedList<Ability>(), false, false);
+
+        team.addPlayer(unit);
 
         sessionAttrs = new LinkedHashMap<>();
         // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
         // TODO: Mock this better
-        sessionAttrs.put(TEAM_BEAN,
-                new DefaultSponsorTeam(new DefaultSponsor(),
-                        Mockito.mock(TeamValorationCalculator.class),
-                        Mockito.mock(RankCostCalculator.class)));
+        sessionAttrs.put(TEAM_BEAN, team);
 
         return sessionAttrs;
     }
@@ -221,7 +226,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.post(URL_ASSETS)
+        return MockMvcRequestBuilders.delete(URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes()).content(content);
     }
