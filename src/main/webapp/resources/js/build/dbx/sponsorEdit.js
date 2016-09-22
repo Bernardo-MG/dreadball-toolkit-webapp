@@ -7,24 +7,37 @@
  * Mostly it takes care of AJAX calls.
  */
 
-function refreshRank() {
-	var selected = $('input:checked');
-	var rankInput = $('#initialRank');
-	var rankBonus;
-
-	rankBonus = 0;
-
+function countRank(rankClass, selected) {
+	var rank;
+	
+	rank = 0;
 	$.each(selected, function(index, value) {
-		if ($(value).hasClass('increaseRank')) {
-			rankBonus++;
+		if ($(value).hasClass(rankClass)) {
+			rank++;
 		}
 	});
+	
+	return rank;
+}
 
-	rankInput.val(5 + rankBonus);
+function refreshRank() {
+	var rankInput;
+	var selected;
+	var rankCount;
+	var baseRank;
+
+	// Gets the selected inputs
+	selected = $('input:checked');
+	
+	rankCount = countRank('increaseRank', selected);
+
+	// Gets the initial rank field
+	rankInput = $('#initialRank');
+	
+	baseRank = 5;
+	rankInput.val(baseRank + rankCount);
 }
 
 $(document).ready(function() {
-	$(document).on("change", "input:radio", function() {
-		refreshRank();
-	});
+	$(document).on("change", "input:radio", refreshRank);
 });
