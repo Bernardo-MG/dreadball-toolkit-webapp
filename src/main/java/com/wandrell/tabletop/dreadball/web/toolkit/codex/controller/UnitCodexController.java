@@ -51,6 +51,9 @@ public class UnitCodexController {
 
     /**
      * Constructs a controller with the specified dependencies.
+     * 
+     * @param codex
+     *            unit codex service
      */
     public UnitCodexController(final UnitCodex codex) {
         super();

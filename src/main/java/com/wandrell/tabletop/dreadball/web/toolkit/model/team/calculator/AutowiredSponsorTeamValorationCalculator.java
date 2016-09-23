@@ -67,7 +67,7 @@ public final class AutowiredSponsorTeamValorationCalculator
     private Integer costWager;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public AutowiredSponsorTeamValorationCalculator() {
         super();

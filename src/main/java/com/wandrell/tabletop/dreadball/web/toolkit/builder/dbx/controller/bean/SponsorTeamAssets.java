@@ -132,61 +132,61 @@ public class SponsorTeamAssets {
     /**
      * Sets the number of cheerleaders.
      * 
-     * @param cheerleaders
+     * @param value
      *            the number of cheerleaders
      */
-    public final void setCheerleaders(final Integer cheerleaders) {
-        this.cheerleaders = cheerleaders;
+    public final void setCheerleaders(final Integer value) {
+        cheerleaders = value;
     }
 
     /**
      * Sets the number of coaching dice.
      * 
-     * @param coachingDice
+     * @param value
      *            the number of coaching dice
      */
-    public final void setCoachingDice(final Integer coachingDice) {
-        this.coachingDice = coachingDice;
+    public final void setCoachingDice(final Integer value) {
+        coachingDice = value;
     }
 
     /**
      * Sets the number of medibots.
      * 
-     * @param medibots
+     * @param value
      *            the number of medibots
      */
-    public final void setMediBots(final Integer medibots) {
-        this.mediBots = medibots;
+    public final void setMediBots(final Integer value) {
+        mediBots = value;
     }
 
     /**
      * Sets the number of sabotage cards.
      * 
-     * @param sabotageCards
+     * @param value
      *            the number of sabotage cards
      */
-    public final void setSabotageCards(final Integer sabotageCards) {
-        this.sabotageCards = sabotageCards;
+    public final void setSabotageCards(final Integer value) {
+        sabotageCards = value;
     }
 
     /**
      * Sets the number of special move cards.
      * 
-     * @param specialMoveCards
+     * @param value
      *            the number of special move cards
      */
-    public final void setSpecialMoveCards(final Integer specialMoveCards) {
-        this.specialMoveCards = specialMoveCards;
+    public final void setSpecialMoveCards(final Integer value) {
+        specialMoveCards = value;
     }
 
     /**
      * Sets the number of wagers.
      * 
-     * @param wagers
+     * @param value
      *            the number of wagers
      */
-    public final void setWagers(final Integer wagers) {
-        this.wagers = wagers;
+    public final void setWagers(final Integer value) {
+        wagers = value;
     }
 
 }

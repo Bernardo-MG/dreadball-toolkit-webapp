@@ -1,3 +1,18 @@
+/**
+ * Copyright 2016 the original author or authors
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 
@@ -23,7 +38,12 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
-@Service("dbxSponsorCreationService")
+/**
+ * Default implementation of the {@code DbxSponsorBuilder}.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
+@Service
 public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
 
     /**
@@ -32,7 +52,7 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     private final SponsorAffinityGroupAvailabilityRepository affinityAvasRepository;
 
     /**
-     * DBX model factory
+     * DBX model factory.
      */
     private final DbxModelFactory                            dbxModelFact;
 
@@ -52,6 +72,20 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
      */
     private final AffinityUnitRepository                     unitRepository;
 
+    /**
+     * Constructs a builder with the specified dependencies.
+     * 
+     * @param modelFact
+     *            model factory
+     * @param rules
+     *            ruleset
+     * @param affinityAvasRepo
+     *            affinity availabilities repository
+     * @param unitRepo
+     *            units repository
+     * @param rank
+     *            initial rank
+     */
     @Autowired
     public DefaultDbxSponsorBuilder(final DbxModelFactory modelFact,
             final DbxRules rules,
@@ -138,10 +172,20 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
         return unitRepository;
     }
 
+    /**
+     * Returns the model factory.
+     * 
+     * @return the model factory
+     */
     private final DbxModelFactory getDbxModelFactory() {
         return dbxModelFact;
     }
 
+    /**
+     * Returns the DBX rules.
+     * 
+     * @return the DBX rules
+     */
     private final DbxRules getDbxRules() {
         return dbxRules;
     }
@@ -174,4 +218,5 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
 
         return getDbxRules().getUnitCost(affinityLevel, unit);
     }
+
 }

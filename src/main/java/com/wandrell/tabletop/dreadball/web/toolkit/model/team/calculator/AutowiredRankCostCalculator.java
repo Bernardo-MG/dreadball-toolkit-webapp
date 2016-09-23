@@ -67,7 +67,7 @@ public final class AutowiredRankCostCalculator
     private Integer costWager;
 
     /**
-     * Default constructor
+     * Default constructor.
      */
     public AutowiredRankCostCalculator() {
         super();

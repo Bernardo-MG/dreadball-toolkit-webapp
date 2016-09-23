@@ -49,7 +49,7 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     private final Integer                maxTeamUnits;
 
     /**
-     * DBX model factory
+     * DBX model factory.
      */
     private final DbxModelFactory        modelFactory;
 
@@ -129,10 +129,20 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
         return unitRepository;
     }
 
+    /**
+     * Returns the DBX model factory.
+     * 
+     * @return the DBX model factory
+     */
     private final DbxModelFactory getDbxModelFactory() {
         return modelFactory;
     }
 
+    /**
+     * Returns the DBX rules.
+     * 
+     * @return the DBX rules
+     */
     private final DbxRules getDbxRules() {
         return dbxRules;
     }

@@ -79,6 +79,8 @@ public class DbxTeamBuilderRestController {
      *            data of the player to add
      * @param team
      *            team where the player will be added
+     * @param errors
+     *            results from binding
      * @return the team with the new player
      */
     @PostMapping(path = "/players", consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -86,12 +88,12 @@ public class DbxTeamBuilderRestController {
     public final SponsorTeam addPlayer(
             @RequestBody final SponsorTeamPlayer player,
             @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
-            final BindingResult bindingResult) {
+            final BindingResult errors) {
         final Integer maxUnits; // Maximum number of units allowed
         final Unit unit;        // Unit to add
 
         // TODO: Maybe the response status should change if the data is invalid
-        if (!bindingResult.hasErrors()) {
+        if (!errors.hasErrors()) {
             maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
 
             // TODO: Instead of enforcing the maximum send a warning
@@ -118,6 +120,8 @@ public class DbxTeamBuilderRestController {
      *            data of the player to remove
      * @param team
      *            team containing the player
+     * @param errors
+     *            results from binding
      * @return the team without the removed player
      */
     @DeleteMapping(path = "/players",
@@ -126,10 +130,10 @@ public class DbxTeamBuilderRestController {
     public final SponsorTeam removePlayer(
             @RequestBody final SponsorTeamPlayer player,
             @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
-            final BindingResult bindingResult) {
+            final BindingResult errors) {
 
         // TODO: Maybe the response status should change if the data is invalid
-        if (!bindingResult.hasErrors()) {
+        if (!errors.hasErrors()) {
             team.removePlayer(player.getPosition());
         }
 
@@ -143,6 +147,8 @@ public class DbxTeamBuilderRestController {
      *            the assets to set on the team
      * @param team
      *            the team where the dice will be set
+     * @param errors
+     *            results from binding
      * @return the team with the new assets set
      */
     @PutMapping(path = "/assets", consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -150,10 +156,10 @@ public class DbxTeamBuilderRestController {
     public final SponsorTeam setAssets(
             @RequestBody final SponsorTeamAssets assets,
             @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
-            final BindingResult bindingResult) {
+            final BindingResult errors) {
 
         // TODO: Maybe the response status should change if the data is invalid
-        if (!bindingResult.hasErrors()) {
+        if (!errors.hasErrors()) {
             team.setCheerleaders(assets.getCheerleaders());
             team.setCoachingDice(assets.getCoachingDice());
             team.setMediBots(assets.getMediBots());

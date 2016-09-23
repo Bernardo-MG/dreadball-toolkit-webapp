@@ -29,6 +29,9 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
  */
 public class DefaultDbxRules implements DbxRules {
 
+    /**
+     * Default constructor.
+     */
     public DefaultDbxRules() {
         super();
     }

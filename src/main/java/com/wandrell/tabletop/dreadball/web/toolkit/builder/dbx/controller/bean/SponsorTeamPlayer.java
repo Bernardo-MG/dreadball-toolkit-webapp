@@ -61,21 +61,21 @@ public class SponsorTeamPlayer {
     /**
      * Sets the player position in the team.
      * 
-     * @param position
+     * @param value
      *            the player position in the team
      */
-    public final void setPosition(final Integer position) {
-        this.position = position;
+    public final void setPosition(final Integer value) {
+        position = value;
     }
 
     /**
      * Sets the player template name.
      * 
-     * @param template
+     * @param value
      *            the player template name
      */
-    public final void setTemplateName(final String template) {
-        this.templateName = template;
+    public final void setTemplateName(final String value) {
+        templateName = value;
     }
 
 }
