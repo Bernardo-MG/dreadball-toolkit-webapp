@@ -1,252 +1,145 @@
 /**
- * Licensed under the MIT License (http://www.opensource.org/licenses/mit-license.php)
+ * Licensed under the MIT License
+ * (http://www.opensource.org/licenses/mit-license.php)
  */
 /**
- * Scripts for DBX team edition.
- * 
- * Mostly it takes care of AJAX calls.
+ * Scripts for DBX team edition. Mostly it takes care of AJAX calls.
  */
 
 function addUnitToTable(position, unit) {
-	var tbody = $("#teamUnits").children('tbody');
-	var abilities = "";
-	var abilityName;
-	var abilityDesc;
+   var tbody = $("#teamUnits").children('tbody');
+   var abilities = "";
+   var abilityName;
+   var abilityDesc;
 
-	jQuery
-			.each(
-					unit.abilities,
-					function(index, ability) {
-						if (index > 0) {
-							abilities += ", ";
-						}
+   jQuery
+         .each(
+               unit.abilities,
+               function(index, ability) {
+                  if (index > 0) {
+                     abilities += ", ";
+                  }
 
-						abilityName = ability.name_i18n;
-						abilityDesc = ability.description_i18n;
+                  abilityName = ability.name_i18n;
+                  abilityDesc = ability.description_i18n;
 
-						abilities += "<span class=\"tooltip-text\" data-toggle=\"tooltip\" data-placement=\"top\"";
-						abilities += "title=\"" + abilityDesc + "\"";
-						abilities += ">" + abilityName + "</span>";
-					});
+                  abilities += "<span class=\"tooltip-text\" data-toggle=\"tooltip\" data-placement=\"top\"";
+                  abilities += "title=\"" + abilityDesc + "\"";
+                  abilities += ">" + abilityName + "</span>";
+               });
 
-	row = "<tr>";
-	row += "<td><i class=\"fa fa-trash table-action removePlayer\" aria-hidden=\"true\"></i></td>";
-	row += "<td>";
-	row += position;
-	row += "</td>";
-	row += "<td>";
-	row += unit.name;
-	row += "</td>";
-	row += "<td>";
-	row += unit.template_name_i18n;
-	row += "</td>";
-	row += "<td>";
-	row += unit.role_i18n;
-	row += "</td>";
-	row += "<td>";
-	row += unit.attributes.movement;
-	row += "</td>";
-	row += "<td>";
-	row += unit.attributes.speed;
-	row += "</td>";
-	row += "<td>";
-	row += unit.attributes.strength;
-	row += "</td>";
-	row += "<td>";
-	row += unit.attributes.skill;
-	row += "</td>";
-	row += "<td>";
-	row += unit.attributes.armor;
-	row += "</td>";
-	row += "<td>";
-	row += abilities;
-	row += "</td>";
-	row += "<td>";
-	row += unit.cost;
-	row += "</td>" + "</tr>";
+   row = "<tr>";
+   row += "<td><i class=\"fa fa-trash table-action removePlayer\" aria-hidden=\"true\"></i></td>";
+   row += "<td>";
+   row += position;
+   row += "</td>";
+   row += "<td>";
+   row += unit.name;
+   row += "</td>";
+   row += "<td>";
+   row += unit.template_name_i18n;
+   row += "</td>";
+   row += "<td>";
+   row += unit.role_i18n;
+   row += "</td>";
+   row += "<td>";
+   row += unit.attributes.movement;
+   row += "</td>";
+   row += "<td>";
+   row += unit.attributes.speed;
+   row += "</td>";
+   row += "<td>";
+   row += unit.attributes.strength;
+   row += "</td>";
+   row += "<td>";
+   row += unit.attributes.skill;
+   row += "</td>";
+   row += "<td>";
+   row += unit.attributes.armor;
+   row += "</td>";
+   row += "<td>";
+   row += abilities;
+   row += "</td>";
+   row += "<td>";
+   row += unit.cost;
+   row += "</td>" + "</tr>";
 
-	tbody.last().append(row);
+   tbody.last().append(row);
 }
 
 function loadTeamUnits(units) {
-	var table = $("#teamUnits");
-	var tbody = table.children('tbody');
-	var row;
+   var table = $("#teamUnits");
+   var tbody = table.children('tbody');
+   var row;
 
-	tbody.empty();
+   tbody.empty();
 
-	$.each(units, function(position, unit) {
-		addUnitToTable(position, unit);
-	});
+   $.each(units, addUnitToTable);
 }
 
 function loadTeamAssetCost(team) {
-	$("#spentRank").val(team.rankCost);
-	$("#teamValue").val(team.valoration);
-}
-
-function addPlayer(template) {
-	var ajaxUrl = $(location).attr('href') + "/players";
-
-	$.ajax({
-		url : ajaxUrl,
-		type : 'POST',
-		dataType : 'json',
-		contentType : 'application/json;',
-		processData : false,
-		data : JSON.stringify({
-			templateName : template
-		}),
-		success : function(team) {
-			loadTeamUnits(team.players);
-			$("#teamValue").val(team.valoration);
-		},
-		error : function() {
-			console.log('An error occurred while adding a unit through AJAX');
-		}
-	});
-}
-
-function removePlayer(pos) {
-	var ajaxUrl = $(location).attr('href') + "/players";
-
-	$
-			.ajax({
-				url : ajaxUrl,
-				type : 'DELETE',
-				dataType : 'json',
-				contentType : 'application/json;',
-				processData : false,
-				data : JSON.stringify({
-					position : pos
-				}),
-				success : function(team) {
-					loadTeamUnits(team.players);
-					$("#teamValue").val(team.valoration);
-				},
-				error : function() {
-					console
-							.log('An error occurred while removing a unit through AJAX');
-				}
-			});
-}
-
-function setAssets(coachingDice, sabotageCards, specialMoveCards, wagers,
-		cheerleaders, mediBots) {
-	var ajaxUrl = $(location).attr('href') + "/assets";
-
-	$
-			.ajax({
-				url : ajaxUrl,
-				type : 'PUT',
-				dataType : 'json',
-				contentType : 'application/json;',
-				processData : false,
-				data : JSON.stringify({
-					coachingDice : coachingDice,
-					sabotageCards : sabotageCards,
-					specialMoveCards : specialMoveCards,
-					wagers : wagers,
-					cheerleaders : cheerleaders,
-					mediBots : mediBots
-				}),
-				success : function(team) {
-					$("#dice").val(team.coachingDice);
-					$("#sabotageCards").val(team.sabotageCards);
-					$("#moveCards").val(team.specialMoveCards);
-					$("#wagers").val(team.wagers);
-					$("#cheerleaders").val(team.cheerleaders);
-					$("#medibots").val(team.mediBots);
-					loadTeamAssetCost(team);
-				},
-				error : function() {
-					console
-							.log('An error occurred while setting the sabotage cards through AJAX');
-				}
-			});
+   $("#spentRank").val(team.rankCost);
+   $("#teamValue").val(team.valoration);
 }
 
 function addPlayerFromTable(row) {
-	var table = $("#availableUnits").DataTable();
-	var info = table.page.info();
-	var page = info.page;
-	var pageSize = info.length;
-	var index = (page * pageSize) + row;
-	var template = table.row(index).data()[0];
+   var table = $("#availableUnits").DataTable();
+   var info = table.page.info();
+   var page = info.page;
+   var pageSize = info.length;
+   var index = (page * pageSize) + row;
+   var template = table.row(index).data()[0];
 
-	addPlayer(template);
+   // Sends the data to the backend
+   addPlayer(template);
 }
 
 function removePlayerFromTable(row) {
-	var table = $("#teamUnits");
-	var position = row.find("td").eq(1).html();
+   var table = $("#teamUnits");
+   var position = row.find("td").eq(1).html();
 
-	removePlayer(position);
+   // Sends the data to the backend
+   removePlayer(position);
 }
 
-$(document).ready(
-		function() {
-			$(document).on("click", ".addPlayer", function() {
-				var row = $(this).parent().parent();
-				addPlayerFromTable(row.index());
-			});
+function onClickAddPlayer() {
+   var row = $(this).parent().parent();
+   addPlayerFromTable(row.index());
+}
 
-			$(document).on("click", ".removePlayer", function() {
-				var row = $(this).parent().parent();
-				removePlayerFromTable(row);
-			});
+function onClickRemovePlayer() {
+   var row = $(this).parent().parent();
+   removePlayerFromTable(row);
+}
 
-			$("#dice").on(
-					"change paste keyup",
-					function() {
-						setAssets($("#dice").val(), $("#sabotageCards").val(),
-								$("#moveCards").val(), $("#wagers").val(), $(
-										"#cheerleaders").val(), $("#medibots")
-										.val());
-					});
+function onChangeAssets() {
+   var dice;
+   var sabotage;
+   var move;
+   var wagers;
+   var cheerleaders;
+   var medibots;
 
-			$("#sabotageCards").on(
-					"change paste keyup",
-					function() {
-						setAssets($("#dice").val(), $("#sabotageCards").val(),
-								$("#moveCards").val(), $("#wagers").val(), $(
-										"#cheerleaders").val(), $("#medibots")
-										.val());
-					});
+   dice = $("#dice").val();
+   sabotage = $("#sabotageCards").val();
+   move = $("#moveCards").val();
+   wagers = $("#wagers").val();
+   cheerleaders = $("#cheerleaders").val();
+   medibots = $("#medibots").val();
 
-			$("#moveCards").on(
-					"change paste keyup",
-					function() {
-						setAssets($("#dice").val(), $("#sabotageCards").val(),
-								$("#moveCards").val(), $("#wagers").val(), $(
-										"#cheerleaders").val(), $("#medibots")
-										.val());
-					});
+   setAssets(dice, sabotage, move, wagers, cheerleaders, medibots);
+}
 
-			$("#wagers").on(
-					"change paste keyup",
-					function() {
-						setAssets($("#dice").val(), $("#sabotageCards").val(),
-								$("#moveCards").val(), $("#wagers").val(), $(
-										"#cheerleaders").val(), $("#medibots")
-										.val());
-					});
+$(document).ready(function() {
+   // Player addition/removal handlers
+   $(document).on("click", ".addPlayer", onClickAddPlayer);
+   $(document).on("click", ".removePlayer", onClickRemovePlayer);
 
-			$("#cheerleaders").on(
-					"change paste keyup",
-					function() {
-						setAssets($("#dice").val(), $("#sabotageCards").val(),
-								$("#moveCards").val(), $("#wagers").val(), $(
-										"#cheerleaders").val(), $("#medibots")
-										.val());
-					});
-
-			$("#medibots").on(
-					"change paste keyup",
-					function() {
-						setAssets($("#dice").val(), $("#sabotageCards").val(),
-								$("#moveCards").val(), $("#wagers").val(), $(
-										"#cheerleaders").val(), $("#medibots")
-										.val());
-					});
-		});
+   // Assets change handlers
+   $("#dice").on("change paste keyup", onChangeAssets);
+   $("#sabotageCards").on("change paste keyup", onChangeAssets);
+   $("#moveCards").on("change paste keyup", onChangeAssets);
+   $("#wagers").on("change paste keyup", onChangeAssets);
+   $("#cheerleaders").on("change paste keyup", onChangeAssets);
+   $("#medibots").on("change paste keyup", onChangeAssets);
+});
