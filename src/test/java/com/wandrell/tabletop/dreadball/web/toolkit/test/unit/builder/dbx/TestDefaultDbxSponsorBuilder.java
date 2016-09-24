@@ -29,6 +29,7 @@ import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
@@ -61,22 +62,22 @@ public final class TestDefaultDbxSponsorBuilder {
      * their data correctly, and returns the expected values.
      */
     @Test
-    public final void testGetSponsorAvailableUnits() {
+    public final void testGetAvailableUnits() {
         final DbxSponsorBuilder builder;      // Builder to test
         final Iterable<? extends Unit> units; // Sponsor units
-        final Sponsor sponsor;                // Sponsor to get the units for
+        final Iterable<AffinityGroup> affinities; // Sponsor affinities
         Integer cost;                         // Resulting cost
 
         // Creates the builder with the mocked dependencies
         builder = getDbxSponsorBuilder();
 
-        // The actual contents of the sponsor does not matter
+        // The actual contents of affinities does not matter
         // This is because the test data is received through the mocked
         // dependencies
-        sponsor = Mockito.mock(Sponsor.class);
+        affinities = new LinkedList<AffinityGroup>();
 
         // Calls the method to test
-        units = builder.getSponsorAvailableUnits(sponsor);
+        units = builder.getAvailableUnits(affinities);
 
         // Calculates the final cost
         cost = 0;

@@ -206,6 +206,7 @@ public final class TestSponsorCreationControllerSendForm {
      * 
      * @return a mocked controller
      */
+    @SuppressWarnings("unchecked")
     private final SponsorCreationController getController() {
         final DbxSponsorBuilder service; // Mocked service
         final Sponsor sponsor;           // Mocked sponsor
@@ -226,8 +227,7 @@ public final class TestSponsorCreationControllerSendForm {
 
         // Mocks the units
         units = new LinkedList<Unit>();
-        Mockito.when(
-                service.getSponsorAvailableUnits(Matchers.any(Sponsor.class)))
+        Mockito.when(service.getAvailableUnits(Matchers.any(Iterable.class)))
                 .thenReturn(units);
 
         return new SponsorCreationController(service);

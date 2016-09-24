@@ -19,6 +19,7 @@ package com.wandrell.tabletop.dreadball.build.dbx;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 
@@ -38,6 +39,16 @@ public interface DbxSponsorBuilder {
             getAvailableAffinityGroups();
 
     /**
+     * Returns all the units available for the specified Sponsor team.
+     * 
+     * @param affinities
+     *            sponsor affinities
+     * @return the units available to the Sponsor
+     */
+    public Iterable<Unit>
+            getAvailableUnits(final Iterable<AffinityGroup> affinities);
+
+    /**
      * Returns the initial rank.
      * 
      * @return the initial rank
@@ -52,15 +63,6 @@ public interface DbxSponsorBuilder {
      * @return the Sponsor created from the form
      */
     public Sponsor getSponsor(final SponsorForm form);
-
-    /**
-     * Returns all the units available for the specified Sponsor team.
-     * 
-     * @param sponsor
-     *            Sponsor to search the availabilities
-     * @return the units available to the Sponsor
-     */
-    public Iterable<Unit> getSponsorAvailableUnits(final Sponsor sponsor);
 
     /**
      * Creates an Sponsor team from the specified Sponsor.

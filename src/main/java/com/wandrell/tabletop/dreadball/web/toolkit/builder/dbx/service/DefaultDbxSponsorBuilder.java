@@ -30,6 +30,7 @@ import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
@@ -124,28 +125,19 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     }
 
     @Override
-    public final Integer getInitialRank() {
-        return initialRank;
-    }
-
-    @Override
-    public final Sponsor getSponsor(final SponsorForm form) {
-        return getDbxModelFactory().getSponsor(form);
-    }
-
-    @Override
     public final Iterable<Unit>
-            getSponsorAvailableUnits(final Sponsor sponsor) {
+            getAvailableUnits(final Iterable<AffinityGroup> affinities) {
         final Collection<Unit> units; // Available units
         Integer cost;                 // Unit cost
         Unit unit;                    // Available unit
 
-        checkNotNull(sponsor, "Received a null pointer as sponsor");
+        checkNotNull(affinities, "Received a null pointer as affinities");
 
         units = new LinkedList<Unit>();
+        // TODO: Remove units with hated affinities
         for (final AffinityUnit affUnit : getAffinityUnitRepository()
                 .findAll()) {
-            cost = getUnitCost(sponsor, affUnit);
+            cost = getUnitCost(affUnit, affinities);
 
             unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
@@ -156,6 +148,16 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
         }
 
         return units;
+    }
+
+    @Override
+    public final Integer getInitialRank() {
+        return initialRank;
+    }
+
+    @Override
+    public final Sponsor getSponsor(final SponsorForm form) {
+        return getDbxModelFactory().getSponsor(form);
     }
 
     @Override
@@ -203,18 +205,17 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     /**
      * Returns the actual cost for a unit for a sponsor.
      * 
-     * @param sponsor
-     *            sponsor to set the cost
      * @param unit
      *            unit to find the cost for
+     * @param affinities
+     *            sponsor affinities
      * @return the cost of the unit for the sponsor
      */
-    private final Integer getUnitCost(final Sponsor sponsor,
-            final AffinityUnit unit) {
+    private final Integer getUnitCost(final AffinityUnit unit,
+            final Iterable<AffinityGroup> affinities) {
         final AffinityLevel affinityLevel;  // Affinity level relationship
 
-        affinityLevel = getDbxRules().getAffinityLevel(unit,
-                sponsor.getAffinityGroups());
+        affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
 
         return getDbxRules().getUnitCost(affinityLevel, unit);
     }
