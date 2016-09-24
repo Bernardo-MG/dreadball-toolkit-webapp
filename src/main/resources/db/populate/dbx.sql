@@ -236,114 +236,142 @@ INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, s
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
     VALUES (158, 'affinity', 'zzor_striker', 'zzor_striker_affinity', 5, 6, 5, 4, 4, 'STRIKER', false);
 
+-- Other players
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (159, 'affinity', 'avaran_treebeast', 'avaran_treebeast_affinity', 4, 3, 4, 5, 3, 'JACK', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (160, 'affinity', 'jetari_brawler', 'jetari_brawler_affinity', 3, 4, 5, 4, 3, 'GUARD', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (161, 'affinity', 'jetari_thrower', 'jetari_thrower_affinity', 4, 5, 3, 4, 5, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (162, 'affinity', 'nameless_bloodsucker', 'nameless_bloodsucker_affinity', 4, 6, 5, 3, 4, 'JACK', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (163, 'affinity', 'pusk_rampager', 'pusk_rampager_affinity', 4, 4, 4, 6, 4, 'GUARD', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (164, 'affinity', 'vlorox_spinpede', 'vlorox_spinpede_affinity', 4, 4, 4, 5, 3, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (165, 'affinity', 'yndij_reaver', 'yndij_reaver_affinity', 5, 6, 4, 3, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (166, 'affinity', 'zee_buccaneer', 'zee_buccaneer_affinity', 5, 5, 5, 3, 5, 'JACK', false);
+
 -- --------------
 -- Affinity units
 -- --------------
 
 -- Ada-Lorana
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (100, 23, 15, 10);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (101, 18, 12, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (102, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (100, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (101, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (102, 23, 15, 10);
 
 -- Asterians
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (103, 15, 10, 7);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (104, 15, 10, 7);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (105, 20, 13, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (103, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (104, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (105, 20, 13, 8);
 
 -- Kalyshi
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (106, 17, 11, 7);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (107, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (106, 17, 11, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (107, 23, 15, 10);
 
 -- Convicts
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (108, 23, 15, 10);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (109, 9, 6, 4);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (110, 12, 8, 5);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (108, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (109, 9, 6, 4);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (110, 12, 8, 5);
 
 -- Crystallans
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (111, 18, 12, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (112, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (111, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (112, 15, 10, 7);
 
 -- Forge fathers
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (113, 20, 13, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (114, 14, 9, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (115, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (113, 20, 13, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (114, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (115, 14, 9, 6);
 
 -- Brokkr
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (116, 21, 14, 10);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (117, 14, 9, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (118, 12, 8, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (116, 21, 14, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (117, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (118, 12, 8, 6);
 
 -- Hobgoblins
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (119, 30, 20, 13);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (120, 14, 9, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (121, 17, 11, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (119, 30, 20, 13);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (120, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (121, 17, 11, 8);
 
 -- Humans (male)
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (122, 15, 10, 7);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (123, 12, 8, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (124, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (122, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (123, 12, 8, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (124, 15, 10, 7);
 
 -- Humans (female)
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (125, 15, 10, 7);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (126, 14, 9, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (127, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (125, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (126, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (127, 15, 10, 7);
 
 -- Judwan
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (128, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (128, 23, 15, 10);
 
 -- Koris
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (129, 18, 12, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (130, 17, 11, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (131, 17, 11, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (129, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (130, 17, 11, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (131, 17, 11, 8);
 
 -- Marauders
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (132, 20, 13, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (133, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (132, 20, 13, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (133, 14, 9, 6);
 
 -- Martians
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (134, 15, 10, 7);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (135, 12, 8, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (136, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (134, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (135, 12, 8, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (136, 15, 10, 7);
 
 -- Nameless
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (137, 14, 9, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (138, 23, 15, 10);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (139, 20, 13, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (137, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (138, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (139, 20, 13, 8);
 
 -- Rebs
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (140, 18, 12, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (141, 20, 13, 9);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (142, 15, 10, 7);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (143, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (140, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (141, 20, 13, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (142, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (143, 23, 15, 10);
 
 -- Robots
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (144, 21, 14, 9);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (145, 21, 14, 9);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (146, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (144, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (145, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (146, 21, 14, 9);
 
 -- Sphyr
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (147, 18, 12, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (148, 14, 9, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (149, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (147, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (148, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (149, 18, 12, 8);
 
 -- Teratons
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (150, 23, 15, 10);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (151, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (150, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (151, 15, 10, 7);
 
 -- Tsudochan
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (152, 15, 10, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (152, 15, 10, 7);
 
 -- Veer-Myn
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (153, 18, 12, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (154, 17, 11, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (153, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (154, 17, 11, 8);
 
 -- Zees
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (155, 11, 7, 5);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (155, 11, 7, 5);
 
 -- Z'zor
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (156, 26, 17, 12);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (157, 14, 9, 6);
-INSERT INTO affinity_units (id, cost_stranger, cost_friend, cost_ally) VALUES (158, 17, 11, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (156, 26, 17, 12);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (157, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (158, 17, 11, 8);
+
+-- Other players
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (159, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (160, 24, 16, 11);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (161, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (162, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (163, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (164, 17, 11, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (165, 24, 16, 11);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (166, 11, 7, 5);
 
 -- --------------
 -- Unit abilities
@@ -478,6 +506,39 @@ INSERT INTO unit_abilities (unit_id, ability_id) VALUES (158, 8);
 
 -- Z'zor guard: steady
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (156, 68);
+
+-- Other players, avaran treebeast: can't feel a thing, tongue
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (159, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (159, 76);
+
+-- Other players, jetari brawler: can't feel a thing, grizzled
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (160, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (160, 22);
+
+-- Other players, jetari thrower: 360 vision, a safe pair of hands
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (161, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (161, 3);
+
+-- Other players, nameless bloodsucker: poison blade, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (162, 43);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (162, 68);
+
+-- Other players, pusk rampager: ram, resilient
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (163, 51);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (163, 54);
+
+-- Other players, vlorox spinpede: can't feel a thing, rolling
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (164, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (164, 57);
+
+-- Other players, yndij reaver: backflip, duck and weave, jump
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (165, 5);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (165, 16);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (165, 28);
+
+-- Other players, zee buccaneer: duck and weave, runaround
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (166, 16);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (166, 59);
 
 -- ---------------
 -- Unit affinities
@@ -746,6 +807,42 @@ INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (157, 27);
 
 -- Z'zor jack: cunning
 INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (158, 5);
+
+-- Other players, avaran treebeast: hunter, plant
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (159, 10);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (159, 17);
+
+-- Other players, jetari brawler: dreadball, guard, mr roboto
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (160, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (160, 9);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (160, 14);
+
+-- Other players, jetari thrower: dreadball, mr roboto, striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (161, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (161, 14);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (161, 22);
+
+-- Other players, nameless bloodsucker: alien, insectoid, vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (162, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (162, 11);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (162, 25);
+
+-- Other players, pusk rampager: hunter, psycho
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (163, 10);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (163, 19);
+
+-- Other players, vlorox spinpede: alien, reluctant
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (164, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (164, 21);
+
+-- Other players, yndij reaver: alien, rebel, striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (165, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (164, 20);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (164, 22);
+
+-- Other players, zee buccaneer: cunning, pirate
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (166, 5);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (166, 16);
 
 -- ---------------------
 -- Unit hated affinities
