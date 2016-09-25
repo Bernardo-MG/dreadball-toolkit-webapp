@@ -29,6 +29,7 @@ import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
@@ -127,16 +128,18 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     @Override
     public final Iterable<Unit>
             getAvailableUnits(final Iterable<AffinityGroup> affinities) {
-        final Collection<Unit> units; // Available units
-        Integer cost;                 // Unit cost
-        Unit unit;                    // Available unit
+        final Collection<Unit> units;          // Available units
+        final Iterable<PersistentAffinityUnit> filtered; // Filtered units
+        Integer cost;                          // Unit cost
+        Unit unit;                             // Available unit
 
         checkNotNull(affinities, "Received a null pointer as affinities");
 
+        // TODO: For this to work the affinities should be DB entities
+        filtered = getAffinityUnitRepository()
+                .findAllFilteredByHatedAffinities(affinities);
         units = new LinkedList<Unit>();
-        // TODO: Remove units with hated affinities
-        for (final AffinityUnit affUnit : getAffinityUnitRepository()
-                .findAll()) {
+        for (final AffinityUnit affUnit : filtered) {
             cost = getUnitCost(affUnit, affinities);
 
             unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,

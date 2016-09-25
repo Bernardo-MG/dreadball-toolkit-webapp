@@ -96,6 +96,7 @@ public final class TestDefaultDbxSponsorBuilder {
      * 
      * @return the mocked affinity units repository
      */
+    @SuppressWarnings("unchecked")
     private final AffinityUnitRepository getAffinityUnitRepository() {
         final AffinityUnitRepository unitRepo;
         final Collection<PersistentAffinityUnit> units;
@@ -108,7 +109,9 @@ public final class TestDefaultDbxSponsorBuilder {
         units.add(new PersistentAffinityUnit());
         units.add(new PersistentAffinityUnit());
 
-        Mockito.when(unitRepo.findAll()).thenReturn(units);
+        Mockito.when(unitRepo
+                .findAllFilteredByHatedAffinities(Matchers.anyCollection()))
+                .thenReturn(units);
 
         return unitRepo;
     }
