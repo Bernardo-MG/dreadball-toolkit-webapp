@@ -196,8 +196,13 @@
                               <td><i
                                  class="fa fa-plus-circle table-action addPlayer"
                                  aria-hidden="true"></i></td>
-                              <td th:text="#{${player?.templateName}}">Template
-                                 name</td>
+                              <td><span th:remove="tag"
+                                 th:text="#{${player?.templateName}}">Template
+                                    name</span><span th:remove="tag"
+                                 th:if="${player?.giant} == true">
+                                    <i class="fa fa-arrow-up"
+                                    aria-hidden="true"></i>
+                              </span></td>
                               <td
                                  th:text="#{${player?.role?.toString().toLowerCase()}}">Jack</td>
                               <td
