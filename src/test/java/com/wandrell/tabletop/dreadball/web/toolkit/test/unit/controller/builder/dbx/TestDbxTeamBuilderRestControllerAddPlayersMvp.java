@@ -30,7 +30,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -49,11 +48,11 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 
 /**
  * Unit tests for {@link DbxTeamBuilderRestController}, checking the methods for
- * adding players.
+ * adding players, using MVP players.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDbxTeamBuilderRestControllerAddPlayers {
+public final class TestDbxTeamBuilderRestControllerAddPlayersMvp {
 
     /**
      * The name of the team bean.
@@ -66,38 +65,27 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
     private static final String URL_ASSETS = "/builder/team/dbx/players";
 
     /**
-     * Mocked MVC context.
-     */
-    private MockMvc             mockMvc;
-
-    /**
      * Default constructor.
      */
-    public TestDbxTeamBuilderRestControllerAddPlayers() {
+    public TestDbxTeamBuilderRestControllerAddPlayersMvp() {
         super();
     }
 
     /**
-     * Sets up the mocked MVC context.
-     */
-    @BeforeTest
-    public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
-    }
-
-    /**
-     * Tests that when adding multiple players these are added one after the
-     * other.
+     * Tests that multiple MVPs can be added.
      */
     @Test
-    public final void testAddPlayer_MultiplePlayers_Accepted()
-            throws Exception {
+    public final void testAddPlayer_MultipleMvps_Accepted() throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamPlayer player; // Assets for the team
         final RequestBuilder post;      // Request
+        final MockMvc mockMvc;          // Mocked context
+
+        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
 
         player = new SponsorTeamPlayer();
 
+        // TODO: The received template name is being ignored
         player.setTemplateName("template");
 
         // The request is created
@@ -113,8 +101,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
                 Matchers.anything()));
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players.2",
                 Matchers.anything()));
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.players.3",
-                Matchers.anything()));
 
         // TODO: Should be
         // result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
@@ -122,51 +108,37 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
     }
 
     /**
-     * Tests that when the data and the context is correct the assets can be
-     * set.
+     * Tests that MVPs can't be repeated.
      */
     @Test
-    public final void testAddPlayer_NoSessionTeam_ValidData_Rejected()
-            throws Exception {
+    public final void testAddPlayer_RepeatedMvp_Rejected() throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamPlayer player; // Assets for the team
+        final RequestBuilder post;      // Request
+        final MockMvc mockMvc;          // Mocked context
+
+        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
 
         player = new SponsorTeamPlayer();
 
+        // TODO: The received template name is being ignored
         player.setTemplateName("template");
 
-        result = mockMvc.perform(getNoSessionRequest(player));
+        // The request is created
+        post = getValidRequest(player);
 
-        // The operation was rejected
-        result.andExpect(MockMvcResultMatchers.status().isBadRequest());
-    }
+        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
+        result = mockMvc.perform(post)
+                .andExpect(MockMvcResultMatchers.status().isOk());
 
-    /**
-     * Tests that when the data and the context is correct players can be added.
-     */
-    @Test
-    public final void testAddPlayer_ValidContext_ValidData_Accepted()
-            throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-
-        player = new SponsorTeamPlayer();
-
-        player.setTemplateName("template");
-
-        result = mockMvc.perform(getValidRequest(player));
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status().isOk());
-
-        // The response is a JSON message
-        result.andExpect(MockMvcResultMatchers.content()
-                .contentType(MediaType.APPLICATION_JSON_UTF8));
-
-        // TODO: Check that there are no more entries
         // The assets were set correctly
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players.1",
                 Matchers.anything()));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players.2",
+                Matchers.anything()));
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$.players.3").doesNotExist());
 
         // TODO: Should be
         // result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
@@ -184,42 +156,27 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
         final Unit unit;
+        final Unit unit2;
         final Integer maxUnits;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         // TODO: Mock this better
-        unit = new DefaultUnit("", 0, Role.GUARD, new MutableAttributes(),
-                new LinkedList<Ability>(), false, false);
+        // TODO: The template should be received as a parameter in the mock
+        unit = new DefaultUnit("1", 0, Role.GUARD, new MutableAttributes(),
+                new LinkedList<Ability>(), true, false);
+        unit2 = new DefaultUnit("2", 0, Role.GUARD, new MutableAttributes(),
+                new LinkedList<Ability>(), true, false);
 
         Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
-                org.mockito.Matchers.anyCollection())).thenReturn(unit);
+                org.mockito.Matchers.anyCollection()))
+                .thenReturn(unit, unit2, unit);
 
         maxUnits = Integer.MAX_VALUE;
 
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
 
         return new DbxTeamBuilderRestController(builder);
-    }
-
-    /**
-     * Returns a request builder for posting the specified assets with an
-     * invalid context.
-     * <p>
-     * The created request will be missing session data.
-     * 
-     * @param player
-     *            player data for the request
-     * @return a request builder with the specified player data
-     */
-    private final RequestBuilder getNoSessionRequest(
-            final SponsorTeamPlayer player) throws IOException {
-        final byte[] content;
-
-        content = new ObjectMapper().writeValueAsBytes(player);
-
-        return MockMvcRequestBuilders.post(URL_ASSETS)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
     /**
