@@ -44,7 +44,7 @@ public interface AffinityUnitRepository
      *            affinities the units should not hate
      * @return all the units not hating any of the affinities
      */
-    @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE (h IS NULL OR h NOT IN :affinities)")
+    @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE (h IS NULL OR h NOT IN :affinities) ORDER BY u.templateName ASC")
     public Iterable<PersistentAffinityUnit> findAllFilteredByHatedAffinities(
             @Param("affinities") final Iterable<AffinityGroup> affinities);
 
