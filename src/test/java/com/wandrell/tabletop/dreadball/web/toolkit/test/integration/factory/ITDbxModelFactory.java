@@ -67,11 +67,11 @@ public final class ITDbxModelFactory
 
         form.setSponsorName("name");
 
-        form.setAffinityA("alien");
-        form.setAffinityB("dreadball");
-        form.setAffinityC("insectoid");
-        form.setAffinityD("psycho");
-        form.setAffinityE("vicious");
+        form.setAffinityA("affinity_1");
+        form.setAffinityB("affinity_2");
+        form.setAffinityC("affinity_3");
+        form.setAffinityD("affinity_4");
+        form.setAffinityE("affinity_5");
 
         sponsor = factory.getSponsor(form);
 
