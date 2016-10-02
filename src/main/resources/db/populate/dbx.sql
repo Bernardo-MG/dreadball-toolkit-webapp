@@ -254,6 +254,24 @@ INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, s
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
     VALUES (166, 'affinity', 'zee_buccaneer', 'zee_buccaneer_affinity', 5, 5, 5, 3, 5, 'JACK', false);
 
+-- Giants
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (167, 'affinity', 'alpha_simian', 'alpha_simian_affinity', 5, 5, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (168, 'affinity', 'barricade', 'barricade_affinity', 4, 6, 5, 3, 4, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (169, 'affinity', 'big_mech', 'big_mech_affinity', 4, 5, 4, 4, 3, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (170, 'affinity', 'chovar', 'chovar_affinity', 5, 6, 4, 5, 5, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (171, 'affinity', 'iron_ancestor', 'iron_ancestor_affinity', 5, 6, 4, 5, 5, 'KEEPER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (172, 'affinity', 'krastavor', 'krastavor_affinity', 4, 6, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (173, 'affinity', 'nameless_spawn', 'nameless_spawn_affinity', 4, 5, 5, 3, 4, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (174, 'affinity', 'sann_gar', 'sann_gar_affinity', 4, 5, 5, 4, 3, 'KEEPER', true);
+
 -- --------------
 -- Affinity units
 -- --------------
@@ -372,6 +390,16 @@ INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (1
 INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (164, 17, 11, 7);
 INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (165, 24, 16, 11);
 INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (166, 11, 7, 5);
+
+-- Giants
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (167, 45, 30, 20);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (168, 41, 27, 18);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (169, 44, 29, 19);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (170, 35, 23, 15);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (171, 48, 32, 21);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (172, 41, 27, 18);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (173, 48, 32, 21);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (174, 44, 29, 19);
 
 -- --------------
 -- Unit abilities
@@ -539,6 +567,40 @@ INSERT INTO unit_abilities (unit_id, ability_id) VALUES (165, 28);
 -- Other players, zee buccaneer: duck and weave, runaround
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (166, 16);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (166, 59);
+
+-- Giant, Alpha Simian: show off, stretch, threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (167, 63);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (167, 70);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (167, 75);
+
+-- Giant, Barricade: comin' through, stretch, threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (168, 10);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (168, 70);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (168, 75);
+
+-- Giant, Big Mech: can't feel a thing, show off, threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (169, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (169, 63);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (169, 75);
+
+-- Giant, Chovar: mind control, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (170, 34);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (170, 68);
+
+-- Giant, Iron Ancestor: can't feel a thing
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (171, 8);
+
+-- Giant, Krastavor: steady, stretch, threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (172, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (172, 70);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (172, 75);
+
+-- Giant, Nameless Spawn: gotcha, threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (173, 21);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (173, 75);
+
+-- Giant, Sann-gar:  threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (173, 75);
 
 -- ---------------
 -- Unit affinities
@@ -844,6 +906,44 @@ INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (164, 22);
 INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (166, 5);
 INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (166, 16);
 
+-- Giant, Alpha Simian: alien, hunter, reluctant
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (167, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (167, 10);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (167, 21);
+
+-- Giant, Barricade: mr roboto, tech guys, vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (168, 14);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (168, 23);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (168, 25);
+
+-- Giant, Big Mech: mr roboto, reluctant, weird science
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (169, 14);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (169, 21);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (169, 26);
+
+-- Giant, Chovar: alien, outcast, reluctant
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (170, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (170, 15);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (170, 21);
+
+-- Giant, Iron Ancestor: forge father, vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (171, 7);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (171, 25);
+
+-- Giant, Krastavor: insectoid, mr roboto
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (172, 11);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (172, 14);
+
+-- Giant, Nameless Spawn: alien, hunter, outcast
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (173, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (173, 10);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (173, 15);
+
+-- Giant, Sann-gar: cunning, hunter, outcast
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (174, 5);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (174, 10);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (174, 15);
+
 -- ---------------------
 -- Unit hated affinities
 -- ---------------------
@@ -851,6 +951,9 @@ INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (166, 16);
 -- Crystallans: hates forge fathers
 INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (111, 7);
 INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (112, 7);
+
+-- Giant, Alpha Simian: hates dreadball
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (167, 6);
 
 -- -------------------------
 -- Affinities availabilities
