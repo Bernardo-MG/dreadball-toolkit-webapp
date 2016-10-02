@@ -16,8 +16,10 @@
 
 
 -- ****************************************
--- This SQL script populates the tables with the latest Dreadball data, for both the
--- original and Xtreme versions.
+-- This SQL script populates the tables with the latest Dreadball data.
+--
+-- It includes only data that is common for both the original and Xtreme
+-- versions.
 -- ****************************************
 
 -- ****************************************
