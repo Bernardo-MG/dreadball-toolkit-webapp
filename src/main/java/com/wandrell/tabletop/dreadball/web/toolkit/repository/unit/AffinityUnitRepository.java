@@ -22,7 +22,6 @@ import org.springframework.data.repository.query.Param;
 
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 
 /**
  * Affinity units repository.
@@ -50,12 +49,20 @@ public interface AffinityUnitRepository
             @Param("affinities") final Iterable<AffinityGroup> affinities);
 
     /**
+     * Returns all the affinity units ordered by the template name.
+     * 
+     * @return all the affinity units ordered by the template name
+     */
+    @Query("SELECT u FROM AffinityUnit u ORDER BY u.templateName ASC")
+    public Iterable<PersistentAffinityUnit> findAllOrderByTemplateName();
+
+    /**
      * Returns the affinity unit with the specified template name.
      * 
      * @param name
      *            template name to search for
      * @return the affinity unit with the specified template name
      */
-    public AffinityUnit findByTemplateName(final String name);
+    public PersistentAffinityUnit findOneByTemplateName(final String name);
 
 }

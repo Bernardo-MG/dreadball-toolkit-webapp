@@ -103,7 +103,7 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
         checkNotNull(templateName, "Received a null pointer as template name");
         checkNotNull(affinities, "Received a null pointer as affinities");
 
-        affUnit = getAffinityUnitRepository().findByTemplateName(templateName);
+        affUnit = getAffinityUnitRepository().findOneByTemplateName(templateName);
 
         if (affUnit != null) {
             affinityLevel = getDbxRules().getAffinityLevel(affUnit, affinities);

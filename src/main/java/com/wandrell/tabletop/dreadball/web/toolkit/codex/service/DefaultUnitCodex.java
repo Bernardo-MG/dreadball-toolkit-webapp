@@ -53,7 +53,8 @@ public final class DefaultUnitCodex implements UnitCodex {
 
         // TODO: There may be a better way to do this
         units = new LinkedList<AffinityUnit>();
-        for (final AffinityUnit unit : getAffinityUnitRepository().findAll()) {
+        for (final AffinityUnit unit : getAffinityUnitRepository()
+                .findAllOrderByTemplateName()) {
             units.add(unit);
         }
 
