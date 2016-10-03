@@ -20,6 +20,7 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.hamcrest.Matchers;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -92,10 +93,10 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         result = mockMvc.perform(post)
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
-        // The assets were set correctly
-        // TODO: Should check size
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.players.1").doesNotExist());
+        // No player was added
+        // TODO: It is using mocks, this will be always empty
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+                Matchers.anEmptyMap()));
     }
 
     /**
@@ -124,9 +125,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         // The assets were set correctly
-        // TODO: Should check size
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.players.1").doesNotExist());
+        // TODO: It is using mocks, this will be always empty
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+                Matchers.anEmptyMap()));
     }
 
     /**
@@ -159,9 +160,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         // The assets were set correctly
-        // TODO: Should check size
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.players.1").doesNotExist());
+        // TODO: It is using mocks, this will be always empty
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+                Matchers.anEmptyMap()));
     }
 
     /**
@@ -189,9 +190,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
         // The assets were set correctly
-        // TODO: Should check size
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.players.1").doesNotExist());
+        // TODO: It is using mocks, this will be always empty
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+                Matchers.anEmptyMap()));
     }
 
     /**
