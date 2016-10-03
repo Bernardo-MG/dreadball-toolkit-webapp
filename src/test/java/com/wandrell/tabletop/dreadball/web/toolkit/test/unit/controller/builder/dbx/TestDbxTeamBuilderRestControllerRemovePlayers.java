@@ -83,7 +83,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
      * set.
      */
     @Test
-    public final void testAddPlayer_NoSessionTeam_ValidData_Rejected()
+    public final void testRemovePlayer_NoSessionTeam_ValidData_Rejected()
             throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamPlayer player; // Assets for the team
@@ -102,7 +102,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
      * Tests that when the data and the context is correct players can be added.
      */
     @Test
-    public final void testAddPlayer_ValidContext_ValidData_Accepted()
+    public final void testRemovePlayer_ValidContext_ValidData_Accepted()
             throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamPlayer player; // Assets for the team
@@ -122,7 +122,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
         // The assets were set correctly
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
-                Matchers.not(Matchers.hasKey(1))));
+                Matchers.anEmptyMap()));
     }
 
     /**

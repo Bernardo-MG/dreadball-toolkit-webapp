@@ -111,6 +111,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
         // TODO: Should be
         // result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
         // Matchers.hasKey(1)));
+
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+                Matchers.aMapWithSize(3)));
     }
 
     /**
@@ -163,6 +166,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
         // TODO: Should be
         // result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
         // Matchers.hasKey(1)));
+
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+                Matchers.aMapWithSize(1)));
     }
 
     /**
