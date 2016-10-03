@@ -44,7 +44,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
+public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
 
     /**
      * The name of the team bean.
@@ -59,7 +59,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
     /**
      * Default constructor.
      */
-    public TestDbxTeamBuilderRestControllerAddPlayersInvalid() {
+    public TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers() {
         super();
     }
 
@@ -196,26 +196,17 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
 
     /**
      * Returns a mocked controller.
-     * <p>
-     * It can create mocked sponsor, sponsor team and units.
      * 
      * @param max
      *            maximum number of units allowed
      * @return a mocked controller
      */
-    @SuppressWarnings("unchecked")
     private final DbxTeamBuilderRestController
             getMaxUnitsController(final Integer max) {
         final DbxTeamBuilder builder;
-        final Unit unit;
-
-        // Mocks the unit
-        unit = Mockito.mock(Unit.class);
 
         // Mocks the builder
         builder = Mockito.mock(DbxTeamBuilder.class);
-        Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
-                org.mockito.Matchers.anyCollection())).thenReturn(unit);
 
         // Sets max units
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(max);
@@ -233,16 +224,19 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
     @SuppressWarnings("unchecked")
     private final Map<String, Object>
             getSessionAttributes(final Integer players) {
-        final Map<String, Object> sessionAttrs;
-        final SponsorTeam team;
-        final Map<Integer, Unit> units;
+        final Map<String, Object> sessionAttrs; // Session attributes
+        final SponsorTeam team;                 // Mocked team
+        final Map<Integer, Unit> units;         // Mocked units
 
-        team = Mockito.mock(SponsorTeamMixIn.class);
+        // Mocks the units
         units = Mockito.mock(Map.class);
         Mockito.when(units.size()).thenReturn(players);
 
+        // Mocks the team
+        team = Mockito.mock(SponsorTeamMixIn.class);
         Mockito.when(team.getPlayers()).thenReturn(units);
 
+        // Creates the session attributes
         sessionAttrs = new LinkedHashMap<>();
         sessionAttrs.put(TEAM_BEAN, team);
 
@@ -262,10 +256,12 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
      */
     private final RequestBuilder getValidRequest(final SponsorTeamPlayer player,
             final Integer players) throws IOException {
-        final byte[] content;
+        final byte[] content; // Data to send
 
+        // Converts the data to bytes
         content = new ObjectMapper().writeValueAsBytes(player);
 
+        // Creates the request
         return MockMvcRequestBuilders.post(URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes(players)).content(content);
