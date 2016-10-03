@@ -87,7 +87,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         player.setTemplateName("template");
 
         // The request is created
-        post = getValidRequest(player, players);
+        post = getValidRequest(player, players + 1);
 
         mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
         result = mockMvc.perform(post)
