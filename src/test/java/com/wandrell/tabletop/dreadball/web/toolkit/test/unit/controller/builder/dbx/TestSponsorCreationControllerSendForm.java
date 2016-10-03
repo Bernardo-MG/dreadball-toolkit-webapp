@@ -35,6 +35,8 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
  * Unit tests for {@link SponsorCreationController}, checking the methods for
@@ -43,16 +45,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestSponsorCreationControllerSendForm {
-
-    /**
-     * The name of the sponsor form bean.
-     */
-    private static final String FORM_BEAN = "form";
-
-    /**
-     * Form view URL.
-     */
-    private static final String URL_FORM  = "/builder/team/dbx";
 
     /**
      * The sponsor form view.
@@ -99,12 +91,12 @@ public final class TestSponsorCreationControllerSendForm {
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response model contains the expected attributes
-        result.andExpect(
-                MockMvcResultMatchers.model().attributeExists(FORM_BEAN));
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeExists(BeanConfig.FORM_BEAN));
 
         // The response contains the expected errors
         result.andExpect(MockMvcResultMatchers.model()
-                .attributeHasFieldErrors(FORM_BEAN, "affinityA"));
+                .attributeHasFieldErrors(BeanConfig.FORM_BEAN, "affinityA"));
     }
 
     /**
@@ -137,12 +129,12 @@ public final class TestSponsorCreationControllerSendForm {
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response model contains the expected attributes
-        result.andExpect(
-                MockMvcResultMatchers.model().attributeExists(FORM_BEAN));
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeExists(BeanConfig.FORM_BEAN));
 
         // The response contains the expected errors
         result.andExpect(MockMvcResultMatchers.model()
-                .attributeHasFieldErrors(FORM_BEAN, "sponsorName"));
+                .attributeHasFieldErrors(BeanConfig.FORM_BEAN, "sponsorName"));
     }
 
     /**
@@ -239,7 +231,7 @@ public final class TestSponsorCreationControllerSendForm {
      * @return a request builder with form data missing an affinity
      */
     private final RequestBuilder getMissingAffinityFormRequest() {
-        return MockMvcRequestBuilders.post(URL_FORM)
+        return MockMvcRequestBuilders.post(UrlConfig.URL_FORM)
                 .param("sponsorName", "sponsor").param("affinityB", "aff")
                 .param("affinityC", "aff").param("affinityD", "aff")
                 .param("affinityE", "aff");
@@ -251,9 +243,10 @@ public final class TestSponsorCreationControllerSendForm {
      * @return a request builder with form data without a sponsor name
      */
     private final RequestBuilder getNoSponsorNameFormRequest() {
-        return MockMvcRequestBuilders.post(URL_FORM).param("affinityA", "aff")
-                .param("affinityB", "aff").param("affinityC", "aff")
-                .param("affinityD", "aff").param("affinityE", "aff");
+        return MockMvcRequestBuilders.post(UrlConfig.URL_FORM)
+                .param("affinityA", "aff").param("affinityB", "aff")
+                .param("affinityC", "aff").param("affinityD", "aff")
+                .param("affinityE", "aff");
     }
 
     /**
@@ -262,7 +255,7 @@ public final class TestSponsorCreationControllerSendForm {
      * @return a request builder with valid form data
      */
     private final RequestBuilder getValidFormRequest() {
-        return MockMvcRequestBuilders.post(URL_FORM)
+        return MockMvcRequestBuilders.post(UrlConfig.URL_FORM)
                 .param("sponsorName", "sponsor").param("affinityA", "aff")
                 .param("affinityB", "aff").param("affinityC", "aff")
                 .param("affinityD", "aff").param("affinityE", "aff");

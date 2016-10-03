@@ -28,6 +28,8 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
  * Unit tests for {@link SponsorCreationController}, checking the methods for
@@ -38,19 +40,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.Sponso
 public final class TestSponsorCreationControllerShowForm {
 
     /**
-     * The name of the sponsor form bean.
-     */
-    private static final String FORM_BEAN = "form";
-
-    /**
-     * Form view URL.
-     */
-    private static final String URL_FORM  = "/builder/team/dbx";
-
-    /**
      * Mocked MVC context.
      */
-    private MockMvc             mockMvc;
+    private MockMvc mockMvc;
 
     /**
      * Default constructor;
@@ -82,8 +74,8 @@ public final class TestSponsorCreationControllerShowForm {
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response model contains the expected attributes
-        result.andExpect(
-                MockMvcResultMatchers.model().attributeExists(FORM_BEAN));
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeExists(BeanConfig.FORM_BEAN));
     }
 
     /**
@@ -107,7 +99,7 @@ public final class TestSponsorCreationControllerShowForm {
      * @return a request builder for the form view
      */
     private final RequestBuilder getViewRequest() {
-        return MockMvcRequestBuilders.get(URL_FORM);
+        return MockMvcRequestBuilders.get(UrlConfig.URL_FORM);
     }
 
 }

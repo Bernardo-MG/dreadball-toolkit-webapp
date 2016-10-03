@@ -47,6 +47,8 @@ import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
 import com.wandrell.tabletop.dreadball.model.unit.stats.MutableAttributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
  * Unit tests for {@link DbxTeamBuilderRestController}, checking the methods for
@@ -57,19 +59,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
     /**
-     * The name of the team bean.
-     */
-    private static final String TEAM_BEAN  = "team";
-
-    /**
-     * Form view URL.
-     */
-    private static final String URL_ASSETS = "/builder/team/dbx/players";
-
-    /**
      * Mocked MVC context.
      */
-    private MockMvc             mockMvc;
+    private MockMvc mockMvc;
 
     /**
      * Default constructor.
@@ -178,7 +170,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.delete(URL_ASSETS)
+        return MockMvcRequestBuilders.delete(UrlConfig.URL_PLAYERS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
@@ -206,7 +198,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         sessionAttrs = new LinkedHashMap<>();
         // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
         // TODO: Mock this better
-        sessionAttrs.put(TEAM_BEAN, team);
+        sessionAttrs.put(BeanConfig.TEAM_BEAN, team);
 
         return sessionAttrs;
     }
@@ -226,7 +218,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.delete(URL_ASSETS)
+        return MockMvcRequestBuilders.delete(UrlConfig.URL_PLAYERS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes()).content(content);
     }

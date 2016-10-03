@@ -38,6 +38,8 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
  * Unit tests for {@link DbxTeamBuilderRestController}, checking the methods for
@@ -46,16 +48,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
-
-    /**
-     * The name of the team bean.
-     */
-    private static final String TEAM_BEAN  = "team";
-
-    /**
-     * Form view URL.
-     */
-    private static final String URL_ASSETS = "/builder/team/dbx/players";
 
     /**
      * Default constructor.
@@ -159,7 +151,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
 
         // Creates the session attributes
         sessionAttrs = new LinkedHashMap<>();
-        sessionAttrs.put(TEAM_BEAN, team);
+        sessionAttrs.put(BeanConfig.TEAM_BEAN, team);
 
         return sessionAttrs;
     }
@@ -186,7 +178,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         content = new ObjectMapper().writeValueAsBytes(player);
 
         // Creates the request
-        return MockMvcRequestBuilders.post(URL_ASSETS)
+        return MockMvcRequestBuilders.post(UrlConfig.URL_PLAYERS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes(players)).content(content);
     }
