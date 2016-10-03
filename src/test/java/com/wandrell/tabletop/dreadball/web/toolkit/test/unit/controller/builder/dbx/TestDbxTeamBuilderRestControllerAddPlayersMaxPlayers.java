@@ -71,32 +71,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     @Test
     public final void testAddPlayer_AboveMaximumPlayers_NotAdded()
             throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-        final RequestBuilder post;      // Request
-        final MockMvc mockMvc;          // Mocked context
-        final Integer players;          // Number of players in the team
-
-        players = 10;
-
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(getMaxUnitsController(players)).build();
-
-        player = new SponsorTeamPlayer();
-
-        player.setTemplateName("template");
-
-        // The request is created
-        post = getValidRequest(player, players + 1);
-
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        result = mockMvc.perform(post)
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // No player was added
-        // TODO: It is using mocks, this will be always empty
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
-                Matchers.anEmptyMap()));
+        testAddPlayer(10, 11);
     }
 
     /**
@@ -106,28 +81,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     @Test
     public final void testAddPlayer_NegativeMaximumPlayers_NotAdded()
             throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-        final RequestBuilder post;      // Request
-        final MockMvc mockMvc;          // Mocked context
-
-        mockMvc = MockMvcBuilders.standaloneSetup(getMaxUnitsController(-1))
-                .build();
-
-        player = new SponsorTeamPlayer();
-
-        player.setTemplateName("template");
-
-        // The request is created
-        post = getValidRequest(player, 0);
-
-        result = mockMvc.perform(post)
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // The assets were set correctly
-        // TODO: It is using mocks, this will be always empty
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
-                Matchers.anEmptyMap()));
+        testAddPlayer(-1, 0);
     }
 
     /**
@@ -137,32 +91,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     @Test
     public final void testAddPlayer_ReachedMaximumPlayers_NotAdded()
             throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-        final RequestBuilder post;      // Request
-        final MockMvc mockMvc;          // Mocked context
-        final Integer players;          // Number of players in the team
-
-        players = 10;
-
-        mockMvc = MockMvcBuilders
-                .standaloneSetup(getMaxUnitsController(players)).build();
-
-        player = new SponsorTeamPlayer();
-
-        player.setTemplateName("template");
-
-        // The request is created
-        post = getValidRequest(player, players);
-
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        result = mockMvc.perform(post)
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // The assets were set correctly
-        // TODO: It is using mocks, this will be always empty
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
-                Matchers.anEmptyMap()));
+        testAddPlayer(10, 10);
     }
 
     /**
@@ -171,28 +100,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     @Test
     public final void testAddPlayer_ZeroMaximumPlayers_NotAdded()
             throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-        final RequestBuilder post;      // Request
-        final MockMvc mockMvc;          // Mocked context
-
-        mockMvc = MockMvcBuilders.standaloneSetup(getMaxUnitsController(0))
-                .build();
-
-        player = new SponsorTeamPlayer();
-
-        player.setTemplateName("template");
-
-        // The request is created
-        post = getValidRequest(player, 0);
-
-        result = mockMvc.perform(post)
-                .andExpect(MockMvcResultMatchers.status().isOk());
-
-        // The assets were set correctly
-        // TODO: It is using mocks, this will be always empty
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
-                Matchers.anEmptyMap()));
+        testAddPlayer(0, 0);
     }
 
     /**
@@ -213,6 +121,18 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(max);
 
         return new DbxTeamBuilderRestController(builder);
+    }
+
+    /**
+     * Creates a mocked context.
+     * 
+     * @param players
+     *            the maximum number of players
+     * @return a mocked context
+     */
+    private final MockMvc getMockMvc(final Integer players) {
+        return MockMvcBuilders.standaloneSetup(getMaxUnitsController(players))
+                .build();
     }
 
     /**
@@ -249,15 +169,18 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
      * <p>
      * The created request will contain the valid context.
      * 
-     * @param player
-     *            player data for the request
      * @param players
      *            number of players in the team
      * @return a request builder with the specified player data
      */
-    private final RequestBuilder getValidRequest(final SponsorTeamPlayer player,
-            final Integer players) throws IOException {
+    private final RequestBuilder getValidRequest(final Integer players)
+            throws IOException {
+        final SponsorTeamPlayer player; // Player to add
         final byte[] content; // Data to send
+
+        // New player bean
+        player = new SponsorTeamPlayer();
+        player.setTemplateName("template");
 
         // Converts the data to bytes
         content = new ObjectMapper().writeValueAsBytes(player);
@@ -266,6 +189,28 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         return MockMvcRequestBuilders.post(URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes(players)).content(content);
+    }
+
+    private final void testAddPlayer(final Integer maxPlayers,
+            final Integer teamPlayers) throws Exception {
+        final ResultActions result; // Request result
+        final RequestBuilder post;  // Request
+        final MockMvc mockMvc;      // Mocked context
+
+        // Creates mocked context
+        mockMvc = getMockMvc(maxPlayers);
+
+        // The request is created
+        post = getValidRequest(teamPlayers);
+
+        // The request is sent
+        result = mockMvc.perform(post)
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        // No player was added
+        // TODO: It is using mocks, this will be always empty
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
+                Matchers.anEmptyMap()));
     }
 
 }
