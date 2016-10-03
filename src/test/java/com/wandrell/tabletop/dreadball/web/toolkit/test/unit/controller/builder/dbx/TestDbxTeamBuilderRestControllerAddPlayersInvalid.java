@@ -18,7 +18,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.builder
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 import org.mockito.Mockito;
@@ -33,15 +32,9 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
-import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
-import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
-import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
-import com.wandrell.tabletop.dreadball.model.unit.Role;
+import com.wandrell.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
-import com.wandrell.tabletop.dreadball.model.unit.stats.MutableAttributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
 
@@ -71,17 +64,53 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
     }
 
     /**
-     * Tests that when adding multiple players these are added one after the
-     * other.
+     * Tests that it is not possible adding a player when the maximum is
+     * surpassed.
      */
     @Test
-    public final void testAddPlayer_MaximumPlayers_NotAdded() throws Exception {
+    public final void testAddPlayer_AboveMaximumPlayers_NotAdded()
+            throws Exception {
+        final ResultActions result;     // Request result
+        final SponsorTeamPlayer player; // Assets for the team
+        final RequestBuilder post;      // Request
+        final MockMvc mockMvc;          // Mocked context
+        final Integer players;          // Number of players in the team
+
+        players = 10;
+
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(getMaxUnitsController(players)).build();
+
+        player = new SponsorTeamPlayer();
+
+        player.setTemplateName("template");
+
+        // The request is created
+        post = getValidRequest(player, players);
+
+        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
+        result = mockMvc.perform(post)
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The assets were set correctly
+        // TODO: Should check size
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$.players.1").doesNotExist());
+    }
+
+    /**
+     * Tests that it is not possible adding a player when the maximum is
+     * negative.
+     */
+    @Test
+    public final void testAddPlayer_NegativeMaximumPlayers_NotAdded()
+            throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamPlayer player; // Assets for the team
         final RequestBuilder post;      // Request
         final MockMvc mockMvc;          // Mocked context
 
-        mockMvc = MockMvcBuilders.standaloneSetup(getMaxUnitsZeroController())
+        mockMvc = MockMvcBuilders.standaloneSetup(getMaxUnitsController(-1))
                 .build();
 
         player = new SponsorTeamPlayer();
@@ -89,10 +118,73 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
         player.setTemplateName("template");
 
         // The request is created
-        post = getValidRequest(player);
+        post = getValidRequest(player, 0);
+
+        result = mockMvc.perform(post)
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The assets were set correctly
+        // TODO: Should check size
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$.players.1").doesNotExist());
+    }
+
+    /**
+     * Tests that it is not possible adding a player when the maximum is
+     * reached.
+     */
+    @Test
+    public final void testAddPlayer_ReachedMaximumPlayers_NotAdded()
+            throws Exception {
+        final ResultActions result;     // Request result
+        final SponsorTeamPlayer player; // Assets for the team
+        final RequestBuilder post;      // Request
+        final MockMvc mockMvc;          // Mocked context
+        final Integer players;          // Number of players in the team
+
+        players = 10;
+
+        mockMvc = MockMvcBuilders
+                .standaloneSetup(getMaxUnitsController(players)).build();
+
+        player = new SponsorTeamPlayer();
+
+        player.setTemplateName("template");
+
+        // The request is created
+        post = getValidRequest(player, players);
 
         mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
+        result = mockMvc.perform(post)
+                .andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The assets were set correctly
+        // TODO: Should check size
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$.players.1").doesNotExist());
+    }
+
+    /**
+     * Tests that it is not possible adding a player when the maximum is zero.
+     */
+    @Test
+    public final void testAddPlayer_ZeroMaximumPlayers_NotAdded()
+            throws Exception {
+        final ResultActions result;     // Request result
+        final SponsorTeamPlayer player; // Assets for the team
+        final RequestBuilder post;      // Request
+        final MockMvc mockMvc;          // Mocked context
+
+        mockMvc = MockMvcBuilders.standaloneSetup(getMaxUnitsController(0))
+                .build();
+
+        player = new SponsorTeamPlayer();
+
+        player.setTemplateName("template");
+
+        // The request is created
+        post = getValidRequest(player, 0);
+
         result = mockMvc.perform(post)
                 .andExpect(MockMvcResultMatchers.status().isOk());
 
@@ -107,26 +199,26 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
      * <p>
      * It can create mocked sponsor, sponsor team and units.
      * 
+     * @param max
+     *            maximum number of units allowed
      * @return a mocked controller
      */
     @SuppressWarnings("unchecked")
-    private final DbxTeamBuilderRestController getMaxUnitsZeroController() {
+    private final DbxTeamBuilderRestController
+            getMaxUnitsController(final Integer max) {
         final DbxTeamBuilder builder;
         final Unit unit;
-        final Integer maxUnits;
 
+        // Mocks the unit
+        unit = Mockito.mock(Unit.class);
+
+        // Mocks the builder
         builder = Mockito.mock(DbxTeamBuilder.class);
-
-        // TODO: Mock this better
-        unit = new DefaultUnit("", 0, Role.GUARD, new MutableAttributes(),
-                new LinkedList<Ability>(), false, false);
-
         Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
                 org.mockito.Matchers.anyCollection())).thenReturn(unit);
 
-        maxUnits = 0;
-
-        Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
+        // Sets max units
+        Mockito.when(builder.getMaxTeamUnits()).thenReturn(max);
 
         return new DbxTeamBuilderRestController(builder);
     }
@@ -134,19 +226,25 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
     /**
      * Returns the session attributes required for the controller to work.
      * 
+     * @param players
+     *            number of players in the team
      * @return the session attributes required by the controller
      */
     @SuppressWarnings("unchecked")
-    private final Map<String, Object> getSessionAttributes() {
+    private final Map<String, Object>
+            getSessionAttributes(final Integer players) {
         final Map<String, Object> sessionAttrs;
+        final SponsorTeam team;
+        final Map<Integer, Unit> units;
+
+        team = Mockito.mock(SponsorTeamMixIn.class);
+        units = Mockito.mock(Map.class);
+        Mockito.when(units.size()).thenReturn(players);
+
+        Mockito.when(team.getPlayers()).thenReturn(units);
 
         sessionAttrs = new LinkedHashMap<>();
-        // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
-        // TODO: Mock this better
-        sessionAttrs.put(TEAM_BEAN,
-                new DefaultSponsorTeam(new DefaultSponsor(),
-                        Mockito.mock(TeamValorationCalculator.class),
-                        Mockito.mock(RankCostCalculator.class)));
+        sessionAttrs.put(TEAM_BEAN, team);
 
         return sessionAttrs;
     }
@@ -158,17 +256,19 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
      * 
      * @param player
      *            player data for the request
+     * @param players
+     *            number of players in the team
      * @return a request builder with the specified player data
      */
-    private final RequestBuilder getValidRequest(final SponsorTeamPlayer player)
-            throws IOException {
+    private final RequestBuilder getValidRequest(final SponsorTeamPlayer player,
+            final Integer players) throws IOException {
         final byte[] content;
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
         return MockMvcRequestBuilders.post(URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .sessionAttrs(getSessionAttributes()).content(content);
+                .sessionAttrs(getSessionAttributes(players)).content(content);
     }
 
 }
