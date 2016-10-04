@@ -24,6 +24,11 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.configuration;
 public final class UrlConfig {
 
     /**
+     * Team assets REST URL.
+     */
+    public static final String URL_ASSETS  = "/builder/team/dbx/assets";
+
+    /**
      * Form view URL.
      */
     public static final String URL_FORM    = "/builder/team/dbx";

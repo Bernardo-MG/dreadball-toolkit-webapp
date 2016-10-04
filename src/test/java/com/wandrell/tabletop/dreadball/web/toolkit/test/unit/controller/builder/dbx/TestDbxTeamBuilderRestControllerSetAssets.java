@@ -172,7 +172,7 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
 
         content = new ObjectMapper().writeValueAsBytes(assets);
 
-        return MockMvcRequestBuilders.put(UrlConfig.URL_PLAYERS)
+        return MockMvcRequestBuilders.put(UrlConfig.URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
@@ -211,7 +211,7 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
 
         content = new ObjectMapper().writeValueAsBytes(assets);
 
-        return MockMvcRequestBuilders.put(UrlConfig.URL_PLAYERS)
+        return MockMvcRequestBuilders.put(UrlConfig.URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes()).content(content);
     }
