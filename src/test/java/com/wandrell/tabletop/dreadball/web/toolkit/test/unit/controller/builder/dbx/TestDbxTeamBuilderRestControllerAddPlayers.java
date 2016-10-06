@@ -70,7 +70,8 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
      */
     @BeforeTest
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
     }
 
     /**
@@ -91,10 +92,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
         // The request is created
         post = getValidRequest(player);
 
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        result = mockMvc.perform(post)
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(post);
+        mockMvc.perform(post);
+        result = mockMvc.perform(post);
 
         // The assets were set correctly
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players.1",
@@ -125,9 +125,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
         player.setTemplateName("template");
 
         result = mockMvc.perform(getValidRequest(player));
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response is a JSON message
         result.andExpect(MockMvcResultMatchers.content()

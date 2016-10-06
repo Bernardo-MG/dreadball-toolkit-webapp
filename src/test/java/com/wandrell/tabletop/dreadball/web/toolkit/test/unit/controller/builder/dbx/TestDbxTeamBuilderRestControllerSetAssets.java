@@ -70,7 +70,8 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
      */
     @BeforeTest
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
     }
 
     /**
@@ -92,9 +93,6 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
         assets.setWagers(6);
 
         result = mockMvc.perform(getValidRequest(assets));
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response is a JSON message
         result.andExpect(MockMvcResultMatchers.content()

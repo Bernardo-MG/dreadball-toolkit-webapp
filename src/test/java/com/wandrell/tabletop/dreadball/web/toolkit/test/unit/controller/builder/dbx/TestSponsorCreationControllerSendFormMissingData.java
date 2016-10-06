@@ -68,7 +68,8 @@ public final class TestSponsorCreationControllerSendFormMissingData {
      */
     @BeforeTest
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
     }
 
     /**
@@ -81,9 +82,6 @@ public final class TestSponsorCreationControllerSendFormMissingData {
         final ResultActions result; // Request result
 
         result = mockMvc.perform(getMissingAffinityFormRequest());
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response model contains the expected attributes
         result.andExpect(MockMvcResultMatchers.model()
@@ -119,9 +117,6 @@ public final class TestSponsorCreationControllerSendFormMissingData {
         final ResultActions result; // Request result
 
         result = mockMvc.perform(getNoSponsorNameFormRequest());
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response model contains the expected attributes
         result.andExpect(MockMvcResultMatchers.model()

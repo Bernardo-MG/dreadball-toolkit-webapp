@@ -76,7 +76,8 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
      */
     @BeforeTest
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
     }
 
     /**
@@ -93,9 +94,6 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         player.setPosition(1);
 
         result = mockMvc.perform(getValidRequest(player));
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response is a JSON message
         result.andExpect(MockMvcResultMatchers.content()

@@ -73,7 +73,8 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
         final RequestBuilder post;      // Request
         final MockMvc mockMvc;          // Mocked context
 
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
 
         player = new SponsorTeamPlayer();
 
@@ -83,10 +84,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
         // The request is created
         post = getValidRequest(player);
 
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        result = mockMvc.perform(post)
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(post);
+        mockMvc.perform(post);
+        result = mockMvc.perform(post);
 
         // The assets were set correctly
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players.1",
@@ -112,7 +112,8 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
         final RequestBuilder post;      // Request
         final MockMvc mockMvc;          // Mocked context
 
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
 
         player = new SponsorTeamPlayer();
 
@@ -122,10 +123,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
         // The request is created
         post = getValidRequest(player);
 
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        mockMvc.perform(post).andExpect(MockMvcResultMatchers.status().isOk());
-        result = mockMvc.perform(post)
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        mockMvc.perform(post);
+        mockMvc.perform(post);
+        result = mockMvc.perform(post);
 
         // The assets were set correctly
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players.1",
