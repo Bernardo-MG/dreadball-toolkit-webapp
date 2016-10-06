@@ -71,7 +71,10 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
     @BeforeTest
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
-                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
     }
 
     /**
@@ -92,25 +95,21 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
         assets.setSpecialMoveCards(5);
         assets.setWagers(6);
 
-        result = mockMvc.perform(getValidRequest(assets));
-
-        // The response is a JSON message
-        result.andExpect(MockMvcResultMatchers.content()
-                .contentType(MediaType.APPLICATION_JSON_UTF8));
+        result = mockMvc.perform(getRequest(assets));
 
         // The assets were set correctly
         result.andExpect(MockMvcResultMatchers.jsonPath("$.cheerleaders",
-                Matchers.is(1)));
+                Matchers.is(assets.getCheerleaders())));
         result.andExpect(MockMvcResultMatchers.jsonPath("$.coachingDice",
-                Matchers.is(2)));
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.mediBots", Matchers.is(3)));
+                Matchers.is(assets.getCoachingDice())));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.mediBots",
+                Matchers.is(assets.getMediBots())));
         result.andExpect(MockMvcResultMatchers.jsonPath("$.sabotageCards",
-                Matchers.is(4)));
+                Matchers.is(assets.getSabotageCards())));
         result.andExpect(MockMvcResultMatchers.jsonPath("$.specialMoveCards",
-                Matchers.is(5)));
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$.wagers", Matchers.is(6)));
+                Matchers.is(assets.getSpecialMoveCards())));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.wagers",
+                Matchers.is(assets.getWagers())));
     }
 
     /**
@@ -126,6 +125,26 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         return new DbxTeamBuilderRestController(builder);
+    }
+
+    /**
+     * Returns a request builder for posting the specified assets.
+     * <p>
+     * The created request will contain the valid context.
+     * 
+     * @param assets
+     *            assets for the request
+     * @return a request builder with the specified assets
+     */
+    private final RequestBuilder getRequest(final SponsorTeamAssets assets)
+            throws IOException {
+        final byte[] content;
+
+        content = new ObjectMapper().writeValueAsBytes(assets);
+
+        return MockMvcRequestBuilders.put(UrlConfig.URL_ASSETS)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .sessionAttrs(getSessionAttributes()).content(content);
     }
 
     /**
@@ -146,26 +165,6 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
                         Mockito.mock(RankCostCalculator.class)));
 
         return sessionAttrs;
-    }
-
-    /**
-     * Returns a request builder for posting the specified assets.
-     * <p>
-     * The created request will contain the valid context.
-     * 
-     * @param assets
-     *            assets for the request
-     * @return a request builder with the specified assets
-     */
-    private final RequestBuilder getValidRequest(final SponsorTeamAssets assets)
-            throws IOException {
-        final byte[] content;
-
-        content = new ObjectMapper().writeValueAsBytes(assets);
-
-        return MockMvcRequestBuilders.put(UrlConfig.URL_ASSETS)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .sessionAttrs(getSessionAttributes()).content(content);
     }
 
 }

@@ -77,7 +77,10 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
     @BeforeTest
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
-                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
     }
 
     /**
@@ -86,20 +89,11 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
      */
     @Test
     public final void testRemovePlayer_Removed() throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
+        final ResultActions result; // Request result
 
-        player = new SponsorTeamPlayer();
+        result = mockMvc.perform(getRequest());
 
-        player.setPosition(1);
-
-        result = mockMvc.perform(getValidRequest(player));
-
-        // The response is a JSON message
-        result.andExpect(MockMvcResultMatchers.content()
-                .contentType(MediaType.APPLICATION_JSON_UTF8));
-
-        // The assets were set correctly
+        // The player was removed
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
                 Matchers.anEmptyMap()));
     }
@@ -132,6 +126,28 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
     }
 
     /**
+     * Returns a request builder for posting the specified assets.
+     * <p>
+     * The created request will contain the valid context.
+     * 
+     * @return a request builder with the specified player data
+     */
+    private final RequestBuilder getRequest() throws IOException {
+        final byte[] content;
+        final SponsorTeamPlayer player; // Assets for the team
+
+        player = new SponsorTeamPlayer();
+
+        player.setPosition(1);
+
+        content = new ObjectMapper().writeValueAsBytes(player);
+
+        return MockMvcRequestBuilders.delete(UrlConfig.URL_PLAYERS)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .sessionAttrs(getSessionAttributes()).content(content);
+    }
+
+    /**
      * Returns the session attributes required for the controller to work.
      * 
      * @return the session attributes required by the controller
@@ -158,26 +174,6 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         sessionAttrs.put(BeanConfig.TEAM_BEAN, team);
 
         return sessionAttrs;
-    }
-
-    /**
-     * Returns a request builder for posting the specified assets.
-     * <p>
-     * The created request will contain the valid context.
-     * 
-     * @param player
-     *            player data for the request
-     * @return a request builder with the specified player data
-     */
-    private final RequestBuilder getValidRequest(final SponsorTeamPlayer player)
-            throws IOException {
-        final byte[] content;
-
-        content = new ObjectMapper().writeValueAsBytes(player);
-
-        return MockMvcRequestBuilders.delete(UrlConfig.URL_PLAYERS)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .sessionAttrs(getSessionAttributes()).content(content);
     }
 
 }

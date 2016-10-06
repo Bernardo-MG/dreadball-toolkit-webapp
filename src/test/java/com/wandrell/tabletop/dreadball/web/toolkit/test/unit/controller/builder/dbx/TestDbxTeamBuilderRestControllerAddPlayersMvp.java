@@ -68,21 +68,18 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMvp {
      */
     @Test
     public final void testAddPlayer_MultipleMvps_Accepted() throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-        final RequestBuilder post;      // Request
-        final MockMvc mockMvc;          // Mocked context
+        final ResultActions result; // Request result
+        final RequestBuilder post;  // Request
+        final MockMvc mockMvc;      // Mocked context
 
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
-                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
-
-        player = new SponsorTeamPlayer();
-
-        // TODO: The received template name is being ignored
-        player.setTemplateName("template");
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
 
         // The request is created
-        post = getValidRequest(player);
+        post = getRequest();
 
         mockMvc.perform(post);
         mockMvc.perform(post);
@@ -107,21 +104,18 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMvp {
      */
     @Test
     public final void testAddPlayer_RepeatedMvp_Rejected() throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-        final RequestBuilder post;      // Request
-        final MockMvc mockMvc;          // Mocked context
+        final ResultActions result; // Request result
+        final RequestBuilder post;  // Request
+        final MockMvc mockMvc;      // Mocked context
 
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
-                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
-
-        player = new SponsorTeamPlayer();
-
-        // TODO: The received template name is being ignored
-        player.setTemplateName("template");
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
 
         // The request is created
-        post = getValidRequest(player);
+        post = getRequest();
 
         mockMvc.perform(post);
         mockMvc.perform(post);
@@ -178,6 +172,26 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMvp {
     }
 
     /**
+     * Returns a request builder for posting a player.
+     * 
+     * @return a request builder with a valid player
+     */
+    private final RequestBuilder getRequest() throws IOException {
+        final byte[] content;
+        final SponsorTeamPlayer player; // Assets for the team
+
+        player = new SponsorTeamPlayer();
+
+        player.setTemplateName("template");
+
+        content = new ObjectMapper().writeValueAsBytes(player);
+
+        return MockMvcRequestBuilders.post(UrlConfig.URL_PLAYERS)
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .sessionAttrs(getSessionAttributes()).content(content);
+    }
+
+    /**
      * Returns the session attributes required for the controller to work.
      * 
      * @return the session attributes required by the controller
@@ -195,26 +209,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMvp {
                         Mockito.mock(RankCostCalculator.class)));
 
         return sessionAttrs;
-    }
-
-    /**
-     * Returns a request builder for posting the specified assets.
-     * <p>
-     * The created request will contain the valid context.
-     * 
-     * @param player
-     *            player data for the request
-     * @return a request builder with the specified player data
-     */
-    private final RequestBuilder getValidRequest(final SponsorTeamPlayer player)
-            throws IOException {
-        final byte[] content;
-
-        content = new ObjectMapper().writeValueAsBytes(player);
-
-        return MockMvcRequestBuilders.post(UrlConfig.URL_PLAYERS)
-                .contentType(MediaType.APPLICATION_JSON_VALUE)
-                .sessionAttrs(getSessionAttributes()).content(content);
     }
 
 }

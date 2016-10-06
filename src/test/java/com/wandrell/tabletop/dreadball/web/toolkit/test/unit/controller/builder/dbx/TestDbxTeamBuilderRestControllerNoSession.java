@@ -71,13 +71,7 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
      */
     @Test
     public final void testAddPlayer_Rejected() throws Exception {
-        final SponsorTeamPlayer player; // Assets for the team
-
-        player = new SponsorTeamPlayer();
-
-        player.setTemplateName("template");
-
-        mockMvc.perform(getAddPlayerRequest(player));
+        mockMvc.perform(getAddPlayerRequest());
     }
 
     /**
@@ -85,13 +79,7 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
      */
     @Test
     public final void testRemovePlayer_Rejected() throws Exception {
-        final SponsorTeamPlayer player; // Assets for the team
-
-        player = new SponsorTeamPlayer();
-
-        player.setPosition(1);
-
-        mockMvc.perform(getDeletePlayersRequest(player));
+        mockMvc.perform(getDeletePlayersRequest());
     }
 
     /**
@@ -100,18 +88,7 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
      */
     @Test
     public final void testSetAssets_Rejected() throws Exception {
-        final SponsorTeamAssets assets; // Assets for the team
-
-        assets = new SponsorTeamAssets();
-
-        assets.setCheerleaders(1);
-        assets.setCoachingDice(2);
-        assets.setMediBots(3);
-        assets.setSabotageCards(4);
-        assets.setSpecialMoveCards(5);
-        assets.setWagers(6);
-
-        mockMvc.perform(getPutAssetsRequest(assets));
+        mockMvc.perform(getPutAssetsRequest());
     }
 
     /**
@@ -120,13 +97,15 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
      * <p>
      * The created request will be missing session data.
      * 
-     * @param player
-     *            player data for the request
      * @return a request builder with the specified player data
      */
-    private final RequestBuilder getAddPlayerRequest(
-            final SponsorTeamPlayer player) throws IOException {
+    private final RequestBuilder getAddPlayerRequest() throws IOException {
         final byte[] content;
+        final SponsorTeamPlayer player; // Assets for the team
+
+        player = new SponsorTeamPlayer();
+
+        player.setTemplateName("template");
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
@@ -156,9 +135,13 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
      *            player data for the request
      * @return a request builder with the specified player data
      */
-    private final RequestBuilder getDeletePlayersRequest(
-            final SponsorTeamPlayer player) throws IOException {
+    private final RequestBuilder getDeletePlayersRequest() throws IOException {
         final byte[] content;
+        final SponsorTeamPlayer player; // Assets for the team
+
+        player = new SponsorTeamPlayer();
+
+        player.setPosition(1);
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
@@ -173,9 +156,18 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
      *            assets for the request
      * @return a request builder with the specified assets
      */
-    private final RequestBuilder getPutAssetsRequest(
-            final SponsorTeamAssets assets) throws IOException {
+    private final RequestBuilder getPutAssetsRequest() throws IOException {
         final byte[] content;
+        final SponsorTeamAssets assets; // Assets for the team
+
+        assets = new SponsorTeamAssets();
+
+        assets.setCheerleaders(1);
+        assets.setCoachingDice(2);
+        assets.setMediBots(3);
+        assets.setSabotageCards(4);
+        assets.setSpecialMoveCards(5);
+        assets.setWagers(6);
 
         content = new ObjectMapper().writeValueAsBytes(assets);
 
