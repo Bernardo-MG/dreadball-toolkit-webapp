@@ -95,6 +95,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
         // result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
         // Matchers.hasKey(1)));
 
+        // There are no more entries
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
                 Matchers.aMapWithSize(2)));
     }
@@ -133,6 +134,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
         // result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
         // Matchers.hasKey(1)));
 
+        // There are no more entries
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
                 Matchers.aMapWithSize(2)));
     }
@@ -202,8 +204,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
         final Map<String, Object> sessionAttrs;
 
         sessionAttrs = new LinkedHashMap<>();
-        // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
-        // TODO: Mock this better
         sessionAttrs.put(BeanConfig.TEAM_BEAN,
                 new DefaultSponsorTeam(new DefaultSponsor(),
                         Mockito.mock(TeamValorationCalculator.class),

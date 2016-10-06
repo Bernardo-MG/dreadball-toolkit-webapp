@@ -18,7 +18,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.builder
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 import org.hamcrest.Matchers;
@@ -41,11 +40,7 @@ import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
-import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
-import com.wandrell.tabletop.dreadball.model.unit.stats.MutableAttributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
@@ -93,7 +88,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
         result = mockMvc.perform(getRequest());
 
-        // The player was removed
+        // There are no players
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
                 Matchers.anEmptyMap()));
     }
@@ -162,15 +157,11 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
                 Mockito.mock(TeamValorationCalculator.class),
                 Mockito.mock(RankCostCalculator.class));
 
-        // TODO: Mock this better
-        unit = new DefaultUnit("", 0, Role.GUARD, new MutableAttributes(),
-                new LinkedList<Ability>(), false, false);
+        unit = Mockito.mock(UnitMixIn.class);
 
         team.addPlayer(unit);
 
         sessionAttrs = new LinkedHashMap<>();
-        // sessionAttrs.put("team", Mockito.mock(SponsorTeam.class));
-        // TODO: Mock this better
         sessionAttrs.put(BeanConfig.TEAM_BEAN, team);
 
         return sessionAttrs;
