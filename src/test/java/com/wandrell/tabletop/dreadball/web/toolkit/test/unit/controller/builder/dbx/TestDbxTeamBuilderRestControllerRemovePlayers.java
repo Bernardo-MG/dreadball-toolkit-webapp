@@ -36,6 +36,7 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
+import com.wandrell.tabletop.dreadball.model.json.unit.UnitMixIn;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
@@ -79,31 +80,11 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
     }
 
     /**
-     * Tests that when the data and the context is correct the assets can be
-     * set.
+     * Tests that when the data and the context are correct the players can be
+     * removed.
      */
     @Test
-    public final void testRemovePlayer_NoSessionTeam_ValidData_Rejected()
-            throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-
-        player = new SponsorTeamPlayer();
-
-        player.setPosition(1);
-
-        result = mockMvc.perform(getNoSessionRequest(player));
-
-        // The operation was rejected
-        result.andExpect(MockMvcResultMatchers.status().isBadRequest());
-    }
-
-    /**
-     * Tests that when the data and the context is correct players can be added.
-     */
-    @Test
-    public final void testRemovePlayer_ValidContext_ValidData_Accepted()
-            throws Exception {
+    public final void testRemovePlayer_Removed() throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamPlayer player; // Assets for the team
 
@@ -140,9 +121,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
-        // TODO: Mock this better
-        unit = new DefaultUnit("", 0, Role.GUARD, new MutableAttributes(),
-                new LinkedList<Ability>(), false, false);
+        unit = Mockito.mock(UnitMixIn.class);
 
         Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
                 org.mockito.Matchers.anyCollection())).thenReturn(unit);
@@ -152,26 +131,6 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
 
         return new DbxTeamBuilderRestController(builder);
-    }
-
-    /**
-     * Returns a request builder for posting the specified assets with an
-     * invalid context.
-     * <p>
-     * The created request will be missing session data.
-     * 
-     * @param player
-     *            player data for the request
-     * @return a request builder with the specified player data
-     */
-    private final RequestBuilder getNoSessionRequest(
-            final SponsorTeamPlayer player) throws IOException {
-        final byte[] content;
-
-        content = new ObjectMapper().writeValueAsBytes(player);
-
-        return MockMvcRequestBuilders.delete(UrlConfig.URL_PLAYERS)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
     /**

@@ -78,33 +78,7 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
      * set.
      */
     @Test
-    public final void testSetAssets_NoSessionTeam_ValidData_Rejected()
-            throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamAssets assets; // Assets for the team
-
-        assets = new SponsorTeamAssets();
-
-        assets.setCheerleaders(1);
-        assets.setCoachingDice(2);
-        assets.setMediBots(3);
-        assets.setSabotageCards(4);
-        assets.setSpecialMoveCards(5);
-        assets.setWagers(6);
-
-        result = mockMvc.perform(getNoSessionRequest(assets));
-
-        // The operation was rejected
-        result.andExpect(MockMvcResultMatchers.status().isBadRequest());
-    }
-
-    /**
-     * Tests that when the data and the context is correct the assets can be
-     * set.
-     */
-    @Test
-    public final void testSetAssets_ValidContext_ValidData_Accepted()
-            throws Exception {
+    public final void testSetAssets_ValidData_Accepted() throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamAssets assets; // Assets for the team
 
@@ -154,26 +128,6 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         return new DbxTeamBuilderRestController(builder);
-    }
-
-    /**
-     * Returns a request builder for posting the specified assets with an
-     * invalid context.
-     * <p>
-     * The created request will be missing session data.
-     * 
-     * @param assets
-     *            assets for the request
-     * @return a request builder with the specified assets
-     */
-    private final RequestBuilder getNoSessionRequest(
-            final SponsorTeamAssets assets) throws IOException {
-        final byte[] content;
-
-        content = new ObjectMapper().writeValueAsBytes(assets);
-
-        return MockMvcRequestBuilders.put(UrlConfig.URL_ASSETS)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
     /**

@@ -63,7 +63,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     @Test
     public final void testAddPlayer_AboveMaximumPlayers_NotAdded()
             throws Exception {
-        testAddPlayer(10, 11);
+        testCantAddPlayer(10, 11);
     }
 
     /**
@@ -73,7 +73,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     @Test
     public final void testAddPlayer_NegativeMaximumPlayers_NotAdded()
             throws Exception {
-        testAddPlayer(-1, 0);
+        testCantAddPlayer(-1, 0);
     }
 
     /**
@@ -83,7 +83,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     @Test
     public final void testAddPlayer_ReachedMaximumPlayers_NotAdded()
             throws Exception {
-        testAddPlayer(10, 10);
+        testCantAddPlayer(10, 10);
     }
 
     /**
@@ -92,7 +92,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     @Test
     public final void testAddPlayer_ZeroMaximumPlayers_NotAdded()
             throws Exception {
-        testAddPlayer(0, 0);
+        testCantAddPlayer(0, 0);
     }
 
     /**
@@ -124,7 +124,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
      */
     private final MockMvc getMockMvc(final Integer players) {
         return MockMvcBuilders.standaloneSetup(getMaxUnitsController(players))
-                .build();
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
     }
 
     /**
@@ -183,7 +185,17 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
                 .sessionAttrs(getSessionAttributes(players)).content(content);
     }
 
-    private final void testAddPlayer(final Integer maxPlayers,
+    /**
+     * Verifies that a player can't be added under the set conditions.
+     * 
+     * @param maxPlayers
+     *            maximum number of players allowed in a team
+     * @param teamPlayers
+     *            number of players currently in the team
+     * @throws Exception
+     *             if any problem occurs while running the test
+     */
+    private final void testCantAddPlayer(final Integer maxPlayers,
             final Integer teamPlayers) throws Exception {
         final ResultActions result; // Request result
         final RequestBuilder post;  // Request
@@ -196,8 +208,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         post = getValidRequest(teamPlayers);
 
         // The request is sent
-        result = mockMvc.perform(post)
-                .andExpect(MockMvcResultMatchers.status().isOk());
+        result = mockMvc.perform(post);
 
         // No player was added
         // TODO: It is using mocks, this will be always empty

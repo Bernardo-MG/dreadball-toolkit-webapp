@@ -18,7 +18,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.builder
 
 import java.io.IOException;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.Map;
 
 import org.hamcrest.Matchers;
@@ -36,14 +35,11 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
+import com.wandrell.tabletop.dreadball.model.json.unit.UnitMixIn;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
-import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
-import com.wandrell.tabletop.dreadball.model.unit.stats.MutableAttributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
@@ -140,8 +136,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
      * Tests that when the data and the context is correct players can be added.
      */
     @Test
-    public final void testAddPlayer_ValidContext_ValidData_Accepted()
-            throws Exception {
+    public final void testAddPlayer_ValidData_Accepted() throws Exception {
         final ResultActions result;     // Request result
         final SponsorTeamPlayer player; // Assets for the team
 
@@ -186,9 +181,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
-        // TODO: Mock this better
-        unit = new DefaultUnit("", 0, Role.GUARD, new MutableAttributes(),
-                new LinkedList<Ability>(), false, false);
+        unit = Mockito.mock(UnitMixIn.class);
 
         Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
                 org.mockito.Matchers.anyCollection())).thenReturn(unit);
