@@ -122,9 +122,6 @@
          <!-- H2 database profile -->
          <!-- Prepares the project to make use of an H2 in-memory database -->
          <id>h2</id>
-         <activation>
-            <activeByDefault>true</activeByDefault>
-         </activation>
          <properties>
             <!-- Access data -->
             <database.url>jdbc:h2:mem:dreadball_toolkit</database.url>
