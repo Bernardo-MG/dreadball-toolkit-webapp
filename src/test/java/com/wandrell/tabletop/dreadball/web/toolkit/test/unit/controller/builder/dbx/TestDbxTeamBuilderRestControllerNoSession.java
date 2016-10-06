@@ -30,8 +30,6 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.model.json.unit.UnitMixIn;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
@@ -65,6 +63,21 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
                 .alwaysExpect(MockMvcResultMatchers.status().isBadRequest())
                 .build();
+    }
+
+    /**
+     * Tests that when the data and the context is correct the assets can be
+     * set.
+     */
+    @Test
+    public final void testAddPlayer_Rejected() throws Exception {
+        final SponsorTeamPlayer player; // Assets for the team
+
+        player = new SponsorTeamPlayer();
+
+        player.setTemplateName("template");
+
+        mockMvc.perform(getAddPlayerRequest(player));
     }
 
     /**
@@ -102,28 +115,36 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
     }
 
     /**
+     * Returns a request builder for posting the specified assets with an
+     * invalid context.
+     * <p>
+     * The created request will be missing session data.
+     * 
+     * @param player
+     *            player data for the request
+     * @return a request builder with the specified player data
+     */
+    private final RequestBuilder getAddPlayerRequest(
+            final SponsorTeamPlayer player) throws IOException {
+        final byte[] content;
+
+        content = new ObjectMapper().writeValueAsBytes(player);
+
+        return MockMvcRequestBuilders.post(UrlConfig.URL_PLAYERS)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
+    }
+
+    /**
      * Returns a mocked controller.
      * <p>
      * It can create mocked sponsor, sponsor team and units.
      * 
      * @return a mocked controller
      */
-    @SuppressWarnings("unchecked")
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
-        final Unit unit;
-        final Integer maxUnits;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
-
-        unit = Mockito.mock(UnitMixIn.class);
-
-        Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
-                org.mockito.Matchers.anyCollection())).thenReturn(unit);
-
-        maxUnits = Integer.MAX_VALUE;
-
-        Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
 
         return new DbxTeamBuilderRestController(builder);
     }

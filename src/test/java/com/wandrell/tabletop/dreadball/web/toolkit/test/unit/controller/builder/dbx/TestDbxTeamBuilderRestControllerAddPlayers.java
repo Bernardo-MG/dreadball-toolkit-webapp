@@ -113,26 +113,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
     }
 
     /**
-     * Tests that when the data and the context is correct the assets can be
-     * set.
-     */
-    @Test
-    public final void testAddPlayer_NoSessionTeam_ValidData_Rejected()
-            throws Exception {
-        final ResultActions result;     // Request result
-        final SponsorTeamPlayer player; // Assets for the team
-
-        player = new SponsorTeamPlayer();
-
-        player.setTemplateName("template");
-
-        result = mockMvc.perform(getNoSessionRequest(player));
-
-        // The operation was rejected
-        result.andExpect(MockMvcResultMatchers.status().isBadRequest());
-    }
-
-    /**
      * Tests that when the data and the context is correct players can be added.
      */
     @Test
@@ -191,26 +171,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
 
         return new DbxTeamBuilderRestController(builder);
-    }
-
-    /**
-     * Returns a request builder for posting the specified assets with an
-     * invalid context.
-     * <p>
-     * The created request will be missing session data.
-     * 
-     * @param player
-     *            player data for the request
-     * @return a request builder with the specified player data
-     */
-    private final RequestBuilder getNoSessionRequest(
-            final SponsorTeamPlayer player) throws IOException {
-        final byte[] content;
-
-        content = new ObjectMapper().writeValueAsBytes(player);
-
-        return MockMvcRequestBuilders.post(UrlConfig.URL_PLAYERS)
-                .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
     /**
