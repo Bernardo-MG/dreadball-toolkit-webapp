@@ -35,20 +35,21 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
  * Unit tests for {@link SponsorCreationController}, checking the methods for
- * sending the form data.
+ * sending the form data with missing data.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorCreationControllerSendForm {
+public final class TestSponsorCreationControllerSendFormMissingData {
 
     /**
-     * The view after the form.
+     * The sponsor form view.
      */
-    private static final String VIEW_NEXT = "builder/dbx/players";
+    private static final String VIEW_FORM = "builder/dbx/sponsor";
 
     /**
      * Mocked MVC context.
@@ -58,7 +59,7 @@ public final class TestSponsorCreationControllerSendForm {
     /**
      * Default constructor;
      */
-    public TestSponsorCreationControllerSendForm() {
+    public TestSponsorCreationControllerSendFormMissingData() {
         super();
     }
 
@@ -71,42 +72,79 @@ public final class TestSponsorCreationControllerSendForm {
     }
 
     /**
-     * Tests that after receiving valid form data the expected attributes are
-     * loaded into the model.
+     * Tests that after receiving form data missing an affinity the expected
+     * attributes are loaded into the model.
      */
     @Test
-    public final void testSendFormData_ExpectedAttributeModel()
+    public final void testSendFormData_MissingAffinity_ExpectedAttributeModel()
             throws Exception {
         final ResultActions result; // Request result
 
-        result = mockMvc.perform(getFormRequest());
+        result = mockMvc.perform(getMissingAffinityFormRequest());
 
         // The operation was accepted
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
         // The response model contains the expected attributes
-        result.andExpect(MockMvcResultMatchers.model().attributeExists("team"));
-        result.andExpect(
-                MockMvcResultMatchers.model().attributeExists("sponsor"));
         result.andExpect(MockMvcResultMatchers.model()
-                .attributeExists("availablePlayers"));
+                .attributeExists(BeanConfig.FORM_BEAN));
+
+        // The response contains the expected errors
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeHasFieldErrors(BeanConfig.FORM_BEAN, "affinityA"));
     }
 
     /**
-     * Tests that after received valid form data the expected view is returned.
+     * Tests that after receiving form data missing an affinity the view is
+     * again the form view.
      */
     @Test
-    public final void testSendFormData_ExpectedView() throws Exception {
+    public final void testSendFormData_MissingAffinity_NoViewChange()
+            throws Exception {
         final ResultActions result; // Request result
 
-        // TODO: Just verify it is not this same view
-        result = mockMvc.perform(getFormRequest());
+        result = mockMvc.perform(getMissingAffinityFormRequest());
+
+        // The view is valid
+        result.andExpect(MockMvcResultMatchers.view().name(VIEW_FORM));
+    }
+
+    /**
+     * Tests that after receiving form data missing the sponsor name the
+     * expected attributes are loaded into the model.
+     */
+    @Test
+    public final void testSendFormData_NoSponsorName_ExpectedAttributeModel()
+            throws Exception {
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getNoSponsorNameFormRequest());
 
         // The operation was accepted
         result.andExpect(MockMvcResultMatchers.status().isOk());
 
+        // The response model contains the expected attributes
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeExists(BeanConfig.FORM_BEAN));
+
+        // The response contains the expected errors
+        result.andExpect(MockMvcResultMatchers.model()
+                .attributeHasFieldErrors(BeanConfig.FORM_BEAN, "sponsorName"));
+    }
+
+    /**
+     * Tests that after receiving form data missing an affinity the view is
+     * again the form view.
+     */
+    @Test
+    public final void testSendFormData_NoSponsorName_NoViewChange()
+            throws Exception {
+        final ResultActions result; // Request result
+
+        result = mockMvc.perform(getNoSponsorNameFormRequest());
+
         // The view is valid
-        result.andExpect(MockMvcResultMatchers.view().name(VIEW_NEXT));
+        result.andExpect(MockMvcResultMatchers.view().name(VIEW_FORM));
     }
 
     /**
@@ -144,15 +182,27 @@ public final class TestSponsorCreationControllerSendForm {
     }
 
     /**
-     * Returns a request builder for posting valid form data.
+     * Returns a request builder for posting form data with a missing affinity.
      * 
-     * @return a request builder with valid form data
+     * @return a request builder with form data missing an affinity
      */
-    private final RequestBuilder getFormRequest() {
+    private final RequestBuilder getMissingAffinityFormRequest() {
         return MockMvcRequestBuilders.post(UrlConfig.URL_FORM)
-                .param("sponsorName", "sponsor").param("affinityA", "aff")
-                .param("affinityB", "aff").param("affinityC", "aff")
-                .param("affinityD", "aff").param("affinityE", "aff");
+                .param("sponsorName", "sponsor").param("affinityB", "aff")
+                .param("affinityC", "aff").param("affinityD", "aff")
+                .param("affinityE", "aff");
+    }
+
+    /**
+     * Returns a request builder for posting form data without a sponsor name.
+     * 
+     * @return a request builder with form data without a sponsor name
+     */
+    private final RequestBuilder getNoSponsorNameFormRequest() {
+        return MockMvcRequestBuilders.post(UrlConfig.URL_FORM)
+                .param("affinityA", "aff").param("affinityB", "aff")
+                .param("affinityC", "aff").param("affinityD", "aff")
+                .param("affinityE", "aff");
     }
 
 }
