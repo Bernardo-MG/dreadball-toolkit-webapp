@@ -325,7 +325,7 @@
       <dandelion.version>1.1.1</dandelion.version>
       <dandelion.datatables.version>1.1.0</dandelion.datatables.version>
       <dreadball.json.version>0.6.0</dreadball.json.version>
-      <dreadball.model.version>0.5.4</dreadball.model.version>
+      <dreadball.model.version>0.5.5</dreadball.model.version>
       <dreadball.persistence.version>0.6.2</dreadball.persistence.version>
       <guava.version>19.0</guava.version>
       <hamcrest.version>2.0.0.0</hamcrest.version>
