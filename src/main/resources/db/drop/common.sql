@@ -41,6 +41,6 @@ DROP TABLE IF EXISTS units;
 
 -- Component tables
 
-DROP TABLE IF EXISTS unit_components;
 DROP TABLE IF EXISTS component_positions;
 DROP TABLE IF EXISTS component_locations;
+DROP TABLE IF EXISTS unit_components;
