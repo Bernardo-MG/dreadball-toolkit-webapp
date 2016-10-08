@@ -785,7 +785,7 @@
             <filtering>true</filtering>
          </resource>
          <resource>
-            <directory>src/main/resources/</directory>
+            <directory>src/test/resources/</directory>
             <includes>
                <!-- Filter the DBX builder context -->
                <include>context/builder-dbx.xml</include>
