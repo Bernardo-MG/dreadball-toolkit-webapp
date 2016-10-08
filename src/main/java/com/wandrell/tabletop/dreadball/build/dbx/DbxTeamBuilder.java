@@ -34,6 +34,13 @@ public interface DbxTeamBuilder {
     public Integer getMaxTeamUnits();
 
     /**
+     * Returns the minimum number of units a Sponsor should have.
+     * 
+     * @return the Sponsors minimum number of units
+     */
+    public Integer getMinTeamUnits();
+
+    /**
      * Returns the unit created from the specified template and set up for the
      * correct affinity level.
      * <p>

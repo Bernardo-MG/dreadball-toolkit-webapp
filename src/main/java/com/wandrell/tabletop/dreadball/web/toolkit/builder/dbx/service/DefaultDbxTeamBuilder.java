@@ -49,6 +49,11 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     private final Integer                maxTeamUnits;
 
     /**
+     * Minimum number of units a Sponsor may have.
+     */
+    private final Integer                minTeamUnits;
+
+    /**
      * DBX model factory.
      */
     private final DbxModelFactory        modelFactory;
@@ -72,6 +77,7 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
      */
     public DefaultDbxTeamBuilder(final DbxModelFactory modelFact,
             final DbxRules rules, final AffinityUnitRepository unitRepo,
+            @Value("${sponsor.players.min}") final Integer minUnits,
             @Value("${sponsor.players.max}") final Integer maxUnits) {
         super();
 
@@ -83,6 +89,8 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
         unitRepository = checkNotNull(unitRepo,
                 "Received a null pointer as units repository");
 
+        minTeamUnits = checkNotNull(minUnits,
+                "Received a null pointer as team units minimum");
         maxTeamUnits = checkNotNull(maxUnits,
                 "Received a null pointer as team units maximum");
     }
@@ -90,6 +98,11 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     @Override
     public final Integer getMaxTeamUnits() {
         return maxTeamUnits;
+    }
+
+    @Override
+    public final Integer getMinTeamUnits() {
+        return minTeamUnits;
     }
 
     @Override

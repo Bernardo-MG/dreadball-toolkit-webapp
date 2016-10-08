@@ -54,6 +54,8 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
      */
     public TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers() {
         super();
+        // TODO: This test requires the controller to send validation failure
+        // messages, or the result should be validated somehow
     }
 
     /**
@@ -87,6 +89,28 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
     }
 
     /**
+     * Tests that it is not possible adding a player when the maximum is
+     * surpassed.
+     */
+    @Test
+    public final void testAddPlayer_ReachesAboveMaximumPlayers_Added()
+            throws Exception {
+        final ResultActions result; // Request result
+        final RequestBuilder post;  // Request
+        final MockMvc mockMvc;      // Mocked context
+
+        // Creates mocked context
+        mockMvc = getMockMvc(10);
+
+        // The request is created
+        post = getValidRequest(9);
+
+        // TODO: Make this test work
+        // The request is sent
+        // result = mockMvc.perform(post);
+    }
+
+    /**
      * Tests that it is not possible adding a player when the maximum is zero.
      */
     @Test
@@ -108,6 +132,9 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
 
         // Mocks the builder
         builder = Mockito.mock(DbxTeamBuilder.class);
+
+        // Sets min units
+        Mockito.when(builder.getMinTeamUnits()).thenReturn(0);
 
         // Sets max units
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(max);
