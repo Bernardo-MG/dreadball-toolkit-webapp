@@ -34,11 +34,25 @@ public interface DbxTeamBuilder {
     public Integer getMaxTeamUnits();
 
     /**
+     * Returns the maximum recommended valoration for a team.
+     * 
+     * @return the maximum recommended valoration
+     */
+    public Integer getMaxTeamValoration();
+
+    /**
      * Returns the minimum number of units a Sponsor should have.
      * 
      * @return the Sponsors minimum number of units
      */
     public Integer getMinTeamUnits();
+
+    /**
+     * Returns the minimum valoration a should have team.
+     * 
+     * @return the minimum valoration
+     */
+    public Integer getMinTeamValoration();
 
     /**
      * Returns the unit created from the specified template and set up for the

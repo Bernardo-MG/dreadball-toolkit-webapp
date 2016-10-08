@@ -49,9 +49,19 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     private final Integer                maxTeamUnits;
 
     /**
+     * Maximum recommended team valoration.
+     */
+    private final Integer                maxTeamValoration;
+
+    /**
      * Minimum number of units a Sponsor may have.
      */
     private final Integer                minTeamUnits;
+
+    /**
+     * Minimum team valoration.
+     */
+    private final Integer                minTeamValoration;
 
     /**
      * DBX model factory.
@@ -78,7 +88,9 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     public DefaultDbxTeamBuilder(final DbxModelFactory modelFact,
             final DbxRules rules, final AffinityUnitRepository unitRepo,
             @Value("${sponsor.players.min}") final Integer minUnits,
-            @Value("${sponsor.players.max}") final Integer maxUnits) {
+            @Value("${sponsor.players.max}") final Integer maxUnits,
+            @Value("${sponsor.team.valoration.min}") final Integer minValoration,
+            @Value("${sponsor.team.valoration.max}") final Integer maxValoration) {
         super();
 
         modelFactory = checkNotNull(modelFact,
@@ -93,6 +105,11 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
                 "Received a null pointer as team units minimum");
         maxTeamUnits = checkNotNull(maxUnits,
                 "Received a null pointer as team units maximum");
+
+        minTeamValoration = checkNotNull(minValoration,
+                "Received a null pointer as maximum valoration");
+        maxTeamValoration = checkNotNull(maxValoration,
+                "Received a null pointer as minimum valoration");
     }
 
     @Override
@@ -101,8 +118,18 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     }
 
     @Override
+    public final Integer getMaxTeamValoration() {
+        return maxTeamValoration;
+    }
+
+    @Override
     public final Integer getMinTeamUnits() {
         return minTeamUnits;
+    }
+
+    @Override
+    public final Integer getMinTeamValoration() {
+        return minTeamValoration;
     }
 
     @Override
