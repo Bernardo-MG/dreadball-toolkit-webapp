@@ -775,10 +775,20 @@
          <resource>
             <directory>src/main/resources/</directory>
             <includes>
+               <!-- Filter the application context -->
+               <include>context/application-context.xml</include>
                <!-- Filter the persistence access properties -->
                <include>config/persistence-access.properties</include>
                <!-- Filter the project info properties -->
                <include>config/project.properties</include>
+            </includes>
+            <filtering>true</filtering>
+         </resource>
+         <resource>
+            <directory>src/main/resources/</directory>
+            <includes>
+               <!-- Filter the DBX builder context -->
+               <include>context/builder-dbx.xml</include>
             </includes>
             <filtering>true</filtering>
          </resource>

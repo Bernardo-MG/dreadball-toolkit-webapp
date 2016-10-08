@@ -35,8 +35,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 @ContextConfiguration(locations = { "classpath:context/builder-dbx.xml",
         "classpath:context/persistence.xml" })
 @TestPropertySource({ "classpath:config/persistence-access.properties",
-        "classpath:config/persistence-h2.properties",
-        "classpath:config/persistence-access.properties",
         "classpath:config/service-dreadball.properties",
         "classpath:config/builder-team-dbx.properties" })
 public final class ITDbxModelFactory

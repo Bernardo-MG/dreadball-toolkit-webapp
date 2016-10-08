@@ -7,6 +7,11 @@
         http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
 
+   <!-- Properties -->
+   <context:property-placeholder
+      location="classpath:config/persistence-@spring.profile.database@.properties, 
+                   classpath:config/persistence-access.properties" />
+
    <!-- Imports -->
    <import resource="classpath:context/persistence.xml" />
 
@@ -22,21 +27,5 @@
       <!-- <jdbc:script location="${jdbc.script.load.dbo}" /> -->
       <jdbc:script location="${jdbc.script.load.dbx}" />
    </jdbc:initialize-database>
-
-   <!-- Profile-based configuration -->
-   <beans profile="h2">
-      <!-- H2 in-memory database -->
-      <!-- To be used for development -->
-      <context:property-placeholder
-         location="classpath:config/persistence-h2.properties, 
-                   classpath:config/persistence-access.properties" />
-   </beans>
-   <beans profile="mysql">
-      <!-- MySQL database -->
-      <!-- To be used for deployment -->
-      <context:property-placeholder
-         location="classpath:config/persistence-mysql.properties, 
-                   classpath:config/persistence-access.properties" />
-   </beans>
 
 </beans>
