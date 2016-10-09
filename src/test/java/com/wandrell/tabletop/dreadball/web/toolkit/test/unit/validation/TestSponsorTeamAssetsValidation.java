@@ -29,7 +29,7 @@ import org.testng.annotations.Test;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 
 /**
- * Unit tests for {@link SponsorTeamAssets} validation.
+ * Unit tests for {@link SponsorTeamAssets} bean validation.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

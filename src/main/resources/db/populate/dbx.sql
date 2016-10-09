@@ -74,186 +74,186 @@ INSERT INTO affinity_groups (id, name) VALUES (27, 'worker');
 -- ---------
 
 -- Ada-Lorana
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (100, 'affinity', 'ada-lorana_guard', 'ada-lorana_guard_affinity', 4, 5, 4, 3, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (101, 'affinity', 'ada-lorana_jack', 'ada-lorana_jack_affinity', 5, 5, 4, 3, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (102, 'affinity', 'ada-lorana_striker', 'ada-lorana_striker_affinity', 5, 5, 4, 3, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (100, 'affinity', 'ada-lorana_guard', 'ada-lorana_guard_affinity', 4, 5, 4, 3, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (101, 'affinity', 'ada-lorana_jack', 'ada-lorana_jack_affinity', 5, 5, 4, 3, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (102, 'affinity', 'ada-lorana_striker', 'ada-lorana_striker_affinity', 5, 5, 4, 3, 4, 'STRIKER');
 
 -- Asterians
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (103, 'affinity', 'asterian_guard', 'asterian_guard_affinity', 4, 6, 4, 3, 5, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (104, 'affinity', 'asterian_jack', 'asterian_jack_affinity', 5, 6, 4, 3, 5, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (105, 'affinity', 'asterian_striker', 'asterian_striker_affinity', 5, 6, 4, 3, 5, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (103, 'affinity', 'asterian_guard', 'asterian_guard_affinity', 4, 6, 4, 3, 5, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (104, 'affinity', 'asterian_jack', 'asterian_jack_affinity', 5, 6, 4, 3, 5, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (105, 'affinity', 'asterian_striker', 'asterian_striker_affinity', 5, 6, 4, 3, 5, 'STRIKER');
 
 -- Kalyshi
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (106, 'affinity', 'kalyshi_jack', 'kalyshi_jack_affinity', 5, 6, 4, 3, 5, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (107, 'affinity', 'kalyshi_striker', 'kalyshi_striker_affinity', 5, 6, 4, 3, 5, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (106, 'affinity', 'kalyshi_jack', 'kalyshi_jack_affinity', 5, 6, 4, 3, 5, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (107, 'affinity', 'kalyshi_striker', 'kalyshi_striker_affinity', 5, 6, 4, 3, 5, 'STRIKER');
 
 -- Convicts
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (108, 'affinity', 'convict_guard', 'convict_guard_affinity', 4, 5, 5, 4, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (109, 'affinity', 'convict_jack', 'convict_jack_affinity', 5, 5, 5, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (110, 'affinity', 'convict_striker', 'convict_striker_affinity', 6, 5, 4, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (108, 'affinity', 'convict_guard', 'convict_guard_affinity', 4, 5, 5, 4, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (109, 'affinity', 'convict_jack', 'convict_jack_affinity', 5, 5, 5, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (110, 'affinity', 'convict_striker', 'convict_striker_affinity', 6, 5, 4, 4, 4, 'STRIKER');
 
 -- Crystallans
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (111, 'affinity', 'crystallan_guard', 'crystallan_guard_affinity', 4, 4, 5, 3, 5, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (112, 'affinity', 'crystallan_jack', 'crystallan_jack_affinity', 5, 4, 5, 3, 5, 'JACK', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (111, 'affinity', 'crystallan_guard', 'crystallan_guard_affinity', 4, 4, 5, 3, 5, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (112, 'affinity', 'crystallan_jack', 'crystallan_jack_affinity', 5, 4, 5, 3, 5, 'JACK');
 
 -- Forge fathers
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (113, 'affinity', 'forge_father_guard', 'forge_father_guard_affinity', 4, 4, 4, 5, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (114, 'affinity', 'forge_father_jack', 'forge_father_jack_affinity', 4, 4, 4, 5, 3, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (115, 'affinity', 'forge_father_striker', 'forge_father_striker_affinity', 5, 4, 4, 5, 3, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (113, 'affinity', 'forge_father_guard', 'forge_father_guard_affinity', 4, 4, 4, 5, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (114, 'affinity', 'forge_father_jack', 'forge_father_jack_affinity', 4, 4, 4, 5, 3, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (115, 'affinity', 'forge_father_striker', 'forge_father_striker_affinity', 5, 4, 4, 5, 3, 'STRIKER');
 
 -- Brokkr
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (116, 'affinity', 'brokr_guard', 'brokr_guard_affinity', 4, 4, 4, 5, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (117, 'affinity', 'brokr_jack', 'brokr_jack_affinity', 5, 4, 4, 5, 3, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (118, 'affinity', 'brokr_striker', 'brokr_striker_affinity', 5, 4, 4, 5, 3, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (116, 'affinity', 'brokr_guard', 'brokr_guard_affinity', 4, 4, 4, 5, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (117, 'affinity', 'brokr_jack', 'brokr_jack_affinity', 5, 4, 4, 5, 3, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (118, 'affinity', 'brokr_striker', 'brokr_striker_affinity', 5, 4, 4, 5, 3, 'STRIKER');
 
 -- Hobgoblins
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (119, 'affinity', 'hulk_guard', 'hulk_guard_affinity', 4, 5, 5, 5, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (120, 'affinity', 'hobgoblin_jack', 'hobgoblin_jack_affinity', 5, 5, 5, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (121, 'affinity', 'hobgoblin_striker', 'hobgoblin_striker_affinity', 5, 5, 5, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (119, 'affinity', 'hulk_guard', 'hulk_guard_affinity', 4, 5, 5, 5, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (120, 'affinity', 'hobgoblin_jack', 'hobgoblin_jack_affinity', 5, 5, 5, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (121, 'affinity', 'hobgoblin_striker', 'hobgoblin_striker_affinity', 5, 5, 5, 4, 4, 'STRIKER');
 
 -- Humans (male)
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (122, 'affinity', 'human_male_guard', 'human_male_guard_affinity', 4, 5, 4, 4, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (123, 'affinity', 'human_male_jack', 'human_male_jack_affinity', 5, 5, 4, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (124, 'affinity', 'human_male_striker', 'human_male_striker_affinity', 5, 5, 4, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (122, 'affinity', 'human_male_guard', 'human_male_guard_affinity', 4, 5, 4, 4, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (123, 'affinity', 'human_male_jack', 'human_male_jack_affinity', 5, 5, 4, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (124, 'affinity', 'human_male_striker', 'human_male_striker_affinity', 5, 5, 4, 4, 4, 'STRIKER');
 
 -- Humans (female)
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (125, 'affinity', 'human_female_guard', 'human_female_guard_affinity', 4, 5, 4, 4, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (126, 'affinity', 'human_female_jack', 'human_female_jack_affinity', 5, 5, 4, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (127, 'affinity', 'human_female_striker', 'human_female_striker_affinity', 5, 5, 4, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (125, 'affinity', 'human_female_guard', 'human_female_guard_affinity', 4, 5, 4, 4, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (126, 'affinity', 'human_female_jack', 'human_female_jack_affinity', 5, 5, 4, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (127, 'affinity', 'human_female_striker', 'human_female_striker_affinity', 5, 5, 4, 4, 4, 'STRIKER');
 
 -- Judwan
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (128, 'affinity', 'judwan_striker', 'judwan_striker_affinity', 5, 6, 4, 4, 5, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (128, 'affinity', 'judwan_striker', 'judwan_striker_affinity', 5, 6, 4, 4, 5, 'STRIKER');
 
 -- Koris
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (129, 'affinity', 'koris_guard', 'koris_guard_affinity', 4, 4, 4, 4, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (130, 'affinity', 'koris_jack', 'koris_jack_affinity', 5, 4, 4, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (131, 'affinity', 'koris_striker', 'koris_striker_affinity', 5, 4, 4, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (129, 'affinity', 'koris_guard', 'koris_guard_affinity', 4, 4, 4, 4, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (130, 'affinity', 'koris_jack', 'koris_jack_affinity', 5, 4, 4, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (131, 'affinity', 'koris_striker', 'koris_striker_affinity', 5, 4, 4, 4, 4, 'STRIKER');
 
 -- Marauders
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (132, 'affinity', 'marauder_guard', 'marauder_guard_affinity', 4, 5, 5, 4, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (133, 'affinity', 'marauder_jack', 'marauder_jack_affinity', 5, 5, 4, 3, 5, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (132, 'affinity', 'marauder_guard', 'marauder_guard_affinity', 4, 5, 5, 4, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (133, 'affinity', 'marauder_jack', 'marauder_jack_affinity', 5, 5, 4, 3, 5, 'STRIKER');
 
 -- Martians
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (134, 'affinity', 'martian_guard', 'martian_guard_affinity', 4, 5, 5, 4, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (135, 'affinity', 'martian_jack', 'martian_jack_affinity', 5, 5, 5, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (136, 'affinity', 'martian_striker', 'martian_striker_affinity', 5, 5, 5, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (134, 'affinity', 'martian_guard', 'martian_guard_affinity', 4, 5, 5, 4, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (135, 'affinity', 'martian_jack', 'martian_jack_affinity', 5, 5, 5, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (136, 'affinity', 'martian_striker', 'martian_striker_affinity', 5, 5, 5, 4, 4, 'STRIKER');
 
 -- Nameless
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (137, 'affinity', 'nameless_guard_sticky', 'nameless_guard_sticky_affinity', 4, 4, 5, 4, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (138, 'affinity', 'nameless_guard_hard', 'nameless_guard_hard_affinity', 4, 5, 4, 5, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (139, 'affinity', 'nameless_striker', 'nameless_striker_affinity', 5, 6, 4, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (137, 'affinity', 'nameless_guard_sticky', 'nameless_guard_sticky_affinity', 4, 4, 5, 4, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (138, 'affinity', 'nameless_guard_hard', 'nameless_guard_hard_affinity', 4, 5, 4, 5, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (139, 'affinity', 'nameless_striker', 'nameless_striker_affinity', 5, 6, 4, 4, 4, 'STRIKER');
 
 -- Rebs
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (140, 'affinity', 'rin_guard', 'rin_guard_affinity', 4, 5, 5, 4, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (141, 'affinity', 'gaelian_jack', 'gaelian_jack_affinity', 5, 7, 4, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (142, 'affinity', 'sorak_jack', 'sorak_jack_affinity', 5, 5, 4, 3, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (143, 'affinity', 'ralarat_striker', 'ralarat_striker_affinity', 5, 6, 3, 4, 5, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (140, 'affinity', 'rin_guard', 'rin_guard_affinity', 4, 5, 5, 4, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (141, 'affinity', 'gaelian_jack', 'gaelian_jack_affinity', 5, 7, 4, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (142, 'affinity', 'sorak_jack', 'sorak_jack_affinity', 5, 5, 4, 3, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (143, 'affinity', 'ralarat_striker', 'ralarat_striker_affinity', 5, 6, 3, 4, 5, 'STRIKER');
 
 -- Robots
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (144, 'affinity', 'robot_guard', 'robot_guard_affinity', 4, 5, 4, 5, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (145, 'affinity', 'robot_jack', 'robot_jack_affinity', 4, 6, 4, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (146, 'affinity', 'robot_striker', 'robot_striker_affinity', 5, 5, 4, 3, 5, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (144, 'affinity', 'robot_guard', 'robot_guard_affinity', 4, 5, 4, 5, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (145, 'affinity', 'robot_jack', 'robot_jack_affinity', 4, 6, 4, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (146, 'affinity', 'robot_striker', 'robot_striker_affinity', 5, 5, 4, 3, 5, 'STRIKER');
 
 -- Sphyr
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (147, 'affinity', 'sphyr_guard', 'sphyr_guard_affinity', 4, 6, 4, 4, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (148, 'affinity', 'sphyr_jack', 'sphyr_jack_affinity', 5, 6, 4, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (149, 'affinity', 'sphyr_striker', 'sphyr_striker_affinity', 5, 6, 4, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (147, 'affinity', 'sphyr_guard', 'sphyr_guard_affinity', 4, 6, 4, 4, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (148, 'affinity', 'sphyr_jack', 'sphyr_jack_affinity', 5, 6, 4, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (149, 'affinity', 'sphyr_striker', 'sphyr_striker_affinity', 5, 6, 4, 4, 4, 'STRIKER');
 
 -- Teratons
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (150, 'affinity', 'teraton_guard', 'teraton_guard_affinity', 4, 5, 4, 5, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (151, 'affinity', 'teraton_jack', 'teraton_jack_affinity', 4, 5, 4, 5, 3, 'JACK', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (150, 'affinity', 'teraton_guard', 'teraton_guard_affinity', 4, 5, 4, 5, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (151, 'affinity', 'teraton_jack', 'teraton_jack_affinity', 4, 5, 4, 5, 3, 'JACK');
 
 -- Tsudochan
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (152, 'affinity', 'tsudochan_jack', 'tsudochan_jack_affinity', 5, 5, 4, 4, 5, 'JACK', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (152, 'affinity', 'tsudochan_jack', 'tsudochan_jack_affinity', 5, 5, 4, 4, 5, 'JACK');
 
 -- Veer-Myn
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (153, 'affinity', 'veer-myn_guard', 'veer-myn_guard_affinity', 4, 6, 5, 3, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (154, 'affinity', 'veer-myn_striker', 'veer-myn_striker_affinity', 5, 6, 5, 3, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (153, 'affinity', 'veer-myn_guard', 'veer-myn_guard_affinity', 4, 6, 5, 3, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (154, 'affinity', 'veer-myn_striker', 'veer-myn_striker_affinity', 5, 6, 5, 3, 4, 'STRIKER');
 
 -- Zees
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (155, 'affinity', 'zee_jack', 'zee_jack_affinity', 5, 5, 5, 3, 5, 'JACK', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (155, 'affinity', 'zee_jack', 'zee_jack_affinity', 5, 5, 5, 3, 5, 'JACK');
 
 -- Z'zor
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (156, 'affinity', 'zzor_guard', 'zzor_guard_affinity', 4, 5, 5, 4, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (157, 'affinity', 'zzor_jack', 'zzor_jack_affinity', 5, 5, 4, 4, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (158, 'affinity', 'zzor_striker', 'zzor_striker_affinity', 5, 6, 5, 4, 4, 'STRIKER', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (156, 'affinity', 'zzor_guard', 'zzor_guard_affinity', 4, 5, 5, 4, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (157, 'affinity', 'zzor_jack', 'zzor_jack_affinity', 5, 5, 4, 4, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (158, 'affinity', 'zzor_striker', 'zzor_striker_affinity', 5, 6, 5, 4, 4, 'STRIKER');
 
 -- Other players
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (159, 'affinity', 'avaran_treebeast', 'avaran_treebeast_affinity', 4, 3, 4, 5, 3, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (160, 'affinity', 'jetari_brawler', 'jetari_brawler_affinity', 3, 4, 5, 4, 3, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (161, 'affinity', 'jetari_thrower', 'jetari_thrower_affinity', 4, 5, 3, 4, 5, 'STRIKER', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (162, 'affinity', 'nameless_bloodsucker', 'nameless_bloodsucker_affinity', 4, 6, 5, 3, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (163, 'affinity', 'pusk_rampager', 'pusk_rampager_affinity', 4, 4, 4, 6, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (164, 'affinity', 'vlorox_spinpede', 'vlorox_spinpede_affinity', 4, 4, 4, 5, 3, 'STRIKER', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (165, 'affinity', 'yndij_reaver', 'yndij_reaver_affinity', 5, 6, 4, 3, 4, 'STRIKER', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (166, 'affinity', 'zee_buccaneer', 'zee_buccaneer_affinity', 5, 5, 5, 3, 5, 'JACK', false);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (159, 'affinity', 'avaran_treebeast', 'avaran_treebeast_affinity', 4, 3, 4, 5, 3, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (160, 'affinity', 'jetari_brawler', 'jetari_brawler_affinity', 3, 4, 5, 4, 3, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (161, 'affinity', 'jetari_thrower', 'jetari_thrower_affinity', 4, 5, 3, 4, 5, 'STRIKER');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (162, 'affinity', 'nameless_bloodsucker', 'nameless_bloodsucker_affinity', 4, 6, 5, 3, 4, 'JACK');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (163, 'affinity', 'pusk_rampager', 'pusk_rampager_affinity', 4, 4, 4, 6, 4, 'GUARD');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (164, 'affinity', 'vlorox_spinpede', 'vlorox_spinpede_affinity', 4, 4, 4, 5, 3, 'STRIKER');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (165, 'affinity', 'yndij_reaver', 'yndij_reaver_affinity', 5, 6, 4, 3, 4, 'STRIKER');
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
+    VALUES (166, 'affinity', 'zee_buccaneer', 'zee_buccaneer_affinity', 5, 5, 5, 3, 5, 'JACK');
 
 -- Giants
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)

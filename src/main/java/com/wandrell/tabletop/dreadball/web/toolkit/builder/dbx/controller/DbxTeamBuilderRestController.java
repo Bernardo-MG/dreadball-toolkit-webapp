@@ -70,6 +70,8 @@ public class DbxTeamBuilderRestController {
     public DbxTeamBuilderRestController(final DbxTeamBuilder service) {
         super();
 
+        // TODO: Should give support for validating the team valoration
+
         dbxTeamBuilderService = checkNotNull(service,
                 "Received a null pointer as team builder service");
     }
