@@ -273,6 +273,94 @@ INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, s
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
     VALUES (174, 'affinity', 'sann_gar', 'sann_gar_affinity', 4, 5, 5, 4, 3, 'KEEPER', true);
 
+-- MVPs
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (175, 'affinity', 'anne_marie_helder', 'anne_marie_helder_affinity', 4, 5, 5, 4, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (176, 'affinity', 'asylum', 'asylum_affinity', 4, 6, 5, 3, 4, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (177, 'affinity', 'ateo_adysi', 'ateo_adysi_affinity', 5, 6, 5, 4, 3, 'STRIKER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (178, 'affinity', 'brickbat_vognar', 'brickbat_vognar_affinity', 4, 5, 5, 4, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (179, 'affinity', 'brute_force', 'brute_force_affinity', 4, 5, 5, 4, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (180, 'affinity', 'buzzcut', 'buzzcut_affinity', 4, 6, 5, 4, 2, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (181, 'affinity', 'crypt', 'crypt_affinity', 4, 4, 5, 4, 2, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (182, 'affinity', 'dead_man_davitz', 'dead_man_davitz_affinity', 4, 5, 6, 5, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp, giant)
+    VALUES (183, 'affinity', 'dozer', 'dozer_affinity', 4, 4, 4, 5, 3, 'GUARD', true, true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (184, 'affinity', 'drake', 'drake_affinity', 4, 5, 5, 4, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (185, 'affinity', 'the_enforcer', 'the_enforcer_affinity', 4, 7, 4, 3, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (186, 'affinity', 'the_excavator', 'the_excavator_affinity', 4, 4, 6, 5, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (187, 'affinity', 'firewall', 'firewall_affinity', 3, 5, 4, 5, 3, 'KEEPER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (188, 'affinity', 'galdo', 'galdo_affinity', 4, 6, 4, 4, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (189, 'affinity', 'gorim_ironstone', 'gorim_ironstone_affinity', 5, 5, 4, 4, 3, 'STRIKER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (190, 'affinity', 'grak', 'grak_affinity', 4, 5, 6, 4, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (191, 'affinity', 'hector_weiss', 'hector_weiss_affinity', 4, 4, 3, 4, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (192, 'affinity', 'irsala', 'irsala_affinity', 4, 5, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (193, 'affinity', 'john_doe', 'john_doe_affinity', 4, 4, 5, 4, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (194, 'affinity', 'jonathan_gabe_gabriel', 'jonathan_gabe_gabriel_affinity', 4, 5, 4, 4, 3, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (195, 'affinity', 'kailasa', 'kailasa_affinity', 4, 6, 4, 3, 4, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (196, 'affinity', 'kryphos', 'kryphos_affinity', 4, 5, 3, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (197, 'affinity', 'lucky_logan', 'lucky_logan_affinity', 4, 6, 3, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (198, 'affinity', 'ludwig', 'ludwig_affinity', 4, 6, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (199, 'affinity', 'lyra_the_fixer', 'lyra_the_fixer_affinity', 4, 6, 5, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (200, 'affinity', 'mee_kel_judwan', 'mee_kel_judwan_affinity', 5, 6, 3, 3, 5, 'STRIKER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (201, 'affinity', 'mellisandra', 'mellisandra_affinity', 4, 5, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (202, 'affinity', 'mzei_kein', 'mzei_kein_affinity', 4, 5, 5, 4, 4, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (203, 'affinity', 'nightshade', 'nightshade_affinity', 5, 6, 4, 3, 4, 'STRIKER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (204, 'affinity', 'number_88', 'number_88_affinity', 4, 8, 4, 2, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (205, 'affinity', 'phantasm', 'phantasm_affinity', 4, 6, 4, 3, 3, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (206, 'affinity', 'the_praetorian', 'the_praetorian_affinity', 5, 6, 3, 4, 4, 'STRIKER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (207, 'affinity', 'reek_rolat', 'reek_rolat_affinity', 4, 5, 6, 3, 3, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (208, 'affinity', 'rico_van_dien', 'rico_van_dien_affinity', 5, 6, 3, 4, 4, 'STRIKER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (209, 'affinity', 'riller', 'riller_affinity', 4, 5, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (210, 'affinity', 'schnorkel', 'schnorkel_affinity', 4, 4, 5, 4, 4, 'GUARD', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (211, 'affinity', 'slippery_joe', 'slippery_joe_affinity', 5, 5, 4, 3, 5, 'STRIKER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (212, 'affinity', 'thunder_chris', 'thunder_chris_affinity', 4, 6, 4, 3, 3, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (213, 'affinity', 'tycho_brahe', 'tycho_brahe_affinity', 4, 6, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (214, 'affinity', 'the_veteran', 'the_veteran_affinity', 5, 5, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (215, 'affinity', 'wildcard', 'wildcard_affinity', 4, 6, 4, 3, 4, 'JACK', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (216, 'affinity', 'wyn_grethzki', 'wyn_grethzki_affinity', 5, 5, 3, 4, 5, 'STRIKER', true);
+INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, mvp)
+    VALUES (217, 'affinity', 'yurik_yurikson', 'yurik_yurikson_affinity', 4, 4, 4, 5, 3, 'GUARD', true);
+
 -- --------------
 -- Affinity units
 -- --------------
@@ -401,6 +489,51 @@ INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (1
 INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (172, 41, 27, 18);
 INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (173, 48, 32, 21);
 INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (174, 44, 29, 19);
+
+-- MVPs
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (175, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (176, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (177, 27, 18, 12);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (178, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (179, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (180, 26, 17, 11);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (181, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (182, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (183, 44, 29, 19);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (184, 27, 18, 12);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (185, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (186, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (187, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (188, 14, 9, 6);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (189, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (190, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (191, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (192, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (193, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (194, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (195, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (196, 35, 23, 15);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (197, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (198, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (199, 17, 11, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (200, 27, 18, 12);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (201, 26, 17, 11);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (202, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (203, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (204, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (205, 26, 17, 11);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (206, 26, 17, 11);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (207, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (208, 27, 18, 12);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (209, 23, 15, 10);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (210, 9, 6, 4);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (211, 17, 11, 7);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (212, 27, 18, 12);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (213, 18, 12, 8);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (214, 27, 18, 12);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (215, 21, 14, 9);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (216, 26, 17, 11);
+INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (217, 26, 17, 11);
 
 -- --------------
 -- Unit abilities
@@ -602,6 +735,190 @@ INSERT INTO unit_abilities (unit_id, ability_id) VALUES (173, 75);
 
 -- Giant, Sann-gar:  threatening
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (173, 75);
+
+-- MVPs, Anne-Marie Helder: grizzled, prima donna
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (174, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (174, 46);
+
+-- MVPs, Asylum: backstab
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (175, 6);
+
+-- MVPs, A'Teo Adysi: 360 vision, backflip, duck and weave, jump
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 5);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 16);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 28);
+
+-- MVPs, 'Brickbat' Vognar: lucky, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (177, 32);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (177, 68);
+
+-- MVPs, Brute Force: trail blazer
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (178, 78);
+
+-- MVPs, Buzzcut: can't feel a thing, grizzled
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (179, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (179, 22);
+
+-- MVPs, Crypt: harmonic, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (180, 23);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (180, 68);
+
+-- MVPs, Dead Man Davitz: can't feel a thing, grizzled
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (181, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (181, 22);
+
+-- MVPs, Dozer: teleport, threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (182, 74);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (182, 75);
+
+-- MVPs, Drake: can't feel a thing, quick recovery, really lucky, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 50);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 53);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 68);
+
+-- MVPs, The Enforcer: backflip, jump
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (184, 5);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (184, 28);
+
+-- MVPs, The Excavator: can't feel a thing, driller, grizzled, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 14);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 68);
+
+-- MVPs, Firewall: lucky, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (186, 32);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (186, 68);
+
+-- MVPs, Galdo: 360 vision, quick recovery, stubborn
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (187, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (187, 50);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (187, 71);
+
+-- MVPs, Gorim Ironstone: grizzled, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (188, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (188, 68);
+
+-- MVPs, Grak: pile-driver, uncontrolled
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (189, 42);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (189, 80);
+
+-- MVPs, Hector Weiss: a safe pair of hands, grizzled, running interference
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (190, 3);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (190, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (190, 60);
+
+-- MVPs, Irsala: alert, gotcha, steady, toxic
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 4);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 21);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 79);
+
+-- MVPs, John Doe: gotcha
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (192, 21);
+
+-- MVPs, Jonathan 'Gabe' Gabriel: show off
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (193, 63);
+
+-- MVPs, Kailasa: backstab
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (194, 6);
+
+-- MVPs, Kryphos: crowd puller, gotcha, spinner, portal master
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 11);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 21);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 67);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 45);
+
+-- MVPs, 'Lucky' Logan: really lucky
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (196, 53);
+
+-- MVPs, Ludwig: can't feel a thing, jump
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (197, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (197, 28);
+
+-- MVPs, Lyra the Fixer: backstab, jump, stretch
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (198, 6);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (198, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (198, 70);
+
+-- MVPs, Mee-Kel Judwan: 360 vision, can't feel a thing, long arms, misdirect, pacifist
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 31);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 40);
+
+-- MVPs, Mellisandra: poison blade, stretch
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (200, 43);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (200, 70);
+
+-- MVPs, M'zei Kein: 360 vision, grizzled, push
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 48);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 1);
+
+-- MVPs, Nightshade: poison blade
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 43);
+
+-- MVPs, Number 88: jump, mind like water
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (203, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (203, 35);
+
+-- MVPs, Phantasm: phaser
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (204, 41);
+
+-- MVPs, The Praetorian: a safe pair of hands, can't feel a thing
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (205, 3);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (205, 8);
+
+-- MVPs, Reek Rolat: can't feel a thing
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (206, 8);
+
+-- MVPs, Rico Van Dien: jump, show off
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (207, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (207, 63);
+
+-- MVPs, Riller: show off
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (208, 63);
+
+-- MVPs, Schnorkel: can't feel a thing, fan favourite, klutz, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 19);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 30);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 68);
+
+-- MVPs, Slippery Joe: a safe pair of hands, jump
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (210, 3);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (210, 28);
+
+-- MVPs, Thunder Chris: 360 vision, even the odds, grizzled, threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 17);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 75);
+
+-- MVPs, Tycho Brahe: threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (212, 75);
+
+-- MVPs, The Veteran: duck and weave, grizzled, quick recovery
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (213, 16);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (213, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (213, 50);
+
+-- MVPs, Wildcard: even the odds
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (214, 17);
+
+-- MVPs, Wyn Greth'zky: alert, duck and weave
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (215, 4);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (215, 16);
+
+-- MVPs, Yurik Yurikson: 360 vision, can't feel a thing, quick recovery, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 50);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 68);
 
 -- ---------------
 -- Unit affinities
@@ -945,6 +1262,176 @@ INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (174, 5);
 INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (174, 10);
 INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (174, 15);
 
+-- MVPs, Anne-Marie Helder: striker, worker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (175, 22);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (175, 27);
+
+-- MVPs, Asylum: convict, vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (176, 4);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (176, 25);
+
+-- MVPs, A'Teo Adysi: proud, hunter
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (177, 18);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (177, 10);
+
+-- MVPs, 'Brickbat' Vognar: pirate, convict
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (178, 16);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (178, 4);
+
+-- MVPs, Brute Force: mr roboto, rebel
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (179, 14);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (179, 20);
+
+-- MVPs, Buzzcut: vicious, psycho
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (180, 25);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (180, 19);
+
+-- MVPs, Crypt: vicious, proud
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (181, 25);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (181, 18);
+
+-- MVPs, Dead Man Davitz: vat brothers, weird science
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (182, 24);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (182, 26);
+
+-- MVPs, Dozer: vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (183, 25);
+
+-- MVPs, Drake: dreadball, tech guys
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (184, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (184, 23);
+
+-- MVPs, The Enforcer: vicious, guard
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (185, 25);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (185, 9);
+
+-- MVPs, The Excavator: forge father, worker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (186, 7);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (186, 27);
+
+-- MVPs, Firewall: machine mind, tech guys
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (187, 13);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (187, 23);
+
+-- MVPs, Galdo: rebel, weird science
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (188, 20);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (188, 26);
+
+-- MVPs, Gorim Ironstone: forge father, worker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (189, 7);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (189, 27);
+
+-- MVPs, Grak: psycho, guard
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (190, 19);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (190, 9);
+
+-- MVPs, Hector Weiss: dreadball, jack
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (191, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (191, 12);
+
+-- MVPs, Irsala: alien, cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (192, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (192, 5);
+
+-- MVPs, John Doe: alien, guard
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (193, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (193, 9);
+
+-- MVPs, Jonathan 'Gabe' Gabriel: dreadball, cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (194, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (194, 5);
+
+-- MVPs, Kailasa: asterian, big picture
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (195, 2);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (195, 3);
+
+-- MVPs, Kryphos: alien, jack
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (196, 1);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (196, 12);
+
+-- MVPs, 'Lucky' Logan: jack, cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (197, 12);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (197, 5);
+
+-- MVPs, Ludwig: insectoid, alien
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (198, 11);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (198, 1);
+
+-- MVPs, Lyra the Fixer: convict, cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (199, 4);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (199, 5);
+
+-- MVPs, Mee-Kel Judwan: outcast, big picture, proud
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (200, 15);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (200, 3);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (200, 18);
+
+-- MVPs, Mellisandra: asterian, vicious
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (201, 2);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (201, 25);
+
+-- MVPs, M'Zei Kein: vicious, cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (202, 25);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (202, 5);
+
+-- MVPs, Nightshade: proud, psycho
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (203, 18);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (203, 19);
+
+-- MVPs, Number 88: vat brothers, outcast
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (204, 24);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (204, 15);
+
+-- MVPs, Phantasm: big picture, outcast
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (205, 3);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (205, 15);
+
+-- MVPs, The Praetorian: asterian, striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (206, 2);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (206, 22);
+
+-- MVPs, Reek Rolat: hunter, psycho
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (207, 19);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (207, 10);
+
+-- MVPs, Riller: weird science, cunning
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (208, 26);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (208, 5);
+
+-- MVPs, Schornkel: proud, alien
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (209, 18);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (209, 1);
+
+-- MVPs, Slippery Joe: cunning, striker
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (210, 5);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (210, 22);
+
+-- MVPs, Thunder Chris: dreadball, jack
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (211, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (211, 12);
+
+-- MVPs, Tycho Brahe: dreadball, psycho
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (212, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (212, 19);
+
+-- MVPs, The Veteran: dreadball, jack
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (213, 6);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (213, 12);
+
+-- MVPs, Wildcard: asterian, jack, big picture
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (214, 2);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (214, 12);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (214, 3);
+
+-- MVPs, Wyn Greth'zki: machine-mind, striker, dreadball
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (215, 13);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (215, 22);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (215, 6);
+
+-- MVPs, Yurik Yurikson: forge father, guard
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (216, 7);
+INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (216, 9);
+
 -- ---------------------
 -- Unit hated affinities
 -- ---------------------
@@ -955,6 +1442,24 @@ INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (112, 7);
 
 -- Giant, Alpha Simian: hates dreadball
 INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (167, 6);
+
+-- MVPs, Dozer: hates striker
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (183, 22);
+
+-- MVPs, The Excavator: hates asterian
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (186, 2);
+
+-- MVPs, Mellisandra: hates proud
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (201, 18);
+
+-- MVPs, Nightshade: hates asterian
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (203, 2);
+
+-- MVPs, The Praetorian: hates mr roboto
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (206, 14);
+
+-- MVPs, Wyn Greth'zki: hates tech guys
+INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (215, 23);
 
 -- -------------------------
 -- Affinities availabilities
