@@ -11,6 +11,8 @@ env:
   - SERVER=jetty DATABASE=mysql
   - SERVER=tomcat7 DATABASE=h2
   - SERVER=tomcat7 DATABASE=mysql
+addons:
+  srcclr: true
 
 before_install:
   # Gets scripts
