@@ -16,11 +16,16 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.service;
 
+import java.io.File;
+
 import org.springframework.stereotype.Service;
-import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.report.dbx.DbxTeamReporter;
+
+import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.util.JRLoader;
 
 @Service
 public final class DefaultDbxTeamReporter implements DbxTeamReporter {
@@ -30,15 +35,25 @@ public final class DefaultDbxTeamReporter implements DbxTeamReporter {
     }
 
     @Override
-    public final JasperReportsMultiFormatView
-            getSponsorTeamReport(final SponsorTeam team) {
-        final JasperReportsMultiFormatView view;
+    public final JasperReport getSponsorTeamReport(final SponsorTeam team) {
+        final File reportFile;
+        final JasperReport jasperReport;
 
-        view = new JasperReportsMultiFormatView();
-        view.setUrl("classpath:report/dbxTeam.jasper");
-        view.setReportDataKey("datasource");
+        reportFile = new File(getClass().getClassLoader()
+                .getResource("/report/DbxTeam.jasper").getFile());
 
-        return view;
+        if (!reportFile.exists()) {
+            // TODO: Compile report
+        }
+
+        try {
+            jasperReport = (JasperReport) JRLoader
+                    .loadObjectFromFile(reportFile.getPath());
+        } catch (JRException e) {
+            throw new RuntimeException(e);
+        }
+
+        return jasperReport;
     }
 
 }

@@ -18,7 +18,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.HashMap;
@@ -40,10 +39,8 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.report.dbx.DbxTeamReporter;
 
 import net.sf.jasperreports.engine.JRException;
-import net.sf.jasperreports.engine.JasperCompileManager;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.JasperRunManager;
-import net.sf.jasperreports.engine.util.JRLoader;
 
 @Controller
 @RequestMapping("/builder/team/dbx")
@@ -72,7 +69,8 @@ public class DbxReportController {
         // Parameters as Map to be passed to Jasper
         HashMap<String, Object> hmParams = new HashMap<String, Object>();
 
-        JasperReport jasperReport = getCompiledFile("DbxTeam", request);
+        JasperReport jasperReport = getDbxTeamReporter()
+                .getSponsorTeamReport(team);
 
         generateReportPDF(response, hmParams, jasperReport);
     }
@@ -90,25 +88,6 @@ public class DbxReportController {
         ouputStream.write(bytes, 0, bytes.length);
         ouputStream.flush();
         ouputStream.close();
-    }
-
-    private JasperReport getCompiledFile(String fileName,
-            HttpServletRequest request) throws JRException {
-        File reportFile = new File(getClass().getClassLoader()
-                .getResource("/report/" + fileName + ".jasper").getFile());
-        // File reportFile = new ClassPathResource(
-        // "/report/" + fileName + ".jasper").getFile();
-        // If compiled file is not found, then compile XML template
-        if (!reportFile.exists()) {
-            JasperCompileManager.compileReportToFile(
-                    request.getSession().getServletContext()
-                            .getRealPath("/report/" + fileName + ".jrxml"),
-                    request.getSession().getServletContext()
-                            .getRealPath("/report/" + fileName + ".jasper"));
-        }
-        JasperReport jasperReport = (JasperReport) JRLoader
-                .loadObjectFromFile(reportFile.getPath());
-        return jasperReport;
     }
 
     private final DbxTeamReporter getDbxTeamReporter() {

@@ -16,13 +16,12 @@
 
 package com.wandrell.tabletop.dreadball.report.dbx;
 
-import org.springframework.web.servlet.view.jasperreports.JasperReportsMultiFormatView;
-
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+
+import net.sf.jasperreports.engine.JasperReport;
 
 public interface DbxTeamReporter {
 
-    public JasperReportsMultiFormatView
-            getSponsorTeamReport(final SponsorTeam team);
+    public JasperReport getSponsorTeamReport(final SponsorTeam team);
 
 }
