@@ -38,9 +38,12 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.report.dbx.DbxTeamReporter;
 
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperExportManager;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.JasperRunManager;
 
 @Controller
 @RequestMapping("/builder/team/dbx")
@@ -75,19 +78,21 @@ public class DbxReportController {
         generateReportPDF(response, hmParams, jasperReport);
     }
 
-    private void generateReportPDF(HttpServletResponse resp, Map parameters,
-            JasperReport jasperReport)
+    private final void generateReportPDF(final HttpServletResponse resp,
+            final Map<String, Object> parameters,
+            final JasperReport jasperReport)
             throws JRException, NamingException, SQLException, IOException {
-        byte[] bytes = null;
-        bytes = JasperRunManager.runReportToPdf(jasperReport, parameters);
-        resp.reset();
-        resp.resetBuffer();
-        resp.setContentType("application/pdf");
-        resp.setContentLength(bytes.length);
-        ServletOutputStream ouputStream = resp.getOutputStream();
-        ouputStream.write(bytes, 0, bytes.length);
-        ouputStream.flush();
-        ouputStream.close();
+        final ServletOutputStream ouputStream;
+        final JasperPrint jasperPrint;
+
+        jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
+                new JREmptyDataSource());
+
+        resp.setContentType("application/x-pdf");
+        resp.setHeader("Content-disposition", "inline; filename=dbxTeam.pdf");
+
+        ouputStream = resp.getOutputStream();
+        JasperExportManager.exportReportToPdfStream(jasperPrint, ouputStream);
     }
 
     private final DbxTeamReporter getDbxTeamReporter() {

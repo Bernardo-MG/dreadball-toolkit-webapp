@@ -49,7 +49,7 @@ public final class DefaultDbxTeamReporter implements DbxTeamReporter {
         try {
             jasperReport = (JasperReport) JRLoader
                     .loadObjectFromFile(reportFile.getPath());
-        } catch (JRException e) {
+        } catch (final JRException e) {
             throw new RuntimeException(e);
         }
 
