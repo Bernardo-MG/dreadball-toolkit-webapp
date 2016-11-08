@@ -29,6 +29,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -66,21 +67,23 @@ public class DbxReportController {
 
     @GetMapping(path = "/pdf")
     public final void getReport(
-            @SessionAttribute(PARAM_TEAM) final SponsorTeam team, Model model,
-            HttpServletRequest request, HttpServletResponse response)
+            @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
+            final Model model, final HttpServletRequest request,
+            final HttpServletResponse response)
             throws JRException, NamingException, SQLException, IOException {
         // Parameters as Map to be passed to Jasper
-        HashMap<String, Object> hmParams = new HashMap<String, Object>();
+        final HashMap<String, Object> hmParams;
+        final JasperReport jasperReport;
 
-        JasperReport jasperReport = getDbxTeamReporter()
-                .getSponsorTeamReport(team);
+        jasperReport = getDbxTeamReporter().getSponsorTeamReport(team);
 
-        generateReportPDF(response, hmParams, jasperReport);
+        hmParams = new HashMap<String, Object>();
+        generateReportPDF(response, hmParams, jasperReport, "dbxTeam");
     }
 
     private final void generateReportPDF(final HttpServletResponse resp,
             final Map<String, Object> parameters,
-            final JasperReport jasperReport)
+            final JasperReport jasperReport, final String fileName)
             throws JRException, NamingException, SQLException, IOException {
         final ServletOutputStream ouputStream;
         final JasperPrint jasperPrint;
@@ -88,8 +91,9 @@ public class DbxReportController {
         jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
                 new JREmptyDataSource());
 
-        resp.setContentType("application/x-pdf");
-        resp.setHeader("Content-disposition", "inline; filename=dbxTeam.pdf");
+        resp.setContentType(MediaType.APPLICATION_PDF_VALUE);
+        resp.setHeader("Content-disposition",
+                String.format("inline; filename=%s.pdf", fileName));
 
         ouputStream = resp.getOutputStream();
         JasperExportManager.exportReportToPdfStream(jasperPrint, ouputStream);

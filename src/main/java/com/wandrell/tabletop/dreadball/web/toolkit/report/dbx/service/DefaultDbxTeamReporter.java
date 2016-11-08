@@ -17,7 +17,9 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.service;
 
 import java.io.File;
+import java.io.IOException;
 
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
@@ -39,8 +41,13 @@ public final class DefaultDbxTeamReporter implements DbxTeamReporter {
         final File reportFile;
         final JasperReport jasperReport;
 
-        reportFile = new File(getClass().getClassLoader()
-                .getResource("/report/DbxTeam.jasper").getFile());
+        // TODO: The file should be received as a configuration value
+        try {
+            reportFile = new ClassPathResource("/report/DbxTeam.jasper")
+                    .getFile();
+        } catch (final IOException e) {
+            throw new RuntimeException(e);
+        }
 
         if (!reportFile.exists()) {
             // TODO: Compile report
