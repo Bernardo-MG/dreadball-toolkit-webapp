@@ -18,6 +18,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
@@ -27,11 +28,11 @@ import org.springframework.stereotype.Service;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.report.dbx.DbxTeamReporter;
 
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
 import net.sf.jasperreports.engine.util.JRLoader;
 
 @Service
@@ -71,7 +72,7 @@ public final class DefaultDbxTeamReporter implements DbxTeamReporter {
 
         try {
             jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
-                    new JREmptyDataSource());
+                    new JRBeanCollectionDataSource(Arrays.asList(team)));
         } catch (final JRException e) {
             throw new RuntimeException(e);
         }
