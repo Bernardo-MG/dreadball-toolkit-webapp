@@ -18,6 +18,8 @@ package com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.service;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.LinkedHashMap;
+import java.util.Map;
 
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
@@ -25,7 +27,10 @@ import org.springframework.stereotype.Service;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.report.dbx.DbxTeamReporter;
 
+import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
+import net.sf.jasperreports.engine.JasperFillManager;
+import net.sf.jasperreports.engine.JasperPrint;
 import net.sf.jasperreports.engine.JasperReport;
 import net.sf.jasperreports.engine.util.JRLoader;
 
@@ -37,9 +42,11 @@ public final class DefaultDbxTeamReporter implements DbxTeamReporter {
     }
 
     @Override
-    public final JasperReport getSponsorTeamReport(final SponsorTeam team) {
+    public final JasperPrint getSponsorTeamReport(final SponsorTeam team) {
         final File reportFile;
         final JasperReport jasperReport;
+        final JasperPrint jasperPrint;
+        final Map<String, Object> parameters;
 
         // TODO: The file should be received as a configuration value
         try {
@@ -60,7 +67,16 @@ public final class DefaultDbxTeamReporter implements DbxTeamReporter {
             throw new RuntimeException(e);
         }
 
-        return jasperReport;
+        parameters = new LinkedHashMap<>();
+
+        try {
+            jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
+                    new JREmptyDataSource());
+        } catch (final JRException e) {
+            throw new RuntimeException(e);
+        }
+
+        return jasperPrint;
     }
 
 }

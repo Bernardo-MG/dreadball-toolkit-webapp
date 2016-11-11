@@ -18,10 +18,10 @@ package com.wandrell.tabletop.dreadball.report.dbx;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 
-import net.sf.jasperreports.engine.JasperReport;
+import net.sf.jasperreports.engine.JasperPrint;
 
 public interface DbxTeamReporter {
 
-    public JasperReport getSponsorTeamReport(final SponsorTeam team);
+    public JasperPrint getSponsorTeamReport(final SponsorTeam team);
 
 }

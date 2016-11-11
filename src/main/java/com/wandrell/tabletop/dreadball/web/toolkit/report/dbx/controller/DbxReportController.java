@@ -20,11 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
 import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.naming.NamingException;
-import javax.servlet.ServletOutputStream;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,12 +36,9 @@ import org.springframework.web.bind.annotation.SessionAttribute;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.report.dbx.DbxTeamReporter;
 
-import net.sf.jasperreports.engine.JREmptyDataSource;
 import net.sf.jasperreports.engine.JRException;
 import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
 import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
 
 @Controller
 @RequestMapping("/builder/team/dbx")
@@ -56,6 +50,8 @@ public class DbxReportController {
     private static final String   PARAM_TEAM = "team";
 
     private final DbxTeamReporter reportService;
+
+    private static final String   FILENAME   = "DbxTeam";
 
     @Autowired
     public DbxReportController(final DbxTeamReporter service) {
@@ -71,32 +67,16 @@ public class DbxReportController {
             final Model model, final HttpServletRequest request,
             final HttpServletResponse response)
             throws JRException, NamingException, SQLException, IOException {
-        // Parameters as Map to be passed to Jasper
-        final HashMap<String, Object> hmParams;
-        final JasperReport jasperReport;
-
-        jasperReport = getDbxTeamReporter().getSponsorTeamReport(team);
-
-        hmParams = new HashMap<String, Object>();
-        generateReportPDF(response, hmParams, jasperReport, "dbxTeam");
-    }
-
-    private final void generateReportPDF(final HttpServletResponse resp,
-            final Map<String, Object> parameters,
-            final JasperReport jasperReport, final String fileName)
-            throws JRException, NamingException, SQLException, IOException {
-        final ServletOutputStream ouputStream;
         final JasperPrint jasperPrint;
 
-        jasperPrint = JasperFillManager.fillReport(jasperReport, parameters,
-                new JREmptyDataSource());
+        jasperPrint = getDbxTeamReporter().getSponsorTeamReport(team);
 
-        resp.setContentType(MediaType.APPLICATION_PDF_VALUE);
-        resp.setHeader("Content-disposition",
-                String.format("inline; filename=%s.pdf", fileName));
+        response.setContentType(MediaType.APPLICATION_PDF_VALUE);
+        response.setHeader("Content-disposition",
+                String.format("inline; filename=%s.pdf", FILENAME));
 
-        ouputStream = resp.getOutputStream();
-        JasperExportManager.exportReportToPdfStream(jasperPrint, ouputStream);
+        JasperExportManager.exportReportToPdfStream(jasperPrint,
+                response.getOutputStream());
     }
 
     private final DbxTeamReporter getDbxTeamReporter() {
