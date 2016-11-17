@@ -317,6 +317,8 @@
    <!-- ********************************************** -->
 
    <properties>
+      <!-- Java version -->
+      <maven.compiler.source>1.8</maven.compiler.source>
       <!-- Manifest data -->
       <manifest.name>com/wandrell/tabletop/dreadball/dreadball_toolkit_webpage</manifest.name>
       <!-- Dependencies versions -->
