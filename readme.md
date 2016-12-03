@@ -59,12 +59,20 @@ $ mvn tomcat7:run-war -P h2,tomcat7
 
 After this the project will be accessible at [http://localhost:8080/dreadball/].
 
-### Testing
+### Running tests
 
-The integration tests require a database, which can be set up automatically if using the H2 profile. For this reason these tests should be run with the following command:
+The integration tests require a database and a running server, and the easiest way to run them is in a similar way to running the project locally.
+
+To run the tests with Jetty:
 
 ```
 $ mvn verify -P h2,jetty
+```
+
+To run them with Tomcat:
+
+```
+$ mvn verify -P h2,tomcat7
 ```
 
 ### Packaging the WAR
