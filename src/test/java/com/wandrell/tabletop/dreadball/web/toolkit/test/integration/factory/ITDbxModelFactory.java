@@ -33,9 +33,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ContextConfiguration(locations = { "classpath:context/builder-dbx.xml",
-        "classpath:context/persistence.xml" })
-@TestPropertySource({ "classpath:config/persistence-access.properties",
-        "classpath:config/service-dreadball.properties",
+        "classpath:context/test-db-context.xml" })
+@TestPropertySource({ "classpath:config/service-dreadball.properties",
         "classpath:config/builder-team-dbx.properties" })
 public final class ITDbxModelFactory
         extends AbstractTransactionalTestNGSpringContextTests {

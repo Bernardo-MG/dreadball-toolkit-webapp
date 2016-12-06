@@ -689,15 +689,6 @@
          <version>${slf4j.version}</version>
       </dependency>
       <!-- ============================================== -->
-      <!-- ============ OTHER DEPENDENCIES ============== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- Guava -->
-         <groupId>com.google.guava</groupId>
-         <artifactId>guava</artifactId>
-         <version>${guava.version}</version>
-      </dependency>
-      <!-- ============================================== -->
       <!-- ================= JACKSON ==================== -->
       <!-- ============================================== -->
       <dependency>
@@ -717,6 +708,15 @@
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-annotations</artifactId>
          <version>${jackson.version}</version>
+      </dependency>
+      <!-- ============================================== -->
+      <!-- ============ OTHER DEPENDENCIES ============== -->
+      <!-- ============================================== -->
+      <dependency>
+         <!-- Guava -->
+         <groupId>com.google.guava</groupId>
+         <artifactId>guava</artifactId>
+         <version>${guava.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- =========== VERSION ENFORCEMENT ============== -->
@@ -804,7 +804,7 @@
             <directory>src/test/resources/</directory>
             <includes>
                <!-- Filter the DBX builder context -->
-               <include>context/builder-dbx.xml</include>
+               <include>context/test-db-context.xml</include>
             </includes>
             <filtering>true</filtering>
          </testResource>

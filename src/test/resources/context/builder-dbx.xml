@@ -7,40 +7,10 @@
       http://www.springframework.org/schema/context 
       http://www.springframework.org/schema/context/spring-context.xsd">
 
-   <!-- Properties -->
-   <context:property-placeholder
-      location="classpath:config/persistence-@spring.profile.database@.properties" />
-
    <!-- Scans for services -->
    <context:component-scan base-package="com.wandrell.tabletop.dreadball.web.toolkit" />
 
    <!-- Other services -->
    <bean id="dbxRules" class="${service.rules.version}" />
 
-   <!-- Database initializer -->
-   <jdbc:initialize-database data-source="dataSource">
-      <jdbc:script location="${jdbc.script.drop.dbx}" />
-      <jdbc:script location="${jdbc.script.drop.common}" />
-      <jdbc:script location="${jdbc.script.init.common}" />
-      <jdbc:script location="${jdbc.script.init.dbx}" />
-      <jdbc:script location="${jdbc.script.load.common}" />
-      <jdbc:script location="${jdbc.script.load.dbx}" />
-   </jdbc:initialize-database>
-
-   <!-- Profile-based configuration -->
-   <beans profile="h2">
-      <!-- H2 in-memory database -->
-      <!-- To be used for development -->
-      <context:property-placeholder
-         location="classpath:config/persistence-h2.properties, 
-                   classpath:config/persistence-access.properties" />
-   </beans>
-   <beans profile="mysql">
-      <!-- MySQL database -->
-      <!-- To be used for deployment -->
-      <context:property-placeholder
-         location="classpath:config/persistence-mysql.properties, 
-                   classpath:config/persistence-access.properties" />
-   </beans>
-   
 </beans>
