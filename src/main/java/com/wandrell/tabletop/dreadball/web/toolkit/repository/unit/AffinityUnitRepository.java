@@ -44,14 +44,14 @@ public interface AffinityUnitRepository
      *            affinities the units should not hate
      * @return all the units not hating any of the affinities
      */
-    @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE (h IS NULL OR h NOT IN :affinities) ORDER BY u.templateName ASC")
+    @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h NOT IN :affinities ORDER BY u.templateName ASC")
     public Iterable<PersistentAffinityUnit> findAllFilteredByHatedAffinities(
             @Param("affinities") final Iterable<AffinityGroup> affinities);
 
     /**
      * Returns all the affinity units ordered by the template name.
      * <p>
-     * TODO: Should be ordered by the localized name.
+     * TODO: Should be ordered by the localized name. This method is not needed.
      * 
      * @return all the affinity units ordered by the template name
      */
