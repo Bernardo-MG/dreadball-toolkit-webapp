@@ -17,6 +17,7 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.test.integration.repository;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
@@ -24,8 +25,10 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
+import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
@@ -33,19 +36,53 @@ public class ITAffinityUnitRepository
         extends AbstractTransactionalTestNGSpringContextTests {
 
     @Autowired
-    private AffinityUnitRepository repository;
+    private AffinityGroupRepository affinityRepository;
+
+    @Autowired
+    private AffinityUnitRepository  repository;
 
     public ITAffinityUnitRepository() {
         super();
     }
 
     @Test
-    public final void testFindAll_FilteredByHatedAffinities() {
+    public final void testFindAll_FilteredByHatedAffinities_Hated_Filtered() {
+        final Collection<AffinityGroup> affinities;
+
+        affinities = new ArrayList<>();
+        affinities.add(affinityRepository.findByName("affinity_5"));
+
+        Assert.assertEquals(
+                ((Collection<PersistentAffinityUnit>) repository
+                        .findAllFilteredByHatedAffinities(affinities)).size(),
+                3);
+    }
+
+    @Test
+    public final void
+            testFindAll_FilteredByHatedAffinities_NoFilter_AllEntities() {
         final Iterable<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
 
-        repository.findAllFilteredByHatedAffinities(affinities);
+        Assert.assertEquals(
+                ((Collection<PersistentAffinityUnit>) repository
+                        .findAllFilteredByHatedAffinities(affinities)).size(),
+                4);
+    }
+
+    @Test
+    public final void
+            testFindAll_FilteredByHatedAffinities_NotHated_NotFiltered() {
+        final Collection<AffinityGroup> affinities;
+
+        affinities = new ArrayList<>();
+        affinities.add(affinityRepository.findByName("affinity_1"));
+
+        Assert.assertEquals(
+                ((Collection<PersistentAffinityUnit>) repository
+                        .findAllFilteredByHatedAffinities(affinities)).size(),
+                4);
     }
 
     @Test

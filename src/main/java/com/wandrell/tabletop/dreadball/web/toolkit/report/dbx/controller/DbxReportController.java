@@ -44,14 +44,14 @@ import net.sf.jasperreports.engine.JasperPrint;
 @RequestMapping("/builder/team/dbx")
 public class DbxReportController {
 
+    private static final String   FILENAME   = "DbxTeam";
+
     /**
      * Parameter name for the team.
      */
     private static final String   PARAM_TEAM = "team";
 
     private final DbxTeamReporter reportService;
-
-    private static final String   FILENAME   = "DbxTeam";
 
     @Autowired
     public DbxReportController(final DbxTeamReporter service) {
