@@ -50,6 +50,8 @@ public interface AffinityUnitRepository
 
     /**
      * Returns all the affinity units ordered by the template name.
+     * <p>
+     * TODO: Should be ordered by the localized name.
      * 
      * @return all the affinity units ordered by the template name
      */

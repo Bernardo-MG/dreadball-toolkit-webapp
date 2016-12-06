@@ -21,9 +21,11 @@ import java.util.ArrayList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
@@ -44,6 +46,24 @@ public class ITAffinityUnitRepository
         affinities = new ArrayList<>();
 
         repository.findAllFilteredByHatedAffinities(affinities);
+    }
+
+    @Test
+    public final void testFindAllOrderByTemplateName() {
+        // TODO: Remove or improve this test
+        repository.findAllOrderByTemplateName();
+    }
+
+    @Test
+    public final void testFindOneByTemplateName_Existing_ExpectedResult() {
+        final Unit unit;
+        final String templateName;
+
+        templateName = "unit_1_affinity";
+
+        unit = repository.findOneByTemplateName(templateName);
+
+        Assert.assertEquals(unit.getTemplateName(), templateName);
     }
 
 }
