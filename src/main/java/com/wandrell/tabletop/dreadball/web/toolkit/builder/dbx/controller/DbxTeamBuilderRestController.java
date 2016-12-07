@@ -90,7 +90,7 @@ public class DbxTeamBuilderRestController {
     @PostMapping(path = "/players", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam addPlayer(
-            @RequestBody final SponsorTeamPlayer player,
+            @RequestBody @Valid final SponsorTeamPlayer player,
             @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
             final BindingResult errors) {
         final Integer maxUnits; // Maximum number of units allowed
@@ -132,7 +132,7 @@ public class DbxTeamBuilderRestController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam removePlayer(
-            @RequestBody final SponsorTeamPlayer player,
+            @RequestBody @Valid final SponsorTeamPlayer player,
             @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
             final BindingResult errors) {
 
@@ -158,7 +158,7 @@ public class DbxTeamBuilderRestController {
     @PutMapping(path = "/assets", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam setAssets(
-            @RequestBody final SponsorTeamAssets assets,
+            @RequestBody @Valid final SponsorTeamAssets assets,
             @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
             final BindingResult errors) {
 
@@ -171,6 +171,9 @@ public class DbxTeamBuilderRestController {
             team.setSpecialMoveCards(assets.getSpecialMoveCards());
             team.setWagers(assets.getWagers());
         }
+
+        // TODO: Maybe it should validate if the spent rank is above the sponsor
+        // rank
 
         return team;
     }
