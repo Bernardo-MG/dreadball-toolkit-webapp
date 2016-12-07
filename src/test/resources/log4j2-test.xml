@@ -31,7 +31,7 @@
       <!-- Queries logs -->
 
       <logger name="org.hibernate.SQL" level="trace" additivity="false">
-         <AppenderRef ref="console" />
+         <AppenderRef ref="file" />
       </logger>
 
       <!-- Root -->
