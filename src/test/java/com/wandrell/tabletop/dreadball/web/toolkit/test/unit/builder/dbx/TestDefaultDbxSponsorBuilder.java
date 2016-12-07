@@ -112,6 +112,7 @@ public final class TestDefaultDbxSponsorBuilder {
         Mockito.when(unitRepo
                 .findAllFilteredByHatedAffinities(Matchers.anyCollection()))
                 .thenReturn(units);
+        Mockito.when(unitRepo.findAll()).thenReturn(units);
 
         return unitRepo;
     }

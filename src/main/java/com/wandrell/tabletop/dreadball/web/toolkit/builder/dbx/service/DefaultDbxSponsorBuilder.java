@@ -142,21 +142,23 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
             affNames.add(affinity.getName());
         }
 
-        units = new LinkedList<Unit>();
-        if (!affNames.isEmpty()) {
+        if (affNames.isEmpty()) {
+            filtered = getAffinityUnitRepository().findAll();
+        } else {
             filtered = getAffinityUnitRepository()
                     .findAllFilteredByHatedAffinities(affNames);
+        }
 
-            for (final AffinityUnit affUnit : filtered) {
-                cost = getUnitCost(affUnit, affinities);
+        units = new LinkedList<Unit>();
+        for (final AffinityUnit affUnit : filtered) {
+            cost = getUnitCost(affUnit, affinities);
 
-                unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(),
-                        cost, affUnit.getRole(), affUnit.getAttributes(),
-                        affUnit.getAbilities(), affUnit.getMvp(),
-                        affUnit.getGiant());
+            unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
+                    affUnit.getRole(), affUnit.getAttributes(),
+                    affUnit.getAbilities(), affUnit.getMvp(),
+                    affUnit.getGiant());
 
-                units.add(unit);
-            }
+            units.add(unit);
         }
 
         return units;
