@@ -18,6 +18,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -130,14 +131,19 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
             getAvailableUnits(final Iterable<AffinityGroup> affinities) {
         final Collection<Unit> units;          // Available units
         final Iterable<PersistentAffinityUnit> filtered; // Filtered units
+        final Collection<String> affNames;     // Filtered units
         Integer cost;                          // Unit cost
         Unit unit;                             // Available unit
 
         checkNotNull(affinities, "Received a null pointer as affinities");
 
-        // TODO: For this to work the affinities should be DB entities
+        affNames = new ArrayList<>();
+        for (final AffinityGroup affinity : affinities) {
+            affNames.add(affinity.getName());
+        }
+
         filtered = getAffinityUnitRepository()
-                .findAllFilteredByHatedAffinities(affinities);
+                .findAllFilteredByHatedAffinities(affNames);
         units = new LinkedList<Unit>();
         for (final AffinityUnit affUnit : filtered) {
             cost = getUnitCost(affUnit, affinities);

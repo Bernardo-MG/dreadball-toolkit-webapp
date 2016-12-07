@@ -26,7 +26,6 @@ import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
@@ -47,10 +46,10 @@ public class ITAffinityUnitRepository
 
     @Test
     public final void testFindAll_FilteredByHatedAffinities_Hated_Filtered() {
-        final Collection<AffinityGroup> affinities;
+        final Collection<String> affinities;
 
         affinities = new ArrayList<>();
-        affinities.add(affinityRepository.findByName("affinity_5"));
+        affinities.add("affinity_5");
 
         Assert.assertEquals(
                 ((Collection<PersistentAffinityUnit>) repository
@@ -61,7 +60,7 @@ public class ITAffinityUnitRepository
     @Test
     public final void
             testFindAll_FilteredByHatedAffinities_NoFilter_AllEntities() {
-        final Iterable<AffinityGroup> affinities;
+        final Iterable<String> affinities;
 
         affinities = new ArrayList<>();
 
@@ -74,10 +73,10 @@ public class ITAffinityUnitRepository
     @Test
     public final void
             testFindAll_FilteredByHatedAffinities_NotHated_NotFiltered() {
-        final Collection<AffinityGroup> affinities;
+        final Collection<String> affinities;
 
         affinities = new ArrayList<>();
-        affinities.add(affinityRepository.findByName("affinity_1"));
+        affinities.add("affinity_1");
 
         Assert.assertEquals(
                 ((Collection<PersistentAffinityUnit>) repository

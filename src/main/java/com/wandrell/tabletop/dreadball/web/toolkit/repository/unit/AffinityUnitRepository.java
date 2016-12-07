@@ -21,7 +21,6 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 
 /**
  * Affinity units repository.
@@ -34,19 +33,14 @@ public interface AffinityUnitRepository
     /**
      * Returns all the affinity units which does not hate any of the received
      * affinities.
-     * <p>
-     * TODO: This should be tested
-     * <p>
-     * TODO: The arguments received should be instances of
-     * PersistentAffinityUnit
      * 
      * @param affinities
      *            affinities the units should not hate
      * @return all the units not hating any of the affinities
      */
-    @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h NOT IN :affinities")
+    @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
     public Iterable<PersistentAffinityUnit> findAllFilteredByHatedAffinities(
-            @Param("affinities") final Iterable<AffinityGroup> affinities);
+            @Param("affinities") final Iterable<String> affinities);
 
     /**
      * Returns all the affinity units ordered by the template name.
