@@ -11,7 +11,7 @@
    <parent>
       <groupId>com.wandrell.maven</groupId>
       <artifactId>base-pom</artifactId>
-      <version>1.0.5</version>
+      <version>1.1.0</version>
    </parent>
 
    <!-- ********************************************** -->
@@ -369,7 +369,7 @@
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
       <plugin.war.version>3.0.0</plugin.war.version>
       <!-- Maven Site -->
-      <site.skin.version>0.4.0</site.skin.version>
+      <site.skin.version>0.5.0</site.skin.version>
       <!-- Testing server -->
       <server.test.path>/dreadball</server.test.path>
    </properties>
