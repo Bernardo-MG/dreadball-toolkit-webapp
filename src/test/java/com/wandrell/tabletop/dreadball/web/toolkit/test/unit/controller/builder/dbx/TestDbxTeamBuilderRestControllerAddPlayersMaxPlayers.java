@@ -20,12 +20,10 @@ import java.io.IOException;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.hamcrest.Matchers;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -54,15 +52,16 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
      */
     public TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers() {
         super();
-        // TODO: This test requires the controller to send validation failure
-        // messages, or the result should be validated somehow
+        // TODO: Validate the actual messages being sent in the exception, which
+        // should be message codes
+        // TODO: Test that the exception thrown is the correct one
     }
 
     /**
      * Tests that it is not possible adding a player when the maximum is
      * surpassed.
      */
-    @Test
+    @Test(expectedExceptions = Exception.class)
     public final void testAddPlayer_AboveMaximumPlayers_NotAdded()
             throws Exception {
         testCantAddPlayer(10, 11);
@@ -72,7 +71,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
      * Tests that it is not possible adding a player when the maximum is
      * negative.
      */
-    @Test
+    @Test(expectedExceptions = Exception.class)
     public final void testAddPlayer_NegativeMaximumPlayers_NotAdded()
             throws Exception {
         testCantAddPlayer(-1, 0);
@@ -82,7 +81,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
      * Tests that it is not possible adding a player when the maximum is
      * reached.
      */
-    @Test
+    @Test(expectedExceptions = Exception.class)
     public final void testAddPlayer_ReachedMaximumPlayers_NotAdded()
             throws Exception {
         testCantAddPlayer(10, 10);
@@ -92,10 +91,8 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
      * Tests that it is not possible adding a player when the maximum is
      * surpassed.
      */
-    @Test
     public final void testAddPlayer_ReachesAboveMaximumPlayers_Added()
             throws Exception {
-        final ResultActions result; // Request result
         final RequestBuilder post;  // Request
         final MockMvc mockMvc;      // Mocked context
 
@@ -107,13 +104,15 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
 
         // TODO: Make this test work
         // The request is sent
-        // result = mockMvc.perform(post);
+        mockMvc.perform(post);
+
+        // TODO: Test the result
     }
 
     /**
      * Tests that it is not possible adding a player when the maximum is zero.
      */
-    @Test
+    @Test(expectedExceptions = Exception.class)
     public final void testAddPlayer_ZeroMaximumPlayers_NotAdded()
             throws Exception {
         testCantAddPlayer(0, 0);
@@ -133,9 +132,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         // Mocks the builder
         builder = Mockito.mock(DbxTeamBuilder.class);
 
-        // Sets min units
-        Mockito.when(builder.getMinTeamUnits()).thenReturn(0);
-
         // Sets max units
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(max);
 
@@ -153,7 +149,8 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         return MockMvcBuilders.standaloneSetup(getMaxUnitsController(players))
                 .alwaysExpect(MockMvcResultMatchers.content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
+                .alwaysExpect(MockMvcResultMatchers.status().isBadRequest())
+                .build();
     }
 
     /**
@@ -224,7 +221,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
      */
     private final void testCantAddPlayer(final Integer maxPlayers,
             final Integer teamPlayers) throws Exception {
-        final ResultActions result; // Request result
         final RequestBuilder post;  // Request
         final MockMvc mockMvc;      // Mocked context
 
@@ -235,12 +231,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
         post = getValidRequest(teamPlayers);
 
         // The request is sent
-        result = mockMvc.perform(post);
-
-        // No player was added
-        // TODO: It is using mocks, this will be always empty
-        result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
-                Matchers.anEmptyMap()));
+        mockMvc.perform(post);
     }
 
 }

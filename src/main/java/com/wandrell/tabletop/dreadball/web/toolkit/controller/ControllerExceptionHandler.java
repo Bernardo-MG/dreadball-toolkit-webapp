@@ -29,10 +29,16 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
+import com.wandrell.tabletop.dreadball.web.toolkit.controller.bean.DefaultErrorResponse;
 import com.wandrell.tabletop.dreadball.web.toolkit.controller.bean.ErrorResponse;
 
 /**
  * Initializes all the controllers with a common configuration.
+ * <p>
+ * TODO: Check http://www.baeldung.com/exception-handling-for-rest-with-spring
+ * <p>
+ * TODO: Tests
+ * http://stackoverflow.com/questions/16669356/testing-spring-mvc-exceptionhandler-method-with-spring-mvc-test
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -54,9 +60,10 @@ public final class ControllerExceptionHandler {
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
-    public ErrorResponse
+    public final ErrorResponse
             processIllegalArgument(final IllegalArgumentException ex) {
-        return new ErrorResponse(resolveLocalizedErrorMessage(ex.getMessage()));
+        return new DefaultErrorResponse(
+                resolveLocalizedErrorMessage(ex.getMessage()));
     }
 
     private final MessageSource getMessageSource() {

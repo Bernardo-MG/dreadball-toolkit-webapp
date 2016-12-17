@@ -57,6 +57,8 @@ public class DbxTeamBuilderRestController {
 
     /**
      * DBX team building service.
+     * <p>
+     * TODO: Why is this autowired?
      */
     @Autowired
     private DbxTeamBuilder      dbxTeamBuilderService;
@@ -100,20 +102,25 @@ public class DbxTeamBuilderRestController {
         if (!errors.hasErrors()) {
             maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
 
-            // TODO: Instead of enforcing the maximum send a warning
             if (team.getPlayers().size() < maxUnits) {
                 unit = getDbxTeamBuilderService().getUnit(
                         player.getTemplateName(),
                         team.getSponsor().getAffinityGroups());
 
-                // TODO: Maybe the response status should change if the unit
-                // does not exist
                 if (unit != null) {
                     addPlayer(team, unit);
+                } else {
+                    // TODO: Maybe use another exception
+                    // TODO: Add a message
+                    throw new IllegalArgumentException();
                 }
+            } else {
+                // TODO: Add a message
+                throw new IllegalArgumentException();
             }
         }
 
+        // throw new IllegalArgumentException();
         return team;
     }
 
