@@ -20,6 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Locale;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -39,11 +41,23 @@ import com.wandrell.tabletop.dreadball.web.toolkit.controller.bean.ErrorResponse
  * <p>
  * TODO: Tests
  * http://stackoverflow.com/questions/16669356/testing-spring-mvc-exceptionhandler-method-with-spring-mvc-test
+ * <p>
+ * TODO:
+ * http://www.asyncdev.net/2011/12/spring-restful-controllers-and-error-handling/
+ * <p>
+ * TODO:
+ * http://www.concretepage.com/spring-4/spring-4-mvc-rest-web-service-exception-handling-with-restcontroller-example
+ * <p>
+ * TODO:
+ * https://blog.jayway.com/2013/02/03/improve-your-spring-rest-api-part-iii/
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @ControllerAdvice
 public final class ControllerExceptionHandler {
+
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(DefaultErrorResponse.class);
 
     private final MessageSource messageSource;
 
@@ -62,6 +76,8 @@ public final class ControllerExceptionHandler {
     @ResponseBody
     public final ErrorResponse
             processIllegalArgument(final IllegalArgumentException ex) {
+        LOGGER.debug("Intercepted IllegalArgumentException");
+
         return new DefaultErrorResponse(
                 resolveLocalizedErrorMessage(ex.getMessage()));
     }
