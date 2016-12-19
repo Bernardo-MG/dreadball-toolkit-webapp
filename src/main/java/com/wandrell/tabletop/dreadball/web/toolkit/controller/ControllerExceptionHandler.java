@@ -57,7 +57,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.controller.bean.ErrorResponse
 public final class ControllerExceptionHandler {
 
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(DefaultErrorResponse.class);
+            .getLogger(ControllerExceptionHandler.class);
 
     private final MessageSource messageSource;
 
