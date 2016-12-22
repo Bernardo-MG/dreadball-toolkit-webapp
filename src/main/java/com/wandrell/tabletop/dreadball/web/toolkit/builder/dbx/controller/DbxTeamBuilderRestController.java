@@ -23,9 +23,15 @@ import java.util.Iterator;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.Validator;
+import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -63,19 +69,24 @@ public class DbxTeamBuilderRestController {
     @Autowired
     private DbxTeamBuilder      dbxTeamBuilderService;
 
+    private final Validator     teamValidator;
+
     /**
      * Constructs a controller with the specified dependencies.
      * 
      * @param service
      *            team builder service
      */
-    public DbxTeamBuilderRestController(final DbxTeamBuilder service) {
+    public DbxTeamBuilderRestController(final DbxTeamBuilder service,
+            @Qualifier("sponsorTeamValidator") final Validator validator) {
         super();
 
         // TODO: Should give support for validating the team valoration
 
         dbxTeamBuilderService = checkNotNull(service,
                 "Received a null pointer as team builder service");
+        teamValidator = checkNotNull(validator,
+                "Received a null pointer as validator");
     }
 
     /**
@@ -88,17 +99,17 @@ public class DbxTeamBuilderRestController {
      * @param errors
      *            results from binding
      * @return the team with the new player
+     * @throws BindException
      */
     @PostMapping(path = "/players", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam addPlayer(
             @RequestBody @Valid final SponsorTeamPlayer player,
-            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
-            final BindingResult errors) {
+            @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
+            final BindingResult errors) throws BindException {
         final Integer maxUnits; // Maximum number of units allowed
         final Unit unit;        // Unit to add
 
-        // TODO: Maybe the response status should change if the data is invalid
         if (!errors.hasErrors()) {
             maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
 
@@ -118,6 +129,8 @@ public class DbxTeamBuilderRestController {
                 // TODO: Add a message
                 throw new IllegalArgumentException();
             }
+        } else {
+            throw new BindException(errors);
         }
 
         // throw new IllegalArgumentException();
@@ -134,18 +147,20 @@ public class DbxTeamBuilderRestController {
      * @param errors
      *            results from binding
      * @return the team without the removed player
+     * @throws BindException
      */
     @DeleteMapping(path = "/players",
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam removePlayer(
             @RequestBody @Valid final SponsorTeamPlayer player,
-            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
-            final BindingResult errors) {
+            @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
+            final BindingResult errors) throws BindException {
 
-        // TODO: Maybe the response status should change if the data is invalid
         if (!errors.hasErrors()) {
             team.removePlayer(player.getPosition());
+        } else {
+            throw new BindException(errors);
         }
 
         return team;
@@ -161,15 +176,15 @@ public class DbxTeamBuilderRestController {
      * @param errors
      *            results from binding
      * @return the team with the new assets set
+     * @throws BindException
      */
     @PutMapping(path = "/assets", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam setAssets(
             @RequestBody @Valid final SponsorTeamAssets assets,
-            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
-            final BindingResult errors) {
+            @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
+            final BindingResult errors) throws BindException {
 
-        // TODO: Maybe the response status should change if the data is invalid
         if (!errors.hasErrors()) {
             team.setCheerleaders(assets.getCheerleaders());
             team.setCoachingDice(assets.getCoachingDice());
@@ -177,12 +192,26 @@ public class DbxTeamBuilderRestController {
             team.setSabotageCards(assets.getSabotageCards());
             team.setSpecialMoveCards(assets.getSpecialMoveCards());
             team.setWagers(assets.getWagers());
+        } else {
+            throw new BindException(errors);
         }
 
         // TODO: Maybe it should validate if the spent rank is above the sponsor
         // rank
 
         return team;
+    }
+
+    @InitBinder
+    public final void setupValidation(final WebDataBinder binder) {
+        binder.addValidators(getTeamValidator());
+    }
+
+    @GetMapping(path = "/assets",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final void validate(
+            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team) {
+        // TODO: Test this
     }
 
     /**
@@ -227,6 +256,10 @@ public class DbxTeamBuilderRestController {
      */
     private final DbxTeamBuilder getDbxTeamBuilderService() {
         return dbxTeamBuilderService;
+    }
+
+    private final Validator getTeamValidator() {
+        return teamValidator;
     }
 
 }

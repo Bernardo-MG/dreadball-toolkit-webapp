@@ -3,12 +3,14 @@ package com.wandrell.tabletop.dreadball.validator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 
+@Component("sponsorTeamValidator")
 public final class SponsorTeamValidator implements Validator {
 
     private final DbxTeamBuilder builderService;

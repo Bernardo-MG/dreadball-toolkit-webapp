@@ -22,6 +22,7 @@ import java.util.Arrays;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
@@ -38,6 +39,7 @@ import net.sf.jasperreports.engine.util.JRLoader;
 @Service
 public final class DefaultDbxTeamReporter implements DbxTeamReporter {
 
+    @Autowired
     public DefaultDbxTeamReporter() {
         super();
     }
