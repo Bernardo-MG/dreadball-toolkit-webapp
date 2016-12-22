@@ -210,8 +210,12 @@ public class DbxTeamBuilderRestController {
     @GetMapping(path = "/assets",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final void validate(
-            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team) {
+            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
+            final BindingResult errors) throws BindException {
         // TODO: Test this
+        if (errors.hasErrors()) {
+            throw new BindException(errors);
+        }
     }
 
     /**
