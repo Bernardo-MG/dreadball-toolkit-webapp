@@ -29,6 +29,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.Validator;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -121,10 +122,13 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
      */
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
+        final Validator teamValidator;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
-        return new DbxTeamBuilderRestController(builder);
+        teamValidator = Mockito.mock(Validator.class);
+
+        return new DbxTeamBuilderRestController(builder, teamValidator);
     }
 
     /**

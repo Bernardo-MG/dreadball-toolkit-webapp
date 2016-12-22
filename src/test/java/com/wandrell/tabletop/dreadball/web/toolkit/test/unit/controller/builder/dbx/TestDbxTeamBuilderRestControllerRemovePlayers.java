@@ -29,6 +29,7 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
+import org.springframework.validation.Validator;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
@@ -105,6 +106,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         final DbxTeamBuilder builder;
         final Unit unit;
         final Integer maxUnits;
+        final Validator teamValidator;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
@@ -117,7 +119,9 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
 
-        return new DbxTeamBuilderRestController(builder);
+        teamValidator = Mockito.mock(Validator.class);
+
+        return new DbxTeamBuilderRestController(builder, teamValidator);
     }
 
     /**
