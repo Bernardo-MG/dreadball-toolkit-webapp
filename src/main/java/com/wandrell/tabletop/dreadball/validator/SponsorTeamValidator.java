@@ -3,6 +3,7 @@ package com.wandrell.tabletop.dreadball.validator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
@@ -15,6 +16,7 @@ public final class SponsorTeamValidator implements Validator {
 
     private final DbxTeamBuilder builderService;
 
+    @Autowired
     public SponsorTeamValidator(final DbxTeamBuilder builder) {
         super();
 

@@ -196,9 +196,6 @@ public class DbxTeamBuilderRestController {
             throw new BindException(errors);
         }
 
-        // TODO: Maybe it should validate if the spent rank is above the sponsor
-        // rank
-
         return team;
     }
 
