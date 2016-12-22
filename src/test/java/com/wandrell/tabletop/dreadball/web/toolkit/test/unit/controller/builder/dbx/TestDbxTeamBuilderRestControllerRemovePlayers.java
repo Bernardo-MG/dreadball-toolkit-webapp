@@ -120,6 +120,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
 
         teamValidator = Mockito.mock(Validator.class);
+        Mockito.when(teamValidator.supports(Mockito.any())).thenReturn(true);
 
         return new DbxTeamBuilderRestController(builder, teamValidator);
     }
