@@ -63,10 +63,7 @@ public class DbxTeamBuilderRestController {
 
     /**
      * DBX team building service.
-     * <p>
-     * TODO: Why is this autowired?
      */
-    @Autowired
     private DbxTeamBuilder      dbxTeamBuilderService;
 
     private final Validator     teamValidator;
@@ -77,6 +74,7 @@ public class DbxTeamBuilderRestController {
      * @param service
      *            team builder service
      */
+    @Autowired
     public DbxTeamBuilderRestController(final DbxTeamBuilder service,
             @Qualifier("sponsorTeamValidator") final Validator validator) {
         super();
@@ -199,14 +197,14 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
-    @InitBinder
+    @InitBinder("validateTeam")
     public final void setupValidation(final WebDataBinder binder) {
         binder.addValidators(getTeamValidator());
     }
 
-    @GetMapping(path = "/assets",
+    @GetMapping(name = "validateTeam", path = "/assets",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final void validate(
+    public final void validateTeam(
             @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
             final BindingResult errors) throws BindException {
         // TODO: Test this
