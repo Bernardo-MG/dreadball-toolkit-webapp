@@ -7,6 +7,11 @@
       http://www.springframework.org/schema/context 
       http://www.springframework.org/schema/context/spring-context.xsd">
 
+   <!-- Scans for services -->
+   <context:component-scan base-package="com.wandrell.tabletop.dreadball.web.toolkit.builder.service" />
+   <context:component-scan base-package="com.wandrell.tabletop.dreadball.web.toolkit.factory" />
+   <context:component-scan base-package="com.wandrell.tabletop.dreadball.web.toolkit.model.team.calculator" />
+
    <!-- Other services -->
    <bean id="dbxRules" class="${service.rules.version}" />
 

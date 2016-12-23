@@ -17,7 +17,6 @@
 package com.wandrell.tabletop.dreadball.web.toolkit.test.integration.factory;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.TestPropertySource;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
@@ -33,12 +32,10 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@ContextConfiguration(locations = { "classpath:context/builder-dbx.xml",
+@ContextConfiguration(locations = { "classpath:context/builder-factory.xml",
         "classpath:context/test-db-context.xml" })
 @TestPropertySource({ "classpath:config/service-dreadball.properties",
         "classpath:config/builder-team-dbx.properties" })
-@ComponentScan({ "com.wandrell.tabletop.dreadball.web.toolkit.builder.service",
-        "com.wandrell.tabletop.dreadball.web.toolkit.builder.factory" })
 public final class ITDbxModelFactory
         extends AbstractTransactionalTestNGSpringContextTests {
 
