@@ -53,7 +53,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerMvp {
      * other.
      */
     @Test
-    public final void testAddPlayer_MultipleMvps_Accepted() throws Exception {
+    public final void testAddPlayer_MultipleMvps_Added() throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
 
@@ -77,7 +77,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerMvp {
      * Tests that when the data and the context is correct players can be added.
      */
     @Test
-    public final void testAddPlayer_RepeatedMvp_Rejected() throws Exception {
+    public final void testAddPlayer_RepeatedMvp_NotAdded() throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
         final Unit unit;

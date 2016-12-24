@@ -53,7 +53,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerGiant {
      * other.
      */
     @Test
-    public final void testAddPlayer_MultipleGiants_Accepted() throws Exception {
+    public final void testAddPlayer_MultipleGiants_Added() throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
 
@@ -77,7 +77,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerGiant {
      * Tests that when the data and the context is correct players can be added.
      */
     @Test
-    public final void testAddPlayer_RepeatedGiant_Rejected() throws Exception {
+    public final void testAddPlayer_RepeatedGiant_NotAdded() throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
         final Unit unit;

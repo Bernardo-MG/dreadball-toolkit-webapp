@@ -53,8 +53,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayer {
      * other.
      */
     @Test
-    public final void testAddPlayer_MultiplePlayers_Accepted()
-            throws Exception {
+    public final void testAddPlayer_MultiplePlayers_Added() throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
 
@@ -75,7 +74,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayer {
     }
 
     @Test
-    public final void testAddPlayer_Repeated_Accepted() throws Exception {
+    public final void testAddPlayer_Repeated_Added() throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
         final Unit unit;
@@ -99,7 +98,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayer {
      * Tests that when the data and the context is correct players can be added.
      */
     @Test
-    public final void testAddPlayer_ValidData_Accepted() throws Exception {
+    public final void testAddPlayer_ValidData_Added() throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
 
