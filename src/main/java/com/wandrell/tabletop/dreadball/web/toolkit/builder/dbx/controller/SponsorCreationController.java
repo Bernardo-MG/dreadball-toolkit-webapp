@@ -32,6 +32,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.support.SessionStatus;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
@@ -88,6 +89,11 @@ public class SponsorCreationController {
     private static final String     VIEW_SPONSOR            = "builder/dbx/sponsor";
 
     /**
+     * DBX model factory.
+     */
+    private final DbxModelFactory   dbxModelFact;
+
+    /**
      * DBX team builder service.
      */
     private final DbxSponsorBuilder sponsorCreationService;
@@ -99,11 +105,14 @@ public class SponsorCreationController {
      *            the sponsor creation service
      */
     @Autowired
-    public SponsorCreationController(final DbxSponsorBuilder service) {
+    public SponsorCreationController(final DbxSponsorBuilder service,
+            final DbxModelFactory modelFact) {
         super();
 
         sponsorCreationService = checkNotNull(service,
                 "Received a null pointer as sponsor creation service");
+        dbxModelFact = checkNotNull(modelFact,
+                "Received a null pointer as model factory");
     }
 
     /**
@@ -179,6 +188,15 @@ public class SponsorCreationController {
     }
 
     /**
+     * Returns the model factory.
+     * 
+     * @return the model factory
+     */
+    private final DbxModelFactory getDbxModelFactory() {
+        return dbxModelFact;
+    }
+
+    /**
      * Returns the DBX team builder service.
      * 
      * @return the DBX team builder service
@@ -202,7 +220,7 @@ public class SponsorCreationController {
         final Sponsor sponsor;  // Sponsor data
         final SponsorTeam team; // Sponsor team
 
-        sponsor = getDbxSponsorCreationService().getSponsor(form);
+        sponsor = getDbxModelFactory().getSponsor(form);
         team = getDbxSponsorCreationService().getSponsorTeam(sponsor);
 
         session.setAttribute(PARAM_TEAM, team);

@@ -43,7 +43,7 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
@@ -128,9 +128,9 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
      */
     private final RequestBuilder getRequest() throws IOException {
         final byte[] content;
-        final SponsorTeamPlayer player; // Assets for the team
+        final TeamPlayer player; // Assets for the team
 
-        player = new SponsorTeamPlayer();
+        player = new TeamPlayer();
 
         player.setPosition(1);
 

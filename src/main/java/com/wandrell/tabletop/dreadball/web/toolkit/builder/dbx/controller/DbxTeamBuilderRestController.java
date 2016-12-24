@@ -42,7 +42,7 @@ import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamPlayer;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
 
 /**
  * Controller for the DBX team building AJAX operations.
@@ -65,9 +65,9 @@ public class DbxTeamBuilderRestController {
      */
     private DbxTeamBuilder      dbxTeamBuilderService;
 
-    private final Validator     teamValidator;
-
     private final String        ERROR_UNIT_NOT_FOUND = "notFound.unit";
+
+    private final Validator     teamValidator;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -101,7 +101,7 @@ public class DbxTeamBuilderRestController {
     @PostMapping(path = "/players", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam addPlayer(
-            @RequestBody @Valid final SponsorTeamPlayer player,
+            @RequestBody @Valid final TeamPlayer player,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
             final BindingResult errors) throws BindException {
         final Unit unit;        // Unit to add
@@ -139,7 +139,7 @@ public class DbxTeamBuilderRestController {
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam removePlayer(
-            @RequestBody @Valid final SponsorTeamPlayer player,
+            @RequestBody @Valid final TeamPlayer player,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
             final BindingResult errors) throws BindException {
 

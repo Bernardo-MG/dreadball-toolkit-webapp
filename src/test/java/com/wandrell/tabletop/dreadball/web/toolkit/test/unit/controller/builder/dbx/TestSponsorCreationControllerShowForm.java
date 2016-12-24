@@ -27,6 +27,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
@@ -85,10 +86,13 @@ public final class TestSponsorCreationControllerShowForm {
      */
     private final SponsorCreationController getController() {
         final DbxSponsorBuilder service; // Mocked sponsor builder service
+        final DbxModelFactory factory;   // Mocked model factory
 
         service = Mockito.mock(DbxSponsorBuilder.class);
 
-        return new SponsorCreationController(service);
+        factory = Mockito.mock(DbxModelFactory.class);
+
+        return new SponsorCreationController(service, factory);
     }
 
     /**

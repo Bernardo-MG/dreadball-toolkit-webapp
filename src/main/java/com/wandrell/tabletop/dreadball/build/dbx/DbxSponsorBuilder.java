@@ -21,7 +21,6 @@ import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 
 /**
  * Facade service for the DBX team builder.
@@ -54,15 +53,6 @@ public interface DbxSponsorBuilder {
      * @return the initial rank
      */
     public Integer getInitialRank();
-
-    /**
-     * Creates an Sponsor from the form data.
-     * 
-     * @param form
-     *            sponsor form data
-     * @return the Sponsor created from the form
-     */
-    public Sponsor getSponsor(final SponsorForm form);
 
     /**
      * Creates an Sponsor team from the specified Sponsor.

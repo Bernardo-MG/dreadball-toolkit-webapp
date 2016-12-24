@@ -37,7 +37,6 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
@@ -167,11 +166,6 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     @Override
     public final Integer getInitialRank() {
         return initialRank;
-    }
-
-    @Override
-    public final Sponsor getSponsor(final SponsorForm form) {
-        return getDbxModelFactory().getSponsor(form);
     }
 
     @Override

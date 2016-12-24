@@ -21,7 +21,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class SponsorTeamPlayer {
+public class TeamPlayer {
 
     /**
      * Player position in the team.
@@ -36,7 +36,7 @@ public class SponsorTeamPlayer {
     /**
      * Default constructor.
      */
-    public SponsorTeamPlayer() {
+    public TeamPlayer() {
         super();
     }
 

@@ -30,6 +30,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
@@ -155,13 +156,9 @@ public final class TestSponsorCreationControllerSendFormMissingData {
         final Sponsor sponsor;           // Mocked sponsor
         final SponsorTeam team;          // Mocked sponsor team
         final Iterable<Unit> units;      // Mocked units
+        final DbxModelFactory factory;   // Mocked model factory
 
         service = Mockito.mock(DbxSponsorBuilder.class);
-
-        // Mocks the sponsor
-        sponsor = Mockito.mock(Sponsor.class);
-        Mockito.when(service.getSponsor(Matchers.any(SponsorForm.class)))
-                .thenReturn(sponsor);
 
         // Mocks the team
         team = Mockito.mock(SponsorTeam.class);
@@ -173,7 +170,14 @@ public final class TestSponsorCreationControllerSendFormMissingData {
         Mockito.when(service.getAvailableUnits(Matchers.any(Iterable.class)))
                 .thenReturn(units);
 
-        return new SponsorCreationController(service);
+        factory = Mockito.mock(DbxModelFactory.class);
+
+        // Mocks the sponsor
+        sponsor = Mockito.mock(Sponsor.class);
+        Mockito.when(factory.getSponsor(Matchers.any(SponsorForm.class)))
+                .thenReturn(sponsor);
+
+        return new SponsorCreationController(service, factory);
     }
 
     /**
