@@ -16,6 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.NoSuchMessageException;
@@ -42,11 +44,14 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
 public final class DbxNewUnitNameInternationalizator
         implements ResponseBodyAdvice<SponsorTeam> {
 
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(DbxNewUnitNameInternationalizator.class);
+
     /**
      * Message source.
      */
     @Autowired
-    private MessageSource messageSource;
+    private MessageSource       messageSource;
 
     /**
      * Default constructor.
@@ -70,7 +75,9 @@ public final class DbxNewUnitNameInternationalizator
                         LocaleContextHolder.getLocale());
 
                 ((DefaultUnit) unit).setName(name);
-            } catch (final NoSuchMessageException e) {}
+            } catch (final NoSuchMessageException e) {
+                LOGGER.error("Error localizing message", e);
+            }
         }
         return body;
     }

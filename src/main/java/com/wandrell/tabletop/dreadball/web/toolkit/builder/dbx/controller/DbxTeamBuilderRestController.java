@@ -20,6 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import javax.validation.Valid;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
@@ -52,6 +54,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.T
 @RestController
 @RequestMapping("/builder/team/dbx")
 public class DbxTeamBuilderRestController {
+
+    private static final Logger LOGGER               = LoggerFactory
+            .getLogger(DbxTeamBuilderRestController.class);
 
     /**
      * Parameter name for the team.
@@ -113,6 +118,8 @@ public class DbxTeamBuilderRestController {
             if (unit != null) {
                 getDbxTeamBuilderService().addPlayer(team, unit);
             } else {
+                LOGGER.error("Unit with template {} was not found",
+                        player.getTemplateName());
                 throw new IllegalArgumentException(ERROR_UNIT_NOT_FOUND);
             }
         }
