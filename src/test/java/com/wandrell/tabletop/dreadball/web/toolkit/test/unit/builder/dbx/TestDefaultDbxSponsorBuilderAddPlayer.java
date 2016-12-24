@@ -148,7 +148,13 @@ public final class TestDefaultDbxSponsorBuilderAddPlayer {
     }
 
     private final Unit getUnit() {
-        return Mockito.mock(Unit.class);
+        final Unit unit;
+
+        unit = Mockito.mock(Unit.class);
+        Mockito.when(unit.getGiant()).thenReturn(false);
+        Mockito.when(unit.getMvp()).thenReturn(false);
+
+        return unit;
     }
 
 }

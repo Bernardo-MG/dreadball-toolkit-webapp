@@ -134,6 +134,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerGiant {
 
         unit = Mockito.mock(Unit.class);
         Mockito.when(unit.getGiant()).thenReturn(true);
+        Mockito.when(unit.getMvp()).thenReturn(false);
         Mockito.when(unit.getTemplateName()).thenReturn(template);
 
         return unit;

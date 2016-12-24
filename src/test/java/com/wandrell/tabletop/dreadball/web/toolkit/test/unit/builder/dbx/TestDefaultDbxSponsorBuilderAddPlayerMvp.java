@@ -133,6 +133,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerMvp {
         final Unit unit;
 
         unit = Mockito.mock(Unit.class);
+        Mockito.when(unit.getGiant()).thenReturn(false);
         Mockito.when(unit.getMvp()).thenReturn(true);
         Mockito.when(unit.getTemplateName()).thenReturn(template);
 
