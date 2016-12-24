@@ -105,7 +105,6 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
         final Unit unit;
-        final Integer maxUnits;
         final Validator teamValidator;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
@@ -115,13 +114,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
                 org.mockito.Matchers.anyCollection())).thenReturn(unit);
 
-        maxUnits = Integer.MAX_VALUE;
-
-        Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
-
         teamValidator = Mockito.mock(Validator.class);
-        Mockito.when(teamValidator.supports(org.mockito.Matchers.any()))
-                .thenReturn(true);
 
         return new DbxTeamBuilderRestController(builder, teamValidator);
     }

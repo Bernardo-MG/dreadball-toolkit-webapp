@@ -142,7 +142,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
     @SuppressWarnings("unchecked")
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
-        final Integer maxUnits;
         final Validator teamValidator;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
@@ -153,13 +152,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
                         Mockito.mock(UnitMixIn.class),
                         Mockito.mock(UnitMixIn.class));
 
-        maxUnits = Integer.MAX_VALUE;
-
-        Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
-
         teamValidator = Mockito.mock(Validator.class);
-        Mockito.when(teamValidator.supports(org.mockito.Matchers.any()))
-                .thenReturn(true);
 
         return new DbxTeamBuilderRestController(builder, teamValidator);
     }

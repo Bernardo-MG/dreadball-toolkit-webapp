@@ -152,7 +152,6 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
         final DbxTeamBuilder builder;
         final Unit unit;
         final Unit unit2;
-        final Integer maxUnits;
         final Validator teamValidator;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
@@ -168,13 +167,7 @@ public final class TestDbxTeamBuilderRestControllerAddPlayersGiant {
                 org.mockito.Matchers.anyCollection()))
                 .thenReturn(unit, unit2, unit);
 
-        maxUnits = Integer.MAX_VALUE;
-
-        Mockito.when(builder.getMaxTeamUnits()).thenReturn(maxUnits);
-
         teamValidator = Mockito.mock(Validator.class);
-        Mockito.when(teamValidator.supports(org.mockito.Matchers.any()))
-                .thenReturn(true);
 
         return new DbxTeamBuilderRestController(builder, teamValidator);
     }

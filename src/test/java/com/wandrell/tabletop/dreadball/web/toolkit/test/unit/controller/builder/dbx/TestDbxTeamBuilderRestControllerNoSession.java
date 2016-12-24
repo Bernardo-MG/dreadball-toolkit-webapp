@@ -18,7 +18,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.builder
 
 import java.io.IOException;
 
-import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -129,7 +128,6 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         teamValidator = Mockito.mock(Validator.class);
-        Mockito.when(teamValidator.supports(Matchers.any())).thenReturn(true);
 
         return new DbxTeamBuilderRestController(builder, teamValidator);
     }

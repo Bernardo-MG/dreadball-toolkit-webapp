@@ -127,8 +127,6 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         teamValidator = Mockito.mock(Validator.class);
-        Mockito.when(teamValidator.supports(org.mockito.Matchers.any()))
-                .thenReturn(true);
 
         return new DbxTeamBuilderRestController(builder, teamValidator);
     }

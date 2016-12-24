@@ -78,8 +78,6 @@ public class DbxTeamBuilderRestController {
             @Qualifier("sponsorTeamValidator") final Validator validator) {
         super();
 
-        // TODO: Should give support for validating the team valoration
-
         dbxTeamBuilderService = checkNotNull(service,
                 "Received a null pointer as team builder service");
         teamValidator = checkNotNull(validator,
@@ -104,30 +102,21 @@ public class DbxTeamBuilderRestController {
             @RequestBody @Valid final SponsorTeamPlayer player,
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
             final BindingResult errors) throws BindException {
-        final Integer maxUnits; // Maximum number of units allowed
         final Unit unit;        // Unit to add
 
-        if (!errors.hasErrors()) {
-            maxUnits = getDbxTeamBuilderService().getMaxTeamUnits();
+        if (errors.hasErrors()) {
+            throw new BindException(errors);
+        } else {
+            unit = getDbxTeamBuilderService().getUnit(player.getTemplateName(),
+                    team.getSponsor().getAffinityGroups());
 
-            if (team.getPlayers().size() < maxUnits) {
-                unit = getDbxTeamBuilderService().getUnit(
-                        player.getTemplateName(),
-                        team.getSponsor().getAffinityGroups());
-
-                if (unit != null) {
-                    addPlayer(team, unit);
-                } else {
-                    // TODO: Maybe use another exception
-                    // TODO: Add a message
-                    throw new IllegalArgumentException();
-                }
+            if (unit != null) {
+                addPlayer(team, unit);
             } else {
+                // TODO: Maybe use another exception
                 // TODO: Add a message
                 throw new IllegalArgumentException();
             }
-        } else {
-            throw new BindException(errors);
         }
 
         // throw new IllegalArgumentException();
@@ -154,10 +143,10 @@ public class DbxTeamBuilderRestController {
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
             final BindingResult errors) throws BindException {
 
-        if (!errors.hasErrors()) {
-            team.removePlayer(player.getPosition());
-        } else {
+        if (errors.hasErrors()) {
             throw new BindException(errors);
+        } else {
+            team.removePlayer(player.getPosition());
         }
 
         return team;
@@ -182,15 +171,15 @@ public class DbxTeamBuilderRestController {
             @SessionAttribute(PARAM_TEAM) final SponsorTeam team,
             final BindingResult errors) throws BindException {
 
-        if (!errors.hasErrors()) {
+        if (errors.hasErrors()) {
+            throw new BindException(errors);
+        } else {
             team.setCheerleaders(assets.getCheerleaders());
             team.setCoachingDice(assets.getCoachingDice());
             team.setMediBots(assets.getMediBots());
             team.setSabotageCards(assets.getSabotageCards());
             team.setSpecialMoveCards(assets.getSpecialMoveCards());
             team.setWagers(assets.getWagers());
-        } else {
-            throw new BindException(errors);
         }
 
         return team;
@@ -206,6 +195,7 @@ public class DbxTeamBuilderRestController {
         errors = new BeanPropertyBindingResult(team, "team");
         getTeamValidator().validate(team, errors);
         if (errors.hasErrors()) {
+            // TODO: Maybe use another exception
             throw new BindException(errors);
         }
 
@@ -224,6 +214,8 @@ public class DbxTeamBuilderRestController {
         final Boolean unique;
         final Iterator<Unit> units;
         Boolean uniqueFound;
+
+        // TODO: Maybe this should be inside a service
 
         if ((unit.getGiant()) || (unit.getMvp())) {
             unique = true;
