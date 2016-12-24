@@ -82,8 +82,6 @@ public interface DbxModelFactory {
      * <p>
      * The affinity level will be marked by the received affinities, and the
      * affinities owned by the unit.
-     * <p>
-     * TODO: This may be better moved to a factory
      * 
      * @param templateName
      *            template to create the unit from
