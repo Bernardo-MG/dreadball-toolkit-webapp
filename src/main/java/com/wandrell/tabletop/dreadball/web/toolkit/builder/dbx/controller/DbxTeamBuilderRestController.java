@@ -39,6 +39,7 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
@@ -55,22 +56,27 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.T
 @RequestMapping("/builder/team/dbx")
 public class DbxTeamBuilderRestController {
 
-    private static final Logger LOGGER               = LoggerFactory
+    private static final Logger   LOGGER               = LoggerFactory
             .getLogger(DbxTeamBuilderRestController.class);
 
     /**
      * Parameter name for the team.
      */
-    private static final String PARAM_TEAM           = "team";
+    private static final String   PARAM_TEAM           = "team";
 
     /**
      * DBX team building service.
      */
-    private DbxTeamBuilder      dbxTeamBuilderService;
+    private DbxTeamBuilder        dbxTeamBuilderService;
 
-    private final String        ERROR_UNIT_NOT_FOUND = "notFound.unit";
+    private final String          ERROR_UNIT_NOT_FOUND = "notFound.unit";
 
-    private final Validator     teamValidator;
+    /**
+     * DBX model factory.
+     */
+    private final DbxModelFactory modelFactory;
+
+    private final Validator       teamValidator;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -80,6 +86,7 @@ public class DbxTeamBuilderRestController {
      */
     @Autowired
     public DbxTeamBuilderRestController(final DbxTeamBuilder service,
+            final DbxModelFactory modelFact,
             @Qualifier("sponsorTeamValidator") final Validator validator) {
         super();
 
@@ -87,6 +94,9 @@ public class DbxTeamBuilderRestController {
                 "Received a null pointer as team builder service");
         teamValidator = checkNotNull(validator,
                 "Received a null pointer as validator");
+
+        modelFactory = checkNotNull(modelFact,
+                "Received a null pointer as model factory");
     }
 
     /**
@@ -112,7 +122,7 @@ public class DbxTeamBuilderRestController {
         if (errors.hasErrors()) {
             throw new BindException(errors);
         } else {
-            unit = getDbxTeamBuilderService().getUnit(player.getTemplateName(),
+            unit = getDbxModelFactory().getUnit(player.getTemplateName(),
                     team.getSponsor().getAffinityGroups());
 
             if (unit != null) {
@@ -203,6 +213,15 @@ public class DbxTeamBuilderRestController {
         }
 
         return "{}";
+    }
+
+    /**
+     * Returns the DBX model factory.
+     * 
+     * @return the DBX model factory
+     */
+    private final DbxModelFactory getDbxModelFactory() {
+        return modelFactory;
     }
 
     /**

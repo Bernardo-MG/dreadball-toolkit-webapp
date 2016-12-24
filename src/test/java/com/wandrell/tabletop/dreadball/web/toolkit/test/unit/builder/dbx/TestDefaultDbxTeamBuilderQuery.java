@@ -161,22 +161,30 @@ public final class TestDefaultDbxTeamBuilderQuery {
         modelFact = new DbxModelFactory() {
 
             @Override
-            public Sponsor getSponsor(SponsorForm form) {
+            public final Sponsor getSponsor(final SponsorForm form) {
                 return null;
             }
 
             @Override
-            public SponsorTeam getSponsorTeam(Sponsor sponsor) {
+            public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
                 return null;
             }
 
             @Override
-            public Unit getUnit(String nameTemplate, Integer cost, Role role,
-                    Attributes attributes, Collection<Ability> abilities,
-                    Boolean mvp, Boolean giant) {
+            public final Unit getUnit(final String nameTemplate,
+                    final Integer cost, final Role role,
+                    final Attributes attributes,
+                    final Collection<Ability> abilities, final Boolean mvp,
+                    final Boolean giant) {
                 // TODO: Mock this
                 return new DefaultUnit(nameTemplate, cost, role, attributes,
                         abilities, mvp, giant);
+            }
+
+            @Override
+            public final Unit getUnit(final String templateName,
+                    final Iterable<AffinityGroup> affinities) {
+                return null;
             }
 
         };

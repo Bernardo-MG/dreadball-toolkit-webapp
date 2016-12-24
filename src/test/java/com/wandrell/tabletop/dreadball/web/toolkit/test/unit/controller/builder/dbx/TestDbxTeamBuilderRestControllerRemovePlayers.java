@@ -35,6 +35,7 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.json.unit.UnitMixIn;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -106,17 +107,21 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         final DbxTeamBuilder builder;
         final Unit unit;
         final Validator teamValidator;
+        final DbxModelFactory factory;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         unit = Mockito.mock(UnitMixIn.class);
 
-        Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
-                org.mockito.Matchers.anyCollection())).thenReturn(unit);
-
         teamValidator = Mockito.mock(Validator.class);
 
-        return new DbxTeamBuilderRestController(builder, teamValidator);
+        factory = Mockito.mock(DbxModelFactory.class);
+
+        Mockito.when(factory.getUnit(org.mockito.Matchers.anyString(),
+                org.mockito.Matchers.anyCollection())).thenReturn(unit);
+
+        return new DbxTeamBuilderRestController(builder, factory,
+                teamValidator);
     }
 
     /**

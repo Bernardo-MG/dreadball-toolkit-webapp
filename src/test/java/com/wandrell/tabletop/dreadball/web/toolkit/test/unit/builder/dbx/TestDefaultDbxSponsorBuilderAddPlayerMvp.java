@@ -22,7 +22,6 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -30,9 +29,7 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.DefaultDbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
 /**
  * Unit tests for {@link DbxSponsorBuilder}.
@@ -102,17 +99,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerMvp {
      * @return the DBX sponsor builder with mocked dependencies
      */
     private final DbxTeamBuilder getDbxTeamBuilder() {
-        final DbxModelFactory modelFact;       // Model factory
-        final DbxRules rules;                  // Rules service
-        final AffinityUnitRepository unitRepo; // Units repository
-
-        modelFact = Mockito.mock(DbxModelFactory.class);
-
-        rules = Mockito.mock(DbxRules.class);
-        unitRepo = Mockito.mock(AffinityUnitRepository.class);
-
-        return new DefaultDbxTeamBuilder(modelFact, rules, unitRepo, 0, 0, 0,
-                0);
+        return new DefaultDbxTeamBuilder(0, 0, 0, 0);
     }
 
     @SuppressWarnings("unchecked")

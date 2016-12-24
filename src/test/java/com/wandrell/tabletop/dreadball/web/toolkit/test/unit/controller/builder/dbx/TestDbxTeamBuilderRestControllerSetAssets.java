@@ -35,6 +35,7 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
@@ -123,12 +124,16 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
         final Validator teamValidator;
+        final DbxModelFactory factory;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         teamValidator = Mockito.mock(Validator.class);
 
-        return new DbxTeamBuilderRestController(builder, teamValidator);
+        factory = Mockito.mock(DbxModelFactory.class);
+
+        return new DbxTeamBuilderRestController(builder, factory,
+                teamValidator);
     }
 
     /**

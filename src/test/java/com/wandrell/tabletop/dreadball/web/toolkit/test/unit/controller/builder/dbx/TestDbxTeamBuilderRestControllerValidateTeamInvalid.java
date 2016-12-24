@@ -32,6 +32,7 @@ import org.springframework.validation.Validator;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
@@ -79,12 +80,16 @@ public final class TestDbxTeamBuilderRestControllerValidateTeamInvalid {
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
         final Validator teamValidator;
+        final DbxModelFactory factory;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         teamValidator = getValidator();
 
-        return new DbxTeamBuilderRestController(builder, teamValidator);
+        factory = Mockito.mock(DbxModelFactory.class);
+
+        return new DbxTeamBuilderRestController(builder, factory,
+                teamValidator);
     }
 
     /**

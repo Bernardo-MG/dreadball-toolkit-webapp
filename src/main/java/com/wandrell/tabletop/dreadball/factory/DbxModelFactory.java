@@ -20,6 +20,7 @@ import java.util.Collection;
 
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
@@ -74,5 +75,23 @@ public interface DbxModelFactory {
             final Role role, final Attributes attributes,
             final Collection<Ability> abilities, final Boolean mvp,
             final Boolean giant);
+
+    /**
+     * Returns the unit created from the specified template and set up for the
+     * correct affinity level.
+     * <p>
+     * The affinity level will be marked by the received affinities, and the
+     * affinities owned by the unit.
+     * <p>
+     * TODO: This may be better moved to a factory
+     * 
+     * @param templateName
+     *            template to create the unit from
+     * @param affinities
+     *            affinities to find out the affinity level
+     * @return the unit created
+     */
+    public Unit getUnit(final String templateName,
+            final Iterable<AffinityGroup> affinities);
 
 }

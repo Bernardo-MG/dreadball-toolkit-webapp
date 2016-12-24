@@ -20,18 +20,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Iterator;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.rules.DbxRules;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
 /**
  * Default implementation of the DBX team builder service.
@@ -42,39 +37,24 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
 public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
 
     /**
-     * DBX rules service.
-     */
-    private final DbxRules               dbxRules;
-
-    /**
      * Maximum number of units a Sponsor may have.
      */
-    private final Integer                maxTeamUnits;
+    private final Integer maxTeamUnits;
 
     /**
      * Maximum recommended team valoration.
      */
-    private final Integer                maxTeamValoration;
+    private final Integer maxTeamValoration;
 
     /**
      * Minimum number of units a Sponsor may have.
      */
-    private final Integer                minTeamUnits;
+    private final Integer minTeamUnits;
 
     /**
      * Minimum team valoration.
      */
-    private final Integer                minTeamValoration;
-
-    /**
-     * DBX model factory.
-     */
-    private final DbxModelFactory        modelFactory;
-
-    /**
-     * Affinity units repository.
-     */
-    private final AffinityUnitRepository unitRepository;
+    private final Integer minTeamValoration;
 
     /**
      * Creates a DBX team builder with the specified dependencies.
@@ -88,21 +68,13 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
      * @param maxUnits
      *            maximum allowed units
      */
-    public DefaultDbxTeamBuilder(final DbxModelFactory modelFact,
-            final DbxRules rules, final AffinityUnitRepository unitRepo,
+    @Autowired
+    public DefaultDbxTeamBuilder(
             @Value("${sponsor.players.min}") final Integer minUnits,
             @Value("${sponsor.players.max}") final Integer maxUnits,
             @Value("${sponsor.team.valoration.min}") final Integer minValoration,
             @Value("${sponsor.team.valoration.max}") final Integer maxValoration) {
         super();
-
-        modelFactory = checkNotNull(modelFact,
-                "Received a null pointer as model factory");
-        dbxRules = checkNotNull(rules,
-                "Received a null pointer as rules service");
-
-        unitRepository = checkNotNull(unitRepo,
-                "Received a null pointer as units repository");
 
         minTeamUnits = checkNotNull(minUnits,
                 "Received a null pointer as team units minimum");
@@ -161,62 +133,6 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     @Override
     public final Integer getMinTeamValoration() {
         return minTeamValoration;
-    }
-
-    @Override
-    public final Unit getUnit(final String templateName,
-            final Iterable<AffinityGroup> affinities) {
-        final AffinityUnit affUnit;  // Unit from the repository
-        final Integer cost;          // Unit cost
-        final Unit unit;             // Unit to add
-        AffinityLevel affinityLevel; // Affinity level relationship
-
-        checkNotNull(templateName, "Received a null pointer as template name");
-        checkNotNull(affinities, "Received a null pointer as affinities");
-
-        affUnit = getAffinityUnitRepository()
-                .findOneByTemplateName(templateName);
-
-        if (affUnit != null) {
-            affinityLevel = getDbxRules().getAffinityLevel(affUnit, affinities);
-            cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
-
-            unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
-                    affUnit.getRole(), affUnit.getAttributes(),
-                    affUnit.getAbilities(), affUnit.getMvp(),
-                    affUnit.getGiant());
-        } else {
-            unit = null;
-        }
-
-        return unit;
-    }
-
-    /**
-     * Returns the affinity unit repository.
-     * 
-     * @return the affinity unit repository
-     */
-    private final AffinityUnitRepository getAffinityUnitRepository() {
-        return unitRepository;
-    }
-
-    /**
-     * Returns the DBX model factory.
-     * 
-     * @return the DBX model factory
-     */
-    private final DbxModelFactory getDbxModelFactory() {
-        return modelFactory;
-    }
-
-    /**
-     * Returns the DBX rules.
-     * 
-     * @return the DBX rules
-     */
-    private final DbxRules getDbxRules() {
-        return dbxRules;
     }
 
 }

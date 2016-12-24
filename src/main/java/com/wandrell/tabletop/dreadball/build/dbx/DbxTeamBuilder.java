@@ -17,7 +17,6 @@
 package com.wandrell.tabletop.dreadball.build.dbx;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
@@ -67,23 +66,5 @@ public interface DbxTeamBuilder {
      * @return the minimum valoration
      */
     public Integer getMinTeamValoration();
-
-    /**
-     * Returns the unit created from the specified template and set up for the
-     * correct affinity level.
-     * <p>
-     * The affinity level will be marked by the received affinities, and the
-     * affinities owned by the unit.
-     * <p>
-     * TODO: This may be better moved to a factory
-     * 
-     * @param templateName
-     *            template to create the unit from
-     * @param affinities
-     *            affinities to find out the affinity level
-     * @return the unit created
-     */
-    public Unit getUnit(final String templateName,
-            final Iterable<AffinityGroup> affinities);
 
 }

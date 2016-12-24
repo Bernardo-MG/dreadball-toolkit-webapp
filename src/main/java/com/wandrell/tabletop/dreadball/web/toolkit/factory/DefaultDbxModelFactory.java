@@ -32,13 +32,18 @@ import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
 import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
+import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
+import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
 /**
  * Default implementation of {@code DbxModelFactory}.
@@ -51,8 +56,12 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
     /**
      * Affinity groups repository.
      */
-    @Autowired
-    private AffinityGroupRepository               affinitiesRepository;
+    private final AffinityGroupRepository         affinitiesRepository;
+
+    /**
+     * DBX rules service.
+     */
+    private final DbxRules                        dbxRules;
 
     /**
      * Initial rank.
@@ -63,20 +72,33 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
     /**
      * Rank cost calculator.
      */
-    @Autowired
     private RankCostCalculator                    rankCostCalculator;
+
+    /**
+     * Affinity units repository.
+     */
+    private final AffinityUnitRepository          unitRepository;
 
     /**
      * Team valoration calculator.
      */
-    @Autowired
     private TeamValorationCalculator<SponsorTeam> valorationCalculator;
 
     /**
      * Default constructor.
      */
-    public DefaultDbxModelFactory() {
+    @Autowired
+    public DefaultDbxModelFactory(final DbxRules rules,
+            final AffinityUnitRepository unitRepo,
+            final AffinityGroupRepository affinitiesRepo) {
         super();
+        dbxRules = checkNotNull(rules,
+                "Received a null pointer as rules service");
+
+        unitRepository = checkNotNull(unitRepo,
+                "Received a null pointer as units repository");
+        affinitiesRepository = checkNotNull(affinitiesRepo,
+                "Received a null pointer as affinities repository");
     }
 
     @Override
@@ -143,6 +165,34 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
         return unit;
     }
 
+    @Override
+    public final Unit getUnit(final String templateName,
+            final Iterable<AffinityGroup> affinities) {
+        final AffinityUnit affUnit;  // Unit from the repository
+        final Integer cost;          // Unit cost
+        final Unit unit;             // Unit to add
+        AffinityLevel affinityLevel; // Affinity level relationship
+
+        checkNotNull(templateName, "Received a null pointer as template name");
+        checkNotNull(affinities, "Received a null pointer as affinities");
+
+        affUnit = getAffinityUnitRepository()
+                .findOneByTemplateName(templateName);
+
+        if (affUnit != null) {
+            affinityLevel = getDbxRules().getAffinityLevel(affUnit, affinities);
+            cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
+
+            unit = getUnit(affUnit.getTemplateName(), cost, affUnit.getRole(),
+                    affUnit.getAttributes(), affUnit.getAbilities(),
+                    affUnit.getMvp(), affUnit.getGiant());
+        } else {
+            unit = null;
+        }
+
+        return unit;
+    }
+
     /**
      * Returns the affinity groups repository.
      * 
@@ -150,6 +200,24 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
      */
     private final AffinityGroupRepository getAffinityGroupRepository() {
         return affinitiesRepository;
+    }
+
+    /**
+     * Returns the affinity unit repository.
+     * 
+     * @return the affinity unit repository
+     */
+    private final AffinityUnitRepository getAffinityUnitRepository() {
+        return unitRepository;
+    }
+
+    /**
+     * Returns the DBX rules.
+     * 
+     * @return the DBX rules
+     */
+    private final DbxRules getDbxRules() {
+        return dbxRules;
     }
 
     /**

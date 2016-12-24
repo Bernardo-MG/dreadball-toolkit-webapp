@@ -35,13 +35,13 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
+import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.json.unit.UnitMixIn;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
@@ -142,9 +142,11 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
      * 
      * @return a mocked controller
      */
+    @SuppressWarnings("unchecked")
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
         final Validator teamValidator;
+        final DbxModelFactory factory;
 
         builder = new DbxTeamBuilder() {
 
@@ -174,17 +176,17 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
                 return null;
             }
 
-            @Override
-            public final Unit getUnit(final String templateName,
-                    final Iterable<AffinityGroup> affinities) {
-                return Mockito.mock(UnitMixIn.class);
-            }
-
         };
 
         teamValidator = Mockito.mock(Validator.class);
 
-        return new DbxTeamBuilderRestController(builder, teamValidator);
+        factory = Mockito.mock(DbxModelFactory.class);
+        Mockito.when(factory.getUnit(org.mockito.Matchers.anyString(),
+                org.mockito.Matchers.anyCollection()))
+                .thenReturn(Mockito.mock(UnitMixIn.class));
+
+        return new DbxTeamBuilderRestController(builder, factory,
+                teamValidator);
     }
 
     /**
