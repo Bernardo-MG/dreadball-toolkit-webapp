@@ -58,7 +58,7 @@ public class DbxTeamBuilderRestController {
     /**
      * Parameter name for the team.
      */
-    private static final String PARAM_TEAM = "team";
+    private static final String PARAM_TEAM           = "team";
 
     /**
      * DBX team building service.
@@ -66,6 +66,8 @@ public class DbxTeamBuilderRestController {
     private DbxTeamBuilder      dbxTeamBuilderService;
 
     private final Validator     teamValidator;
+
+    private final String        ERROR_UNIT_NOT_FOUND = "notFound.unit";
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -114,12 +116,10 @@ public class DbxTeamBuilderRestController {
                 addPlayer(team, unit);
             } else {
                 // TODO: Maybe use another exception
-                // TODO: Add a message
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException(ERROR_UNIT_NOT_FOUND);
             }
         }
 
-        // throw new IllegalArgumentException();
         return team;
     }
 
