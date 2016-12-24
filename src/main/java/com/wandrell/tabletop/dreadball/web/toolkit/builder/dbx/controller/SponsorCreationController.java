@@ -221,7 +221,7 @@ public class SponsorCreationController {
         final SponsorTeam team; // Sponsor team
 
         sponsor = getDbxModelFactory().getSponsor(form);
-        team = getDbxSponsorCreationService().getSponsorTeam(sponsor);
+        team = getDbxModelFactory().getSponsorTeam(sponsor);
 
         session.setAttribute(PARAM_TEAM, team);
 

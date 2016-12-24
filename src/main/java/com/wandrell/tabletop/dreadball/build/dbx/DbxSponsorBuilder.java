@@ -17,8 +17,6 @@
 package com.wandrell.tabletop.dreadball.build.dbx;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
@@ -53,14 +51,5 @@ public interface DbxSponsorBuilder {
      * @return the initial rank
      */
     public Integer getInitialRank();
-
-    /**
-     * Creates an Sponsor team from the specified Sponsor.
-     * 
-     * @param sponsor
-     *            Sponsor for the team
-     * @return a Sponsor team for the specified Sponsor
-     */
-    public SponsorTeam getSponsorTeam(final Sponsor sponsor);
 
 }

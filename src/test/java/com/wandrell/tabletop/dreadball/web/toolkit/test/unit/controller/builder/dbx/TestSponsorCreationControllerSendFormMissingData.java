@@ -160,11 +160,6 @@ public final class TestSponsorCreationControllerSendFormMissingData {
 
         service = Mockito.mock(DbxSponsorBuilder.class);
 
-        // Mocks the team
-        team = Mockito.mock(SponsorTeam.class);
-        Mockito.when(service.getSponsorTeam(Matchers.any(Sponsor.class)))
-                .thenReturn(team);
-
         // Mocks the units
         units = new LinkedList<Unit>();
         Mockito.when(service.getAvailableUnits(Matchers.any(Iterable.class)))
@@ -176,6 +171,11 @@ public final class TestSponsorCreationControllerSendFormMissingData {
         sponsor = Mockito.mock(Sponsor.class);
         Mockito.when(factory.getSponsor(Matchers.any(SponsorForm.class)))
                 .thenReturn(sponsor);
+
+        // Mocks the team
+        team = Mockito.mock(SponsorTeam.class);
+        Mockito.when(factory.getSponsorTeam(Matchers.any(Sponsor.class)))
+                .thenReturn(team);
 
         return new SponsorCreationController(service, factory);
     }

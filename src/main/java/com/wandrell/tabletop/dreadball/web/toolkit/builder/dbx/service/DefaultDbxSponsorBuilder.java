@@ -29,9 +29,7 @@ import org.springframework.stereotype.Service;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
@@ -166,11 +164,6 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     @Override
     public final Integer getInitialRank() {
         return initialRank;
-    }
-
-    @Override
-    public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
-        return getDbxModelFactory().getSponsorTeam(sponsor);
     }
 
     /**
