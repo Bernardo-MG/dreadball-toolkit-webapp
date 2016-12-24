@@ -54,7 +54,6 @@ public final class TestDbxTeamBuilderRestControllerValidateTeamInvalid {
     public TestDbxTeamBuilderRestControllerValidateTeamInvalid() {
         super();
         // TODO: Check the test without a team in session
-        // TODO: The test should expect a JSON response content type
     }
 
     /**
@@ -93,8 +92,6 @@ public final class TestDbxTeamBuilderRestControllerValidateTeamInvalid {
      */
     private final MockMvc getMockContext() {
         return MockMvcBuilders.standaloneSetup(getController())
-                .alwaysExpect(MockMvcResultMatchers.content()
-                        .contentType(MediaType.APPLICATION_JSON_UTF8))
                 .alwaysExpect(MockMvcResultMatchers.status().isBadRequest())
                 .build();
     }
