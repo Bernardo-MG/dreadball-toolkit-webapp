@@ -25,13 +25,12 @@ import javax.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
+import org.springframework.validation.BeanPropertyBindingResult;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
-import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -197,20 +196,20 @@ public class DbxTeamBuilderRestController {
         return team;
     }
 
-    @InitBinder("validateTeam")
-    public final void setupValidation(final WebDataBinder binder) {
-        binder.addValidators(getTeamValidator());
-    }
-
-    @GetMapping(name = "validateTeam", path = "/assets",
+    @GetMapping(path = "/validate",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final void validateTeam(
-            @SessionAttribute(PARAM_TEAM) @Valid final SponsorTeam team,
-            final BindingResult errors) throws BindException {
-        // TODO: Test this
+    public final String
+            validateTeam(@SessionAttribute(PARAM_TEAM) final SponsorTeam team)
+                    throws BindException {
+        final BindingResult errors;
+
+        errors = new BeanPropertyBindingResult(team, "team");
+        getTeamValidator().validate(team, errors);
         if (errors.hasErrors()) {
             throw new BindException(errors);
         }
+
+        return "{}";
     }
 
     /**

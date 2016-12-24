@@ -46,12 +46,12 @@ import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers {
+public final class TestDbxTeamBuilderRestControllerAddPlayersInvalid {
 
     /**
      * Default constructor.
      */
-    public TestDbxTeamBuilderRestControllerAddPlayersMaxPlayers() {
+    public TestDbxTeamBuilderRestControllerAddPlayersInvalid() {
         super();
         // TODO: Validate the actual messages being sent in the exception, which
         // should be message codes

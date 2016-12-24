@@ -26,17 +26,22 @@ public final class UrlConfig {
     /**
      * Team assets REST URL.
      */
-    public static final String URL_ASSETS  = "/builder/team/dbx/assets";
+    public static final String URL_ASSETS   = "/builder/team/dbx/assets";
 
     /**
      * Form view URL.
      */
-    public static final String URL_FORM    = "/builder/team/dbx";
+    public static final String URL_FORM     = "/builder/team/dbx";
 
     /**
      * Player addition REST URL.
      */
-    public static final String URL_PLAYERS = "/builder/team/dbx/players";
+    public static final String URL_PLAYERS  = "/builder/team/dbx/players";
+
+    /**
+     * Team validation REST URL.
+     */
+    public static final String URL_VALIDATE = "/builder/team/dbx/validate";
 
     /**
      * Default constructor to avoid initialization.

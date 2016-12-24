@@ -23,8 +23,6 @@ public final class TestSponsorTeamValidator {
 
     public TestSponsorTeamValidator() {
         super();
-
-        // TODO: Verify the message codes
     }
 
     @Test
