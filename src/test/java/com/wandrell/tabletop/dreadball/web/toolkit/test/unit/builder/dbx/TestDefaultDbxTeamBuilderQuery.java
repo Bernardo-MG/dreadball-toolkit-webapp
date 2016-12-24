@@ -48,12 +48,12 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDefaultDbxSponsorBuilder {
+public final class TestDefaultDbxTeamBuilderQuery {
 
     /**
      * Default constructor.
      */
-    public TestDefaultDbxSponsorBuilder() {
+    public TestDefaultDbxTeamBuilderQuery() {
         super();
     }
 
@@ -80,6 +80,7 @@ public final class TestDefaultDbxSponsorBuilder {
         units = builder.getAvailableUnits(affinities);
 
         // Calculates the final cost
+        // The cost of the units come from the mocked service and are 1, 2 and 3
         cost = 0;
         for (final Unit unit : units) {
             cost += unit.getCost();

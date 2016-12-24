@@ -38,8 +38,11 @@ import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.json.unit.UnitMixIn;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
@@ -139,18 +142,45 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
      * 
      * @return a mocked controller
      */
-    @SuppressWarnings("unchecked")
     private final DbxTeamBuilderRestController getController() {
         final DbxTeamBuilder builder;
         final Validator teamValidator;
 
-        builder = Mockito.mock(DbxTeamBuilder.class);
+        builder = new DbxTeamBuilder() {
 
-        Mockito.when(builder.getUnit(org.mockito.Matchers.anyString(),
-                org.mockito.Matchers.anyCollection()))
-                .thenReturn(Mockito.mock(UnitMixIn.class),
-                        Mockito.mock(UnitMixIn.class),
-                        Mockito.mock(UnitMixIn.class));
+            @Override
+            public final void addPlayer(final SponsorTeam team,
+                    final Unit unit) {
+                team.addPlayer(unit);
+            }
+
+            @Override
+            public final Integer getMaxTeamUnits() {
+                return null;
+            }
+
+            @Override
+            public final Integer getMaxTeamValoration() {
+                return null;
+            }
+
+            @Override
+            public final Integer getMinTeamUnits() {
+                return null;
+            }
+
+            @Override
+            public final Integer getMinTeamValoration() {
+                return null;
+            }
+
+            @Override
+            public final Unit getUnit(final String templateName,
+                    final Iterable<AffinityGroup> affinities) {
+                return Mockito.mock(UnitMixIn.class);
+            }
+
+        };
 
         teamValidator = Mockito.mock(Validator.class);
 

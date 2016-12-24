@@ -18,11 +18,14 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Iterator;
+
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
@@ -110,6 +113,34 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
                 "Received a null pointer as maximum valoration");
         maxTeamValoration = checkNotNull(maxValoration,
                 "Received a null pointer as minimum valoration");
+    }
+
+    @Override
+    public final void addPlayer(final SponsorTeam team, final Unit unit) {
+        final Boolean unique;
+        final Iterator<Unit> units;
+        Boolean uniqueFound;
+
+        if ((unit.getGiant()) || (unit.getMvp())) {
+            unique = true;
+        } else {
+            unique = false;
+        }
+
+        if (unique) {
+            uniqueFound = false;
+            units = team.getPlayers().values().iterator();
+            while ((!uniqueFound) && (units.hasNext())) {
+                uniqueFound = units.next().getTemplateName()
+                        .equals(unit.getTemplateName());
+            }
+
+            if (!uniqueFound) {
+                team.addPlayer(unit);
+            }
+        } else {
+            team.addPlayer(unit);
+        }
     }
 
     @Override

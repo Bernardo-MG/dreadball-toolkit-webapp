@@ -18,8 +18,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Iterator;
-
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,7 +111,7 @@ public class DbxTeamBuilderRestController {
                     team.getSponsor().getAffinityGroups());
 
             if (unit != null) {
-                addPlayer(team, unit);
+                getDbxTeamBuilderService().addPlayer(team, unit);
             } else {
                 // TODO: Maybe use another exception
                 throw new IllegalArgumentException(ERROR_UNIT_NOT_FOUND);
@@ -200,43 +198,6 @@ public class DbxTeamBuilderRestController {
         }
 
         return "{}";
-    }
-
-    /**
-     * Adds a unit to the team.
-     * 
-     * @param team
-     *            team to add the unit
-     * @param unit
-     *            unit to add
-     */
-    private final void addPlayer(final SponsorTeam team, final Unit unit) {
-        final Boolean unique;
-        final Iterator<Unit> units;
-        Boolean uniqueFound;
-
-        // TODO: Maybe this should be inside a service
-
-        if ((unit.getGiant()) || (unit.getMvp())) {
-            unique = true;
-        } else {
-            unique = false;
-        }
-
-        if (unique) {
-            uniqueFound = false;
-            units = team.getPlayers().values().iterator();
-            while ((!uniqueFound) && (units.hasNext())) {
-                uniqueFound = units.next().getTemplateName()
-                        .equals(unit.getTemplateName());
-            }
-
-            if (!uniqueFound) {
-                team.addPlayer(unit);
-            }
-        } else {
-            team.addPlayer(unit);
-        }
     }
 
     /**
