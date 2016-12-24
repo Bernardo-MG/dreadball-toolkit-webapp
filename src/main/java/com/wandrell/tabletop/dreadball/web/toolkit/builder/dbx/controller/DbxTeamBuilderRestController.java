@@ -113,7 +113,6 @@ public class DbxTeamBuilderRestController {
             if (unit != null) {
                 getDbxTeamBuilderService().addPlayer(team, unit);
             } else {
-                // TODO: Maybe use another exception
                 throw new IllegalArgumentException(ERROR_UNIT_NOT_FOUND);
             }
         }
@@ -193,7 +192,6 @@ public class DbxTeamBuilderRestController {
         errors = new BeanPropertyBindingResult(team, "team");
         getTeamValidator().validate(team, errors);
         if (errors.hasErrors()) {
-            // TODO: Maybe use another exception
             throw new BindException(errors);
         }
 
