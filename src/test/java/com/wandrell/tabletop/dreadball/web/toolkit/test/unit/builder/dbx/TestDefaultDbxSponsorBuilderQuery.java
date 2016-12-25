@@ -48,12 +48,12 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDefaultDbxTeamBuilderQuery {
+public final class TestDefaultDbxSponsorBuilderQuery {
 
     /**
      * Default constructor.
      */
-    public TestDefaultDbxTeamBuilderQuery() {
+    public TestDefaultDbxSponsorBuilderQuery() {
         super();
     }
 
