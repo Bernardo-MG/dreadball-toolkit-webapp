@@ -36,12 +36,12 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.DefaultDb
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDefaultDbxSponsorBuilderAddPlayerGiant {
+public final class TestDefaultDbxTeamBuilderAddPlayerGiant {
 
     /**
      * Default constructor.
      */
-    public TestDefaultDbxSponsorBuilderAddPlayerGiant() {
+    public TestDefaultDbxTeamBuilderAddPlayerGiant() {
         super();
     }
 

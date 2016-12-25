@@ -36,12 +36,12 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.DefaultDb
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDefaultDbxSponsorBuilderAddPlayerMvp {
+public final class TestDefaultDbxTeamBuilderAddPlayerGiantMvp {
 
     /**
      * Default constructor.
      */
-    public TestDefaultDbxSponsorBuilderAddPlayerMvp() {
+    public TestDefaultDbxTeamBuilderAddPlayerGiantMvp() {
         super();
     }
 
@@ -50,7 +50,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerMvp {
      * other.
      */
     @Test
-    public final void testAddPlayer_MultipleMvps_Added() throws Exception {
+    public final void testAddPlayer_MultipleGiantMvps_Added() throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
 
@@ -74,7 +74,8 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerMvp {
      * Tests that when the data and the context is correct players can be added.
      */
     @Test
-    public final void testAddPlayer_RepeatedMvp_NotAdded() throws Exception {
+    public final void testAddPlayer_RepeatedGiantMvp_NotAdded()
+            throws Exception {
         final DbxTeamBuilder builder; // Builder to test
         final SponsorTeam team;
         final Unit unit;
@@ -120,7 +121,7 @@ public final class TestDefaultDbxSponsorBuilderAddPlayerMvp {
         final Unit unit;
 
         unit = Mockito.mock(Unit.class);
-        Mockito.when(unit.getGiant()).thenReturn(false);
+        Mockito.when(unit.getGiant()).thenReturn(true);
         Mockito.when(unit.getMvp()).thenReturn(true);
         Mockito.when(unit.getTemplateName()).thenReturn(template);
 
