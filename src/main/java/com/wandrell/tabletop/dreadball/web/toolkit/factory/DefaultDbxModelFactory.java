@@ -126,7 +126,6 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
 
         sponsor.setRank(getInitialRank());
 
-        // TODO: The affinities should come as a list
         // Loads affinities
         affinities = new LinkedList<String>();
         affinities.add(form.getAffinityA());
@@ -141,11 +140,10 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
             affinities.remove("rank");
         }
 
-        // TODO: Maybe the factory should not use the repository
         // Creates the affinities
         for (final String affinity : affinities) {
-            sponsor.addAffinityGroup(
-                    getAffinityGroupRepository().findByName(affinity));
+            sponsor.addAffinityGroup(getAffinityGroup(
+                    getAffinityGroupRepository().findByName(affinity)));
         }
 
         return sponsor;
@@ -157,11 +155,9 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
                     final PersistentSponsorAffinityGroupAvailability aff) {
         final Collection<AffinityGroup> affinities;
 
-        // TODO: This may be better inside the factory
-
         affinities = new ArrayList<>();
         for (final AffinityGroup affinity : aff.getAffinityGroups()) {
-            affinities.add(new DefaultAffinityGroup(affinity.getName()));
+            affinities.add(getAffinityGroup(affinity));
         }
 
         return new DefaultSponsorAffinityGroupAvailability(aff.getName(),
@@ -220,6 +216,10 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
         }
 
         return unit;
+    }
+
+    private final AffinityGroup getAffinityGroup(final AffinityGroup affinity) {
+        return new DefaultAffinityGroup(affinity.getName());
     }
 
     /**

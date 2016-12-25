@@ -69,8 +69,6 @@ public class DbxReportController {
             throws JRException, NamingException, SQLException, IOException {
         final JasperPrint jasperPrint;
 
-        // TODO: Use validator on team
-
         jasperPrint = getDbxTeamReporter().getSponsorTeamReport(team);
 
         response.setContentType(MediaType.APPLICATION_PDF_VALUE);

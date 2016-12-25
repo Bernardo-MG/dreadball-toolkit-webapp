@@ -82,12 +82,6 @@ public class ITAffinityUnitRepository
     }
 
     @Test
-    public final void testFindAllOrderByTemplateName() {
-        // TODO: Remove or improve this test
-        repository.findAllOrderByTemplateName();
-    }
-
-    @Test
     public final void testFindOneByTemplateName_Existing_ExpectedResult() {
         final Unit unit;
         final String templateName;

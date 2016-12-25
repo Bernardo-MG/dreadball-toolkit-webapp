@@ -43,16 +43,6 @@ public interface AffinityUnitRepository
             @Param("affinities") final Iterable<String> affinities);
 
     /**
-     * Returns all the affinity units ordered by the template name.
-     * <p>
-     * TODO: Should be ordered by the localized name. This method is not needed.
-     * 
-     * @return all the affinity units ordered by the template name
-     */
-    @Query("SELECT u FROM AffinityUnit u ORDER BY u.templateName ASC")
-    public Iterable<PersistentAffinityUnit> findAllOrderByTemplateName();
-
-    /**
      * Returns the affinity unit with the specified template name.
      * 
      * @param name
