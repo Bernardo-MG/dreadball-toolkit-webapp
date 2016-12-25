@@ -90,25 +90,9 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
 
     @Override
     public final void addPlayer(final SponsorTeam team, final Unit unit) {
-        final Boolean unique;
-        final Iterator<Unit> units;
-        Boolean uniqueFound;
 
-        if ((unit.getGiant()) || (unit.getMvp())) {
-            unique = true;
-        } else {
-            unique = false;
-        }
-
-        if (unique) {
-            uniqueFound = false;
-            units = team.getPlayers().values().iterator();
-            while ((!uniqueFound) && (units.hasNext())) {
-                uniqueFound = units.next().getTemplateName()
-                        .equals(unit.getTemplateName());
-            }
-
-            if (!uniqueFound) {
+        if (isUnique(unit)) {
+            if (!isInTeam(team, unit)) {
                 team.addPlayer(unit);
             }
         } else {
@@ -134,6 +118,32 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     @Override
     public final Integer getMinTeamValoration() {
         return minTeamValoration;
+    }
+
+    private final Boolean isInTeam(final SponsorTeam team, final Unit unit) {
+        final Iterator<Unit> units;
+        Boolean found;
+
+        found = false;
+        units = team.getPlayers().values().iterator();
+        while ((!found) && (units.hasNext())) {
+            found = units.next().getTemplateName()
+                    .equals(unit.getTemplateName());
+        }
+
+        return found;
+    }
+
+    private final Boolean isUnique(final Unit unit) {
+        final Boolean unique;
+
+        if ((unit.getGiant()) || (unit.getMvp())) {
+            unique = true;
+        } else {
+            unique = false;
+        }
+
+        return unique;
     }
 
 }

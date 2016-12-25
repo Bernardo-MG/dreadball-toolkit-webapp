@@ -28,11 +28,12 @@ import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
+import com.wandrell.tabletop.dreadball.model.availability.unit.DefaultSponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
@@ -116,8 +117,8 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
         affs = new LinkedList<SponsorAffinityGroupAvailability>();
         for (final SponsorAffinityGroupAvailability aff : getSponsorAffinityGroupAvailabilityRepository()
                 .findAll()) {
-            // TODO: Copy these to new beans
-            affs.add(aff);
+            // A new object is created to completely detach from the database
+            affs.add(generateAffinityGroup(aff));
         }
 
         return affs;
@@ -127,35 +128,17 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     public final Iterable<Unit>
             getAvailableUnits(final Iterable<AffinityGroup> affinities) {
         final Collection<Unit> units;          // Available units
-        final Iterable<PersistentAffinityUnit> filtered; // Filtered units
-        final Collection<String> affNames;     // Filtered units
-        Integer cost;                          // Unit cost
-        Unit unit;                             // Available unit
+        final Iterable<? extends AffinityUnit> filtered; // Filtered units
 
         checkNotNull(affinities, "Received a null pointer as affinities");
 
-        affNames = new ArrayList<>();
-        for (final AffinityGroup affinity : affinities) {
-            affNames.add(affinity.getName());
-        }
+        // Only units not hating any affinity are acquired
+        filtered = getUnitsFilteredByAffinities(affinities);
 
-        if (affNames.isEmpty()) {
-            filtered = getAffinityUnitRepository().findAll();
-        } else {
-            filtered = getAffinityUnitRepository()
-                    .findAllFilteredByHatedAffinities(affNames);
-        }
-
+        // The received units are adapted and configured
         units = new LinkedList<Unit>();
         for (final AffinityUnit affUnit : filtered) {
-            cost = getUnitCost(affUnit, affinities);
-
-            unit = getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
-                    affUnit.getRole(), affUnit.getAttributes(),
-                    affUnit.getAbilities(), affUnit.getMvp(),
-                    affUnit.getGiant());
-
-            units.add(unit);
+            units.add(generateUnit(affUnit, affinities));
         }
 
         return units;
@@ -164,6 +147,30 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     @Override
     public final Integer getInitialRank() {
         return initialRank;
+    }
+
+    private final SponsorAffinityGroupAvailability
+            generateAffinityGroup(final SponsorAffinityGroupAvailability aff) {
+        final Collection<AffinityGroup> affinities;
+
+        affinities = new ArrayList<>();
+        for (final AffinityGroup affinity : aff.getAffinityGroups()) {
+            affinities.add(new DefaultAffinityGroup(affinity.getName()));
+        }
+
+        return new DefaultSponsorAffinityGroupAvailability(aff.getName(),
+                affinities, aff.isIncludingRankIncrease());
+    }
+
+    private final Unit generateUnit(final AffinityUnit affUnit,
+            final Iterable<AffinityGroup> affinities) {
+        final Integer cost; // Unit cost
+
+        cost = getUnitCost(affUnit, affinities);
+
+        return getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
+                affUnit.getRole(), affUnit.getAttributes(),
+                affUnit.getAbilities(), affUnit.getMvp(), affUnit.getGiant());
     }
 
     /**
@@ -219,6 +226,29 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
         affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
 
         return getDbxRules().getUnitCost(affinityLevel, unit);
+    }
+
+    private final Iterable<? extends AffinityUnit> getUnitsFilteredByAffinities(
+            final Iterable<AffinityGroup> affinities) {
+        final Iterable<? extends AffinityUnit> filtered; // Filtered units
+        final Collection<String> affNames;     // Affinity names
+
+        // The affinities names are acquired
+        affNames = new ArrayList<>();
+        for (final AffinityGroup affinity : affinities) {
+            affNames.add(affinity.getName());
+        }
+
+        if (affNames.isEmpty()) {
+            // There are no affinities, there is no need to filter
+            filtered = getAffinityUnitRepository().findAll();
+        } else {
+            // Only units not hating any affinity are acquired
+            filtered = getAffinityUnitRepository()
+                    .findAllFilteredByHatedAffinities(affNames);
+        }
+
+        return filtered;
     }
 
 }
