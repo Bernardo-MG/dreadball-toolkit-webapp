@@ -63,6 +63,9 @@ public final class ControllerExceptionHandler {
 
     /**
      * Default constructor.
+     * 
+     * @param messageSource
+     *            the message source
      */
     public ControllerExceptionHandler(final MessageSource messageSource) {
         super();

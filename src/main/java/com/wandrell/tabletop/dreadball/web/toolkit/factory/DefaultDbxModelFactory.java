@@ -86,6 +86,13 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
 
     /**
      * Default constructor.
+     * 
+     * @param rules
+     *            DBX rules service
+     * @param unitRepo
+     *            affinity units repository
+     * @param affinitiesRepo
+     *            affinities repository
      */
     @Autowired
     public DefaultDbxModelFactory(final DbxRules rules,

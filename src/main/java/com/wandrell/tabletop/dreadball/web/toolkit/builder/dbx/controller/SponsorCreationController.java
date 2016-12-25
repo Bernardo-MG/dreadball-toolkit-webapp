@@ -103,6 +103,8 @@ public class SponsorCreationController {
      * 
      * @param service
      *            the sponsor creation service
+     * @param modelFact
+     *            the model factory
      */
     @Autowired
     public SponsorCreationController(final DbxSponsorBuilder service,

@@ -83,6 +83,10 @@ public class DbxTeamBuilderRestController {
      * 
      * @param service
      *            team builder service
+     * @param modelFact
+     *            model factory
+     * @param validator
+     *            team validator
      */
     @Autowired
     public DbxTeamBuilderRestController(final DbxTeamBuilder service,
@@ -110,6 +114,7 @@ public class DbxTeamBuilderRestController {
      *            results from binding
      * @return the team with the new player
      * @throws BindException
+     *             if the player data is invalid
      */
     @PostMapping(path = "/players", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -148,6 +153,7 @@ public class DbxTeamBuilderRestController {
      *            results from binding
      * @return the team without the removed player
      * @throws BindException
+     *             if the player data is invalid
      */
     @DeleteMapping(path = "/players",
             consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -177,6 +183,7 @@ public class DbxTeamBuilderRestController {
      *            results from binding
      * @return the team with the new assets set
      * @throws BindException
+     *             if the assets data is invalid
      */
     @PutMapping(path = "/assets", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
