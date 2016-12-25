@@ -28,12 +28,11 @@ import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.model.availability.unit.DefaultSponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
@@ -115,10 +114,11 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
         final Collection<SponsorAffinityGroupAvailability> affs;
 
         affs = new LinkedList<SponsorAffinityGroupAvailability>();
-        for (final SponsorAffinityGroupAvailability aff : getSponsorAffinityGroupAvailabilityRepository()
+        for (final PersistentSponsorAffinityGroupAvailability aff : getSponsorAffinityGroupAvailabilityRepository()
                 .findAll()) {
             // A new object is created to completely detach from the database
-            affs.add(generateAffinityGroup(aff));
+            affs.add(getDbxModelFactory()
+                    .getSponsorAffinityGroupAvailability(aff));
         }
 
         return affs;
@@ -147,19 +147,6 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     @Override
     public final Integer getInitialRank() {
         return initialRank;
-    }
-
-    private final SponsorAffinityGroupAvailability
-            generateAffinityGroup(final SponsorAffinityGroupAvailability aff) {
-        final Collection<AffinityGroup> affinities;
-
-        affinities = new ArrayList<>();
-        for (final AffinityGroup affinity : aff.getAffinityGroups()) {
-            affinities.add(new DefaultAffinityGroup(affinity.getName()));
-        }
-
-        return new DefaultSponsorAffinityGroupAvailability(aff.getName(),
-                affinities, aff.isIncludingRankIncrease());
     }
 
     private final Unit generateUnit(final AffinityUnit affUnit,

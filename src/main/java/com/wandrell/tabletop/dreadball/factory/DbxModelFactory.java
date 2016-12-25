@@ -18,7 +18,9 @@ package com.wandrell.tabletop.dreadball.factory;
 
 import java.util.Collection;
 
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Role;
@@ -42,6 +44,9 @@ public interface DbxModelFactory {
      * @return the Sponsor created from the form
      */
     public Sponsor getSponsor(final SponsorForm form);
+
+    public SponsorAffinityGroupAvailability getSponsorAffinityGroupAvailability(
+            final PersistentSponsorAffinityGroupAvailability aff);
 
     /**
      * Creates an Sponsor team from the specified Sponsor.

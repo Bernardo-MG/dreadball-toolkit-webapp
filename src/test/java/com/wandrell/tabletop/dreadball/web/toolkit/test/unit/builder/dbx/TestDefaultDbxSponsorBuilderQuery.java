@@ -26,7 +26,9 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
@@ -162,6 +164,13 @@ public final class TestDefaultDbxSponsorBuilderQuery {
 
             @Override
             public final Sponsor getSponsor(final SponsorForm form) {
+                return null;
+            }
+
+            @Override
+            public final SponsorAffinityGroupAvailability
+                    getSponsorAffinityGroupAvailability(
+                            final PersistentSponsorAffinityGroupAvailability aff) {
                 return null;
             }
 

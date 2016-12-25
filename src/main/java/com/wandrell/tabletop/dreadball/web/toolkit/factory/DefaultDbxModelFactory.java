@@ -18,6 +18,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.factory;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.LinkedList;
 
@@ -26,8 +27,11 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
+import com.wandrell.tabletop.dreadball.model.availability.unit.DefaultSponsorAffinityGroupAvailability;
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
@@ -35,6 +39,7 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalcu
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
@@ -144,6 +149,23 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
         }
 
         return sponsor;
+    }
+
+    @Override
+    public final SponsorAffinityGroupAvailability
+            getSponsorAffinityGroupAvailability(
+                    final PersistentSponsorAffinityGroupAvailability aff) {
+        final Collection<AffinityGroup> affinities;
+
+        // TODO: This may be better inside the factory
+
+        affinities = new ArrayList<>();
+        for (final AffinityGroup affinity : aff.getAffinityGroups()) {
+            affinities.add(new DefaultAffinityGroup(affinity.getName()));
+        }
+
+        return new DefaultSponsorAffinityGroupAvailability(aff.getName(),
+                affinities, aff.isIncludingRankIncrease());
     }
 
     @Override
