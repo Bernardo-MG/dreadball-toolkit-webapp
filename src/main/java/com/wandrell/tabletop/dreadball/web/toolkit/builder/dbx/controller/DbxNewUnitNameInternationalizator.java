@@ -40,7 +40,7 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@ControllerAdvice(basePackageClasses = { DbxTeamBuilderRestController.class })
+@ControllerAdvice(basePackageClasses = { DbxTeamBuilderController.class })
 public final class DbxNewUnitNameInternationalizator
         implements ResponseBodyAdvice<SponsorTeam> {
 

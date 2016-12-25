@@ -32,14 +32,14 @@ import org.testng.annotations.Test;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
- * Unit tests for {@link DbxTeamBuilderRestController}, checking that operations
- * are rejected when there is no team in session.
+ * Unit tests for {@link DbxTeamBuilderController}, checking that operations are
+ * rejected when there is no team in session.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -122,7 +122,7 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
      * 
      * @return a mocked controller
      */
-    private final DbxTeamBuilderRestController getController() {
+    private final DbxTeamBuilderController getController() {
         final DbxTeamBuilder builder;
         final Validator teamValidator;
         final DbxModelFactory factory;
@@ -133,8 +133,7 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
 
         factory = Mockito.mock(DbxModelFactory.class);
 
-        return new DbxTeamBuilderRestController(builder, factory,
-                teamValidator);
+        return new DbxTeamBuilderController(builder, factory, teamValidator);
     }
 
     /**

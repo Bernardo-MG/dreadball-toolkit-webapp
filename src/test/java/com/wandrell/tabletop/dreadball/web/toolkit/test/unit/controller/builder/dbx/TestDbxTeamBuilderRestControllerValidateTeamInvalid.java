@@ -37,12 +37,12 @@ import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
- * Unit tests for {@link DbxTeamBuilderRestController}, checking the methods for
+ * Unit tests for {@link DbxTeamBuilderController}, checking the methods for
  * setting the team assets.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -77,7 +77,7 @@ public final class TestDbxTeamBuilderRestControllerValidateTeamInvalid {
      * 
      * @return a mocked controller
      */
-    private final DbxTeamBuilderRestController getController() {
+    private final DbxTeamBuilderController getController() {
         final DbxTeamBuilder builder;
         final Validator teamValidator;
         final DbxModelFactory factory;
@@ -88,8 +88,7 @@ public final class TestDbxTeamBuilderRestControllerValidateTeamInvalid {
 
         factory = Mockito.mock(DbxModelFactory.class);
 
-        return new DbxTeamBuilderRestController(builder, factory,
-                teamValidator);
+        return new DbxTeamBuilderController(builder, factory, teamValidator);
     }
 
     /**

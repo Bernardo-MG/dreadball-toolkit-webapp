@@ -16,10 +16,11 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.builder.dbx;
 
-import java.util.LinkedList;
+import java.io.IOException;
 
 import org.mockito.Matchers;
 import org.mockito.Mockito;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
@@ -29,14 +30,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
-import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
@@ -45,7 +46,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorCreationControllerSendFormMissingData {
+public final class TestSponsorCreationControllerSetSponsorMissingData {
 
     /**
      * The sponsor form view.
@@ -60,7 +61,7 @@ public final class TestSponsorCreationControllerSendFormMissingData {
     /**
      * Default constructor;
      */
-    public TestSponsorCreationControllerSendFormMissingData() {
+    public TestSponsorCreationControllerSetSponsorMissingData() {
         super();
     }
 
@@ -70,7 +71,8 @@ public final class TestSponsorCreationControllerSendFormMissingData {
     @BeforeTest
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
-                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
+                .alwaysExpect(MockMvcResultMatchers.status().isBadRequest())
+                .build();
     }
 
     /**
@@ -84,28 +86,7 @@ public final class TestSponsorCreationControllerSendFormMissingData {
 
         result = mockMvc.perform(getMissingAffinityFormRequest());
 
-        // The response model contains the expected attributes
-        result.andExpect(MockMvcResultMatchers.model()
-                .attributeExists(BeanConfig.FORM_BEAN));
-
-        // The response contains the expected errors
-        result.andExpect(MockMvcResultMatchers.model()
-                .attributeHasFieldErrors(BeanConfig.FORM_BEAN, "affinityA"));
-    }
-
-    /**
-     * Tests that after receiving form data missing an affinity the view is
-     * again the form view.
-     */
-    @Test
-    public final void testSendFormData_MissingAffinity_NoViewChange()
-            throws Exception {
-        final ResultActions result; // Request result
-
-        result = mockMvc.perform(getMissingAffinityFormRequest());
-
-        // The view is valid
-        result.andExpect(MockMvcResultMatchers.view().name(VIEW_FORM));
+        // TODO: Verify error message
     }
 
     /**
@@ -119,28 +100,7 @@ public final class TestSponsorCreationControllerSendFormMissingData {
 
         result = mockMvc.perform(getNoSponsorNameFormRequest());
 
-        // The response model contains the expected attributes
-        result.andExpect(MockMvcResultMatchers.model()
-                .attributeExists(BeanConfig.FORM_BEAN));
-
-        // The response contains the expected errors
-        result.andExpect(MockMvcResultMatchers.model()
-                .attributeHasFieldErrors(BeanConfig.FORM_BEAN, "sponsorName"));
-    }
-
-    /**
-     * Tests that after receiving form data missing an affinity the view is
-     * again the form view.
-     */
-    @Test
-    public final void testSendFormData_NoSponsorName_NoViewChange()
-            throws Exception {
-        final ResultActions result; // Request result
-
-        result = mockMvc.perform(getNoSponsorNameFormRequest());
-
-        // The view is valid
-        result.andExpect(MockMvcResultMatchers.view().name(VIEW_FORM));
+        // TODO: Verify error message
     }
 
     /**
@@ -150,20 +110,13 @@ public final class TestSponsorCreationControllerSendFormMissingData {
      * 
      * @return a mocked controller
      */
-    @SuppressWarnings("unchecked")
     private final SponsorCreationController getController() {
         final DbxSponsorBuilder service; // Mocked service
         final Sponsor sponsor;           // Mocked sponsor
         final SponsorTeam team;          // Mocked sponsor team
-        final Iterable<Unit> units;      // Mocked units
         final DbxModelFactory factory;   // Mocked model factory
 
         service = Mockito.mock(DbxSponsorBuilder.class);
-
-        // Mocks the units
-        units = new LinkedList<Unit>();
-        Mockito.when(service.getAvailableUnits(Matchers.any(Iterable.class)))
-                .thenReturn(units);
 
         factory = Mockito.mock(DbxModelFactory.class);
 
@@ -173,7 +126,7 @@ public final class TestSponsorCreationControllerSendFormMissingData {
                 .thenReturn(sponsor);
 
         // Mocks the team
-        team = Mockito.mock(SponsorTeam.class);
+        team = Mockito.mock(SponsorTeamMixIn.class);
         Mockito.when(factory.getSponsorTeam(Matchers.any(Sponsor.class)))
                 .thenReturn(team);
 
@@ -185,23 +138,46 @@ public final class TestSponsorCreationControllerSendFormMissingData {
      * 
      * @return a request builder with form data missing an affinity
      */
-    private final RequestBuilder getMissingAffinityFormRequest() {
-        return MockMvcRequestBuilders.post(UrlConfig.URL_FORM)
-                .param("sponsorName", "sponsor").param("affinityB", "aff")
-                .param("affinityC", "aff").param("affinityD", "aff")
-                .param("affinityE", "aff");
+    private final RequestBuilder getMissingAffinityFormRequest()
+            throws IOException {
+        final SponsorForm sponsor;
+        final byte[] content;
+
+        sponsor = new SponsorForm();
+        sponsor.setSponsorName("sponsor");
+        sponsor.setAffinityB("aff");
+        sponsor.setAffinityC("aff");
+        sponsor.setAffinityD("aff");
+        sponsor.setAffinityE("aff");
+
+        content = new ObjectMapper().writeValueAsBytes(sponsor);
+
+        return MockMvcRequestBuilders.post(UrlConfig.URL_SPONSOR)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
     /**
      * Returns a request builder for posting form data without a sponsor name.
      * 
      * @return a request builder with form data without a sponsor name
+     * @throws IOException
      */
-    private final RequestBuilder getNoSponsorNameFormRequest() {
-        return MockMvcRequestBuilders.post(UrlConfig.URL_FORM)
-                .param("affinityA", "aff").param("affinityB", "aff")
-                .param("affinityC", "aff").param("affinityD", "aff")
-                .param("affinityE", "aff");
+    private final RequestBuilder getNoSponsorNameFormRequest()
+            throws IOException {
+        final SponsorForm sponsor;
+        final byte[] content;
+
+        sponsor = new SponsorForm();
+        sponsor.setAffinityA("aff");
+        sponsor.setAffinityB("aff");
+        sponsor.setAffinityC("aff");
+        sponsor.setAffinityD("aff");
+        sponsor.setAffinityE("aff");
+
+        content = new ObjectMapper().writeValueAsBytes(sponsor);
+
+        return MockMvcRequestBuilders.post(UrlConfig.URL_SPONSOR)
+                .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
 }

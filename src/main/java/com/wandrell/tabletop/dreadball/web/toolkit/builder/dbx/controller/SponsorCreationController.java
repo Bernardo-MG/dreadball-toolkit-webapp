@@ -22,17 +22,18 @@ import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.http.MediaType;
+import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
@@ -44,49 +45,14 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Controller
+@RestController
 @RequestMapping("/builder/team/dbx")
 public class SponsorCreationController {
 
     /**
-     * Sponsor bean parameter name.
-     */
-    private static final String     BEAN_SPONSOR            = "form";
-
-    /**
-     * Parameter name for the affinities.
-     */
-    private static final String     PARAM_AFFINITIES        = "affinities";
-
-    /**
-     * Parameter name for the available players.
-     */
-    private static final String     PARAM_AVAILABLE_PLAYERS = "availablePlayers";
-
-    /**
-     * Parameter name for the initial rank.
-     */
-    private static final String     PARAM_INITIAL_RANK      = "initialRank";
-
-    /**
-     * Parameter name for the sponsor.
-     */
-    private static final String     PARAM_SPONSOR           = "sponsor";
-
-    /**
      * Parameter name for the team.
      */
-    private static final String     PARAM_TEAM              = "team";
-
-    /**
-     * Name for the view after the sponsor view.
-     */
-    private static final String     VIEW_NEXT               = "builder/dbx/players";
-
-    /**
-     * Name for the sponsor view.
-     */
-    private static final String     VIEW_SPONSOR            = "builder/dbx/sponsor";
+    private static final String     PARAM_TEAM = "team";
 
     /**
      * DBX model factory.
@@ -117,76 +83,33 @@ public class SponsorCreationController {
                 "Received a null pointer as model factory");
     }
 
-    /**
-     * Checks the sponsor info before moving to the next view.
-     * <p>
-     * If the data is invalid then the view returns to the Sponsor edition view,
-     * otherwise it moves to the next view.
-     * 
-     * @param model
-     *            model map
-     * @param sponsor
-     *            sponsor form data
-     * @param bindingResult
-     *            binding result data
-     * @param session
-     *            session data
-     * @return the name for the view to show
-     */
-    @PostMapping
-    public final String checkSponsorInfo(final ModelMap model,
-            @ModelAttribute(BEAN_SPONSOR) @Valid final SponsorForm sponsor,
-            final BindingResult bindingResult, final HttpSession session) {
-        final String path;
+    @GetMapping(path = "/affinities/initial",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final Iterable<SponsorAffinityGroupAvailability>
+            getInitialAffinityGroups() {
+        return getDbxSponsorCreationService().getAvailableAffinityGroups();
+    }
 
-        if (bindingResult.hasErrors()) {
-            // Invalid sponsor data
+    @PostMapping(path = "/sponsor", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final SponsorTeam setSponsor(
+            @RequestBody @Valid final SponsorForm form,
+            final BindingResult errors, final HttpSession session)
+            throws BindException {
+        final Sponsor sponsor;  // Sponsor data
+        final SponsorTeam team; // Sponsor team
 
-            // Loads required data into the model
-            loadSponsorModel(model);
-            // Returns to the sponsor creation view
-            path = VIEW_SPONSOR;
-            // TODO: Maybe it should return a bad request status?
-        } else {
-            // Loads required data into the model and session
-            loadNextStepModel(model, session, sponsor);
-
-            path = VIEW_NEXT;
+        if (errors.hasErrors()) {
+            throw new BindException(errors);
         }
 
-        return path;
-    }
+        sponsor = getDbxModelFactory().getSponsor(form);
+        team = getDbxModelFactory().getSponsorTeam(sponsor);
 
-    /**
-     * Returns the initial Sponsor form data.
-     * 
-     * @return the initial Sponsor form data
-     */
-    @ModelAttribute(BEAN_SPONSOR)
-    public final SponsorForm getSponsorForm() {
-        return new SponsorForm();
-    }
+        // TODO: What if the team is already in session?
+        session.setAttribute(PARAM_TEAM, team);
 
-    /**
-     * Shows the sponsor edition view.
-     * 
-     * @param model
-     *            model map
-     * @param status
-     *            session status
-     * @return the name for the sponsor edition view
-     */
-    @GetMapping
-    public final String showSponsorForm(final ModelMap model,
-            final SessionStatus status) {
-        // Clears session
-        // TODO: Is this required here? Maybe a controller advice should be used
-        status.setComplete();
-
-        // Loads required data into the model
-        loadSponsorModel(model);
-
-        return VIEW_SPONSOR;
+        return team;
     }
 
     /**
@@ -205,48 +128,6 @@ public class SponsorCreationController {
      */
     private final DbxSponsorBuilder getDbxSponsorCreationService() {
         return sponsorCreationService;
-    }
-
-    /**
-     * Loads the model data required for the next step.
-     * 
-     * @param model
-     *            model map
-     * @param session
-     *            session data
-     * @param form
-     *            Sponsor form data
-     */
-    private final void loadNextStepModel(final ModelMap model,
-            final HttpSession session, final SponsorForm form) {
-        final Sponsor sponsor;  // Sponsor data
-        final SponsorTeam team; // Sponsor team
-
-        sponsor = getDbxModelFactory().getSponsor(form);
-        team = getDbxModelFactory().getSponsorTeam(sponsor);
-
-        session.setAttribute(PARAM_TEAM, team);
-
-        model.put(PARAM_SPONSOR, sponsor);
-        model.put(PARAM_TEAM, team);
-        // TODO: This should be loaded in the next step
-        model.put(PARAM_AVAILABLE_PLAYERS, getDbxSponsorCreationService()
-                .getAvailableUnits(sponsor.getAffinityGroups()));
-    }
-
-    /**
-     * Loads the model data required for the Sponsor edition view.
-     * 
-     * @param model
-     *            model map
-     */
-    private final void loadSponsorModel(final ModelMap model) {
-        // Initial sponsor rank
-        model.put(PARAM_INITIAL_RANK,
-                getDbxSponsorCreationService().getInitialRank());
-        // Affinity groups for the sponsors
-        model.put(PARAM_AFFINITIES,
-                getDbxSponsorCreationService().getAvailableAffinityGroups());
     }
 
 }

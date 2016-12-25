@@ -21,7 +21,9 @@ import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.json.availability.unit.SponsorAffinityGroupAvailabilityMixIn;
 import com.wandrell.tabletop.dreadball.model.json.faction.SponsorMixIn;
 import com.wandrell.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
@@ -106,6 +108,10 @@ public final class JsonModelModule extends SimpleModule {
         context.setMixInAnnotations(Unit.class, UnitMixIn.class);
         context.setMixInAnnotations(AffinityUnit.class,
                 AffinityUnitMixIn.class);
+
+        // Availabilities
+        context.setMixInAnnotations(SponsorAffinityGroupAvailability.class,
+                SponsorAffinityGroupAvailabilityMixIn.class);
     }
 
 }

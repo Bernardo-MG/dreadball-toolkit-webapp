@@ -16,10 +16,12 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.builder.dbx;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Collection;
 
-import org.mockito.Matchers;
+import org.hamcrest.Matchers;
 import org.mockito.Mockito;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
@@ -31,11 +33,9 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+import com.wandrell.tabletop.dreadball.model.json.availability.unit.SponsorAffinityGroupAvailabilityMixIn;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
@@ -44,22 +44,17 @@ import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorCreationControllerSendForm {
-
-    /**
-     * The view after the form.
-     */
-    private static final String VIEW_NEXT = "builder/dbx/players";
+public final class TestSponsorCreationControllerInitialAffinities {
 
     /**
      * Mocked MVC context.
      */
-    private MockMvc             mockMvc;
+    private MockMvc mockMvc;
 
     /**
      * Default constructor;
      */
-    public TestSponsorCreationControllerSendForm() {
+    public TestSponsorCreationControllerInitialAffinities() {
         super();
     }
 
@@ -69,7 +64,10 @@ public final class TestSponsorCreationControllerSendForm {
     @BeforeTest
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
-                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
     }
 
     /**
@@ -77,32 +75,15 @@ public final class TestSponsorCreationControllerSendForm {
      * loaded into the model.
      */
     @Test
-    public final void testSendFormData_ExpectedAttributeModel()
+    public final void testGetInitialAffinityGroups_ReturnsData()
             throws Exception {
         final ResultActions result; // Request result
 
-        result = mockMvc.perform(getFormRequest());
+        result = mockMvc.perform(getRequest());
 
         // The response model contains the expected attributes
-        result.andExpect(MockMvcResultMatchers.model().attributeExists("team"));
         result.andExpect(
-                MockMvcResultMatchers.model().attributeExists("sponsor"));
-        result.andExpect(MockMvcResultMatchers.model()
-                .attributeExists("availablePlayers"));
-    }
-
-    /**
-     * Tests that after received valid form data the expected view is returned.
-     */
-    @Test
-    public final void testSendFormData_ExpectedView() throws Exception {
-        final ResultActions result; // Request result
-
-        // TODO: Just verify it is not this same view
-        result = mockMvc.perform(getFormRequest());
-
-        // The view is valid
-        result.andExpect(MockMvcResultMatchers.view().name(VIEW_NEXT));
+                MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
     }
 
     /**
@@ -112,32 +93,25 @@ public final class TestSponsorCreationControllerSendForm {
      * 
      * @return a mocked controller
      */
-    @SuppressWarnings("unchecked")
     private final SponsorCreationController getController() {
         final DbxSponsorBuilder service; // Mocked service
-        final Sponsor sponsor;           // Mocked sponsor
-        final SponsorTeam team;          // Mocked sponsor team
-        final Iterable<Unit> units;      // Mocked units
         final DbxModelFactory factory;   // Mocked model factory
+        final Collection<SponsorAffinityGroupAvailability> affinities;
 
         service = Mockito.mock(DbxSponsorBuilder.class);
 
         // Mocks the units
-        units = new LinkedList<Unit>();
-        Mockito.when(service.getAvailableUnits(Matchers.any(Iterable.class)))
-                .thenReturn(units);
+        affinities = new ArrayList<>();
+        affinities
+                .add(Mockito.mock(SponsorAffinityGroupAvailabilityMixIn.class));
+        affinities
+                .add(Mockito.mock(SponsorAffinityGroupAvailabilityMixIn.class));
+        affinities
+                .add(Mockito.mock(SponsorAffinityGroupAvailabilityMixIn.class));
+        Mockito.when(service.getAvailableAffinityGroups())
+                .thenReturn(affinities);
 
         factory = Mockito.mock(DbxModelFactory.class);
-
-        // Mocks the sponsor
-        sponsor = Mockito.mock(Sponsor.class);
-        Mockito.when(factory.getSponsor(Matchers.any(SponsorForm.class)))
-                .thenReturn(sponsor);
-
-        // Mocks the team
-        team = Mockito.mock(SponsorTeam.class);
-        Mockito.when(factory.getSponsorTeam(Matchers.any(Sponsor.class)))
-                .thenReturn(team);
 
         return new SponsorCreationController(service, factory);
     }
@@ -147,11 +121,9 @@ public final class TestSponsorCreationControllerSendForm {
      * 
      * @return a request builder with valid form data
      */
-    private final RequestBuilder getFormRequest() {
-        return MockMvcRequestBuilders.post(UrlConfig.URL_FORM)
-                .param("sponsorName", "sponsor").param("affinityA", "aff")
-                .param("affinityB", "aff").param("affinityC", "aff")
-                .param("affinityD", "aff").param("affinityE", "aff");
+    private final RequestBuilder getRequest() {
+        return MockMvcRequestBuilders.get(UrlConfig.URL_AFFINITIES)
+                .contentType(MediaType.APPLICATION_JSON_VALUE);
     }
 
 }

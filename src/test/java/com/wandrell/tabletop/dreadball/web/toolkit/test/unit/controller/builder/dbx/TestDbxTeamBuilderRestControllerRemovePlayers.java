@@ -43,13 +43,13 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderRestController;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 
 /**
- * Unit tests for {@link DbxTeamBuilderRestController}, checking the methods for
+ * Unit tests for {@link DbxTeamBuilderController}, checking the methods for
  * setting the team assets.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -103,7 +103,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
      * @return a mocked controller
      */
     @SuppressWarnings("unchecked")
-    private final DbxTeamBuilderRestController getController() {
+    private final DbxTeamBuilderController getController() {
         final DbxTeamBuilder builder;
         final Unit unit;
         final Validator teamValidator;
@@ -120,8 +120,7 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
         Mockito.when(factory.getUnit(org.mockito.Matchers.anyString(),
                 org.mockito.Matchers.anyCollection())).thenReturn(unit);
 
-        return new DbxTeamBuilderRestController(builder, factory,
-                teamValidator);
+        return new DbxTeamBuilderController(builder, factory, teamValidator);
     }
 
     /**

@@ -54,10 +54,10 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.T
  */
 @RestController
 @RequestMapping("/builder/team/dbx")
-public class DbxTeamBuilderRestController {
+public class DbxTeamBuilderController {
 
     private static final Logger   LOGGER               = LoggerFactory
-            .getLogger(DbxTeamBuilderRestController.class);
+            .getLogger(DbxTeamBuilderController.class);
 
     /**
      * Parameter name for the team.
@@ -89,7 +89,7 @@ public class DbxTeamBuilderRestController {
      *            team validator
      */
     @Autowired
-    public DbxTeamBuilderRestController(final DbxTeamBuilder service,
+    public DbxTeamBuilderController(final DbxTeamBuilder service,
             final DbxModelFactory modelFact,
             @Qualifier("sponsorTeamValidator") final Validator validator) {
         super();
@@ -126,17 +126,17 @@ public class DbxTeamBuilderRestController {
 
         if (errors.hasErrors()) {
             throw new BindException(errors);
-        } else {
-            unit = getDbxModelFactory().getUnit(player.getTemplateName(),
-                    team.getSponsor().getAffinityGroups());
+        }
 
-            if (unit != null) {
-                getDbxTeamBuilderService().addPlayer(team, unit);
-            } else {
-                LOGGER.error("Unit with template {} was not found",
-                        player.getTemplateName());
-                throw new IllegalArgumentException(ERROR_UNIT_NOT_FOUND);
-            }
+        unit = getDbxModelFactory().getUnit(player.getTemplateName(),
+                team.getSponsor().getAffinityGroups());
+
+        if (unit != null) {
+            getDbxTeamBuilderService().addPlayer(team, unit);
+        } else {
+            LOGGER.error("Unit with template {} was not found",
+                    player.getTemplateName());
+            throw new IllegalArgumentException(ERROR_UNIT_NOT_FOUND);
         }
 
         return team;
@@ -165,9 +165,9 @@ public class DbxTeamBuilderRestController {
 
         if (errors.hasErrors()) {
             throw new BindException(errors);
-        } else {
-            team.removePlayer(player.getPosition());
         }
+
+        team.removePlayer(player.getPosition());
 
         return team;
     }
@@ -194,14 +194,14 @@ public class DbxTeamBuilderRestController {
 
         if (errors.hasErrors()) {
             throw new BindException(errors);
-        } else {
-            team.setCheerleaders(assets.getCheerleaders());
-            team.setCoachingDice(assets.getCoachingDice());
-            team.setMediBots(assets.getMediBots());
-            team.setSabotageCards(assets.getSabotageCards());
-            team.setSpecialMoveCards(assets.getSpecialMoveCards());
-            team.setWagers(assets.getWagers());
         }
+
+        team.setCheerleaders(assets.getCheerleaders());
+        team.setCoachingDice(assets.getCoachingDice());
+        team.setMediBots(assets.getMediBots());
+        team.setSabotageCards(assets.getSabotageCards());
+        team.setSpecialMoveCards(assets.getSpecialMoveCards());
+        team.setWagers(assets.getWagers());
 
         return team;
     }
