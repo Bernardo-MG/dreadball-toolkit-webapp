@@ -35,7 +35,7 @@ import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
-import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
  * Unit tests for {@link DbxTeamBuilderController}, checking that operations are
@@ -111,7 +111,7 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.post(UrlConfig.URL_PLAYERS)
+        return MockMvcRequestBuilders.post(UrlDbxTeamBuilderConfig.URL_PLAYERS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
@@ -153,7 +153,8 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.delete(UrlConfig.URL_PLAYERS)
+        return MockMvcRequestBuilders
+                .delete(UrlDbxTeamBuilderConfig.URL_PLAYERS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
@@ -179,7 +180,7 @@ public final class TestDbxTeamBuilderRestControllerNoSession {
 
         content = new ObjectMapper().writeValueAsBytes(assets);
 
-        return MockMvcRequestBuilders.put(UrlConfig.URL_ASSETS)
+        return MockMvcRequestBuilders.put(UrlDbxTeamBuilderConfig.URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 

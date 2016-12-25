@@ -43,7 +43,7 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalcu
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
-import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
  * Unit tests for {@link DbxTeamBuilderController}, checking the methods for
@@ -150,7 +150,7 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
 
         content = new ObjectMapper().writeValueAsBytes(assets);
 
-        return MockMvcRequestBuilders.put(UrlConfig.URL_ASSETS)
+        return MockMvcRequestBuilders.put(UrlDbxTeamBuilderConfig.URL_ASSETS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes()).content(content);
     }

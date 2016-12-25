@@ -16,8 +16,10 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.codex;
 
+import java.util.Collection;
 import java.util.LinkedList;
 
+import org.hamcrest.Matchers;
 import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -29,9 +31,11 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.codex.UnitCodex;
+import com.wandrell.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.UnitCodexController;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**
  * Unit tests for {@link SponsorCreationController}, checking the methods for
@@ -42,19 +46,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.UnitCodexCon
 public final class TestUnitCodexController {
 
     /**
-     * The name of the players bean.
-     */
-    private static final String PLAYERS_BEAN = "players";
-
-    /**
-     * Form view URL.
-     */
-    private static final String URL_FORM     = "/codex/unit";
-
-    /**
      * Mocked MVC context.
      */
-    private MockMvc             mockMvc;
+    private MockMvc mockMvc;
 
     /**
      * Default constructor;
@@ -87,7 +81,7 @@ public final class TestUnitCodexController {
 
         // The response model contains the expected attributes
         result.andExpect(
-                MockMvcResultMatchers.model().attributeExists(PLAYERS_BEAN));
+                MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
     }
 
     /**
@@ -99,11 +93,14 @@ public final class TestUnitCodexController {
      */
     private final UnitCodexController getController() {
         final UnitCodex codex; // Mocked unit codex
-        final Iterable<AffinityUnit> units;
+        final Collection<AffinityUnit> units;
 
         codex = Mockito.mock(UnitCodex.class);
 
         units = new LinkedList<AffinityUnit>();
+        units.add(Mockito.mock(AffinityUnitMixIn.class));
+        units.add(Mockito.mock(AffinityUnitMixIn.class));
+        units.add(Mockito.mock(AffinityUnitMixIn.class));
 
         Mockito.when(codex.getAllAffinityUnits()).thenReturn(units);
 
@@ -116,7 +113,7 @@ public final class TestUnitCodexController {
      * @return a request builder for the form view
      */
     private final RequestBuilder getViewRequest() {
-        return MockMvcRequestBuilders.get(URL_FORM);
+        return MockMvcRequestBuilders.get(UrlUnitCodexConfig.URL_UNITS);
     }
 
 }

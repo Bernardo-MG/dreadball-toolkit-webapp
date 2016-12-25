@@ -39,7 +39,7 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
-import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
  * Unit tests for {@link DbxTeamBuilderController}, checking the methods for
@@ -110,7 +110,7 @@ public final class TestDbxTeamBuilderRestControllerValidateTeamInvalid {
      * @return a request builder with the specified assets
      */
     private final RequestBuilder getRequest() throws IOException {
-        return MockMvcRequestBuilders.get(UrlConfig.URL_VALIDATE)
+        return MockMvcRequestBuilders.get(UrlDbxTeamBuilderConfig.URL_VALIDATE)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes());
     }

@@ -36,7 +36,7 @@ import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.json.availability.unit.SponsorAffinityGroupAvailabilityMixIn;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
-import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
  * Unit tests for {@link SponsorCreationController}, checking the methods for
@@ -122,7 +122,8 @@ public final class TestSponsorCreationControllerInitialAffinities {
      * @return a request builder with valid form data
      */
     private final RequestBuilder getRequest() {
-        return MockMvcRequestBuilders.get(UrlConfig.URL_AFFINITIES)
+        return MockMvcRequestBuilders
+                .get(UrlDbxTeamBuilderConfig.URL_AFFINITIES)
                 .contentType(MediaType.APPLICATION_JSON_VALUE);
     }
 

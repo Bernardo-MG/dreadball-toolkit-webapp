@@ -21,7 +21,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.configuration;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class UrlConfig {
+public final class UrlDbxTeamBuilderConfig {
 
     /**
      * Form view URL.
@@ -51,7 +51,7 @@ public final class UrlConfig {
     /**
      * Default constructor to avoid initialization.
      */
-    private UrlConfig() {
+    private UrlDbxTeamBuilderConfig() {
         super();
     }
 

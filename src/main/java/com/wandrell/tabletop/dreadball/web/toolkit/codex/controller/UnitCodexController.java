@@ -18,36 +18,28 @@ package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.springframework.stereotype.Controller;
+import org.springframework.http.MediaType;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.codex.UnitCodex;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 
 /**
  * Controller for the unit codex views.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Controller
+@RestController
 @RequestMapping("/codex/unit")
 public class UnitCodexController {
 
     /**
-     * Parameter name for the players.
-     */
-    private static final String PARAM_PLAYERS       = "players";
-
-    /**
-     * Name for the affinity units view.
-     */
-    private static final String VIEW_AFFINITY_UNITS = "codex/affinityUnits";
-
-    /**
      * Unit codex service.
      */
-    private final UnitCodex     unitCodexService;
+    private final UnitCodex unitCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -69,11 +61,10 @@ public class UnitCodexController {
      *            model map
      * @return the view for all the affinity units
      */
-    @GetMapping
-    public final String getAllAffinityUnits(final ModelMap model) {
-        model.put(PARAM_PLAYERS, getUnitCodexService().getAllAffinityUnits());
-
-        return VIEW_AFFINITY_UNITS;
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final Iterable<AffinityUnit>
+            getAllAffinityUnits(final ModelMap model) {
+        return getUnitCodexService().getAllAffinityUnits();
     }
 
     /**

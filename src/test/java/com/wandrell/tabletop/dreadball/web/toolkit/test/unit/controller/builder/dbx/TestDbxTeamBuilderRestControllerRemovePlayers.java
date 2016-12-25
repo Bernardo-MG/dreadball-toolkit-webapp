@@ -46,7 +46,7 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
-import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
  * Unit tests for {@link DbxTeamBuilderController}, checking the methods for
@@ -140,7 +140,8 @@ public final class TestDbxTeamBuilderRestControllerRemovePlayers {
 
         content = new ObjectMapper().writeValueAsBytes(player);
 
-        return MockMvcRequestBuilders.delete(UrlConfig.URL_PLAYERS)
+        return MockMvcRequestBuilders
+                .delete(UrlDbxTeamBuilderConfig.URL_PLAYERS)
                 .contentType(MediaType.APPLICATION_JSON_VALUE)
                 .sessionAttrs(getSessionAttributes()).content(content);
     }

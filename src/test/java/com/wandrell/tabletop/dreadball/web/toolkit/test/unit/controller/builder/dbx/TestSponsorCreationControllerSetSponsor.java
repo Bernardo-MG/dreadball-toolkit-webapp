@@ -39,7 +39,7 @@ import com.wandrell.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
-import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
  * Unit tests for {@link SponsorCreationController}, checking the methods for
@@ -139,7 +139,7 @@ public final class TestSponsorCreationControllerSetSponsor {
 
         content = new ObjectMapper().writeValueAsBytes(sponsor);
 
-        return MockMvcRequestBuilders.post(UrlConfig.URL_SPONSOR)
+        return MockMvcRequestBuilders.post(UrlDbxTeamBuilderConfig.URL_SPONSOR)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 

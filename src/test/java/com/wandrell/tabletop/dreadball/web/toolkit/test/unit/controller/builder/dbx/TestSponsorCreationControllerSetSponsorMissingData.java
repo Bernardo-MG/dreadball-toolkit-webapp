@@ -23,7 +23,6 @@ import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
-import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -38,7 +37,7 @@ import com.wandrell.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
-import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
  * Unit tests for {@link SponsorCreationController}, checking the methods for
@@ -49,14 +48,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlConfig;
 public final class TestSponsorCreationControllerSetSponsorMissingData {
 
     /**
-     * The sponsor form view.
-     */
-    private static final String VIEW_FORM = "builder/dbx/sponsor";
-
-    /**
      * Mocked MVC context.
      */
-    private MockMvc             mockMvc;
+    private MockMvc mockMvc;
 
     /**
      * Default constructor;
@@ -82,9 +76,7 @@ public final class TestSponsorCreationControllerSetSponsorMissingData {
     @Test
     public final void testSendFormData_MissingAffinity_ExpectedAttributeModel()
             throws Exception {
-        final ResultActions result; // Request result
-
-        result = mockMvc.perform(getMissingAffinityFormRequest());
+        mockMvc.perform(getMissingAffinityFormRequest());
 
         // TODO: Verify error message
     }
@@ -96,9 +88,7 @@ public final class TestSponsorCreationControllerSetSponsorMissingData {
     @Test
     public final void testSendFormData_NoSponsorName_ExpectedAttributeModel()
             throws Exception {
-        final ResultActions result; // Request result
-
-        result = mockMvc.perform(getNoSponsorNameFormRequest());
+        mockMvc.perform(getNoSponsorNameFormRequest());
 
         // TODO: Verify error message
     }
@@ -152,7 +142,7 @@ public final class TestSponsorCreationControllerSetSponsorMissingData {
 
         content = new ObjectMapper().writeValueAsBytes(sponsor);
 
-        return MockMvcRequestBuilders.post(UrlConfig.URL_SPONSOR)
+        return MockMvcRequestBuilders.post(UrlDbxTeamBuilderConfig.URL_SPONSOR)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
@@ -176,7 +166,7 @@ public final class TestSponsorCreationControllerSetSponsorMissingData {
 
         content = new ObjectMapper().writeValueAsBytes(sponsor);
 
-        return MockMvcRequestBuilders.post(UrlConfig.URL_SPONSOR)
+        return MockMvcRequestBuilders.post(UrlDbxTeamBuilderConfig.URL_SPONSOR)
                 .contentType(MediaType.APPLICATION_JSON_VALUE).content(content);
     }
 
