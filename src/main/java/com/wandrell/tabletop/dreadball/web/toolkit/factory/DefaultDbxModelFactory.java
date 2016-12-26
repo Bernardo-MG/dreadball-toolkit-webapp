@@ -61,33 +61,33 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
     /**
      * Affinity groups repository.
      */
-    private final AffinityGroupRepository         affinitiesRepository;
+    private final AffinityGroupRepository               affinitiesRepository;
 
     /**
      * DBX rules service.
      */
-    private final DbxRules                        dbxRules;
+    private final DbxRules                              dbxRules;
 
     /**
      * Initial rank.
      */
     @Value("${sponsor.rank.initial}")
-    private Integer                               initialRank;
+    private Integer                                     initialRank;
 
     /**
      * Rank cost calculator.
      */
-    private RankCostCalculator                    rankCostCalculator;
+    private final RankCostCalculator                    rankCostCalculator;
 
     /**
      * Affinity units repository.
      */
-    private final AffinityUnitRepository          unitRepository;
+    private final AffinityUnitRepository                unitRepository;
 
     /**
      * Team valoration calculator.
      */
-    private TeamValorationCalculator<SponsorTeam> valorationCalculator;
+    private final TeamValorationCalculator<SponsorTeam> valorationCalculator;
 
     /**
      * Default constructor.
@@ -98,11 +98,17 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
      *            affinity units repository
      * @param affinitiesRepo
      *            affinities repository
+     * @param valorationCalc
+     *            valoration calculator
+     * @param rankCostCalc
+     *            rank cost calculator
      */
     @Autowired
     public DefaultDbxModelFactory(final DbxRules rules,
             final AffinityUnitRepository unitRepo,
-            final AffinityGroupRepository affinitiesRepo) {
+            final AffinityGroupRepository affinitiesRepo,
+            final TeamValorationCalculator<SponsorTeam> valorationCalc,
+            final RankCostCalculator rankCostCalc) {
         super();
         dbxRules = checkNotNull(rules,
                 "Received a null pointer as rules service");
@@ -111,12 +117,17 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
                 "Received a null pointer as units repository");
         affinitiesRepository = checkNotNull(affinitiesRepo,
                 "Received a null pointer as affinities repository");
+        valorationCalculator = checkNotNull(valorationCalc,
+                "Received a null pointer as valoration calculator");
+        rankCostCalculator = checkNotNull(rankCostCalc,
+                "Received a null pointer as valoration calculator");
     }
 
     @Override
     public final Sponsor getSponsor(final SponsorForm form) {
         final Sponsor sponsor;               // Created sponsor
         final Collection<String> affinities; // Affinities list
+        AffinityGroup affinityGroup;
 
         checkNotNull(form, "Received a null pointer as sponsor form");
 
@@ -128,11 +139,21 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
 
         // Loads affinities
         affinities = new LinkedList<String>();
-        affinities.add(form.getAffinityA());
-        affinities.add(form.getAffinityB());
-        affinities.add(form.getAffinityC());
-        affinities.add(form.getAffinityD());
-        affinities.add(form.getAffinityE());
+        if (form.getAffinityA() != null) {
+            affinities.add(form.getAffinityA());
+        }
+        if (form.getAffinityB() != null) {
+            affinities.add(form.getAffinityB());
+        }
+        if (form.getAffinityC() != null) {
+            affinities.add(form.getAffinityC());
+        }
+        if (form.getAffinityD() != null) {
+            affinities.add(form.getAffinityD());
+        }
+        if (form.getAffinityE() != null) {
+            affinities.add(form.getAffinityE());
+        }
 
         // Searchs for rank increase tags
         while (affinities.contains("rank")) {
@@ -142,8 +163,10 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
 
         // Creates the affinities
         for (final String affinity : affinities) {
-            sponsor.addAffinityGroup(getAffinityGroup(
-                    getAffinityGroupRepository().findByName(affinity)));
+            affinityGroup = getAffinityGroupRepository().findByName(affinity);
+            checkNotNull(affinityGroup,
+                    String.format("Affinity %s not found", affinity));
+            sponsor.addAffinityGroup(getAffinityGroup(affinityGroup));
         }
 
         return sponsor;
@@ -154,6 +177,8 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
             getSponsorAffinityGroupAvailability(
                     final PersistentSponsorAffinityGroupAvailability aff) {
         final Collection<AffinityGroup> affinities;
+
+        checkNotNull(aff, "Received a null pointer as affinity group");
 
         affinities = new ArrayList<>();
         for (final AffinityGroup affinity : aff.getAffinityGroups()) {
@@ -182,6 +207,13 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
             final Collection<Ability> abilities, final Boolean mvp,
             final Boolean giant) {
         final DefaultUnit unit;
+
+        checkNotNull(nameTemplate, "Received a null pointer as template name");
+        checkNotNull(cost, "Received a null pointer as cost");
+        checkNotNull(role, "Received a null pointer as role");
+        checkNotNull(abilities, "Received a null pointer as abilities");
+        checkNotNull(mvp, "Received a null pointer as mvp flag");
+        checkNotNull(giant, "Received a null pointer as giant flag");
 
         unit = new DefaultUnit(nameTemplate, cost, role, attributes, abilities,
                 mvp, giant);

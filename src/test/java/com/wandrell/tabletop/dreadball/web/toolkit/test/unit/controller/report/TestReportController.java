@@ -39,6 +39,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.Sponso
 import com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.controller.DbxReportController;
 import com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.service.DefaultDbxTeamReporter;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
+import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlReportConfig;
 
 /**
  * Unit tests for {@link SponsorCreationController}, checking the methods for
@@ -49,14 +50,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig
 public final class TestReportController {
 
     /**
-     * PDF view URL.
-     */
-    private static final String URL_PDF = "/builder/team/dbx/pdf";
-
-    /**
      * Mocked MVC context.
      */
-    private MockMvc             mockMvc;
+    private MockMvc mockMvc;
 
     /**
      * Default constructor;
@@ -111,7 +107,7 @@ public final class TestReportController {
      * @return a request builder for the PDF view
      */
     private final RequestBuilder getRequest() {
-        return MockMvcRequestBuilders.get(URL_PDF)
+        return MockMvcRequestBuilders.get(UrlReportConfig.URL_PDF)
                 .sessionAttrs(getSessionAttributes());
     }
 

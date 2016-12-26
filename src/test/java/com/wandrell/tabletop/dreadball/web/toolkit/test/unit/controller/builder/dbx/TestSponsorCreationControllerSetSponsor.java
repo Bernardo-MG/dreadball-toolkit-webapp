@@ -35,6 +35,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.json.faction.SponsorMixIn;
 import com.wandrell.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
@@ -85,8 +86,8 @@ public final class TestSponsorCreationControllerSetSponsor {
         result = mockMvc.perform(getRequest());
 
         // The response model contains the expected attributes
-        result.andExpect(MockMvcResultMatchers.jsonPath("$",
-                org.hamcrest.Matchers.anything()));
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.sponsor",
+                org.hamcrest.Matchers.notNullValue()));
     }
 
     /**
@@ -113,6 +114,8 @@ public final class TestSponsorCreationControllerSetSponsor {
 
         // Mocks the team
         team = Mockito.mock(SponsorTeamMixIn.class);
+        Mockito.when(team.getSponsor())
+                .thenReturn(Mockito.mock(SponsorMixIn.class));
         Mockito.when(factory.getSponsorTeam(Matchers.any(Sponsor.class)))
                 .thenReturn(team);
 

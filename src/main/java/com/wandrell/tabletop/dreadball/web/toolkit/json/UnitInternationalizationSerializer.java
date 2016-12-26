@@ -21,7 +21,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.io.IOException;
 import java.util.Set;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
+import org.springframework.context.NoSuchMessageException;
 import org.springframework.context.i18n.LocaleContextHolder;
 
 import com.fasterxml.jackson.core.JsonGenerator;
@@ -38,6 +41,9 @@ import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
  */
 public final class UnitInternationalizationSerializer
         extends BeanSerializerBase {
+
+    private static final Logger LOGGER           = LoggerFactory
+            .getLogger(UnitInternationalizationSerializer.class);
 
     /**
      * Serialization id.
@@ -68,28 +74,51 @@ public final class UnitInternationalizationSerializer
     @Override
     public final void serialize(final Object value, final JsonGenerator gen,
             final SerializerProvider provider) throws IOException {
+        String localized;
+
         gen.writeStartObject();
         serializeFields(value, gen, provider);
         if (value instanceof Unit) {
-            gen.writeStringField("role_i18n",
-                    getMessageSource().getMessage(
-                            ((Unit) value).getRole().toString().toLowerCase(),
-                            null, LocaleContextHolder.getLocale()));
+            try {
+                localized = getMessageSource().getMessage(
+                        String.valueOf(((Unit) value).getRole()).toLowerCase(),
+                        null, LocaleContextHolder.getLocale());
 
-            gen.writeStringField("template_name_i18n",
-                    getMessageSource().getMessage(
-                            ((Unit) value).getTemplateName(), null,
-                            LocaleContextHolder.getLocale()));
+                gen.writeStringField("role_i18n", localized);
+            } catch (final NoSuchMessageException e) {
+                LOGGER.error("Error localizing message", e);
+            }
+
+            try {
+                localized = getMessageSource().getMessage(
+                        ((Unit) value).getTemplateName(), null,
+                        LocaleContextHolder.getLocale());
+
+                gen.writeStringField("template_name_i18n", localized);
+            } catch (final NoSuchMessageException e) {
+                LOGGER.error("Error localizing message", e);
+            }
         }
         if (value instanceof Ability) {
-            gen.writeStringField("name_i18n",
-                    getMessageSource().getMessage(((Ability) value).getName(),
-                            null, LocaleContextHolder.getLocale()));
+            try {
+                localized = getMessageSource().getMessage(
+                        ((Ability) value).getName(), null,
+                        LocaleContextHolder.getLocale());
 
-            gen.writeStringField("description_i18n",
-                    getMessageSource().getMessage(
-                            ((Ability) value).getName() + ".description", null,
-                            LocaleContextHolder.getLocale()));
+                gen.writeStringField("name_i18n", localized);
+            } catch (final NoSuchMessageException e) {
+                LOGGER.error("Error localizing message", e);
+            }
+
+            try {
+                localized = getMessageSource().getMessage(
+                        ((Ability) value).getName() + ".description", null,
+                        LocaleContextHolder.getLocale());
+
+                gen.writeStringField("description_i18n", localized);
+            } catch (final NoSuchMessageException e) {
+                LOGGER.error("Error localizing message", e);
+            }
         }
         gen.writeEndObject();
     }

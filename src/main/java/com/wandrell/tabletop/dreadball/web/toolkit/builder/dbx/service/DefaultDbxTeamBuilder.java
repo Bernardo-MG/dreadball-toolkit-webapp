@@ -90,6 +90,8 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
 
     @Override
     public final void addPlayer(final SponsorTeam team, final Unit unit) {
+        checkNotNull(team, "Received a null pointer as team");
+        checkNotNull(unit, "Received a null pointer as unit");
 
         if (isUnique(unit)) {
             if (!isInTeam(team, unit)) {
