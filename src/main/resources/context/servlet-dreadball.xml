@@ -43,14 +43,7 @@
    <!-- Static resources -->
    <mvc:resources mapping="/static/**" location="/webjars/, /resources/">
       <mvc:cache-control cache-public="true" max-age="2592000" />
-      <mvc:resource-chain resource-cache="true">
-         <mvc:resolvers>
-            <ref bean="webjarsResolver" />
-         </mvc:resolvers>
-      </mvc:resource-chain>
    </mvc:resources>
-
-   <bean id="webjarsResolver" class="${resolver.webjars.class}" />
 
    <mvc:default-servlet-handler />
 
