@@ -121,6 +121,29 @@
                                     <ignore />
                                  </action>
                               </pluginExecution>
+                              <pluginExecution>
+                                 <!-- Build helper plugin configuration -->
+                                 <pluginExecutionFilter>
+                                    <groupId>org.codehaus.mojo</groupId>
+                                    <artifactId>build-helper-maven-plugin</artifactId>
+                                    <versionRange>[0,)</versionRange>
+                                    <goals>
+                                       <goal>add-source</goal>
+                                       <goal>add-test-source</goal>
+                                       <goal>add-resource</goal>
+                                       <goal>add-test-resource</goal>
+                                       <goal>maven-version</goal>
+                                       <goal>parse-version</goal>
+                                       <goal>timestamp-property</goal>
+                                    </goals>
+                                 </pluginExecutionFilter>
+                                 <action>
+                                    <execute>
+                                       <runOnConfiguration>true</runOnConfiguration>
+                                       <runOnIncremental>true</runOnIncremental>
+                                    </execute>
+                                 </action>
+                              </pluginExecution>
                            </pluginExecutions>
                         </lifecycleMappingMetadata>
                         <downloadSources>true</downloadSources>
@@ -368,6 +391,7 @@
       <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
       <usertype.version>5.0.0.GA</usertype.version>
       <!-- Plugins versions -->
+      <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
       <plugin.changes.version>2.12</plugin.changes.version>
       <plugin.frontend.node.version>v4.4.5</plugin.frontend.node.version>
       <plugin.frontend.npm.version>3.9.2</plugin.frontend.npm.version>
@@ -919,6 +943,7 @@
             </configuration>
          </plugin>
          <plugin>
+            <!-- Frontend Plugin -->
             <groupId>com.github.eirslett</groupId>
             <artifactId>frontend-maven-plugin</artifactId>
             <version>${plugin.frontend.version}</version>
@@ -950,6 +975,27 @@
                   <goals>
                      <goal>webpack</goal>
                   </goals>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <!-- Build helper -->
+            <!-- Adds the generated files to the Maven classpath -->
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <version>${plugin.buildhelp.version}</version>
+            <executions>
+               <execution>
+                  <id>add-source</id>
+                  <goals>
+                     <goal>add-source</goal>
+                  </goals>
+                  <configuration>
+                     <sources>
+                        <!-- JS sources -->
+                        <source>${project.basedir}/src/main/js</source>
+                     </sources>
+                  </configuration>
                </execution>
             </executions>
          </plugin>
