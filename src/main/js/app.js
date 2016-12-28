@@ -7,6 +7,8 @@ const Header = require('./template/header');
 const client = require('./client');
 // end::vars[]
 
+import s from '../css/main.scss';
+
 // tag::app[]
 class App extends React.Component {
 
