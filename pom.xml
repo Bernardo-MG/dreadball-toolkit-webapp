@@ -24,7 +24,7 @@
    <packaging>war</packaging>
 
    <name>Dreadball Toolkit Webpage</name>
-   <description>A list builder and utilities page for Dreadball</description>
+   <description>A team builder and utilities page for Dreadball</description>
    <url>https://github.com/bernardo-mg/dreadball-toolkit-webpage</url>
    <inceptionYear>2016</inceptionYear>
 

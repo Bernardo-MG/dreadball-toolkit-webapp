@@ -3,6 +3,7 @@
 // tag::vars[]
 const React = require('react');
 const ReactDOM = require('react-dom')
+const Header = require('./template/header');
 const client = require('./client');
 // end::vars[]
 
@@ -22,7 +23,7 @@ class App extends React.Component {
 
         render() {
                 return (
-                        <EmployeeList employees={this.state.employees}/>
+                        <Header />
                 )
         }
 }
