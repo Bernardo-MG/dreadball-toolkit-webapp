@@ -6,7 +6,6 @@ const ReactDOM = require('react-dom')
 const Header = require('./template/header');
 // end::vars[]
 
-//import 'resources/css/style.scss';
 require('./css/style.scss');
 
 // tag::app[]
