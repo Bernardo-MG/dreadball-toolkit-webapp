@@ -7,7 +7,7 @@ import Footer from 'grommet/components/Footer';
 import Header from 'grommet/components/Header';
 import Title from 'grommet/components/Title';
 
-const TodoApp = () => {
+const App = () => {
   return (
     <App centered={false}>
       <Box full={true}>
@@ -25,5 +25,5 @@ const TodoApp = () => {
   );
 };
 
-export default TodoApp;
-module.exports = TodoApp;
+export default App;
+module.exports = App;
