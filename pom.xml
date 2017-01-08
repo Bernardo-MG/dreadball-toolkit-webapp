@@ -805,6 +805,16 @@
       </testResources>
       <plugins>
          <plugin>
+            <artifactId>maven-clean-plugin</artifactId>
+            <configuration>
+               <filesets>
+                  <fileset>
+                     <directory>${project.basedir}/src/main/webapp/resources/built</directory>
+                  </fileset>
+               </filesets>
+            </configuration>
+         </plugin>
+         <plugin>
             <!-- Changes -->
             <!-- Takes care of the changes log -->
             <!-- It is set to also validate the changes log file -->
