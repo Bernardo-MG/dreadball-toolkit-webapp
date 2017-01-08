@@ -1,14 +1,11 @@
 'use strict';
 
-// tag::vars[]
 const React = require('react');
 const ReactDOM = require('react-dom')
-const Header = require('./template/header');
-// end::vars[]
+import TestApp from './TestApp';
 
 require('./css/style.scss');
 
-// tag::app[]
 class App extends React.Component {
 
         constructor(props) {
@@ -17,15 +14,12 @@ class App extends React.Component {
 
         render() {
                 return (
-                        <Header />
+                        <TestApp />
                 )
         }
 }
-// end::app[]
 
-// tag::render[]
 ReactDOM.render(
         <App />,
         document.getElementById('react')
 )
-// end::render[]

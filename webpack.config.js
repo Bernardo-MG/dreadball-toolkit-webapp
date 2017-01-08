@@ -33,6 +33,11 @@ module.exports = {
             }
       ]
    },
+   sassLoader : {
+      includePaths : [
+         './node_modules'
+      ]
+   },
    plugins : [
       new ExtractTextPlugin('./src/main/webapp/resources/built/style.css', {
          allChunks : true
