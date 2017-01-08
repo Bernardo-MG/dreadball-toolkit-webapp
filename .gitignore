@@ -61,6 +61,3 @@ Desktop.ini
 
 # Node
 /node_modules/
-
-# React
-/generated

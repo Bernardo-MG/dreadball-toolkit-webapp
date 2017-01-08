@@ -805,18 +805,6 @@
       </testResources>
       <plugins>
          <plugin>
-            <!-- Clean -->
-            <artifactId>maven-clean-plugin</artifactId>
-            <configuration>
-               <filesets>
-                  <fileset>
-                     <!-- Generated files -->
-                     <directory>${project.basedir}/generated</directory>
-                  </fileset>
-               </filesets>
-            </configuration>
-         </plugin>
-         <plugin>
             <!-- Changes -->
             <!-- Takes care of the changes log -->
             <!-- It is set to also validate the changes log file -->
@@ -907,7 +895,7 @@
                   </resource>
                   <resource>
                      <!-- Generated files -->
-                     <directory>${project.basedir}/generated</directory>
+                     <directory>${project.build.directory}/generated-ui</directory>
                      <targetPath>resources/</targetPath>
                   </resource>
                </webResources>

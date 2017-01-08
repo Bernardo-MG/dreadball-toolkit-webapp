@@ -8,7 +8,7 @@ module.exports = {
    debug : true,
    output : {
       path : __dirname,
-      filename : './generated/bundle.js'
+      filename : './target/generated-ui/bundle.js'
    },
    module : {
       loaders : [
@@ -39,7 +39,7 @@ module.exports = {
       ]
    },
    plugins : [
-      new ExtractTextPlugin('./generated/style.css', {
+      new ExtractTextPlugin('./target/generated-ui/style.css', {
          allChunks : true
       })
    ]
