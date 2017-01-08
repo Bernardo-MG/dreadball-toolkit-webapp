@@ -7,7 +7,7 @@ import Footer from 'grommet/components/Footer';
 import Header from 'grommet/components/Header';
 import Title from 'grommet/components/Title';
 
-const App = () => {
+const DreadballApp = () => {
   return (
     <App centered={false}>
       <Box full={true}>
@@ -25,5 +25,5 @@ const App = () => {
   );
 };
 
-export default App;
-module.exports = App;
+export default DreadballApp;
+module.exports = DreadballApp;
