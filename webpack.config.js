@@ -2,13 +2,13 @@ var path = require('path');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
-   entry : './src/main/js/app.js',
+   entry : './src/main/js/index.js',
    devtool : 'sourcemaps',
    cache : true,
    debug : true,
    output : {
       path : __dirname,
-      filename : './src/main/webapp/resources/built/bundle.js'
+      filename : './generated/bundle.js'
    },
    module : {
       loaders : [
@@ -39,7 +39,7 @@ module.exports = {
       ]
    },
    plugins : [
-      new ExtractTextPlugin('./src/main/webapp/resources/built/style.css', {
+      new ExtractTextPlugin('./generated/style.css', {
          allChunks : true
       })
    ]

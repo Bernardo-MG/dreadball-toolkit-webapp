@@ -805,11 +805,13 @@
       </testResources>
       <plugins>
          <plugin>
+            <!-- Clean -->
             <artifactId>maven-clean-plugin</artifactId>
             <configuration>
                <filesets>
                   <fileset>
-                     <directory>${project.basedir}/src/main/webapp/resources/built</directory>
+                     <!-- Generated files -->
+                     <directory>${project.basedir}/generated</directory>
                   </fileset>
                </filesets>
             </configuration>
@@ -902,6 +904,11 @@
                      <includes>
                         <include>persistence-access.properties</include>
                      </includes>
+                  </resource>
+                  <resource>
+                     <!-- Generated files -->
+                     <directory>${project.basedir}/generated</directory>
+                     <targetPath>resources/</targetPath>
                   </resource>
                </webResources>
                <!-- Variables to to override will be delimited with a @. -->

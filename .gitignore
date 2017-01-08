@@ -63,4 +63,4 @@ Desktop.ini
 /node_modules/
 
 # React
-/src/main/webapp/resources/built
+/generated
