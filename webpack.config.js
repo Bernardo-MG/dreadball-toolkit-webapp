@@ -1,46 +1,54 @@
 var path = require('path');
+const
+webpack = require('webpack');
+const
+autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
+   context : __dirname,
    entry : './src/main/js/index.js',
-   devtool : 'sourcemaps',
+   devtool : 'inline-source-map',
    cache : true,
    debug : true,
    output : {
       path : __dirname,
       filename : './target/generated-ui/bundle.js'
    },
+   resolve : {
+      extensions : [ '', '.scss', '.css', '.js', '.json' ],
+      modulesDirectories : [ 'node_modules',
+            path.resolve(__dirname, './node_modules') ]
+   },
    module : {
       loaders : [
             {
-               test : path.join(__dirname, '.'),
+               test : /(\.js|\.jsx)$/,
                exclude : /(node_modules)/,
                loader : 'babel',
                query : {
                   cacheDirectory : true,
-                  presets : [
-                        'es2015', 'react'
-                  ]
+                  presets : [ 'es2015', 'stage-0', 'react' ]
                }
-            }, {
-               test : /\.scss$/,
-               loaders : [
-                     'style', 'css', 'sass'
-               ]
-            }, {
-               test : /\.scss$/,
-               loader : ExtractTextPlugin.extract('css!sass')
-            }
-      ]
+            },
+            {
+               test : /(\.scss|\.css)$/,
+               loader : ExtractTextPlugin
+                     .extract(
+                           'style',
+                           'css?sourceMap&modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss!sass')
+            } ]
    },
+   postcss : [ autoprefixer ],
    sassLoader : {
-      includePaths : [
-         './node_modules'
-      ]
+      data : '@import "css/style.scss";',
+      includePaths : [ path.resolve(__dirname, './src/main/js') ]
    },
-   plugins : [
-      new ExtractTextPlugin('./target/generated-ui/style.css', {
-         allChunks : true
-      })
-   ]
+   plugins : [ new ExtractTextPlugin('./target/generated-ui/style.css', {
+      allChunks : true
+   }), new webpack.optimize.OccurenceOrderPlugin(),
+         new webpack.HotModuleReplacementPlugin(),
+         new webpack.NoErrorsPlugin(), new webpack.DefinePlugin({
+            'process.env.NODE_ENV' : JSON.stringify('development')
+         }) ]
 };
