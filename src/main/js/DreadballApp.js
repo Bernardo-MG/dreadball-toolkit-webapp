@@ -1,8 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { AppBar } from 'react-toolbox/lib/app_bar';
-import { Link } from 'react-toolbox/lib/link';
-import { Navigation } from 'react-toolbox/lib/navigation';
+import { AppBar, Navigation, Link } from 'react-toolbox';
+import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
 
 const GithubIcon = () => (
       <svg viewBox="0 0 284 277">
@@ -10,15 +9,33 @@ const GithubIcon = () => (
       </svg>
     );
 
-const DreadballApp = () => {
-  return (
-        <AppBar title="React Toolbox" leftIcon="menu" rightIcon={<GithubIcon />}>
-        <Navigation type="horizontal">
-          <Link href="http://" label="Inbox" icon="inbox" />
-          <Link href="http://" active label="Profile" icon="person" />
-        </Navigation>
-      </AppBar>
-  );
+class DreadballApp extends React.Component {
+   state = {
+         drawerActive: false
+     };
+
+   toggleDrawerActive = () => {
+       this.setState({ drawerActive: !this.state.drawerActive });
+   };
+   
+   render() {
+         return (
+             <Layout>
+                 <NavDrawer active={this.state.drawerActive} onOverlayClick={ this.toggleDrawerActive }>
+                    <p>
+                       Navigation, account switcher, etc. go here.
+                    </p>
+                 </NavDrawer>
+                 <Panel>
+                     <AppBar leftIcon='menu' onLeftIconClick={ this.toggleDrawerActive } />
+                     <div style={{ flex: 1, overflowY: 'auto', padding: '1.8rem' }}>
+                        <h1>Main Content</h1>
+                        <p>Main content goes here.</p>
+                     </div>
+                 </Panel>
+             </Layout>
+         );
+     };
 };
 
 export default DreadballApp;
