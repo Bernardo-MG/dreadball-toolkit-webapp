@@ -27,7 +27,7 @@ class DreadballApp extends React.Component {
                     </p>
                  </NavDrawer>
                  <Panel>
-                     <AppBar leftIcon='menu' onLeftIconClick={ this.toggleDrawerActive } />
+                     <AppBar leftIcon='menu' rightIcon={<GithubIcon />} onLeftIconClick={ this.toggleDrawerActive } />
                      <div style={{ flex: 1, overflowY: 'auto', padding: '1.8rem' }}>
                         <h1>Main Content</h1>
                         <p>Main content goes here.</p>
