@@ -6,7 +6,7 @@ import { Button } from 'react-toolbox';
 
 import GithubIcon from './icons';
 
-class DreadballApp extends React.Component {
+class MainLayout extends React.Component {
    state = {
          drawerActive: false
      };
@@ -24,11 +24,29 @@ class DreadballApp extends React.Component {
                  <Panel>
                      <AppBar leftIcon='menu' rightIcon={<GithubIcon />} onLeftIconClick={ this.toggleDrawerActive } />
                      <div style={{ flex: 1, overflowY: 'auto', padding: '1.8rem' }}>
-                        <h1>Main Content</h1>
-                        <p>Main content goes here.</p>
+                        {this.props.children}
                      </div>
                  </Panel>
              </Layout>
+         );
+     };
+};
+
+class DreadballApp extends React.Component {
+   state = {
+         drawerActive: false
+     };
+
+   toggleDrawerActive = () => {
+       this.setState({ drawerActive: !this.state.drawerActive });
+   };
+   
+   render() {
+         return (
+             <MainLayout>
+	            <h1>Main Content</h1>
+	            <p>Main content goes here.</p>
+             </MainLayout>
          );
      };
 };

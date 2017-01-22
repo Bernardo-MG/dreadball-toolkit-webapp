@@ -7,6 +7,6 @@ import DreadballApp from './DreadballApp';
 require('./theme/style.scss');
 
 ReactDOM.render(
-        <DreadballApp />,
-        document.getElementById('react')
+        <DreadballApp/>,
+        document.getElementById('root')
 )
