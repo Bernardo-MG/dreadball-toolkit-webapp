@@ -47,7 +47,11 @@ module.exports = {
    plugins : [ new ExtractTextPlugin('./target/generated-ui/style.css', {
       allChunks : true
    }), new webpack.optimize.OccurenceOrderPlugin(),
-         new webpack.HotModuleReplacementPlugin(),
+         new webpack.optimize.CommonsChunkPlugin({
+            name : 'vendor',
+            filename : './target/generated-ui/vendor.bundle.js',
+            minChunks : Infinity
+         }), new webpack.HotModuleReplacementPlugin(),
          new webpack.NoErrorsPlugin(), new webpack.DefinePlugin({
             'process.env.NODE_ENV' : JSON.stringify('development')
          }) ]
