@@ -6,7 +6,7 @@ import { Button } from 'react-toolbox';
 
 import GithubIcon from './icons';
 
-class MainLayout extends React.Component {
+class BaseLayout extends React.Component {
    state = {
          drawerActive: false
      };
@@ -18,16 +18,26 @@ class MainLayout extends React.Component {
    render() {
          return (
              <Layout>
-                 <NavDrawer active={this.state.drawerActive} onOverlayClick={ this.toggleDrawerActive }>
+                 <NavDrawer active={ this.state.drawerActive } onOverlayClick={ this.toggleDrawerActive }>
                     <Button label='Players' raised />
                  </NavDrawer>
                  <Panel>
-                     <AppBar leftIcon='menu' rightIcon={<GithubIcon />} onLeftIconClick={ this.toggleDrawerActive } />
+                     <AppBar leftIcon='menu' rightIcon={ this.props.rightIcon } onLeftIconClick={ this.toggleDrawerActive } />
                      <div style={{ flex: 1, overflowY: 'auto', padding: '1.8rem' }}>
                         {this.props.children}
                      </div>
                  </Panel>
              </Layout>
+         );
+     };
+};
+
+class MainLayout extends React.Component {
+   render() {
+         return (
+             <BaseLayout rightIcon={ <GithubIcon/> }>
+                {this.props.children}
+             </BaseLayout>
          );
      };
 };
