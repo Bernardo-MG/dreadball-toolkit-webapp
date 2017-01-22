@@ -4,7 +4,7 @@ const React = require('react');
 const ReactDOM = require('react-dom')
 import DreadballApp from './DreadballApp';
 
-require('./css/style.scss');
+require('./theme/style.scss');
 
 ReactDOM.render(
         <DreadballApp />,
