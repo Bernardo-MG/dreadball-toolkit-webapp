@@ -1,8 +1,6 @@
 var path = require('path');
-const
-webpack = require('webpack');
-const
-autoprefixer = require('autoprefixer');
+const webpack = require('webpack');
+const autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
