@@ -19,7 +19,7 @@ class BaseLayout extends React.Component {
          return (
              <Layout>
                  <NavDrawer active={ this.state.drawerActive } onOverlayClick={ this.toggleDrawerActive }>
-                    <Button label='Players' raised />
+                    {this.props.drawerContent}
                  </NavDrawer>
                  <Panel>
                      <AppBar leftIcon='menu' rightIcon={ this.props.rightIcon } onLeftIconClick={ this.toggleDrawerActive } />
@@ -32,10 +32,18 @@ class BaseLayout extends React.Component {
      };
 };
 
+class MainDrawerContent extends React.Component {
+   render() {
+         return (
+            <Button label='Players' raised />
+         );
+     };
+};
+
 class MainLayout extends React.Component {
    render() {
          return (
-             <BaseLayout rightIcon={ <GithubIcon/> }>
+             <BaseLayout drawerContent={ <MainDrawerContent/> } rightIcon={ <GithubIcon/> }>
                 {this.props.children}
              </BaseLayout>
          );
