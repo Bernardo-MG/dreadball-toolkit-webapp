@@ -3,8 +3,8 @@
 const React = require('react');
 
 import { Router, Route, browserHistory, IndexRoute } from 'react-router'
-import Home from './Home';
-import DbxPlayers from './DbxPlayers';
+import Home from './view/Home';
+import DbxPlayers from './view/DbxPlayers';
 import MainLayout from './layout/main';
 
 require('./theme/style.scss');
