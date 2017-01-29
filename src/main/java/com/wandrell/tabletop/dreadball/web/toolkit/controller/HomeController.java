@@ -44,7 +44,7 @@ public class HomeController {
      * 
      * @return the welcome view
      */
-    @RequestMapping("/")
+    @RequestMapping("/**")
     public final String showWelcome() {
         return VIEW_WELCOME;
     }
