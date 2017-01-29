@@ -35,7 +35,7 @@ class BaseLayout extends React.Component {
 class MainDrawerContent extends React.Component {
    render() {
          return (
-            <Link to="players">Players</Link>
+            <Link to="players" className="dbxPlayersLink">Players</Link>
          );
      };
 };

@@ -13,7 +13,7 @@ ReactDOM.render((
       <Router history={hashHistory}>
         <Route path="/" component={MainLayout}>
           <IndexRoute component={Home}/>
-          <Route path="/players" component={DbxPlayers}/>
+          <Route path="/players" activeClassName="dbxPlayersLink" component={DbxPlayers}/>
         </Route>
       </Router>
     ), document.getElementById('root'))
