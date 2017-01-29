@@ -40,6 +40,11 @@
       <property name="objectMapper" ref="dreadballObjectMapper" />
    </bean>
 
+   <!-- Static resources -->
+   <mvc:resources mapping="/resources/**" location="/resources/">
+      <mvc:cache-control cache-public="true" max-age="2592000" />
+   </mvc:resources>
+
    <mvc:default-servlet-handler />
 
    <bean id="conversionService" class="${conversion.service.class}"/>
