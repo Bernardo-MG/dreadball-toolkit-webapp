@@ -1,7 +1,8 @@
 import React from 'react';
-import { AppBar, Navigation, Link } from 'react-toolbox';
+import { AppBar, Navigation } from 'react-toolbox';
 import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
 import { Button } from 'react-toolbox';
+import { Link } from 'react-router';
 
 import GithubIcon from './icons';
 
@@ -34,7 +35,7 @@ class BaseLayout extends React.Component {
 class MainDrawerContent extends React.Component {
    render() {
          return (
-            <Button label='Players' raised />
+            <Link to="players">Players</Link>
          );
      };
 };

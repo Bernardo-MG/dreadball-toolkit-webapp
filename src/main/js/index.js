@@ -2,8 +2,8 @@
 
 const React = require('react');
 const ReactDOM = require('react-dom')
-import { Router, Route, hashHistory } from 'react-router'
-import DreadballApp from './DreadballApp';
+import { Router, Route, hashHistory, IndexRoute } from 'react-router'
+import Home from './Home';
 import DbxPlayers from './DbxPlayers';
 import MainLayout from './layout/main';
 
@@ -11,8 +11,8 @@ require('./theme/style.scss');
 
 ReactDOM.render((
       <Router history={hashHistory}>
-        <Route component={MainLayout}>
-          <Route path="/" component={DreadballApp}/>
+        <Route path="/" component={MainLayout}>
+          <IndexRoute component={Home}/>
           <Route path="/players" component={DbxPlayers}/>
         </Route>
       </Router>

@@ -1,6 +1,6 @@
 import React from 'react';
 
-class DreadballApp extends React.Component {
+class Home extends React.Component {
    render() {
          return (
             <div>
@@ -11,5 +11,5 @@ class DreadballApp extends React.Component {
      };
 };
 
-export default DreadballApp;
-module.exports = DreadballApp;
+export default Home;
+module.exports = Home;
