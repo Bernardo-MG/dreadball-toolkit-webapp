@@ -2,6 +2,8 @@ import React from 'react';
 
 import { Table } from 'react-toolbox';
 
+import loadPlayers from '../action/codex';
+
 const UnitModel = {
   name: {type: String},
   role: {type: String},
@@ -14,6 +16,12 @@ const units = [
 
 class UnitTable extends React.Component {
   state = { source: units };
+  
+  componentDidMount() {
+    var loadPlayers = loadPlayers;
+    //loadPlayers.bind(this);
+    //fetchPlayers(units);
+  }
 
   render () {
     return (
