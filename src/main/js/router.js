@@ -9,6 +9,7 @@ import MainLayout from './layout/main';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux'
 import dreadballApp from './reducers'
+import loadPlayers from './actions/codex';
 
 require('./theme/style.scss');
 
@@ -26,5 +27,15 @@ const router = (
 	   <Router history={browserHistory}>{routes}</Router>
 	</Provider>
 );
+
+const units = [
+  {name: 'Unit', role: 'Jack', cost: 10}
+];
+
+//store.dispatch(loadPlayers(units));
+store.dispatch({
+  type: 'LOAD_PLAYERS',
+  units
+});
 
 export default (router);

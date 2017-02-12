@@ -1,13 +1,13 @@
 import React from 'react';
 
-import UnitTable from '../component/UnitTable';
+import LoadableUnitTable from '../containers/LoadableUnitTable';
 
 class DbxPlayers extends React.Component {
    render() {
          return (
 	         <div>
 	            <h1>DBX players</h1>
-	            <UnitTable/>
+	            <LoadableUnitTable/>
 	         </div>
          );
      };

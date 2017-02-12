@@ -1,6 +1,6 @@
 export const LOAD_PLAYERS = 'LOAD_PLAYERS'
 
-export const loadPlayers = (players) => ({
+export const loadPlayers = (units) => ({
   type: LOAD_PLAYERS,
-  players
+  units
 })
