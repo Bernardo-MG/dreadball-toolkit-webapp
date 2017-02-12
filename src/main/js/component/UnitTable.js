@@ -1,8 +1,9 @@
 import React from 'react';
-
 import { Table } from 'react-toolbox';
-
-import loadPlayers from '../action/codex';
+import loadPlayers from '../actions/codex';
+import {bindActionCreators} from 'redux';
+import {connect} from 'react-redux';
+import * as Actions from '../actions/codex';
 
 const UnitModel = {
   name: {type: String},
@@ -19,10 +20,10 @@ class UnitTable extends React.Component {
   
   componentDidMount() {
     var loadPlayers = loadPlayers;
-    //store.dispatch(loadPlayers(units));
+    //dispatch(loadPlayers(units));
     //loadPlayers.bind(this);
     //fetchPlayers(units);
-    this.setState({ source: units });
+    //this.setState({ source: units });
   }
 
   render () {
@@ -37,5 +38,19 @@ class UnitTable extends React.Component {
   }
 }
 
-export default UnitTable;
-module.exports = UnitTable;
+const mapStateToProps = (state) => ({
+    state: state
+});
+
+const mapDispatchToProps = (dispatch) => ({
+    actions: bindActionCreators(Actions, dispatch)
+})
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UnitTable);
+module.exports = connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(UnitTable);
