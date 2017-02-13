@@ -22,11 +22,11 @@ const routes = (
 
 let store = createStore(dreadballApp)
 
-const router = (
-	<Provider store={store}>
-	   <Router history={browserHistory}>{routes}</Router>
-	</Provider>
-);
+console.log(store.getState());
+
+let unsubscribe = store.subscribe(() =>
+  console.log(store.getState())
+)
 
 const units = [
   {name: 'Unit', role: 'Jack', cost: 10}
@@ -37,5 +37,11 @@ store.dispatch({
   type: 'LOAD_PLAYERS',
   units
 });
+
+const router = (
+	<Provider store={store}>
+	   <Router history={browserHistory}>{routes}</Router>
+	</Provider>
+);
 
 export default (router);

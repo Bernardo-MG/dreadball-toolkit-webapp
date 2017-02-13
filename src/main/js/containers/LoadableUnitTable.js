@@ -7,7 +7,7 @@ import * as Actions from '../actions/codex';
 import UnitTable from '../components/UnitTable';
 
 const mapStateToProps = (state) => ({
-    source: state.source
+    source: state.players
 });
 
 const mapDispatchToProps = (dispatch) => ({
