@@ -1,10 +1,5 @@
 import React from 'react';
-import { AppBar, Navigation } from 'react-toolbox';
-import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
-import { Button } from 'react-toolbox';
-import { Link } from 'react-router';
-
-import GithubIcon from './icons';
+import { Layout, NavDrawer, Panel, AppBar } from 'react-toolbox';
 
 class BaseLayout extends React.Component {
    state = {
@@ -32,23 +27,5 @@ class BaseLayout extends React.Component {
      };
 };
 
-class MainDrawerContent extends React.Component {
-   render() {
-         return (
-            <Link to="players" className="dbxPlayersLink">Players</Link>
-         );
-     };
-};
-
-class MainLayout extends React.Component {
-   render() {
-         return (
-             <BaseLayout drawerContent={ <MainDrawerContent/> } rightIcon={ <GithubIcon/> }>
-                {this.props.children}
-             </BaseLayout>
-         );
-     };
-};
-
-export default MainLayout;
-module.exports = MainLayout;
+export default BaseLayout;
+module.exports = BaseLayout;
