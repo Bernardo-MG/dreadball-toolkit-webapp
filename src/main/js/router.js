@@ -2,25 +2,17 @@
 
 const React = require('react');
 
-import { Router, Route, browserHistory, IndexRoute } from 'react-router'
-import Home from './view/Home';
-import DbxPlayers from './view/DbxPlayers';
-import MainLayout from './layout/main';
-import { Provider } from 'react-redux';
 import { createStore } from 'redux'
-import dreadballApp from './reducers'
 import loadPlayers from './actions/codex';
+import Root from './containers/Root'
+import { syncHistoryWithStore } from 'react-router-redux'
+import { browserHistory } from 'react-router'
+import configureStore from './store/configureStore'
 
 require('./theme/style.scss');
 
-const routes = (
-	<Route path="/dreadball/" component={MainLayout}>
-		<IndexRoute component={Home}/>
-		<Route path="/players" activeClassName="dbxPlayersLink" component={DbxPlayers}/>
-	</Route>
-);
-
-let store = createStore(dreadballApp)
+let store = configureStore()
+const history = syncHistoryWithStore(browserHistory, store)
 
 console.log(store.getState());
 
@@ -38,10 +30,4 @@ store.dispatch({
   units
 });
 
-const router = (
-	<Provider store={store}>
-	   <Router history={browserHistory}>{routes}</Router>
-	</Provider>
-);
-
-export default (router);
+export default <Root store={store} history={history} />;
