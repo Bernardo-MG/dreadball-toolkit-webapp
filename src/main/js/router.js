@@ -3,7 +3,7 @@
 const React = require('react');
 
 import { createStore } from 'redux'
-import loadPlayers from './actions/codex';
+import { loadPlayers } from './actions/codex';
 import Root from './containers/Root'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { browserHistory } from 'react-router'
@@ -24,10 +24,6 @@ const units = [
   {name: 'Unit', role: 'Jack', cost: 10}
 ];
 
-//store.dispatch(loadPlayers(units));
-store.dispatch({
-  type: 'LOAD_PLAYERS',
-  units
-});
+store.dispatch(loadPlayers(units));
 
 export default <Root store={store} history={history} />;
