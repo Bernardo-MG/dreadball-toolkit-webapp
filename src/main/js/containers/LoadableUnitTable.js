@@ -1,8 +1,25 @@
-import React from 'react';
+import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/codex';
+import { loadPlayers } from '../actions/codex';
 import UnitTable from '../components/UnitTable';
+
+class LoadableUnitTable extends Component {
+
+	componentDidMount() {
+		//const units = [
+		//  {name: 'Unit', role: 'Jack', cost: 10}
+		//];
+		//this.props.actions.loadPlayers(units)
+	}
+	
+	render() {
+		return (
+			<UnitTable/>
+		)
+	}
+}
 
 const mapStateToProps = (state) => ({
     source: state.players
@@ -12,10 +29,8 @@ const mapDispatchToProps = (dispatch) => ({
     actions: bindActionCreators(Actions, dispatch)
 })
 
-let LoadableUnitTable = connect(
+export default connect(
     mapStateToProps,
     mapDispatchToProps
+//)(LoadableUnitTable);
 )(UnitTable);
-
-export default LoadableUnitTable;
-module.exports = LoadableUnitTable;
