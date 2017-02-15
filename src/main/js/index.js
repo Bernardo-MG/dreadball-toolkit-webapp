@@ -14,12 +14,6 @@ require('./theme/style.scss');
 let store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
-console.log(store.getState());
-
-let unsubscribe = store.subscribe(() =>
-  console.log(store.getState())
-)
-
 const units = [
   {name: 'Unit', role: 'Jack', cost: 10}
 ];
