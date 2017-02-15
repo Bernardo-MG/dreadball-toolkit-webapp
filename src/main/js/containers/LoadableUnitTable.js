@@ -8,15 +8,15 @@ import UnitTable from '../components/UnitTable';
 class LoadableUnitTable extends Component {
 
 	componentDidMount() {
-		//const units = [
-		//  {name: 'Unit', role: 'Jack', cost: 10}
-		//];
-		//this.props.actions.loadPlayers(units)
+		const units = [
+		  {name: 'Unit', role: 'Jack', cost: 10}
+		];
+		this.props.actions.loadPlayers(units)
 	}
 	
 	render() {
 		return (
-			<UnitTable/>
+			<UnitTable source={this.props.source}/>
 		)
 	}
 }
@@ -32,5 +32,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-//)(LoadableUnitTable);
-)(UnitTable);
+)(LoadableUnitTable);

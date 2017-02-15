@@ -15,7 +15,6 @@ let store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
 const units = [
-  {name: 'Unit', role: 'Jack', cost: 10}
 ];
 
 store.dispatch(loadPlayers(units));

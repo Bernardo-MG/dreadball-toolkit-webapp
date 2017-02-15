@@ -7,7 +7,7 @@ const UnitModel = {
   cost: {type: Number}
 };
 
-const UnitTable = ({ source }) => {
+const UnitTable = ({ source = [] }) => {
 	return (
 	  <Table
 	    model={UnitModel}
