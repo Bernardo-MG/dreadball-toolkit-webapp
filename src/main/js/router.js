@@ -2,7 +2,6 @@
 
 const React = require('react');
 
-import { createStore } from 'redux'
 import { loadPlayers } from './actions/codex';
 import Root from './containers/Root'
 import { syncHistoryWithStore } from 'react-router-redux'
