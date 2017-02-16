@@ -4,6 +4,10 @@
 
    <modelVersion>4.0.0</modelVersion>
 
+   <prerequisites>
+      <maven>${maven.version}</maven>
+   </prerequisites>
+
    <!-- ********************************************** -->
    <!-- ****************** BASE POM ****************** -->
    <!-- ********************************************** -->
@@ -353,11 +357,21 @@
    <!-- ********************************************** -->
 
    <properties>
-      <!-- Java version -->
+      <!-- ============================================== -->
+      <!-- ================ JAVA VERSION ================ -->
+      <!-- ============================================== -->
       <maven.compiler.source>1.8</maven.compiler.source>
-      <!-- Manifest data -->
+      <!-- ============================================== -->
+      <!-- =============== MAVEN VERSION ================ -->
+      <!-- ============================================== -->
+      <maven.version>3.1.0</maven.version>
+      <!-- ============================================== -->
+      <!-- =============== MANIFEST DATA ================ -->
+      <!-- ============================================== -->
       <manifest.name>com/wandrell/tabletop/dreadball/dreadball_toolkit_webpage</manifest.name>
-      <!-- Dependencies versions -->
+      <!-- ============================================== -->
+      <!-- =========== DEPENDENCIES VERSIONS ============ -->
+      <!-- ============================================== -->
       <aspectj.version>1.8.9</aspectj.version>
       <classmate.version>1.3.3</classmate.version>
       <dandelion.version>1.1.1</dandelion.version>
@@ -390,19 +404,25 @@
       <testng.version>6.10</testng.version>
       <thymeleaf.version>3.0.2.RELEASE</thymeleaf.version>
       <usertype.version>5.0.0.GA</usertype.version>
-      <!-- Plugins versions -->
-      <plugin.buildhelp.version>1.12</plugin.buildhelp.version>
+      <!-- ============================================== -->
+      <!-- ============== PLUGINS VERSIONS ============== -->
+      <!-- ============================================== -->
+      <plugin.buildhelp.version>3.0.0</plugin.buildhelp.version>
       <plugin.frontend.node.version>v4.4.5</plugin.frontend.node.version>
       <plugin.frontend.npm.version>3.9.2</plugin.frontend.npm.version>
       <plugin.frontend.version>1.3</plugin.frontend.version>
-      <plugin.jetty.version>9.3.11.v20160721</plugin.jetty.version>
+      <plugin.jetty.version>9.4.1.v20170120</plugin.jetty.version>
       <plugin.jshint.version>1.6.0</plugin.jshint.version>
       <plugin.site.velocity.version>1.7</plugin.site.velocity.version>
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
       <plugin.war.version>3.0.0</plugin.war.version>
-      <!-- Maven Site -->
+      <!-- ============================================== -->
+      <!-- ================= MAVEN SITE ================= -->
+      <!-- ============================================== -->
       <site.skin.version>0.5.3</site.skin.version>
-      <!-- Testing server -->
+      <!-- ============================================== -->
+      <!-- =============== TESTING SERVER =============== -->
+      <!-- ============================================== -->
       <server.test.path>/dreadball</server.test.path>
    </properties>
 
