@@ -14,9 +14,4 @@ require('./theme/style.scss');
 let store = configureStore()
 const history = syncHistoryWithStore(browserHistory, store)
 
-const units = [
-];
-
-store.dispatch(loadPlayers(units));
-
 render(<Root store={store} history={history} />, document.getElementById('root'));

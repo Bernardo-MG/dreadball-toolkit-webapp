@@ -1,4 +1,4 @@
-const players = (state = {}, action) => {
+const players = (state = [], action) => {
   switch (action.type) {
     case 'LOAD_PLAYERS':
       return action.units
