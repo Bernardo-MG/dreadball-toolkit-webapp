@@ -3,20 +3,20 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/codex';
 import { loadUnits } from '../actions/codex';
-import UnitTable from '../components/UnitTable';
+import DbxUnitTable from '../components/DbxUnitTable';
 
-class LoadableUnitTable extends Component {
+class LoadableDbxUnitTable extends Component {
 
 	componentDidMount() {
 		const units = [
-		  {name: 'Unit', role: 'Jack', cost: 10}
+		  {name: 'Unit', role: 'Jack', move: 1, strength: 2, speed: 3, skill: 4, armour: 5, abilities: 'abilities', groups: 'groups', stranger_cost: 30, ally_cost: 20, friend_cost: 10}
 		];
 		this.props.actions.loadUnits(units)
 	}
 	
 	render() {
 		return (
-			<UnitTable source={this.props.source}/>
+			<DbxUnitTable source={this.props.source}/>
 		)
 	}
 }
@@ -32,4 +32,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
     mapStateToProps,
     mapDispatchToProps
-)(LoadableUnitTable);
+)(LoadableDbxUnitTable);

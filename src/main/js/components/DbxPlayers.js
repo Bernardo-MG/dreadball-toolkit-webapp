@@ -1,12 +1,12 @@
 import React from 'react';
 
-import LoadableUnitTable from '../containers/LoadableUnitTable';
+import LoadableDbxUnitTable from '../containers/LoadableDbxUnitTable';
 
 const DbxPlayers = () => {
      return (
          <div>
             <h1>DBX players</h1>
-            <LoadableUnitTable/>
+            <LoadableDbxUnitTable/>
          </div>
      );
 };
