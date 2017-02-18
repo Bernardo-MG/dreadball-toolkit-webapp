@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/codex';
-import { loadPlayers } from '../actions/codex';
+import { loadUnits } from '../actions/codex';
 import UnitTable from '../components/UnitTable';
 
 class LoadableUnitTable extends Component {
@@ -11,7 +11,7 @@ class LoadableUnitTable extends Component {
 		const units = [
 		  {name: 'Unit', role: 'Jack', cost: 10}
 		];
-		this.props.actions.loadPlayers(units)
+		this.props.actions.loadUnits(units)
 	}
 	
 	render() {
@@ -22,7 +22,7 @@ class LoadableUnitTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    source: state.players
+    source: state.units
 });
 
 const mapDispatchToProps = (dispatch) => ({

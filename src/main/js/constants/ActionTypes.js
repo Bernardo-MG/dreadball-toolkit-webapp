@@ -1,1 +1,1 @@
-export const LOAD_PLAYERS = 'LOAD_PLAYERS'
+export const LOAD_UNITS = 'LOAD_UNITS'

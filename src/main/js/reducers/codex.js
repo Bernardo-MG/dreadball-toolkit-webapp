@@ -1,12 +1,12 @@
 import * as types from '../constants/ActionTypes'
 
-const players = (state = [], action) => {
+const units = (state = [], action) => {
   switch (action.type) {
-    case types.LOAD_PLAYERS:
+    case types.LOAD_UNITS:
       return action.units
     default:
       return state
   }
 }
 
-export default players
+export default units

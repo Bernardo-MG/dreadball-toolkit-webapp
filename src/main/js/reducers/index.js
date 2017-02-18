@@ -1,9 +1,9 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
-import players from './codex'
+import units from './codex'
 
 const dreadballApp = combineReducers({
-  players,
+  units,
   routing
 })
 

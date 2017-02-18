@@ -1,6 +1,6 @@
 import * as types from '../constants/ActionTypes'
 
-export const loadPlayers = (units) => ({
-  type: types.LOAD_PLAYERS,
+export const loadUnits = (units) => ({
+  type: types.LOAD_UNITS,
   units
 })
