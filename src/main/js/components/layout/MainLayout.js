@@ -1,8 +1,8 @@
 import React from 'react';
 import BaseLayout from './BaseLayout';
-import MainDrawerContent from './MainDrawerContent';
+import MainDrawerContent from '../MainDrawerContent';
 
-import GithubIcon from '../icons';
+import GithubIcon from '../../icons';
 
 const MainLayout = (props) => {
      return (

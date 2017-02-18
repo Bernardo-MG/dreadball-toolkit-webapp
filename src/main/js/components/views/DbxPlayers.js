@@ -1,6 +1,6 @@
 import React from 'react';
 
-import LoadableDbxUnitTable from '../containers/LoadableDbxUnitTable';
+import LoadableDbxUnitTable from '../../containers/LoadableDbxUnitTable';
 
 const DbxPlayers = () => {
      return (
