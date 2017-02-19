@@ -1,19 +1,41 @@
 import * as types from '../constants/ActionTypes'
 import fetch from 'isomorphic-fetch'
 
-export const loadUnits = (units) => ({
-  type: types.LOAD_UNITS,
-  units
-})
-
 export const requestUnits = () => ({
   type: types.REQUEST_UNITS
 })
 
 export const receiveUnits = (json) => ({
   type: types.RECEIVE_UNITS,
-  units: json
+  units: transformJson(json)
 })
+
+const transformJson = (json) => {
+    var result = [];
+    var entry;
+    var mapped;
+
+    for (var i=0; i<json.length; i++) {
+        entry = json[i];
+        mapped = {
+            name : entry.name,
+            role : entry.role,
+            move : entry.attributes.movement,
+            strength : entry.attributes.strength,
+            speed : entry.attributes.speed,
+            skill : entry.attributes.skill,
+            armor : entry.attributes.armor,
+            abilities : '',
+            groups : '',
+            stranger_cost : entry.strangerCost,
+            ally_cost : entry.allyCost,
+            friend_cost : entry.friendCost
+        }
+        result.push(mapped);
+    };
+    
+    return result;
+}
 
 export const fetchUnits = () => dispatch => {
     dispatch(requestUnits())
