@@ -8,9 +8,7 @@ import DbxUnitTable from '../components/DbxUnitTable';
 class LoadableDbxUnitTable extends Component {
 
 	componentDidMount() {
-		fetch('./rest/codex/unit').then(function(response) {
-			return response.json()
-		})
+		this.props.actions.fetchUnits();
 		const units = [
 		  {name: 'Unit', role: 'Jack', move: 1, strength: 2, speed: 3, skill: 4, armour: 5, abilities: 'abilities', groups: 'groups', stranger_cost: 30, ally_cost: 20, friend_cost: 10}
 		];
@@ -25,7 +23,7 @@ class LoadableDbxUnitTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-    source: state.units
+    source: state.codex.units
 });
 
 const mapDispatchToProps = (dispatch) => ({
