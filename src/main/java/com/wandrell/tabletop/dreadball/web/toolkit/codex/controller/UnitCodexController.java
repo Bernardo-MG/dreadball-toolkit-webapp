@@ -19,7 +19,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.http.MediaType;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +32,7 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/codex/unit")
+@RequestMapping("/rest/codex/unit")
 public class UnitCodexController {
 
     /**
@@ -62,8 +61,8 @@ public class UnitCodexController {
      * @return the view for all the affinity units
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<AffinityUnit>
-            getAllAffinityUnits(final ModelMap model) {
+    public final Iterable<AffinityUnit> getDbxUnits() {
+        // TODO: There should be a way to choose which units will be returned
         return getUnitCodexService().getAllAffinityUnits();
     }
 
