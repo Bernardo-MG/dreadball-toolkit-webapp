@@ -1,12 +1,14 @@
 import React from 'react';
-
+import { Card } from 'react-toolbox/lib/card';
 import LoadableDbxUnitTable from '../../containers/LoadableDbxUnitTable';
 
 const DbxPlayers = () => {
      return (
          <div>
             <h1>DBX players</h1>
-            <LoadableDbxUnitTable/>
+            <Card>
+                <LoadableDbxUnitTable/>
+            </Card>
          </div>
      );
 };
