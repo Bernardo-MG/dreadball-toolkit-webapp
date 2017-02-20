@@ -9,8 +9,7 @@ const UnitModel = {
   speed: {type: Number},
   skill: {type: Number},
   armor: {type: Number},
-  abilities: {type: String},
-  groups: {type: String},
+  abilities: {type: Array},
   stranger_cost: {type: Number},
   ally_cost: {type: Number},
   friend_cost: {type: Number}
