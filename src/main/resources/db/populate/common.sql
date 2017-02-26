@@ -37,7 +37,7 @@
 --                ABILITIES
 -- ****************************************
 
-INSERT INTO abilities (id, name) VALUES (1, '360_vision');
+INSERT INTO abilities (id, name) VALUES (1, 'vision_360');
 INSERT INTO abilities (id, name) VALUES (2, 'adaptable');
 INSERT INTO abilities (id, name) VALUES (3, 'a_safe_pair_of_hands');
 INSERT INTO abilities (id, name) VALUES (4, 'alert');

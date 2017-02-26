@@ -1,5 +1,6 @@
+import abilityMessages from '../i18n/ability';
 
-export const transformAffinityUnitsJson = (json) => {
+export const transformAffinityUnitsJson = (json, intl) => {
    var result = [];
    var entry;
    var mapped;
@@ -14,7 +15,7 @@ export const transformAffinityUnitsJson = (json) => {
          speed : entry.attributes.speed,
          skill : entry.attributes.skill,
          armor : entry.attributes.armor,
-         abilities : joinAbilities(entry.abilities),
+         abilities : joinAbilities(entry.abilities, intl),
          stranger_cost : entry.strangerCost,
          ally_cost : entry.allyCost,
          friend_cost : entry.friendCost
@@ -25,7 +26,7 @@ export const transformAffinityUnitsJson = (json) => {
    return result;
 }
 
-const joinAbilities = (abilities) => {
+const joinAbilities = (abilities, intl) => {
    var ability;
    var result;
    
@@ -34,7 +35,7 @@ const joinAbilities = (abilities) => {
       if(result.length>0){
          result += ', ';
       }
-      result += abilities[i].name;
+      result += intl.formatMessage(abilityMessages[abilities[i].name]);
    }
    
    return result;

@@ -7,15 +7,15 @@ export const requestUnits = () => ({
    type: types.REQUEST_UNITS
 })
 
-export const receiveUnits = (json) => ({
+export const receiveUnits = (json, intl) => ({
    type: types.RECEIVE_UNITS,
-   units: transformAffinityUnitsJson(json)
+   units: transformAffinityUnitsJson(json, intl)
 })
 
-export const fetchUnits = () => dispatch => {
+export const fetchUnits = (intl) => dispatch => {
    dispatch(requestUnits())
    
    return fetch(CODEX_AFFINITY_UNITS)
       .then(response => response.json())
-      .then(json => dispatch(receiveUnits(json)))
+      .then(json => dispatch(receiveUnits(json, intl)))
 }

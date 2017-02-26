@@ -1,6 +1,6 @@
 import React from 'react';
 import { Table } from 'react-toolbox';
-import { defineMessages, injectIntl } from 'react-intl';
+import { injectIntl } from 'react-intl';
 import unitMessages from '../i18n/unit';
 
 class DbxUnitTable extends React.Component {

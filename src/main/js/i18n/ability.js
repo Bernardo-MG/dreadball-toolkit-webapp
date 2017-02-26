@@ -1,10 +1,6 @@
 import { defineMessages } from 'react-intl';
 
 const unitMessages = defineMessages({
-   //360_vision: {
-   //   id: 'ability.360vision',
-   //   defaultMessage: '360 vision'
-   //},
    adaptable: {
       id: 'ability.adaptable',
       defaultMessage: 'Adaptable'
@@ -20,6 +16,10 @@ const unitMessages = defineMessages({
    backflip: {
       id: 'ability.backflip',
       defaultMessage: 'Backflip'
+   },
+   backstab: {
+      id: 'ability.backstab',
+      defaultMessage: 'Backstab'
    },
    blood_money: {
       id: 'ability.bloodMoney',
@@ -312,6 +312,10 @@ const unitMessages = defineMessages({
    vigour: {
       id: 'ability.vigour',
       defaultMessage: 'Vigour'
+   },
+   vision_360: {
+      id: 'ability.360vision',
+      defaultMessage: '360 vision'
    }
 });
 
