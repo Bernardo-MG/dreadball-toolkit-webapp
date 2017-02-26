@@ -1,4 +1,6 @@
 import abilityMessages from '../i18n/ability';
+import roleMessages from '../i18n/role';
+import unitNameMessages from '../i18n/unitName';
 
 export const transformAffinityUnitsJson = (json, intl) => {
    var result = [];
@@ -8,8 +10,8 @@ export const transformAffinityUnitsJson = (json, intl) => {
    for (var i=0; i<json.length; i++) {
       entry = json[i];
       mapped = {
-         name : entry.name,
-         role : entry.role,
+         name : intl.formatMessage(unitNameMessages[entry.name]),
+         role : intl.formatMessage(roleMessages[entry.role]),
          move : entry.attributes.movement,
          strength : entry.attributes.strength,
          speed : entry.attributes.speed,

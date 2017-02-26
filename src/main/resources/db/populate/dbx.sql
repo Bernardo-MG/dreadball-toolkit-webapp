@@ -75,11 +75,11 @@ INSERT INTO affinity_groups (id, name) VALUES (27, 'worker');
 
 -- Ada-Lorana
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
-    VALUES (100, 'affinity', 'ada-lorana_guard', 'ada-lorana_guard_affinity', 4, 5, 4, 3, 4, 'GUARD');
+    VALUES (100, 'affinity', 'ada_lorana_guard', 'ada_lorana_guard_affinity', 4, 5, 4, 3, 4, 'GUARD');
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
-    VALUES (101, 'affinity', 'ada-lorana_jack', 'ada-lorana_jack_affinity', 5, 5, 4, 3, 4, 'JACK');
+    VALUES (101, 'affinity', 'ada_lorana_jack', 'ada_lorana_jack_affinity', 5, 5, 4, 3, 4, 'JACK');
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
-    VALUES (102, 'affinity', 'ada-lorana_striker', 'ada-lorana_striker_affinity', 5, 5, 4, 3, 4, 'STRIKER');
+    VALUES (102, 'affinity', 'ada_lorana_striker', 'ada_lorana_striker_affinity', 5, 5, 4, 3, 4, 'STRIKER');
 
 -- Asterians
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
@@ -221,9 +221,9 @@ INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, s
 
 -- Veer-Myn
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
-    VALUES (153, 'affinity', 'veer-myn_guard', 'veer-myn_guard_affinity', 4, 6, 5, 3, 4, 'GUARD');
+    VALUES (153, 'affinity', 'veer_myn_guard', 'veer_myn_guard_affinity', 4, 6, 5, 3, 4, 'GUARD');
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)
-    VALUES (154, 'affinity', 'veer-myn_striker', 'veer-myn_striker_affinity', 5, 6, 5, 3, 4, 'STRIKER');
+    VALUES (154, 'affinity', 'veer_myn_striker', 'veer_myn_striker_affinity', 5, 6, 5, 3, 4, 'STRIKER');
 
 -- Zees
 INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position)

@@ -54,9 +54,9 @@ INSERT INTO units (id, unit_type, name, template_name, cost, armor, movement, sk
 
 -- Veer-Myn
 INSERT INTO units (id, unit_type, name, template_name, cost, armor, movement, skill, speed, strength, position, giant)
-    VALUES (6, 'simple', 'veer-myn_guard', 'veer-myn_guard', 12, 4, 6, 5, 3, 4, 'GUARD', false);
+    VALUES (6, 'simple', 'veer_myn_guard', 'veer_myn_guard', 12, 4, 6, 5, 3, 4, 'GUARD', false);
 INSERT INTO units (id, unit_type, name, template_name, cost, armor, movement, skill, speed, strength, position, giant)
-    VALUES (7, 'simple', 'veer-myn_striker', 'veer-myn_striker', 11, 5, 6, 5, 3, 4, 'STRIKER', false);
+    VALUES (7, 'simple', 'veer_myn_striker', 'veer_myn_striker', 11, 5, 6, 5, 3, 4, 'STRIKER', false);
 
 -- Forge fathers
 INSERT INTO units (id, unit_type, name, template_name, cost, armor, movement, skill, speed, strength, position, giant)
@@ -196,11 +196,11 @@ INSERT INTO units (id, unit_type, name, template_name, cost, armor, movement, sk
 
 -- Ada-Lorana
 INSERT INTO units (id, unit_type, name, template_name, cost, armor, movement, skill, speed, strength, position, giant)
-    VALUES (57, 'simple', 'ada-lorana_guard', 'ada-lorana_guard', 15, 4, 5, 4, 3, 4, 'GUARD', false);
+    VALUES (57, 'simple', 'ada_lorana_guard', 'ada_lorana_guard', 15, 4, 5, 4, 3, 4, 'GUARD', false);
 INSERT INTO units (id, unit_type, name, template_name, cost, armor, movement, skill, speed, strength, position, giant)
-    VALUES (58, 'simple', 'ada-lorana_jack', 'ada-lorana_jack', 12, 4, 5, 4, 3, 4, 'JACK', false);
+    VALUES (58, 'simple', 'ada_lorana_jack', 'ada_lorana_jack', 12, 4, 5, 4, 3, 4, 'JACK', false);
 INSERT INTO units (id, unit_type, name, template_name, cost, armor, movement, skill, speed, strength, position, giant)
-    VALUES (59, 'simple', 'ada-lorana_striker', 'ada-lorana_striker', 15, 5, 5, 4, 3, 4, 'STRIKER', false);
+    VALUES (59, 'simple', 'ada_lorana_striker', 'ada_lorana_striker', 15, 5, 5, 4, 3, 4, 'STRIKER', false);
 
 -- ------------
 -- Simple units
@@ -438,7 +438,7 @@ INSERT INTO team_rules (id, name) VALUES (2, 'boiled_down');
 
 INSERT INTO team_types (id, name) VALUES (1, 'humans_male');
 INSERT INTO team_types (id, name) VALUES (2, 'orx_goblins');
-INSERT INTO team_types (id, name) VALUES (3, 'veer-myn');
+INSERT INTO team_types (id, name) VALUES (3, 'veer_myn');
 INSERT INTO team_types (id, name) VALUES (4, 'forge_fathers');
 INSERT INTO team_types (id, name) VALUES (5, 'robots');
 INSERT INTO team_types (id, name) VALUES (6, 'zzor');
@@ -458,7 +458,7 @@ INSERT INTO team_types (id, name) VALUES (19, 'kalyshi');
 INSERT INTO team_types (id, name) VALUES (20, 'crystallans');
 INSERT INTO team_types (id, name) VALUES (21, 'tsudochans');
 INSERT INTO team_types (id, name) VALUES (22, 'koris');
-INSERT INTO team_types (id, name) VALUES (23, 'ada-lorana');
+INSERT INTO team_types (id, name) VALUES (23, 'ada_lorana');
 INSERT INTO team_types (id, name) VALUES (24, 'mutants');
 INSERT INTO team_types (id, name) VALUES (25, 'mechanite');
 
