@@ -4,20 +4,18 @@ import fetch from 'isomorphic-fetch'
 import { transformAffinityUnitsJson } from '../utils/codex'
 
 export const requestUnits = () => ({
-  type: types.REQUEST_UNITS
+   type: types.REQUEST_UNITS
 })
 
 export const receiveUnits = (json) => ({
-  type: types.RECEIVE_UNITS,
-  units: transformAffinityUnitsJson(json)
+   type: types.RECEIVE_UNITS,
+   units: transformAffinityUnitsJson(json)
 })
 
 export const fetchUnits = () => dispatch => {
-    dispatch(requestUnits())
-    
-    return fetch(CODEX_AFFINITY_UNITS)
+   dispatch(requestUnits())
+   
+   return fetch(CODEX_AFFINITY_UNITS)
       .then(response => response.json())
-      .then(json =>
-        dispatch(receiveUnits(json))
-      )
+      .then(json => dispatch(receiveUnits(json)))
 }

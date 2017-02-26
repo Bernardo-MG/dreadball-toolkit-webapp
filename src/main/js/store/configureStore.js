@@ -6,9 +6,9 @@ import dreadballApp from '../reducers'
 const middleware = [ thunk, createLogger() ]
 
 const configureStore = preloadedState => createStore(
-  dreadballApp,
-  preloadedState,
-  applyMiddleware(...middleware)
+   dreadballApp,
+   preloadedState,
+   applyMiddleware(...middleware)
 )
 
 export default configureStore
