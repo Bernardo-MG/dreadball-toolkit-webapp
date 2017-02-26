@@ -16,8 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.json;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.MessageSource;
 import org.springframework.stereotype.Component;
 
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -53,12 +51,6 @@ public final class JsonModelModule extends SimpleModule {
     private static final long serialVersionUID = 1405374344133040810L;
 
     /**
-     * Message source.
-     */
-    @Autowired
-    private MessageSource     messageSource;
-
-    /**
      * Constructs the module with the specified parameters.
      */
     public JsonModelModule() {
@@ -70,19 +62,6 @@ public final class JsonModelModule extends SimpleModule {
         super.setupModule(context);
 
         setupMixIns(context);
-
-        context.addBeanSerializerModifier(
-                new InternationalizationBeanSerializerModifier(
-                        getMessageSource()));
-    }
-
-    /**
-     * Returns the message source.
-     * 
-     * @return the message source
-     */
-    private final MessageSource getMessageSource() {
-        return messageSource;
     }
 
     /**

@@ -48,7 +48,7 @@ INSERT INTO affinity_groups (id, name) VALUES (9, 'guard');
 INSERT INTO affinity_groups (id, name) VALUES (10, 'hunter');
 INSERT INTO affinity_groups (id, name) VALUES (11, 'insectoid');
 INSERT INTO affinity_groups (id, name) VALUES (12, 'jack');
-INSERT INTO affinity_groups (id, name) VALUES (13, 'machine-mind');
+INSERT INTO affinity_groups (id, name) VALUES (13, 'machine_mind');
 INSERT INTO affinity_groups (id, name) VALUES (14, 'mr_roboto');
 INSERT INTO affinity_groups (id, name) VALUES (15, 'outcast');
 INSERT INTO affinity_groups (id, name) VALUES (16, 'pirate');
