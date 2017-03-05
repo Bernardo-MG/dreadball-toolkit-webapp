@@ -3,8 +3,8 @@ import { List, ListSubHeader, ListCheckbox } from 'react-toolbox/lib/list';
 
 const SponsorAffinities = () => {
    return (
-      <div>
-         <List selectable ripple>
+      <div className="horizontal">
+         <List selectable ripple className="horizontalChild">
             <ListSubHeader caption='list_a' />
             <ListCheckbox
                caption='affinity'
@@ -25,7 +25,7 @@ const SponsorAffinities = () => {
                caption='affinity'
                checked={false} />
          </List>
-         <List selectable ripple>
+         <List selectable ripple className="horizontalChild">
             <ListSubHeader caption='list_b' />
             <ListCheckbox
                caption='affinity'
