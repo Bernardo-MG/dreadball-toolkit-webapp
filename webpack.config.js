@@ -42,15 +42,20 @@ module.exports = {
       data : '@import "theme/style.scss";',
       includePaths : [ path.resolve(__dirname, './src/main/js') ]
    },
-   plugins : [ new ExtractTextPlugin('./target/generated-ui/style.css', {
-      allChunks : true
-   }), new webpack.optimize.OccurenceOrderPlugin(),
-         new webpack.optimize.CommonsChunkPlugin({
-            name : 'vendor',
-            filename : './target/generated-ui/vendor.bundle.js',
-            minChunks : Infinity
-         }), new webpack.HotModuleReplacementPlugin(),
-         new webpack.NoErrorsPlugin(), new webpack.DefinePlugin({
-            'process.env.NODE_ENV' : JSON.stringify('development')
-         }) ]
+   plugins : [
+      new ExtractTextPlugin('./target/generated-ui/style.css', {
+         allChunks : true
+      }),
+      new webpack.optimize.OccurenceOrderPlugin(),
+      new webpack.optimize.CommonsChunkPlugin({
+         name : 'vendor',
+         filename : './target/generated-ui/vendor.bundle.js',
+         minChunks : Infinity
+      }),
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.NoErrorsPlugin(),
+      new webpack.DefinePlugin({
+         'process.env.NODE_ENV' : JSON.stringify('development')
+      }) 
+   ]
 };
