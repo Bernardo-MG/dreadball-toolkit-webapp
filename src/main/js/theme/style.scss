@@ -1,1 +1,12 @@
 @import "~react-toolbox/lib/commons.scss";
+
+.horizontal {
+   height:100%;
+   width:100%;
+   overflow: hidden;
+}
+
+.horizontalChild {
+   float: left;
+   width:25%;
+}
