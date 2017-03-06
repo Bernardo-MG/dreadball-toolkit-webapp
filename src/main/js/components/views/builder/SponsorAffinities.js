@@ -1,12 +1,9 @@
 import React from 'react';
-import AffinityCombo from '../../../components/AffinityCombo';
+import ComboPanel from '../../../components/ComboPanel';
 
 const SponsorAffinities = () => {
    return (
-      <div className="horizontal">
-         <AffinityCombo />
-         <AffinityCombo />
-      </div>
+      <ComboPanel />
    );
 };
 
