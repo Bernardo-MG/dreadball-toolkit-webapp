@@ -85,6 +85,7 @@ public class SponsorCreationController {
 
     @GetMapping(path = "/affinities/initial",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @Deprecated
     public final Iterable<SponsorAffinityGroupAvailability>
             getInitialAffinityGroups() {
         return getDbxSponsorCreationService().getAvailableAffinityGroups();

@@ -23,34 +23,34 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.codex.UnitCodex;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.codex.AffinityGroupCodex;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 
 /**
- * Controller for the unit codex views.
+ * Controller for the affinity groups codex views.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/units")
-public class UnitCodexController {
+@RequestMapping("/rest/affinityGroups")
+public class AffinityGroupCodexController {
 
     /**
-     * Unit codex service.
+     * Affinity groups codex service.
      */
-    private final UnitCodex unitCodexService;
+    private final AffinityGroupCodex affinityGroupsCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
      * 
      * @param codex
-     *            unit codex service
+     *            affinity groups codex service
      */
-    public UnitCodexController(final UnitCodex codex) {
+    public AffinityGroupCodexController(final AffinityGroupCodex codex) {
         super();
 
-        unitCodexService = checkNotNull(codex,
-                "Received a null pointer as unit codex service");
+        affinityGroupsCodexService = checkNotNull(codex,
+                "Received a null pointer as affinity groups codex service");
     }
 
     /**
@@ -59,18 +59,17 @@ public class UnitCodexController {
      * @return the view for all the affinity units
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<AffinityUnit> getDbxUnits() {
-        // TODO: There should be a way to choose which units will be returned
-        return getUnitCodexService().getAllAffinityUnits();
+    public final Iterable<AffinityGroup> getDbxUnits() {
+        return getAffinityGroupCodex().getAllAffinityGroups();
     }
 
     /**
-     * Returns the unit codex service.
+     * Returns the affinity groups service.
      * 
-     * @return the unit codex service
+     * @return the affinity groups service
      */
-    private final UnitCodex getUnitCodexService() {
-        return unitCodexService;
+    private final AffinityGroupCodex getAffinityGroupCodex() {
+        return affinityGroupsCodexService;
     }
 
 }

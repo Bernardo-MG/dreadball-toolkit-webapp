@@ -32,6 +32,7 @@ public interface DbxSponsorBuilder {
      * 
      * @return the Sponsor affinity groups sets
      */
+    @Deprecated
     public Iterable<SponsorAffinityGroupAvailability>
             getAvailableAffinityGroups();
 

@@ -14,30 +14,22 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.test.configuration;
+package com.wandrell.tabletop.dreadball.codex;
+
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 
 /**
- * Contains configuration information for the controller URLs.
+ * Service for the affinity groups codex.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class UrlUnitCodexConfig {
+public interface AffinityGroupCodex {
 
     /**
-     * Affinity groups REST endpoint.
+     * Returns all the affinity groups.
+     * 
+     * @return all the affinity groups
      */
-    public static final String URL_AFFINITY_GROUPS = "/rest/affinityGroups";
-
-    /**
-     * Units REST endpoint.
-     */
-    public static final String URL_UNITS           = "/rest/units";
-
-    /**
-     * Default constructor to avoid initialization.
-     */
-    private UrlUnitCodexConfig() {
-        super();
-    }
+    public Iterable<AffinityGroup> getAllAffinityGroups();
 
 }

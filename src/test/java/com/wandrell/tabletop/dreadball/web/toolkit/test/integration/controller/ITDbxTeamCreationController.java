@@ -48,13 +48,13 @@ public final class ITDbxTeamCreationController
     private WebApplicationContext                 context;
 
     @Autowired
+    private RankCostCalculator                    rankCalc;
+
+    @Autowired
     private MockHttpSession                       session;
 
     @Autowired
     private TeamValorationCalculator<SponsorTeam> valCalc;
-
-    @Autowired
-    private RankCostCalculator                    rankCalc;
 
     public ITDbxTeamCreationController() {
         super();

@@ -30,20 +30,19 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.codex.UnitCodex;
-import com.wandrell.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
-import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.UnitCodexController;
+import com.wandrell.tabletop.dreadball.codex.AffinityGroupCodex;
+import com.wandrell.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.AffinityGroupCodexController;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**
- * Unit tests for {@link SponsorCreationController}, checking the results of
+ * Unit tests for {@link AffinityGroupCodexController}, checking the results of
  * REST requests.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestUnitCodexController {
+public final class TestAffinityGroupCodexController {
 
     /**
      * Mocked MVC context.
@@ -53,7 +52,7 @@ public final class TestUnitCodexController {
     /**
      * Default constructor;
      */
-    public TestUnitCodexController() {
+    public TestAffinityGroupCodexController() {
         super();
     }
 
@@ -89,20 +88,20 @@ public final class TestUnitCodexController {
      * 
      * @return a mocked controller
      */
-    private final UnitCodexController getController() {
-        final UnitCodex codex; // Mocked unit codex
-        final Collection<AffinityUnit> units;
+    private final AffinityGroupCodexController getController() {
+        final AffinityGroupCodex codex; // Mocked unit codex
+        final Collection<AffinityGroup> groups;
 
-        codex = Mockito.mock(UnitCodex.class);
+        codex = Mockito.mock(AffinityGroupCodex.class);
 
-        units = new LinkedList<AffinityUnit>();
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
+        groups = new LinkedList<AffinityGroup>();
+        groups.add(Mockito.mock(AffinityGroupMixIn.class));
+        groups.add(Mockito.mock(AffinityGroupMixIn.class));
+        groups.add(Mockito.mock(AffinityGroupMixIn.class));
 
-        Mockito.when(codex.getAllAffinityUnits()).thenReturn(units);
+        Mockito.when(codex.getAllAffinityGroups()).thenReturn(groups);
 
-        return new UnitCodexController(codex);
+        return new AffinityGroupCodexController(codex);
     }
 
     /**
@@ -111,7 +110,8 @@ public final class TestUnitCodexController {
      * @return a request builder for the form view
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlUnitCodexConfig.URL_UNITS);
+        return MockMvcRequestBuilders
+                .get(UrlUnitCodexConfig.URL_AFFINITY_GROUPS);
     }
 
 }
