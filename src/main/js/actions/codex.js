@@ -1,5 +1,5 @@
 import * as types from '../constants/ActionTypes'
-import { CODEX_AFFINITY_UNITS } from '../constants/RestUrls'
+import { AFFINITY_UNITS_REST_ENDPOINT } from '../constants/RestUrls'
 import fetch from 'isomorphic-fetch'
 import { transformAffinityUnitsJson } from '../utils/codex'
 
@@ -15,7 +15,7 @@ export const receiveUnits = (json, intl) => ({
 export const fetchUnits = (intl) => dispatch => {
    dispatch(requestUnits())
    
-   return fetch(CODEX_AFFINITY_UNITS)
+   return fetch(AFFINITY_UNITS_REST_ENDPOINT)
       .then(response => response.json())
       .then(json => dispatch(receiveUnits(json, intl)))
 }
