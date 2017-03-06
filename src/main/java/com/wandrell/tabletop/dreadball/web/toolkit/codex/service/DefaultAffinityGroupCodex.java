@@ -31,7 +31,7 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroup
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service("unitCodexService")
+@Service("affinityGroupCodex")
 public final class DefaultAffinityGroupCodex implements AffinityGroupCodex {
 
     /**
