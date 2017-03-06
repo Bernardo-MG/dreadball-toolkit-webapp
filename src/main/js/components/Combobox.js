@@ -1,7 +1,6 @@
 import React from 'react';
 import Dropdown from 'react-toolbox/lib/dropdown';
 
-
 class Combobox extends React.Component {
    state = {};
 
