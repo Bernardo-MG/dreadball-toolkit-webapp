@@ -7,5 +7,5 @@ export const transformAffinityGroupsJson = (json, intl) => {
    var entry;
    var mapped;
    
-   return result;
+   return json;
 }
