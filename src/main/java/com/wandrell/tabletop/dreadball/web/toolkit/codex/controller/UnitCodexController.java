@@ -32,7 +32,7 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/codex/unit")
+@RequestMapping("/rest/units")
 public class UnitCodexController {
 
     /**

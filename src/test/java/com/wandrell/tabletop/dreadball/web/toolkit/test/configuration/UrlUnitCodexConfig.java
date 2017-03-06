@@ -26,7 +26,7 @@ public final class UrlUnitCodexConfig {
     /**
      * Form view URL.
      */
-    public static final String URL_UNITS = "/rest/codex/unit";
+    public static final String URL_UNITS = "/rest/units";
 
     /**
      * Default constructor to avoid initialization.
