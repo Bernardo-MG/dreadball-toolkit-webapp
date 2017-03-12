@@ -5,7 +5,7 @@ import SponsorAffinities from './components/views/builder/SponsorAffinities';
 import MainLayout from './components/layout/MainLayout';
 import Home from './components/views/Home';
 
-export default <Route path="/dreadball/" component={MainLayout}>
+export default <Route path="/" component={MainLayout}>
    <IndexRoute component={Home}/>
    <Route path="/players" activeClassName="dbxPlayersLink" component={DbxPlayers}/>
    <Route path="/team/affinities" activeClassName="sponsorAffinitiesLink" component={SponsorAffinities}/>
