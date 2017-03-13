@@ -15,7 +15,7 @@ require('./theme/style.scss');
 let store = configureStore()
 
 const browserHistory = useRouterHistory(createHistory)({
-   basename: '/dreadball'
+   basename: ROUTE_BASE
 })
 const history = syncHistoryWithStore(browserHistory, store)
 
