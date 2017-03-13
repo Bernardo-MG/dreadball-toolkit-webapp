@@ -22,6 +22,7 @@ export const transformAffinityUnitsJson = (json, intl) => {
          ally_cost : entry.allyCost,
          friend_cost : entry.friendCost
       }
+      
       result.push(mapped);
    };
    

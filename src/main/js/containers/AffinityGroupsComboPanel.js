@@ -5,17 +5,6 @@ import { connect } from 'react-redux';
 import * as Actions from '../actions/dbxBuilder';
 import { injectIntl } from 'react-intl';
 
-const affinities = [
-   { value: 'affinity1', label: 'affinity1' },
-   { value: 'affinity2', label: 'affinity2' },
-   { value: 'affinity3', label: 'affinity3' },
-   { value: 'affinity4', label: 'affinity4' },
-   { value: 'affinity5', label: 'affinity5' },
-   { value: 'affinity6', label: 'affinity6' }
-];
-
-const values = [ affinities, affinities, affinities, affinities, affinities ];
-
 class AffinityGroupsComboPanel extends Component {
    
    componentDidMount() {
@@ -24,18 +13,18 @@ class AffinityGroupsComboPanel extends Component {
    
    render() {
       return (
-         <ComboPanel source={values} />
+         <ComboPanel source={this.props.source} />
       )
    }
 }
 
 const mapStateToProps = (state) => ({
-   source: state.codex.units
+   source: state.dbxBuilder.sponsorAffinityGroupAvailabilities
 });
 
 const mapDispatchToProps = (dispatch) => ({
    actions: bindActionCreators(Actions, dispatch)
-})
+});
 
 export default injectIntl(connect(
    mapStateToProps,
