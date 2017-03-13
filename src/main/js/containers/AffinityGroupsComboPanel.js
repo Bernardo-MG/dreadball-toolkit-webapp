@@ -19,7 +19,7 @@ const values = [ affinities, affinities, affinities, affinities, affinities ];
 class AffinityGroupsComboPanel extends Component {
    
    componentDidMount() {
-      this.props.actions.fetchAffinityGroups(this.props.intl);
+      this.props.actions.fetchSponsorAffinityGroupAvailabilities(this.props.intl);
    }
    
    render() {

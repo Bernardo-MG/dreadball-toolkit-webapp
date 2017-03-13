@@ -1,15 +1,15 @@
 import * as types from '../constants/ActionTypes'
 import { combineReducers } from 'redux'
 
-const affinityGroupsAsync = (state = { isFetching: false, affinityGroups: [] }, action) => {
+const sponsorAffinityGroupAvailabilitiesAsync = (state = { isFetching: false, sponsorAffinityGroupAvailabilities: [] }, action) => {
    switch (action.type) {
-      case types.REQUEST_AFFINITY_GROUPS:
+      case types.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
          return Object.assign({}, state, { isFetching: true })
-      case types.RECEIVE_AFFINITY_GROUPS:
-         return Object.assign({}, state, { isFetching: false, affinityGroups: action.affinityGroups })
+      case types.RECEIVE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
+         return Object.assign({}, state, { isFetching: false, sponsorAffinityGroupAvailabilities: action.sponsorAffinityGroupAvailabilities })
       default:
          return state
    }
 }
 
-export default affinityGroupsAsync
+export default sponsorAffinityGroupAvailabilitiesAsync
