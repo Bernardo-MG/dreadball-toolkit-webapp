@@ -2,19 +2,19 @@ import { defineMessages } from 'react-intl';
 
 const roleMessages = defineMessages({
    guard: {
-      id: 'affinity.guard',
+      id: 'role.guard',
       defaultMessage: 'Guard'
    },
    jack: {
-      id: 'ability.jack',
+      id: 'role.jack',
       defaultMessage: 'Jack'
    },
    keeper: {
-      id: 'ability.keeper',
+      id: 'role.keeper',
       defaultMessage: 'Keeper'
    },
    striker: {
-      id: 'ability.striker',
+      id: 'role.striker',
       defaultMessage: 'Striker'
    }
 });

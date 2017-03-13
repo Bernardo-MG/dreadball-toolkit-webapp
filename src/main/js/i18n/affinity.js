@@ -5,104 +5,108 @@ const affinityMessages = defineMessages({
       id: 'affinity.alien',
       defaultMessage: 'Alien'
    },
+   asterian: {
+      id: 'affinity.asterian',
+      defaultMessage: 'Asterian'
+   },
    big_picture: {
-      id: 'ability.bigPicture',
+      id: 'affinity.bigPicture',
       defaultMessage: 'Big picture'
    },
    convict: {
-      id: 'ability.convict',
+      id: 'affinity.convict',
       defaultMessage: 'Convict'
    },
    cunning: {
-      id: 'ability.cunning',
+      id: 'affinity.cunning',
       defaultMessage: 'Cunning'
    },
    dreadball: {
-      id: 'ability.dreadball',
+      id: 'affinity.dreadball',
       defaultMessage: 'Dreadball'
    },
    forge_father: {
-      id: 'ability.forgeFather',
+      id: 'affinity.forgeFather',
       defaultMessage: 'Forge father'
    },
    greedy: {
-      id: 'ability.greedy',
+      id: 'affinity.greedy',
       defaultMessage: 'Greedy'
    },
    guard: {
-      id: 'ability.guard',
+      id: 'affinity.guard',
       defaultMessage: 'Guard'
    },
    hunter: {
-      id: 'ability.hunter',
+      id: 'affinity.hunter',
       defaultMessage: 'Hunter'
    },
    insectoid: {
-      id: 'ability.insectoid',
+      id: 'affinity.insectoid',
       defaultMessage: 'Insectoid'
    },
    jack: {
-      id: 'ability.jack',
+      id: 'affinity.jack',
       defaultMessage: 'Jack'
    },
    machine_mind: {
-      id: 'ability.machineMind',
+      id: 'affinity.machineMind',
       defaultMessage: 'Machine mind'
    },
    mr_roboto: {
-      id: 'ability.mrRoboto',
+      id: 'affinity.mrRoboto',
       defaultMessage: 'Mr roboto'
    },
    outcast: {
-      id: 'ability.outcast',
+      id: 'affinity.outcast',
       defaultMessage: 'Outcast'
    },
    pirate: {
-      id: 'ability.pirate',
+      id: 'affinity.pirate',
       defaultMessage: 'Pirate'
    },
    plant: {
-      id: 'ability.plant',
+      id: 'affinity.plant',
       defaultMessage: 'Plant'
    },
    proud: {
-      id: 'ability.proud',
+      id: 'affinity.proud',
       defaultMessage: 'Proud'
    },
    psycho: {
-      id: 'ability.psycho',
+      id: 'affinity.psycho',
       defaultMessage: 'Psycho'
    },
    rebel: {
-      id: 'ability.rebel',
+      id: 'affinity.rebel',
       defaultMessage: 'Rebel'
    },
    reluctant: {
-      id: 'ability.reluctant',
+      id: 'affinity.reluctant',
       defaultMessage: 'Reluctant'
    },
    striker: {
-      id: 'ability.striker',
+      id: 'affinity.striker',
       defaultMessage: 'Striker'
    },
    tech_guys: {
-      id: 'ability.techGuys',
+      id: 'affinity.techGuys',
       defaultMessage: 'Tech guys'
    },
    vat_brothers: {
-      id: 'ability.vatBrothers',
+      id: 'affinity.vatBrothers',
       defaultMessage: 'Vat brothers'
    },
    vicious: {
-      id: 'ability.vicious',
+      id: 'affinity.vicious',
       defaultMessage: 'Vicious'
    },
    weird_science: {
-      id: 'ability.weirdScience',
+      id: 'affinity.weirdScience',
       defaultMessage: 'Weird science'
    },
    worker: {
-      id: 'ability.worker',
+      id: 'affinity.worker',
       defaultMessage: 'Worker'
    }
 });
