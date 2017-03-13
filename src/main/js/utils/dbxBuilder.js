@@ -1,6 +1,6 @@
 import abilityMessages from '../i18n/ability';
 import roleMessages from '../i18n/role';
-import unitNameMessages from '../i18n/unitName';
+import affinityMessages from '../i18n/affinity';
 
 export const transformSponsorAffinityGroupAvailabilitiesJson = (json, intl) => {
    var result = [];
@@ -9,14 +9,15 @@ export const transformSponsorAffinityGroupAvailabilitiesJson = (json, intl) => {
    
    for (var i=0; i<json.length; i++) {
       entry = json[i];
-      mapped = transformAffinityGroupsJson(entry.affinityGroups);
+      mapped = transformAffinityGroupsJson(entry.affinityGroups, intl);
       
       result.push(mapped);
    };
    
    return result;
 }
-export const transformAffinityGroupsJson = (json, intl) => {
+
+const transformAffinityGroupsJson = (json, intl) => {
    var result = [];
    var entry;
    var mapped;
@@ -24,8 +25,8 @@ export const transformAffinityGroupsJson = (json, intl) => {
    for (var i=0; i<json.length; i++) {
       entry = json[i];
       mapped = {
-         value : entry.name,
-         label : entry.name
+         label : intl.formatMessage(affinityMessages[entry.name]),
+         value : entry.name
       }
       
       result.push(mapped);
