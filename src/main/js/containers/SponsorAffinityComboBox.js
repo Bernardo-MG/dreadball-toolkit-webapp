@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react'
 import Dropdown from 'react-toolbox/lib/dropdown';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../actions/dbxBuilder';
 
-class SponsorAffinityComboBox extends React.Component {
+class SponsorAffinityComboBox extends Component {
 
    state = {};
    index;
-
-   handleChange = (value) => {
-      this.setState({value: value});
-      this.props.actions.chooseSponsorAffinity(this.state.value, this.index);
-   };
    
    constructor(props) {
       super(props);
       this.index = props.index;
       this.props.actions.chooseSponsorAffinity(this.props.source[0].value, this.index);
    }
+
+   handleChange = (value) => {
+      this.setState({value: value});
+      this.props.actions.chooseSponsorAffinity(this.state.value, this.index);
+   };
    
    render() {
       return (
