@@ -19,3 +19,9 @@ export const fetchSponsorAffinityGroupAvailabilities = (intl) => dispatch => {
       .then(response => response.json())
       .then(json => dispatch(receiveSponsorAffinityGroupAvailabilities(json, intl)))
 }
+
+export const chooseSponsorAffinity = (affinity, index) => ({
+   type: types.CHOOSE_SPONSOR_AFFINITY,
+   affinity: affinity,
+   index: index
+})

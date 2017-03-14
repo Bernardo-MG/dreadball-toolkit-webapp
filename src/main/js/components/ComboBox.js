@@ -1,7 +1,7 @@
 import React from 'react';
 import Dropdown from 'react-toolbox/lib/dropdown';
 
-class Combobox extends React.Component {
+class ComboBox extends React.Component {
    state = {};
 
    handleChange = (value) => {
@@ -21,4 +21,4 @@ class Combobox extends React.Component {
    };
 };
 
-export default Combobox;
+export default ComboBox;

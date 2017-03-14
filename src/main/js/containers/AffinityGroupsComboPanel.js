@@ -19,7 +19,7 @@ class AffinityGroupsComboPanel extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   source: state.dbxBuilder.sponsorAffinityGroupAvailabilities
+   source: state.dbxBuilder.sponsorAffinityGroupAvailabilities.availabilities
 });
 
 const mapDispatchToProps = (dispatch) => ({
