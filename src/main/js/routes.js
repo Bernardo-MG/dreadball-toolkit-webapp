@@ -8,5 +8,5 @@ import Home from './components/views/Home';
 export default <Route path="/" component={MainLayout}>
    <IndexRoute component={Home}/>
    <Route path="/players" activeClassName="dbxPlayersLink" component={DbxPlayers}/>
-   <Route path="/team/affinities" activeClassName="sponsorAffinitiesLink" component={SponsorAffinities}/>
+   <Route path="/dbx" activeClassName="dbxTeamBuilderLink" component={SponsorAffinities}/>
 </Route>

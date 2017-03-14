@@ -5,7 +5,7 @@ const MainDrawerContent = () => {
    return (
       <nav>
          <p><Link to="/players" className="dbxPlayersLink">players</Link></p>
-         <p><Link to="/team/affinities" className="sponsorAffinitiesLink">dbx_team_creation</Link></p>
+         <p><Link to="/dbx" className="dbxTeamBuilderLink">dbx_team_creation</Link></p>
       </nav>
    );
 };
