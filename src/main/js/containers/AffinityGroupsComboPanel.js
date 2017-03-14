@@ -1,9 +1,27 @@
 import React, { Component } from 'react'
-import ComboPanel from '../components/ComboPanel';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as Actions from '../actions/dbxBuilder';
 import { injectIntl } from 'react-intl';
+import SponsorAffinityComboBox from './SponsorAffinityComboBox';
+
+const ComboPanel = (props) => {
+   if (props.source) {
+      return (
+         <div>
+            {props.source.map(function(element, i) {
+               return (
+                  <SponsorAffinityComboBox index={i} key={i} source={element} />
+               );
+            })}
+         </div>
+      );
+   } else {
+      return (
+         <div/>
+      );
+   }
+};
 
 class AffinityGroupsComboPanel extends Component {
    
