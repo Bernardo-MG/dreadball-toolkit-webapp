@@ -6,11 +6,7 @@ class DbxTeamBuilder extends Component {
 
    state = { affinitiesChosen : false };
    
-   constructor(props) {
-      super(props);
-   }
-   
-   choosedAffinities = () => {
+   finishedAffinities = () => {
       this.setState({ affinitiesChosen : true} );
    };
 
@@ -18,9 +14,9 @@ class DbxTeamBuilder extends Component {
       let view = null;
       
       if(!this.state.affinitiesChosen) { 
-         view = <SponsorAffinitiesView onClick={ this.choosedAffinities } />;
+         view = <SponsorAffinitiesView onClick={ this.finishedAffinities } />;
       } else {
-         view = <SponsorTeamView />;
+         view = <SponsorTeamView source={this.props.source} />;
       }
       
       return (
