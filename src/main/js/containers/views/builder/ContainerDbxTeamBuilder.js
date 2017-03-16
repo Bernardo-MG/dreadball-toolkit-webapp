@@ -1,11 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import DbxTeamBuilder from '../../../components/views/builder/DbxTeamBuilder';
+import { bindActionCreators } from 'redux';
+import * as Actions from '../../../actions/dbxBuilder';
 
-const ContainerDbxTeamBuilder = (props) => {
-   return (
-      <DbxTeamBuilder source={props.source}/>
-   );
+class ContainerDbxTeamBuilder extends Component {
+   
+   constructor(props) {
+      super(props);
+      this.props.actions.beginDbxTeamBuilding();
+   }
+   
+   render() {
+      return (
+         <DbxTeamBuilder source={this.props.source}/>
+      );
+   };
 };
 
 const mapStateToProps = (state) => ({
@@ -13,6 +23,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
+   actions: bindActionCreators(Actions, dispatch)
 });
 
 export default connect(

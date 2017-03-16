@@ -20,6 +20,10 @@ export const fetchSponsorAffinityGroupAvailabilities = (intl) => dispatch => {
       .then(json => dispatch(receiveSponsorAffinityGroupAvailabilities(json, intl)))
 }
 
+export const beginDbxTeamBuilding = () => ({
+   type: types.BEGIN_DBX_TEAM_BUILDING
+})
+
 export const chooseSponsorAffinity = (affinity, index) => ({
    type: types.CHOOSE_SPONSOR_AFFINITY,
    affinity: affinity,
