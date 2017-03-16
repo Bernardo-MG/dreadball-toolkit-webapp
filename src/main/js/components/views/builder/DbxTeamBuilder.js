@@ -1,21 +1,6 @@
 import React, { Component } from 'react'
-import { Button } from 'react-toolbox/lib/button';
-import AffinityGroupsComboPanel from '../../../containers/AffinityGroupsComboPanel';
-
-const SponsorAffinitiesView = (props) => {
-   return (
-      <div>
-         <AffinityGroupsComboPanel />
-         <Button onClick={ props.onClick } label='accept' raised primary />
-      </div>
-   );
-};
-
-const SponsorTeamView = () => {
-   return (
-      <div />
-   );
-};
+import SponsorAffinitiesView from './SponsorAffinitiesView';
+import SponsorTeamView from './SponsorTeamView';
 
 class DbxTeamBuilder extends Component {
 
