@@ -4,16 +4,18 @@ import { Button } from 'react-toolbox/lib/button';
 import SponsorAffinitiesLine from '../../../containers/SponsorAffinitiesLine';
 
 const SponsorTeamView = (props) => {
-   var affinities;
+   let builder;
+   let affinities;
    
-   affinities = props.source.sponsorChosenAffinities.join(", ");
+   builder = props.source;
+   affinities = builder.sponsorChosenAffinities.join(", ");
    
    return (
       <section>
          <Input type='text' label='sponsor_name' name='name' maxLength={16} />
          <p>chosen_affinities: {affinities}</p>
          <Button label='additional_affinity' raised primary />
-         <p>sponsor_rank: </p>
+         <p>sponsor_rank: {builder.sponsor.rank}</p>
       </section>
    );
 };

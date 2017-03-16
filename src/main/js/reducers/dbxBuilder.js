@@ -29,9 +29,21 @@ const sponsorChosenAffinities = (state = [], action) => {
    }
 }
 
+const sponsor = (state = { rank : 0 }, action) => {
+   switch (action.type) {
+      case types.BEGIN_DBX_TEAM_BUILDING:
+         return {
+            rank : 0
+         }
+      default:
+         return state
+   }
+}
+
 const dbxBuilderReducer = combineReducers({
   sponsorAffinityGroupAvailabilities,
-  sponsorChosenAffinities
+  sponsorChosenAffinities,
+  sponsor
 })
 
 export default dbxBuilderReducer
