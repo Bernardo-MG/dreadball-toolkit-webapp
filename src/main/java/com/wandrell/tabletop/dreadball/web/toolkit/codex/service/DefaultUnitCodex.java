@@ -16,8 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,7 +52,7 @@ public final class DefaultUnitCodex implements UnitCodex {
         final Collection<AffinityUnit> units;
 
         // TODO: There may be a better way to do this
-        units = new LinkedList<AffinityUnit>();
+        units = new ArrayList<>();
         for (final AffinityUnit unit : getAffinityUnitRepository().findAll()) {
             units.add(unit);
         }

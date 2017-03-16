@@ -1,8 +1,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -34,7 +34,7 @@ public class DefaultSponsorAffinityGroupAvailabilityCodex
         final Collection<SponsorAffinityGroupAvailability> groups;
 
         // TODO: There may be a better way to do this
-        groups = new LinkedList<SponsorAffinityGroupAvailability>();
+        groups = new ArrayList<>();
         for (final SponsorAffinityGroupAvailability group : getSponsorAffinityGroupAvailabilityRepository()
                 .findAll()) {
             groups.add(group);

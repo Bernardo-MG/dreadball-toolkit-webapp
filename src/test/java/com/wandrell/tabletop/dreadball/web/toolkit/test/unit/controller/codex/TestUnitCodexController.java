@@ -16,8 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.codex;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.hamcrest.Matchers;
 import org.mockito.Mockito;
@@ -95,7 +95,7 @@ public final class TestUnitCodexController {
 
         codex = Mockito.mock(UnitCodex.class);
 
-        units = new LinkedList<AffinityUnit>();
+        units = new ArrayList<>();
         units.add(Mockito.mock(AffinityUnitMixIn.class));
         units.add(Mockito.mock(AffinityUnitMixIn.class));
         units.add(Mockito.mock(AffinityUnitMixIn.class));

@@ -20,7 +20,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -138,7 +137,7 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
         sponsor.setRank(getInitialRank());
 
         // Loads affinities
-        affinities = new LinkedList<String>();
+        affinities = new ArrayList<>();
         if (form.getAffinityA() != null) {
             affinities.add(form.getAffinityA());
         }

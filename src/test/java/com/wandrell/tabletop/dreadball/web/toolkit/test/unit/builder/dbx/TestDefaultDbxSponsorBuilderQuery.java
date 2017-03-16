@@ -16,8 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.builder.dbx;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.mockito.Matchers;
 import org.mockito.Mockito;
@@ -76,7 +76,7 @@ public final class TestDefaultDbxSponsorBuilderQuery {
         // The actual contents of affinities does not matter
         // This is because the test data is received through the mocked
         // dependencies
-        affinities = new LinkedList<AffinityGroup>();
+        affinities = new ArrayList<>();
 
         // Calls the method to test
         units = builder.getAvailableUnits(affinities);
@@ -107,7 +107,7 @@ public final class TestDefaultDbxSponsorBuilderQuery {
         unitRepo = Mockito.mock(AffinityUnitRepository.class);
 
         // Only the number of units matters
-        units = new LinkedList<PersistentAffinityUnit>();
+        units = new ArrayList<>();
         units.add(new PersistentAffinityUnit());
         units.add(new PersistentAffinityUnit());
         units.add(new PersistentAffinityUnit());

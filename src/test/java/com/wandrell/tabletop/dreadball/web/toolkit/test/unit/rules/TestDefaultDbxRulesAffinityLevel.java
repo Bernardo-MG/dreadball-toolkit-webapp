@@ -16,8 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.rules;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.mockito.Mockito;
 import org.testng.Assert;
@@ -61,8 +61,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
         // Mocks sponsor and unit
         unit = Mockito.mock(AffinityUnit.class);
 
-        aff = dbxTeamBuilderService.getAffinityLevel(unit,
-                new LinkedList<AffinityGroup>());
+        aff = dbxTeamBuilderService.getAffinityLevel(unit, new ArrayList<>());
 
         Assert.assertEquals(AffinityLevel.STRANGER, aff);
     }
@@ -83,8 +82,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
         affs = getAffinities();
         Mockito.when(unit.getAffinityGroups()).thenReturn(affs);
 
-        aff = dbxTeamBuilderService.getAffinityLevel(unit,
-                new LinkedList<AffinityGroup>());
+        aff = dbxTeamBuilderService.getAffinityLevel(unit, new ArrayList<>());
 
         Assert.assertEquals(AffinityLevel.STRANGER, aff);
     }
@@ -123,7 +121,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
         Mockito.when(unit.getAffinityGroups()).thenReturn(unitAffs);
 
         // Mocks sponsor affinities
-        spnsAffs = new LinkedList<AffinityGroup>();
+        spnsAffs = new ArrayList<>();
         spnsAffs.add(unitAffs.iterator().next());
 
         aff = dbxTeamBuilderService.getAffinityLevel(unit, spnsAffs);
@@ -163,7 +161,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
         final AffinityGroup aff2; // Second affinity
         final AffinityGroup aff3; // Third affinity
 
-        affs = new LinkedList<AffinityGroup>();
+        affs = new ArrayList<>();
         aff1 = Mockito.mock(AffinityGroup.class);
         Mockito.when(aff1.getName()).thenReturn("aff1");
 

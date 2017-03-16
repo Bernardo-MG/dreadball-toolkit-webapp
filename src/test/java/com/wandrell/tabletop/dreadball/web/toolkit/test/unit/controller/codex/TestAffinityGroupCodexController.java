@@ -16,8 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.controller.codex;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.hamcrest.Matchers;
 import org.mockito.Mockito;
@@ -94,7 +94,7 @@ public final class TestAffinityGroupCodexController {
 
         codex = Mockito.mock(AffinityGroupCodex.class);
 
-        groups = new LinkedList<AffinityGroup>();
+        groups = new ArrayList<>();
         groups.add(Mockito.mock(AffinityGroupMixIn.class));
         groups.add(Mockito.mock(AffinityGroupMixIn.class));
         groups.add(Mockito.mock(AffinityGroupMixIn.class));

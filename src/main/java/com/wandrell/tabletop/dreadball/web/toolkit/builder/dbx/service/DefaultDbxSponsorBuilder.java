@@ -20,7 +20,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -113,7 +112,7 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
             getAvailableAffinityGroups() {
         final Collection<SponsorAffinityGroupAvailability> affs;
 
-        affs = new LinkedList<SponsorAffinityGroupAvailability>();
+        affs = new ArrayList<>();
         for (final PersistentSponsorAffinityGroupAvailability aff : getSponsorAffinityGroupAvailabilityRepository()
                 .findAll()) {
             // A new object is created to completely detach from the database
@@ -136,7 +135,7 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
         filtered = getUnitsFilteredByAffinities(affinities);
 
         // The received units are adapted and configured
-        units = new LinkedList<Unit>();
+        units = new ArrayList<>();
         for (final AffinityUnit affUnit : filtered) {
             units.add(generateUnit(affUnit, affinities));
         }

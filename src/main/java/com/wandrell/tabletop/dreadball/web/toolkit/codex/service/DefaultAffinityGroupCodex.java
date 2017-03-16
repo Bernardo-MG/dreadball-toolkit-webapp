@@ -16,8 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.LinkedList;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -52,7 +52,7 @@ public final class DefaultAffinityGroupCodex implements AffinityGroupCodex {
         final Collection<AffinityGroup> groups;
 
         // TODO: There may be a better way to do this
-        groups = new LinkedList<AffinityGroup>();
+        groups = new ArrayList<>();
         for (final AffinityGroup group : getAffinityGroupRepository()
                 .findAll()) {
             groups.add(group);
