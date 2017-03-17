@@ -20,6 +20,8 @@ const SponsorTeamView = (props) => {
          <StatefulInput type='number' label='special_move_card' maxLength={3} />
          <StatefulInput type='number' label='nasty_surprise_card' maxLength={3} />
          <StatefulInput type='number' label='wager' maxLength={3} />
+         <StatefulInput type='number' label='medibot' maxLength={3} />
+         <StatefulInput type='number' label='cheerleaders' maxLength={3} />
       </section>
    );
 };
