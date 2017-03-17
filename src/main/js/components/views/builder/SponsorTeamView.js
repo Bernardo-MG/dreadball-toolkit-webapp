@@ -1,7 +1,6 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Input from 'react-toolbox/lib/input';
 import { Button } from 'react-toolbox/lib/button';
-import SponsorAffinitiesLine from '../../../containers/SponsorAffinitiesLine';
 
 const SponsorTeamView = (props) => {
    let builder;
