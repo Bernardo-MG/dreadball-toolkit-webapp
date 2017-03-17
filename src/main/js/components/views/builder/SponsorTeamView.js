@@ -12,10 +12,15 @@ const SponsorTeamView = (props) => {
    
    return (
       <section>
-         <Input type='text' label='sponsor_name' name='name' maxLength={16} />
+         <Input type='text' label='sponsor_name' maxLength={16} />
          <p>chosen_affinities: {affinities}</p>
-         <Button label='additional_affinity' raised primary />
          <p>sponsor_rank: {builder.sponsor.rank}</p>
+         <h1>spend_rank</h1>
+         <Button label='additional_affinity' raised primary />
+         <Input type='number' label='coaching_dice' maxLength={3} />
+         <Input type='number' label='special_move_card' maxLength={3} />
+         <Input type='number' label='nasty_surprise_card' maxLength={3} />
+         <Input type='number' label='wager' maxLength={3} />
       </section>
    );
 };
