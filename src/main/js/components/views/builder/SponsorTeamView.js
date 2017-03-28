@@ -1,5 +1,6 @@
 import React from 'react';
 import StatefulInput from '../../StatefulInput';
+import TeamBuilderUnitTable from '../../TeamBuilderUnitTable';
 import { Button } from 'react-toolbox/lib/button';
 
 const SponsorTeamView = (props) => {
@@ -22,6 +23,9 @@ const SponsorTeamView = (props) => {
          <StatefulInput type='number' label='wager' maxLength={3} />
          <StatefulInput type='number' label='medibot' maxLength={3} />
          <StatefulInput type='number' label='cheerleaders' maxLength={3} />
+         <h1>players</h1>
+         <TeamBuilderUnitTable/>
+         <Button label='add_player' raised primary />
       </section>
    );
 };
