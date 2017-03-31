@@ -20,7 +20,8 @@ export const transformAffinityUnitsJson = (json, intl) => {
          abilities : joinAbilities(entry.abilities, intl),
          stranger_cost : entry.strangerCost,
          ally_cost : entry.allyCost,
-         friend_cost : entry.friendCost
+         friend_cost : entry.friendCost,
+         cost : entry.cost
       }
       
       result.push(mapped);

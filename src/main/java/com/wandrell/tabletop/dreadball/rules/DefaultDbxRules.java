@@ -38,7 +38,7 @@ public class DefaultDbxRules implements DbxRules {
 
     @Override
     public final AffinityLevel getAffinityLevel(final AffinityUnit unit,
-            final Iterable<AffinityGroup> affinities) {
+            final Iterable<? extends AffinityGroup> affinities) {
         final AffinityLevel level; // Affinity level
         Integer coincidences;      // Affinity coincidences
 

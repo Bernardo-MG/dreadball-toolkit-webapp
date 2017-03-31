@@ -58,30 +58,6 @@ public interface DbxModelFactory {
     public SponsorTeam getSponsorTeam(final Sponsor sponsor);
 
     /**
-     * Creates a Unit from the specified arguments.
-     * 
-     * @param nameTemplate
-     *            the unit's base template name
-     * @param cost
-     *            cost of the unit
-     * @param role
-     *            team position role of the unit
-     * @param attributes
-     *            unit attributes
-     * @param abilities
-     *            unit abilities
-     * @param mvp
-     *            flag indicating if this is a MVP
-     * @param giant
-     *            flag indicating if this is a giant
-     * @return a new Unit
-     */
-    public Unit getUnit(final String nameTemplate, final Integer cost,
-            final Role role, final Attributes attributes,
-            final Collection<Ability> abilities, final Boolean mvp,
-            final Boolean giant);
-
-    /**
      * Returns the unit created from the specified template and set up for the
      * correct affinity level.
      * <p>
@@ -96,5 +72,31 @@ public interface DbxModelFactory {
      */
     public Unit getUnit(final String templateName,
             final Iterable<AffinityGroup> affinities);
+
+    /**
+     * Creates a Unit from the specified arguments.
+     * 
+     * @param nameTemplate
+     *            the unit's base template name
+     * @param name
+     *            name given to the unit
+     * @param cost
+     *            cost of the unit
+     * @param role
+     *            team position role of the unit
+     * @param attributes
+     *            unit attributes
+     * @param abilities
+     *            unit abilities
+     * @param mvp
+     *            flag indicating if this is a MVP
+     * @param giant
+     *            flag indicating if this is a giant
+     * @return a new Unit
+     */
+    public Unit getUnit(final String nameTemplate, final String name,
+            final Integer cost, final Role role, final Attributes attributes,
+            final Collection<Ability> abilities, final Boolean mvp,
+            final Boolean giant);
 
 }

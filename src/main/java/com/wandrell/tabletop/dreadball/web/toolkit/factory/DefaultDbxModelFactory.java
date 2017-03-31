@@ -201,27 +201,6 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
     }
 
     @Override
-    public final Unit getUnit(final String nameTemplate, final Integer cost,
-            final Role role, final Attributes attributes,
-            final Collection<Ability> abilities, final Boolean mvp,
-            final Boolean giant) {
-        final DefaultUnit unit;
-
-        checkNotNull(nameTemplate, "Received a null pointer as template name");
-        checkNotNull(cost, "Received a null pointer as cost");
-        checkNotNull(role, "Received a null pointer as role");
-        checkNotNull(abilities, "Received a null pointer as abilities");
-        checkNotNull(mvp, "Received a null pointer as mvp flag");
-        checkNotNull(giant, "Received a null pointer as giant flag");
-
-        unit = new DefaultUnit(nameTemplate, cost, role, attributes, abilities,
-                mvp, giant);
-        unit.setName(nameTemplate);
-
-        return unit;
-    }
-
-    @Override
     public final Unit getUnit(final String templateName,
             final Iterable<AffinityGroup> affinities) {
         final AffinityUnit affUnit;  // Unit from the repository
@@ -239,12 +218,34 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
             affinityLevel = getDbxRules().getAffinityLevel(affUnit, affinities);
             cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
 
-            unit = getUnit(affUnit.getTemplateName(), cost, affUnit.getRole(),
-                    affUnit.getAttributes(), affUnit.getAbilities(),
-                    affUnit.getMvp(), affUnit.getGiant());
+            unit = getUnit(affUnit.getTemplateName(), affUnit.getName(), cost,
+                    affUnit.getRole(), affUnit.getAttributes(),
+                    affUnit.getAbilities(), affUnit.getMvp(),
+                    affUnit.getGiant());
         } else {
             unit = null;
         }
+
+        return unit;
+    }
+
+    @Override
+    public final Unit getUnit(final String nameTemplate, final String name,
+            final Integer cost, final Role role, final Attributes attributes,
+            final Collection<Ability> abilities, final Boolean mvp,
+            final Boolean giant) {
+        final DefaultUnit unit;
+
+        checkNotNull(nameTemplate, "Received a null pointer as template name");
+        checkNotNull(cost, "Received a null pointer as cost");
+        checkNotNull(role, "Received a null pointer as role");
+        checkNotNull(abilities, "Received a null pointer as abilities");
+        checkNotNull(mvp, "Received a null pointer as mvp flag");
+        checkNotNull(giant, "Received a null pointer as giant flag");
+
+        unit = new DefaultUnit(nameTemplate, cost, role, attributes, abilities,
+                mvp, giant);
+        unit.setName(name);
 
         return unit;
     }

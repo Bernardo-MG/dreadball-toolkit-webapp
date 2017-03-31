@@ -154,9 +154,10 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
 
         cost = getUnitCost(affUnit, affinities);
 
-        return getDbxModelFactory().getUnit(affUnit.getTemplateName(), cost,
-                affUnit.getRole(), affUnit.getAttributes(),
-                affUnit.getAbilities(), affUnit.getMvp(), affUnit.getGiant());
+        return getDbxModelFactory().getUnit(affUnit.getTemplateName(),
+                affUnit.getName(), cost, affUnit.getRole(),
+                affUnit.getAttributes(), affUnit.getAbilities(),
+                affUnit.getMvp(), affUnit.getGiant());
     }
 
     /**

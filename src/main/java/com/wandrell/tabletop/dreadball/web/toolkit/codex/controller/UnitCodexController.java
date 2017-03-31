@@ -18,13 +18,17 @@ package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
+
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.codex.UnitCodex;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
  * Controller for the unit codex views.
@@ -59,9 +63,18 @@ public class UnitCodexController {
      * @return the view for all the affinity units
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<AffinityUnit> getDbxUnits() {
-        // TODO: There should be a way to choose which units will be returned
-        return getUnitCodexService().getAllAffinityUnits();
+    public final Iterable<? extends Unit> getDbxUnits(@RequestParam(
+            value = "affinities", required = false,
+            defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities) {
+        final Iterable<? extends Unit> units;
+
+        if (affinities.isEmpty()) {
+            units = getUnitCodexService().getAllAffinityUnits();
+        } else {
+            units = getUnitCodexService().getAllAffinityUnits(affinities);
+        }
+
+        return units;
     }
 
     /**

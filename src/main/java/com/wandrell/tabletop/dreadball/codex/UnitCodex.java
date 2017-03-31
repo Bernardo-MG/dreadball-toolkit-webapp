@@ -16,7 +16,9 @@
 
 package com.wandrell.tabletop.dreadball.codex;
 
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
  * Service for the units codex.
@@ -31,5 +33,19 @@ public interface UnitCodex {
      * @return all the affinity units
      */
     public Iterable<AffinityUnit> getAllAffinityUnits();
+
+    /**
+     * Returns all the affinity units for the specified affinity groups.
+     * <p>
+     * Units which hate any of the affinities won't be returned, for all the
+     * others the final cost will be calculated and set into the returned
+     * object.
+     * 
+     * @param affinities
+     *            affinities for filtering
+     * @return the units available for the affinities
+     */
+    public Iterable<Unit> getAllAffinityUnits(
+            final Iterable<? extends AffinityGroup> affinities);
 
 }

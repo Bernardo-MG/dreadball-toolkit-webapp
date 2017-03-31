@@ -43,6 +43,7 @@ public interface DbxSponsorBuilder {
      *            sponsor affinities
      * @return the units available to the Sponsor
      */
+    @Deprecated
     public Iterable<Unit>
             getAvailableUnits(final Iterable<AffinityGroup> affinities);
 

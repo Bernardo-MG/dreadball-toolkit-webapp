@@ -40,7 +40,7 @@ public interface DbxRules {
      * @return the affinity level between the Sponsor and the unit
      */
     public AffinityLevel getAffinityLevel(final AffinityUnit unit,
-            final Iterable<AffinityGroup> affinities);
+            final Iterable<? extends AffinityGroup> affinities);
 
     /**
      * Returns the unit cost.

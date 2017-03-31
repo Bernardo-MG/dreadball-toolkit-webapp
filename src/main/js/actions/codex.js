@@ -12,10 +12,18 @@ export const receiveUnits = (json, intl) => ({
    units: transformAffinityUnitsJson(json, intl)
 })
 
-export const fetchUnits = (intl) => dispatch => {
+export const fetchUnits = (intl, affinities) => dispatch => {
+   var url;
+   
    dispatch(requestUnits())
    
-   return fetch(AFFINITY_UNITS_REST_ENDPOINT)
+   url = AFFINITY_UNITS_REST_ENDPOINT;
+   
+   if((affinities) && (affinities.length)){
+      url += "?affinities=" + affinities.join();
+   }
+   
+   return fetch(url)
       .then(response => response.json())
       .then(json => dispatch(receiveUnits(json, intl)))
 }

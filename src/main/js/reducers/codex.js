@@ -1,5 +1,4 @@
 import * as types from '../constants/ActionTypes'
-import { combineReducers } from 'redux'
 
 const unitsAsync = (state = { isFetching: false, units: [] }, action) => {
    switch (action.type) {

@@ -181,7 +181,7 @@ public final class TestDefaultDbxSponsorBuilderQuery {
 
             @Override
             public final Unit getUnit(final String nameTemplate,
-                    final Integer cost, final Role role,
+                    final String name, final Integer cost, final Role role,
                     final Attributes attributes,
                     final Collection<Ability> abilities, final Boolean mvp,
                     final Boolean giant) {

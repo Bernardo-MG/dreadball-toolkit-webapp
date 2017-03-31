@@ -1,6 +1,7 @@
 import React from 'react';
 import StatefulInput from '../../StatefulInput';
 import TeamBuilderUnitTable from '../../TeamBuilderUnitTable';
+import LoadableTeamBuilderUnitTable from '../../../containers/LoadableTeamBuilderUnitTable';
 import { Button, IconButton } from 'react-toolbox/lib/button';
 import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
 
@@ -54,7 +55,7 @@ class SponsorTeamView extends React.Component {
             <Sidebar pinned={ this.state.sidebarPinned } width={ 5 }>
                <div><IconButton icon='close' onClick={ this.toggleSidebar }/></div>
                <div>
-                  <TeamBuilderUnitTable/>
+                  <LoadableTeamBuilderUnitTable/>
                </div>
             </Sidebar>
          </Layout>
