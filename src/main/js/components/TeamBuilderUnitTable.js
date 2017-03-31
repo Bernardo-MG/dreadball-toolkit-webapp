@@ -18,7 +18,7 @@ class TeamBuilderUnitTable extends React.Component {
          skill: {type: Number, title: props.intl.formatMessage(unitMessages.skill)},
          armor: {type: Number, title: props.intl.formatMessage(unitMessages.armor)},
          abilities: {type: String, title: props.intl.formatMessage(unitMessages.abilities)},
-         cost: {type: Number, title: props.intl.formatMessage(unitMessages.stranger_cost)}
+         cost: {type: Number, title: props.intl.formatMessage(unitMessages.cost)}
       };
    }  
    

@@ -13,6 +13,10 @@ const unitMessages = defineMessages({
       id: 'unit.armor',
       defaultMessage: 'Armor'
    },
+   cost: {
+      id: 'unit.cost',
+      defaultMessage: 'Cost'
+   },
    friend_cost: {
       id: 'unit.cost.friend',
       defaultMessage: 'Friend cost'

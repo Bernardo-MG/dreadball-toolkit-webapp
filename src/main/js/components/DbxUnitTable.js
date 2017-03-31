@@ -21,7 +21,7 @@ class DbxUnitTable extends React.Component {
          ally_cost: {type: Number, title: props.intl.formatMessage(unitMessages.ally_cost)},
          friend_cost: {type: Number, title: props.intl.formatMessage(unitMessages.friend_cost)}
       };
-   }  
+   }
    
    render() {
       return (
