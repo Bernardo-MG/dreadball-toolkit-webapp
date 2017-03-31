@@ -34,13 +34,11 @@ const joinAbilities = (abilities, intl) => {
    var ability;
    var result;
    
-   result = '';
+   result = [];
    for (var i=0; i<abilities.length; i++) {
-      if(result.length>0){
-         result += ', ';
-      }
-      result += intl.formatMessage(abilityMessages[abilities[i].name]);
+      ability = abilityMessages[abilities[i].name];
+      result.push(intl.formatMessage(ability));
    }
    
-   return result;
+   return result.join(', ');
 }
