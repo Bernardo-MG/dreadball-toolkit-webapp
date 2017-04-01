@@ -4,13 +4,19 @@ import TeamBuilderUnitTable from '../../TeamBuilderUnitTable';
 import LoadableTeamBuilderUnitTable from '../../../containers/LoadableTeamBuilderUnitTable';
 import { Button, IconButton } from 'react-toolbox/lib/button';
 import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
+import { Card, CardActions } from 'react-toolbox/lib/card';
+import Dialog from 'react-toolbox/lib/dialog';
 
 class SponsorTeamView extends React.Component {
    state = {
-      sidebarPinned: false,
+      showPlayerOptions: false,
       builder: {},
       affinities: [],
    };
+   
+   dialogActions = [
+      { label: "close", onClick: this.togglePlayerOptions }
+   ];
    
    constructor(props) {
       super(props);
@@ -26,8 +32,8 @@ class SponsorTeamView extends React.Component {
       this.setState({ drawerPinned: !this.state.drawerPinned });
    }
    
-   toggleSidebar = () => {
-      this.setState({ sidebarPinned: !this.state.sidebarPinned });
+   togglePlayerOptions = () => {
+      this.setState({ showPlayerOptions: !this.state.showPlayerOptions });
    };
 
    render() {
@@ -47,17 +53,22 @@ class SponsorTeamView extends React.Component {
                   <StatefulInput type='number' label='medibot' maxLength={3} />
                   <StatefulInput type='number' label='cheerleaders' maxLength={3} />
                   <h1>players</h1>
-                  <TeamBuilderUnitTable/>
-                  <Button label='add_player' raised primary />
-                  <Button label='Show sidebar' onClick={this.toggleSidebar} />
+                  <Card>
+                     <TeamBuilderUnitTable/>
+                     <CardActions>
+                        <Button label='add_player' onClick={this.togglePlayerOptions} />
+                     </CardActions>
+                  </Card>
+                  <Dialog
+                     actions={this.dialogActions}
+                     active={this.state.showPlayerOptions}
+                     onEscKeyDown={this.togglePlayerOptions}
+                     onOverlayClick={this.togglePlayerOptions}
+                     title='add_player'>
+                     <LoadableTeamBuilderUnitTable/>
+                  </Dialog>
                </div>
             </Panel>
-            <Sidebar pinned={ this.state.sidebarPinned } width={ 5 }>
-               <div><IconButton icon='close' onClick={ this.toggleSidebar }/></div>
-               <div>
-                  <LoadableTeamBuilderUnitTable/>
-               </div>
-            </Sidebar>
          </Layout>
       );
    }
