@@ -14,10 +14,6 @@ class SponsorTeamView extends React.Component {
       affinities: [],
    };
    
-   dialogActions = [
-      { label: "close", onClick: this.togglePlayerOptions }
-   ];
-   
    constructor(props) {
       super(props);
       this.state.builder = props.source;
@@ -35,6 +31,10 @@ class SponsorTeamView extends React.Component {
    togglePlayerOptions = () => {
       this.setState({ showPlayerOptions: !this.state.showPlayerOptions });
    };
+   
+   dialogActions = [
+      { label: "close", onClick: this.togglePlayerOptions }
+   ];
 
    render() {
       return (
