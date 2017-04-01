@@ -66,10 +66,29 @@ public final class TestUnitCodexController {
     }
 
     /**
-     * Tests that a get request returns the expected data.
+     * Tests getting the units with affinities returns the expected results.
      */
     @Test
-    public final void testGet_ExpectedResults() throws Exception {
+    public final void testGet_Affinities_ExpectedResults() throws Exception {
+        final ResultActions result; // Request result
+
+        // TODO: Add a test ensuring that the controller initializes the list
+
+        result = mockMvc.perform(getGetRequest("affinity"));
+
+        // The operation was accepted
+        result.andExpect(MockMvcResultMatchers.status().isOk());
+
+        // The response model contains the expected attributes
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
+    }
+
+    /**
+     * Tests getting the units with no affinities returns the expected results.
+     */
+    @Test
+    public final void testGet_NoAffinities_ExpectedResults() throws Exception {
         final ResultActions result; // Request result
 
         result = mockMvc.perform(getGetRequest());
@@ -89,6 +108,7 @@ public final class TestUnitCodexController {
      * 
      * @return a mocked controller
      */
+    @SuppressWarnings("unchecked")
     private final UnitCodexController getController() {
         final UnitCodex codex; // Mocked unit codex
         final Collection<AffinityUnit> units;
@@ -101,6 +121,8 @@ public final class TestUnitCodexController {
         units.add(Mockito.mock(AffinityUnitMixIn.class));
 
         Mockito.when(codex.getAllAffinityUnits()).thenReturn(units);
+        Mockito.when(codex.getAllAffinityUnits(Mockito.any(Iterable.class)))
+                .thenReturn(units);
 
         return new UnitCodexController(codex);
     }
@@ -112,6 +134,16 @@ public final class TestUnitCodexController {
      */
     private final RequestBuilder getGetRequest() {
         return MockMvcRequestBuilders.get(UrlUnitCodexConfig.URL_UNITS);
+    }
+
+    /**
+     * Returns a request builder for getting the tested form view.
+     * 
+     * @return a request builder for the form view
+     */
+    private final RequestBuilder getGetRequest(final String affinity) {
+        return MockMvcRequestBuilders
+                .get(UrlUnitCodexConfig.URL_UNITS + "?affinities=" + affinity);
     }
 
 }
