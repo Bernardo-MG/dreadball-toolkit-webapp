@@ -25,7 +25,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -33,7 +32,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
@@ -81,14 +79,6 @@ public class SponsorCreationController {
                 "Received a null pointer as sponsor creation service");
         dbxModelFact = checkNotNull(modelFact,
                 "Received a null pointer as model factory");
-    }
-
-    @GetMapping(path = "/affinities/initial",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    @Deprecated
-    public final Iterable<SponsorAffinityGroupAvailability>
-            getInitialAffinityGroups() {
-        return getDbxSponsorCreationService().getAvailableAffinityGroups();
     }
 
     @PostMapping(path = "/sponsor", consumes = MediaType.APPLICATION_JSON_VALUE,

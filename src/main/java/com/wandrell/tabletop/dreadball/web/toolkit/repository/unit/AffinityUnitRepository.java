@@ -16,6 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.repository.unit;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -39,8 +41,9 @@ public interface AffinityUnitRepository
      * @return all the units not hating any of the affinities
      */
     @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
-    public Iterable<PersistentAffinityUnit> findAllFilteredByHatedAffinities(
-            @Param("affinities") final Iterable<String> affinities);
+    public Page<PersistentAffinityUnit> findAllFilteredByHatedAffinities(
+            @Param("affinities") final Iterable<String> affinities,
+            final Pageable pageReq);
 
     /**
      * Returns the affinity unit with the specified template name.

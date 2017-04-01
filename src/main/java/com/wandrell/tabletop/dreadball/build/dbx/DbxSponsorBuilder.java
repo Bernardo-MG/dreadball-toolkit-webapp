@@ -16,36 +16,12 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx;
 
-import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
-
 /**
  * Facade service for the DBX team builder.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DbxSponsorBuilder {
-
-    /**
-     * Returns all the Sponsor affinity groups sets.
-     * 
-     * @return the Sponsor affinity groups sets
-     */
-    @Deprecated
-    public Iterable<SponsorAffinityGroupAvailability>
-            getAvailableAffinityGroups();
-
-    /**
-     * Returns all the units available for the specified Sponsor team.
-     * 
-     * @param affinities
-     *            sponsor affinities
-     * @return the units available to the Sponsor
-     */
-    @Deprecated
-    public Iterable<Unit>
-            getAvailableUnits(final Iterable<AffinityGroup> affinities);
 
     /**
      * Returns the initial rank.

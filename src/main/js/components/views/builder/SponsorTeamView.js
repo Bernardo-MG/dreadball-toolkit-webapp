@@ -2,7 +2,7 @@ import React from 'react';
 import StatefulInput from '../../StatefulInput';
 import TeamBuilderUnitTable from '../../TeamBuilderUnitTable';
 import LoadableUnitOptionTable from '../../../containers/LoadableUnitOptionTable';
-import { Button, IconButton } from 'react-toolbox/lib/button';
+import { Button } from 'react-toolbox/lib/button';
 import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
 import { Card, CardActions } from 'react-toolbox/lib/card';
 import Dialog from 'react-toolbox/lib/dialog';

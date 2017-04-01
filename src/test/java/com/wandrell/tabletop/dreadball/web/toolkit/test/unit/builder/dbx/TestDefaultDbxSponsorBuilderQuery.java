@@ -18,11 +18,13 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.builder.dbx;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 
 import org.mockito.Matchers;
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.Pageable;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
@@ -60,38 +62,6 @@ public final class TestDefaultDbxSponsorBuilderQuery {
     }
 
     /**
-     * Tests that acquiring the available units works with the dependencies and
-     * their data correctly, and returns the expected values.
-     */
-    @Test
-    public final void testGetAvailableUnits() {
-        final DbxSponsorBuilder builder;      // Builder to test
-        final Iterable<? extends Unit> units; // Sponsor units
-        final Iterable<AffinityGroup> affinities; // Sponsor affinities
-        Integer cost;                         // Resulting cost
-
-        // Creates the builder with the mocked dependencies
-        builder = getDbxSponsorBuilder();
-
-        // The actual contents of affinities does not matter
-        // This is because the test data is received through the mocked
-        // dependencies
-        affinities = new ArrayList<>();
-
-        // Calls the method to test
-        units = builder.getAvailableUnits(affinities);
-
-        // Calculates the final cost
-        // The cost of the units come from the mocked service and are 1, 2 and 3
-        cost = 0;
-        for (final Unit unit : units) {
-            cost += unit.getCost();
-        }
-
-        Assert.assertEquals(cost, (Integer) 6);
-    }
-
-    /**
      * Returns the mocked affinity units repository.
      * <p>
      * This repository will contain three units. The actual values contained in
@@ -102,7 +72,8 @@ public final class TestDefaultDbxSponsorBuilderQuery {
     @SuppressWarnings("unchecked")
     private final AffinityUnitRepository getAffinityUnitRepository() {
         final AffinityUnitRepository unitRepo;
-        final Collection<PersistentAffinityUnit> units;
+        final List<PersistentAffinityUnit> units;
+        final Page page;
 
         unitRepo = Mockito.mock(AffinityUnitRepository.class);
 
@@ -112,9 +83,11 @@ public final class TestDefaultDbxSponsorBuilderQuery {
         units.add(new PersistentAffinityUnit());
         units.add(new PersistentAffinityUnit());
 
-        Mockito.when(unitRepo
-                .findAllFilteredByHatedAffinities(Matchers.anyCollection()))
-                .thenReturn(units);
+        page = new PageImpl(units);
+
+        Mockito.when(unitRepo.findAllFilteredByHatedAffinities(
+                Matchers.anyCollection(), Matchers.any(Pageable.class)))
+                .thenReturn(page);
         Mockito.when(unitRepo.findAll()).thenReturn(units);
 
         return unitRepo;
@@ -180,6 +153,12 @@ public final class TestDefaultDbxSponsorBuilderQuery {
             }
 
             @Override
+            public final Unit getUnit(final String templateName,
+                    final Iterable<AffinityGroup> affinities) {
+                return null;
+            }
+
+            @Override
             public final Unit getUnit(final String nameTemplate,
                     final String name, final Integer cost, final Role role,
                     final Attributes attributes,
@@ -190,12 +169,6 @@ public final class TestDefaultDbxSponsorBuilderQuery {
                         abilities, mvp, giant);
             }
 
-            @Override
-            public final Unit getUnit(final String templateName,
-                    final Iterable<AffinityGroup> affinities) {
-                return null;
-            }
-
         };
 
         rules = getDbxRules();
@@ -204,8 +177,7 @@ public final class TestDefaultDbxSponsorBuilderQuery {
         unitRepo = getAffinityUnitRepository();
         rank = 0;
 
-        return new DefaultDbxSponsorBuilder(modelFact, rules, affinityAvasRepo,
-                unitRepo, rank);
+        return new DefaultDbxSponsorBuilder(rank);
     }
 
 }

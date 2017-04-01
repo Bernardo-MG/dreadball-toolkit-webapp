@@ -21,6 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.codex.UnitCodex;
@@ -73,33 +74,39 @@ public final class DefaultUnitCodex implements UnitCodex {
     }
 
     @Override
-    public final Iterable<AffinityUnit> getAllAffinityUnits() {
-        final Collection<AffinityUnit> units;
+    public final Iterable<Unit> getAllAffinityUnits(
+            final Iterable<? extends AffinityGroup> affinities,
+            final Pageable pageReq) {
+        final Collection<Unit> units;          // Available units
+        final Iterable<? extends AffinityUnit> filtered; // Filtered units
 
-        // TODO: There may be a better way to do this
+        checkNotNull(affinities, "Received a null pointer as affinities");
+        checkNotNull(pageReq, "Received a null pointer as pagination data");
+
+        // Only units not hating any affinity are acquired
+        filtered = getUnitsFilteredByAffinities(affinities, pageReq);
+
+        // The received units are adapted and configured
         units = new ArrayList<>();
-        for (final AffinityUnit unit : getAffinityUnitRepository().findAll()) {
-            units.add(unit);
+        for (final AffinityUnit affUnit : filtered) {
+            units.add(generateUnit(affUnit, affinities));
         }
 
         return units;
     }
 
     @Override
-    public final Iterable<Unit> getAllAffinityUnits(
-            final Iterable<? extends AffinityGroup> affinities) {
-        final Collection<Unit> units;          // Available units
-        final Iterable<? extends AffinityUnit> filtered; // Filtered units
+    public final Iterable<AffinityUnit>
+            getAllAffinityUnits(final Pageable pageReq) {
+        final Collection<AffinityUnit> units;
 
-        checkNotNull(affinities, "Received a null pointer as affinities");
+        checkNotNull(pageReq, "Received a null pointer as pagination data");
 
-        // Only units not hating any affinity are acquired
-        filtered = getUnitsFilteredByAffinities(affinities);
-
-        // The received units are adapted and configured
+        // TODO: There may be a better way to do this transformation
         units = new ArrayList<>();
-        for (final AffinityUnit affUnit : filtered) {
-            units.add(generateUnit(affUnit, affinities));
+        for (final AffinityUnit unit : getAffinityUnitRepository()
+                .findAll(pageReq)) {
+            units.add(unit);
         }
 
         return units;
@@ -163,7 +170,8 @@ public final class DefaultUnitCodex implements UnitCodex {
     }
 
     private final Iterable<? extends AffinityUnit> getUnitsFilteredByAffinities(
-            final Iterable<? extends AffinityGroup> affinities) {
+            final Iterable<? extends AffinityGroup> affinities,
+            final Pageable pageReq) {
         final Iterable<? extends AffinityUnit> filtered; // Filtered units
         final Collection<String> affNames;     // Affinity names
 
@@ -175,11 +183,11 @@ public final class DefaultUnitCodex implements UnitCodex {
 
         if (affNames.isEmpty()) {
             // There are no affinities, there is no need to filter
-            filtered = getAffinityUnitRepository().findAll();
+            filtered = getAffinityUnitRepository().findAll(pageReq);
         } else {
             // Only units not hating any affinity are acquired
             filtered = getAffinityUnitRepository()
-                    .findAllFilteredByHatedAffinities(affNames);
+                    .findAllFilteredByHatedAffinities(affNames, pageReq);
         }
 
         return filtered;

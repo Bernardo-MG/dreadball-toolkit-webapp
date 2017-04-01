@@ -21,6 +21,7 @@ import java.util.Collection;
 
 import org.hamcrest.Matchers;
 import org.mockito.Mockito;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
@@ -33,6 +34,7 @@ import org.testng.annotations.Test;
 import com.wandrell.tabletop.dreadball.codex.UnitCodex;
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.UnitCodexController;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
@@ -111,18 +113,27 @@ public final class TestUnitCodexController {
     @SuppressWarnings("unchecked")
     private final UnitCodexController getController() {
         final UnitCodex codex; // Mocked unit codex
-        final Collection<AffinityUnit> units;
+        final Collection<AffinityUnit> affUnits;
+        final Collection<Unit> units;
 
         codex = Mockito.mock(UnitCodex.class);
+
+        affUnits = new ArrayList<>();
+        affUnits.add(Mockito.mock(AffinityUnitMixIn.class));
+        affUnits.add(Mockito.mock(AffinityUnitMixIn.class));
+        affUnits.add(Mockito.mock(AffinityUnitMixIn.class));
 
         units = new ArrayList<>();
         units.add(Mockito.mock(AffinityUnitMixIn.class));
         units.add(Mockito.mock(AffinityUnitMixIn.class));
         units.add(Mockito.mock(AffinityUnitMixIn.class));
 
-        Mockito.when(codex.getAllAffinityUnits()).thenReturn(units);
-        Mockito.when(codex.getAllAffinityUnits(Mockito.any(Iterable.class)))
-                .thenReturn(units);
+        Mockito.when(codex
+                .getAllAffinityUnits(org.mockito.Matchers.any(Pageable.class)))
+                .thenReturn(affUnits);
+        Mockito.when(codex.getAllAffinityUnits(
+                org.mockito.Matchers.any(Iterable.class),
+                org.mockito.Matchers.any(Pageable.class))).thenReturn(units);
 
         return new UnitCodexController(codex);
     }

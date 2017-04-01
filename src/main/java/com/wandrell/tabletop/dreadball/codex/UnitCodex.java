@@ -16,6 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.codex;
 
+import org.springframework.data.domain.Pageable;
+
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
@@ -26,13 +28,6 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface UnitCodex {
-
-    /**
-     * Returns all the affinity units.
-     * 
-     * @return all the affinity units
-     */
-    public Iterable<AffinityUnit> getAllAffinityUnits();
 
     /**
      * Returns all the affinity units for the specified affinity groups.
@@ -46,6 +41,14 @@ public interface UnitCodex {
      * @return the units available for the affinities
      */
     public Iterable<Unit> getAllAffinityUnits(
-            final Iterable<? extends AffinityGroup> affinities);
+            final Iterable<? extends AffinityGroup> affinities,
+            final Pageable pageReq);
+
+    /**
+     * Returns all the affinity units.
+     * 
+     * @return all the affinity units
+     */
+    public Iterable<AffinityUnit> getAllAffinityUnits(final Pageable pageReq);
 
 }

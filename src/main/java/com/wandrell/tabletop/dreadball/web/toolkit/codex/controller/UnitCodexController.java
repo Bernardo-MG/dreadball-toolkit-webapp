@@ -20,6 +20,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -63,15 +65,25 @@ public class UnitCodexController {
      * @return the view for all the affinity units
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<? extends Unit> getDbxUnits(@RequestParam(
-            value = "affinities", required = false,
-            defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities) {
+    public final Iterable<? extends Unit> getDbxUnits(
+            @RequestParam(name = "affinities", required = false,
+                    defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities,
+            @RequestParam(name = "page", defaultValue = "0") Integer page,
+            @RequestParam(name = "size", defaultValue = "10") Integer size) {
         final Iterable<? extends Unit> units;
+        final Pageable pageReq;
+
+        // TODO: Page and size may be stored automatically into a pageable
+        // Check:
+        // https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-seven-pagination/
+        // http://www.baeldung.com/rest-api-pagination-in-spring
+        pageReq = new PageRequest(page, size);
 
         if (affinities.isEmpty()) {
-            units = getUnitCodexService().getAllAffinityUnits();
+            units = getUnitCodexService().getAllAffinityUnits(pageReq);
         } else {
-            units = getUnitCodexService().getAllAffinityUnits(affinities);
+            units = getUnitCodexService().getAllAffinityUnits(affinities,
+                    pageReq);
         }
 
         return units;

@@ -20,12 +20,13 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitRepository;
 
@@ -43,13 +44,16 @@ public class ITAffinityUnitRepository
     @Test
     public final void testFindAll_FilteredByHatedAffinities_Hated_Filtered() {
         final Collection<String> affinities;
+        final Pageable pageReq;
 
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
 
+        pageReq = new PageRequest(0, 10);
+
         Assert.assertEquals(
-                ((Collection<PersistentAffinityUnit>) repository
-                        .findAllFilteredByHatedAffinities(affinities)).size(),
+                (repository.findAllFilteredByHatedAffinities(affinities,
+                        pageReq)).getTotalElements(),
                 3);
     }
 
@@ -71,13 +75,16 @@ public class ITAffinityUnitRepository
     public final void
             testFindAll_FilteredByHatedAffinities_NotHated_NotFiltered() {
         final Collection<String> affinities;
+        final Pageable pageReq;
 
         affinities = new ArrayList<>();
         affinities.add("affinity_1");
 
+        pageReq = new PageRequest(0, 10);
+
         Assert.assertEquals(
-                ((Collection<PersistentAffinityUnit>) repository
-                        .findAllFilteredByHatedAffinities(affinities)).size(),
+                (repository.findAllFilteredByHatedAffinities(affinities,
+                        pageReq)).getTotalElements(),
                 4);
     }
 

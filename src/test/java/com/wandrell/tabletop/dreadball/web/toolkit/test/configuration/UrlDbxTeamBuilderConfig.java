@@ -24,29 +24,24 @@ package com.wandrell.tabletop.dreadball.web.toolkit.test.configuration;
 public final class UrlDbxTeamBuilderConfig {
 
     /**
-     * Form view URL.
-     */
-    public static final String URL_AFFINITIES = "/builder/team/dbx/affinities/initial";
-
-    /**
      * Team assets REST URL.
      */
-    public static final String URL_ASSETS     = "/builder/team/dbx/assets";
+    public static final String URL_ASSETS   = "/builder/team/dbx/assets";
 
     /**
      * Player addition REST URL.
      */
-    public static final String URL_PLAYERS    = "/builder/team/dbx/players";
+    public static final String URL_PLAYERS  = "/builder/team/dbx/players";
 
     /**
      * Form view URL.
      */
-    public static final String URL_SPONSOR    = "/builder/team/dbx/sponsor";
+    public static final String URL_SPONSOR  = "/builder/team/dbx/sponsor";
 
     /**
      * Team validation REST URL.
      */
-    public static final String URL_VALIDATE   = "/builder/team/dbx/validate";
+    public static final String URL_VALIDATE = "/builder/team/dbx/validate";
 
     /**
      * Default constructor to avoid initialization.
