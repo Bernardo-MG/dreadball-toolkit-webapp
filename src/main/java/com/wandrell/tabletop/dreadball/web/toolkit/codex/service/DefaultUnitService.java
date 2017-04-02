@@ -24,7 +24,6 @@ import java.util.Collection;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.codex.UnitCodex;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
@@ -39,8 +38,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityUnitR
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service("unitCodexService")
-public final class DefaultUnitCodex implements UnitCodex {
+@Service("unitService")
+public final class DefaultUnitService implements UnitService {
 
     /**
      * Affinity units repository.
@@ -55,7 +54,7 @@ public final class DefaultUnitCodex implements UnitCodex {
     /**
      * Constructs a service with the specified arguments.
      */
-    public DefaultUnitCodex(final AffinityUnitRepository repository,
+    public DefaultUnitService(final AffinityUnitRepository repository,
             final DbxRules rules,
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo) {
         super();

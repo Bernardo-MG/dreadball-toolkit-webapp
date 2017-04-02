@@ -30,10 +30,10 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.codex.AffinityGroupCodex;
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.AffinityGroupCodexController;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.AffinityGroupService;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**
@@ -89,10 +89,10 @@ public final class TestAffinityGroupCodexController {
      * @return a mocked controller
      */
     private final AffinityGroupCodexController getController() {
-        final AffinityGroupCodex codex; // Mocked unit codex
+        final AffinityGroupService codex; // Mocked unit codex
         final Collection<AffinityGroup> groups;
 
-        codex = Mockito.mock(AffinityGroupCodex.class);
+        codex = Mockito.mock(AffinityGroupService.class);
 
         groups = new ArrayList<>();
         groups.add(Mockito.mock(AffinityGroupMixIn.class));

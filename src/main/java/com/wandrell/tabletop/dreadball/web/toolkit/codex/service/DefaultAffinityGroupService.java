@@ -22,7 +22,6 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.codex.AffinityGroupCodex;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
 
@@ -31,8 +30,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroup
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service("affinityGroupCodex")
-public final class DefaultAffinityGroupCodex implements AffinityGroupCodex {
+@Service("affinityGroupService")
+public final class DefaultAffinityGroupService implements AffinityGroupService {
 
     /**
      * Affinity groups repository.
@@ -43,7 +42,7 @@ public final class DefaultAffinityGroupCodex implements AffinityGroupCodex {
     /**
      * Constructs a service with the specified arguments.
      */
-    public DefaultAffinityGroupCodex() {
+    public DefaultAffinityGroupService() {
         super();
     }
 

@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.codex.AffinityGroupCodex;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.AffinityGroupService;
 
 /**
  * Controller for the affinity groups codex views.
@@ -38,7 +38,7 @@ public class AffinityGroupCodexController {
     /**
      * Affinity groups codex service.
      */
-    private final AffinityGroupCodex affinityGroupsCodexService;
+    private final AffinityGroupService affinityGroupsCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -46,7 +46,7 @@ public class AffinityGroupCodexController {
      * @param codex
      *            affinity groups codex service
      */
-    public AffinityGroupCodexController(final AffinityGroupCodex codex) {
+    public AffinityGroupCodexController(final AffinityGroupService codex) {
         super();
 
         affinityGroupsCodexService = checkNotNull(codex,
@@ -68,7 +68,7 @@ public class AffinityGroupCodexController {
      * 
      * @return the affinity groups service
      */
-    private final AffinityGroupCodex getAffinityGroupCodex() {
+    private final AffinityGroupService getAffinityGroupCodex() {
         return affinityGroupsCodexService;
     }
 

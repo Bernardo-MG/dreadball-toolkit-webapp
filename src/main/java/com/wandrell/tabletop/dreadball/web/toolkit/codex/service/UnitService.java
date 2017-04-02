@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.codex;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
 
 import org.springframework.data.domain.Pageable;
 
@@ -27,7 +27,7 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface UnitCodex {
+public interface UnitService {
 
     /**
      * Returns all the affinity units for the specified affinity groups.

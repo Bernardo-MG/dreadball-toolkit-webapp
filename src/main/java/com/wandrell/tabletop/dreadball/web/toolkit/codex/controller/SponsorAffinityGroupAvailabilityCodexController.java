@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.codex.SponsorAffinityGroupAvailabilityCodex;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.SponsorAffinityGroupAvailabilityService;
 
 /**
  * Controller for the affinity groups codex views.
@@ -38,7 +38,7 @@ public class SponsorAffinityGroupAvailabilityCodexController {
     /**
      * Affinity groups codex service.
      */
-    private final SponsorAffinityGroupAvailabilityCodex sponsorAffinityGroupAvailabilityCodex;
+    private final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityCodex;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -47,7 +47,7 @@ public class SponsorAffinityGroupAvailabilityCodexController {
      *            affinity groups codex service
      */
     public SponsorAffinityGroupAvailabilityCodexController(
-            final SponsorAffinityGroupAvailabilityCodex codex) {
+            final SponsorAffinityGroupAvailabilityService codex) {
         super();
 
         sponsorAffinityGroupAvailabilityCodex = checkNotNull(codex,
@@ -71,7 +71,7 @@ public class SponsorAffinityGroupAvailabilityCodexController {
      * 
      * @return the affinity groups service
      */
-    private final SponsorAffinityGroupAvailabilityCodex
+    private final SponsorAffinityGroupAvailabilityService
             getSponsorAffinityGroupAvailabilityCodex() {
         return sponsorAffinityGroupAvailabilityCodex;
     }

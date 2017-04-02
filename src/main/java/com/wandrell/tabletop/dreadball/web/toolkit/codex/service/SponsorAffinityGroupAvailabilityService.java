@@ -14,22 +14,23 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.codex;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
 
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 
 /**
- * Service for the affinity groups codex.
+ * Service for the Sponsor affinity group availabilities codex.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface AffinityGroupCodex {
+public interface SponsorAffinityGroupAvailabilityService {
 
     /**
-     * Returns all the affinity groups.
+     * Returns all the Sponsor affinity group availabilities.
      * 
-     * @return all the affinity groups
+     * @return all the Sponsor affinity group availabilities
      */
-    public Iterable<AffinityGroup> getAllAffinityGroups();
+    public Iterable<SponsorAffinityGroupAvailability>
+            getAllSponsorAffinityGroupAvailabilities();
 
 }

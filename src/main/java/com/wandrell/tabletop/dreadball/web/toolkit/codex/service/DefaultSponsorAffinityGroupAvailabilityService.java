@@ -7,13 +7,12 @@ import java.util.Collection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.codex.SponsorAffinityGroupAvailabilityCodex;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 
-@Service("sponsorAffinityGroupAvailabilityCodex")
-public class DefaultSponsorAffinityGroupAvailabilityCodex
-        implements SponsorAffinityGroupAvailabilityCodex {
+@Service("sponsorAffinityGroupAvailabilityService")
+public class DefaultSponsorAffinityGroupAvailabilityService
+        implements SponsorAffinityGroupAvailabilityService {
 
     /**
      * Affinity groups repository.
@@ -24,7 +23,7 @@ public class DefaultSponsorAffinityGroupAvailabilityCodex
     /**
      * Constructs a service with the specified arguments.
      */
-    public DefaultSponsorAffinityGroupAvailabilityCodex() {
+    public DefaultSponsorAffinityGroupAvailabilityService() {
         super();
     }
 

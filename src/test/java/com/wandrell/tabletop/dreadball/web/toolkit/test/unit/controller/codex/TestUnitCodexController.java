@@ -31,12 +31,12 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.codex.UnitCodex;
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.UnitCodexController;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.UnitService;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**
@@ -112,11 +112,11 @@ public final class TestUnitCodexController {
      */
     @SuppressWarnings("unchecked")
     private final UnitCodexController getController() {
-        final UnitCodex codex; // Mocked unit codex
+        final UnitService codex; // Mocked unit codex
         final Collection<AffinityUnit> affUnits;
         final Collection<Unit> units;
 
-        codex = Mockito.mock(UnitCodex.class);
+        codex = Mockito.mock(UnitService.class);
 
         affUnits = new ArrayList<>();
         affUnits.add(Mockito.mock(AffinityUnitMixIn.class));

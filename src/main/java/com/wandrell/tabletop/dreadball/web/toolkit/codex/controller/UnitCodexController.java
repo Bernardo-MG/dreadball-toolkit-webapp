@@ -28,9 +28,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.codex.UnitCodex;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.UnitService;
 
 /**
  * Controller for the unit codex views.
@@ -44,7 +44,7 @@ public class UnitCodexController {
     /**
      * Unit codex service.
      */
-    private final UnitCodex unitCodexService;
+    private final UnitService unitCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -52,7 +52,7 @@ public class UnitCodexController {
      * @param codex
      *            unit codex service
      */
-    public UnitCodexController(final UnitCodex codex) {
+    public UnitCodexController(final UnitService codex) {
         super();
 
         unitCodexService = checkNotNull(codex,
@@ -94,7 +94,7 @@ public class UnitCodexController {
      * 
      * @return the unit codex service
      */
-    private final UnitCodex getUnitCodexService() {
+    private final UnitService getUnitCodexService() {
         return unitCodexService;
     }
 
