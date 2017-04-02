@@ -35,7 +35,6 @@ import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.report.dbx.DbxTeamReporter;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.SponsorCreationController;
 import com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.controller.DbxReportController;
 import com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.service.DefaultDbxTeamReporter;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
