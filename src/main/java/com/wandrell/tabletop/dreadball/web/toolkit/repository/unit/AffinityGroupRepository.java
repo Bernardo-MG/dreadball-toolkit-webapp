@@ -19,7 +19,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.repository.unit;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityGroup;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 
 /**
  * Affinity groups repository.
@@ -28,14 +27,5 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
  */
 public interface AffinityGroupRepository
         extends PagingAndSortingRepository<PersistentAffinityGroup, Integer> {
-
-    /**
-     * Returns the affinity group with the specified name.
-     * 
-     * @param name
-     *            name to search for
-     * @return the affinity group with the specified name
-     */
-    public AffinityGroup findByName(final String name);
 
 }
