@@ -35,13 +35,13 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.UnitService;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
@@ -123,16 +123,17 @@ public final class TestDbxTeamBuilderRestControllerSetAssets {
      */
     private final DbxTeamBuilderController getController() {
         final DbxTeamBuilder builder;
+        final UnitService unitModelService;
         final Validator teamValidator;
-        final DbxModelFactory factory;
 
         builder = Mockito.mock(DbxTeamBuilder.class);
 
         teamValidator = Mockito.mock(Validator.class);
 
-        factory = Mockito.mock(DbxModelFactory.class);
+        unitModelService = Mockito.mock(UnitService.class);
 
-        return new DbxTeamBuilderController(builder, factory, teamValidator);
+        return new DbxTeamBuilderController(builder, unitModelService,
+                teamValidator);
     }
 
     /**

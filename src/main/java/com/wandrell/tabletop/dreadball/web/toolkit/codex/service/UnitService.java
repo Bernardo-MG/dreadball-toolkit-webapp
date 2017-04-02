@@ -51,4 +51,20 @@ public interface UnitService {
      */
     public Iterable<AffinityUnit> getAllAffinityUnits(final Pageable pageReq);
 
+    /**
+     * Returns the unit created from the specified template and set up for the
+     * correct affinity level.
+     * <p>
+     * The affinity level will be marked by the received affinities, and the
+     * affinities owned by the unit.
+     * 
+     * @param templateName
+     *            template to create the unit from
+     * @param affinities
+     *            affinities to find out the affinity level
+     * @return the unit created
+     */
+    public Unit getUnit(final String templateName,
+            final Iterable<AffinityGroup> affinities);
+
 }

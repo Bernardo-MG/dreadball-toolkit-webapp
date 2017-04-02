@@ -35,7 +35,6 @@ import org.testng.annotations.Test;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.json.unit.UnitMixIn;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -45,6 +44,7 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalcu
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.UnitService;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
@@ -145,8 +145,8 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
     @SuppressWarnings("unchecked")
     private final DbxTeamBuilderController getController() {
         final DbxTeamBuilder builder;
+        final UnitService unitModelService;
         final Validator teamValidator;
-        final DbxModelFactory factory;
 
         builder = new DbxTeamBuilder() {
 
@@ -180,12 +180,13 @@ public final class TestDbxTeamBuilderRestControllerAddPlayers {
 
         teamValidator = Mockito.mock(Validator.class);
 
-        factory = Mockito.mock(DbxModelFactory.class);
-        Mockito.when(factory.getUnit(org.mockito.Matchers.anyString(),
+        unitModelService = Mockito.mock(UnitService.class);
+        Mockito.when(unitModelService.getUnit(org.mockito.Matchers.anyString(),
                 org.mockito.Matchers.anyCollection()))
                 .thenReturn(Mockito.mock(UnitMixIn.class));
 
-        return new DbxTeamBuilderController(builder, factory, teamValidator);
+        return new DbxTeamBuilderController(builder, unitModelService,
+                teamValidator);
     }
 
     /**

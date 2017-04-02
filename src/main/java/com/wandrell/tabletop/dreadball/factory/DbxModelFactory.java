@@ -18,8 +18,6 @@ package com.wandrell.tabletop.dreadball.factory;
 
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 
 /**
@@ -46,21 +44,5 @@ public interface DbxModelFactory {
      * @return a Sponsor team for the specified Sponsor
      */
     public SponsorTeam getSponsorTeam(final Sponsor sponsor);
-
-    /**
-     * Returns the unit created from the specified template and set up for the
-     * correct affinity level.
-     * <p>
-     * The affinity level will be marked by the received affinities, and the
-     * affinities owned by the unit.
-     * 
-     * @param templateName
-     *            template to create the unit from
-     * @param affinities
-     *            affinities to find out the affinity level
-     * @return the unit created
-     */
-    public Unit getUnit(final String templateName,
-            final Iterable<AffinityGroup> affinities);
 
 }

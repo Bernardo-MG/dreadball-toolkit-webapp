@@ -104,6 +104,27 @@ public final class DefaultUnitService implements UnitService {
         return units;
     }
 
+    @Override
+    public final Unit getUnit(final String templateName,
+            final Iterable<AffinityGroup> affinities) {
+        final AffinityUnit affUnit;  // Unit from the repository
+        final Unit unit;             // Unit to add
+
+        checkNotNull(templateName, "Received a null pointer as template name");
+        checkNotNull(affinities, "Received a null pointer as affinities");
+
+        affUnit = getAffinityUnitRepository()
+                .findOneByTemplateName(templateName);
+
+        if (affUnit != null) {
+            unit = generateUnit(affUnit, affinities);
+        } else {
+            unit = null;
+        }
+
+        return unit;
+    }
+
     private final Unit generateUnit(final AffinityUnit affUnit,
             final Iterable<? extends AffinityGroup> affinities) {
         final Integer cost; // Unit cost
