@@ -83,8 +83,8 @@ public class DbxTeamBuilderController {
      * 
      * @param service
      *            team builder service
-     * @param modelFact
-     *            model factory
+     * @param unitModelService
+     *            unit model service
      * @param validator
      *            team validator
      */

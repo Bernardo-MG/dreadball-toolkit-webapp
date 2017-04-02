@@ -38,6 +38,8 @@ public interface AffinityUnitRepository
      * 
      * @param affinities
      *            affinities the units should not hate
+     * @param pageReq
+     *            pagination request
      * @return all the units not hating any of the affinities
      */
     @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")

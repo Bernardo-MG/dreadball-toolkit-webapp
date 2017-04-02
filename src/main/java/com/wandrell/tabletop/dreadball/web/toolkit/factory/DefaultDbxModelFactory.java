@@ -69,16 +69,6 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
     /**
      * Default constructor.
      * 
-     * @param rules
-     *            DBX rules service
-     * @param unitRepo
-     *            affinity units repository
-     * @param affinitiesRepo
-     *            affinities repository
-     * @param valorationCalc
-     *            valoration calculator
-     * @param rankCostCalc
-     *            rank cost calculator
      */
     @Autowired
     public DefaultDbxModelFactory(final AffinityGroupRepository affinitiesRepo,

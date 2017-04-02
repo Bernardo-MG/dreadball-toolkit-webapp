@@ -62,6 +62,12 @@ public class UnitCodexController {
     /**
      * Returns the view for all the affinity units.
      * 
+     * @param affinities
+     *            affinities for filtering
+     * @param page
+     *            page number
+     * @param size
+     *            page size
      * @return the view for all the affinity units
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
