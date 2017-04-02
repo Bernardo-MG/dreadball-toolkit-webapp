@@ -36,7 +36,6 @@ import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlReportC
 @ContextConfiguration(locations = { "classpath:context/application-context.xml",
         "classpath:context/servlet-dreadball.xml" })
 @TestPropertySource({ "classpath:config/builder-team-dbx.properties",
-        "classpath:config/project.properties",
         "classpath:config/service-dreadball.properties",
         "classpath:config/servlet-dreadball.properties",
         "classpath:config/view.properties" })

@@ -19,7 +19,6 @@
    <context:property-placeholder
       location="classpath:config/view.properties,
                    classpath:config/builder-team-dbx.properties,
-                   classpath:config/project.properties,
                    classpath:config/service-dreadball.properties,
                    classpath:config/servlet-dreadball.properties" />
 
