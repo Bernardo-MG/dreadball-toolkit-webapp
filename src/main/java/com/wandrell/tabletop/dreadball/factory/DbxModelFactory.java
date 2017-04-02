@@ -16,17 +16,10 @@
 
 package com.wandrell.tabletop.dreadball.factory;
 
-import java.util.Collection;
-
-import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
-import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 
 /**
@@ -44,9 +37,6 @@ public interface DbxModelFactory {
      * @return the Sponsor created from the form
      */
     public Sponsor getSponsor(final SponsorForm form);
-
-    public SponsorAffinityGroupAvailability getSponsorAffinityGroupAvailability(
-            final PersistentSponsorAffinityGroupAvailability aff);
 
     /**
      * Creates an Sponsor team from the specified Sponsor.
@@ -72,31 +62,5 @@ public interface DbxModelFactory {
      */
     public Unit getUnit(final String templateName,
             final Iterable<AffinityGroup> affinities);
-
-    /**
-     * Creates a Unit from the specified arguments.
-     * 
-     * @param nameTemplate
-     *            the unit's base template name
-     * @param name
-     *            name given to the unit
-     * @param cost
-     *            cost of the unit
-     * @param role
-     *            team position role of the unit
-     * @param attributes
-     *            unit attributes
-     * @param abilities
-     *            unit abilities
-     * @param mvp
-     *            flag indicating if this is a MVP
-     * @param giant
-     *            flag indicating if this is a giant
-     * @return a new Unit
-     */
-    public Unit getUnit(final String nameTemplate, final String name,
-            final Integer cost, final Role role, final Attributes attributes,
-            final Collection<Ability> abilities, final Boolean mvp,
-            final Boolean giant);
 
 }

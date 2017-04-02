@@ -25,10 +25,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.codex.UnitCodex;
-import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
@@ -48,11 +48,6 @@ public final class DefaultUnitCodex implements UnitCodex {
     private final AffinityUnitRepository affinityUnitRepository;
 
     /**
-     * DBX model factory.
-     */
-    private final DbxModelFactory        dbxModelFact;
-
-    /**
      * DBX rules.
      */
     private final DbxRules               dbxRules;
@@ -61,14 +56,12 @@ public final class DefaultUnitCodex implements UnitCodex {
      * Constructs a service with the specified arguments.
      */
     public DefaultUnitCodex(final AffinityUnitRepository repository,
-            final DbxModelFactory modelFact, final DbxRules rules,
+            final DbxRules rules,
             final SponsorAffinityGroupAvailabilityRepository affinityAvasRepo) {
         super();
 
         affinityUnitRepository = checkNotNull(repository,
                 "Received a null pointer as affinity units repository");
-        dbxModelFact = checkNotNull(modelFact,
-                "Received a null pointer as model factory");
         dbxRules = checkNotNull(rules,
                 "Received a null pointer as rules service");
     }
@@ -115,13 +108,16 @@ public final class DefaultUnitCodex implements UnitCodex {
     private final Unit generateUnit(final AffinityUnit affUnit,
             final Iterable<? extends AffinityGroup> affinities) {
         final Integer cost; // Unit cost
+        final DefaultUnit unit;
 
         cost = getUnitCost(affUnit, affinities);
 
-        return getDbxModelFactory().getUnit(affUnit.getTemplateName(),
-                affUnit.getName(), cost, affUnit.getRole(),
-                affUnit.getAttributes(), affUnit.getAbilities(),
-                affUnit.getMvp(), affUnit.getGiant());
+        unit = new DefaultUnit(affUnit.getTemplateName(), cost,
+                affUnit.getRole(), affUnit.getAttributes(),
+                affUnit.getAbilities(), affUnit.getMvp(), affUnit.getGiant());
+        unit.setName(affUnit.getName());
+
+        return unit;
     }
 
     /**
@@ -131,15 +127,6 @@ public final class DefaultUnitCodex implements UnitCodex {
      */
     private final AffinityUnitRepository getAffinityUnitRepository() {
         return affinityUnitRepository;
-    }
-
-    /**
-     * Returns the model factory.
-     * 
-     * @return the model factory
-     */
-    private final DbxModelFactory getDbxModelFactory() {
-        return dbxModelFact;
     }
 
     /**

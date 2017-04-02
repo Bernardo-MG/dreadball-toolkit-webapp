@@ -26,11 +26,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import com.wandrell.tabletop.dreadball.factory.DbxModelFactory;
-import com.wandrell.tabletop.dreadball.model.availability.unit.DefaultSponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
-import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
@@ -40,10 +37,7 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
-import com.wandrell.tabletop.dreadball.model.unit.Role;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.model.unit.stats.Ability;
-import com.wandrell.tabletop.dreadball.model.unit.stats.Attributes;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorForm;
 import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
@@ -172,23 +166,6 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
     }
 
     @Override
-    public final SponsorAffinityGroupAvailability
-            getSponsorAffinityGroupAvailability(
-                    final PersistentSponsorAffinityGroupAvailability aff) {
-        final Collection<AffinityGroup> affinities;
-
-        checkNotNull(aff, "Received a null pointer as affinity group");
-
-        affinities = new ArrayList<>();
-        for (final AffinityGroup affinity : aff.getAffinityGroups()) {
-            affinities.add(getAffinityGroup(affinity));
-        }
-
-        return new DefaultSponsorAffinityGroupAvailability(aff.getName(),
-                affinities, aff.isIncludingRankIncrease());
-    }
-
-    @Override
     public final SponsorTeam getSponsorTeam(final Sponsor sponsor) {
         final SponsorTeam team; // Created team
 
@@ -205,7 +182,7 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
             final Iterable<AffinityGroup> affinities) {
         final AffinityUnit affUnit;  // Unit from the repository
         final Integer cost;          // Unit cost
-        final Unit unit;             // Unit to add
+        final DefaultUnit unit;      // Unit to add
         AffinityLevel affinityLevel; // Affinity level relationship
 
         checkNotNull(templateName, "Received a null pointer as template name");
@@ -218,34 +195,14 @@ public class DefaultDbxModelFactory implements DbxModelFactory {
             affinityLevel = getDbxRules().getAffinityLevel(affUnit, affinities);
             cost = getDbxRules().getUnitCost(affinityLevel, affUnit);
 
-            unit = getUnit(affUnit.getTemplateName(), affUnit.getName(), cost,
+            unit = new DefaultUnit(affUnit.getTemplateName(), cost,
                     affUnit.getRole(), affUnit.getAttributes(),
                     affUnit.getAbilities(), affUnit.getMvp(),
                     affUnit.getGiant());
+            unit.setName(affUnit.getName());
         } else {
             unit = null;
         }
-
-        return unit;
-    }
-
-    @Override
-    public final Unit getUnit(final String nameTemplate, final String name,
-            final Integer cost, final Role role, final Attributes attributes,
-            final Collection<Ability> abilities, final Boolean mvp,
-            final Boolean giant) {
-        final DefaultUnit unit;
-
-        checkNotNull(nameTemplate, "Received a null pointer as template name");
-        checkNotNull(cost, "Received a null pointer as cost");
-        checkNotNull(role, "Received a null pointer as role");
-        checkNotNull(abilities, "Received a null pointer as abilities");
-        checkNotNull(mvp, "Received a null pointer as mvp flag");
-        checkNotNull(giant, "Received a null pointer as giant flag");
-
-        unit = new DefaultUnit(nameTemplate, cost, role, attributes, abilities,
-                mvp, giant);
-        unit.setName(name);
 
         return unit;
     }
