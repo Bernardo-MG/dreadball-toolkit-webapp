@@ -18,15 +18,11 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Iterator;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
  * Default implementation of the DBX team builder service.
@@ -89,20 +85,6 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     }
 
     @Override
-    public final void addPlayer(final SponsorTeam team, final Unit unit) {
-        checkNotNull(team, "Received a null pointer as team");
-        checkNotNull(unit, "Received a null pointer as unit");
-
-        if (isUnique(unit)) {
-            if (!isInTeam(team, unit)) {
-                team.addPlayer(unit);
-            }
-        } else {
-            team.addPlayer(unit);
-        }
-    }
-
-    @Override
     public final Integer getMaxTeamUnits() {
         return maxTeamUnits;
     }
@@ -120,32 +102,6 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
     @Override
     public final Integer getMinTeamValoration() {
         return minTeamValoration;
-    }
-
-    private final Boolean isInTeam(final SponsorTeam team, final Unit unit) {
-        final Iterator<Unit> units;
-        Boolean found;
-
-        found = false;
-        units = team.getPlayers().values().iterator();
-        while ((!found) && (units.hasNext())) {
-            found = units.next().getTemplateName()
-                    .equals(unit.getTemplateName());
-        }
-
-        return found;
-    }
-
-    private final Boolean isUnique(final Unit unit) {
-        final Boolean unique;
-
-        if ((unit.getGiant()) || (unit.getMvp())) {
-            unique = true;
-        } else {
-            unique = false;
-        }
-
-        return unique;
     }
 
 }

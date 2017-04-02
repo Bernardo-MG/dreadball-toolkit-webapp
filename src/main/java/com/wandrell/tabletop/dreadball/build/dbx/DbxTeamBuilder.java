@@ -16,28 +16,12 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx;
 
-import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
-
 /**
  * Facade service for the DBX team builder.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface DbxTeamBuilder {
-
-    /**
-     * Adds a unit to the team.
-     * <p>
-     * This method applies any required constraint before adding the unit to the
-     * team.
-     * 
-     * @param team
-     *            team to add the unit
-     * @param unit
-     *            unit to add
-     */
-    public void addPlayer(final SponsorTeam team, final Unit unit);
 
     /**
      * Returns the maximum number of units a Sponsor may have.
