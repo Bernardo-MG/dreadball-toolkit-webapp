@@ -40,7 +40,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlReportC
         "classpath:config/servlet-dreadball.properties",
         "classpath:config/view.properties" })
 @WebAppConfiguration
-public final class ITDbxTeamCreationController
+@Deprecated
+public abstract class ITDbxTeamCreationController
         extends AbstractTestNGSpringContextTests {
 
     @Autowired
