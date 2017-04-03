@@ -11,6 +11,7 @@ export const transformAffinityUnitsJson = (json, intl) => {
       entry = json[i];
       mapped = {
          name : intl.formatMessage(unitNameMessages[entry.name]),
+         templateName : entry.templateName,
          role : intl.formatMessage(roleMessages[entry.role]),
          move : entry.attributes.movement,
          strength : entry.attributes.strength,
