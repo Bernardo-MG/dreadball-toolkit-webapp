@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes'
 import { SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT } from '../constants/RestUrls'
-import fetch from 'isomorphic-fetch'
 import { transformSponsorAffinityGroupAvailabilitiesJson } from '../utils/dbxBuilder'
+import { fetchData } from '../utils/request'
 
 export const requestSponsorAffinityGroupAvailabilities = () => ({
    type: types.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES
@@ -13,11 +13,13 @@ export const receiveSponsorAffinityGroupAvailabilities = (json, intl) => ({
 })
 
 export const fetchSponsorAffinityGroupAvailabilities = (intl) => dispatch => {
+   var url;
+   
    dispatch(requestSponsorAffinityGroupAvailabilities())
    
-   return fetch(SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT)
-      .then(response => response.json())
-      .then(json => dispatch(receiveSponsorAffinityGroupAvailabilities(json, intl)))
+   url = SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT;
+   
+   return fetchData(url, (json) => dispatch(receiveSponsorAffinityGroupAvailabilities(json, intl)))
 }
 
 export const beginDbxTeamBuilding = () => ({

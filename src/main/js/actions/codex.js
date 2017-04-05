@@ -1,7 +1,7 @@
 import * as types from '../constants/ActionTypes'
 import { AFFINITY_UNITS_REST_ENDPOINT } from '../constants/RestUrls'
-import fetch from 'isomorphic-fetch'
 import { transformAffinityUnitsJson } from '../utils/codex'
+import { fetchData } from '../utils/request'
 
 export const requestUnits = () => ({
    type: types.REQUEST_UNITS
@@ -23,7 +23,5 @@ export const fetchUnits = (intl, affinities) => dispatch => {
       url += "?affinities=" + affinities.join();
    }
    
-   return fetch(url)
-      .then(response => response.json())
-      .then(json => dispatch(receiveUnits(json, intl)))
+   return fetchData(url, (json) => dispatch(receiveUnits(json, intl)))
 }
