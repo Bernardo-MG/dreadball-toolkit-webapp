@@ -1,23 +1,19 @@
 import * as types from '../../constants/ActionTypes'
-import { SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT } from '../../constants/RestUrls'
-import { transformSponsorAffinityGroupAvailabilitiesJson } from '../../utils/dbxBuilder'
+import { SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT as URL } from '../../constants/RestUrls'
+import { transformSponsorAffinityGroupAvailabilitiesJson as transform } from '../../utils/dbxBuilder'
 import { fetchData } from '../../utils/request'
 
-export const requestSponsorAffinityGroupAvailabilities = () => ({
+export const request = () => ({
    type: types.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES
 })
 
-export const receiveSponsorAffinityGroupAvailabilities = (json, intl) => ({
+export const receive = (json, intl) => ({
    type: types.RECEIVE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES,
-   sponsorAffinityGroupAvailabilities: transformSponsorAffinityGroupAvailabilitiesJson(json, intl)
+   sponsorAffinityGroupAvailabilities: transform(json, intl)
 })
 
-export const fetchSponsorAffinityGroupAvailabilities = (intl) => dispatch => {
-   var url;
+export const fetch = (intl) => dispatch => {
+   dispatch(request())
    
-   dispatch(requestSponsorAffinityGroupAvailabilities())
-   
-   url = SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT;
-   
-   return fetchData(url, (json) => dispatch(receiveSponsorAffinityGroupAvailabilities(json, intl)))
+   return fetchData(URL, (json) => dispatch(receive(json, intl)))
 }

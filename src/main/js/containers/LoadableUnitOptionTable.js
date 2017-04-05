@@ -8,7 +8,7 @@ import { injectIntl } from 'react-intl';
 class LoadableUnitOptionTable extends Component {
 
    componentDidMount() {
-      this.props.actions.fetchUnits(this.props.intl, this.props.affinities);
+      this.props.actions.fetch(this.props.intl, this.props.affinities);
    }
    
    render() {

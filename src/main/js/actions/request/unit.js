@@ -1,27 +1,38 @@
 import * as types from '../../constants/ActionTypes'
-import { AFFINITY_UNITS_REST_ENDPOINT } from '../../constants/RestUrls'
-import { transformAffinityUnitsJson } from '../../utils/codex'
+import { AFFINITY_UNITS_REST_ENDPOINT as URL } from '../../constants/RestUrls'
+import { transformAffinityUnitsJson as transform } from '../../utils/codex'
 import { fetchData } from '../../utils/request'
 
-export const requestUnits = () => ({
+export const request = () => ({
    type: types.REQUEST_UNITS
 })
 
-export const receiveUnits = (json, intl) => ({
+export const receive = (json, intl) => ({
    type: types.RECEIVE_UNITS,
-   units: transformAffinityUnitsJson(json, intl)
+   units: transform(json, intl)
 })
 
-export const fetchUnits = (intl, affinities) => dispatch => {
+export const fetch = (intl, affinities) => dispatch => {
    var url;
    
-   dispatch(requestUnits())
+   dispatch(request())
    
-   url = AFFINITY_UNITS_REST_ENDPOINT;
+   url = parseAffinitiesUrl(URL, affinities);
    
    if((affinities) && (affinities.length)){
       url += "?affinities=" + affinities.join();
    }
    
-   return fetchData(url, (json) => dispatch(receiveUnits(json, intl)))
+   return fetchData(url, (json) => dispatch(receive(json, intl)))
+}
+
+const parseAffinitiesUrl = (url, affinities) => {
+   var result;
+   
+   result = url;
+   if((affinities) && (affinities.length)){
+      result += "?affinities=" + affinities.join();
+   }
+   
+   return result;
 }

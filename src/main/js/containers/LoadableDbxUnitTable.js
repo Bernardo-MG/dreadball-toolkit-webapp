@@ -8,7 +8,7 @@ import { injectIntl } from 'react-intl';
 class LoadableDbxUnitTable extends Component {
    
    componentDidMount() {
-      this.props.actions.fetchUnits(this.props.intl);
+      this.props.actions.fetch(this.props.intl);
    }
    
    render() {

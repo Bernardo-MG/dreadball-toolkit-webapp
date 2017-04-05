@@ -26,7 +26,7 @@ const ComboPanel = (props) => {
 class AffinityGroupsComboPanel extends Component {
    
    componentDidMount() {
-      this.props.actions.fetchSponsorAffinityGroupAvailabilities(this.props.intl);
+      this.props.actions.fetch(this.props.intl);
    }
    
    render() {
