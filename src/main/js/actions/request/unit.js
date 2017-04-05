@@ -1,7 +1,7 @@
-import * as types from '../constants/ActionTypes'
-import { AFFINITY_UNITS_REST_ENDPOINT } from '../constants/RestUrls'
-import { transformAffinityUnitsJson } from '../utils/codex'
-import { fetchData } from '../utils/request'
+import * as types from '../../constants/ActionTypes'
+import { AFFINITY_UNITS_REST_ENDPOINT } from '../../constants/RestUrls'
+import { transformAffinityUnitsJson } from '../../utils/codex'
+import { fetchData } from '../../utils/request'
 
 export const requestUnits = () => ({
    type: types.REQUEST_UNITS

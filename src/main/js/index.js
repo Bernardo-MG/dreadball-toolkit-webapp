@@ -8,7 +8,6 @@ import { createHistory } from 'history'
 import { syncHistoryWithStore } from 'react-router-redux'
 import { useRouterHistory } from 'react-router'
 import configureStore from './store/configureStore'
-import { loadPlayers } from './actions/codex';
 
 require('./theme/style.scss');
 

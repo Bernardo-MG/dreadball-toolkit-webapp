@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import UnitOptionTable from '../components/UnitOptionTable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as Actions from '../actions/codex';
+import * as actions from '../actions/request/unit';
 import { injectIntl } from 'react-intl';
 
 class LoadableUnitOptionTable extends Component {
@@ -24,7 +24,7 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-   actions: bindActionCreators(Actions, dispatch)
+   actions: bindActionCreators(actions, dispatch)
 });
 
 export default injectIntl(connect(
