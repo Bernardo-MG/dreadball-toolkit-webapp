@@ -4,13 +4,17 @@ import routes from '../routes'
 import { Router } from 'react-router'
 import { IntlProvider } from 'react-intl';
 import Cookie from 'js-cookie';
+import DevTools from './DevTools';
 
 const locale = Cookie.get('locale') || 'en';
 
 const Root = ({ store, history }) => (
    <IntlProvider locale={locale}>
       <Provider store={store}>
-         <Router history={history} routes={routes} />
+         <div>
+            <Router history={history} routes={routes} />
+            <DevTools />
+         </div>
       </Provider>
    </IntlProvider>
 )

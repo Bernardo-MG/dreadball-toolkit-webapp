@@ -1,14 +1,21 @@
-import { createStore, applyMiddleware } from 'redux'
+import { createStore, applyMiddleware, compose } from 'redux'
 import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import dreadballApp from '../reducers'
+import DevTools from '../containers/DevTools';
 
-const middleware = [ thunk, createLogger() ]
+const middleware = [
+   thunk, 
+   createLogger()
+]
 
-const configureStore = preloadedState => createStore(
+const configureStore = initialState => createStore(
    dreadballApp,
-   preloadedState,
-   applyMiddleware(...middleware)
+   initialState,
+   compose(
+      applyMiddleware(...middleware), 
+      DevTools.instrument()
+   )
 )
 
 export default configureStore

@@ -16,6 +16,9 @@ let store = configureStore()
 const browserHistory = useRouterHistory(createHistory)({
    basename: ROUTE_BASE
 })
+
 const history = syncHistoryWithStore(browserHistory, store)
 
-render(<Root store={store} history={history} />, document.getElementById('root'));
+const rootElement = document.getElementById('root');
+
+render(<Root store={store} history={history} />, rootElement);
