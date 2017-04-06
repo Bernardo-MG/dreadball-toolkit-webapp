@@ -9,13 +9,28 @@ const middleware = [
    createLogger()
 ]
 
+const buildStoreMiddleware = (production) => {
+   var enhancer;
+   
+   if (production) {
+      enhancer = applyMiddleware(...middleware);
+   } else {
+      enhancer = compose(
+         applyMiddleware(...middleware),
+         // Dev tools are included
+         DevTools.instrument()
+      );
+   }
+   
+   return enhancer;
+}
+
+const enhancer = buildStoreMiddleware(process.env.NODE_ENV === 'production');
+
 const configureStore = initialState => createStore(
    dreadballApp,
    initialState,
-   compose(
-      applyMiddleware(...middleware), 
-      DevTools.instrument()
-   )
+   enhancer
 )
 
 export default configureStore

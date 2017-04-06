@@ -8,12 +8,14 @@ import DevTools from './DevTools';
 
 const locale = Cookie.get('locale') || 'en';
 
+const isProduction = (process.env.NODE_ENV === 'production');
+
 const Root = ({ store, history }) => (
    <IntlProvider locale={locale}>
       <Provider store={store}>
          <div>
             <Router history={history} routes={routes} />
-            <DevTools />
+            {!isProduction && <DevTools />}
          </div>
       </Provider>
    </IntlProvider>
