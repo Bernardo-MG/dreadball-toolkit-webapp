@@ -1,17 +1,5 @@
-import React, { PropTypes } from 'react'
-import { Provider } from 'react-redux'
-import routes from '../routes'
-import { Router } from 'react-router'
-
-const Root = ({ store, history }) => (
-  <Provider store={store}>
-    <Router history={history} routes={routes} />
-  </Provider>
-)
-
-Root.propTypes = {
-  store: PropTypes.object.isRequired,
-  history: PropTypes.object.isRequired
+if (process.env.NODE_ENV === 'production') {
+  module.exports = require('./Root.prod')
+} else {
+  module.exports = require('./Root.dev')
 }
-
-export default Root
