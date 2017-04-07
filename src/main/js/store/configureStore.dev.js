@@ -5,7 +5,7 @@ import rootReducer from '../reducers'
 import DevTools from '../containers/DevTools';
 
 const middleware = [
-   thunk, 
+   thunk,
    createLogger()
 ]
 
