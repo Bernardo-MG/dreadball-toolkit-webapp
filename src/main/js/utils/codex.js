@@ -1,8 +1,6 @@
 import abilityMessages from '../i18n/ability';
 import roleMessages from '../i18n/role';
 import unitNameMessages from '../i18n/unitName';
-import { arrayOf, normalize } from 'normalizr';
-import { playerSchema } from '../model/schema';
 
 export const transformAffinityUnitsJson = (json, intl) => {
    var result = [];
@@ -12,7 +10,6 @@ export const transformAffinityUnitsJson = (json, intl) => {
    for (var i=0; i<json.length; i++) {
       entry = json[i];
       mapped = {
-         id: entry.templateName,
          name: intl.formatMessage(unitNameMessages[entry.name]),
          templateName: entry.templateName,
          role: intl.formatMessage(roleMessages[entry.role]),
@@ -31,7 +28,7 @@ export const transformAffinityUnitsJson = (json, intl) => {
       result.push(mapped);
    };
    
-   return normalize({players: result}, playerSchema);
+   return result;
 }
 
 const joinAbilities = (abilities, intl) => {
@@ -43,12 +40,10 @@ const joinAbilities = (abilities, intl) => {
    for (var i=0; i<abilities.length; i++) {
       name = abilities[i].name;
       ability = {
-         name: intl.formatMessage(abilityMessages[name]),
-         id: name
+         name: intl.formatMessage(abilityMessages[name])
       }
       result.push(ability);
    }
    
-   //return result.join(', ');
    return result;
 }
