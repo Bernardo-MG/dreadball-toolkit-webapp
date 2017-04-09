@@ -9,7 +9,7 @@ export const request = () => ({
 
 export const receive = (json, intl) => ({
    type: types.RECEIVE_UNITS,
-   units: transform(json, intl)
+   ...transform(json, intl)
 })
 
 export const fetch = (intl, affinities) => dispatch => {

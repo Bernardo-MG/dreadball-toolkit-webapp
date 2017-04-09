@@ -19,7 +19,7 @@ class LoadableDbxUnitTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   source: state.codex.units
+   //source: state.codex.units
 });
 
 const mapDispatchToProps = (dispatch) => ({

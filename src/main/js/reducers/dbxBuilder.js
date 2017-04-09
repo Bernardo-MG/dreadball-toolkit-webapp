@@ -4,11 +4,11 @@ import { combineReducers } from 'redux'
 const sponsorAffinityGroupAvailabilities = (state = { isFetching: false, availabilities: [] }, action) => {
    switch (action.type) {
       case types.BEGIN_DBX_TEAM_BUILDING:
-         return Object.assign({}, state, { isFetching: false, availabilities: [] })
+         return Object.assign({}, state, { availabilities: [] })
       case types.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
-         return Object.assign({}, state, { isFetching: true })
+         return Object.assign({}, state, {})
       case types.RECEIVE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
-         return Object.assign({}, state, { isFetching: false, availabilities: action.sponsorAffinityGroupAvailabilities })
+         return Object.assign({}, state, { availabilities: action.sponsorAffinityGroupAvailabilities })
       default:
          return state
    }
