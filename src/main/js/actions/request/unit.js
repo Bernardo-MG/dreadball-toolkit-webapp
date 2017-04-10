@@ -4,7 +4,7 @@ import { transformAffinityUnitsJson as transform } from '../../utils/codex'
 import { fetchData } from '../../utils/request'
 
 export const create = (unit) => ({
-   type: types.CREATE_PLAYER,
+   type: types.CREATE_PLAYERS,
    payload: unit
 })
 
@@ -14,9 +14,7 @@ export const request = () => ({
 
 export const receive = (json, intl) => dispatch => {
    var players = transform(json, intl);
-   for (var i=0; i<players.length; i++) {
-      dispatch(create(players[i]))
-   }
+   dispatch(create(players))
    
    return {
    type: types.RECEIVE_UNITS,
