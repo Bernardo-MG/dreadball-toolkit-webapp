@@ -38,11 +38,7 @@ const joinAbilities = (abilities, intl) => {
    
    result = [];
    for (var i=0; i<abilities.length; i++) {
-      name = abilities[i].name;
-      ability = {
-         name: intl.formatMessage(abilityMessages[name])
-      }
-      result.push(ability);
+      result.push(abilities[i].name);
    }
    
    return result;
