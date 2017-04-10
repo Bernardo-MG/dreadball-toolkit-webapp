@@ -2,11 +2,9 @@ import { Model, many } from 'redux-orm';
 import * as types from '../constants/ActionTypes'
 
 export class Ability extends Model {
-   static reducer(state, action, Pilot, session) {
+   static reducer(state, action, Ability, session) {
       switch (action.type) {
       case types.CREATE_PLAYERS:
-         const {Ability} = session;
-         
          // Gathers abilities sets
          var abilities = action.payload.map(player => player.abilities);
          // Merges abilities sets
@@ -23,11 +21,9 @@ Ability.backend = {
 };
 
 export class Player extends Model {
-   static reducer(state, action, Pilot, session) {
+   static reducer(state, action, Player, session) {
       switch (action.type) {
       case types.CREATE_PLAYERS:
-         const {Player} = session;
-         
          action.payload.forEach(player => Player.create(player));
          break;
       }
@@ -40,14 +36,3 @@ Player.fields = {
 Player.backend = {
    idAttribute: 'templateName',
 };
-
-
-//const ability = new schema.Entity('abilities');
-
-//const player = new schema.Entity('players', { 
-//   abilities: [ ability ]
-//});
-
-//const playerSchema = { players: [ player ] }
-
-//export { playerSchema };
