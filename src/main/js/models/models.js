@@ -10,7 +10,7 @@ export class Ability extends Model {
          // Merges abilities sets
          abilities = [].concat.apply([], abilities);
          // Creates abilities
-         abilities.forEach(ability => Ability.create(ability));
+         abilities.forEach(ability => Ability.create({name: ability}));
          break;
       }
    }
