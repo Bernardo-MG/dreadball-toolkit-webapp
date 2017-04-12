@@ -2,7 +2,8 @@ import * as types from 'constants/ActionTypes'
 import { combineReducers } from 'redux'
 
 const sponsorAffinityGroupAvailabilities = (state = { isFetching: false, availabilities: [] }, action) => {
-   switch (action.type) {
+   const { type } = action;
+   switch (type) {
       case types.BEGIN_DBX_TEAM_BUILDING:
          return Object.assign({}, state, { availabilities: [] })
       case types.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
@@ -15,7 +16,8 @@ const sponsorAffinityGroupAvailabilities = (state = { isFetching: false, availab
 }
 
 const sponsorChosenAffinities = (state = [], action) => {
-   switch (action.type) {
+   const { type } = action;
+   switch (type) {
       case types.BEGIN_DBX_TEAM_BUILDING:
          return []
       case types.CHOOSE_SPONSOR_AFFINITY:
@@ -30,7 +32,8 @@ const sponsorChosenAffinities = (state = [], action) => {
 }
 
 const sponsor = (state = { rank : 0 }, action) => {
-   switch (action.type) {
+   const { type } = action;
+   switch (type) {
       case types.BEGIN_DBX_TEAM_BUILDING:
          return {
             rank : 0

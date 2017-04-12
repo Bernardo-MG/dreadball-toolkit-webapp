@@ -1,7 +1,8 @@
 import * as types from 'constants/ActionTypes'
 
 const unitsAsync = (state = { isFetching: false, units: [] }, action) => {
-   switch (action.type) {
+   const { type } = action;
+   switch (type) {
       case types.REQUEST_UNITS:
          return Object.assign({}, state, {})
       case types.RECEIVE_UNITS:
