@@ -1,5 +1,5 @@
 import { Schema } from "redux-orm";
-import { Ability, Player } from "./models";
+import { Ability, Player } from "models/models";
 
 const schema = new Schema();
 

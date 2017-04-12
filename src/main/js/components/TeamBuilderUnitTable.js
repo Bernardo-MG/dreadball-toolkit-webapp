@@ -1,7 +1,7 @@
 import React from 'react';
 import { Table } from 'react-toolbox';
 import { injectIntl } from 'react-intl';
-import unitMessages from '../i18n/unit';
+import unitMessages from 'i18n/unit';
 
 class TeamBuilderUnitTable extends React.Component {
    UnitModel = {}

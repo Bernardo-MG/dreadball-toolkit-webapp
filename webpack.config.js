@@ -15,8 +15,12 @@ module.exports = {
    },
    resolve : {
       extensions : [ '', '.scss', '.css', '.js', '.json' ],
-      modulesDirectories : [ 'node_modules',
-            path.resolve(__dirname, './node_modules') ]
+      modulesDirectories : [
+         'src/main/js',
+         path.resolve(__dirname, './src/main/js'),
+         'node_modules',
+         path.resolve(__dirname, './node_modules')
+      ]
    },
    module : {
       loaders : [

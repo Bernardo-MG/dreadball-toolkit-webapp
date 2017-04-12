@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Dropdown from 'react-toolbox/lib/dropdown';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from '../actions/dbxBuilder';
+import * as Actions from 'actions/dbxBuilder';
 
 class SponsorAffinityComboBox extends Component {
 

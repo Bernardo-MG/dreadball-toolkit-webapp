@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
-import entities from './entities'
-import dbxBuilder from './dbxBuilder'
-import schema from '../models/schema';
+import entities from 'reducers/entities'
+import dbxBuilder from 'reducers/dbxBuilder'
+import schema from 'models/schema';
 
 const dreadballApp = combineReducers({
    entities,

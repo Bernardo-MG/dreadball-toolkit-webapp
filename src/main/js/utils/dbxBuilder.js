@@ -1,7 +1,7 @@
-import abilityMessages from '../i18n/ability';
-import roleMessages from '../i18n/role';
-import affinityMessages from '../i18n/affinity';
-import builderMessages from '../i18n/teamBuilder';
+import abilityMessages from 'i18n/ability';
+import roleMessages from 'i18n/role';
+import affinityMessages from 'i18n/affinity';
+import builderMessages from 'i18n/teamBuilder';
 
 export const transformSponsorAffinityGroupAvailabilitiesJson = (json, intl) => {
    var result = [];

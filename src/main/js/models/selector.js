@@ -1,4 +1,4 @@
-mport schema from './schema';
+import schema from 'models/schema';
 
 export const playerSelector = schema.createSelector(session => {
     return session.Player.map(player => {

@@ -1,7 +1,7 @@
-import * as types from '../../constants/ActionTypes'
-import { AFFINITY_UNITS_REST_ENDPOINT as URL } from '../../constants/RestUrls'
-import { transformAffinityUnitsJson as transform } from '../../utils/codex'
-import { fetchData } from '../../utils/request'
+import * as types from 'constants/ActionTypes'
+import { AFFINITY_UNITS_REST_ENDPOINT as URL } from 'constants/RestUrls'
+import { transformAffinityUnitsJson as transform } from 'utils/codex'
+import { fetchData } from 'utils/request'
 
 export const create = (unit) => ({
    type: types.CREATE_PLAYERS,

@@ -1,5 +1,5 @@
 import { Model, many } from 'redux-orm';
-import * as types from '../constants/ActionTypes'
+import * as types from 'constants/ActionTypes'
 
 export class Ability extends Model {
    static reducer(state, action, Ability, session) {
