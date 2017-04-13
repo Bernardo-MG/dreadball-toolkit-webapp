@@ -15,7 +15,7 @@ export class Ability extends Model {
          // Merges abilities sets
          abilities = [].concat.apply([], abilities);
          // Creates abilities
-         abilities.forEach(ability => Ability.create({name: ability}));
+         abilities.forEach(name => Ability.create({ name }));
          break;
       }
    }
@@ -43,20 +43,20 @@ Player.backend = {
    idAttribute: 'templateName',
 };
 Player.propTypes = {
-    name: PropTypes.string.isRequired,
-    role: PropTypes.string.isRequired,
-    move: PropTypes.number.isRequired,
-    strength: PropTypes.number.isRequired,
-    speed: PropTypes.number.isRequired,
-    skill: PropTypes.number.isRequired,
-    armor: PropTypes.number.isRequired,
-    stranger_cost: PropTypes.number,
-    ally_cost: PropTypes.number,
-    ally_cost: PropTypes.number,
-    friend_cost: PropTypes.number,
-    cost: PropTypes.number,
-    abilities: PropTypes.arrayOf(PropTypes.oneOfType([
-        PropTypes.instanceOf(Ability),
-        PropTypes.string,
-    ])).isRequired,
+   name: PropTypes.string.isRequired,
+   role: PropTypes.string.isRequired,
+   move: PropTypes.number.isRequired,
+   strength: PropTypes.number.isRequired,
+   speed: PropTypes.number.isRequired,
+   skill: PropTypes.number.isRequired,
+   armor: PropTypes.number.isRequired,
+   stranger_cost: PropTypes.number,
+   ally_cost: PropTypes.number,
+   ally_cost: PropTypes.number,
+   friend_cost: PropTypes.number,
+   cost: PropTypes.number,
+   abilities: PropTypes.arrayOf(PropTypes.oneOfType([
+      PropTypes.instanceOf(Ability),
+      PropTypes.string,
+   ])).isRequired,
 };

@@ -3,6 +3,6 @@ import { Ability, Player } from "models/models";
 
 const schema = new Schema();
 
-schema.register(Ability, Player);
+schema.register(Player, Ability);
 
 export default schema;
