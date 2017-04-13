@@ -1,5 +1,9 @@
 import { Model, many } from 'redux-orm';
 import * as types from 'constants/ActionTypes'
+import propTypesMixin from 'redux-orm-proptypes';
+import { PropTypes } from 'react';
+
+const ValidatingModel = propTypesMixin(Model);
 
 export class Ability extends Model {
    static reducer(state, action, Ability, session) {
@@ -21,7 +25,7 @@ Ability.backend = {
    idAttribute: 'name',
 };
 
-export class Player extends Model {
+export class Player extends ValidatingModel {
    static reducer(state, action, Player, session) {
       const { type, payload } = action;
       switch (type) {
@@ -37,4 +41,22 @@ Player.fields = {
 };
 Player.backend = {
    idAttribute: 'templateName',
+};
+Player.propTypes = {
+    name: PropTypes.string.isRequired,
+    role: PropTypes.string.isRequired,
+    move: PropTypes.number.isRequired,
+    strength: PropTypes.number.isRequired,
+    speed: PropTypes.number.isRequired,
+    skill: PropTypes.number.isRequired,
+    armor: PropTypes.number.isRequired,
+    stranger_cost: PropTypes.number,
+    ally_cost: PropTypes.number,
+    ally_cost: PropTypes.number,
+    friend_cost: PropTypes.number,
+    cost: PropTypes.number,
+    abilities: PropTypes.arrayOf(PropTypes.oneOfType([
+        PropTypes.instanceOf(Ability),
+        PropTypes.string,
+    ])).isRequired,
 };
