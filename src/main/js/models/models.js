@@ -15,7 +15,12 @@ export class Ability extends Model {
          // Merges abilities sets
          abilities = [].concat.apply([], abilities);
          // Creates abilities
-         abilities.forEach(name => Ability.create({ name }));
+         abilities.forEach(name => {
+               if (!Ability.filter({ name }).exists()) {
+                  Ability.create({ name })
+               }
+            }
+         );
          break;
       }
    }
@@ -30,7 +35,12 @@ export class Player extends ValidatingModel {
       const { type, payload } = action;
       switch (type) {
       case types.CREATE_PLAYERS:
-         payload.forEach(player => Player.create(player));
+         payload.forEach(player => {
+               if (!Player.filter({ templateName : player.templateName }).exists()) {
+                  Player.create(player)
+               }
+            }
+         );
          break;
       }
    }
