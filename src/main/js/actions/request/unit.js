@@ -28,10 +28,6 @@ export const fetch = (intl, affinities) => dispatch => {
    
    url = parseAffinitiesUrl(URL, affinities);
    
-   if((affinities) && (affinities.length)){
-      url += "?affinities=" + affinities.join();
-   }
-   
    return fetchData(url, (json) => dispatch(receive(json, intl)));
 }
 
