@@ -12,17 +12,15 @@ export const request = () => ({
    type: types.REQUEST_UNITS
 })
 
-export const receive = (players) => dispatch => ({
+export const receive = (players) => ({
    type: types.RECEIVE_UNITS,
    payload: players
 })
 
 export const fetch = (intl, affinities) => dispatch => {
-   var url;
-   
    dispatch(request())
    
-   url = parseAffinitiesUrl(URL, affinities);
+   const url = parseAffinitiesUrl(URL, affinities);
    
    return fetchData(url, (json) => handleReceive(json, intl, dispatch));
 }
@@ -39,8 +37,9 @@ const parseAffinitiesUrl = (url, affinities) => {
 }
 
  const handleReceive = (json, intl, dispatch) => {
-   var players = transform(json, intl);
-   dispatch(create(players))
+   const players = transform(json, intl);
+   const ids = players.map(player => player.templateName);
+   dispatch(receive(ids))
    
-   dispatch(receive(players))
+   dispatch(create(players))
 }
