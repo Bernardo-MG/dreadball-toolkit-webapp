@@ -1,10 +1,10 @@
 import * as types from 'constants/ActionTypes'
 import { AFFINITY_UNITS_REST_ENDPOINT as URL } from 'constants/RestUrls'
-import { transformAffinityUnitsJson as transform } from 'utils/codex'
+import { transformAffinityUnitsJson as parse } from 'utils/codex'
 import { fetchData } from 'utils/request'
 
 export const create = (unit) => ({
-   type: types.CREATE_PLAYERS,
+   type: types.CREATE_UNITS,
    payload: unit
 })
 
@@ -12,9 +12,9 @@ export const request = () => ({
    type: types.REQUEST_UNITS
 })
 
-export const receive = (players) => ({
+export const receive = (units) => ({
    type: types.RECEIVE_UNITS,
-   payload: players
+   payload: units
 })
 
 export const fetch = (intl, affinities) => dispatch => {
@@ -37,9 +37,9 @@ const parseAffinitiesUrl = (url, affinities) => {
 }
 
  const handleReceive = (json, intl, dispatch) => {
-   const players = transform(json, intl);
-   const ids = players.map(player => player.templateName);
+   const units = parse(json, intl);
+   const ids = units.map(unit => unit.templateName);
    dispatch(receive(ids))
    
-   dispatch(create(players))
+   dispatch(create(units))
 }

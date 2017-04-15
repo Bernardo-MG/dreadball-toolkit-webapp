@@ -5,17 +5,17 @@ import orm from 'models';
 // Selects the state managed by Redux-ORM.
 export const ormSelector = state => state.orm;
 
-export const players = createSelector(
+export const units = createSelector(
    ormSelector,
-   state => state.entities.players,
+   state => state.entities.units,
    ormCreateSelector(orm, (session, ids) => {
          var result = session.Player.all().toModelArray();
          
-         result = result.filter(player => ids.includes(player.templateName)).map(player => {
-            const obj = Object.assign({}, player.ref);
+         result = result.filter(unit => ids.includes(unit.templateName)).map(unit => {
+            const obj = Object.assign({}, unit.ref);
             
-            if(player.abilities) {
-               obj.abilities = player.abilities.toRefArray().map(ability => ability.name);
+            if(unit.abilities) {
+               obj.abilities = unit.abilities.toRefArray().map(ability => ability.name);
             }
             
             return obj;

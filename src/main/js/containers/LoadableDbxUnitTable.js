@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'actions/request/unit';
 import { injectIntl } from 'react-intl';
-import { players } from 'models/selectors';
+import { units } from 'models/selectors';
 
 class LoadableDbxUnitTable extends Component {
    
@@ -20,7 +20,7 @@ class LoadableDbxUnitTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   source: players(state)
+   source: units(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
