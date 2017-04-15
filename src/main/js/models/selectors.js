@@ -7,13 +7,11 @@ export const ormSelector = state => state.orm;
 
 export const players = createSelector(
    ormSelector,
-   state => state,
-   ormCreateSelector(
-      orm,
-      session => {
+   state => state.entities.players,
+   ormCreateSelector(orm, (session, ids) => {
          var result = session.Player.all().toModelArray();
          
-         result = result.map(player => {
+         result = result.filter(player => ids.includes(player.templateName)).map(player => {
             const obj = Object.assign({}, player.ref);
             
             if(player.abilities) {
