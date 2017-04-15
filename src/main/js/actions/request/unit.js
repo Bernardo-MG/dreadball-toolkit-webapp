@@ -12,6 +12,11 @@ export const request = () => ({
    type: types.REQUEST_UNITS
 })
 
+export const requestSuccess = (ids) => ({
+   type: types.REQUEST_UNITS_SUCCESS,
+   payload: ids
+})
+
 export const receive = (units) => ({
    type: types.RECEIVE_UNITS,
    payload: units
@@ -40,6 +45,7 @@ const parseAffinitiesUrl = (url, affinities) => {
    const units = parse(json, intl);
    const ids = units.map(unit => unit.templateName);
    dispatch(receive(ids))
+   dispatch(requestSuccess(ids))
    
    dispatch(create(units))
 }

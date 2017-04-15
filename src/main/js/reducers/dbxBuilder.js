@@ -1,14 +1,14 @@
-import * as types from 'constants/ActionTypes'
+import * as ActionTypes from 'constants/ActionTypes'
 import { combineReducers } from 'redux'
 
 const sponsorAffinityGroupAvailabilities = (state = { isFetching: false, availabilities: [] }, action) => {
    const { type } = action;
    switch (type) {
-      case types.BEGIN_DBX_TEAM_BUILDING:
+      case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
          return Object.assign({}, state, { availabilities: [] })
-      case types.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
+      case ActionTypes.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
          return Object.assign({}, state, {})
-      case types.RECEIVE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
+      case ActionTypes.RECEIVE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
          return Object.assign({}, state, { availabilities: action.sponsorAffinityGroupAvailabilities })
       default:
          return state
@@ -18,9 +18,9 @@ const sponsorAffinityGroupAvailabilities = (state = { isFetching: false, availab
 const sponsorChosenAffinities = (state = [], action) => {
    const { type } = action;
    switch (type) {
-      case types.BEGIN_DBX_TEAM_BUILDING:
+      case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
          return []
-      case types.CHOOSE_SPONSOR_AFFINITY:
+      case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
          var affinities = state.slice();
          
          affinities[action.index] = action.affinity;
@@ -34,7 +34,7 @@ const sponsorChosenAffinities = (state = [], action) => {
 const sponsor = (state = { rank : 0 }, action) => {
    const { type } = action;
    switch (type) {
-      case types.BEGIN_DBX_TEAM_BUILDING:
+      case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
          return {
             rank : 0
          }

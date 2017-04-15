@@ -7,7 +7,7 @@ export const ormSelector = state => state.orm;
 
 export const units = createSelector(
    ormSelector,
-   state => state.entities.units,
+   state => state.pagination.units.ids,
    ormCreateSelector(orm, (session, ids) => {
          var result = session.Player.all().toModelArray();
          

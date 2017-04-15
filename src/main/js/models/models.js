@@ -1,5 +1,5 @@
 import { Model, many, attr } from 'redux-orm';
-import * as types from 'constants/ActionTypes'
+import * as ActionTypes from 'constants/ActionTypes'
 import propTypesMixin from 'redux-orm-proptypes';
 import { PropTypes } from 'react';
 
@@ -9,7 +9,7 @@ export class Ability extends Model {
    static reducer(action, Ability, session) {
       const { type, payload } = action;
       switch (type) {
-      case types.CREATE_UNITS:
+      case ActionTypes.CREATE_UNITS:
          // Gathers abilities sets
          var abilities = payload.map(unit => unit.abilities);
          // Merges abilities sets
@@ -34,7 +34,7 @@ export class Player extends ValidatingModel {
    static reducer(action, Player, session) {
       const { type, payload } = action;
       switch (type) {
-      case types.CREATE_UNITS:
+      case ActionTypes.CREATE_UNITS:
          payload.forEach(unit => {
                if (!Player.filter({ templateName : unit.templateName }).exists()) {
                   Player.create(unit)
