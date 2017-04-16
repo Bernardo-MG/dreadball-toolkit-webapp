@@ -11,7 +11,7 @@ export class Ability extends Model {
       switch (type) {
       case ActionTypes.REQUEST_UNITS_SUCCESS:
          // Gathers abilities sets
-         var abilities = payload.entities.map(unit => unit.abilities);
+         var abilities = payload.map(unit => unit.abilities);
          // Merges abilities sets
          abilities = [].concat.apply([], abilities);
          // Creates abilities
@@ -35,7 +35,7 @@ export class Player extends ValidatingModel {
       const { type, payload } = action;
       switch (type) {
       case ActionTypes.REQUEST_UNITS_SUCCESS:
-         payload.entities.forEach(unit => {
+         payload.forEach(unit => {
                if (!Player.filter({ templateName : unit.templateName }).exists()) {
                   Player.create(unit)
                }

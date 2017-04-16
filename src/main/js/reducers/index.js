@@ -8,6 +8,7 @@ import * as ActionTypes  from 'constants/ActionTypes'
 
 const pagination = combineReducers({
    units: paginate({
+      idsMapping: entities => entities.map(unit => unit.templateName),
       types: [
          ActionTypes.REQUEST_UNITS,
          ActionTypes.REQUEST_UNITS_SUCCESS,

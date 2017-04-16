@@ -33,7 +33,6 @@ const parseAffinitiesUrl = (url, affinities) => {
 
 const handleReceive = (json, intl, dispatch) => {
    const units = parse(json, intl);
-   const ids = units.map(unit => unit.templateName);
    
-   dispatch(requestSuccess({ ids, entities: units }))
+   dispatch(requestSuccess(units))
 }
