@@ -5,6 +5,7 @@ export const CALL_API = 'Call API'
 // Performs the call and promises when such actions are dispatched.
 export default store => next => action => {
    const callAPI = action[CALL_API]
+   
    if (typeof callAPI === 'undefined') {
       return next(action)
    }
@@ -29,21 +30,17 @@ export default store => next => action => {
       throw new Error('Expected action types to be strings.')
    }
    
-   const actionWith = data => {
-      const finalAction = Object.assign({}, action, data)
-      delete finalAction[CALL_API]
-      return finalAction
-   }
-   
+   const processAction = actionWith(action)
    const [ requestType, successType, failureType ] = types
-   next(actionWith({ type: requestType }))
+   
+   next(processAction({ type: requestType }))
    
    return callApi(endpoint, parse).then(
-      response => next(actionWith({
+      response => next(processAction({
          type: successType,
          payload: response
       })),
-      error => next(actionWith({
+      error => next(processAction({
          type: failureType,
          error: error.message || 'Something bad happened'
       }))
@@ -63,4 +60,12 @@ const callApi = (endpoint, parse) => {
             return parse(json)
          })
       )
+}
+   
+const actionWith = action => data => {
+   const finalAction = Object.assign({}, action, data)
+   
+   delete finalAction[CALL_API]
+   
+   return finalAction
 }
