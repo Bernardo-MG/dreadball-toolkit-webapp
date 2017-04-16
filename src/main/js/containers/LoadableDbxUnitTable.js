@@ -9,7 +9,7 @@ import { units } from 'models/selectors';
 class LoadableDbxUnitTable extends Component {
    
    componentDidMount() {
-      this.props.actions.fetch(this.props.intl);
+      this.props.actions.fetch();
    }
    
    render() {

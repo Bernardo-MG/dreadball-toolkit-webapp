@@ -3,9 +3,11 @@ import thunk from 'redux-thunk'
 import createLogger from 'redux-logger'
 import rootReducer from 'reducers'
 import DevTools from 'containers/DevTools';
+import api from 'middleware/api'
 
 const middleware = [
    thunk,
+   api,
    createLogger()
 ]
 

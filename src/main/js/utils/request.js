@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-export const fetchData = (url, transformer) =>
+export const fetchData = (url, parse) =>
    fetch(url)
       .then(response => response.json())
-      .then(json => transformer(json))
+      .then(json => parse(json))

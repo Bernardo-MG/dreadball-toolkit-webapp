@@ -1,9 +1,11 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from 'reducers'
+import api from 'middleware/api'
 
 const middleware = [
-   thunk
+   thunk,
+   api
 ]
 
 const enhancer = applyMiddleware(...middleware);
