@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux'
 import { routerReducer as routing } from 'react-router-redux'
 import { createReducer } from 'redux-orm';
-import entities from 'reducers/entities'
 import dbxBuilder from 'reducers/dbxBuilder'
 import orm from 'models';
 import paginate from 'reducers/pagination'
@@ -19,7 +18,6 @@ const pagination = combineReducers({
 })
 
 const dreadballApp = combineReducers({
-   entities,
    pagination,
    dbxBuilder,
    routing,
