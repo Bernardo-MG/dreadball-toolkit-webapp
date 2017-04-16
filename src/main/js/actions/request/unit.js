@@ -1,7 +1,6 @@
-import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE } from 'constants/ActionTypes'
+import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE, CALL_API } from 'actions/ActionTypes'
 import { AFFINITY_UNITS_REST_ENDPOINT as URL } from 'constants/RestUrls'
 import { transformAffinityUnitsJson as parse } from 'utils/codex'
-import { CALL_API } from 'middleware/api'
 
 export const fetch = (affinities) => ({
   [CALL_API]: {

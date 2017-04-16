@@ -1,4 +1,4 @@
-import * as types from 'constants/ActionTypes'
+import * as types from 'actions/ActionTypes'
 import { SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT as URL } from 'constants/RestUrls'
 import { transformSponsorAffinityGroupAvailabilitiesJson as transform } from 'utils/dbxBuilder'
 // import { fetchData } from 'utils/request'

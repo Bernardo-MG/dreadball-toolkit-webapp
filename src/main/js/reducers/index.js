@@ -4,7 +4,7 @@ import { createReducer } from 'redux-orm';
 import dbxBuilder from 'reducers/dbxBuilder'
 import orm from 'models';
 import paginate from 'reducers/pagination'
-import * as ActionTypes  from 'constants/ActionTypes'
+import * as ActionTypes  from 'actions/ActionTypes'
 
 const pagination = combineReducers({
    units: paginate({

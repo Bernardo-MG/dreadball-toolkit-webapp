@@ -1,5 +1,5 @@
 import { Model, many, attr } from 'redux-orm';
-import * as ActionTypes from 'constants/ActionTypes'
+import * as ActionTypes from 'actions/ActionTypes'
 import propTypesMixin from 'redux-orm-proptypes';
 import { PropTypes } from 'react';
 
