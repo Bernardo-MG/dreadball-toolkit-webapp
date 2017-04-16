@@ -12,7 +12,12 @@ const paginate = ({ types }) => {
    
    const [ requestType, successType, failureType ] = types
    
-   return (state = {}, action) => {
+   return (state = {
+         isFetching: false,
+         nextPageUrl: undefined,
+         pageCount: 0,
+         ids: []
+      }, action) => {
       // Update pagination by key
       const { type } = action
       switch (type) {
@@ -26,12 +31,7 @@ const paginate = ({ types }) => {
    }
 }
 
-const updatePagination = (state = {
-      isFetching: false,
-      nextPageUrl: undefined,
-      pageCount: 0,
-      ids: []
-   }, action, requestType, successType, failureType) => {
+const updatePagination = (state, action, requestType, successType, failureType) => {
    const { type, payload, nextPageUrl } = action
    switch (type) {
       case requestType:
