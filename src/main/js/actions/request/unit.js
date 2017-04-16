@@ -17,7 +17,7 @@ export const fetch = (intl, affinities) => dispatch => {
    
    const url = parseAffinitiesUrl(URL, affinities);
    
-   return fetchData(url, (json) => handleReceive(json, intl, dispatch));
+   return fetchData(url, (json) => handleReceive(json, dispatch));
 }
 
 const parseAffinitiesUrl = (url, affinities) => {
@@ -31,8 +31,8 @@ const parseAffinitiesUrl = (url, affinities) => {
    return result;
 }
 
-const handleReceive = (json, intl, dispatch) => {
-   const units = parse(json, intl);
+const handleReceive = (json, dispatch) => {
+   const units = parse(json);
    
    dispatch(requestSuccess(units))
 }

@@ -2,7 +2,7 @@ import abilityMessages from 'i18n/ability';
 import roleMessages from 'i18n/role';
 import unitNameMessages from 'i18n/unitName';
 
-export const transformAffinityUnitsJson = (json, intl) => {
+export const transformAffinityUnitsJson = (json) => {
    var result = [];
    var entry;
    var mapped;
@@ -10,15 +10,15 @@ export const transformAffinityUnitsJson = (json, intl) => {
    for (var i=0; i<json.length; i++) {
       entry = json[i];
       mapped = {
-         name: intl.formatMessage(unitNameMessages[entry.name]),
+         name: entry.name,
          templateName: entry.templateName,
-         role: intl.formatMessage(roleMessages[entry.role]),
+         role: entry.role,
          move: entry.attributes.movement,
          strength: entry.attributes.strength,
          speed: entry.attributes.speed,
          skill: entry.attributes.skill,
          armor: entry.attributes.armor,
-         abilities: joinAbilities(entry.abilities, intl),
+         abilities: joinAbilities(entry.abilities),
          stranger_cost: entry.strangerCost,
          ally_cost: entry.allyCost,
          friend_cost: entry.friendCost,
@@ -31,7 +31,7 @@ export const transformAffinityUnitsJson = (json, intl) => {
    return result;
 }
 
-const joinAbilities = (abilities, intl) => {
+const joinAbilities = (abilities) => {
    var ability;
    var name;
    var result;
