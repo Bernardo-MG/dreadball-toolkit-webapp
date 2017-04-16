@@ -18,7 +18,8 @@ const paginate = ({ types }) => {
          pageCount: 0,
          ids: []
       }, action) => {
-      switch (action.type) {
+      const { type, payload, nextPageUrl } = action
+      switch (type) {
          case requestType:
             return {
                   ...state,
@@ -28,8 +29,8 @@ const paginate = ({ types }) => {
             return {
                   ...state,
                   isFetching: false,
-                  ids: union(state.ids, action.payload),
-                  nextPageUrl: action.nextPageUrl,
+                  ids: union(state.ids, payload),
+                  nextPageUrl: nextPageUrl,
                   pageCount: state.pageCount + 1
                }
          case failureType:
@@ -44,7 +45,8 @@ const paginate = ({ types }) => {
    
    return (state = {}, action) => {
       // Update pagination by key
-      switch (action.type) {
+      const { type } = action
+      switch (type) {
          case requestType:
          case successType:
          case failureType:
