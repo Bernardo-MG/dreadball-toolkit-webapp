@@ -12,37 +12,6 @@ const paginate = ({ types }) => {
    
    const [ requestType, successType, failureType ] = types
    
-   const updatePagination = (state = {
-         isFetching: false,
-         nextPageUrl: undefined,
-         pageCount: 0,
-         ids: []
-      }, action) => {
-      const { type, payload, nextPageUrl } = action
-      switch (type) {
-         case requestType:
-            return {
-                  ...state,
-                  isFetching: true
-               }
-         case successType:
-            return {
-                  ...state,
-                  isFetching: false,
-                  ids: union(state.ids, payload),
-                  nextPageUrl: nextPageUrl,
-                  pageCount: state.pageCount + 1
-               }
-         case failureType:
-            return {
-                  ...state,
-                  isFetching: false
-               }
-         default:
-            return state
-      }
-   }
-   
    return (state = {}, action) => {
       // Update pagination by key
       const { type } = action
@@ -50,10 +19,41 @@ const paginate = ({ types }) => {
          case requestType:
          case successType:
          case failureType:
-            return updatePagination(state, action)
+            return updatePagination(state, action, requestType, successType, failureType)
          default:
             return state
       }
+   }
+}
+
+const updatePagination = (state = {
+      isFetching: false,
+      nextPageUrl: undefined,
+      pageCount: 0,
+      ids: []
+   }, action, requestType, successType, failureType) => {
+   const { type, payload, nextPageUrl } = action
+   switch (type) {
+      case requestType:
+         return {
+               ...state,
+               isFetching: true
+            }
+      case successType:
+         return {
+               ...state,
+               isFetching: false,
+               ids: union(state.ids, payload),
+               nextPageUrl: nextPageUrl,
+               pageCount: state.pageCount + 1
+            }
+      case failureType:
+         return {
+               ...state,
+               isFetching: false
+            }
+      default:
+         return state
    }
 }
 
