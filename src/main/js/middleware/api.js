@@ -48,9 +48,9 @@ export default store => next => action => {
 }
 
 const callApi = (endpoint, parse) => {
-   const fullUrl = endpoint
+   const url = fullUrl(endpoint)
    
-   return fetch(fullUrl)
+   return fetch(url)
       .then(response =>
          response.json().then(json => {
             if (!response.ok) {
@@ -61,11 +61,15 @@ const callApi = (endpoint, parse) => {
          })
       )
 }
-   
+
 const actionWith = action => data => {
    const finalAction = Object.assign({}, action, data)
    
    delete finalAction[CALL_API]
    
    return finalAction
+}
+
+const fullUrl = url => {
+   return ROUTE_BASE + url
 }
