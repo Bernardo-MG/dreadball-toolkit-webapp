@@ -1,4 +1,3 @@
-// Action key that carries API call info interpreted by this Redux middleware.
 import { CALL_API } from 'actions/ActionTypes'
 
 // A Redux middleware that interprets actions with CALL_API info specified.
@@ -10,8 +9,8 @@ export default store => next => action => {
       return next(action)
    }
    
-   let { endpoint, parse } = callAPI
-   const { types } = callAPI
+   let { endpoint, acquirePage } = callAPI
+   const { types, parse } = callAPI
    
    if (typeof endpoint === 'function') {
       endpoint = endpoint(store.getState())
@@ -30,12 +29,18 @@ export default store => next => action => {
       throw new Error('Expected action types to be strings.')
    }
    
+   if (typeof acquirePage === 'undefined') {
+      acquirePage = initialPage
+   }
+   
+   let page = acquirePage(store.getState());
+   
    const processAction = actionWith(action)
    const [ requestType, successType, failureType ] = types
    
    next(processAction({ type: requestType }))
    
-   return callApi(endpoint, parse).then(
+   return callApi(endpoint, page, parse).then(
       response => next(processAction({
          type: successType,
          payload: response
@@ -47,8 +52,8 @@ export default store => next => action => {
    )
 }
 
-const callApi = (endpoint, parse) => {
-   const url = fullUrl(endpoint)
+const callApi = (endpoint, page, parse) => {
+   const url = paginatedUrl(fullUrl(endpoint), page)
    
    return fetch(url)
       .then(response =>
@@ -71,5 +76,17 @@ const actionWith = action => data => {
 }
 
 const fullUrl = url => {
-   return ROUTE_BASE + url
+   if(url.indexOf(ROUTE_BASE) === -1) {
+      return ROUTE_BASE + url
+   } else {
+      return url
+   }
+}
+
+const paginatedUrl = (url, page) => {
+   return url + '?page=' + page
+}
+
+const initialPage = (state) => {
+   return 0
 }

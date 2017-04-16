@@ -2,10 +2,11 @@ import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE, CALL_API }
 import { AFFINITY_UNITS_REST_ENDPOINT as URL } from 'constants/RestUrls'
 import { transformAffinityUnitsJson as parse } from 'utils/codex'
 
-export const fetch = (affinities) => ({
+export const fetch = (page=0) => ({
   [CALL_API]: {
     types: [ REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE ],
     endpoint: URL,
+    page: page,
     parse: parse
   }
 })
