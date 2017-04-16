@@ -3,18 +3,13 @@ import { AFFINITY_UNITS_REST_ENDPOINT as URL } from 'constants/RestUrls'
 import { transformAffinityUnitsJson as parse } from 'utils/codex'
 import { fetchData } from 'utils/request'
 
-export const create = (unit) => ({
-   type: types.CREATE_UNITS,
-   payload: unit
-})
-
 export const request = () => ({
    type: types.REQUEST_UNITS
 })
 
-export const requestSuccess = (ids) => ({
+export const requestSuccess = (data) => ({
    type: types.REQUEST_UNITS_SUCCESS,
-   payload: ids
+   payload: data
 })
 
 export const fetch = (intl, affinities) => dispatch => {
@@ -39,7 +34,6 @@ const parseAffinitiesUrl = (url, affinities) => {
 const handleReceive = (json, intl, dispatch) => {
    const units = parse(json, intl);
    const ids = units.map(unit => unit.templateName);
-   dispatch(requestSuccess(ids))
    
-   dispatch(create(units))
+   dispatch(requestSuccess({ ids, entities: units }))
 }

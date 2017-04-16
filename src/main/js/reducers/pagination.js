@@ -43,7 +43,7 @@ const updatePagination = (state, action, requestType, successType, failureType) 
          return {
                ...state,
                isFetching: false,
-               ids: union(state.ids, payload),
+               ids: union(state.ids, payload.ids),
                nextPageUrl: nextPageUrl,
                pageCount: state.pageCount + 1
             }

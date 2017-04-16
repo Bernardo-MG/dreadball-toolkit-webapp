@@ -9,9 +9,9 @@ export class Ability extends Model {
    static reducer(action, Ability, session) {
       const { type, payload } = action;
       switch (type) {
-      case ActionTypes.CREATE_UNITS:
+      case ActionTypes.REQUEST_UNITS_SUCCESS:
          // Gathers abilities sets
-         var abilities = payload.map(unit => unit.abilities);
+         var abilities = payload.entities.map(unit => unit.abilities);
          // Merges abilities sets
          abilities = [].concat.apply([], abilities);
          // Creates abilities
@@ -34,8 +34,8 @@ export class Player extends ValidatingModel {
    static reducer(action, Player, session) {
       const { type, payload } = action;
       switch (type) {
-      case ActionTypes.CREATE_UNITS:
-         payload.forEach(unit => {
+      case ActionTypes.REQUEST_UNITS_SUCCESS:
+         payload.entities.forEach(unit => {
                if (!Player.filter({ templateName : unit.templateName }).exists()) {
                   Player.create(unit)
                }
