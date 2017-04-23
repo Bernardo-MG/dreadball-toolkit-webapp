@@ -43,7 +43,8 @@ export default store => next => action => {
    return callApi(endpoint, page, parse).then(
       response => next(processAction({
          type: successType,
-         payload: response
+         page: page,
+         ...response
       })),
       error => next(processAction({
          type: failureType,
@@ -62,7 +63,12 @@ const callApi = (endpoint, page, parse) => {
                return Promise.reject(json)
             }
             
-            return parse(json.content)
+            const payload = parse(json.content)
+            const elements = payload.length
+            const totalPages = json.totalPages
+            const totalElements = json.totalElements
+            
+            return { payload, elements, totalPages, totalElements }
          })
       )
 }
