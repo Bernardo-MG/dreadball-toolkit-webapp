@@ -49,7 +49,8 @@ public interface UnitService {
      * 
      * @return all the affinity units
      */
-    public Iterable<AffinityUnit> getAllAffinityUnits(final Pageable pageReq);
+    public Iterable<? extends AffinityUnit>
+            getAllAffinityUnits(final Pageable pageReq);
 
     /**
      * Returns the unit created from the specified template and set up for the

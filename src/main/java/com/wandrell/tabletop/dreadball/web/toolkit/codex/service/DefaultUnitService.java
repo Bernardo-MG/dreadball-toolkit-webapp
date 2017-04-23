@@ -88,20 +88,13 @@ public final class DefaultUnitService implements UnitService {
     }
 
     @Override
-    public final Iterable<AffinityUnit>
+    public final Iterable<? extends AffinityUnit>
             getAllAffinityUnits(final Pageable pageReq) {
         final Collection<AffinityUnit> units;
 
         checkNotNull(pageReq, "Received a null pointer as pagination data");
 
-        // TODO: There may be a better way to do this transformation
-        units = new ArrayList<>();
-        for (final AffinityUnit unit : getAffinityUnitRepository()
-                .findAll(pageReq)) {
-            units.add(unit);
-        }
-
-        return units;
+        return getAffinityUnitRepository().findAll(pageReq);
     }
 
     @Override

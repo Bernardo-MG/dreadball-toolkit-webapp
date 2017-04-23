@@ -32,7 +32,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.UnitCodexController;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.UnitService;
@@ -112,7 +111,7 @@ public final class TestUnitCodexController {
     @SuppressWarnings("unchecked")
     private final UnitCodexController getController() {
         final UnitService codex; // Mocked unit codex
-        final Collection<AffinityUnit> affUnits;
+        final Collection affUnits;
         final Collection<Unit> units;
 
         codex = Mockito.mock(UnitService.class);

@@ -62,7 +62,7 @@ const callApi = (endpoint, page, parse) => {
                return Promise.reject(json)
             }
             
-            return parse(json)
+            return parse(json.content)
          })
       )
 }
