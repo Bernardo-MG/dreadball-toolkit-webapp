@@ -59,7 +59,7 @@ public class AffinityGroupCodexController {
      * @return the view for all the affinity units
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<AffinityGroup> getAffinityGroups() {
+    public final Iterable<? extends AffinityGroup> getAffinityGroups() {
         return getAffinityGroupCodex().getAllAffinityGroups();
     }
 

@@ -30,6 +30,6 @@ public interface AffinityGroupService {
      * 
      * @return all the affinity groups
      */
-    public Iterable<AffinityGroup> getAllAffinityGroups();
+    public Iterable<? extends AffinityGroup> getAllAffinityGroups();
 
 }

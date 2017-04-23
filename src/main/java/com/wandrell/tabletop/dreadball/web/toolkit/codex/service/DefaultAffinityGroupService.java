@@ -16,9 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -47,17 +44,8 @@ public final class DefaultAffinityGroupService implements AffinityGroupService {
     }
 
     @Override
-    public final Iterable<AffinityGroup> getAllAffinityGroups() {
-        final Collection<AffinityGroup> groups;
-
-        // TODO: There may be a better way to do this
-        groups = new ArrayList<>();
-        for (final AffinityGroup group : getAffinityGroupRepository()
-                .findAll()) {
-            groups.add(group);
-        }
-
-        return groups;
+    public final Iterable<? extends AffinityGroup> getAllAffinityGroups() {
+        return getAffinityGroupRepository().findAll();
     }
 
     /**

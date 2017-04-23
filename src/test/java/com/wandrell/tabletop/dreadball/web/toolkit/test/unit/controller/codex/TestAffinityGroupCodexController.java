@@ -31,7 +31,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.AffinityGroupCodexController;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.AffinityGroupService;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
@@ -90,7 +89,7 @@ public final class TestAffinityGroupCodexController {
      */
     private final AffinityGroupCodexController getController() {
         final AffinityGroupService codex; // Mocked unit codex
-        final Collection<AffinityGroup> groups;
+        final Collection groups;
 
         codex = Mockito.mock(AffinityGroupService.class);
 
