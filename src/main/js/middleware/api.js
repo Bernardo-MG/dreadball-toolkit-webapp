@@ -63,14 +63,18 @@ const callApi = (endpoint, page, parse) => {
                return Promise.reject(json)
             }
             
-            const payload = parse(json.content)
-            const elements = payload.length
-            const totalPages = json.totalPages
-            const totalElements = json.totalElements
-            
-            return { payload, elements, totalPages, totalElements }
+            return parsePaginated(json, parse)
          })
       )
+}
+
+const parsePaginated = (json, parse) => {
+   const payload = parse(json.content)
+   const elements = payload.length
+   const totalPages = json.totalPages
+   const totalElements = json.totalElements
+   
+   return { payload, elements, totalPages, totalElements }
 }
 
 const actionWith = action => data => {
