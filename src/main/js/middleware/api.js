@@ -43,7 +43,6 @@ export default store => next => action => {
    return callApi(endpoint, page, parse).then(
       response => next(processAction({
          type: successType,
-         page: page,
          ...response
       })),
       error => next(processAction({
@@ -70,11 +69,14 @@ const callApi = (endpoint, page, parse) => {
 
 const parsePaginated = (json, parse) => {
    const payload = parse(json.content)
-   const elements = payload.length
-   const totalPages = json.totalPages
-   const totalElements = json.totalElements
    
-   return { payload, elements, totalPages, totalElements }
+   return { payload: payload,
+            page: json.number,
+            first: json.first,
+            last: json.last,
+            elements: payload.length,
+            totalPages: json.totalPages,
+            totalElements: json.totalElements }
 }
 
 const actionWith = action => data => {
