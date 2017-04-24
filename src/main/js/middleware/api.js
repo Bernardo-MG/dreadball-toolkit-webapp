@@ -9,8 +9,8 @@ export default store => next => action => {
       return next(action)
    }
    
-   let { endpoint, acquirePage } = callAPI
-   const { types, parse } = callAPI
+   let { endpoint } = callAPI
+   const { types, parse, page } = callAPI
    
    if (typeof endpoint === 'function') {
       endpoint = endpoint(store.getState())
@@ -28,12 +28,6 @@ export default store => next => action => {
    if (!types.every(type => typeof type === 'string')) {
       throw new Error('Expected action types to be strings.')
    }
-   
-   if (typeof acquirePage === 'undefined') {
-      acquirePage = initialPage
-   }
-   
-   let page = acquirePage(store.getState());
    
    const processAction = actionWith(action)
    const [ requestType, successType, failureType ] = types
@@ -97,8 +91,4 @@ const fullUrl = url => {
 
 const paginatedUrl = (url, page) => {
    return url + '?page=' + page
-}
-
-const initialPage = (state) => {
-   return 0
 }

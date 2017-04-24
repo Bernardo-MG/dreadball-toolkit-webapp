@@ -7,9 +7,12 @@ export const ormSelector = state => state.orm;
 
 export const units = createSelector(
    ormSelector,
-   state => state.pagination.units.ids,
-   ormCreateSelector(orm, (session, ids) => {
+   state => state.pagination.units,
+   ormCreateSelector(orm, (session, pagination) => {
          var result = session.Player.all().toModelArray();
+         const start = pagination.page * pagination.elements;
+         const end = start + pagination.elements;
+         const ids = pagination.ids.slice(start, end);
          
          result = result.filter(unit => ids.includes(unit.templateName)).map(unit => {
             const obj = Object.assign({}, unit.ref);
