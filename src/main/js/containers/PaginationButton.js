@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 class PaginationButton extends Component {
 
    callApi = () => {
-      this.props.actions.fetch(1);
+      this.props.actions.fetch(this.props.page + 1);
    };
    
    render() {
@@ -18,6 +18,7 @@ class PaginationButton extends Component {
 }
 
 const mapStateToProps = (state) => ({
+   page: state.pagination.units.page
 });
 
 const mapDispatchToProps = (dispatch) => ({
