@@ -3,11 +3,12 @@ import * as actions from 'actions/request/unit';
 import { bindActionCreators } from 'redux';
 import { Button } from 'react-toolbox/lib/button';
 import { connect } from 'react-redux';
+import { nextPage } from 'pagination/utils';
 
-class PaginationButton extends Component {
+class NextPageButton extends Component {
 
    callApi = () => {
-      this.props.actions.fetch(this.props.page + 1);
+      nextPage(this.props.actions.fetch, this.props.page, this.props.totalPages)
    };
    
    render() {
@@ -18,7 +19,8 @@ class PaginationButton extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   page: state.pagination.units.page
+   page: state.pagination.units.page,
+   totalPages: state.pagination.units.totalPages
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -28,4 +30,4 @@ const mapDispatchToProps = (dispatch) => ({
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(PaginationButton);
+)(NextPageButton);

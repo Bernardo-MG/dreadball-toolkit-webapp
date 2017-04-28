@@ -2,7 +2,8 @@ import React from 'react';
 import { Card, CardActions } from 'react-toolbox/lib/card';
 import LoadableDbxUnitTable from 'containers/LoadableDbxUnitTable';
 import { Button } from 'react-toolbox/lib/button';
-import PaginationButton from 'containers/PaginationButton';
+import PreviousPageButton from 'containers/PreviousPageButton';
+import NextPageButton from 'containers/NextPageButton';
 
 const DbxPlayers = () => {
    return (
@@ -11,8 +12,8 @@ const DbxPlayers = () => {
          <Card>
             <LoadableDbxUnitTable/>
             <CardActions>
-               <Button label='previous' />
-               <PaginationButton label='next' />
+               <PreviousPageButton label='previous' />
+               <NextPageButton label='next' />
             </CardActions>
          </Card>
       </div>
