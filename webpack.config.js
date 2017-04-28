@@ -3,6 +3,8 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+const env = process.env.NODE_ENV || 'development';
+
 module.exports = {
    context : __dirname,
    entry : './src/main/js/index.js',
@@ -60,7 +62,7 @@ module.exports = {
       new webpack.NoErrorsPlugin(),
       new webpack.DefinePlugin({
          'process.env': {
-            'NODE_ENV': JSON.stringify('development')
+            NODE_ENV: JSON.stringify(env)
          },
          ROUTE_BASE : JSON.stringify('/dreadball')
       }) 
