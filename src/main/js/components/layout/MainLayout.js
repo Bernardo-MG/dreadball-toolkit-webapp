@@ -6,7 +6,7 @@ import GithubIcon from 'icons';
 
 const MainLayout = (props) => {
    return (
-      <BaseLayout drawerContent={ <MainDrawerContent/> } rightIcon={ <GithubIcon/> }>
+      <BaseLayout>
          {props.children}
       </BaseLayout>
    );

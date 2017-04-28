@@ -44,7 +44,7 @@ module.exports = {
    postcss : [ autoprefixer ],
    sassLoader : {
       data : '@import "theme/style.scss";',
-      includePaths : [ path.resolve(__dirname, './src/main/js') ]
+      includePaths : [ path.resolve(__dirname, './src/main/js'), path.resolve(__dirname, './node_modules') ]
    },
    plugins : [
       new ExtractTextPlugin('./target/generated-ui/style.css', {

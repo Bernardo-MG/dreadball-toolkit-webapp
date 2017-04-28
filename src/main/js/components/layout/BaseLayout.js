@@ -1,5 +1,10 @@
 import React from 'react';
-import { Layout, NavDrawer, Panel, AppBar } from 'react-toolbox';
+import App from 'grommet/components/App';
+import Box from 'grommet/components/Box';
+import Anchor from 'grommet/components/Anchor';
+import Header from 'grommet/components/Header';
+import Footer from 'grommet/components/Footer';
+import Title from 'grommet/components/Title';
 
 class BaseLayout extends React.Component {
    state = {
@@ -12,17 +17,21 @@ class BaseLayout extends React.Component {
    
    render() {
       return (
-         <Layout>
-            <NavDrawer active={ this.state.drawerActive } onOverlayClick={ this.toggleDrawerActive }>
-               {this.props.drawerContent}
-            </NavDrawer>
-            <Panel>
-               <AppBar leftIcon='menu' rightIcon={ this.props.rightIcon } onLeftIconClick={ this.toggleDrawerActive } />
-               <div style={{ flex: 1, overflowY: 'auto', padding: '1.8rem' }}>
+      <App centered={false}>
+        <Box full={true}>
+          <Header direction='row' justify='between'
+            pad={{ horizontal: 'medium' }}>
+            <Title>Todo App</Title>
+          </Header>
                   {this.props.children}
-               </div>
-            </Panel>
-         </Layout>
+          <Footer primary={true} appCentered={true} direction='column'
+            align='center' pad='small' colorIndex='grey-1'>
+            <p>
+              Build your ideas with <Anchor href='http://grommet.io' target='_blank'>Grommet</Anchor>!
+            </p>
+          </Footer>
+        </Box>
+      </App>
       );
    };
 };
