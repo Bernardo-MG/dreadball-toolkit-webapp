@@ -1,7 +1,7 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunk from 'redux-thunk'
 import rootReducer from 'reducers'
-import api from 'middleware/api'
+import api from 'pagination/middleware/api'
 
 const middleware = [
    thunk,
