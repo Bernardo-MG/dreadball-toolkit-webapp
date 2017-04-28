@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Input from 'react-toolbox/lib/input';
+//import Input from 'react-toolbox/lib/input';
 
 class StatefulInput extends React.Component {
    state = { text: '' };
@@ -10,7 +10,8 @@ class StatefulInput extends React.Component {
    
    render () {
       return (
-         <Input {...this.props} value={this.state.text} onChange={this.handleChange.bind(this)} />
+         <div/>
+         //<Input {...this.props} value={this.state.text} onChange={this.handleChange.bind(this)} />
       );
    }
 }

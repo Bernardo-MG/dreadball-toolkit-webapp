@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import * as actions from 'actions/request/unit';
 import { bindActionCreators } from 'redux';
-import { Button } from 'react-toolbox/lib/button';
+//import { Button } from 'react-toolbox/lib/button';
 import { connect } from 'react-redux';
 import { previousPage } from 'pagination/utils';
 
@@ -13,7 +13,8 @@ class PreviousPageButton extends Component {
    
    render() {
       return (
-         <Button onClick={this.callApi} label={this.props.label}/>
+         <div/>
+         //<Button onClick={this.callApi} label={this.props.label}/>
       )
    }
 }

@@ -3,7 +3,7 @@ import StatefulInput from 'components/StatefulInput';
 import TeamBuilderUnitTable from 'components/TeamBuilderUnitTable';
 import LoadableUnitOptionTable from 'containers/LoadableUnitOptionTable';
 import { Button } from 'react-toolbox/lib/button';
-import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
+//import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
 import { Card, CardActions } from 'react-toolbox/lib/card';
 import Dialog from 'react-toolbox/lib/dialog';
 
@@ -38,38 +38,39 @@ class SponsorTeamView extends React.Component {
 
    render() {
       return (
-         <Layout>
-            <Panel>
-               <div>
-                  <StatefulInput type='text' label='sponsor_name' maxLength={16} />
-                  <p>chosen_affinities: {this.state.affinities}</p>
-                  <p>sponsor_rank: {this.state.builder.sponsor.rank}</p>
-                  <h1>spend_rank</h1>
-                  <Button label='additional_affinity' raised primary />
-                  <StatefulInput type='number' label='coaching_dice' maxLength={3} />
-                  <StatefulInput type='number' label='special_move_card' maxLength={3} />
-                  <StatefulInput type='number' label='nasty_surprise_card' maxLength={3} />
-                  <StatefulInput type='number' label='wager' maxLength={3} />
-                  <StatefulInput type='number' label='medibot' maxLength={3} />
-                  <StatefulInput type='number' label='cheerleaders' maxLength={3} />
-                  <h1>players</h1>
-                  <Card>
-                     <TeamBuilderUnitTable/>
-                     <CardActions>
-                        <Button label='add_player' onClick={this.togglePlayerOptions} />
-                     </CardActions>
-                  </Card>
-                  <Dialog
-                     actions={this.dialogActions}
-                     active={this.state.showPlayerOptions}
-                     onEscKeyDown={this.togglePlayerOptions}
-                     onOverlayClick={this.togglePlayerOptions}
-                     title='add_player'>
-                     <LoadableUnitOptionTable/>
-                  </Dialog>
-               </div>
-            </Panel>
-         </Layout>
+            <div/>
+//         <Layout>
+//            <Panel>
+//               <div>
+//                  <StatefulInput type='text' label='sponsor_name' maxLength={16} />
+//                  <p>chosen_affinities: {this.state.affinities}</p>
+//                  <p>sponsor_rank: {this.state.builder.sponsor.rank}</p>
+//                  <h1>spend_rank</h1>
+//                  <Button label='additional_affinity' raised primary />
+//                  <StatefulInput type='number' label='coaching_dice' maxLength={3} />
+//                  <StatefulInput type='number' label='special_move_card' maxLength={3} />
+//                  <StatefulInput type='number' label='nasty_surprise_card' maxLength={3} />
+//                  <StatefulInput type='number' label='wager' maxLength={3} />
+//                  <StatefulInput type='number' label='medibot' maxLength={3} />
+//                  <StatefulInput type='number' label='cheerleaders' maxLength={3} />
+//                  <h1>players</h1>
+//                  <Card>
+//                     <TeamBuilderUnitTable/>
+//                     <CardActions>
+//                        <Button label='add_player' onClick={this.togglePlayerOptions} />
+//                     </CardActions>
+//                  </Card>
+//                  <Dialog
+//                     actions={this.dialogActions}
+//                     active={this.state.showPlayerOptions}
+//                     onEscKeyDown={this.togglePlayerOptions}
+//                     onOverlayClick={this.togglePlayerOptions}
+//                     title='add_player'>
+//                     <LoadableUnitOptionTable/>
+//                  </Dialog>
+//               </div>
+//            </Panel>
+//         </Layout>
       );
    }
 }

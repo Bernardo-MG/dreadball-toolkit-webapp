@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table } from 'react-toolbox';
+//import { Table } from 'react-toolbox';
 import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
 
@@ -24,11 +24,12 @@ class TeamBuilderUnitTable extends React.Component {
    
    render() {
       return (
-         <Table
-            model={this.UnitModel}
-            source={this.props.source}
-            selectable={false}
-            multiSelectable={false} />
+         <div/>
+         //<Table
+         //   model={this.UnitModel}
+         //   source={this.props.source}
+         //   selectable={false}
+         //   multiSelectable={false} />
       );
    };
 };
