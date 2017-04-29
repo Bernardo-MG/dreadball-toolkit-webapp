@@ -7,7 +7,7 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const env = process.env.NODE_ENV || 'development';
 
 // Debug mode is configured
-let debug = false;
+var debug = false;
 if (env === 'development') {
    debug = true;
 }
