@@ -97,9 +97,10 @@ module.exports = {
             {
                test : /(\.scss|\.css)$/,
                loader : ExtractTextPlugin
-                     .extract(
-                           'style',
-                           'css?sourceMap&modules&importLoaders=1!sass')
+                     .extract({
+          fallback: "style-loader",
+          use: "css-loader"
+        })
             } ]
    },
    sassLoader : {
