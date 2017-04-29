@@ -1,6 +1,5 @@
 var path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Environment profile
@@ -100,10 +99,9 @@ module.exports = {
                loader : ExtractTextPlugin
                      .extract(
                            'style',
-                           'css?sourceMap&modules&importLoaders=1!postcss!sass')
+                           'css?sourceMap&modules&importLoaders=1!sass')
             } ]
    },
-   postcss : [ autoprefixer ],
    sassLoader : {
       data : '@import "theme/style.scss";',
       includePaths : [ path.resolve(__dirname, './src/main/js') ]
