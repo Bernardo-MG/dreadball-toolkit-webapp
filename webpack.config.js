@@ -9,12 +9,6 @@ const env = process.env.NODE_ENV || 'development';
 // Output directory
 const pathOutput = './target/generated-ui/';
 
-// Debug mode is configured
-var debug = false;
-if (env === 'development') {
-   debug = true;
-}
-
 // Plugins
 plugins = [
    new ExtractTextPlugin(pathOutput + 'style.css', {
@@ -35,6 +29,7 @@ plugins = [
    }) 
 ]
 
+var debug = false;
 if (env === 'production') {
    // Production specific configuration
    plugins.push(
@@ -62,6 +57,7 @@ if (env === 'production') {
    );
 } else {
    // Development specific configuration
+   debug = true;
    plugins = plugins.concat([
       new webpack.HotModuleReplacementPlugin()
    ]);
