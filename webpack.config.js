@@ -3,14 +3,21 @@ const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
+// Environment profile
 const env = process.env.NODE_ENV || 'development';
+
+// Debug mode is configured
+let debug = false;
+if (env === 'development') {
+   debug = true;
+}
 
 module.exports = {
    context : __dirname,
    entry : './src/main/js/index.js',
    devtool : 'inline-source-map',
    cache : true,
-   debug : true,
+   debug,
    output : {
       path : __dirname,
       filename : './target/generated-ui/bundle.js'
