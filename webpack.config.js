@@ -30,6 +30,7 @@ plugins = [
 ]
 
 var debug = false;
+const devtool = null;
 if (env === 'production') {
    // Production specific configuration
    plugins.push(
@@ -58,6 +59,7 @@ if (env === 'production') {
 } else {
    // Development specific configuration
    debug = true;
+   devtool = 'inline-source-map',
    plugins = plugins.concat([
       new webpack.HotModuleReplacementPlugin()
    ]);
@@ -66,7 +68,7 @@ if (env === 'production') {
 module.exports = {
    context : __dirname,
    entry : './src/main/js/index.js',
-   devtool : 'inline-source-map',
+   devtool,
    cache : true,
    debug,
    output : {
