@@ -6,6 +6,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Environment profile
 const env = process.env.NODE_ENV || 'development';
 
+// Output directory
+const pathOutput = './target/generated-ui/';
+
 // Debug mode is configured
 var debug = false;
 if (env === 'development') {
@@ -14,13 +17,13 @@ if (env === 'development') {
 
 // Plugins
 plugins = [
-   new ExtractTextPlugin('./target/generated-ui/style.css', {
+   new ExtractTextPlugin(pathOutput + 'style.css', {
       allChunks : true
    }),
    new webpack.optimize.OccurenceOrderPlugin(),
    new webpack.optimize.CommonsChunkPlugin({
       name : 'vendor',
-      filename : './target/generated-ui/vendor.bundle.js',
+      filename : pathOutput + 'vendor.bundle.js',
       minChunks : Infinity
    }),
    new webpack.NoErrorsPlugin(),
