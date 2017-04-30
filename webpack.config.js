@@ -99,7 +99,7 @@ module.exports = {
                loader : ExtractTextPlugin
                      .extract(
                            'style',
-                           'css?sourceMap&modules&importLoaders=1!sass')
+                           'css?sourceMap&importLoaders=1!sass')
             } ]
    },
    sassLoader : {
