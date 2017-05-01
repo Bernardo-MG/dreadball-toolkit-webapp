@@ -857,7 +857,6 @@ INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 70);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 1);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 22);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 48);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 1);
 
 -- MVPs, Nightshade: poison blade
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (203, 43);
