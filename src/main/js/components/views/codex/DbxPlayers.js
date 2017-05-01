@@ -10,7 +10,7 @@ const DbxPlayers = () => {
          <h1>DBX players</h1>
          <Box>
             <LoadableDbxUnitTable/>
-            <Box>
+            <Box direction='row'>
                <PreviousPageButton label='previous' />
                <NextPageButton label='next' />
             </Box>
