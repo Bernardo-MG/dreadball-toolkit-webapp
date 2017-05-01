@@ -26,7 +26,7 @@ class DbxUnitTable extends React.Component {
             </thead>
             <tbody>
                {this.props.source.map(function(object, i){
-                  return <TableRow>
+                  return <TableRow key={i}>
                            <td>{object.name}</td>
                            <td>{object.role}</td>
                            <td>{object.move}</td>
