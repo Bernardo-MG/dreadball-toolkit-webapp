@@ -4,6 +4,7 @@ import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
 import SearchIcon from 'grommet/components/icons/base/Search';
+import NavAnchor from 'components/NavAnchor';
 
 export default function AppHeader (props) {
   return (
@@ -13,7 +14,7 @@ export default function AppHeader (props) {
         pad={{horizontal: 'medium'}} flex="grow">
         <Menu label="Label" inline={true} direction="row" flex="grow">
           <Anchor href="#">DBX team creation</Anchor>
-          <Anchor href="#">Players list</Anchor>
+          <NavAnchor path="/players">Players list</NavAnchor>
         </Menu>
       </Box>
     </Header>
