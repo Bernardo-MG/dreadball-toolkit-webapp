@@ -734,191 +734,191 @@ INSERT INTO unit_abilities (unit_id, ability_id) VALUES (173, 21);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (173, 75);
 
 -- Giant, Sann-gar:  threatening
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (173, 75);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (174, 75);
 
 -- MVPs, Anne-Marie Helder: grizzled, prima donna
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (174, 22);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (174, 46);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (175, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (175, 46);
 
 -- MVPs, Asylum: backstab
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (175, 6);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 6);
 
 -- MVPs, A'Teo Adysi: 360 vision, backflip, duck and weave, jump
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 1);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 5);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 16);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (176, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (177, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (177, 5);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (177, 16);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (177, 28);
 
 -- MVPs, 'Brickbat' Vognar: lucky, steady
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (177, 32);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (177, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (178, 32);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (178, 68);
 
 -- MVPs, Brute Force: trail blazer
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (178, 78);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (179, 78);
 
 -- MVPs, Buzzcut: can't feel a thing, grizzled
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (179, 8);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (179, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (180, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (180, 22);
 
 -- MVPs, Crypt: harmonic, steady
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (180, 23);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (180, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (181, 23);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (181, 68);
 
 -- MVPs, Dead Man Davitz: can't feel a thing, grizzled
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (181, 8);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (181, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (182, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (182, 22);
 
 -- MVPs, Dozer: teleport, threatening
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (182, 74);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (182, 75);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 74);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 75);
 
 -- MVPs, Drake: can't feel a thing, quick recovery, really lucky, steady
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 8);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 50);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 53);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (183, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (184, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (184, 50);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (184, 53);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (184, 68);
 
 -- MVPs, The Enforcer: backflip, jump
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (184, 5);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (184, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 5);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 28);
 
 -- MVPs, The Excavator: can't feel a thing, driller, grizzled, steady
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 8);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 14);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 22);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (185, 68);
-
--- MVPs, Firewall: lucky, steady
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (186, 32);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (186, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (186, 14);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (186, 22);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (186, 68);
 
+-- MVPs, Firewall: lucky, steady
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (187, 32);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (187, 68);
+
 -- MVPs, Galdo: 360 vision, quick recovery, stubborn
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (187, 1);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (187, 50);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (187, 71);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (188, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (188, 50);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (188, 71);
 
 -- MVPs, Gorim Ironstone: grizzled, steady
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (188, 22);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (188, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (189, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (189, 68);
 
 -- MVPs, Grak: pile-driver, uncontrolled
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (189, 42);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (189, 80);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (190, 42);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (190, 80);
 
 -- MVPs, Hector Weiss: a safe pair of hands, grizzled, running interference
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (190, 3);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (190, 22);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (190, 60);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 3);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 60);
 
 -- MVPs, Irsala: alert, gotcha, steady, toxic
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 4);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 21);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 68);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (191, 79);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (192, 4);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (192, 21);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (192, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (192, 79);
 
 -- MVPs, John Doe: gotcha
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (192, 21);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (193, 21);
 
 -- MVPs, Jonathan 'Gabe' Gabriel: show off
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (193, 63);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (194, 63);
 
 -- MVPs, Kailasa: backstab
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (194, 6);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 6);
 
 -- MVPs, Kryphos: crowd puller, gotcha, spinner, portal master
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 11);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 21);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 67);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (195, 45);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (196, 11);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (196, 21);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (196, 67);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (196, 45);
 
 -- MVPs, 'Lucky' Logan: really lucky
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (196, 53);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (197, 53);
 
 -- MVPs, Ludwig: can't feel a thing, jump
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (197, 8);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (197, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (198, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (198, 28);
 
 -- MVPs, Lyra the Fixer: backstab, jump, stretch
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (198, 6);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (198, 28);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (198, 70);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 6);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 70);
 
 -- MVPs, Mee-Kel Judwan: 360 vision, can't feel a thing, long arms, misdirect, pacifist
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 1);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 8);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 31);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (199, 40);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (200, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (200, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (200, 31);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (200, 40);
 
 -- MVPs, Mellisandra: poison blade, stretch
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (200, 43);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (200, 70);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 43);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 70);
 
 -- MVPs, M'zei Kein: 360 vision, grizzled, push
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 1);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 22);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 48);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (201, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 48);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 1);
 
 -- MVPs, Nightshade: poison blade
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (202, 43);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (203, 43);
 
 -- MVPs, Number 88: jump, mind like water
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (203, 28);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (203, 35);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (204, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (204, 35);
 
 -- MVPs, Phantasm: phaser
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (204, 41);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (205, 41);
 
 -- MVPs, The Praetorian: a safe pair of hands, can't feel a thing
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (205, 3);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (205, 8);
-
--- MVPs, Reek Rolat: can't feel a thing
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (206, 3);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (206, 8);
 
--- MVPs, Rico Van Dien: jump, show off
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (207, 28);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (207, 63);
+-- MVPs, Reek Rolat: can't feel a thing
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (207, 8);
 
--- MVPs, Riller: show off
+-- MVPs, Rico Van Dien: jump, show off
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (208, 28);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (208, 63);
 
+-- MVPs, Riller: show off
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 63);
+
 -- MVPs, Schnorkel: can't feel a thing, fan favourite, klutz, steady
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 8);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 19);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 30);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (209, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (210, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (210, 19);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (210, 30);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (210, 68);
 
 -- MVPs, Slippery Joe: a safe pair of hands, jump
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (210, 3);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (210, 28);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 3);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 28);
 
 -- MVPs, Thunder Chris: 360 vision, even the odds, grizzled, threatening
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 1);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 17);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 22);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (211, 75);
-
--- MVPs, Tycho Brahe: threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (212, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (212, 17);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (212, 22);
 INSERT INTO unit_abilities (unit_id, ability_id) VALUES (212, 75);
 
+-- MVPs, Tycho Brahe: threatening
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (213, 75);
+
 -- MVPs, The Veteran: duck and weave, grizzled, quick recovery
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (213, 16);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (213, 22);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (213, 50);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (214, 16);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (214, 22);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (214, 50);
 
 -- MVPs, Wildcard: even the odds
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (214, 17);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (215, 17);
 
 -- MVPs, Wyn Greth'zky: alert, duck and weave
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (215, 4);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (215, 16);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 4);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 16);
 
 -- MVPs, Yurik Yurikson: 360 vision, can't feel a thing, quick recovery, steady
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 1);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 8);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 50);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (216, 68);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (217, 1);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (217, 8);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (217, 50);
+INSERT INTO unit_abilities (unit_id, ability_id) VALUES (217, 68);
 
 -- ---------------
 -- Unit affinities
