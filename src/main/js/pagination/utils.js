@@ -2,7 +2,7 @@
 export const nextPage = (fetch, current, max) => {
    var page = current;
    
-   if(page < max){
+   if(page < (max - 1)){
       page++;
    }
    
