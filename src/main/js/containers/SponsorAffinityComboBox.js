@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import Dropdown from 'react-toolbox/lib/dropdown';
+//import Dropdown from 'react-toolbox/lib/dropdown';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'actions/dbxBuilder';
@@ -26,13 +26,14 @@ class SponsorAffinityComboBox extends Component {
    
    render() {
       return (
-         <Dropdown
-            auto
-            allowBlank={false}
-            onChange={this.handleChange}
-            source={this.props.source}
-            value={this.state.value}
-         />
+         <div/>
+         //<Dropdown
+         //   auto
+         //   allowBlank={false}
+         //   onChange={this.handleChange}
+         //   source={this.props.source}
+         //   value={this.state.value}
+         ///>
       );
    };
 };

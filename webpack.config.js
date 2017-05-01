@@ -99,12 +99,12 @@ module.exports = {
                loader : ExtractTextPlugin
                      .extract(
                            'style',
-                           'css?sourceMap&modules&importLoaders=1!sass')
+                           'css?sourceMap&importLoaders=1!sass')
             } ]
    },
    sassLoader : {
       data : '@import "theme/style.scss";',
-      includePaths : [ path.resolve(__dirname, './src/main/js') ]
+      includePaths : [ path.resolve(__dirname, './src/main/js'), path.resolve(__dirname, './node_modules') ]
    },
    plugins
 };
