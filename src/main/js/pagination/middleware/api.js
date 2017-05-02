@@ -10,7 +10,7 @@ export default store => next => action => {
    }
    
    let { endpoint } = callAPI
-   const { types, parse, page } = callAPI
+   const { types, parse, page, orderBy, order } = callAPI
    
    if (typeof endpoint === 'function') {
       endpoint = endpoint(store.getState())
@@ -34,7 +34,7 @@ export default store => next => action => {
    
    next(processAction({ type: requestType }))
    
-   return callApi(endpoint, page, parse).then(
+   return callApi(endpoint, page, parse, orderBy, order).then(
       response => next(processAction({
          type: successType,
          ...response
@@ -46,8 +46,8 @@ export default store => next => action => {
    )
 }
 
-const callApi = (endpoint, page, parse) => {
-   const url = paginatedUrl(fullUrl(endpoint), page)
+const callApi = (endpoint, page, parse, orderBy, order) => {
+   const url = paginatedUrl(fullUrl(endpoint), page, orderBy, order)
    
    return fetch(url)
       .then(response =>
@@ -89,6 +89,12 @@ const fullUrl = url => {
    }
 }
 
-const paginatedUrl = (url, page) => {
-   return url + '?page=' + page
+const paginatedUrl = (url, page, orderBy, order) => {
+   var result = url + '?page=' + page;
+   
+   if(orderBy){
+      result = result + '&&' + 'orderBy=' + orderBy + '&&' + 'order=' + order;
+   }
+   
+   return result;
 }

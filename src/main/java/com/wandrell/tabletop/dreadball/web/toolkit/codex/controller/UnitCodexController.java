@@ -22,6 +22,7 @@ import java.util.ArrayList;
 
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -74,8 +75,13 @@ public class UnitCodexController {
     public final Iterable<? extends Unit> getDbxUnits(
             @RequestParam(name = "affinities", required = false,
                     defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities,
-            @RequestParam(name = "page", defaultValue = "0") Integer page,
-            @RequestParam(name = "size", defaultValue = "10") Integer size) {
+            @RequestParam(name = "page", defaultValue = "0") final Integer page,
+            @RequestParam(name = "size",
+                    defaultValue = "10") final Integer size,
+            @RequestParam(name = "orderBy",
+                    defaultValue = "") final String orderBy,
+            @RequestParam(name = "direction",
+                    defaultValue = "ASC") final Direction direction) {
         final Iterable<? extends Unit> units;
         final Pageable pageReq;
 
@@ -83,7 +89,11 @@ public class UnitCodexController {
         // Check:
         // https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-seven-pagination/
         // http://www.baeldung.com/rest-api-pagination-in-spring
-        pageReq = new PageRequest(page, size);
+        if (orderBy.isEmpty()) {
+            pageReq = new PageRequest(page, size);
+        } else {
+            pageReq = new PageRequest(page, size, direction, orderBy);
+        }
 
         if (affinities.isEmpty()) {
             units = getUnitCodexService().getAllAffinityUnits(pageReq);
