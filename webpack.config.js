@@ -29,7 +29,7 @@ plugins = [
 ]
 
 var debug = false;
-const devtool = null;
+var devtool = null;
 if (env === 'production') {
    // Production specific configuration
    plugins.push(
