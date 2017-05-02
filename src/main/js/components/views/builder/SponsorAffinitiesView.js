@@ -1,12 +1,13 @@
 import React from 'react'
-//import { Button } from 'react-toolbox/lib/button';
+import Box from 'grommet/components/Box';
+import Button from 'grommet/components/Button';
 import AffinityGroupsComboPanel from 'containers/AffinityGroupsComboPanel';
 
 const SponsorAffinitiesView = (props) => {
    return (
       <div>
          <AffinityGroupsComboPanel />
-         //<Button onClick={ props.onClick } label='accept' raised primary />
+         <Button onClick={ props.onClick } label='accept' />
       </div>
    );
 };

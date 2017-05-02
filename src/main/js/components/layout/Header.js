@@ -13,7 +13,7 @@ export default function AppHeader (props) {
         responsive={false} justify="start" align="center"
         pad={{horizontal: 'medium'}} flex="grow">
         <Menu label="Label" inline={true} direction="row" flex="grow">
-          <Anchor href="#">DBX team creation</Anchor>
+          <NavAnchor path="/dbx">DBX team creation</NavAnchor>
           <NavAnchor path="/players">Players list</NavAnchor>
         </Menu>
       </Box>
