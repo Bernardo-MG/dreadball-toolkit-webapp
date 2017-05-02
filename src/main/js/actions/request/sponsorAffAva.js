@@ -1,19 +1,11 @@
-import * as types from 'actions/ActionTypes'
-import { SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT as URL } from 'constants/RestUrls'
-import { transformSponsorAffinityGroupAvailabilitiesJson as transform } from 'utils/dbxBuilder'
-// import { fetchData } from 'utils/request'
+import { REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE, CALL_API } from 'actions/ActionTypes'
+import { SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT as endpoint } from 'constants/RestUrls'
+import { transformSponsorAffinityGroupAvailabilitiesJson as parse } from 'utils/dbxBuilder'
 
-export const request = () => ({
-   type: types.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES
+export const fetch = () => ({
+  [CALL_API]: {
+    types: [ REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE ],
+    endpoint,
+    parse
+  }
 })
-
-export const receive = (json, intl) => ({
-   type: types.RECEIVE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES,
-   sponsorAffinityGroupAvailabilities: transform(json, intl)
-})
-
-export const fetch = (intl) => dispatch => {
-   dispatch(request())
-   
-   //return fetchData(URL, (json) => dispatch(receive(json, intl)))
-}
