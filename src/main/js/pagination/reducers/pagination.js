@@ -17,6 +17,9 @@ const paginate = ({ idsMapping, types }) => {
          page: 0,
          totalPages: 0,
          totalElements: 0,
+         elements: 0,
+         first: true,
+         last: false,
          ids: []
       }, action) => {
       // Update pagination by key
