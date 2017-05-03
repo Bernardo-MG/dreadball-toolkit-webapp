@@ -1,5 +1,5 @@
 
-export const nextPage = (fetch, last) => {
+export const nextPage = (fetch, current, last) => {
    var page = current;
    
    if(!last){
@@ -9,7 +9,7 @@ export const nextPage = (fetch, last) => {
    fetch(page);
 }
 
-export const previousPage = (fetch, first) => {
+export const previousPage = (fetch, current, first) => {
    var page = current;
    
    if(!first){

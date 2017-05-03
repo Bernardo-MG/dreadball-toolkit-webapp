@@ -8,7 +8,7 @@ import { previousPage } from 'pagination/utils';
 class PreviousPageButton extends Component {
 
    callApi = () => {
-      previousPage(this.props.actions.fetch, this.props.firstPage)
+      previousPage(this.props.actions.fetch, this.props.page, this.props.firstPage)
    };
    
    render() {
@@ -19,7 +19,8 @@ class PreviousPageButton extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   firstPage: state.pagination.units.first
+   firstPage: state.pagination.units.first,
+   page: state.pagination.units.page
 });
 
 const mapDispatchToProps = (dispatch) => ({
