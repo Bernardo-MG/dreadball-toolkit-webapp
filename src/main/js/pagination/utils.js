@@ -1,18 +1,18 @@
 
-export const nextPage = (fetch, current, max) => {
+export const nextPage = (fetch, last) => {
    var page = current;
    
-   if(page < (max - 1)){
+   if(!last){
       page++;
    }
    
    fetch(page);
 }
 
-export const previousPage = (fetch, current) => {
+export const previousPage = (fetch, first) => {
    var page = current;
    
-   if(page > 0){
+   if(!first){
       page--;
    }
    

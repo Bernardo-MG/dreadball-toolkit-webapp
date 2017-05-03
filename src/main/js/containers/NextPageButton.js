@@ -8,7 +8,7 @@ import { nextPage } from 'pagination/utils';
 class NextPageButton extends Component {
 
    callApi = () => {
-      nextPage(this.props.actions.fetch, this.props.page, this.props.totalPages)
+      nextPage(this.props.actions.fetch, this.props.lastPage)
    };
    
    render() {
@@ -19,7 +19,7 @@ class NextPageButton extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   page: state.pagination.units.page,
+   lastPage: state.pagination.units.last,
    totalPages: state.pagination.units.totalPages
 });
 
