@@ -1,4 +1,4 @@
-import { CALL_API } from 'actions/ActionTypes'
+import { CALL_API } from 'pagination/actions/ActionTypes'
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.

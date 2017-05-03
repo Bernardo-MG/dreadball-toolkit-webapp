@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from 'actions/request/sponsorAffAva';
+import * as actions from 'requests/actions/sponsorAffAva';
 import { injectIntl } from 'react-intl';
 import SponsorAffinityComboBox from 'containers/SponsorAffinityComboBox';
 

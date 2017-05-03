@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import * as actions from 'actions/request/unit';
+import * as actions from 'requests/actions/unit';
 import { bindActionCreators } from 'redux';
 import Button from 'grommet/components/Button';
 import { connect } from 'react-redux';

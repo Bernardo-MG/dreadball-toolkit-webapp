@@ -6,10 +6,6 @@ const sponsorAffinityGroupAvailabilities = (state = { isFetching: false, availab
    switch (type) {
       case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
          return Object.assign({}, state, { availabilities: [] })
-      case ActionTypes.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
-         return Object.assign({}, state, {})
-      case ActionTypes.RECEIVE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES:
-         return Object.assign({}, state, { availabilities: action.sponsorAffinityGroupAvailabilities })
       default:
          return state
    }

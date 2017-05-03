@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import DbxUnitTable from 'components/DbxUnitTable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as actions from 'actions/request/unit';
+import * as actions from 'requests/actions/unit';
 import { injectIntl } from 'react-intl';
 import { units } from 'models/selectors';
 
