@@ -1,9 +1,10 @@
 
-export const transformAffinityUnitsJson = (json) => {
-   var result = [];
+export const jsonToUnits = (json) => {
+   var result;
    var entry;
    var mapped;
    
+   result = [];
    for (var i=0; i<json.length; i++) {
       entry = json[i];
       mapped = {
