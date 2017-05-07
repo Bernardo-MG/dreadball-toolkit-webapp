@@ -1,5 +1,5 @@
 import { Model, many, attr } from 'redux-orm';
-import { REQUEST_UNITS_SUCCESS } from 'requests/actions/ActionTypes'
+import { REQUEST_UNITS_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS } from 'requests/actions/ActionTypes'
 import propTypesMixin from 'redux-orm-proptypes';
 import { PropTypes } from 'react';
 import { forEachValue } from 'utils';
@@ -35,6 +35,7 @@ export class Affinity extends Model {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
+      case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
          const affinities = payload.entities.affinities;
          forEachValue(affinities,
                affinity => {
@@ -83,7 +84,9 @@ Player.fields = {
    ally_cost: attr(),
    friend_cost: attr(),
    cost: attr(),
-   abilities: many('Ability', 'abilities')
+   abilities: many('Ability', 'abilities'),
+   affinityGroups: many('Affinity', 'affinityGroups'),
+   hatedAffinityGroups: many('Affinity', 'hatedAffinityGroups')
 };
 Player.options = {
    idAttribute: 'templateName',
