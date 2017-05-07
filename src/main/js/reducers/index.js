@@ -5,6 +5,7 @@ import dbxBuilder from 'reducers/dbxBuilder'
 import orm from 'models';
 import { paginate } from 'pagination/reducers'
 import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE } from 'requests/actions/ActionTypes'
+import { REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE } from 'requests/actions/ActionTypes'
 import { dictionaryIds } from 'utils'
 
 const pagination = combineReducers({
@@ -14,6 +15,14 @@ const pagination = combineReducers({
          REQUEST_UNITS,
          REQUEST_UNITS_SUCCESS,
          REQUEST_UNITS_FAILURE
+      ]
+   }),
+   sponsorAffAvas: paginate({
+      idsMapping: payload => dictionaryIds(payload.entities.sponsorAffinityAvailabilities),
+      types: [
+         REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES,
+         REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS,
+         REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE
       ]
    })
 })

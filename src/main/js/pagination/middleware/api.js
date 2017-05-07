@@ -62,9 +62,17 @@ const callApi = (endpoint, page, parse, orderBy, order) => {
 }
 
 const parsePaginated = (json, parse) => {
-   const payload = parse(json.content)
+   var jsonContent;
    
-   return { payload: payload,
+   if(json.content){
+      jsonContent = json.content;
+   } else {
+      jsonContent = json;
+   }
+   
+   const payload = parse(jsonContent)
+   
+   return { payload,
             page: json.number,
             first: json.first,
             last: json.last,
@@ -73,7 +81,7 @@ const parsePaginated = (json, parse) => {
             totalElements: json.totalElements }
 }
 
-const actionWith = action => data => {
+const actionWith = (action) => (data) => {
    const finalAction = Object.assign({}, action, data)
    
    delete finalAction[CALL_API]
@@ -81,7 +89,7 @@ const actionWith = action => data => {
    return finalAction
 }
 
-const fullUrl = url => {
+const fullUrl = (url) => {
    if(url.indexOf(ROUTE_BASE) === -1) {
       return ROUTE_BASE + url
    } else {
