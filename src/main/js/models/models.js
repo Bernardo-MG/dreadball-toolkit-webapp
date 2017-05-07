@@ -30,6 +30,28 @@ Ability.options = {
    idAttribute: 'name',
 };
 
+export class Affinity extends Model {
+   static reducer(action, Affinity, session) {
+      const { type, payload } = action;
+      switch (type) {
+      case REQUEST_UNITS_SUCCESS:
+         const affinities = payload.entities.affinities;
+         forEachValue(affinities,
+               affinity => {
+                  if (!Affinity.filter({ name: affinity.name }).exists()) {
+                     Affinity.create(affinity)
+                  }
+               }
+         );
+         break;
+      }
+   }
+}
+Affinity.modelName = 'Affinity';
+Affinity.options = {
+   idAttribute: 'name',
+};
+
 export class Player extends ValidatingModel {
    static reducer(action, Player, session) {
       const { type, payload } = action;
