@@ -53,6 +53,33 @@ Affinity.options = {
    idAttribute: 'name',
 };
 
+export class SponsorAffinityAvailability extends Model {
+   static reducer(action, Availability, session) {
+      const { type, payload } = action;
+      switch (type) {
+      case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
+         const avas = payload.entities.sponsorAffinityAvailabilities;
+         forEachValue(avas,
+               ava => {
+                  if (!Availability.filter({ name: ava.name }).exists()) {
+                     Availability.create(ava)
+                  }
+               }
+         );
+         break;
+      }
+   }
+}
+SponsorAffinityAvailability.modelName = 'SponsorAffinityAvailability';
+SponsorAffinityAvailability.fields = {
+   name: attr(),
+   includingRankIncrease: attr(),
+   affinityGroups: many('Affinity', 'sponsorAvaAffinityGroups')
+};
+SponsorAffinityAvailability.options = {
+   idAttribute: 'name',
+};
+
 export class Player extends ValidatingModel {
    static reducer(action, Player, session) {
       const { type, payload } = action;
@@ -85,8 +112,8 @@ Player.fields = {
    friend_cost: attr(),
    cost: attr(),
    abilities: many('Ability', 'abilities'),
-   affinityGroups: many('Affinity', 'affinityGroups'),
-   hatedAffinityGroups: many('Affinity', 'hatedAffinityGroups')
+   affinityGroups: many('Affinity', 'unitAffinityGroups'),
+   hatedAffinityGroups: many('Affinity', 'unitHatedAffinityGroups')
 };
 Player.options = {
    idAttribute: 'templateName',
