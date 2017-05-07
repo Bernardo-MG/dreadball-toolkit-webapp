@@ -19,5 +19,11 @@ const loadUnit = (unit) => {
 export const units = createSelector(
    ormSelector,
    state => state.pagination.units,
-   ormCreateSelector(orm, filterPaginated(loadUnit, (session) => session.Player))
+   ormCreateSelector(orm, filterPaginated((session) => session.Player, (entity) => entity.templateName, loadUnit))
+);
+
+export const sponsorAffAvas = createSelector(
+   ormSelector,
+   state => state.pagination.sponsorAffinityAvailabilities,
+   ormCreateSelector(orm, filterPaginated((session) => session.SponsorAffinityAvailability, (entity) => entity.name))
 );

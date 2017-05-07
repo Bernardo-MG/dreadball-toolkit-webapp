@@ -19,7 +19,7 @@ export const previousPage = (fetch, current, first) => {
    fetch(page);
 }
 
-export const filterPaginated = (model, loader) => (session, pagination) => {
+export const filterPaginated = (model, idSelector, loader) => (session, pagination) => {
    var entityLoader;
    var ids;
    
@@ -41,7 +41,7 @@ export const filterPaginated = (model, loader) => (session, pagination) => {
    
    if(ids.length > 0) {
       var result = model(session).all().toModelArray();
-      result = result.filter(entity => ids.includes(entity.templateName)).map(entity => {
+      result = result.filter(entity => ids.includes(idSelector(entity))).map(entity => {
          return entityLoader(entity);
       });
    } else {
