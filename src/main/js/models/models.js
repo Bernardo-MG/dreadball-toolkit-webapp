@@ -2,6 +2,7 @@ import { Model, many, attr } from 'redux-orm';
 import { REQUEST_UNITS_SUCCESS } from 'requests/actions/ActionTypes'
 import propTypesMixin from 'redux-orm-proptypes';
 import { PropTypes } from 'react';
+import { forEachValue } from 'utils';
 
 const ValidatingModel = propTypesMixin(Model);
 
@@ -11,15 +12,14 @@ export class Ability extends Model {
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
          // Gathers abilities sets
-         var abilities = payload.map(unit => unit.abilities);
-         // Merges abilities sets
-         abilities = [].concat.apply([], abilities);
+         const abilities = payload.entities.abilities;
          // Creates abilities
-         abilities.forEach(name => {
-               if (!Ability.filter({ name }).exists()) {
-                  Ability.create({ name })
+         forEachValue(abilities,
+               ability => {
+                  if (!Ability.filter({ name: ability.name }).exists()) {
+                     Ability.create(ability)
+                  }
                }
-            }
          );
          break;
       }
@@ -35,11 +35,13 @@ export class Player extends ValidatingModel {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
-         payload.forEach(unit => {
-               if (!Player.filter({ templateName : unit.templateName }).exists()) {
-                  Player.create(unit)
+         const units = payload.entities.units;
+         forEachValue(units,
+               unit => {
+                  if (!Player.filter({ templateName : unit.templateName }).exists()) {
+                     Player.create(unit)
+                  }
                }
-            }
          );
          break;
       }

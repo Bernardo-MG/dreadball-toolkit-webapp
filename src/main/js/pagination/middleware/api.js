@@ -68,7 +68,7 @@ const parsePaginated = (json, parse) => {
             page: json.number,
             first: json.first,
             last: json.last,
-            elements: payload.length,
+            elements: payload.result.length,
             totalPages: json.totalPages,
             totalElements: json.totalElements }
 }
