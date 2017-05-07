@@ -71,14 +71,24 @@ const parsePaginated = (json, parse) => {
    }
    
    const payload = parse(jsonContent)
+   const content = { 
+      payload,
+      elements: payload.result.length
+   }
    
-   return { payload,
+   if(json.number === null || json.number === undefined) {
+      return content
+   } else {
+      return {
+            ...content,
             page: json.number,
             first: json.first,
             last: json.last,
-            elements: payload.result.length,
             totalPages: json.totalPages,
-            totalElements: json.totalElements }
+            totalElements: json.totalElements
+            }
+   }
+   
 }
 
 const actionWith = (action) => (data) => {
