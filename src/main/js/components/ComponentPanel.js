@@ -1,6 +1,6 @@
 import React from 'react'
 
-const SponsorAffinityComboPanel = (props) => {
+const ComponentPanel = (props) => {
    if (props.source.length) {
       return (
          <div>
@@ -18,4 +18,4 @@ const SponsorAffinityComboPanel = (props) => {
    }
 };
 
-export default SponsorAffinityComboPanel;
+export default ComponentPanel;
