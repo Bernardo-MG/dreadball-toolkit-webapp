@@ -4,34 +4,7 @@ import { connect } from 'react-redux';
 import * as actions from 'requests/actions/sponsorAffAva';
 import SponsorAffinityComboBox from 'containers/SponsorAffinityComboBox';
 import { sponsorAffAvas } from 'models/selectors';
-
-const avasToMap = (avas) => {
-   var result;
-   
-   result = avas.map(function(ava) {
-      return avaToMap(ava);
-   });
-   
-   return result;
-}
-
-const avaToMap = (ava) => {
-   var result = ava.affinityGroups.map(function(affinity) {
-      return {
-         label: affinity,
-         value: affinity
-      }
-   });
-   
-   if(ava.includingRankIncrease){
-      result.push({
-         label: 'rank_increase',
-         value: 'rank_increase'
-      });
-   }
-   
-   return result;
-}
+import { avasToMap } from 'utils';
 
 const ComboPanel = (props) => {
    if (props.source.length) {
