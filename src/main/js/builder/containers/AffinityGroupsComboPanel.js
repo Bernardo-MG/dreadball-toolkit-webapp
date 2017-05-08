@@ -5,6 +5,7 @@ import * as actions from 'requests/actions/sponsorAffAva';
 import { sponsorAffAvas } from 'models/selectors';
 import { avasToMap } from 'utils';
 import SponsorAffinityComboPanel from 'builder/components/SponsorAffinityComboPanel';
+import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 
 class AffinityGroupsComboPanel extends Component {
    
@@ -14,7 +15,7 @@ class AffinityGroupsComboPanel extends Component {
    
    render() {
       return (
-         <SponsorAffinityComboPanel source={this.props.source} />
+         <SponsorAffinityComboPanel source={this.props.source} type={SponsorAffinityComboBox} />
       )
    }
 }

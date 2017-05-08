@@ -1,5 +1,4 @@
 import React from 'react'
-import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 
 const SponsorAffinityComboPanel = (props) => {
    if (props.source.length) {
@@ -7,7 +6,7 @@ const SponsorAffinityComboPanel = (props) => {
          <div>
             {props.source.map(function(element, i) {
                return (
-                  <SponsorAffinityComboBox index={i} key={i} source={element} />
+                  <props.type index={i} key={i} source={element} />
                );
             })}
          </div>
