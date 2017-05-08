@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import * as actions from 'requests/actions/sponsorAffAva';
 import { sponsorAffAvas } from 'models/selectors';
 import { avasToMap } from 'utils';
-import ComponentPanel from 'components/ComponentPanel';
 import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 
 class AffinityGroupsComboPanel extends Component {
@@ -15,7 +14,13 @@ class AffinityGroupsComboPanel extends Component {
    
    render() {
       return (
-         <ComponentPanel source={this.props.source} type={SponsorAffinityComboBox} />
+         <div>
+            {this.props.source.map(function(element, i) {
+               return (
+                  <SponsorAffinityComboBox index={i} key={i} source={element} />
+               );
+            })}
+         </div>
       )
    }
 }
