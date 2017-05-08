@@ -3,7 +3,6 @@ import DbxUnitTable from 'components/DbxUnitTable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/unit';
-import { injectIntl } from 'react-intl';
 import { units } from 'models/selectors';
 
 class LoadableDbxUnitTable extends Component {
@@ -27,7 +26,7 @@ const mapDispatchToProps = (dispatch) => ({
    actions: bindActionCreators(actions, dispatch)
 });
 
-export default injectIntl(connect(
+export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(LoadableDbxUnitTable));
+)(LoadableDbxUnitTable);

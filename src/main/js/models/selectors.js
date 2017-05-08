@@ -16,6 +16,16 @@ const loadUnit = (unit) => {
    return obj;
 };
 
+const loadSponsorAffAva = (ava) => {
+   const obj = Object.assign({}, ava.ref);
+   
+   if(ava.affinityGroups) {
+      obj.affinityGroups = ava.affinityGroups.toRefArray().map(affinity => affinity.name);
+   }
+   
+   return obj;
+};
+
 export const units = createSelector(
    ormSelector,
    state => state.pagination.units,
@@ -24,6 +34,6 @@ export const units = createSelector(
 
 export const sponsorAffAvas = createSelector(
    ormSelector,
-   state => state.pagination.sponsorAffinityAvailabilities,
-   ormCreateSelector(orm, filterPaginated((session) => session.SponsorAffinityAvailability, (entity) => entity.name))
+   state => state.pagination.sponsorAffAvas,
+   ormCreateSelector(orm, filterPaginated((session) => session.SponsorAffinityAvailability, (entity) => entity.name, loadSponsorAffAva))
 );

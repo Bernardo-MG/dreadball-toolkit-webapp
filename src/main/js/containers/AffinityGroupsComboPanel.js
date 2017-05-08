@@ -2,11 +2,39 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/sponsorAffAva';
-import { injectIntl } from 'react-intl';
 import SponsorAffinityComboBox from 'containers/SponsorAffinityComboBox';
+import { sponsorAffAvas } from 'models/selectors';
+
+const avasToMap = (avas) => {
+   var result;
+   
+   result = avas.map(function(ava) {
+      return avaToMap(ava);
+   });
+   
+   return result;
+}
+
+const avaToMap = (ava) => {
+   var result = ava.affinityGroups.map(function(affinity) {
+      return {
+         label: affinity,
+         value: affinity
+      }
+   });
+   
+   if(ava.includingRankIncrease){
+      result.push({
+         label: 'rank_increase',
+         value: 'rank_increase'
+      });
+   }
+   
+   return result;
+}
 
 const ComboPanel = (props) => {
-   if (props.source) {
+   if (props.source.length) {
       return (
          <div>
             {props.source.map(function(element, i) {
@@ -37,14 +65,14 @@ class AffinityGroupsComboPanel extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   source: state.dbxBuilder.sponsorAffinityGroupAvailabilities.availabilities
+   source: avasToMap(sponsorAffAvas(state))
 });
 
 const mapDispatchToProps = (dispatch) => ({
    actions: bindActionCreators(actions, dispatch)
 });
 
-export default injectIntl(connect(
+export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(AffinityGroupsComboPanel));
+)(AffinityGroupsComboPanel);

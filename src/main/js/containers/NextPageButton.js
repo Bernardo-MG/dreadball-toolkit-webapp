@@ -4,6 +4,7 @@ import { bindActionCreators } from 'redux';
 import Button from 'grommet/components/Button';
 import { connect } from 'react-redux';
 import { nextPage } from 'pagination/utils';
+import { injectIntl } from 'react-intl';
 
 class NextPageButton extends Component {
 
@@ -28,7 +29,7 @@ const mapDispatchToProps = (dispatch) => ({
    actions: bindActionCreators(actions, dispatch)
 });
 
-export default connect(
+export default injectIntl(connect(
    mapStateToProps,
    mapDispatchToProps
-)(NextPageButton);
+)(NextPageButton));
