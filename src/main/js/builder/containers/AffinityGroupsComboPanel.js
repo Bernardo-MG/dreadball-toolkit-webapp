@@ -2,27 +2,9 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/sponsorAffAva';
-import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 import { sponsorAffAvas } from 'models/selectors';
 import { avasToMap } from 'utils';
-
-const ComboPanel = (props) => {
-   if (props.source.length) {
-      return (
-         <div>
-            {props.source.map(function(element, i) {
-               return (
-                  <SponsorAffinityComboBox index={i} key={i} source={element} />
-               );
-            })}
-         </div>
-      );
-   } else {
-      return (
-         <div/>
-      );
-   }
-};
+import SponsorAffinityComboPanel from 'builder/components/SponsorAffinityComboPanel';
 
 class AffinityGroupsComboPanel extends Component {
    
@@ -32,7 +14,7 @@ class AffinityGroupsComboPanel extends Component {
    
    render() {
       return (
-         <ComboPanel source={this.props.source} />
+         <SponsorAffinityComboPanel source={this.props.source} />
       )
    }
 }
