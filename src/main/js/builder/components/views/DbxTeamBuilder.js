@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
-import SponsorAffinitiesView from 'components/views/builder/SponsorAffinitiesView';
-import SponsorTeamView from 'components/views/builder/SponsorTeamView';
+import SponsorAffinitiesView from 'builder/components/views/SponsorAffinitiesView';
+import SponsorTeamView from 'builder/components/views/SponsorTeamView';
 
 class DbxTeamBuilder extends Component {
 

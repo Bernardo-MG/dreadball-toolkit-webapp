@@ -1,7 +1,7 @@
 import React from 'react'
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
-import AffinityGroupsComboPanel from 'containers/AffinityGroupsComboPanel';
+import AffinityGroupsComboPanel from 'builder/containers/AffinityGroupsComboPanel';
 
 const SponsorAffinitiesView = (props) => {
    return (

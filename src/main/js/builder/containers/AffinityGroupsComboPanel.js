@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/sponsorAffAva';
-import SponsorAffinityComboBox from 'containers/SponsorAffinityComboBox';
+import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 import { sponsorAffAvas } from 'models/selectors';
 import { avasToMap } from 'utils';
 
