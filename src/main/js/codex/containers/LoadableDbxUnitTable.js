@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import DbxUnitTable from 'components/DbxUnitTable';
+import DbxUnitTable from 'codex/components/DbxUnitTable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/unit';

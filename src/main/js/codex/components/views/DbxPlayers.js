@@ -1,5 +1,5 @@
 import React from 'react';
-import LoadableDbxUnitTable from 'containers/LoadableDbxUnitTable';
+import LoadableDbxUnitTable from 'codex/containers/LoadableDbxUnitTable';
 import PreviousPageButton from 'containers/PreviousPageButton';
 import NextPageButton from 'containers/NextPageButton';
 import Box from 'grommet/components/Box';
