@@ -20,7 +20,20 @@ export const previousPage = (fetch, current, first) => {
 }
 
 export const filterPaginated = (model, idSelector, loader) => (session, pagination) => {
-   var entityLoader;
+   var ids;
+   var result;
+   
+   ids = getIds(pagination);   
+   if(ids.length) {
+      result = filterByIds(model, idSelector, loader, session, ids);
+   } else {
+      result = [];
+   }
+   
+   return result;
+};
+
+const getIds = (pagination) => {
    var ids;
    
    if(pagination && pagination.ids) {
@@ -33,23 +46,8 @@ export const filterPaginated = (model, idSelector, loader) => (session, paginati
       ids = [];
    }
    
-   if(loader){
-      entityLoader = loader;
-   } else {
-      entityLoader = (entity) => entity;
-   }
-   
-   if(ids.length > 0) {
-      var result = model(session).all().toModelArray();
-      result = result.filter(entity => ids.includes(idSelector(entity))).map(entity => {
-         return entityLoader(entity);
-      });
-   } else {
-      result = [];
-   }
-   
-   return result;
-};
+   return ids;
+}
 
 const getSlice = (pagination) => {
    const start = pagination.page * pagination.elements;
@@ -57,4 +55,20 @@ const getSlice = (pagination) => {
    const ids = pagination.ids.slice(start, end);
    
    return ids;
+}
+
+const filterByIds = (model, idSelector, loader, session, ids) => {
+   var entityLoader;
+   var all;
+   
+   if(loader){
+      entityLoader = loader;
+   } else {
+      entityLoader = (entity) => entity;
+   }
+
+   all = model(session).all().toModelArray();
+   return all.filter(entity => ids.includes(idSelector(entity))).map(entity => {
+      return entityLoader(entity);
+   });
 }
