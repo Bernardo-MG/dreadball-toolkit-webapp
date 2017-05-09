@@ -10,10 +10,19 @@ const sponsor = (state = { rank : 0, affinities : [] }, action) => {
             affinities : []
          }
       case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
-         var affinities = state.affinities.slice();
-         affinities[action.index] = action.affinity;
+         const affinities = state.affinities.slice();
+         var rank = state.rank;
+         
+         if(action.payload.rank){
+            affinities[action.index] = null;
+            rank = rank+1;
+         } else {
+            affinities[action.index] = action.payload.affinity;
+         }
+         
          return {
             ...state,
+            rank,
             affinities
          }
       default:

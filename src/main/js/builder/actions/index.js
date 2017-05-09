@@ -4,8 +4,8 @@ export const beginDbxTeamBuilding = () => ({
    type: types.BEGIN_DBX_TEAM_BUILDING
 })
 
-export const chooseSponsorAffinity = (affinity, index) => ({
+export const chooseSponsorAffinity = (affinity, rank, index) => ({
    type: types.CHOOSE_SPONSOR_AFFINITY,
-   affinity: affinity,
+   payload: { affinity, rank },
    index: index
 })

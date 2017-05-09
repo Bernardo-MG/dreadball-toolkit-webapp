@@ -10,19 +10,21 @@ class SponsorAffinityComboBox extends Component {
    index;
 
    handleChange = (value) => {
-      const selected = value.option.value;
-      this.setState({value: selected});
-      this.props.actions.chooseSponsorAffinity(selected, this.index);
+      const affinity = value.option.value;
+      const rank = value.option.rank;
+      this.setState({value: affinity, rank: rank});
+      this.props.actions.chooseSponsorAffinity(affinity, rank, this.index);
    };
    
    constructor(props) {
       super(props);
       this.index = props.index;
       this.state.value = props.source[0].value;
+      this.state.rank = props.source[0].value;
    }
    
    componentDidMount() {
-      this.props.actions.chooseSponsorAffinity(this.state.value, this.index);
+      this.props.actions.chooseSponsorAffinity(this.state.value, this.state.rank, this.index);
    }
    
    render() {

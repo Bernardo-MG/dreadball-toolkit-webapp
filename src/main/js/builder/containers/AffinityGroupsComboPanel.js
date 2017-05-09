@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/sponsorAffAva';
 import { sponsorAffAvas } from 'models/selectors';
-import { avasToMap } from 'utils';
+import { avasToMap } from 'builder/utils';
 import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 
 class AffinityGroupsComboPanel extends Component {
