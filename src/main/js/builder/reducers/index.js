@@ -1,16 +1,6 @@
 import * as ActionTypes from 'builder/actions/ActionTypes'
 import { combineReducers } from 'redux'
 
-const sponsorAffinityGroupAvailabilities = (state = { isFetching: false, availabilities: [] }, action) => {
-   const { type } = action;
-   switch (type) {
-      case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
-         return Object.assign({}, state, { availabilities: [] })
-      default:
-         return state
-   }
-}
-
 const sponsorChosenAffinities = (state = [], action) => {
    const { type } = action;
    switch (type) {
@@ -40,7 +30,6 @@ const sponsor = (state = { rank : 0 }, action) => {
 }
 
 const dbxBuilderReducer = combineReducers({
-  sponsorAffinityGroupAvailabilities,
   sponsorChosenAffinities,
   sponsor
 })
