@@ -1,7 +1,7 @@
 import * as ActionTypes from 'builder/actions/ActionTypes'
 import { combineReducers } from 'redux'
 
-const sponsorChosenAffinities = (state = [], action) => {
+const chosenAffinities = (state = [], action) => {
    const { type } = action;
    switch (type) {
       case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
@@ -30,7 +30,7 @@ const sponsor = (state = { rank : 0 }, action) => {
 }
 
 const dbxBuilderReducer = combineReducers({
-  sponsorChosenAffinities,
+  chosenAffinities,
   sponsor
 })
 
