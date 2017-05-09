@@ -1,4 +1,4 @@
-import * as ActionTypes from 'actions/ActionTypes'
+import * as ActionTypes from 'builder/actions/ActionTypes'
 import { combineReducers } from 'redux'
 
 const sponsorAffinityGroupAvailabilities = (state = { isFetching: false, availabilities: [] }, action) => {

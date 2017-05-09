@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { connect } from 'react-redux';
 import DbxTeamBuilder from 'builder/components/views/DbxTeamBuilder';
 import { bindActionCreators } from 'redux';
-import * as Actions from 'actions/dbxBuilder';
+import * as Actions from 'builder/actions';
 
 class ContainerDbxTeamBuilder extends Component {
    

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Select from 'grommet/components/Select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from 'actions/dbxBuilder';
+import * as Actions from 'builder/actions';
 
 class SponsorAffinityComboBox extends Component {
 
