@@ -13,6 +13,7 @@ const avaToMap = (ava) => {
    var result = ava.affinityGroups.map(function(affinity) {
       return {
          label: affinity,
+         affinity: affinity,
          value: affinity,
          rank: false
       }
@@ -21,7 +22,8 @@ const avaToMap = (ava) => {
    if(ava.includingRankIncrease){
       result.push({
          label: 'rank_increase',
-         value: undefined,
+         affinity: undefined,
+         value: 'rank_increase',
          rank: true
       });
    }
