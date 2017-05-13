@@ -13,7 +13,7 @@ plugins = [
    new ExtractTextPlugin(pathOutput + 'style.css', {
       allChunks : true
    }),
-   new webpack.optimize.OccurenceOrderPlugin(),
+   new webpack.optimize.OccurrenceOrderPlugin(),
    new webpack.optimize.CommonsChunkPlugin({
       name : 'vendor',
       filename : pathOutput + 'vendor.bundle.js',
@@ -75,7 +75,7 @@ module.exports = {
       filename : './target/generated-ui/bundle.js'
    },
    resolve : {
-      extensions : [ '', '.scss', '.css', '.js', '.json' ],
+      extensions : [ '', '.scss', '.css', '.js', '.jsx', '.json' ],
       modulesDirectories : [
          'src/main/js',
          path.resolve(__dirname, './src/main/js'),
@@ -84,13 +84,12 @@ module.exports = {
       ]
    },
    module : {
-      preLoaders : [
+      loaders : [
             {
                test : /(\.js|\.jsx)$/,
                exclude: /node_modules/,
                loader: 'eslint-loader'
-            } ],
-      loaders : [
+            },
             {
                test : /(\.js|\.jsx)$/,
                exclude : /(node_modules)/,

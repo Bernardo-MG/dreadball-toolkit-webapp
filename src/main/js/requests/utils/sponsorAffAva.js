@@ -3,4 +3,4 @@ import { sponsorAffinityAvailability } from 'requests/schema';
 
 export const jsonToSponsorAffinityGroupAvailabilities = (json) => {
    return normalize(json, [sponsorAffinityAvailability]);
-}
+};

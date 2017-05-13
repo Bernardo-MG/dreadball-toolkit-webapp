@@ -1,11 +1,20 @@
 {
    parser: "babel-eslint",
    "plugins": [
-      "react"
+      "react",
+      "import"
    ],
+   settings": {
+      "import/resolver": {
+         "webpack": {
+            "config": "webpack.config.js"
+         }
+      }
+   },
    "rules": {
       "max-len": [1, 120, 2, {ignoreComments: true}],
-      "prop-types": [2]
+      "prop-types": [2],
+      "indent": ["error", 3]
    },
    "extends": ["airbnb-base"]
 }
