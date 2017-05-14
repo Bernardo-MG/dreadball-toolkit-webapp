@@ -80,12 +80,14 @@ if (env === 'production') {
 
 module.exports = {
    context : __dirname,
-   entry : INPUT_PATH_ENTRY,
+   entry: {
+      app: INPUT_PATH_ENTRY,
+   },
    devtool,
    cache : true,
    output : {
-      path : __dirname,
-      filename : OUTPUT_PATH_BUNDLE
+      path : path.resolve(__dirname, OUTPUT_PATH),
+      filename : 'bundle.js'
    },
    resolveLoader : {
       extensions : [ '.scss', '.css', '.js', '.jsx', '.json' ],
