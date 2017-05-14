@@ -122,7 +122,12 @@ module.exports = {
                                     modules: true
                                  }
                               },
-                              'sass-loader'
+                              {
+                                 loader: 'sass-loader',
+                                 options: {
+                                    includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH) ]
+                                 }
+                              }
                            ]
                      })
             },
@@ -141,16 +146,14 @@ module.exports = {
                                     importLoaders: 2
                                  }
                               },
-                              'sass-loader'
+                              {
+                                 loader: 'sass-loader',
+                                 options: {
+                                    includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH) ]
+                                 }
+                              }
                            ]
                      })
-            },
-            {
-               loader: 'sass-loader',
-               options: {
-                  data : '@import "theme/style.scss";',
-                  includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH) ]
-               }
             } ]
    },
    plugins
