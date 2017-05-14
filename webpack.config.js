@@ -5,15 +5,19 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Environment profile
 const env = process.env.NODE_ENV || 'development';
 
+// Base route
+const APP_ROUTE = '/dreadball';
+
 // Input directory
 const INPUT_PATH = './src/main/js/';
 const INPUT_PATH_ENTRY = INPUT_PATH + 'index.js';
 
 // Output directory
+const OUTPUT_FILE_CSS = 'style.css';
+const OUTPUT_FILE_VENDOR = 'vendor.bundle.js';
+
 const OUTPUT_PATH = './target/generated-ui/';
-const OUTPUT_PATH_CSS = OUTPUT_PATH + 'style.css';
 const OUTPUT_PATH_BUNDLE = OUTPUT_PATH + 'bundle.js';
-const OUTPUT_PATH_VENDOR = OUTPUT_PATH + 'vendor.bundle.js';
 
 // Modules dependencies directory
 const MODULE_PATH = './node_modules';
@@ -23,13 +27,13 @@ process.traceDeprecation = true;
 // Plugins
 plugins = [
    new ExtractTextPlugin({
-      filename: OUTPUT_PATH_CSS,
+      filename: OUTPUT_FILE_CSS,
       allChunks : true
    }),
    new webpack.optimize.OccurrenceOrderPlugin(),
    new webpack.optimize.CommonsChunkPlugin({
       name : 'vendor',
-      filename : OUTPUT_PATH_VENDOR,
+      filename : OUTPUT_FILE_VENDOR,
       minChunks : Infinity
    }),
    new webpack.NoEmitOnErrorsPlugin(),
@@ -37,7 +41,7 @@ plugins = [
       'process.env': {
          NODE_ENV: JSON.stringify(env)
       },
-      ROUTE_BASE : JSON.stringify('/dreadball')
+      ROUTE_BASE : JSON.stringify(APP_ROUTE)
    }) 
 ]
 
