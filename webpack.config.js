@@ -89,7 +89,7 @@ module.exports = {
       path : path.resolve(__dirname, OUTPUT_PATH),
       filename : 'bundle.js'
    },
-   resolveLoader : {
+   resolve : {
       extensions : [ '.scss', '.css', '.js', '.jsx', '.json' ],
       modules : [
          'src/main/js',
@@ -117,15 +117,12 @@ module.exports = {
                            fallback: 'style-loader',
                            use: [
                               {
-                                 loader: 'css-loader',
-                                 query: {
-                                    modules: true
-                                 }
+                                 loader: 'css-loader'
                               },
                               {
                                  loader: 'sass-loader',
                                  options: {
-                                    includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH) ]
+                                    includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH), path.resolve(__dirname, './node_modules/grommet/node_modules') ]
                                  }
                               }
                            ]
