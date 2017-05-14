@@ -5,21 +5,34 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Environment profile
 const env = process.env.NODE_ENV || 'development';
 
+// Input directory
+const INPUT_PATH = './src/main/js/';
+const INPUT_PATH_ENTRY = INPUT_PATH + 'index.js';
+
 // Output directory
-const pathOutput = './target/generated-ui/';
+const OUTPUT_PATH = './target/generated-ui/';
+const OUTPUT_PATH_CSS = OUTPUT_PATH + 'style.css';
+const OUTPUT_PATH_BUNDLE = OUTPUT_PATH + 'bundle.js';
+const OUTPUT_PATH_VENDOR = OUTPUT_PATH + 'vendor.bundle.js';
+
+// Modules dependencies directory
+const MODULE_PATH = './node_modules';
+
+process.traceDeprecation = true;
 
 // Plugins
 plugins = [
-   new ExtractTextPlugin(pathOutput + 'style.css', {
+   new ExtractTextPlugin({
+      filename: OUTPUT_PATH_CSS,
       allChunks : true
    }),
-   new webpack.optimize.OccurenceOrderPlugin(),
+   new webpack.optimize.OccurrenceOrderPlugin(),
    new webpack.optimize.CommonsChunkPlugin({
       name : 'vendor',
-      filename : pathOutput + 'vendor.bundle.js',
+      filename : OUTPUT_PATH_VENDOR,
       minChunks : Infinity
    }),
-   new webpack.NoErrorsPlugin(),
+   new webpack.NoEmitOnErrorsPlugin(),
    new webpack.DefinePlugin({
       'process.env': {
          NODE_ENV: JSON.stringify(env)
@@ -28,7 +41,6 @@ plugins = [
    }) 
 ]
 
-var debug = false;
 var devtool = null;
 if (env === 'production') {
    // Production specific configuration
@@ -57,54 +69,87 @@ if (env === 'production') {
    );
 } else {
    // Development specific configuration
-   debug = true;
    devtool = 'inline-source-map',
    plugins = plugins.concat([
-      new webpack.HotModuleReplacementPlugin()
+      new webpack.HotModuleReplacementPlugin(),
+      new webpack.LoaderOptionsPlugin({
+         debug: true
+      })
    ]);
 }
 
 module.exports = {
    context : __dirname,
-   entry : './src/main/js/index.js',
+   entry : INPUT_PATH_ENTRY,
    devtool,
    cache : true,
-   debug,
    output : {
       path : __dirname,
-      filename : './target/generated-ui/bundle.js'
+      filename : OUTPUT_PATH_BUNDLE
    },
-   resolve : {
-      extensions : [ '', '.scss', '.css', '.js', '.json' ],
-      modulesDirectories : [
+   resolveLoader : {
+      extensions : [ '.scss', '.css', '.js', '.jsx', '.json' ],
+      modules : [
          'src/main/js',
-         path.resolve(__dirname, './src/main/js'),
+         path.resolve(__dirname, INPUT_PATH),
          'node_modules',
-         path.resolve(__dirname, './node_modules')
+         path.resolve(__dirname, MODULE_PATH)
       ]
    },
    module : {
-      loaders : [
+      rules : [
             {
                test : /(\.js|\.jsx)$/,
-               exclude : /(node_modules)/,
-               loader : 'babel',
+               exclude: /node_modules/,
+               loader : 'babel-loader',
                query : {
                   cacheDirectory : true,
                   presets : [ 'es2015', 'stage-0', 'react' ]
                }
             },
             {
-               test : /(\.scss|\.css)$/,
+               test : /\.css$/,
+               exclude: /node_modules/,
                loader : ExtractTextPlugin
-                     .extract(
-                           'style',
-                           'css?sourceMap&importLoaders=1!sass')
+                     .extract({
+                           fallback: 'style-loader',
+                           use: [
+                              {
+                                 loader: 'css-loader',
+                                 query: {
+                                    modules: true
+                                 }
+                              },
+                              'sass-loader'
+                           ]
+                     })
+            },
+            {
+               test : /\.scss$/,
+               exclude: /node_modules/,
+               loader : ExtractTextPlugin
+                     .extract({
+                           fallback: 'style-loader',
+                           use: [
+                              {
+                                 loader: 'css-loader',
+                                 query: {
+                                    modules: true,
+                                    sourceMap: true,
+                                    importLoaders: 2
+                                 }
+                              },
+                              'sass-loader'
+                           ]
+                     })
+            },
+            {
+               loader: 'sass-loader',
+               options: {
+                  data : '@import "theme/style.scss";',
+                  includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH) ]
+               }
             } ]
-   },
-   sassLoader : {
-      data : '@import "theme/style.scss";',
-      includePaths : [ path.resolve(__dirname, './src/main/js'), path.resolve(__dirname, './node_modules') ]
    },
    plugins
 };
