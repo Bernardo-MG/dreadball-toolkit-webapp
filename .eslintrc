@@ -16,7 +16,8 @@
       "prop-types": [2],
       "indent": ["error", 3],
       "arrow-body-style": ["error", "always"],
-      "import/prefer-default-export": ["warn"]
+      "import/prefer-default-export": ["warn"],
+      "comma-dangle": ["error", "never"]
    },
    "extends": ["airbnb-base"]
 }
