@@ -1,5 +1,5 @@
 
-export default const avasToMap = (avas) => {
+export const avasToMap = (avas) => {
    return avas.map(function(ava) {
       return avaToMap(ava);
    });

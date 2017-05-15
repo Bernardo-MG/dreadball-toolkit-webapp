@@ -42,9 +42,9 @@ class SponsorAffinityComboBox extends Component {
 const mapStateToProps = () => {
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => ({
    actions: bindActionCreators(Actions, dispatch),
-};
+});
 
 export default connect(
    mapStateToProps,
