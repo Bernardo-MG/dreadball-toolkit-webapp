@@ -43,7 +43,7 @@ class DbxUnitTable extends React.Component {
             </tbody>
          </Table>
       );
-   };
-};
+   }
+}
 
 export default injectIntl(DbxUnitTable);

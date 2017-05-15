@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import Select from 'grommet/components/Select';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
@@ -13,10 +13,10 @@ class SponsorAffinityComboBox extends Component {
       const selected = value.option.value;
       const affinity = value.option.affinity;
       const rank = value.option.rank;
-      this.setState({value : selected, affinity, rank});
+      this.setState({ value : selected, affinity, rank });
       this.props.actions.chooseSponsorAffinity(affinity, rank, this.index);
    };
-   
+
    constructor(props) {
       super(props);
       this.index = props.index;
@@ -24,11 +24,11 @@ class SponsorAffinityComboBox extends Component {
       this.state.value = props.source[0].value;
       this.state.rank = props.source[0].rank;
    }
-   
+
    componentDidMount() {
       this.props.actions.chooseSponsorAffinity(this.state.value, this.state.rank, this.index);
    }
-   
+
    render() {
       return (
          <Select placeHolder='None'
@@ -36,17 +36,17 @@ class SponsorAffinityComboBox extends Component {
             value={this.state.value}
             onChange={this.handleChange} />
       );
-   };
+   }
+}
+
+const mapStateToProps = () => {
 };
 
-const mapStateToProps = (state) => ({
-});
-
-const mapDispatchToProps = (dispatch) => ({
-   actions: bindActionCreators(Actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => {
+   actions: bindActionCreators(Actions, dispatch),
+};
 
 export default connect(
    mapStateToProps,
-   mapDispatchToProps
+   mapDispatchToProps,
 )(SponsorAffinityComboBox);

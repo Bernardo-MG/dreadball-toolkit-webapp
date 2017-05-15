@@ -1,12 +1,8 @@
 
-export const avasToMap = (avas) => {
-   var result;
-   
-   result = avas.map(function(ava) {
+export default const avasToMap = (avas) => {
+   return avas.map(function(ava) {
       return avaToMap(ava);
    });
-   
-   return result;
 }
 
 const avaToMap = (ava) => {
