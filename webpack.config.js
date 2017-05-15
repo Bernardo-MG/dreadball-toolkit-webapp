@@ -106,6 +106,7 @@ module.exports = {
       rules : [
       		{
                test : /(\.js|\.jsx)$/,
+               enforce: 'pre',
                exclude: /node_modules/,
                loader: 'eslint-loader'
             },
