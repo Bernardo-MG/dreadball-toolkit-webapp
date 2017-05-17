@@ -13,7 +13,11 @@ class SponsorAffinityComboBox extends Component {
       const selected = value.option.value;
       const affinity = value.option.affinity;
       const rank = value.option.rank;
-      this.setState({ value : selected, affinity, rank });
+      this.setState({
+            value: selected, 
+            affinity, 
+            rank 
+         });
       this.props.actions.chooseSponsorAffinity(affinity, rank, this.index);
    };
 
@@ -42,11 +46,11 @@ class SponsorAffinityComboBox extends Component {
 const mapStateToProps = () => {
 };
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = (dispatch) => {
    actions: bindActionCreators(Actions, dispatch),
-});
+};
 
 export default connect(
    mapStateToProps,
-   mapDispatchToProps,
+   mapDispatchToProps
 )(SponsorAffinityComboBox);

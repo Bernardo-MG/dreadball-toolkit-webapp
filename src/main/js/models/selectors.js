@@ -4,7 +4,7 @@ import orm from 'models';
 import { filterPaginated } from 'pagination/utils';
 
 // Selects the state managed by Redux-ORM.
-const ormSelector = state => state.orm;
+const ormSelector = (state) => { state.orm };
 
 const loadUnit = (unit) => {
    const obj = Object.assign({}, unit.ref);

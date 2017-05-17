@@ -15,7 +15,7 @@ class AffinityGroupsComboPanel extends Component {
    render() {
       return (
          <div>
-            {this.props.source.map(function(element, i) {
+            {this.props.source.map((element, i) => {
                return (
                   <SponsorAffinityComboBox index={i} key={i} source={element} />
                );
@@ -26,14 +26,14 @@ class AffinityGroupsComboPanel extends Component {
 }
 
 const mapStateToProps = state => ({
-   source: avasToMap(sponsorAffAvas(state)),
+   source: avasToMap(sponsorAffAvas(state))
 });
 
 const mapDispatchToProps = dispatch => ({
-   actions: bindActionCreators(actions, dispatch),
+   actions: bindActionCreators(actions, dispatch)
 });
 
 export default connect(
    mapStateToProps,
-   mapDispatchToProps,
+   mapDispatchToProps
 )(AffinityGroupsComboPanel);

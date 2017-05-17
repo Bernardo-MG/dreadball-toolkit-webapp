@@ -1,20 +1,14 @@
 
-export const avasToMap = (avas) => {
-   return avas.map(function(ava) {
-      return avaToMap(ava);
-   });
-}
-
 const avaToMap = (ava) => {
-   var result = ava.affinityGroups.map(function(affinity) {
+   const result = ava.affinityGroups.map((affinity) => {
       return {
          label: affinity,
-         affinity: affinity,
+         affinity,
          value: affinity,
          rank: false
-      }
+      };
    });
-   
+
    if(ava.includingRankIncrease){
       result.push({
          label: 'rank_increase',
@@ -23,6 +17,12 @@ const avaToMap = (ava) => {
          rank: true
       });
    }
-   
+
    return result;
-}
+};
+
+export const avasToMap = (avas) => {
+   return avas.map((ava) => {
+      return avaToMap(ava);
+   });
+};

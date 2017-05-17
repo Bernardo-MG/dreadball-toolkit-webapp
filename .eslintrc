@@ -17,7 +17,9 @@
       "indent": ["error", 3],
       "arrow-body-style": ["error", "always"],
       "import/prefer-default-export": ["warn"],
-      "comma-dangle": ["error", "never"]
+      "comma-dangle": ["error", "never"],
+      "arrow-parens": ["error", "always"],
+      "keyword-spacing": ["error", {"after": true}]
    },
    "extends": ["airbnb-base"]
 }
