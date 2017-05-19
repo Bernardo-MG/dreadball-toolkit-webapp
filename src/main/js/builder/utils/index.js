@@ -9,7 +9,7 @@ const avaToMap = (ava) => {
       };
    });
 
-   if(ava.includingRankIncrease){
+   if(ava.includingRankIncrease) {
       result.push({
          label: 'rank_increase',
          affinity: undefined,

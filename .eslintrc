@@ -19,7 +19,9 @@
       "import/prefer-default-export": ["warn"],
       "comma-dangle": ["error", "never"],
       "arrow-parens": ["error", "always"],
-      "keyword-spacing": ["error", {"after": true}]
+      "keyword-spacing": ["error", {"overrides": {
+         "if": {"after": false}
+      }}]
    },
    "extends": ["airbnb-base"]
 }

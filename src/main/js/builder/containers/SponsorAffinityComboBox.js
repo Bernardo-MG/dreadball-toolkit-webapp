@@ -9,7 +9,7 @@ class SponsorAffinityComboBox extends Component {
    state = {};
    index;
 
-   handleChange = (value) => {
+   handleChange(value) {
       const selected = value.option.value;
       const affinity = value.option.affinity;
       const rank = value.option.rank;
@@ -47,7 +47,7 @@ const mapStateToProps = () => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-   actions: bindActionCreators(Actions, dispatch),
+   actions: bindActionCreators(Actions, dispatch)
 };
 
 export default connect(

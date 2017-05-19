@@ -19,8 +19,10 @@ class LoadableUnitOptionTable extends Component {
 }
 
 const mapStateToProps = (state) => {
-   source: state.codex.units,
-   affinities: state.dbxBuilder.sponsorChosenAffinities
+   return {
+      source: state.codex.units,
+      affinities: state.dbxBuilder.sponsorChosenAffinities
+   }
 };
 
 const mapDispatchToProps = (dispatch) => {
