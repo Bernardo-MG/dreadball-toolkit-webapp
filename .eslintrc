@@ -12,8 +12,8 @@
       }
    },
    "rules": {
-      "max-len": [1, 120, 2, {ignoreComments: true}],
       "react/prop-types": [2],
+      "max-len": [1, 120, 2, {ignoreComments: true}],
       "indent": ["error", 3],
       "arrow-body-style": ["error", "always"],
       "import/prefer-default-export": ["warn"],
@@ -23,5 +23,8 @@
          "if": {"after": false}
       }}]
    },
-   "extends": ["airbnb-base"]
+   "extends": [
+      "plugin:react/recommended",
+      "airbnb-base"
+   ]
 }
