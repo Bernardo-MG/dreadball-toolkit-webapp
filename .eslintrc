@@ -18,10 +18,7 @@
       "arrow-body-style": ["error", "always"],
       "import/prefer-default-export": ["warn"],
       "comma-dangle": ["error", "never"],
-      "arrow-parens": ["error", "always"],
-      "keyword-spacing": ["error", {"overrides": {
-         "if": {"after": false}
-      }}]
+      "arrow-parens": ["error", "always"]
    },
    "extends": [
       "plugin:react/recommended",

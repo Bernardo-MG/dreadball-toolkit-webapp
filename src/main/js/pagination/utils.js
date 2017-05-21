@@ -2,7 +2,7 @@
 export const nextPage = (fetch, current, last) => {
    let page = current;
 
-   if(!last){
+   if(!last) {
       page++;
    }
 
@@ -12,7 +12,7 @@ export const nextPage = (fetch, current, last) => {
 export const previousPage = (fetch, current, first) => {
    let page = current;
 
-   if(!first){
+   if(!first) {
       page--;
    }
 
@@ -47,7 +47,7 @@ const getIds = (pagination) => {
    }
 
    return ids;
-}
+};
 
 const getSlice = (pagination) => {
    const start = pagination.page * pagination.elements;
@@ -55,7 +55,7 @@ const getSlice = (pagination) => {
    const ids = pagination.ids.slice(start, end);
 
    return ids;
-}
+};
 
 const filterByIds = (model, idSelector, loader, session, ids) => {
    let entityLoader;
@@ -66,9 +66,9 @@ const filterByIds = (model, idSelector, loader, session, ids) => {
    } else {
       entityLoader = (entity) => entity;
    }
-   
+
    all = model(session).all().toModelArray();
    return all.filter(entity => ids.includes(idSelector(entity))).map(entity => {
       return entityLoader(entity);
    });
-}
+};
