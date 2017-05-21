@@ -18,16 +18,14 @@ class LoadableUnitOptionTable extends Component {
    }
 }
 
-const mapStateToProps = (state) => {
-   return {
-      source: state.codex.units,
-      affinities: state.dbxBuilder.sponsorChosenAffinities
-   }
-};
+const mapStateToProps = (state) => ({
+   source: state.codex.units,
+   affinities: state.dbxBuilder.sponsorChosenAffinities
+});
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch) => ({
    actions: bindActionCreators(actions, dispatch)
-};
+});
 
 export default injectIntl(connect(
    mapStateToProps,
