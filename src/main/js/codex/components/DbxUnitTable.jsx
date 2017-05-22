@@ -5,7 +5,7 @@ import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
 
 class DbxUnitTable extends React.Component {
-   
+
    render() {
       return (
          <Table>

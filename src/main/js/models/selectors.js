@@ -9,7 +9,7 @@ const ormSelector = state => state.orm;
 const loadUnit = (unit) => {
    const obj = Object.assign({}, unit.ref);
 
-   if(unit.abilities) {
+   if (unit.abilities) {
       obj.abilities = unit.abilities.toRefArray().map(ability => ability.name);
    }
 
@@ -19,7 +19,7 @@ const loadUnit = (unit) => {
 const loadSponsorAffAva = (ava) => {
    const obj = Object.assign({}, ava.ref);
 
-   if(ava.affinityGroups) {
+   if (ava.affinityGroups) {
       obj.affinityGroups = ava.affinityGroups.toRefArray().map(affinity => affinity.name);
    }
 

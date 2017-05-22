@@ -3,18 +3,17 @@ import App from 'grommet/components/App';
 import Box from 'grommet/components/Box';
 import Anchor from 'grommet/components/Anchor';
 import Footer from 'grommet/components/Footer';
-import Title from 'grommet/components/Title';
 import Header from './Header';
 
 class BaseLayout extends React.Component {
    state = {
       drawerActive: false
    };
-   
+
    toggleDrawerActive = () => {
       this.setState({ drawerActive: !this.state.drawerActive });
    };
-   
+
    render() {
       return (
       <App centered={false}>
@@ -28,8 +27,8 @@ class BaseLayout extends React.Component {
             </Footer>
          </Box>
       </App>
-      );
-   };
+      )
+   }
 };
 
 export default BaseLayout;

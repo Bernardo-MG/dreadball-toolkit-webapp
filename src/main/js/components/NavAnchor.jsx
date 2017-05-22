@@ -8,21 +8,21 @@ import Anchor from 'grommet/components/Anchor';
 * with routing/history capabilities
 */
 export default class NavAnchor extends Component {
-   
+
    constructor () {
       super();
       this._onClick = this._onClick.bind(this);
    }
-   
-   _onClick (event) {
+
+   _onClick(event) {
       event.preventDefault();
       this.context.router.push(this.props.path);
       if (this.props.onClick) {
          this.props.onClick();
       }
    }
-   
-   render () {
+
+   render() {
       const { path, ...props } = this.props;
       const { router } = this.context;
       let className = this.props.className || '';
@@ -33,7 +33,7 @@ export default class NavAnchor extends Component {
       return (
             <Anchor {...props} className={className} href={href}
             onClick={this._onClick} />
-         );
+      )
    }
 };
 
