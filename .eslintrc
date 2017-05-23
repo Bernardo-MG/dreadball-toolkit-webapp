@@ -1,0 +1,27 @@
+{
+   "parser": "babel-eslint",
+   "plugins": [
+      "react",
+      "import"
+   ],
+   "settings": {
+      "import/resolver": {
+         "webpack": {
+            "config": "webpack.config.js"
+         }
+      }
+   },
+   "rules": {
+      "react/prop-types": [2],
+      "max-len": [1, 120, 2, {ignoreComments: true}],
+      "indent": ["error", 3],
+      "arrow-body-style": ["error", "always"],
+      "import/prefer-default-export": ["warn"],
+      "comma-dangle": ["error", "never"],
+      "arrow-parens": ["error", "always"]
+   },
+   "extends": [
+      "plugin:react/recommended",
+      "airbnb-base"
+   ]
+}

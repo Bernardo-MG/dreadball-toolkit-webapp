@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import * as actions from 'requests/actions/unit';
 import { bindActionCreators } from 'redux';
 import Button from 'grommet/components/Button';
@@ -9,13 +9,13 @@ import { injectIntl } from 'react-intl';
 class NextPageButton extends Component {
 
    callApi = () => {
-      nextPage(this.props.actions.fetch, this.props.page, this.props.lastPage)
+      nextPage(this.props.actions.fetch, this.props.page, this.props.lastPage);
    };
-   
+
    render() {
       return (
          <Button onClick={this.callApi} label={this.props.label}/>
-      )
+      );
    }
 }
 

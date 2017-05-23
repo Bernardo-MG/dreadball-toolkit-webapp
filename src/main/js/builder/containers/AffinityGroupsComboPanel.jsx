@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/sponsorAffAva';
@@ -7,29 +7,29 @@ import { avasToMap } from 'builder/utils';
 import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 
 class AffinityGroupsComboPanel extends Component {
-   
+
    componentDidMount() {
       this.props.actions.fetch();
    }
-   
+
    render() {
       return (
          <div>
-            {this.props.source.map(function(element, i) {
+            {this.props.source.map((element, i) => {
                return (
                   <SponsorAffinityComboBox index={i} key={i} source={element} />
                );
             })}
          </div>
-      )
+      );
    }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = state => ({
    source: avasToMap(sponsorAffAvas(state))
 });
 
-const mapDispatchToProps = (dispatch) => ({
+const mapDispatchToProps = dispatch => ({
    actions: bindActionCreators(actions, dispatch)
 });
 

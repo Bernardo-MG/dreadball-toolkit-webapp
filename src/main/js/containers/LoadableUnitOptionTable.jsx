@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import UnitOptionTable from 'components/UnitOptionTable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -10,11 +10,11 @@ class LoadableUnitOptionTable extends Component {
    componentDidMount() {
       this.props.actions.fetch(this.props.intl, this.props.affinities);
    }
-   
+
    render() {
       return (
          <UnitOptionTable source={this.props.source}/>
-      )
+      );
    }
 }
 

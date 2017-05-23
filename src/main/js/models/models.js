@@ -1,5 +1,5 @@
 import { Model, many, attr } from 'redux-orm';
-import { REQUEST_UNITS_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS } from 'requests/actions/ActionTypes'
+import { REQUEST_UNITS_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS } from 'requests/actions/ActionTypes';
 import propTypesMixin from 'redux-orm-proptypes';
 import { PropTypes } from 'react';
 import { forEachValue } from 'utils';
@@ -7,7 +7,7 @@ import { forEachValue } from 'utils';
 const ValidatingModel = propTypesMixin(Model);
 
 export class Ability extends Model {
-   static reducer(action, Ability, session) {
+   static reducer(action, Ability) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
@@ -17,7 +17,7 @@ export class Ability extends Model {
          forEachValue(abilities,
                ability => {
                   if (!Ability.filter({ name: ability.name }).exists()) {
-                     Ability.create(ability)
+                     Ability.create(ability);
                   }
                }
          );
@@ -31,7 +31,7 @@ Ability.options = {
 };
 
 export class Affinity extends Model {
-   static reducer(action, Affinity, session) {
+   static reducer(action, Affinity) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
@@ -40,7 +40,7 @@ export class Affinity extends Model {
          forEachValue(affinities,
                affinity => {
                   if (!Affinity.filter({ name: affinity.name }).exists()) {
-                     Affinity.create(affinity)
+                     Affinity.create(affinity);
                   }
                }
          );
@@ -62,7 +62,7 @@ export class SponsorAffinityAvailability extends Model {
          forEachValue(avas,
                ava => {
                   if (!Availability.filter({ name: ava.name }).exists()) {
-                     Availability.create(ava)
+                     Availability.create(ava);
                   }
                }
          );
@@ -89,7 +89,7 @@ export class Player extends ValidatingModel {
          forEachValue(units,
                unit => {
                   if (!Player.filter({ templateName : unit.templateName }).exists()) {
-                     Player.create(unit)
+                     Player.create(unit);
                   }
                }
          );
@@ -116,7 +116,7 @@ Player.fields = {
    hatedAffinityGroups: many('Affinity', 'unitHatedAffinityGroups')
 };
 Player.options = {
-   idAttribute: 'templateName',
+   idAttribute: 'templateName'
 };
 //Player.propTypes = {
 //   name: PropTypes.string.isRequired,

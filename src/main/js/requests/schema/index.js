@@ -9,15 +9,15 @@ export const affinity = new schema.Entity('affinities', {}, {
 });
 
 export const sponsorAffinityAvailability = new schema.Entity('sponsorAffinityAvailabilities', {
-   affinityGroups: [ affinity ]
+   affinityGroups: [affinity]
 }, {
    idAttribute: 'name'
 });
 
 export const unit = new schema.Entity('units', {
-   abilities: [ ability ],
-   affinityGroups: [ affinity ],
-   hatedAffinityGroups: [ affinity ]
+   abilities: [ability],
+   affinityGroups: [affinity],
+   hatedAffinityGroups: [affinity]
 }, {
    idAttribute: 'templateName'
 });

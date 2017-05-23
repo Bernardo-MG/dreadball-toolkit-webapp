@@ -1,5 +1,4 @@
-import React from 'react'
-import Box from 'grommet/components/Box';
+import React from 'react';
 import Button from 'grommet/components/Button';
 import AffinityGroupsComboPanel from 'builder/containers/AffinityGroupsComboPanel';
 

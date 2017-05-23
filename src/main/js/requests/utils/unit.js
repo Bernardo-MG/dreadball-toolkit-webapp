@@ -3,4 +3,4 @@ import { unit } from 'requests/schema';
 
 export const jsonToUnits = (json) => {
    return normalize(json, [unit]);
-}
+};
