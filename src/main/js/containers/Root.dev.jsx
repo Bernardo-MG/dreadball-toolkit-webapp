@@ -4,7 +4,7 @@ import routes from 'routes'
 import { Router } from 'react-router'
 import { IntlProvider } from 'react-intl';
 import Cookie from 'js-cookie';
-import DevTools from 'containers/DevTools';
+import DevTools from 'components/DevTools';
 
 const locale = Cookie.get('locale') || 'en';
 
