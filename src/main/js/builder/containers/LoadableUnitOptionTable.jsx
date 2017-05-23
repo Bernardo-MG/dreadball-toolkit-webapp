@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import UnitOptionTable from 'components/UnitOptionTable';
+import UnitOptionTable from 'builder/components/UnitOptionTable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/unit';
