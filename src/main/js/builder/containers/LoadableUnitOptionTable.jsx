@@ -13,7 +13,7 @@ class LoadableUnitOptionTable extends Component {
 
    render() {
       return (
-         <UnitOptionTable source={this.props.source}/>
+         <UnitOptionTable source={this.props.source} />
       );
    }
 }
