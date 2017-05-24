@@ -2,6 +2,9 @@ import React from 'react';
 import StatefulInput from 'components/StatefulInput';
 import TeamBuilderUnitTable from 'builder/components/TeamBuilderUnitTable';
 import LoadableUnitOptionTable from 'builder/containers/LoadableUnitOptionTable';
+import Form from 'grommet/components/Form';
+import TextInput from 'grommet/components/TextInput';
+import FormField from 'grommet/components/FormField';
 //import { Button } from 'react-toolbox/lib/button';
 //import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
 //import { Card, CardActions } from 'react-toolbox/lib/card';
@@ -16,8 +19,8 @@ class SponsorTeamView extends React.Component {
    
    constructor(props) {
       super(props);
-      this.state.builder = props.source;
-      this.state.affinities = this.state.builder.sponsorChosenAffinities.join(", ");
+      this.state.sponsor = props.source;
+      this.state.affinities = this.state.sponsor.affinities.join(", ");
    }
    
    toggleDrawerActive = () => {
@@ -38,7 +41,13 @@ class SponsorTeamView extends React.Component {
 
    render() {
       return (
-            <div/>
+            <div>
+               <Form>
+                  <FormField label='sponsor_name'>
+                     <TextInput id='sponsor_name' name='sponsor_name'/>
+                  </FormField>
+               </Form>
+            </div>
 //         <Layout>
 //            <Panel>
 //               <div>

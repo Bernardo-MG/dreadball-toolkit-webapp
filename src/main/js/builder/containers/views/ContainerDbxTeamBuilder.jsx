@@ -19,7 +19,7 @@ class ContainerDbxTeamBuilder extends Component {
 };
 
 const mapStateToProps = (state) => ({
-   source: state.dbxBuilder
+   source: state.builder.sponsor
 });
 
 const mapDispatchToProps = (dispatch) => ({
