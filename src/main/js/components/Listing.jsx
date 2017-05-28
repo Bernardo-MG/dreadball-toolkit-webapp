@@ -12,11 +12,13 @@ class Listing extends Component {
       return (
          <div>
             {this.props.source.map((element, i) => {
-               return (
-                  <ListItem key={i} justify='between' separator='horizontal'>
-                     <span>{element}</span>
-                  </ListItem>
-               );
+               if(element){
+                  return (
+                     <ListItem key={i} justify='between' separator='horizontal'>
+                        <span>{element}</span>
+                     </ListItem>
+                  );
+               }
             })}
          </div>
       );
