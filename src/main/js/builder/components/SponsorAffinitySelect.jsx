@@ -16,7 +16,7 @@ class SponsorAffinitySelect extends Component {
       const rank = value.option.rank;
       this.setState({ value : selected, affinity, rank });
 
-      this.handleSelection(affinity, rank, index);
+      this.handleSelection(affinity, rank, this.index);
    };
 
    componentDidMount() {

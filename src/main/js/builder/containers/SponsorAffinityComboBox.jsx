@@ -9,7 +9,7 @@ class SponsorAffinityComboBox extends Component {
 
    render() {
       return (
-         <SponsorAffinitySelect source={this.props.source} handleSelection={this.props.actions.chooseSponsorAffinity} />
+         <SponsorAffinitySelect index={this.props.index} source={this.props.source} handleSelection={this.props.actions.chooseSponsorAffinity} />
       );
    }
 }
