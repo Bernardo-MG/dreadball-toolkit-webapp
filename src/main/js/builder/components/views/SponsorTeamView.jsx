@@ -2,6 +2,7 @@ import React from 'react';
 import StatefulInput from 'components/StatefulInput';
 import TeamBuilderUnitTable from 'builder/components/TeamBuilderUnitTable';
 import LoadableUnitOptionTable from 'builder/containers/LoadableUnitOptionTable';
+import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import TextInput from 'grommet/components/TextInput';
@@ -47,6 +48,7 @@ class SponsorTeamView extends React.Component {
                      <TextInput id='sponsor_name' name='sponsor_name'/>
                   </FormField>
                </Form>
+               <SponsorAffinityList />
             </div>
 //         <Layout>
 //            <Panel>
