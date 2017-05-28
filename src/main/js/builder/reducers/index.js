@@ -3,16 +3,16 @@ import { combineReducers } from 'redux';
 
 const sponsor = (state = { rank: 0, affinities: [], ranks: [] }, action) => {
    const { type } = action;
+   const ranks = state.ranks.slice();
+   const affinities = state.affinities.slice();
    switch (type) {
    case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
       return {
          affinities: [],
-         ranks: []
+         ranks: [],
+         rank: 0
       }
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
-      const affinities = state.affinities.slice();
-      const ranks = state.ranks.slice();
-
       affinities[action.index] = action.payload.affinity;
       ranks[action.index] = action.payload.rank;
       
@@ -20,6 +20,21 @@ const sponsor = (state = { rank: 0, affinities: [], ranks: [] }, action) => {
          ...state,
          affinities,
          ranks
+      };
+   case ActionTypes.UPDATE_SPONSOR_AFFINITY_RANK:
+      const len = ranks.length;
+      var rank;
+      
+      rank = 0;
+      for (var i = 0; i < len; i++) {
+         if(ranks[i]) {
+            rank++;
+         }
+      }
+      
+      return {
+         ...state,
+         rank
       };
    default:
       return state;

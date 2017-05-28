@@ -13,7 +13,7 @@ class ContainerDbxTeamBuilder extends Component {
    
    render() {
       return (
-         <DbxTeamBuilder source={this.props.source}/>
+         <DbxTeamBuilder source={this.props.source} handleFinishedAffinities={this.props.actions.updateSponsorAffinityRank}/>
       );
    };
 };

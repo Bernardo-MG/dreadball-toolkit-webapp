@@ -5,10 +5,17 @@ import SponsorTeamView from 'builder/components/views/SponsorTeamView';
 class DbxTeamBuilder extends Component {
 
    state = { affinitiesChosen: false };
+   handleFinishedAffinities;
    
    finishedAffinities = () => {
       this.setState({ affinitiesChosen: true});
+      this.handleFinishedAffinities();
    };
+
+   constructor(props) {
+      super(props);
+      this.handleFinishedAffinities = props.handleFinishedAffinities;
+   }
 
    render() {
       let view = null;

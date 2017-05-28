@@ -9,3 +9,7 @@ export const chooseSponsorAffinity = (affinity, rank, index) => ({
    payload: { affinity, rank },
    index: index
 });
+
+export const updateSponsorAffinityRank = () => ({
+   type: types.UPDATE_SPONSOR_AFFINITY_RANK
+});
