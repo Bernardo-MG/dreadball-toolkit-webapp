@@ -47,8 +47,8 @@ class SponsorTeamView extends React.Component {
                   <FormField label='sponsor_name'>
                      <TextInput id='sponsor_name' name='sponsor_name'/>
                   </FormField>
+                  <SponsorAffinityList />
                </Form>
-               <SponsorAffinityList />
             </div>
 //         <Layout>
 //            <Panel>
