@@ -6,6 +6,7 @@ import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import TextInput from 'grommet/components/TextInput';
+import Value from 'grommet/components/Value';
 //import { Button } from 'react-toolbox/lib/button';
 //import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
 //import { Card, CardActions } from 'react-toolbox/lib/card';
@@ -48,6 +49,7 @@ class SponsorTeamView extends React.Component {
                      <TextInput id='sponsor_name' name='sponsor_name'/>
                   </FormField>
                   <SponsorAffinityList />
+                  <Value value={this.state.sponsor.rank} label='rank' />
                </Form>
             </div>
 //         <Layout>
