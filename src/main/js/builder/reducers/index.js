@@ -36,6 +36,13 @@ const sponsor = (state = { rank: 0, affinities: [], ranks: [] }, action) => {
          ...state,
          rank
       };
+   case ActionTypes.REQUEST_BUILDER_DEFAULTS_SUCCESS:
+      const initialRank = action.payload.result[0];
+      
+      return {
+         ...state,
+         initialRank
+      };
    default:
       return state;
    }

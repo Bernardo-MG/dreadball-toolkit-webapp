@@ -8,6 +8,7 @@ class ContainerDbxTeamBuilder extends Component {
    
    constructor(props) {
       super(props);
+      this.props.actions.loadDefaults();
       this.props.actions.beginDbxTeamBuilding();
    }
    
