@@ -16,12 +16,15 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 import com.wandrell.tabletop.dreadball.build.dbx.DefaultDbxBuilderDefaults;
 
 /**
@@ -35,15 +38,25 @@ import com.wandrell.tabletop.dreadball.build.dbx.DefaultDbxBuilderDefaults;
 @RequestMapping("/rest/builder")
 public class DbxTeamBuilderValuesController {
 
+    private final DbxSponsorBuilder sponsorBuilder;
+
     @Autowired
-    public DbxTeamBuilderValuesController() {
+    public DbxTeamBuilderValuesController(final DbxSponsorBuilder builder) {
         super();
+
+        sponsorBuilder = checkNotNull(builder,
+                "Received a null pointer as builder");
     }
 
     @GetMapping(path = "/defaults",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final DefaultDbxBuilderDefaults validateTeam() {
-        return new DefaultDbxBuilderDefaults(-1);
+        return new DefaultDbxBuilderDefaults(
+                getDbxSponsorBuilder().getInitialRank());
+    }
+
+    private final DbxSponsorBuilder getDbxSponsorBuilder() {
+        return sponsorBuilder;
     }
 
 }

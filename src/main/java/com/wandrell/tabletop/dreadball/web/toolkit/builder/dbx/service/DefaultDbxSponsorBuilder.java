@@ -35,7 +35,6 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     /**
      * Initial rank.
      */
-    @Value("${sponsor.rank.initial}")
     private final Integer initialRank;
 
     /**
