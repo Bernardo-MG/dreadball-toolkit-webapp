@@ -36,6 +36,14 @@ const sponsor = (state = { rank: 0, affinities: [], ranks: [] }, action) => {
          ...state,
          rank
       };
+   default:
+      return state;
+   }
+};
+
+const defaults = (state = { initialRank: 0 }, action) => {
+   const { type } = action;
+   switch (type) {
    case ActionTypes.REQUEST_BUILDER_DEFAULTS_SUCCESS:
       const initialRank = action.payload.initialRank;
       
@@ -49,7 +57,8 @@ const sponsor = (state = { rank: 0, affinities: [], ranks: [] }, action) => {
 };
 
 const dbxBuilderReducer = combineReducers({
-  sponsor
+  sponsor,
+  defaults
 });
 
 export default dbxBuilderReducer
