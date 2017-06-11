@@ -2,7 +2,7 @@ import * as ActionTypes from 'builder/actions/ActionTypes';
 import { combineReducers } from 'redux';
 
 const sponsor = (state = { rank: 0, affinities: [], ranks: [] }, action) => {
-   const { type } = action;
+   const { type, payload } = action;
    const ranks = state.ranks.slice();
    const affinities = state.affinities.slice();
    switch (type) {
@@ -13,8 +13,8 @@ const sponsor = (state = { rank: 0, affinities: [], ranks: [] }, action) => {
          rank: 0
       }
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
-      affinities[action.index] = action.payload.affinity;
-      ranks[action.index] = action.payload.rank;
+      affinities[action.index] = payload.affinity;
+      ranks[action.index] = payload.rank;
       
       return {
          ...state,
@@ -42,10 +42,10 @@ const sponsor = (state = { rank: 0, affinities: [], ranks: [] }, action) => {
 };
 
 const defaults = (state = { initialRank: 0 }, action) => {
-   const { type } = action;
+   const { type, payload } = action;
    switch (type) {
    case ActionTypes.REQUEST_BUILDER_DEFAULTS_SUCCESS:
-      const initialRank = action.payload.initialRank;
+      const initialRank = payload.initialRank;
       
       return {
          ...state,
