@@ -1,33 +1,32 @@
 import React, { Component } from 'react';
-import UnitOptionTable from 'builder/components/UnitOptionTable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/unit';
-import { injectIntl } from 'react-intl';
+import { units } from 'models/selectors';
+import UnitTable from 'builder/components/UnitTable';
 
-class LoadableUnitOptionTable extends Component {
+class SponsorAddUnitTable extends Component {
 
    componentDidMount() {
-      this.props.actions.fetch(this.props.intl, this.props.affinities);
+      this.props.actions.fetch();
    }
 
    render() {
       return (
-         <UnitOptionTable source={this.props.source} />
+         <UnitTable source={this.props.source}/>
       );
    }
 }
 
 const mapStateToProps = (state) => ({
-   source: state.codex.units,
-   affinities: state.dbxBuilder.sponsorChosenAffinities
+   source: units(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
    actions: bindActionCreators(actions, dispatch)
 });
 
-export default injectIntl(connect(
+export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(LoadableUnitOptionTable));
+)(SponsorAddUnitTable);

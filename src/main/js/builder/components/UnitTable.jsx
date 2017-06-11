@@ -1,5 +1,6 @@
 import React from 'react';
 import Table from 'grommet/components/Table';
+import TableRow from 'grommet/components/TableRow';
 import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
 

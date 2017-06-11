@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import DbxUnitTable from 'codex/components/DbxUnitTable';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/unit';
 import { units } from 'models/selectors';
+import DbxUnitTable from 'codex/components/DbxUnitTable';
 
 class LoadableDbxUnitTable extends Component {
 

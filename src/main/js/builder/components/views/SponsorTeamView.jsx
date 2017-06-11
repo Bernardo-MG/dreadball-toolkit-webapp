@@ -1,7 +1,7 @@
 import React from 'react';
 import StatefulInput from 'components/StatefulInput';
 import SponsorUnitTable from 'builder/containers/SponsorUnitTable';
-import LoadableUnitOptionTable from 'builder/containers/LoadableUnitOptionTable';
+import SponsorAddUnitTable from 'builder/containers/SponsorAddUnitTable';
 import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
@@ -71,6 +71,8 @@ class SponsorTeamView extends React.Component {
                   </FormField>
                </Form>
                <SponsorUnitTable />
+               <h1>add_player</h1>
+               <SponsorAddUnitTable />
             </div>
 //         <Layout>
 //            <Panel>
