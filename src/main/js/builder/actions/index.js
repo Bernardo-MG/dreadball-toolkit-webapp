@@ -20,7 +20,6 @@ export const updateSponsorAffinityRank = () => ({
 export const loadDefaults = () => ({
    [CALL_API]: {
       types: [types.REQUEST_BUILDER_DEFAULTS, types.REQUEST_BUILDER_DEFAULTS_SUCCESS, types.REQUEST_BUILDER_DEFAULTS_FAILURE],
-      endpoint,
-      parse
+      endpoint
    }
 });

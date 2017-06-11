@@ -1,6 +1,6 @@
 import { normalize } from 'normalizr';
-import { unit } from 'requests/schema';
+import { builderDefault } from 'builder/requests/schema';
 
 export const jsonToBuilderDefaults = (json) => {
-   return normalize(json, [unit]);
+   return normalize(json, builderDefault);
 };

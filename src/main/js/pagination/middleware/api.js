@@ -9,15 +9,15 @@ export default store => next => action => {
       return next(action)
    }
    
-   let { endpoint } = callAPI
-   const { types, parse, page, orderBy, order } = callAPI
+   let { endpoint, parse } = callAPI
+   const { types, page, orderBy, order } = callAPI
    
    if (typeof endpoint === 'function') {
       endpoint = endpoint(store.getState())
    }
    
    if (typeof parse !== 'function') {
-      throw new Error('Specify a json parsing function.')
+      parse = (json) => json;
    }
    if (typeof endpoint !== 'string') {
       throw new Error('Specify a string endpoint URL.')
@@ -72,8 +72,11 @@ const parsePaginated = (json, parse) => {
    
    const payload = parse(jsonContent)
    const content = { 
-      payload,
-      elements: payload.result.length
+      payload
+   }
+   
+   if(payload.result){
+      content.elements = payload.result.length
    }
    
    if(json.number === null || json.number === undefined) {
