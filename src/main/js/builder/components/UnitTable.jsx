@@ -3,7 +3,7 @@ import Table from 'grommet/components/Table';
 import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
 
-const TeamBuilderUnitTable = (props) => {
+const UnitTable = (props) => {
    return (
       <Table>
          <thead>
@@ -40,4 +40,4 @@ const TeamBuilderUnitTable = (props) => {
    );
 }
 
-export default injectIntl(TeamBuilderUnitTable);
+export default injectIntl(UnitTable);

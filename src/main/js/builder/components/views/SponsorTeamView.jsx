@@ -1,6 +1,6 @@
 import React from 'react';
 import StatefulInput from 'components/StatefulInput';
-import TeamBuilderUnitTable from 'builder/components/TeamBuilderUnitTable';
+import UnitTable from 'builder/components/UnitTable';
 import LoadableUnitOptionTable from 'builder/containers/LoadableUnitOptionTable';
 import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
 import Form from 'grommet/components/Form';
@@ -70,7 +70,7 @@ class SponsorTeamView extends React.Component {
                      <NumberInput id='cheerleaders' name='cheerleaders' max={100}/>
                   </FormField>
                </Form>
-               <TeamBuilderUnitTable source={[]}/>
+               <UnitTable source={[]}/>
             </div>
 //         <Layout>
 //            <Panel>
