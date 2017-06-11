@@ -1,10 +1,10 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import UnitTable from 'builder/components/UnitTable';
+import TeamUnitTable from 'builder/components/TeamUnitTable';
 
-const SponsorUnitTable = (props) => {
+const SponsorTeamUnitTable = (props) => {
    return (
-      <UnitTable source={props.source}/>
+      <TeamUnitTable source={props.source}/>
    );
 }
 
@@ -18,4 +18,4 @@ const mapDispatchToProps = dispatch => ({
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorUnitTable);
+)(SponsorTeamUnitTable);

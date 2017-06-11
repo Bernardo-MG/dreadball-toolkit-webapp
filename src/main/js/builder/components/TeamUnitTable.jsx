@@ -4,11 +4,12 @@ import TableRow from 'grommet/components/TableRow';
 import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
 
-const UnitTable = (props) => {
+const TeamUnitTable = (props) => {
    return (
       <Table>
          <thead>
             <tr>
+               <th>{props.intl.formatMessage(unitMessages.position)}</th>
                <th>{props.intl.formatMessage(unitMessages.name)}</th>
                <th>{props.intl.formatMessage(unitMessages.role)}</th>
                <th>{props.intl.formatMessage(unitMessages.move)}</th>
@@ -23,6 +24,7 @@ const UnitTable = (props) => {
          <tbody>
             {props.source.map(function(object, i){
                return <TableRow key={i}>
+                        <td>{object.position}</td>
                         <td>{object.name}</td>
                         <td>{object.role}</td>
                         <td>{object.move}</td>
@@ -39,4 +41,4 @@ const UnitTable = (props) => {
    );
 }
 
-export default injectIntl(UnitTable);
+export default injectIntl(TeamUnitTable);
