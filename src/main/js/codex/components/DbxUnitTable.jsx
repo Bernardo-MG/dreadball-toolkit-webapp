@@ -4,7 +4,7 @@ import TableRow from 'grommet/components/TableRow';
 import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
 
-class DbxUnitTable = (props) => {
+const DbxUnitTable = (props) => {
    return (
       <Table>
          <thead>
