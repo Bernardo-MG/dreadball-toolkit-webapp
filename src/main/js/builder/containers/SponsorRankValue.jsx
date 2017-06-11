@@ -1,15 +1,12 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Value from 'grommet/components/Value';
 
-class SponsorRankValue extends Component {
-
-   render() {
-      return (
-         <Value value={this.props.rank + this.props.initialRank} label='rank' />
-      );
-   }
+const SponsorRankValue = (props) => {
+   return (
+      <Value value={props.rank + props.initialRank} label='rank' />
+   );
 }
 
 const mapStateToProps = state => ({

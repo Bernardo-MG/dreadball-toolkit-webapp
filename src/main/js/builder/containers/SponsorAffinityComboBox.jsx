@@ -1,17 +1,14 @@
-import React, { Component } from 'react';
+import React from 'react';
 import Select from 'grommet/components/Select';
 import SponsorAffinitySelect from 'builder/components/SponsorAffinitySelect';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'builder/actions';
 
-class SponsorAffinityComboBox extends Component {
-
-   render() {
-      return (
-         <SponsorAffinitySelect index={this.props.index} source={this.props.source} handleSelection={this.props.actions.chooseSponsorAffinity} />
-      );
-   }
+const SponsorAffinityComboBox = (props) => {
+   return (
+      <SponsorAffinitySelect index={props.index} source={props.source} handleSelection={props.actions.chooseSponsorAffinity} />
+   );
 }
 
 const mapStateToProps = (state) => ({

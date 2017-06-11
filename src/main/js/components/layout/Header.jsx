@@ -6,7 +6,7 @@ import Menu from 'grommet/components/Menu';
 import SearchIcon from 'grommet/components/icons/base/Search';
 import NavAnchor from 'components/NavAnchor';
 
-export default function AppHeader (props) {
+const AppHeader = (props) => {
   return (
     <Header justify="center" colorIndex="neutral-4">
       <Box size={{width: {max: 'xxlarge'}}} direction="row"
@@ -20,3 +20,5 @@ export default function AppHeader (props) {
     </Header>
   );
 };
+
+export default AppHeader;
