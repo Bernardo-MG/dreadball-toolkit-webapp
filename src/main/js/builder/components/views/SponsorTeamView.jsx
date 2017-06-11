@@ -10,10 +10,6 @@ import NumberInput from 'grommet/components/NumberInput';
 import SponsorRankValue from 'builder/containers/SponsorRankValue';
 import Value from 'grommet/components/Value';
 import Button from 'grommet/components/Button';
-//import { Button } from 'react-toolbox/lib/button';
-//import { Layout, NavDrawer, Panel, Sidebar } from 'react-toolbox';
-//import { Card, CardActions } from 'react-toolbox/lib/card';
-//import Dialog from 'react-toolbox/lib/dialog';
 
 class SponsorTeamView extends React.Component {
    state = {
@@ -74,21 +70,11 @@ class SponsorTeamView extends React.Component {
                      <NumberInput id='cheerleaders' name='cheerleaders' max={100}/>
                   </FormField>
                </Form>
+               <TeamBuilderUnitTable source={[]}/>
             </div>
 //         <Layout>
 //            <Panel>
 //               <div>
-//                  <StatefulInput type='text' label='sponsor_name' maxLength={16} />
-//                  <p>chosen_affinities: {this.state.affinities}</p>
-//                  <p>sponsor_rank: {this.state.builder.sponsor.rank}</p>
-//                  <h1>spend_rank</h1>
-//                  <Button label='additional_affinity' raised primary />
-//                  <StatefulInput type='number' label='coaching_dice' maxLength={3} />
-//                  <StatefulInput type='number' label='special_move_card' maxLength={3} />
-//                  <StatefulInput type='number' label='nasty_surprise_card' maxLength={3} />
-//                  <StatefulInput type='number' label='wager' maxLength={3} />
-//                  <StatefulInput type='number' label='medibot' maxLength={3} />
-//                  <StatefulInput type='number' label='cheerleaders' maxLength={3} />
 //                  <h1>players</h1>
 //                  <Card>
 //                     <TeamBuilderUnitTable/>

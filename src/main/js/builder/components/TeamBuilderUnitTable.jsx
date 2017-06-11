@@ -1,37 +1,43 @@
 import React from 'react';
-//import { Table } from 'react-toolbox';
+import Table from 'grommet/components/Table';
 import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
 
-class TeamBuilderUnitTable extends React.Component {
-   UnitModel = {}
-   
-   constructor(props) {
-      super(props);
-      this.UnitModel = {
-         position: {type: Number, title: props.intl.formatMessage(unitMessages.position)},
-         name: {type: String, title: props.intl.formatMessage(unitMessages.name)},
-         role: {type: String, title: props.intl.formatMessage(unitMessages.role)},
-         move: {type: Number, title: props.intl.formatMessage(unitMessages.move)},
-         strength: {type: Number, title: props.intl.formatMessage(unitMessages.strength)},
-         speed: {type: Number, title: props.intl.formatMessage(unitMessages.speed)},
-         skill: {type: Number, title: props.intl.formatMessage(unitMessages.skill)},
-         armor: {type: Number, title: props.intl.formatMessage(unitMessages.armor)},
-         abilities: {type: String, title: props.intl.formatMessage(unitMessages.abilities)},
-         cost: {type: Number, title: props.intl.formatMessage(unitMessages.cost)}
-      };
-   }  
-   
-   render() {
-      return (
-         <div/>
-         //<Table
-         //   model={this.UnitModel}
-         //   source={this.props.source}
-         //   selectable={false}
-         //   multiSelectable={false} />
-      );
-   };
-};
+const TeamBuilderUnitTable = (props) => {
+   return (
+      <Table>
+         <thead>
+            <tr>
+               <th>{props.intl.formatMessage(unitMessages.position)}</th>
+               <th>{props.intl.formatMessage(unitMessages.name)}</th>
+               <th>{props.intl.formatMessage(unitMessages.role)}</th>
+               <th>{props.intl.formatMessage(unitMessages.move)}</th>
+               <th>{props.intl.formatMessage(unitMessages.strength)}</th>
+               <th>{props.intl.formatMessage(unitMessages.speed)}</th>
+               <th>{props.intl.formatMessage(unitMessages.skill)}</th>
+               <th>{props.intl.formatMessage(unitMessages.armor)}</th>
+               <th>{props.intl.formatMessage(unitMessages.abilities)}</th>
+               <th>{props.intl.formatMessage(unitMessages.cost)}</th>
+            </tr>
+         </thead>
+         <tbody>
+            {props.source.map(function(object, i){
+               return <TableRow key={i}>
+                        <td>{object.position}</td>
+                        <td>{object.name}</td>
+                        <td>{object.role}</td>
+                        <td>{object.move}</td>
+                        <td>{object.strength}</td>
+                        <td>{object.speed}</td>
+                        <td>{object.skill}</td>
+                        <td>{object.armor}</td>
+                        <td>{object.abilities}</td>
+                        <td>{object.cost}</td>
+                     </TableRow>;
+            })}
+         </tbody>
+      </Table>
+   );
+}
 
 export default injectIntl(TeamBuilderUnitTable);
