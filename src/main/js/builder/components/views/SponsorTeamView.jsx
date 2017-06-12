@@ -1,5 +1,4 @@
 import React from 'react';
-import StatefulInput from 'components/StatefulInput';
 import SponsorTeamUnitTable from 'builder/containers/SponsorTeamUnitTable';
 import SponsorAddUnitTable from 'builder/containers/SponsorAddUnitTable';
 import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
