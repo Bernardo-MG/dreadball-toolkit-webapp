@@ -6,7 +6,7 @@ const SponsorRankValue = (props) => {
    return (
       <Value value={props.rank + props.initialRank} label='rank' />
    );
-}
+};
 
 const mapStateToProps = state => ({
    rank: state.builder.sponsor.rank,

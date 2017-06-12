@@ -23,7 +23,7 @@ const AddUnitTable = (props) => {
             </tr>
          </thead>
          <tbody>
-            {props.source.map(function(object, i){
+            {props.source.map(function (object, i) {
                return <TableRow key={i}>
                         <td><Button label='add' /></td>
                         <td>{object.name}</td>
@@ -40,6 +40,6 @@ const AddUnitTable = (props) => {
          </tbody>
       </Table>
    );
-}
+};
 
 export default injectIntl(AddUnitTable);

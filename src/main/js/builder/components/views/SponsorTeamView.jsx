@@ -7,36 +7,35 @@ import FormField from 'grommet/components/FormField';
 import TextInput from 'grommet/components/TextInput';
 import NumberInput from 'grommet/components/NumberInput';
 import SponsorRankValue from 'builder/containers/SponsorRankValue';
-import Value from 'grommet/components/Value';
 import Button from 'grommet/components/Button';
 
 class SponsorTeamView extends React.Component {
    state = {
       showPlayerOptions: false,
       builder: {},
-      affinities: [],
+      affinities: []
    };
-   
+
    constructor(props) {
       super(props);
       this.state.sponsor = props.source;
       this.state.affinities = this.state.sponsor.affinities.join(", ");
    }
-   
+
    toggleDrawerActive = () => {
       this.setState({ drawerActive: !this.state.drawerActive });
    };
-   
+
    toggleDrawerPinned = () => {
       this.setState({ drawerPinned: !this.state.drawerPinned });
    }
-   
+
    togglePlayerOptions = () => {
       this.setState({ showPlayerOptions: !this.state.showPlayerOptions });
    };
-   
+
    dialogActions = [
-      { label: "close", onClick: this.togglePlayerOptions }
+      { label: 'close', onClick: this.togglePlayerOptions }
    ];
 
    render() {

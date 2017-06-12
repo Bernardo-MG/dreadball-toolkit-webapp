@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
 import Select from 'grommet/components/Select';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as Actions from 'builder/actions';
 
 class SponsorAffinitySelect extends Component {
 
@@ -14,7 +11,7 @@ class SponsorAffinitySelect extends Component {
       const selected = value.option.value;
       const affinity = value.option.affinity;
       const rank = value.option.rank;
-      this.setState({ value : selected, affinity, rank });
+      this.setState({ value: selected, affinity, rank });
 
       this.handleSelection(affinity, rank, this.index);
    };

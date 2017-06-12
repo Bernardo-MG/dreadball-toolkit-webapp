@@ -22,7 +22,7 @@ const TeamUnitTable = (props) => {
             </tr>
          </thead>
          <tbody>
-            {props.source.map(function(object, i){
+            {props.source.map(function (object, i) {
                return <TableRow key={i}>
                         <td>{object.position}</td>
                         <td>{object.name}</td>
@@ -39,6 +39,6 @@ const TeamUnitTable = (props) => {
          </tbody>
       </Table>
    );
-}
+};
 
 export default injectIntl(TeamUnitTable);

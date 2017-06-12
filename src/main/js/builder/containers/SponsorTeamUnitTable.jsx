@@ -6,7 +6,7 @@ const SponsorTeamUnitTable = (props) => {
    return (
       <TeamUnitTable source={props.source}/>
    );
-}
+};
 
 const mapStateToProps = state => ({
    source: state.builder.sponsor.units

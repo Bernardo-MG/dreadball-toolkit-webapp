@@ -1,9 +1,4 @@
 import React from 'react';
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-import * as actions from 'requests/actions/sponsorAffAva';
-import { sponsorAffAvas } from 'models/selectors';
-import { avasToMap } from 'builder/utils';
 import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 
 const SponsorAffinitySelectField = (props) => {
@@ -16,6 +11,6 @@ const SponsorAffinitySelectField = (props) => {
          })}
       </div>
    );
-}
+};
 
 export default SponsorAffinitySelectField;

@@ -1,9 +1,5 @@
 import React from 'react';
-import List from 'grommet/components/List';
 import ListItem from 'grommet/components/ListItem';
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as Actions from 'builder/actions';
 
 
 const Listing = (props) => {
