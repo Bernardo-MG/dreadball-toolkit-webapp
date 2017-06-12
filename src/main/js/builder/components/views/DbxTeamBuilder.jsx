@@ -23,7 +23,7 @@ class DbxTeamBuilder extends Component {
       if(!this.state.affinitiesChosen) { 
          view = <SponsorAffinitiesView onClick={ this.finishedAffinities } />;
       } else {
-         view = <SponsorTeamView source={this.props.source} />;
+         view = <SponsorTeamView />;
       }
 
       return (
