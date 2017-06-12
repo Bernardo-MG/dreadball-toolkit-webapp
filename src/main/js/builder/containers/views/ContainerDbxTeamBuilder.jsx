@@ -14,13 +14,12 @@ class ContainerDbxTeamBuilder extends Component {
    
    render() {
       return (
-         <DbxTeamBuilder source={this.props.source} handleFinishedAffinities={this.props.actions.updateSponsorAffinityRank}/>
+         <DbxTeamBuilder handleFinishedAffinities={this.props.actions.updateSponsorAffinityRank}/>
       );
    };
 };
 
 const mapStateToProps = (state) => ({
-   source: state.builder.sponsor
 });
 
 const mapDispatchToProps = (dispatch) => ({
