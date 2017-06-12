@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/unit';
 import { units } from 'models/selectors';
-import UnitTable from 'builder/components/UnitTable';
+import AddUnitTable from 'builder/components/AddUnitTable';
 
 class SponsorAddUnitTable extends Component {
 
@@ -13,7 +13,7 @@ class SponsorAddUnitTable extends Component {
 
    render() {
       return (
-         <UnitTable source={this.props.source}/>
+         <AddUnitTable source={this.props.source}/>
       );
    }
 }

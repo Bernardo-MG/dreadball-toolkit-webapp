@@ -74,27 +74,6 @@ class SponsorTeamView extends React.Component {
                <h1>add_player</h1>
                <SponsorAddUnitTable />
             </div>
-//         <Layout>
-//            <Panel>
-//               <div>
-//                  <h1>players</h1>
-//                  <Card>
-//                     <TeamBuilderUnitTable/>
-//                     <CardActions>
-//                        <Button label='add_player' onClick={this.togglePlayerOptions} />
-//                     </CardActions>
-//                  </Card>
-//                  <Dialog
-//                     actions={this.dialogActions}
-//                     active={this.state.showPlayerOptions}
-//                     onEscKeyDown={this.togglePlayerOptions}
-//                     onOverlayClick={this.togglePlayerOptions}
-//                     title='add_player'>
-//                     <LoadableUnitOptionTable/>
-//                  </Dialog>
-//               </div>
-//            </Panel>
-//         </Layout>
       );
    }
 }
