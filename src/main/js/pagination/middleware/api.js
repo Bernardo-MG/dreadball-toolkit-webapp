@@ -1,4 +1,5 @@
 import { CALL_API } from 'pagination/actions/ActionTypes';
+import { fetchPaginated } from 'pagination/fetch';
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
@@ -48,55 +49,9 @@ export default store => (next) => (action) => {
 
 const callApi = (endpoint, page, parse, orderBy, order) => {
    const localEndpoint = appendBase(endpoint);
-   const url = paginatedUrl(localEndpoint, page, orderBy, order)
+   const url = paginateUrl(localEndpoint, page, orderBy, order)
    
    return fetchPaginated(url, parse);
-}
-
-const fetchPaginated = (url, parse) => {
-   return fetch(url)
-      .then(response =>
-         response.json().then(json => {
-            if (!response.ok) {
-               return Promise.reject(json)
-            }
-
-            return parsePaginated(json, parse)
-         })
-      )
-}
-
-const parsePaginated = (json, parse) => {
-   var jsonContent;
-
-   if(json.content){
-      jsonContent = json.content;
-   } else {
-      jsonContent = json;
-   }
-
-   const payload = parse(jsonContent)
-   const content = { 
-      payload
-   }
-
-   if(payload.result){
-      content.elements = payload.result.length
-   }
-
-   if(json.number === null || json.number === undefined) {
-      return content
-   } else {
-      return {
-            ...content,
-            page: json.number,
-            first: json.first,
-            last: json.last,
-            totalPages: json.totalPages,
-            totalElements: json.totalElements
-            }
-   }
-   
 }
 
 const actionWith = (action) => (data) => {
@@ -115,7 +70,7 @@ const appendBase = (url) => {
    }
 }
 
-const paginatedUrl = (url, page, orderBy, order) => {
+const paginateUrl = (url, page, orderBy, order) => {
    let result = url;
    let params = '';
 
