@@ -12,8 +12,7 @@ const unwrapJson = (json) => {
 }
 
 const parsePaginated = (json, parse) => {
-   const jsonContent = unwrapJson(json);
-   const payload = parse(jsonContent)
+   const payload = parse(json)
    const content = { 
       payload
    }
@@ -24,7 +23,7 @@ const parsePaginated = (json, parse) => {
 
    if(json.number === null || json.number === undefined) {
       // Pagination info is missing
-      // The contents is returned as received
+      // The contents is returned without pagination details
       return content
    } else {
       return {
@@ -43,13 +42,8 @@ const paginateJson = (response, json, parse) => {
       return Promise.reject(json)
    }
 
-   return parsePaginated(json, parse)
-}
-
-const paginateResponse = (response, parse) => {
-   response.json().then(json => {
-      paginateJson(response, json, parse)
-   })
+   const composedParse = (json) => parse(unwrapJson(json));
+   return parsePaginated(json, composedParse)
 }
 
 export const fetchPaginated = (url, parse) => {
