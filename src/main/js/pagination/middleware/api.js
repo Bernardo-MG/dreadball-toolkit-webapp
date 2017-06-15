@@ -47,8 +47,13 @@ export default store => (next) => (action) => {
 }
 
 const callApi = (endpoint, page, parse, orderBy, order) => {
-   const url = paginatedUrl(fullUrl(endpoint), page, orderBy, order)
+   const localEndpoint = appendBase(endpoint);
+   const url = paginatedUrl(localEndpoint, page, orderBy, order)
    
+   return fetchPaginated(url, parse);
+}
+
+const fetchPaginated = (url, parse) => {
    return fetch(url)
       .then(response =>
          response.json().then(json => {
@@ -102,7 +107,7 @@ const actionWith = (action) => (data) => {
    return finalAction
 }
 
-const fullUrl = (url) => {
+const appendBase = (url) => {
    if(url.indexOf(ROUTE_BASE) === -1) {
       return ROUTE_BASE + url
    } else {
@@ -111,10 +116,25 @@ const fullUrl = (url) => {
 }
 
 const paginatedUrl = (url, page, orderBy, order) => {
-   var result = url + '?page=' + page;
+   let result = url;
+   let params = '';
 
+   // Page params
+   if(page){
+      params = params + 'page=' + page;
+   }
+
+   // Order by params
    if(orderBy){
-      result = result + '&&' + 'orderBy=' + orderBy + '&&' + 'order=' + order;
+      if(params){
+         params = params + '&&';
+      }
+      params = params + 'orderBy=' + orderBy + '&&' + 'order=' + order;
+   }
+
+   // Params are added to the URL
+   if(params){
+      result = result + '?' + params;
    }
 
    return result;
