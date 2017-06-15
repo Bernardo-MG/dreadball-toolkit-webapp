@@ -23,7 +23,7 @@ const DbxUnitTable = (props) => {
             </tr>
          </thead>
          <tbody>
-            {props.source.map(function(object, i){
+            {props.source.map(function(object, i) {
                return <TableRow key={i}>
                         <td>{object.name}</td>
                         <td>{object.role}</td>
@@ -41,6 +41,6 @@ const DbxUnitTable = (props) => {
          </tbody>
       </Table>
    );
-}
+};
 
 export default injectIntl(DbxUnitTable);

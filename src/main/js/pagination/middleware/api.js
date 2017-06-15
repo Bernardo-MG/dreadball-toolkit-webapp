@@ -1,39 +1,39 @@
-import { CALL_API } from 'pagination/actions/ActionTypes'
+import { CALL_API } from 'pagination/actions/ActionTypes';
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
-export default store => next => action => {
-   const callAPI = action[CALL_API]
-   
+export default store => (next) => (action) => {
+   const callAPI = action[CALL_API];
+
    if (typeof callAPI === 'undefined') {
-      return next(action)
+      return next(action);
    }
-   
-   let { endpoint, parse } = callAPI
-   const { types, page, orderBy, order } = callAPI
-   
+
+   let { endpoint, parse } = callAPI;
+   const { types, page, orderBy, order } = callAPI;
+
    if (typeof endpoint === 'function') {
-      endpoint = endpoint(store.getState())
+      endpoint = endpoint(store.getState());
    }
-   
+
    if (typeof parse !== 'function') {
       parse = (json) => json;
    }
    if (typeof endpoint !== 'string') {
-      throw new Error('Specify a string endpoint URL.')
+      throw new Error('Specify a string endpoint URL.');
    }
    if (!Array.isArray(types) || types.length !== 3) {
-      throw new Error('Expected an array of three action types.')
+      throw new Error('Expected an array of three action types.');
    }
    if (!types.every(type => typeof type === 'string')) {
-      throw new Error('Expected action types to be strings.')
+      throw new Error('Expected action types to be strings.');
    }
-   
+
    const processAction = actionWith(action)
    const [ requestType, successType, failureType ] = types
-   
+
    next(processAction({ type: requestType }))
-   
+
    return callApi(endpoint, page, parse, orderBy, order).then(
       response => next(processAction({
          type: successType,
@@ -55,7 +55,7 @@ const callApi = (endpoint, page, parse, orderBy, order) => {
             if (!response.ok) {
                return Promise.reject(json)
             }
-            
+
             return parsePaginated(json, parse)
          })
       )
@@ -63,22 +63,22 @@ const callApi = (endpoint, page, parse, orderBy, order) => {
 
 const parsePaginated = (json, parse) => {
    var jsonContent;
-   
+
    if(json.content){
       jsonContent = json.content;
    } else {
       jsonContent = json;
    }
-   
+
    const payload = parse(jsonContent)
    const content = { 
       payload
    }
-   
+
    if(payload.result){
       content.elements = payload.result.length
    }
-   
+
    if(json.number === null || json.number === undefined) {
       return content
    } else {
@@ -96,9 +96,9 @@ const parsePaginated = (json, parse) => {
 
 const actionWith = (action) => (data) => {
    const finalAction = Object.assign({}, action, data)
-   
+
    delete finalAction[CALL_API]
-   
+
    return finalAction
 }
 
@@ -112,10 +112,10 @@ const fullUrl = (url) => {
 
 const paginatedUrl = (url, page, orderBy, order) => {
    var result = url + '?page=' + page;
-   
+
    if(orderBy){
       result = result + '&&' + 'orderBy=' + orderBy + '&&' + 'order=' + order;
    }
-   
+
    return result;
 }

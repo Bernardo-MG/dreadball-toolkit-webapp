@@ -6,9 +6,9 @@ class DbxTeamBuilder extends Component {
 
    state = { affinitiesChosen: false };
    handleFinishedAffinities;
-   
+
    finishedAffinities = () => {
-      this.setState({ affinitiesChosen: true});
+      this.setState({ affinitiesChosen: true });
       this.handleFinishedAffinities();
    };
 
@@ -20,7 +20,7 @@ class DbxTeamBuilder extends Component {
    render() {
       let view = null;
 
-      if(!this.state.affinitiesChosen) { 
+      if (!this.state.affinitiesChosen) {
          view = <SponsorAffinitiesView onClick={ this.finishedAffinities } />;
       } else {
          view = <SponsorTeamView />;
@@ -32,7 +32,7 @@ class DbxTeamBuilder extends Component {
          </div>
       );
    }
-   
-};
+
+}
 
 export default DbxTeamBuilder;

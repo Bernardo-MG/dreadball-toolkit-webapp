@@ -44,6 +44,6 @@ const SponsorTeamView = (props) => {
             <SponsorAddUnitTable />
          </div>
    );
-}
+};
 
 export default SponsorTeamView;

@@ -1,5 +1,5 @@
-import { ORM } from "redux-orm";
-import { Ability, Affinity, Player, SponsorAffinityAvailability } from "models/models";
+import { ORM } from 'redux-orm';
+import { Ability, Affinity, Player, SponsorAffinityAvailability } from 'models/models';
 
 const orm = new ORM();
 

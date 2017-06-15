@@ -8,12 +8,15 @@ const SponsorTeamUnitTable = (props) => {
    );
 };
 
-const mapStateToProps = state => ({
-   source: state.builder.sponsor.units
-});
+const mapStateToProps = (state) => {
+   return {
+      source: state.builder.sponsor.units
+   }
+};
 
-const mapDispatchToProps = dispatch => ({
-});
+const mapDispatchToProps = (dispatch) => {
+   return {}
+};
 
 export default connect(
    mapStateToProps,

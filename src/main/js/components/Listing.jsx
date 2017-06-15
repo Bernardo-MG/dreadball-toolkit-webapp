@@ -12,10 +12,12 @@ const Listing = (props) => {
                      <span>{element}</span>
                   </ListItem>
                );
+            } else {
+               return null;
             }
          })}
       </div>
    );
-}
+};
 
 export default Listing;

@@ -11,7 +11,11 @@ class SponsorAffinitySelect extends Component {
       const selected = value.option.value;
       const affinity = value.option.affinity;
       const rank = value.option.rank;
-      this.setState({ value: selected, affinity, rank });
+      this.setState({
+         affinity,
+         rank,
+         value: selected
+      });
 
       this.handleSelection(affinity, rank, this.index);
    };
@@ -22,11 +26,14 @@ class SponsorAffinitySelect extends Component {
 
    constructor(props) {
       super(props);
+   
       this.index = props.index;
       this.handleSelection = props.handleSelection;
-      this.state.affinity = props.source[0].affinity;
-      this.state.value = props.source[0].value;
-      this.state.rank = props.source[0].rank;
+   
+      const first = props.source[0];
+      this.state.affinity = first.affinity;
+      this.state.value = first.value;
+      this.state.rank = first.rank;
    }
 
    render() {

@@ -1,9 +1,9 @@
-import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
-import createLogger from 'redux-logger'
-import rootReducer from 'reducers'
+import { createStore, applyMiddleware, compose } from 'redux';
+import thunk from 'redux-thunk';
+import createLogger from 'redux-logger';
+import rootReducer from 'reducers';
 import DevTools from 'components/DevTools';
-import api from 'pagination/middleware/api'
+import api from 'pagination/middleware/api';
 
 const middleware = [
    thunk,
@@ -23,4 +23,4 @@ const configureStore = initialState => createStore(
    enhancer
 )
 
-export default configureStore
+export default configureStore;

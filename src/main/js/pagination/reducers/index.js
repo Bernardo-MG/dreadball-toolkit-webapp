@@ -4,10 +4,10 @@ import union from 'lodash/union';
 // and a function telling how to extract the key from an action.
 const paginate = ({ idsMapping, types }) => {
    if (!Array.isArray(types) || types.length !== 3) {
-      throw new Error('Expected types to be an array of three elements.')
+      throw new Error('Expected types to be an array of three elements.');
    }
    if (!types.every(t => typeof t === 'string')) {
-      throw new Error('Expected types to be strings.')
+      throw new Error('Expected types to be strings.');
    }
    
    const [ requestType, successType, failureType ] = types
@@ -25,12 +25,12 @@ const paginate = ({ idsMapping, types }) => {
       // Update pagination by key
       const { type } = action
       switch (type) {
-         case requestType:
-         case successType:
-         case failureType:
-            return updatePagination(state, action, idsMapping, requestType, successType, failureType)
-         default:
-            return state
+      case requestType:
+      case successType:
+      case failureType:
+         return updatePagination(state, action, idsMapping, requestType, successType, failureType);
+      default:
+         return state;
       }
    }
 }
@@ -38,30 +38,30 @@ const paginate = ({ idsMapping, types }) => {
 const updatePagination = (state, action, idsMapping, requestType, successType, failureType) => {
    const { type, payload, page, first, last, elements, totalPages, totalElements } = action
    switch (type) {
-      case requestType:
-         return {
-               ...state,
-               isFetching: true
-            }
-      case successType:
-         return {
-               ...state,
-               isFetching: false,
-               ids: union(state.ids, idsMapping(payload)),
-               page,
-               first,
-               last,
-               elements,
-               totalPages,
-               totalElements
-            }
-      case failureType:
-         return {
-               ...state,
-               isFetching: false
-            }
-      default:
-         return state
+   case requestType:
+      return {
+            ...state,
+            isFetching: true
+         };
+   case successType:
+      return {
+            ...state,
+            isFetching: false,
+            ids: union(state.ids, idsMapping(payload)),
+            page,
+            first,
+            last,
+            elements,
+            totalPages,
+            totalElements
+         };
+   case failureType:
+      return {
+            ...state,
+            isFetching: false
+         }
+   default:
+      return state;
    }
 }
 

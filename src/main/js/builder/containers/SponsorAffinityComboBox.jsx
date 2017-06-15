@@ -10,12 +10,15 @@ const SponsorAffinityComboBox = (props) => {
    );
 };
 
-const mapStateToProps = (state) => ({
-});
+const mapStateToProps = (state) => {
+   return {};
+};
 
-const mapDispatchToProps = (dispatch) => ({
-   actions: bindActionCreators(Actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => {
+   return {
+      actions: bindActionCreators(Actions, dispatch)
+   };
+};
 
 export default connect(
    mapStateToProps,

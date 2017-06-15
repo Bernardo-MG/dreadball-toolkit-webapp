@@ -18,13 +18,17 @@ class SponsorAddUnitTable extends Component {
    }
 }
 
-const mapStateToProps = (state) => ({
-   source: units(state)
-});
+const mapStateToProps = (state) => {
+   return {
+      source: units(state)
+   }
+};
 
-const mapDispatchToProps = (dispatch) => ({
-   actions: bindActionCreators(actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => {
+   return {
+      actions: bindActionCreators(actions, dispatch)
+   }
+};
 
 export default connect(
    mapStateToProps,

@@ -17,15 +17,20 @@ class AffinityGroupsComboPanel extends Component {
          <SponsorAffinitySelectField source={this.props.source} />
       );
    }
+
 }
 
-const mapStateToProps = state => ({
-   source: avasToMap(sponsorAffAvas(state))
-});
+const mapStateToProps = (state) => {
+   return {
+      source: avasToMap(sponsorAffAvas(state))
+   }
+};
 
-const mapDispatchToProps = dispatch => ({
-   actions: bindActionCreators(actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => {
+   return {
+      actions: bindActionCreators(actions, dispatch)
+   }
+};
 
 export default connect(
    mapStateToProps,
