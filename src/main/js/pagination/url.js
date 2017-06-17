@@ -1,5 +1,4 @@
 
-
 const appendBase = (url) => {
    if(url.indexOf(ROUTE_BASE) === -1) {
       return ROUTE_BASE + url
@@ -12,19 +11,23 @@ const applyParams = (url, params) => {
    let result = url;
    let urlParams = '';
 
-   // Page params
-   if(params.page){
-      urlParams = paginationParams(urlParams, params.page);
-   }
-
-   // Ordering params
-   if(params.orderBy){
-      urlParams = orderByParams(urlParams, params.orderBy, params.order);
-   }
+   urlParams = appendParamsMap(params);
 
    // Params are added to the URL
    if(urlParams){
       result = result + '?' + urlParams;
+   }
+
+   return result;
+}
+
+const appendParamsMap = (map) => {
+   let result = '';
+
+   for (var key in map) {
+      if (map.hasOwnProperty(key)) {
+         result = appendParams(result, key + '=' + map[key]);
+      }
    }
 
    return result;
@@ -39,14 +42,6 @@ const appendParams = (params, newParams) => {
    result = result + newParams;
 
    return result;
-}
-
-const paginationParams = (params, page) => {
-   return appendParams(params, 'page=' + page);
-}
-
-const orderByParams = (params, orderBy, order) => {
-   return appendParams(params, 'orderBy=' + orderBy + '&&' + 'order=' + order);
 }
 
 export const getUrl = (endpoint, params) => {
