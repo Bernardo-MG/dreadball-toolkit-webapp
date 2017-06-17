@@ -2,24 +2,12 @@
 const paginatedContent = (content) => {
    const result = {
       ...content,
-      page: content.number
+      page: content.number,
+      payload: content.content
    }
    
    delete result.number;
-   
-   return result;
-}
-
-const setPayload = (json) => {
-   let result;
-
-   if(json.content){
-      result = Object.assign({}, json);
-      result.payload = result.content;
-      delete result.content;
-   } else {
-      result = json;
-   }
+   delete content.content;
    
    return result;
 }
@@ -45,7 +33,7 @@ const paginateJson = (response, json, parse) => {
       return Promise.reject(json)
    }
    
-   let content = wrapContent(setPayload(json));
+   let content = wrapContent(json);
    content = setPaginationData(content);
    content.payload = parse(content.payload);
    
