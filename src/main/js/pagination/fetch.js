@@ -2,10 +2,12 @@
 const paginatedContent = (content) => {
    const result = {
       ...content,
-      page: content.number
+      page: content.number,
+      elements: content.numberOfElements
    }
    
    delete result.number;
+   delete result.numberOfElements;
    
    return result;
 }
@@ -57,7 +59,7 @@ const paginateJson = (response, json, parse) => {
    let content = wrapContent(setPayload(json));
    content = setPaginationData(content);
    content.payload = parse(content.payload);
-   content = setElementsCount(content);
+   //content = setElementsCount(content);
    
    return content
 
