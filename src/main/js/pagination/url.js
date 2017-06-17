@@ -27,21 +27,29 @@ const applyParams = (url, params) => {
 }
 
 const paginationParams = (params, page) => {
+   let result = params;
+
    if(page){
-      if(params){
-         params = params + '&&';
+      if(result){
+         result = result + '&&';
       }
-      params = params + 'page=' + page;
+      result = result + 'page=' + page;
    }
+
+   return result;
 }
 
 const orderByParams = (params, orderBy, order) => {
+   let result = params;
+
    if(orderBy){
-      if(params){
-         params = params + '&&';
+      if(result){
+         result = result + '&&';
       }
-      params = params + 'orderBy=' + orderBy + '&&' + 'order=' + order;
+      result = result + 'orderBy=' + orderBy + '&&' + 'order=' + order;
    }
+
+   return result;
 }
 
 export const getUrl = (endpoint, params) => {
