@@ -3,7 +3,7 @@ import * as actions from 'requests/actions/unit';
 import { bindActionCreators } from 'redux';
 import Button from 'grommet/components/Button';
 import { connect } from 'react-redux';
-import { nextPage } from 'pagination/utils';
+import { nextPage } from 'pagination/move';
 import { injectIntl } from 'react-intl';
 
 class NextPageButton extends Component {

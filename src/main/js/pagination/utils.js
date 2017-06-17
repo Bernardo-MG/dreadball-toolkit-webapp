@@ -1,24 +1,4 @@
 
-export const nextPage = (fetch, current, last) => {
-   let page = current;
-
-   if (!last) {
-      page++;
-   }
-
-   fetch(page);
-};
-
-export const previousPage = (fetch, current, first) => {
-   let page = current;
-
-   if (!first) {
-      page--;
-   }
-
-   fetch(page);
-};
-
 export const filterPaginated = (model, idSelector, loader) => (session, pagination) => {
    let ids;
    let result;
