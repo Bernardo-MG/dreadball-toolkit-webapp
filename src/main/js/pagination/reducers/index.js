@@ -17,7 +17,7 @@ const paginate = ({ idsMapping, types }) => {
          page: 0,
          totalPages: 0,
          totalElements: 0,
-         elements: 0,
+         numberOfElements: 0,
          first: true,
          last: true,
          ids: []
@@ -36,7 +36,7 @@ const paginate = ({ idsMapping, types }) => {
 }
 
 const updatePagination = (state, action, idsMapping, requestType, successType, failureType) => {
-   const { type, payload, page, first, last, elements, totalPages, totalElements } = action
+   const { type, payload, page, first, last, numberOfElements, totalPages, totalElements } = action
    switch (type) {
    case requestType:
       return {
@@ -51,7 +51,7 @@ const updatePagination = (state, action, idsMapping, requestType, successType, f
             page,
             first,
             last,
-            elements,
+            numberOfElements,
             totalPages,
             totalElements
          };

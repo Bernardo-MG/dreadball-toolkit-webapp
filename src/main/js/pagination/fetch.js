@@ -2,12 +2,10 @@
 const paginatedContent = (content) => {
    const result = {
       ...content,
-      page: content.number,
-      elements: content.numberOfElements
+      page: content.number
    }
    
    delete result.number;
-   delete result.numberOfElements;
    
    return result;
 }
