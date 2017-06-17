@@ -13,10 +13,14 @@ const applyParams = (url, params) => {
    let urlParams = '';
 
    // Page params
-   urlParams = paginationParams(urlParams, params.page);
+   if(params.page){
+      urlParams = paginationParams(urlParams, params.page);
+   }
 
    // Ordering params
-   urlParams = orderByParams(urlParams, params.orderBy, params.order);
+   if(params.orderBy){
+      urlParams = orderByParams(urlParams, params.orderBy, params.order);
+   }
 
    // Params are added to the URL
    if(urlParams){
@@ -26,30 +30,23 @@ const applyParams = (url, params) => {
    return result;
 }
 
-const paginationParams = (params, page) => {
+const appendParams = (params, newParams) => {
    let result = params;
 
-   if(page){
-      if(result){
-         result = result + '&&';
-      }
-      result = result + 'page=' + page;
+   if(result){
+      result = result + '&&';
    }
+   result = result + newParams;
 
    return result;
 }
 
+const paginationParams = (params, page) => {
+   return appendParams(params, 'page=' + page);
+}
+
 const orderByParams = (params, orderBy, order) => {
-   let result = params;
-
-   if(orderBy){
-      if(result){
-         result = result + '&&';
-      }
-      result = result + 'orderBy=' + orderBy + '&&' + 'order=' + order;
-   }
-
-   return result;
+   return appendParams(params, 'orderBy=' + orderBy + '&&' + 'order=' + order);
 }
 
 export const getUrl = (endpoint, params) => {
