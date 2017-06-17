@@ -1,19 +1,28 @@
 
 const paginatedContent = (content) => {
-   const result = {
-      ...content,
+   const pagination = {
+      first: content.first,
+      last: content.last,
+      numberOfElements: content.numberOfElements,
+      totalElements: content.totalElements,
       page: content.number,
-      payload: content.content
+      totalPages: content.totalPages,
+      sort: content.sort
    }
-   
+
+   const result = {
+      payload: content.content,
+      pagination
+   }
+
    delete result.number;
    delete content.content;
-   
+
    return result;
 }
 
 const setPayload = (payload) => {
-   return { 
+   return {
       payload
    };
 }
@@ -26,7 +35,6 @@ const setPaginationData = (content) => {
    } else {
       return paginatedContent(content)
    }
-   
 }
 const paginateJson = (response, json, parse) => {
    if (!response.ok) {
