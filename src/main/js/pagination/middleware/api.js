@@ -13,11 +13,7 @@ export default store => (next) => (action) => {
    let { endpoint, parse } = callAPI;
    const { types, page, orderBy, order } = callAPI;
 
-   if (typeof endpoint === 'function') {
-      endpoint = endpoint(store.getState());
-   }
-
-   if (typeof parse !== 'function') {
+   if (!parse) {
       parse = (json) => json;
    }
    if (typeof endpoint !== 'string') {
@@ -34,8 +30,10 @@ export default store => (next) => (action) => {
    const [ requestType, successType, failureType ] = types
 
    next(processAction({ type: requestType }))
+   
+   const url = getUrl(endpoint, orderBy, order, page);
 
-   return callApi(endpoint, page, parse, orderBy, order).then(
+   return callApi(url, parse).then(
       response => next(processAction({
          type: successType,
          ...response
@@ -47,10 +45,14 @@ export default store => (next) => (action) => {
    )
 }
 
-const callApi = (endpoint, page, parse, orderBy, order) => {
+const getUrl = (endpoint, orderBy, order, page) => {
    const localEndpoint = appendBase(endpoint);
    const url = paginateUrl(localEndpoint, page, orderBy, order)
-   
+
+   return url;
+}
+
+const callApi = (url, parse) => {
    return fetchPaginated(url, parse);
 }
 
