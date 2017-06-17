@@ -12,19 +12,19 @@ const paginatedContent = (content) => {
    return result;
 }
 
-const wrapContent = (payload) => {
+const setPayload = (payload) => {
    return { 
       payload
    };
 }
 
 const setPaginationData = (content) => {
-   if(content.payload.number === null || content.payload.number === undefined) {
+   if(content.number === null || content.number === undefined) {
       // Pagination info is missing
       // The contents is returned without pagination details
-      return content
+      return setPayload(content)
    } else {
-      return paginatedContent(content.payload, content)
+      return paginatedContent(content)
    }
    
 }
@@ -32,12 +32,11 @@ const paginateJson = (response, json, parse) => {
    if (!response.ok) {
       return Promise.reject(json)
    }
-   
-   let content = wrapContent(json);
-   content = setPaginationData(content);
+
+   let content = setPaginationData(json);
    content.payload = parse(content.payload);
-   
-   return content
+
+   return content;
 }
 
 export const fetchPaginated = (url, parse) => {
