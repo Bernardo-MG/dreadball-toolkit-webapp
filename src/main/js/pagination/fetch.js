@@ -20,9 +20,7 @@ const setPayload = (json) => {
       result.payload = result.content;
       delete result.content;
    } else {
-      result = {
-         payload: result
-      }
+      result = json;
    }
    
    return result;
@@ -33,6 +31,7 @@ const wrapContent = (payload) => {
       payload
    };
 }
+
 const setElementsCount = (content) => {
    if(content.payload.result){
       content.elements = content.payload.result.length
