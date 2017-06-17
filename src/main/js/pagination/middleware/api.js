@@ -30,8 +30,10 @@ export default store => (next) => (action) => {
    const [ requestType, successType, failureType ] = types
 
    next(processAction({ type: requestType }))
+
+   const urlParams = { orderBy, order, page };
    
-   const url = getUrl(endpoint, orderBy, order, page);
+   const url = getUrl(endpoint, urlParams);
 
    return callApi(url, parse).then(
       response => next(processAction({
@@ -45,9 +47,9 @@ export default store => (next) => (action) => {
    )
 }
 
-const getUrl = (endpoint, orderBy, order, page) => {
+const getUrl = (endpoint, params) => {
    const localEndpoint = appendBase(endpoint);
-   const url = paginateUrl(localEndpoint, page, orderBy, order)
+   const url = applyParams(localEndpoint, params)
 
    return url;
 }
@@ -72,27 +74,38 @@ const appendBase = (url) => {
    }
 }
 
-const paginateUrl = (url, page, orderBy, order) => {
+const applyParams = (url, params) => {
    let result = url;
-   let params = '';
+   let urlParams = '';
 
    // Page params
-   if(page){
-      params = params + 'page=' + page;
+   urlParams = paginationParams(urlParams, params.page);
+
+   // Ordering params
+   urlParams = orderByParams(urlParams, params.orderBy, params.order);
+
+   // Params are added to the URL
+   if(urlParams){
+      result = result + '?' + urlParams;
    }
 
-   // Order by params
+   return result;
+}
+
+const paginationParams = (params, page) => {
+   if(page){
+      if(params){
+         params = params + '&&';
+      }
+      params = params + 'page=' + page;
+   }
+}
+
+const orderByParams = (params, orderBy, order) => {
    if(orderBy){
       if(params){
          params = params + '&&';
       }
       params = params + 'orderBy=' + orderBy + '&&' + 'order=' + order;
    }
-
-   // Params are added to the URL
-   if(params){
-      result = result + '?' + params;
-   }
-
-   return result;
 }
