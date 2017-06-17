@@ -1,5 +1,6 @@
 import { CALL_API } from 'pagination/actions/ActionTypes';
 import { fetchPaginated } from 'pagination/fetch';
+import { getUrl } from 'pagination/url';
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
@@ -47,13 +48,6 @@ export default store => (next) => (action) => {
    )
 }
 
-const getUrl = (endpoint, params) => {
-   const localEndpoint = appendBase(endpoint);
-   const url = applyParams(localEndpoint, params)
-
-   return url;
-}
-
 const callApi = (url, parse) => {
    return fetchPaginated(url, parse);
 }
@@ -64,48 +58,4 @@ const actionWith = (action) => (data) => {
    delete finalAction[CALL_API]
 
    return finalAction
-}
-
-const appendBase = (url) => {
-   if(url.indexOf(ROUTE_BASE) === -1) {
-      return ROUTE_BASE + url
-   } else {
-      return url
-   }
-}
-
-const applyParams = (url, params) => {
-   let result = url;
-   let urlParams = '';
-
-   // Page params
-   urlParams = paginationParams(urlParams, params.page);
-
-   // Ordering params
-   urlParams = orderByParams(urlParams, params.orderBy, params.order);
-
-   // Params are added to the URL
-   if(urlParams){
-      result = result + '?' + urlParams;
-   }
-
-   return result;
-}
-
-const paginationParams = (params, page) => {
-   if(page){
-      if(params){
-         params = params + '&&';
-      }
-      params = params + 'page=' + page;
-   }
-}
-
-const orderByParams = (params, orderBy, order) => {
-   if(orderBy){
-      if(params){
-         params = params + '&&';
-      }
-      params = params + 'orderBy=' + orderBy + '&&' + 'order=' + order;
-   }
 }
