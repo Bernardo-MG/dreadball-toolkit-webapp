@@ -14,12 +14,6 @@ const paginate = ({ idsMapping, types }) => {
    
    return (state = {
          isFetching: false,
-         page: 0,
-         totalPages: 0,
-         totalElements: 0,
-         numberOfElements: 0,
-         first: true,
-         last: true,
          ids: []
       }, action) => {
       // Update pagination by key
@@ -38,12 +32,6 @@ const paginate = ({ idsMapping, types }) => {
 const updatePagination = (state, action, idsMapping, requestType, successType, failureType) => {
    const { type, payload } = action
    
-   let pagination = action.pagination;
-   if(!pagination){
-      pagination = {};
-   }
-   
-   const { page, first, last, numberOfElements, totalPages, totalElements } = pagination
    switch (type) {
    case requestType:
       return {
@@ -51,16 +39,16 @@ const updatePagination = (state, action, idsMapping, requestType, successType, f
             isFetching: true
          };
    case successType:
+      let pagination = action.pagination;
+      if(!pagination) {
+         pagination = {};
+      }
+
       return {
             ...state,
+            ...pagination,
             isFetching: false,
-            ids: union(state.ids, idsMapping(payload)),
-            page,
-            first,
-            last,
-            numberOfElements,
-            totalPages,
-            totalElements
+            ids: union(state.ids, idsMapping(payload))
          };
    case failureType:
       return {
