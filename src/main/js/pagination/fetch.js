@@ -30,14 +30,6 @@ const wrapContent = (payload) => {
    };
 }
 
-const setElementsCount = (content) => {
-   if(content.payload.result){
-      content.elements = content.payload.result.length
-   }
-   
-   return content;
-}
-
 const setPaginationData = (content) => {
    if(content.payload.number === null || content.payload.number === undefined) {
       // Pagination info is missing
@@ -56,11 +48,8 @@ const paginateJson = (response, json, parse) => {
    let content = wrapContent(setPayload(json));
    content = setPaginationData(content);
    content.payload = parse(content.payload);
-   //content = setElementsCount(content);
    
    return content
-
-   //return setPaginationData(setElementsCount(wrapContent(parse(unwrapJson(json)))))
 }
 
 export const fetchPaginated = (url, parse) => {
