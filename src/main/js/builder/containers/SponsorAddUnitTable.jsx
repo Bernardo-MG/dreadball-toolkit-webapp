@@ -8,7 +8,7 @@ import AddUnitTable from 'builder/components/AddUnitTable';
 class SponsorAddUnitTable extends Component {
 
    componentDidMount() {
-      this.props.actions.fetch();
+      this.props.actions.fetch(this.props.affinities);
    }
 
    render() {
@@ -20,7 +20,8 @@ class SponsorAddUnitTable extends Component {
 
 const mapStateToProps = (state) => {
    return {
-      source: ratedUnits(state)
+      source: ratedUnits(state),
+      affinities: state.builder.sponsor.affinities
    }
 };
 

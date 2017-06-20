@@ -11,11 +11,14 @@ export default store => (next) => (action) => {
       return next(action);
    }
 
-   let { endpoint, parse } = callAPI;
-   const { types, page, orderBy, order } = callAPI;
+   let { parse, params } = callAPI;
+   const { endpoint, types, page, orderBy, order } = callAPI;
 
    if (!parse) {
       parse = (json) => json;
+   }
+   if (!params) {
+      params = {};
    }
    if (typeof endpoint !== 'string') {
       throw new Error('Specify a string endpoint URL.');
@@ -32,8 +35,7 @@ export default store => (next) => (action) => {
 
    next(processAction({ type: requestType }))
 
-   const urlParams = { orderBy, order, page };
-   
+   const urlParams = { orderBy, order, page, ...params };
    const url = getUrl(endpoint, urlParams);
 
    return callApi(url, parse).then(

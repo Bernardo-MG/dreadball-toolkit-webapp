@@ -39,13 +39,15 @@ export class Affinity extends Model {
       case REQUEST_SPONSOR_UNITS_SUCCESS:
       case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
          const affinities = payload.entities.affinities;
-         forEachValue(affinities,
-               affinity => {
-                  if (!Affinity.filter({ name: affinity.name }).exists()) {
-                     Affinity.create(affinity);
+         if(affinities){
+            forEachValue(affinities,
+                  affinity => {
+                     if (!Affinity.filter({ name: affinity.name }).exists()) {
+                        Affinity.create(affinity);
+                     }
                   }
-               }
-         );
+            );
+         }
          break;
       }
    }
