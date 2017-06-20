@@ -4,9 +4,8 @@ export const nextPage = (fetch, current, last) => {
 
    if (!last) {
       page++;
+      fetch(page);
    }
-
-   fetch(page);
 };
 
 export const previousPage = (fetch, current, first) => {
@@ -14,7 +13,6 @@ export const previousPage = (fetch, current, first) => {
 
    if (!first) {
       page--;
+      fetch(page);
    }
-
-   fetch(page);
 };
