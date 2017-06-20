@@ -8,7 +8,7 @@ const ormSelector = (state) => {
    return state.orm;
 };
 
-const loadUnit = (unit) => {
+const loadPlayer = (unit) => {
    const obj = Object.assign({}, unit.ref);
 
    if (unit.abilities) {
@@ -31,7 +31,13 @@ const loadSponsorAffAva = (ava) => {
 export const units = createSelector(
    ormSelector,
    state => state.pagination.units,
-   ormCreateSelector(orm, filterPaginated((session) => session.Player, (entity) => entity.templateName, loadUnit))
+   ormCreateSelector(orm, filterPaginated((session) => session.Player, (entity) => entity.templateName, loadPlayer))
+);
+
+export const ratedUnits = createSelector(
+   ormSelector,
+   state => state.pagination.ratedUnits,
+   ormCreateSelector(orm, filterPaginated((session) => session.RatedPlayer, (entity) => entity.templateName, loadPlayer))
 );
 
 export const sponsorAffAvas = createSelector(

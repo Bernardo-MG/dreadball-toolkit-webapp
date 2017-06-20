@@ -1,1 +1,1 @@
-export const CALL_API = 'Call API';
+export const CALL_API = 'CALL_API';

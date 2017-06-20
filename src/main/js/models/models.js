@@ -1,5 +1,5 @@
 import { Model, many, attr } from 'redux-orm';
-import { REQUEST_UNITS_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS } from 'requests/actions/ActionTypes';
+import { REQUEST_UNITS_SUCCESS, REQUEST_SPONSOR_UNITS_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS } from 'requests/actions/ActionTypes';
 import propTypesMixin from 'redux-orm-proptypes';
 import { PropTypes } from 'react';
 import { forEachValue } from 'utils';
@@ -11,6 +11,7 @@ export class Ability extends Model {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
+      case REQUEST_SPONSOR_UNITS_SUCCESS:
          // Gathers abilities sets
          const abilities = payload.entities.abilities;
          // Creates abilities
@@ -35,6 +36,7 @@ export class Affinity extends Model {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
+      case REQUEST_SPONSOR_UNITS_SUCCESS:
       case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
          const affinities = payload.entities.affinities;
          forEachValue(affinities,
@@ -108,10 +110,9 @@ Player.fields = {
    armor: attr(),
    stranger_cost: attr(),
    ally_cost: attr(),
-   ally_cost: attr(),
    friend_cost: attr(),
    cost: attr(),
-   abilities: many('Ability', 'abilities'),
+   abilities: many('Ability', 'unitAbilities'),
    affinityGroups: many('Affinity', 'unitAffinityGroups'),
    hatedAffinityGroups: many('Affinity', 'unitHatedAffinityGroups')
 };
@@ -136,3 +137,41 @@ Player.options = {
 //      PropTypes.string,
 //   ])).isRequired,
 //};
+
+export class RatedPlayer extends ValidatingModel {
+   static reducer(action, RatedPlayer, session) {
+      const { type, payload } = action;
+      switch (type) {
+      case REQUEST_SPONSOR_UNITS_SUCCESS:
+         const units = payload.entities.units;
+         forEachValue(units,
+               unit => {
+                  if (!RatedPlayer.filter({ templateName : unit.templateName }).exists()) {
+                     RatedPlayer.create(unit);
+                  }
+               }
+         );
+         break;
+      }
+   }
+}
+RatedPlayer.modelName = 'RatedPlayer';
+RatedPlayer.fields = {
+   name: attr(),
+   role: attr(),
+   move: attr(),
+   strength: attr(),
+   speed: attr(),
+   skill: attr(),
+   armor: attr(),
+   stranger_cost: attr(),
+   ally_cost: attr(),
+   friend_cost: attr(),
+   cost: attr(),
+   abilities: many('Ability', 'ratedPlayerAbilities'),
+   affinityGroups: many('Affinity', 'ratedPlayerUnitAffinityGroups'),
+   hatedAffinityGroups: many('Affinity', 'ratedPlayerUnitHatedAffinityGroups')
+};
+RatedPlayer.options = {
+   idAttribute: 'templateName'
+};
