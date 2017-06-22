@@ -6,6 +6,7 @@ import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import TextInput from 'grommet/components/TextInput';
 import NumberInput from 'grommet/components/NumberInput';
+import BoundNumberInput from 'components/BoundNumberInput';
 import SponsorRankValue from 'builder/containers/SponsorRankValue';
 import Button from 'grommet/components/Button';
 
@@ -21,22 +22,22 @@ const SponsorTeamView = (props) => {
                <h1>spend_rank</h1>
                <Button label='additional_affinity' />
                <FormField label='coaching_dice'>
-                  <NumberInput id='coaching_dice' name='coaching_dice' max={100}/>
+                  <BoundNumberInput id='coaching_dice' name='coaching_dice' defaultValue={0} min={0} max={100}/>
                </FormField>
                <FormField label='special_move_card'>
-                  <NumberInput id='special_move_card' name='special_move_card' max={100}/>
+                  <NumberInput id='special_move_card' name='special_move_card' defaultValue={0} min={0} max={100}/>
                </FormField>
                <FormField label='nasty_surprise_card'>
-                  <NumberInput id='nasty_surprise_card' name='nasty_surprise_card' max={100}/>
+                  <NumberInput id='nasty_surprise_card' name='nasty_surprise_card' defaultValue={0} min={0} max={100}/>
                </FormField>
                <FormField label='wager'>
-                  <NumberInput id='wager' name='wager' max={100}/>
+                  <NumberInput id='wager' name='wager' defaultValue={0} min={0} max={100}/>
                </FormField>
                <FormField label='medibot'>
-                  <NumberInput id='medibot' name='medibot' max={100}/>
+                  <NumberInput id='medibot' name='medibot' defaultValue={0} min={0} max={100}/>
                </FormField>
                <FormField label='cheerleaders'>
-                  <NumberInput id='cheerleaders' name='cheerleaders' max={100}/>
+                  <NumberInput id='cheerleaders' name='cheerleaders' defaultValue={0} min={0} max={100}/>
                </FormField>
             </Form>
             <SponsorTeamUnitTable />
