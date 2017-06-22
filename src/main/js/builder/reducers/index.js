@@ -1,7 +1,7 @@
 import * as ActionTypes from 'builder/actions/ActionTypes';
 import { combineReducers } from 'redux';
 
-const sponsor = (state = { rank: 0, affinities: [], ranks: [], units: {},
+const sponsor = (state = { rank: 0, affinities: [], ranks: [], units: [],
                            sponsorName: '',
                            coachingDice: 0, specialMoveCard: 0, nastySurpriseCard: 0, wager: 0, mediBot: 0, cheerleaders: 0 }, action) => {
    const { type, payload } = action;
@@ -13,7 +13,7 @@ const sponsor = (state = { rank: 0, affinities: [], ranks: [], units: {},
          affinities: [],
          ranks: [],
          rank: 0,
-         units: {},
+         units: [],
          sponsorName: '',
          coachingDice: 0,
          specialMoveCard: 0,

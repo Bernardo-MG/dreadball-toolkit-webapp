@@ -6,7 +6,12 @@ import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import TextInput from 'grommet/components/TextInput';
 import NumberInput from 'grommet/components/NumberInput';
-import BoundNumberInput from 'components/BoundNumberInput';
+import CheerleadersInput from 'builder/containers/CheerleadersInput';
+import CoachingDiceInput from 'builder/containers/CoachingDiceInput';
+import MediBotInput from 'builder/containers/MediBotInput';
+import NastySurpriseCardInput from 'builder/containers/NastySurpriseCardInput';
+import SpecialMoveCardInput from 'builder/containers/SpecialMoveCardInput';
+import WagerInput from 'builder/containers/WagerInput';
 import SponsorRankValue from 'builder/containers/SponsorRankValue';
 import Button from 'grommet/components/Button';
 
@@ -22,22 +27,22 @@ const SponsorTeamView = (props) => {
                <h1>spend_rank</h1>
                <Button label='additional_affinity' />
                <FormField label='coaching_dice'>
-                  <BoundNumberInput id='coaching_dice' name='coaching_dice' defaultValue={0} min={0} max={100}/>
+                  <CoachingDiceInput id='coaching_dice' name='coaching_dice' min={0} max={100}/>
                </FormField>
                <FormField label='special_move_card'>
-                  <NumberInput id='special_move_card' name='special_move_card' defaultValue={0} min={0} max={100}/>
+                  <SpecialMoveCardInput id='special_move_card' name='special_move_card' min={0} max={100}/>
                </FormField>
                <FormField label='nasty_surprise_card'>
-                  <NumberInput id='nasty_surprise_card' name='nasty_surprise_card' defaultValue={0} min={0} max={100}/>
+                  <NastySurpriseCardInput id='nasty_surprise_card' name='nasty_surprise_card' min={0} max={100}/>
                </FormField>
                <FormField label='wager'>
-                  <NumberInput id='wager' name='wager' defaultValue={0} min={0} max={100}/>
+                  <WagerInput id='wager' name='wager' min={0} max={100}/>
                </FormField>
                <FormField label='medibot'>
-                  <NumberInput id='medibot' name='medibot' defaultValue={0} min={0} max={100}/>
+                  <MediBotInput id='medibot' name='medibot' min={0} max={100}/>
                </FormField>
                <FormField label='cheerleaders'>
-                  <NumberInput id='cheerleaders' name='cheerleaders' defaultValue={0} min={0} max={100}/>
+                  <CheerleadersInput id='cheerleaders' name='cheerleaders' min={0} max={100}/>
                </FormField>
             </Form>
             <SponsorTeamUnitTable />

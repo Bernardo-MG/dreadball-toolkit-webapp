@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import BoundNumberInput from 'components/BoundNumberInput';
 
-const CoachingDiceInput = (props) => {
+const SpecialMoveCardInput = (props) => {
    return (
       <BoundNumberInput {...props} />
    );
@@ -10,7 +10,7 @@ const CoachingDiceInput = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.coachingDice
+      value: state.builder.sponsor.specialMoveCard
    }
 };
 
@@ -21,4 +21,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(CoachingDiceInput);
+)(SpecialMoveCardInput);
