@@ -18,8 +18,12 @@ const DbxPlayers = () => {
             <LoadableDbxUnitTable/>
             <Form>
                <Box direction='row'>
-                  <PreviousPageButton label='previous' />
-                  <NextPageButton label='next' />
+                  <Box margin='small'>
+                     <PreviousPageButton label='previous' />
+                  </Box>
+                  <Box margin='small'>
+                     <NextPageButton label='next' />
+                  </Box>
                </Box>
             </Form>
          </Box>

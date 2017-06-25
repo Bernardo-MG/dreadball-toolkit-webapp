@@ -9,14 +9,12 @@ import AffinityGroupsComboPanel from 'builder/containers/AffinityGroupsComboPane
 
 const SponsorAffinitiesView = (props) => {
    return (
-      <Section primary={true} flex={true} pad='small'>
-         <Form>
-            <AffinityGroupsComboPanel />
-            <Footer>
-               <Button onClick={ props.onClick } label='accept' />
-            </Footer>
-         </Form>
-      </Section>
+      <Form>
+         <AffinityGroupsComboPanel />
+         <Footer>
+            <Button onClick={ props.onClick } label='accept' />
+         </Footer>
+      </Form>
    );
 };
 
