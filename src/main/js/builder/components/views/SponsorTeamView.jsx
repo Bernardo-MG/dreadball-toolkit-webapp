@@ -1,11 +1,14 @@
 import React from 'react';
-import SponsorTeamUnitTable from 'builder/containers/SponsorTeamUnitTable';
-import SponsorAddUnitTable from 'builder/containers/SponsorAddUnitTable';
-import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
+
+import Button from 'grommet/components/Button';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import TextInput from 'grommet/components/TextInput';
 import NumberInput from 'grommet/components/NumberInput';
+
+import SponsorTeamUnitTable from 'builder/containers/SponsorTeamUnitTable';
+import SponsorAddUnitTable from 'builder/containers/SponsorAddUnitTable';
+import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
 import CheerleadersInput from 'builder/containers/CheerleadersInput';
 import CoachingDiceInput from 'builder/containers/CoachingDiceInput';
 import MediBotInput from 'builder/containers/MediBotInput';
@@ -13,7 +16,6 @@ import NastySurpriseCardInput from 'builder/containers/NastySurpriseCardInput';
 import SpecialMoveCardInput from 'builder/containers/SpecialMoveCardInput';
 import WagerInput from 'builder/containers/WagerInput';
 import SponsorRankValue from 'builder/containers/SponsorRankValue';
-import Button from 'grommet/components/Button';
 
 const SponsorTeamView = (props) => {
    return (

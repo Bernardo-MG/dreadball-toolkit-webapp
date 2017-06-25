@@ -1,21 +1,29 @@
 import React from 'react';
-import LoadableDbxUnitTable from 'codex/containers/LoadableDbxUnitTable';
-import PreviousPageButton from 'containers/PreviousPageButton';
-import NextPageButton from 'containers/NextPageButton';
+
 import Box from 'grommet/components/Box';
+import Form from 'grommet/components/Form';
+import Heading from 'grommet/components/Heading';
+import Section from 'grommet/components/Section';
+
+import NextPageButton from 'containers/NextPageButton';
+import PreviousPageButton from 'containers/PreviousPageButton';
+
+import LoadableDbxUnitTable from 'codex/containers/LoadableDbxUnitTable';
 
 const DbxPlayers = () => {
    return (
-      <div>
-         <h1>DBX players</h1>
+      <Section primary={true} flex={true} pad='small'>
+         <Heading tag='h1'>DBX players</Heading>
          <Box>
             <LoadableDbxUnitTable/>
-            <Box direction='row'>
-               <PreviousPageButton label='previous' />
-               <NextPageButton label='next' />
-            </Box>
+            <Form>
+               <Box direction='row'>
+                  <PreviousPageButton label='previous' />
+                  <NextPageButton label='next' />
+               </Box>
+            </Form>
          </Box>
-      </div>
+      </Section>
    );
 };
 
