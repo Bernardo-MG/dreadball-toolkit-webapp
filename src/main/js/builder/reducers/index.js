@@ -46,6 +46,48 @@ const sponsor = (state = { rank: 0, affinities: [], ranks: [], units: [],
          ...state,
          rank
       };
+   case ActionTypes.UPDATE_SPONSOR_CHEERLEADERS:
+      const cheerleaders = payload;
+
+      return {
+         ...state,
+         cheerleaders
+      };
+   case ActionTypes.UPDATE_SPONSOR_COACHING_DICE:
+      const coachingDice = payload;
+
+      return {
+         ...state,
+         coachingDice
+      };
+   case ActionTypes.UPDATE_SPONSOR_MEDIBOT:
+      const mediBot = payload;
+
+      return {
+         ...state,
+         mediBot
+      };
+   case ActionTypes.UPDATE_SPONSOR_NASTY_SURPRISE_CARD:
+      const nastySurpriseCard = payload;
+
+      return {
+         ...state,
+         nastySurpriseCard
+      };
+   case ActionTypes.UPDATE_SPONSOR_SPECIAL_MOVE_CARD:
+      const specialMoveCard = payload;
+
+      return {
+         ...state,
+         specialMoveCard
+      };
+   case ActionTypes.UPDATE_SPONSOR_WAGER:
+      const wager = payload;
+
+      return {
+         ...state,
+         wager
+      };
    default:
       return state;
    }

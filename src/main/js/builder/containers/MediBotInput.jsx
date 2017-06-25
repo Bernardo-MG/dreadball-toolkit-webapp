@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { bindActionCreators } from 'redux';
+import * as Actions from 'builder/actions';
 import BoundNumberInput from 'components/BoundNumberInput';
 
 const MediBotInput = (props) => {
    return (
-      <BoundNumberInput {...props} />
+      <BoundNumberInput {...props} handleChange={props.actions.updateSponsorMediBot} />
    );
 }
 
@@ -15,7 +17,9 @@ const mapStateToProps = (state) => {
 };
 
 const mapDispatchToProps = (dispatch) => {
-   return {}
+   return {
+      actions: bindActionCreators(Actions, dispatch)
+   }
 };
 
 export default connect(
