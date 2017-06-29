@@ -94,15 +94,37 @@ const sponsor = (state = { rank: 0, teamValue: 0, affinities: [], ranks: [], uni
    }
 };
 
-const defaults = (state = { initialRank: 0 }, action) => {
+const defaults = (state = { initialRank: 0, cost: {}, rankCost: {} }, action) => {
    const { type, payload } = action;
    switch (type) {
    case ActionTypes.REQUEST_BUILDER_DEFAULTS_SUCCESS:
       const initialRank = payload.initialRank;
+      const { cheerleaderCost, dieCost, medibotCost, moveCost, sabotageCost, wagerCost } = payload;
+      const { cheerleaderRank, dieRank, medibotRank, moveRank, sabotageRank, wagerRank } = payload;
+      
+      const cost = {
+         cheerleader: cheerleaderCost,
+         die: dieCost,
+         medibot: medibotCost,
+         move: moveCost,
+         sabotage: sabotageCost,
+         wager: wagerCost
+      }
+      
+      const rankCost = {
+         cheerleader: cheerleaderRank,
+         die: dieRank,
+         medibot: medibotRank,
+         move: moveRank,
+         sabotage: sabotageRank,
+         wager: wagerRank
+      }
       
       return {
          ...state,
-         initialRank
+         initialRank,
+         cost,
+         rankCost
       };
    default:
       return state;

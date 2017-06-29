@@ -16,9 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 
-import static com.google.common.base.Preconditions.checkNotNull;
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -32,29 +29,118 @@ import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
 @Service
 public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
 
+    @Value("${sponsor.asset.cheerleader.cost}")
+    private Integer cheerleaderCost;
+
+    @Value("${sponsor.asset.cheerleader.rank}")
+    private Integer cheerleaderRank;
+
+    @Value("${sponsor.asset.die.cost}")
+    private Integer dieCost;
+
+    @Value("${sponsor.asset.die.rank}")
+    private Integer dieRank;
+
     /**
      * Initial rank.
      */
-    private final Integer initialRank;
+    @Value("${sponsor.rank.initial}")
+    private Integer initialRank;
+
+    @Value("${sponsor.asset.medibot.cost}")
+    private Integer medibotCost;
+
+    @Value("${sponsor.asset.medibot.rank}")
+    private Integer medibotRank;
+
+    @Value("${sponsor.asset.move.cost}")
+    private Integer moveCost;
+
+    @Value("${sponsor.asset.move.rank}")
+    private Integer moveRank;
+
+    @Value("${sponsor.asset.sabotage.cost}")
+    private Integer sabotageCost;
+
+    @Value("${sponsor.asset.sabotage.rank}")
+    private Integer sabotageRank;
+
+    @Value("${sponsor.asset.wager.cost}")
+    private Integer wagerCost;
+
+    @Value("${sponsor.asset.wager.rank}")
+    private Integer wagerRank;
 
     /**
      * Constructs a builder with the specified dependencies.
-     * 
-     * @param rank
-     *            initial rank
      */
-    @Autowired
-    public DefaultDbxSponsorBuilder(
-            @Value("${sponsor.rank.initial}") final Integer rank) {
+    public DefaultDbxSponsorBuilder() {
         super();
+    }
 
-        initialRank = checkNotNull(rank,
-                "Received a null pointer as initial rank");
+    @Override
+    public Integer getCheerleaderCost() {
+        return cheerleaderCost;
+    }
+
+    @Override
+    public Integer getCheerleaderRank() {
+        return cheerleaderRank;
+    }
+
+    @Override
+    public Integer getDieCost() {
+        return dieCost;
+    }
+
+    @Override
+    public Integer getDieRank() {
+        return dieRank;
     }
 
     @Override
     public final Integer getInitialRank() {
         return initialRank;
+    }
+
+    @Override
+    public Integer getMedibotCost() {
+        return medibotCost;
+    }
+
+    @Override
+    public Integer getMedibotRank() {
+        return medibotRank;
+    }
+
+    @Override
+    public Integer getMoveCost() {
+        return moveCost;
+    }
+
+    @Override
+    public Integer getMoveRank() {
+        return moveRank;
+    }
+
+    @Override
+    public Integer getSabotageCost() {
+        return sabotageCost;
+    }
+
+    @Override
+    public Integer getSabotageRank() {
+        return sabotageRank;
+    }
+
+    @Override
+    public Integer getWagerCost() {
+        return wagerCost;
+    }
+
+    @Override
+    public Integer getWagerRank() {
+        return wagerRank;
     }
 
 }

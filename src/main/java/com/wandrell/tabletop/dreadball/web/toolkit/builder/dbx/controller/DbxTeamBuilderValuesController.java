@@ -50,9 +50,28 @@ public class DbxTeamBuilderValuesController {
 
     @GetMapping(path = "/defaults",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final DefaultDbxBuilderDefaults validateTeam() {
-        return new DefaultDbxBuilderDefaults(
-                getDbxSponsorBuilder().getInitialRank());
+    public final DefaultDbxBuilderDefaults getDefaults() {
+        final DefaultDbxBuilderDefaults defaults;
+
+        defaults = new DefaultDbxBuilderDefaults();
+
+        defaults.setCheerleaderCost(
+                getDbxSponsorBuilder().getCheerleaderCost());
+        defaults.setCheerleaderRank(
+                getDbxSponsorBuilder().getCheerleaderRank());
+        defaults.setDieCost(getDbxSponsorBuilder().getDieCost());
+        defaults.setDieRank(getDbxSponsorBuilder().getDieRank());
+        defaults.setInitialRank(getDbxSponsorBuilder().getInitialRank());
+        defaults.setMedibotCost(getDbxSponsorBuilder().getMedibotCost());
+        defaults.setMedibotRank(getDbxSponsorBuilder().getMedibotRank());
+        defaults.setMoveCost(getDbxSponsorBuilder().getMoveCost());
+        defaults.setMoveRank(getDbxSponsorBuilder().getMoveRank());
+        defaults.setSabotageCost(getDbxSponsorBuilder().getSabotageCost());
+        defaults.setSabotageRank(getDbxSponsorBuilder().getSabotageRank());
+        defaults.setWagerCost(getDbxSponsorBuilder().getWagerCost());
+        defaults.setWagerRank(getDbxSponsorBuilder().getWagerRank());
+
+        return defaults;
     }
 
     private final DbxSponsorBuilder getDbxSponsorBuilder() {
