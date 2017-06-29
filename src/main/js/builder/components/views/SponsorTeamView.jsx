@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
@@ -18,6 +19,7 @@ import NastySurpriseCardInput from 'builder/containers/NastySurpriseCardInput';
 import SpecialMoveCardInput from 'builder/containers/SpecialMoveCardInput';
 import WagerInput from 'builder/containers/WagerInput';
 import SponsorRankValue from 'builder/containers/SponsorRankValue';
+import SponsorTeamValue from 'builder/containers/SponsorTeamValue';
 
 const SponsorTeamView = (props) => {
    return (
@@ -29,7 +31,10 @@ const SponsorTeamView = (props) => {
                <FormField label='sponsor_name'>
                   <TextInput id='sponsor_name' name='sponsor_name'/>
                </FormField>
-               <SponsorRankValue />
+               <Box direction='row'>
+                  <SponsorRankValue />
+                  <SponsorTeamValue />
+               </Box>
                <h1>spend_rank</h1>
                <Button label='additional_affinity' />
                <FormField label='coaching_dice'>
