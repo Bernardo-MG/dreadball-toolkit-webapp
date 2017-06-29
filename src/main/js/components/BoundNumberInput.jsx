@@ -13,7 +13,11 @@ class BoundNumberInput extends Component {
    }
 
    updateValue = (event) => {
-      this.handleChange(Number.parseInt(event.target.value));
+      if(event.target.value) {
+         this.handleChange(Number.parseInt(event.target.value));
+      } else {
+         this.setState({value: 0});
+      }
    };
 
    render() {
