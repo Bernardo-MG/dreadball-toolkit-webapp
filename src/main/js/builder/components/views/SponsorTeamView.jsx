@@ -3,6 +3,8 @@ import React from 'react';
 import Button from 'grommet/components/Button';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
+import Header from 'grommet/components/Header';
+import Heading from 'grommet/components/Heading';
 import TextInput from 'grommet/components/TextInput';
 import NumberInput from 'grommet/components/NumberInput';
 
@@ -21,10 +23,12 @@ const SponsorTeamView = (props) => {
    return (
          <div>
             <Form>
+               <Header>
+                  <Heading>sponsor_data</Heading>
+               </Header>
                <FormField label='sponsor_name'>
                   <TextInput id='sponsor_name' name='sponsor_name'/>
                </FormField>
-               <SponsorAffinityList />
                <SponsorRankValue />
                <h1>spend_rank</h1>
                <Button label='additional_affinity' />
@@ -46,6 +50,7 @@ const SponsorTeamView = (props) => {
                <FormField label='cheerleaders'>
                   <CheerleadersInput id='cheerleaders' name='cheerleaders' min={0} max={100}/>
                </FormField>
+               <SponsorAffinityList />
             </Form>
             <SponsorTeamUnitTable />
             <h1>add_player</h1>
