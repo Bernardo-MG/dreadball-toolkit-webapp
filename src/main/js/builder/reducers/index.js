@@ -1,8 +1,9 @@
 import * as ActionTypes from 'builder/actions/ActionTypes';
 import { combineReducers } from 'redux';
 
-const sponsor = (state = { rank: 0, initialRank: 0, teamValue: 0, affinities: [], ranks: [], units: [],
-                           sponsorName: '',
+const sponsor = (state = { sponsorName: '',
+                           rank: 0, initialRank: 0, teamValue: 0,
+                           affinities: [], ranks: [], units: [],
                            coachingDice: 0, specialMoveCard: 0, nastySurpriseCard: 0, wager: 0, mediBot: 0, cheerleaders: 0 }, action) => {
    const { type, payload } = action;
    const ranks = state.ranks.slice();
@@ -13,6 +14,7 @@ const sponsor = (state = { rank: 0, initialRank: 0, teamValue: 0, affinities: []
          affinities: [],
          ranks: [],
          rank: 0,
+         initialRank: 0,
          teamValue: 0,
          units: [],
          sponsorName: '',
@@ -39,7 +41,7 @@ const sponsor = (state = { rank: 0, initialRank: 0, teamValue: 0, affinities: []
          affinities,
          ranks
       };
-   case ActionTypes.UPDATE_SPONSOR_AFFINITY_RANK:
+   case ActionTypes.RELOAD_SPONSOR_RANK:
       const len = ranks.length;
       const initialRank = state.initialRank;
       var rank;

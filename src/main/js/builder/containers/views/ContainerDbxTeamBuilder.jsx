@@ -14,7 +14,7 @@ class ContainerDbxTeamBuilder extends Component {
 
    render() {
       return (
-         <DbxTeamBuilder handleFinishedAffinities={this.props.actions.updateSponsorAffinityRank}/>
+         <DbxTeamBuilder handleFinishedAffinities={this.props.actions.reloadSponsorRank}/>
       );
    }
 }

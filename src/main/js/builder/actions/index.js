@@ -17,9 +17,9 @@ export const chooseSponsorAffinity = (affinity, rank, index) => {
    }
 };
 
-export const updateSponsorAffinityRank = () => {
+export const reloadSponsorRank = () => {
    return {
-      type: types.UPDATE_SPONSOR_AFFINITY_RANK
+      type: types.RELOAD_SPONSOR_RANK
    }
 };
 
