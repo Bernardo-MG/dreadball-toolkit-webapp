@@ -1,7 +1,7 @@
 import * as ActionTypes from 'builder/actions/ActionTypes';
 import { combineReducers } from 'redux';
 
-const sponsor = (state = { rank: 0, teamValue: 0, affinities: [], ranks: [], units: [],
+const sponsor = (state = { rank: 0, initialRank: 0, teamValue: 0, affinities: [], ranks: [], units: [],
                            sponsorName: '',
                            coachingDice: 0, specialMoveCard: 0, nastySurpriseCard: 0, wager: 0, mediBot: 0, cheerleaders: 0 }, action) => {
    const { type, payload } = action;
@@ -23,10 +23,17 @@ const sponsor = (state = { rank: 0, teamValue: 0, affinities: [], ranks: [], uni
          mediBot: 0,
          cheerleaders: 0
       }
+   case ActionTypes.REQUEST_BUILDER_DEFAULTS_SUCCESS:
+      const receivedRank = payload.initialRank;
+
+      return {
+         ...state,
+         initialRank: receivedRank
+      };
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
       affinities[action.index] = payload.affinity;
       ranks[action.index] = payload.rank;
-      
+
       return {
          ...state,
          affinities,
@@ -34,15 +41,16 @@ const sponsor = (state = { rank: 0, teamValue: 0, affinities: [], ranks: [], uni
       };
    case ActionTypes.UPDATE_SPONSOR_AFFINITY_RANK:
       const len = ranks.length;
+      const initialRank = state.initialRank;
       var rank;
-      
-      rank = 0;
+
+      rank = initialRank;
       for (var i = 0; i < len; i++) {
          if(ranks[i]) {
             rank++;
          }
       }
-      
+
       return {
          ...state,
          rank
@@ -94,11 +102,10 @@ const sponsor = (state = { rank: 0, teamValue: 0, affinities: [], ranks: [], uni
    }
 };
 
-const defaults = (state = { initialRank: 0, cost: {}, rankCost: {} }, action) => {
+const defaults = (state = { cost: {}, rankCost: {} }, action) => {
    const { type, payload } = action;
    switch (type) {
    case ActionTypes.REQUEST_BUILDER_DEFAULTS_SUCCESS:
-      const initialRank = payload.initialRank;
       const { cheerleaderCost, dieCost, medibotCost, moveCost, sabotageCost, wagerCost } = payload;
       const { cheerleaderRank, dieRank, medibotRank, moveRank, sabotageRank, wagerRank } = payload;
       
@@ -122,7 +129,6 @@ const defaults = (state = { initialRank: 0, cost: {}, rankCost: {} }, action) =>
       
       return {
          ...state,
-         initialRank,
          cost,
          rankCost
       };
