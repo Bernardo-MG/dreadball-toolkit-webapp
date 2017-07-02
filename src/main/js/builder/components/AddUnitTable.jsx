@@ -1,9 +1,11 @@
 import React from 'react';
+
 import Table from 'grommet/components/Table';
-import TableRow from 'grommet/components/TableRow';
+
 import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
-import Button from 'grommet/components/Button';
+
+import AddUnitTableRow from 'builder/components/AddUnitTableRow';
 
 const AddUnitTable = (props) => {
    return (
@@ -24,18 +26,7 @@ const AddUnitTable = (props) => {
          </thead>
          <tbody>
             {props.source.map(function (object, i) {
-               return <TableRow key={i}>
-                        <td><Button label='add' /></td>
-                        <td>{object.name}</td>
-                        <td>{object.role}</td>
-                        <td>{object.move}</td>
-                        <td>{object.strength}</td>
-                        <td>{object.speed}</td>
-                        <td>{object.skill}</td>
-                        <td>{object.armor}</td>
-                        <td>{object.abilities}</td>
-                        <td>{object.cost}</td>
-                     </TableRow>;
+               return <AddUnitTableRow key={i} source={object} />;
             })}
          </tbody>
       </Table>

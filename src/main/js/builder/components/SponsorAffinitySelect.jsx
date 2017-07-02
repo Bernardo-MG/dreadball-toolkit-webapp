@@ -26,10 +26,10 @@ class SponsorAffinitySelect extends Component {
 
    constructor(props) {
       super(props);
-   
+
       this.index = props.index;
       this.handleSelection = props.handleSelection;
-   
+
       const first = props.source[0];
       this.state.affinity = first.affinity;
       this.state.value = first.value;
