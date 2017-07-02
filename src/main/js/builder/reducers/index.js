@@ -8,6 +8,7 @@ const sponsor = (state = { sponsorName: '',
    const { type, payload } = action;
    const ranks = state.ranks.slice();
    const affinities = state.affinities.slice();
+   let cost;
    switch (type) {
    case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
       return {
@@ -62,12 +63,40 @@ const sponsor = (state = { sponsorName: '',
          affinities,
          ranks
       };
+   case ActionTypes.RELOAD_SPONSOR_TEAM_VALUE:
+      const assetTeamValueCosts = state.defaults.cost;
+      let teamValue;
+      
+      teamValue = 0;
+   
+      // Adds assets cost
+      cost = state.cheerleaders * assetTeamValueCosts.cheerleader;
+      teamValue = teamValue + cost;
+
+      cost = state.coachingDice * assetTeamValueCosts.die;
+      teamValue = teamValue + cost;
+
+      cost = state.mediBot * assetTeamValueCosts.medibot;
+      teamValue = teamValue + cost;
+
+      cost = state.specialMoveCard * assetTeamValueCosts.move;
+      teamValue = teamValue + cost;
+
+      cost = state.nastySurpriseCard * assetTeamValueCosts.sabotage;
+      teamValue = teamValue + cost;
+
+      cost = state.wager * assetTeamValueCosts.wager;
+      teamValue = teamValue + cost;
+   
+      return {
+         ...state,
+         teamValue
+      };
    case ActionTypes.RELOAD_SPONSOR_RANK:
       const len = ranks.length;
       const initialRank = state.initialRank;
       const assetRankCosts = state.defaults.rankCost;
       let rank;
-      let cost;
 
       // Begins as the initial rank
       rank = initialRank;

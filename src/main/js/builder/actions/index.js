@@ -23,6 +23,12 @@ export const reloadSponsorRank = () => {
    }
 };
 
+export const reloadSponsorTeamValue = () => {
+   return {
+      type: types.RELOAD_SPONSOR_TEAM_VALUE
+   }
+};
+
 export const updateSponsorCoachingDice = (value) => {
    return {
       type: types.UPDATE_SPONSOR_COACHING_DICE,

@@ -2,11 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'builder/actions';
-import SponsorRankBoundNumberInput from 'builder/containers/SponsorRankBoundNumberInput';
+import SponsorBoundNumberInput from 'builder/containers/SponsorBoundNumberInput';
 
 const NastySurpriseCardInput = (props) => {
    return (
-      <SponsorRankBoundNumberInput {...props} handleChange={props.actions.updateSponsorNastySurpriseCard} />
+      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorNastySurpriseCard} />
    );
 }
 

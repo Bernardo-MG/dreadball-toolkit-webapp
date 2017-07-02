@@ -4,14 +4,16 @@ import { bindActionCreators } from 'redux';
 import * as Actions from 'builder/actions';
 import BoundNumberInput from 'components/BoundNumberInput';
 
-class SponsorRankBoundNumberInput extends Component {
+class SponsorBoundNumberInput extends Component {
 
    handleChange;
    reloadSponsorRank;
+   reloadSponsorTeamValue;
 
    setValue = (value) => {
       this.handleChange(value);
       this.reloadSponsorRank();
+      this.reloadSponsorTeamValue();
    };
 
    constructor(props) {
@@ -19,6 +21,7 @@ class SponsorRankBoundNumberInput extends Component {
 
       this.handleChange = props.handleChange;
       this.reloadSponsorRank = props.actions.reloadSponsorRank;
+      this.reloadSponsorTeamValue = props.actions.reloadSponsorTeamValue;
    }
 
    render() {
@@ -41,4 +44,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorRankBoundNumberInput);
+)(SponsorBoundNumberInput);
