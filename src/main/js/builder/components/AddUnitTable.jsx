@@ -5,7 +5,7 @@ import Table from 'grommet/components/Table';
 import { injectIntl } from 'react-intl';
 import unitMessages from 'i18n/unit';
 
-import AddUnitTableRow from 'builder/components/AddUnitTableRow';
+import AddUnitTableRow from 'builder/containers/AddUnitTableRow';
 
 const AddUnitTable = (props) => {
    return (
@@ -26,7 +26,7 @@ const AddUnitTable = (props) => {
          </thead>
          <tbody>
             {props.source.map(function (object, i) {
-               return <AddUnitTableRow key={i} source={object} />;
+               return <AddUnitTableRow index={i} source={object} />;
             })}
          </tbody>
       </Table>

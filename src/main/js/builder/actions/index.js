@@ -17,6 +17,13 @@ export const chooseSponsorAffinity = (affinity, rank, index) => {
    }
 };
 
+export const chooseSponsorUnit = (unit) => {
+   return {
+      type: types.CHOOSE_SPONSOR_UNIT,
+      payload: unit
+   }
+};
+
 export const reloadSponsorRank = () => {
    return {
       type: types.RELOAD_SPONSOR_RANK
