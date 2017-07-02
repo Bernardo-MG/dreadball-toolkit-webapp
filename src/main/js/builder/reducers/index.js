@@ -26,11 +26,32 @@ const sponsor = (state = { sponsorName: '',
          cheerleaders: 0
       }
    case ActionTypes.REQUEST_BUILDER_DEFAULTS_SUCCESS:
+      const { cheerleaderCost, dieCost, medibotCost, moveCost, sabotageCost, wagerCost } = payload;
+      const { cheerleaderRank, dieRank, medibotRank, moveRank, sabotageRank, wagerRank } = payload;
       const receivedRank = payload.initialRank;
-
+      
+      const costs = {
+         cheerleader: cheerleaderCost,
+         die: dieCost,
+         medibot: medibotCost,
+         move: moveCost,
+         sabotage: sabotageCost,
+         wager: wagerCost
+      }
+      
+      const rankCosts = {
+         cheerleader: cheerleaderRank,
+         die: dieRank,
+         medibot: medibotRank,
+         move: moveRank,
+         sabotage: sabotageRank,
+         wager: wagerRank
+      }
+      
       return {
          ...state,
-         initialRank: receivedRank
+         initialRank: receivedRank,
+         defaults: { cost: costs, rankCost: rankCosts }
       };
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
       affinities[action.index] = payload.affinity;
@@ -44,14 +65,38 @@ const sponsor = (state = { sponsorName: '',
    case ActionTypes.RELOAD_SPONSOR_RANK:
       const len = ranks.length;
       const initialRank = state.initialRank;
-      var rank;
+      const assetRankCosts = state.defaults.rankCost;
+      let rank;
+      let cost;
 
+      // Begins as the initial rank
       rank = initialRank;
+
+      // Adds chosen ranks
       for (var i = 0; i < len; i++) {
          if(ranks[i]) {
             rank++;
          }
       }
+
+      // Removes assets cost
+      cost = state.cheerleaders * assetRankCosts.cheerleader;
+      rank = rank - cost;
+
+      cost = state.coachingDice * assetRankCosts.die;
+      rank = rank - cost;
+
+      cost = state.mediBot * assetRankCosts.medibot;
+      rank = rank - cost;
+
+      cost = state.specialMoveCard * assetRankCosts.move;
+      rank = rank - cost;
+
+      cost = state.nastySurpriseCard * assetRankCosts.sabotage;
+      rank = rank - cost;
+
+      cost = state.wager * assetRankCosts.wager;
+      rank = rank - cost;
 
       return {
          ...state,
@@ -104,44 +149,8 @@ const sponsor = (state = { sponsorName: '',
    }
 };
 
-const defaults = (state = { cost: {}, rankCost: {} }, action) => {
-   const { type, payload } = action;
-   switch (type) {
-   case ActionTypes.REQUEST_BUILDER_DEFAULTS_SUCCESS:
-      const { cheerleaderCost, dieCost, medibotCost, moveCost, sabotageCost, wagerCost } = payload;
-      const { cheerleaderRank, dieRank, medibotRank, moveRank, sabotageRank, wagerRank } = payload;
-      
-      const cost = {
-         cheerleader: cheerleaderCost,
-         die: dieCost,
-         medibot: medibotCost,
-         move: moveCost,
-         sabotage: sabotageCost,
-         wager: wagerCost
-      }
-      
-      const rankCost = {
-         cheerleader: cheerleaderRank,
-         die: dieRank,
-         medibot: medibotRank,
-         move: moveRank,
-         sabotage: sabotageRank,
-         wager: wagerRank
-      }
-      
-      return {
-         ...state,
-         cost,
-         rankCost
-      };
-   default:
-      return state;
-   }
-};
-
 const dbxBuilderReducer = combineReducers({
-  sponsor,
-  defaults
+  sponsor
 });
 
 export default dbxBuilderReducer
