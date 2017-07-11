@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { createSelector as ormCreateSelector } from 'redux-orm';
 import orm from 'models';
-import { filterPaginated } from 'pagination/utils';
+import { filterById } from 'pagination/utils';
 
 // Selects the state managed by Redux-ORM.
 const ormSelector = (state) => {
@@ -31,17 +31,17 @@ const loadSponsorAffAva = (ava) => {
 export const unitsPaginated = createSelector(
    ormSelector,
    state => state.pagination.units,
-   ormCreateSelector(orm, filterPaginated((session) => session.Player, (entity) => entity.templateName, loadPlayer))
+   ormCreateSelector(orm, filterById((session) => session.Player, (entity) => entity.templateName, loadPlayer))
 );
 
 export const ratedUnitsPaginated = createSelector(
    ormSelector,
    state => state.pagination.ratedUnits,
-   ormCreateSelector(orm, filterPaginated((session) => session.RatedPlayer, (entity) => entity.templateName, loadPlayer))
+   ormCreateSelector(orm, filterById((session) => session.RatedPlayer, (entity) => entity.templateName, loadPlayer))
 );
 
 export const sponsorAffAvasPaginated = createSelector(
    ormSelector,
    state => state.pagination.sponsorAffAvas,
-   ormCreateSelector(orm, filterPaginated((session) => session.SponsorAffinityAvailability, (entity) => entity.name, loadSponsorAffAva))
+   ormCreateSelector(orm, filterById((session) => session.SponsorAffinityAvailability, (entity) => entity.name, loadSponsorAffAva))
 );
