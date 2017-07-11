@@ -12,6 +12,7 @@ import * as actions from 'builder/actions';
 class AddUnitTableRow extends Component {
 
    unit;
+   index;
 
    chooseUnit = () => {
       this.chooseSponsorUnit(this.unit);
@@ -21,13 +22,14 @@ class AddUnitTableRow extends Component {
       super(props);
 
       this.unit = props.source.templateName;
+      this.index = props.index;
       
       this.chooseSponsorUnit = props.actions.chooseSponsorUnit;
    }
 
    render() {
       return (
-         <TableRow key={this.props.index}>
+         <TableRow key={this.index}>
             <td><Button label='add' onClick={this.chooseUnit} /></td>
             <td>{this.props.source.name}</td>
             <td>{this.props.source.role}</td>
