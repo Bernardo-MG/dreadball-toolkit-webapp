@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as actions from 'requests/actions/sponsorAffAva';
-import { sponsorAffAvas } from 'models/selectors';
+import { sponsorAffAvasPaginated } from 'models/selectors';
 import { avasToMap } from 'builder/utils';
 import SponsorAffinitySelectField from 'builder/components/SponsorAffinitySelectField';
 
@@ -22,7 +22,7 @@ class AffinityGroupsComboPanel extends Component {
 
 const mapStateToProps = (state) => {
    return {
-      source: avasToMap(sponsorAffAvas(state))
+      source: avasToMap(sponsorAffAvasPaginated(state))
    }
 };
 

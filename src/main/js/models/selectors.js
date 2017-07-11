@@ -28,19 +28,19 @@ const loadSponsorAffAva = (ava) => {
    return obj;
 };
 
-export const units = createSelector(
+export const unitsPaginated = createSelector(
    ormSelector,
    state => state.pagination.units,
    ormCreateSelector(orm, filterPaginated((session) => session.Player, (entity) => entity.templateName, loadPlayer))
 );
 
-export const ratedUnits = createSelector(
+export const ratedUnitsPaginated = createSelector(
    ormSelector,
    state => state.pagination.ratedUnits,
    ormCreateSelector(orm, filterPaginated((session) => session.RatedPlayer, (entity) => entity.templateName, loadPlayer))
 );
 
-export const sponsorAffAvas = createSelector(
+export const sponsorAffAvasPaginated = createSelector(
    ormSelector,
    state => state.pagination.sponsorAffAvas,
    ormCreateSelector(orm, filterPaginated((session) => session.SponsorAffinityAvailability, (entity) => entity.name, loadSponsorAffAva))

@@ -4,7 +4,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actions from 'requests/actions/unit';
-import { units } from 'models/selectors';
+import { unitsPaginated } from 'models/selectors';
 
 import DbxUnitTable from 'codex/components/DbxUnitTable';
 
@@ -22,7 +22,7 @@ class LoadableDbxUnitTable extends Component {
 }
 
 const mapStateToProps = (state) => ({
-   source: units(state)
+   source: unitsPaginated(state)
 });
 
 const mapDispatchToProps = (dispatch) => ({
