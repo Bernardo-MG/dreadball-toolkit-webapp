@@ -3,7 +3,7 @@ export const filterById = (model, idSelector, loader) => (session, payload) => {
    let ids;
    let result;
 
-   ids = getIds(payload);   
+   ids = getIdsPaginated(payload);   
    if (ids.length) {
       result = filterByIds(model, idSelector, loader, session, ids);
    } else {
@@ -13,11 +13,12 @@ export const filterById = (model, idSelector, loader) => (session, payload) => {
    return result;
 };
 
-const getIds = (payload) => {
+const getIdsPaginated = (payload) => {
    let ids;
 
    if (payload && payload.ids) {
       if (payload.page === undefined){
+         // The payload isn't paginated
          ids = payload.ids;
       } else {
          ids = getSlice(payload);

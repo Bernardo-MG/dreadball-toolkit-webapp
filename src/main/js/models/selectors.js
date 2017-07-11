@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { createSelector as ormCreateSelector } from 'redux-orm';
 import orm from 'models';
-import { filterById } from 'pagination/utils';
+import { filterById } from 'models/utils';
 
 // Selects the state managed by Redux-ORM.
 const ormSelector = (state) => {
