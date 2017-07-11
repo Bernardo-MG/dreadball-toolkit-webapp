@@ -8,6 +8,7 @@ const sponsor = (state = { sponsorName: '',
    const { type, payload } = action;
    const ranks = state.ranks.slice();
    const affinities = state.affinities.slice();
+   const units = state.units.slice();
    let cost;
    switch (type) {
    case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
@@ -62,6 +63,13 @@ const sponsor = (state = { sponsorName: '',
          ...state,
          affinities,
          ranks
+      };
+   case ActionTypes.CHOOSE_SPONSOR_UNIT:
+      units.push(payload);
+
+      return {
+         ...state,
+         units
       };
    case ActionTypes.RELOAD_SPONSOR_TEAM_VALUE:
       const assetTeamValueCosts = state.defaults.cost;
