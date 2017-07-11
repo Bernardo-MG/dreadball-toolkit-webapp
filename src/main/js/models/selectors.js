@@ -28,6 +28,12 @@ const loadSponsorAffAva = (ava) => {
    return obj;
 };
 
+export const unitsSponsor = createSelector(
+   ormSelector,
+   state => state.builder.sponsor.units,
+   ormCreateSelector(orm, filterById((session) => session.RatedPlayer, (entity) => entity.templateName, loadPlayer))
+);
+
 export const unitsPaginated = createSelector(
    ormSelector,
    state => state.pagination.units,

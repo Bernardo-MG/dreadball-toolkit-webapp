@@ -16,7 +16,9 @@ export const filterById = (model, idSelector, loader) => (session, payload) => {
 const getIdsPaginated = (payload) => {
    let ids;
 
-   if (payload && payload.ids) {
+   if (payload === undefined) {
+      ids = [];
+   } else if (payload.ids) {
       if (payload.page === undefined){
          // The payload isn't paginated
          ids = payload.ids;
@@ -24,7 +26,7 @@ const getIdsPaginated = (payload) => {
          ids = getSlice(payload);
       }
    } else {
-      ids = [];
+      ids = payload;
    }
 
    return ids;

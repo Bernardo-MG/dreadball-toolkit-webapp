@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import TeamUnitTable from 'builder/components/TeamUnitTable';
+import { unitsSponsor } from 'models/selectors';
 
 const SponsorTeamUnitTable = (props) => {
    return (
@@ -10,7 +11,7 @@ const SponsorTeamUnitTable = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      source: state.builder.sponsor.units
+      source: unitsSponsor(state)
    }
 };
 
