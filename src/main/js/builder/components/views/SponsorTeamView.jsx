@@ -18,8 +18,15 @@ import MediBotInput from 'builder/containers/MediBotInput';
 import NastySurpriseCardInput from 'builder/containers/NastySurpriseCardInput';
 import SpecialMoveCardInput from 'builder/containers/SpecialMoveCardInput';
 import WagerInput from 'builder/containers/WagerInput';
-import SponsorRankValue from 'builder/containers/SponsorRankValue';
-import SponsorTeamValue from 'builder/containers/SponsorTeamValue';
+
+import CheerleadersValue from 'builder/containers/value/CheerleadersValue';
+import MediBotValue from 'builder/containers/value/MediBotValue';
+import NastySurpriseCardValue from 'builder/containers/value/NastySurpriseCardValue';
+import SpecialMoveCardValue from 'builder/containers/value/SpecialMoveCardValue';
+import SponsorCoachingDiceValue from 'builder/containers/value/SponsorCoachingDiceValue';
+import SponsorRankValue from 'builder/containers/value/SponsorRankValue';
+import SponsorTeamValue from 'builder/containers/value/SponsorTeamValue';
+import WagerValue from 'builder/containers/value/WagerValue';
 
 const SponsorTeamView = (props) => {
    return (
@@ -32,8 +39,32 @@ const SponsorTeamView = (props) => {
                   <TextInput id='sponsor_name' name='sponsor_name'/>
                </FormField>
                <Box direction='row'>
-                  <SponsorRankValue />
-                  <SponsorTeamValue />
+                  <Box pad='medium'>
+                     <SponsorRankValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <SponsorTeamValue />
+                  </Box>
+               </Box>
+               <Box direction='row'>
+                  <Box pad='medium'>
+                     <SponsorCoachingDiceValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <SpecialMoveCardValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <NastySurpriseCardValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <WagerValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <MediBotValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <CheerleadersValue />
+                  </Box>
                </Box>
                <h1>spend_rank</h1>
                <Button label='additional_affinity' />
