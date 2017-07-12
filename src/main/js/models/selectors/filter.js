@@ -1,11 +1,11 @@
 
-export const filterById = (model, idSelector, loader) => (session, payload) => {
+export const filterById = (idSelector, loader, modelSelector) => (session, payload) => {
    let ids;
    let result;
 
    ids = getIdsPaginated(payload);   
    if (ids.length) {
-      result = filterByIds(model, idSelector, loader, session, ids);
+      result = filterByIds(modelSelector, idSelector, loader, session, ids);
    } else {
       result = [];
    }
@@ -40,7 +40,7 @@ const getSlice = (pagination) => {
    return ids;
 };
 
-const filterByIds = (model, idSelector, loader, session, ids) => {
+const filterByIds = (modelSelector, idSelector, loader, session, ids) => {
    let entityLoader;
    let all;
 
@@ -50,7 +50,7 @@ const filterByIds = (model, idSelector, loader, session, ids) => {
       entityLoader = (entity) => entity;
    }
 
-   all = model(session).all().toModelArray();
+   all = modelSelector(session).all().toModelArray();
    return all.filter(entity => ids.includes(idSelector(entity))).map(entity => {
       return entityLoader(entity);
    });

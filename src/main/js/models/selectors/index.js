@@ -20,23 +20,23 @@ const nameSelector = (entity) => {
 export const unitsSponsor = createSelector(
    ormSelector,
    state => state.builder.sponsor.units,
-   ormCreateSelector(orm, filterById((session) => session.RatedPlayer, templateNameSelector, loadPlayer))
+   ormCreateSelector(orm, filterById(templateNameSelector, loadPlayer, (session) => session.RatedPlayer))
 );
 
 export const unitsPaginated = createSelector(
    ormSelector,
    state => state.pagination.units,
-   ormCreateSelector(orm, filterById((session) => session.Player, templateNameSelector, loadPlayer))
+   ormCreateSelector(orm, filterById(templateNameSelector, loadPlayer, (session) => session.Player))
 );
 
 export const ratedUnitsPaginated = createSelector(
    ormSelector,
    state => state.pagination.ratedUnits,
-   ormCreateSelector(orm, filterById((session) => session.RatedPlayer, templateNameSelector, loadPlayer))
+   ormCreateSelector(orm, filterById(templateNameSelector, loadPlayer, (session) => session.RatedPlayer))
 );
 
 export const sponsorAffAvasPaginated = createSelector(
    ormSelector,
    state => state.pagination.sponsorAffAvas,
-   ormCreateSelector(orm, filterById((session) => session.SponsorAffinityAvailability, nameSelector, loadSponsorAffAva))
+   ormCreateSelector(orm, filterById(nameSelector, loadSponsorAffAva, (session) => session.SponsorAffinityAvailability))
 );
