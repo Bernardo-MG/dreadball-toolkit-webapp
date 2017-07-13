@@ -17,16 +17,17 @@ class DbxTeamBuilder extends Component {
 
    constructor(props) {
       super(props);
+
       this.handleFinishedAffinities = props.handleFinishedAffinities;
    }
 
    render() {
       let view = null;
 
-      if (!this.state.affinitiesChosen) {
-         view = <SponsorAffinitiesView onClick={ this.finishedAffinities } />;
-      } else {
+      if (this.state.affinitiesChosen) {
          view = <SponsorTeamView />;
+      } else {
+         view = <SponsorAffinitiesView onClick={ this.finishedAffinities } />;
       }
 
       return (

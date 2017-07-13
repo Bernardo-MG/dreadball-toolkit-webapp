@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
@@ -8,9 +8,10 @@ import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
-import TextInput from 'grommet/components/TextInput';
+import Layer from 'grommet/components/Layer';
 import NumberInput from 'grommet/components/NumberInput';
 import Section from 'grommet/components/Section';
+import TextInput from 'grommet/components/TextInput';
 
 import SponsorTeamUnitTable from 'builder/containers/SponsorTeamUnitTable';
 import SponsorAddUnitTable from 'builder/containers/SponsorAddUnitTable';
@@ -33,62 +34,92 @@ import WagerValue from 'builder/containers/value/WagerValue';
 
 import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
 
-const SponsorTeamView = (props) => {
-   return (
-         <div>
+class SponsorTeamView extends Component {
+
+   state = { showAssetsForm: false };
+
+   editAssets = () => {
+      this.setState({ showAssetsForm: true });
+   };
+
+   closeAssetsForm = () => {
+      this.setState({ showAssetsForm: false });
+   };
+
+   constructor (props) {
+     super(props);
+   }
+
+   render() {
+      let view = null;
+
+      if (this.state.showAssetsForm) {
+         view = 
+               <Layer>
+                  <Heading tag='h2'>assets</Heading>
+                  <SponsorAssetsForm />
+                  <Button onClick={ this.closeAssetsForm } label='close' />
+               </Layer>
+      } else {
+         view = <div>
             <Article>
-               <Header>
-                  <Heading>sponsor_data</Heading>
-               </Header>
-               <Section pad="medium">
-                  <Box direction='row'>
-                     <Heading tag='h2'>assets</Heading>
-                     <Button icon={<EditIcon />} a11yTitle='edit_assets' />
-                  </Box>
-                  <Box direction='row'>
-                     <Box pad='medium'>
-                        <SponsorCoachingDiceValue />
-                     </Box>
-                     <Box pad='medium'>
-                        <SpecialMoveCardValue />
-                     </Box>
-                     <Box pad='medium'>
-                        <NastySurpriseCardValue />
-                     </Box>
-                     <Box pad='medium'>
-                        <WagerValue />
-                     </Box>
-                     <Box pad='medium'>
-                        <MediBotValue />
-                     </Box>
-                     <Box pad='medium'>
-                        <CheerleadersValue />
-                     </Box>
-                  </Box>
-               </Section>
-            </Article>
-            <Form>
-               <FormField label='sponsor_name'>
-                  <TextInput id='sponsor_name' name='sponsor_name'/>
-               </FormField>
+            <Header>
+               <Heading>sponsor_data</Heading>
+            </Header>
+            <Section pad="medium">
+               <Box direction='row'>
+                  <Heading tag='h2'>assets</Heading>
+                  <Button onClick={ this.editAssets } icon={ <EditIcon /> } a11yTitle='edit_assets' />
+               </Box>
                <Box direction='row'>
                   <Box pad='medium'>
-                     <SponsorRankValue />
+                     <SponsorCoachingDiceValue />
                   </Box>
                   <Box pad='medium'>
-                     <SponsorTeamValue />
+                     <SpecialMoveCardValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <NastySurpriseCardValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <WagerValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <MediBotValue />
+                  </Box>
+                  <Box pad='medium'>
+                     <CheerleadersValue />
                   </Box>
                </Box>
-               <h1>spend_rank</h1>
-               <Button label='additional_affinity' />
-               <SponsorAffinityList />
-            </Form>
-            <SponsorAssetsForm />
-            <SponsorTeamUnitTable />
-            <h1>add_player</h1>
-            <SponsorAddUnitTable />
-         </div>
-   );
+            </Section>
+         </Article>
+         <Form>
+            <FormField label='sponsor_name'>
+               <TextInput id='sponsor_name' name='sponsor_name'/>
+            </FormField>
+            <Box direction='row'>
+               <Box pad='medium'>
+                  <SponsorRankValue />
+               </Box>
+               <Box pad='medium'>
+                  <SponsorTeamValue />
+               </Box>
+            </Box>
+            <h1>spend_rank</h1>
+            <Button label='additional_affinity' />
+            <SponsorAffinityList />
+         </Form>
+         <SponsorTeamUnitTable />
+         <h1>add_player</h1>
+         <SponsorAddUnitTable />
+      </div>
+      }
+
+      return (
+         view
+      );
+   };
+
 };
 
 export default SponsorTeamView;
