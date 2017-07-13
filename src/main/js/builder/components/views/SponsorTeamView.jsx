@@ -28,6 +28,8 @@ import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 import SponsorAssets from 'builder/components/SponsorAssets';
 import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
 
+import SponsorTeamEditionLayer from 'builder/components/layers/SponsorTeamEditionLayer';
+
 class SponsorTeamView extends Component {
 
    state = { showAssetsForm: false };
@@ -49,11 +51,9 @@ class SponsorTeamView extends Component {
 
       if (this.state.showAssetsForm) {
          view = 
-               <Layer>
-                  <Heading tag='h2'>assets</Heading>
+               <SponsorTeamEditionLayer title='assets' toClose={ this.closeAssetsForm }>
                   <SponsorAssetsForm />
-                  <Button onClick={ this.closeAssetsForm } label='close' />
-               </Layer>
+               </SponsorTeamEditionLayer>
       } else {
          view = <div>
             <Article>
