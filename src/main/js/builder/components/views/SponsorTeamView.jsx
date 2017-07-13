@@ -23,15 +23,9 @@ import NastySurpriseCardInput from 'builder/containers/NastySurpriseCardInput';
 import SpecialMoveCardInput from 'builder/containers/SpecialMoveCardInput';
 import WagerInput from 'builder/containers/WagerInput';
 
-import CheerleadersValue from 'builder/containers/value/CheerleadersValue';
-import MediBotValue from 'builder/containers/value/MediBotValue';
-import NastySurpriseCardValue from 'builder/containers/value/NastySurpriseCardValue';
-import SpecialMoveCardValue from 'builder/containers/value/SpecialMoveCardValue';
-import SponsorCoachingDiceValue from 'builder/containers/value/SponsorCoachingDiceValue';
-import SponsorRankValue from 'builder/containers/value/SponsorRankValue';
-import SponsorTeamValue from 'builder/containers/value/SponsorTeamValue';
-import WagerValue from 'builder/containers/value/WagerValue';
+import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 
+import SponsorAssets from 'builder/components/SponsorAssets';
 import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
 
 class SponsorTeamView extends Component {
@@ -71,40 +65,14 @@ class SponsorTeamView extends Component {
                   <Heading tag='h2'>assets</Heading>
                   <Button onClick={ this.editAssets } icon={ <EditIcon /> } a11yTitle='edit_assets' />
                </Box>
-               <Box direction='row'>
-                  <Box pad='medium'>
-                     <SponsorCoachingDiceValue />
-                  </Box>
-                  <Box pad='medium'>
-                     <SpecialMoveCardValue />
-                  </Box>
-                  <Box pad='medium'>
-                     <NastySurpriseCardValue />
-                  </Box>
-                  <Box pad='medium'>
-                     <WagerValue />
-                  </Box>
-                  <Box pad='medium'>
-                     <MediBotValue />
-                  </Box>
-                  <Box pad='medium'>
-                     <CheerleadersValue />
-                  </Box>
-               </Box>
+               <SponsorAssets />
             </Section>
          </Article>
          <Form>
             <FormField label='sponsor_name'>
                <TextInput id='sponsor_name' name='sponsor_name'/>
             </FormField>
-            <Box direction='row'>
-               <Box pad='medium'>
-                  <SponsorRankValue />
-               </Box>
-               <Box pad='medium'>
-                  <SponsorTeamValue />
-               </Box>
-            </Box>
+            <SponsorTeamCost />
             <h1>spend_rank</h1>
             <Button label='additional_affinity' />
             <SponsorAffinityList />
