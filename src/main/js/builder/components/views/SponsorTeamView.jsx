@@ -61,6 +61,18 @@ class SponsorTeamView extends Component {
                   <Header>
                      <Heading>sponsor_data</Heading>
                   </Header>
+                  <SponsorTeamCost />
+                  <Section pad="medium">
+                     <Box direction='row'>
+                        <Heading tag='h2'>sponsor_name</Heading>
+                        <Button onClick={ this.editName } icon={ <EditIcon /> } a11yTitle='edit_name' />
+                     </Box>
+                     <Form>
+                        <FormField label='sponsor_name'>
+                           <TextInput id='sponsor_name' name='sponsor_name'/>
+                        </FormField>
+                     </Form>
+                  </Section>
                   <Section pad="medium">
                      <Box direction='row'>
                         <Heading tag='h2'>assets</Heading>
@@ -68,19 +80,23 @@ class SponsorTeamView extends Component {
                      </Box>
                      <SponsorAssets />
                   </Section>
+                  <Section pad="medium">
+                     <Box direction='row'>
+                        <Heading tag='h2'>affinities</Heading>
+                        <Button onClick={ this.editAffinities } icon={ <EditIcon /> } a11yTitle='edit_affinities' />
+                     </Box>
+                     <SponsorAffinityList />
+                  </Section>
+                  <Section pad="medium">
+                     <Box direction='row'>
+                        <Heading tag='h2'>players</Heading>
+                        <Button onClick={ this.editPlayers } icon={ <EditIcon /> } a11yTitle='edit_players' />
+                     </Box>
+                     <SponsorTeamUnitTable />
+                     <h1>add_player</h1>
+                     <SponsorAddUnitTable />
+                  </Section>
                </Article>
-               <Form>
-                  <FormField label='sponsor_name'>
-                     <TextInput id='sponsor_name' name='sponsor_name'/>
-                  </FormField>
-                  <SponsorTeamCost />
-                  <h1>spend_rank</h1>
-                  <Button label='additional_affinity' />
-                  <SponsorAffinityList />
-               </Form>
-               <SponsorTeamUnitTable />
-               <h1>add_player</h1>
-               <SponsorAddUnitTable />
             </div>
       }
 
