@@ -1,5 +1,6 @@
 import React from 'react';
 
+import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Heading from 'grommet/components/Heading';
 import Layer from 'grommet/components/Layer';
@@ -12,7 +13,9 @@ const SponsorTeamEditionLayer = (props) => {
          <Heading tag='h2'>{ props.title }</Heading>
          <SponsorTeamCost />
          {props.children}
-         <Button onClick={ props.toClose } label='close' />
+         <Box margin='small'>
+            <Button onClick={ props.toClose } label='close' />
+         </Box>
       </Layer>
    );
 };

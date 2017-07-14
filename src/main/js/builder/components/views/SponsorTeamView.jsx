@@ -55,32 +55,33 @@ class SponsorTeamView extends Component {
                   <SponsorAssetsForm />
                </SponsorTeamEditionLayer>
       } else {
-         view = <div>
-            <Article>
-            <Header>
-               <Heading>sponsor_data</Heading>
-            </Header>
-            <Section pad="medium">
-               <Box direction='row'>
-                  <Heading tag='h2'>assets</Heading>
-                  <Button onClick={ this.editAssets } icon={ <EditIcon /> } a11yTitle='edit_assets' />
-               </Box>
-               <SponsorAssets />
-            </Section>
-         </Article>
-         <Form>
-            <FormField label='sponsor_name'>
-               <TextInput id='sponsor_name' name='sponsor_name'/>
-            </FormField>
-            <SponsorTeamCost />
-            <h1>spend_rank</h1>
-            <Button label='additional_affinity' />
-            <SponsorAffinityList />
-         </Form>
-         <SponsorTeamUnitTable />
-         <h1>add_player</h1>
-         <SponsorAddUnitTable />
-      </div>
+         view = 
+            <div>
+               <Article>
+                  <Header>
+                     <Heading>sponsor_data</Heading>
+                  </Header>
+                  <Section pad="medium">
+                     <Box direction='row'>
+                        <Heading tag='h2'>assets</Heading>
+                        <Button onClick={ this.editAssets } icon={ <EditIcon /> } a11yTitle='edit_assets' />
+                     </Box>
+                     <SponsorAssets />
+                  </Section>
+               </Article>
+               <Form>
+                  <FormField label='sponsor_name'>
+                     <TextInput id='sponsor_name' name='sponsor_name'/>
+                  </FormField>
+                  <SponsorTeamCost />
+                  <h1>spend_rank</h1>
+                  <Button label='additional_affinity' />
+                  <SponsorAffinityList />
+               </Form>
+               <SponsorTeamUnitTable />
+               <h1>add_player</h1>
+               <SponsorAddUnitTable />
+            </div>
       }
 
       return (
