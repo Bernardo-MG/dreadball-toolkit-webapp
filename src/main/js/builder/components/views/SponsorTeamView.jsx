@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 
 import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
-import Button from 'grommet/components/Button';
-import EditIcon from 'grommet/components/icons/base/Edit';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import Header from 'grommet/components/Header';
@@ -31,6 +29,8 @@ import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
 import SponsorTeamEditionLayer from 'builder/components/layers/SponsorTeamEditionLayer';
 
 import SponsorNameLabel from 'builder/containers/labels/SponsorNameLabel';
+
+import EditionButton from 'components/buttons/EditionButton';
 
 class SponsorTeamView extends Component {
 
@@ -97,32 +97,31 @@ class SponsorTeamView extends Component {
                   <Header>
                      <Heading>sponsor_data</Heading>
                   </Header>
+                  <Section pad="medium">
+                     <Box direction='row'>
+                        <SponsorNameLabel/>
+                        <EditionButton onClick={ this.editName } a11yTitle='edit_name' />
+                     </Box>
+                  </Section>
                   <SponsorTeamCost />
                   <Section pad="medium">
                      <Box direction='row'>
-                        <Heading tag='h2'>sponsor_name</Heading>
-                        <Button onClick={ this.editName } icon={ <EditIcon /> } a11yTitle='edit_name' />
-                     </Box>
-                     <SponsorNameLabel/>
-                  </Section>
-                  <Section pad="medium">
-                     <Box direction='row'>
                         <Heading tag='h2'>assets</Heading>
-                        <Button onClick={ this.editAssets } icon={ <EditIcon /> } a11yTitle='edit_assets' />
+                        <EditionButton onClick={ this.editAssets } a11yTitle='edit_assets' />
                      </Box>
                      <SponsorAssets />
                   </Section>
                   <Section pad="medium">
                      <Box direction='row'>
                         <Heading tag='h2'>affinities</Heading>
-                        <Button onClick={ this.editAffinities } icon={ <EditIcon /> } a11yTitle='edit_affinities' />
+                        <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
                      </Box>
                      <SponsorAffinityList />
                   </Section>
                   <Section pad="medium">
                      <Box direction='row'>
                         <Heading tag='h2'>players</Heading>
-                        <Button onClick={ this.editPlayers } icon={ <EditIcon /> } a11yTitle='edit_players' />
+                        <EditionButton onClick={ this.editPlayers } a11yTitle='edit_players' />
                      </Box>
                      <SponsorTeamUnitTable />
                   </Section>
