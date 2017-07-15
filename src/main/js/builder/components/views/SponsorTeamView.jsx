@@ -32,14 +32,25 @@ import SponsorTeamEditionLayer from 'builder/components/layers/SponsorTeamEditio
 
 class SponsorTeamView extends Component {
 
-   state = { showAssetsForm: false };
+   state = {
+            editingAssets: false,
+            editingPlayers: false
+         };
 
    editAssets = () => {
-      this.setState({ showAssetsForm: true });
+      this.setState({ ...this.state, editingAssets: true });
    };
 
-   closeAssetsForm = () => {
-      this.setState({ showAssetsForm: false });
+   finishEditAssets = () => {
+      this.setState({ ...this.state, editingAssets: false });
+   };
+
+   editPlayers = () => {
+      this.setState({ ...this.state, editingPlayers: true });
+   };
+
+   finishEditPlayers = () => {
+      this.setState({ ...this.state, editingPlayers: false });
    };
 
    constructor (props) {
@@ -49,11 +60,16 @@ class SponsorTeamView extends Component {
    render() {
       let view = null;
 
-      if (this.state.showAssetsForm) {
+      if (this.state.editingAssets) {
          view = 
-               <SponsorTeamEditionLayer title='assets' toClose={ this.closeAssetsForm }>
+               <SponsorTeamEditionLayer title='assets' toClose={ this.finishEditAssets }>
                   <SponsorAssetsForm />
                </SponsorTeamEditionLayer>
+      } else if (this.state.editingPlayers) {
+         view = 
+            <SponsorTeamEditionLayer title='players' toClose={ this.finishEditPlayers }>
+               <SponsorAddUnitTable />
+            </SponsorTeamEditionLayer>
       } else {
          view = 
             <div>
@@ -93,8 +109,6 @@ class SponsorTeamView extends Component {
                         <Button onClick={ this.editPlayers } icon={ <EditIcon /> } a11yTitle='edit_players' />
                      </Box>
                      <SponsorTeamUnitTable />
-                     <h1>add_player</h1>
-                     <SponsorAddUnitTable />
                   </Section>
                </Article>
             </div>
