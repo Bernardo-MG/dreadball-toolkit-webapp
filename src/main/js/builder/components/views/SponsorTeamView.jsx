@@ -62,12 +62,12 @@ class SponsorTeamView extends Component {
 
       if (this.state.editingAssets) {
          view = 
-               <SponsorTeamEditionLayer title='assets' toClose={ this.finishEditAssets }>
+               <SponsorTeamEditionLayer title='assets' onClose={ this.finishEditAssets }>
                   <SponsorAssetsForm />
                </SponsorTeamEditionLayer>
       } else if (this.state.editingPlayers) {
          view = 
-            <SponsorTeamEditionLayer title='players' toClose={ this.finishEditPlayers }>
+            <SponsorTeamEditionLayer title='players' onClose={ this.finishEditPlayers }>
                <SponsorAddUnitTable />
             </SponsorTeamEditionLayer>
       } else {

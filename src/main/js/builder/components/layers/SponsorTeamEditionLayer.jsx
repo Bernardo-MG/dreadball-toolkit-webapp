@@ -9,13 +9,10 @@ import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 
 const SponsorTeamEditionLayer = (props) => {
    return (
-      <Layer>
+      <Layer closer={true} onClose={ props.onClose } >
          <Heading tag='h2'>{ props.title }</Heading>
          <SponsorTeamCost />
          {props.children}
-         <Box margin='small'>
-            <Button onClick={ props.toClose } label='close' />
-         </Box>
       </Layer>
    );
 };
