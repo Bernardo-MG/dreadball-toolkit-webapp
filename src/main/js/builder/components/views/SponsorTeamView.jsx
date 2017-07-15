@@ -30,11 +30,14 @@ import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
 
 import SponsorTeamEditionLayer from 'builder/components/layers/SponsorTeamEditionLayer';
 
+import SponsorNameLabel from 'builder/containers/labels/SponsorNameLabel';
+
 class SponsorTeamView extends Component {
 
    state = {
             editingAssets: false,
-            editingPlayers: false
+            editingPlayers: false,
+            editingName: false
          };
 
    editAssets = () => {
@@ -51,6 +54,14 @@ class SponsorTeamView extends Component {
 
    finishEditPlayers = () => {
       this.setState({ ...this.state, editingPlayers: false });
+   };
+
+   editName = () => {
+      this.setState({ ...this.state, editingName: true });
+   };
+
+   finishEditName = () => {
+      this.setState({ ...this.state, editingName: false });
    };
 
    constructor (props) {
@@ -70,6 +81,15 @@ class SponsorTeamView extends Component {
             <SponsorTeamEditionLayer title='players' onClose={ this.finishEditPlayers }>
                <SponsorAddUnitTable />
             </SponsorTeamEditionLayer>
+      } else if (this.state.editingName) {
+         view = 
+            <SponsorTeamEditionLayer title='players' onClose={ this.finishEditName }>
+               <Form>
+                  <FormField label='sponsor_name'>
+                     <TextInput id='sponsor_name' name='sponsor_name'/>
+                  </FormField>
+               </Form>
+            </SponsorTeamEditionLayer>
       } else {
          view = 
             <div>
@@ -83,11 +103,7 @@ class SponsorTeamView extends Component {
                         <Heading tag='h2'>sponsor_name</Heading>
                         <Button onClick={ this.editName } icon={ <EditIcon /> } a11yTitle='edit_name' />
                      </Box>
-                     <Form>
-                        <FormField label='sponsor_name'>
-                           <TextInput id='sponsor_name' name='sponsor_name'/>
-                        </FormField>
-                     </Form>
+                     <SponsorNameLabel/>
                   </Section>
                   <Section pad="medium">
                      <Box direction='row'>

@@ -1,7 +1,7 @@
 import * as ActionTypes from 'builder/actions/ActionTypes';
 import { combineReducers } from 'redux';
 
-const sponsor = (state = { sponsorName: '',
+const sponsor = (state = { sponsorName: 'Sponsor name',
                            rank: 0, initialRank: 0, teamValue: 0,
                            affinities: [], ranks: [], units: [],
                            coachingDice: 0, specialMoveCard: 0, nastySurpriseCard: 0, wager: 0, mediBot: 0, cheerleaders: 0 }, action) => {
@@ -19,7 +19,7 @@ const sponsor = (state = { sponsorName: '',
          initialRank: 0,
          teamValue: 0,
          units: [],
-         sponsorName: '',
+         sponsorName: 'Sponsor name',
          coachingDice: 0,
          specialMoveCard: 0,
          nastySurpriseCard: 0,
