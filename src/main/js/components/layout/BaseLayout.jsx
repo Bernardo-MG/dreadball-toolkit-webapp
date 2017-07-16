@@ -6,14 +6,6 @@ import Box from 'grommet/components/Box';
 import Header from 'components/layout/Header';
 
 class BaseLayout extends React.Component {
-   state = {
-      drawerActive: false
-   };
-
-   toggleDrawerActive = () => {
-      this.setState({ drawerActive: !this.state.drawerActive });
-   };
-
    render() {
       return (
       <App centered={false}>

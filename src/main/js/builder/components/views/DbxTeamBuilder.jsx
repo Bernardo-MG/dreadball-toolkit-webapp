@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import Section from 'grommet/components/Section';
+import Box from 'grommet/components/Box';
 
 import SponsorAffinitiesView from 'builder/components/views/SponsorAffinitiesView';
 import SponsorTeamView from 'builder/components/views/SponsorTeamView';
@@ -31,9 +31,7 @@ class DbxTeamBuilder extends Component {
       }
 
       return (
-         <Section primary={true} flex={true} pad='small'>
-            { view }
-         </Section>
+         view
       );
    }
 

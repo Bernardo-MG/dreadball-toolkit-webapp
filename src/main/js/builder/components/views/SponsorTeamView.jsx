@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
+import Columns from 'grommet/components/Columns';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 import Header from 'grommet/components/Header';
@@ -92,41 +93,37 @@ class SponsorTeamView extends Component {
             </SponsorTeamEditionLayer>
       } else {
          view = 
-            <div>
-               <Article>
-                  <Header>
-                     <Heading>sponsor_data</Heading>
-                  </Header>
-                  <Section pad="medium">
-                     <Box direction='row'>
-                        <SponsorNameLabel/>
-                        <EditionButton onClick={ this.editName } a11yTitle='edit_name' />
-                     </Box>
-                  </Section>
-                  <SponsorTeamCost />
-                  <Section pad="medium">
-                     <Box direction='row'>
-                        <Heading tag='h2'>assets</Heading>
-                        <EditionButton onClick={ this.editAssets } a11yTitle='edit_assets' />
-                     </Box>
-                     <SponsorAssets />
-                  </Section>
-                  <Section pad="medium">
+            <Box>
+               <Heading>sponsor_data</Heading>
+               <Box direction='row'>
+                  <SponsorNameLabel/>
+                  <EditionButton onClick={ this.editName } a11yTitle='edit_name' />
+               </Box>
+               <SponsorTeamCost />
+               <Box direction='row'>
+                  <Box>
                      <Box direction='row'>
                         <Heading tag='h2'>affinities</Heading>
                         <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
                      </Box>
                      <SponsorAffinityList />
-                  </Section>
-                  <Section pad="medium">
+                  </Box>
+                  <Box flex='true'>
                      <Box direction='row'>
-                        <Heading tag='h2'>players</Heading>
-                        <EditionButton onClick={ this.editPlayers } a11yTitle='edit_players' />
+                        <Heading tag='h2'>assets</Heading>
+                        <EditionButton onClick={ this.editAssets } a11yTitle='edit_assets' />
                      </Box>
-                     <SponsorTeamUnitTable />
-                  </Section>
-               </Article>
-            </div>
+                     <SponsorAssets />
+                  </Box>
+               </Box>
+               <Box>
+                  <Box direction='row'>
+                     <Heading tag='h2'>players</Heading>
+                     <EditionButton onClick={ this.editPlayers } a11yTitle='edit_players' />
+                  </Box>
+                  <SponsorTeamUnitTable />
+               </Box>
+            </Box>
       }
 
       return (

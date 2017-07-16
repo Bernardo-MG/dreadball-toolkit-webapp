@@ -1,22 +1,22 @@
 import React from 'react';
+
+import List from 'grommet/components/List';
 import ListItem from 'grommet/components/ListItem';
 
 
 const Listing = (props) => {
    return (
-      <div>
+      <List>
          {props.source.map((element, i) => {
             if(element){
                return (
-                  <ListItem key={i} justify='between' separator='horizontal'>
-                     <span>{element}</span>
-                  </ListItem>
+                  <ListItem key={i} alignContent='center' full={ false } separator='horizontal'>{element}</ListItem>
                );
             } else {
                return null;
             }
          })}
-      </div>
+      </List>
    );
 };
 

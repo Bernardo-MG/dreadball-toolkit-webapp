@@ -12,7 +12,7 @@ import LoadableDbxUnitTable from 'codex/containers/LoadableDbxUnitTable';
 
 const DbxPlayers = () => {
    return (
-      <Section primary={true} flex={true} pad='small'>
+      <Section primary={true} pad='small'>
          <Heading tag='h1'>DBX players</Heading>
          <Box>
             <LoadableDbxUnitTable/>
