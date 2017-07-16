@@ -101,8 +101,8 @@ class SponsorTeamView extends Component {
                </Box>
                <SponsorTeamCost />
                <Box direction='row'>
-                  <Box>
-                     <Box size='small'>
+                  <Box size='medium'>
+                     <Box direction='row'>
                         <Heading tag='h2'>affinities</Heading>
                         <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
                      </Box>
