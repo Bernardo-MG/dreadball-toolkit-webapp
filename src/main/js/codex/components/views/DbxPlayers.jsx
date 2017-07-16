@@ -14,16 +14,14 @@ const DbxPlayers = () => {
       <Box>
          <Heading tag='h1'>dbx_players</Heading>
          <LoadableDbxUnitTable/>
-         <Form>
-            <Box direction='row'>
-               <Box margin='small'>
-                  <PreviousPageButton label='previous' />
-               </Box>
-               <Box margin='small'>
-                  <NextPageButton label='next' />
-               </Box>
+         <Box direction='row'>
+            <Box margin='small'>
+               <PreviousPageButton label='previous' />
             </Box>
-         </Form>
+            <Box margin='small'>
+               <NextPageButton label='next' />
+            </Box>
+         </Box>
       </Box>
    );
 };

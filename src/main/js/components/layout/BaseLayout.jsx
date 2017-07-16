@@ -6,9 +6,8 @@ import Section from 'grommet/components/Section';
 
 import Header from 'components/layout/Header';
 
-class BaseLayout extends React.Component {
-   render() {
-      return (
+const BaseLayout = () => {
+   return (
       <App centered={false}>
          <Box full={true}>
             <Header />
@@ -17,8 +16,7 @@ class BaseLayout extends React.Component {
             </Section>
          </Box>
       </App>
-      )
-   }
+   );
 };
 
 export default BaseLayout;
