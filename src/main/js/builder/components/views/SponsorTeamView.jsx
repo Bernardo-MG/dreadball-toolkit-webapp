@@ -102,13 +102,13 @@ class SponsorTeamView extends Component {
                <SponsorTeamCost />
                <Box direction='row'>
                   <Box>
-                     <Box direction='row'>
+                     <Box size='small'>
                         <Heading tag='h2'>affinities</Heading>
                         <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
                      </Box>
                      <SponsorAffinityList />
                   </Box>
-                  <Box flex='true'>
+                  <Box full='horizontal'>
                      <Box direction='row'>
                         <Heading tag='h2'>assets</Heading>
                         <EditionButton onClick={ this.editAssets } a11yTitle='edit_assets' />

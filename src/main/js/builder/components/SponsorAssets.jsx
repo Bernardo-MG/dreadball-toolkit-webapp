@@ -1,6 +1,7 @@
 import React from 'react';
 
 import Box from 'grommet/components/Box';
+import Columns from 'grommet/components/Columns';
 
 import CheerleadersValue from 'builder/containers/values/CheerleadersValue';
 import MediBotValue from 'builder/containers/values/MediBotValue';
@@ -13,7 +14,7 @@ import WagerValue from 'builder/containers/values/WagerValue';
 
 const SponsorAssets = () => {
    return (
-      <Box direction='row'>
+      <Columns>
          <Box pad='medium'>
             <SponsorCoachingDiceValue />
          </Box>
@@ -32,7 +33,7 @@ const SponsorAssets = () => {
          <Box pad='medium'>
             <CheerleadersValue />
          </Box>
-      </Box>
+      </Columns>
    );
 };
 
