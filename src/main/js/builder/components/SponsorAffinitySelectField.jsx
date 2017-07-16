@@ -1,15 +1,18 @@
 import React from 'react';
+
+import Box from 'grommet/components/Box';
+
 import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 
 const SponsorAffinitySelectField = (props) => {
    return (
-      <div>
+      <Box>
          {props.source.map((element, i) => {
             return (
                <SponsorAffinityComboBox index={i} key={i} source={element} />
             );
          })}
-      </div>
+      </Box>
    );
 };
 

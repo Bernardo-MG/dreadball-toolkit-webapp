@@ -29,7 +29,7 @@ class AddUnitTableRow extends Component {
 
    render() {
       return (
-         <TableRow key={this.index}>
+         <TableRow index={this.index} key={this.index}>
             <td><Button label='add' onClick={this.chooseUnit} /></td>
             <td>{this.props.source.name}</td>
             <td>{this.props.source.role}</td>
