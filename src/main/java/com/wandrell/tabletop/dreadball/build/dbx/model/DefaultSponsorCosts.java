@@ -1,7 +1,9 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx.model;
 
-public class DefaultDbxBuilderDefaults implements DbxBuilderDefaults {
+import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
+
+public class DefaultSponsorCosts implements SponsorCosts {
 
     private Integer cheerleaderCost;
 
@@ -32,7 +34,7 @@ public class DefaultDbxBuilderDefaults implements DbxBuilderDefaults {
 
     private Integer wagerRank;
 
-    public DefaultDbxBuilderDefaults() {
+    public DefaultSponsorCosts() {
         super();
     }
 

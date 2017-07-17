@@ -22,15 +22,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
+import com.wandrell.tabletop.dreadball.build.dbx.SponsorConstraints;
 
 /**
- * Default implementation of the DBX team builder service.
+ * Service implementation of the {@code SponsorConstraints}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service("dbxTeamBuilderService")
-public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
+@Service
+public final class SponsorConstraintsService implements SponsorConstraints {
 
     /**
      * Maximum number of units a Sponsor may have.
@@ -66,7 +66,7 @@ public final class DefaultDbxTeamBuilder implements DbxTeamBuilder {
      *            maximum allowed valoration
      */
     @Autowired
-    public DefaultDbxTeamBuilder(
+    public SponsorConstraintsService(
             @Value("${sponsor.players.min}") final Integer minUnits,
             @Value("${sponsor.players.max}") final Integer maxUnits,
             @Value("${sponsor.team.valoration.min}") final Integer minValoration,

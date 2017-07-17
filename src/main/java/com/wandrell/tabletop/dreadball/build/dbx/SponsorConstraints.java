@@ -17,41 +17,38 @@
 package com.wandrell.tabletop.dreadball.build.dbx;
 
 /**
- * Facade service for the DBX team builder.
+ * Constraints for the sponsor teams.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface DbxSponsorBuilder {
-
-    public Integer getCheerleaderCost();
-
-    public Integer getCheerleaderRank();
-
-    public Integer getDieCost();
-
-    public Integer getDieRank();
+public interface SponsorConstraints {
 
     /**
-     * Returns the initial rank.
+     * Returns the maximum number of units a Sponsor may have.
      * 
-     * @return the initial rank
+     * @return the Sponsors maximum number of units
      */
-    public Integer getInitialRank();
+    public Integer getMaxTeamUnits();
 
-    public Integer getMedibotCost();
+    /**
+     * Returns the maximum recommended valoration for a team.
+     * 
+     * @return the maximum recommended valoration
+     */
+    public Integer getMaxTeamValoration();
 
-    public Integer getMedibotRank();
+    /**
+     * Returns the minimum number of units a Sponsor should have.
+     * 
+     * @return the Sponsors minimum number of units
+     */
+    public Integer getMinTeamUnits();
 
-    public Integer getMoveCost();
-
-    public Integer getMoveRank();
-
-    public Integer getSabotageCost();
-
-    public Integer getSabotageRank();
-
-    public Integer getWagerCost();
-
-    public Integer getWagerRank();
+    /**
+     * Returns the minimum valoration a should have team.
+     * 
+     * @return the minimum valoration
+     */
+    public Integer getMinTeamValoration();
 
 }

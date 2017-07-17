@@ -19,15 +19,15 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
+import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
 
 /**
- * Default implementation of the {@code DbxSponsorBuilder}.
+ * Service implementation of the {@code SponsorCosts}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service
-public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
+public class SponsorCostsService implements SponsorCosts {
 
     @Value("${sponsor.asset.cheerleader.cost}")
     private Integer cheerleaderCost;
@@ -74,7 +74,7 @@ public class DefaultDbxSponsorBuilder implements DbxSponsorBuilder {
     /**
      * Constructs a builder with the specified dependencies.
      */
-    public DefaultDbxSponsorBuilder() {
+    public SponsorCostsService() {
         super();
     }
 

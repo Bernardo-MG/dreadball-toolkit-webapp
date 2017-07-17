@@ -20,14 +20,14 @@ import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.build.dbx.DbxTeamBuilder;
+import com.wandrell.tabletop.dreadball.build.dbx.SponsorConstraints;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.rules.DefaultDbxRules;
 
 /**
- * Unit tests for {@link DbxTeamBuilder} testing the {@code getUnitCost} method.
+ * Unit tests for {@link SponsorConstraints} testing the {@code getUnitCost} method.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

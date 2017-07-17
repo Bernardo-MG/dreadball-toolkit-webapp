@@ -26,8 +26,6 @@ import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.SessionAttribute;
 
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
@@ -39,8 +37,8 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@RestController
-@RequestMapping("/builder/team/dbx")
+// @RestController
+// @RequestMapping("/builder/team/dbx")
 public class DbxTeamBuilderController {
 
     /**
