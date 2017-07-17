@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.build.dbx.DbxSponsorBuilder;
-import com.wandrell.tabletop.dreadball.build.dbx.DefaultDbxBuilderDefaults;
+import com.wandrell.tabletop.dreadball.build.dbx.model.DefaultDbxBuilderDefaults;
 
 /**
  * Controller for the DBX team building AJAX operations.
