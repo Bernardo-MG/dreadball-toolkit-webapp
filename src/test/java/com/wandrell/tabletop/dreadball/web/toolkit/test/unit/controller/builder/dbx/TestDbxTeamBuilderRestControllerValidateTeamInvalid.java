@@ -29,7 +29,6 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
-import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -59,7 +58,7 @@ public final class TestDbxTeamBuilderRestControllerValidateTeamInvalid {
      * Tests that when the data and the context is correct the assets can be
      * set.
      */
-    @Test
+    // @Test
     public final void testValidateTeam_ValidData_Accepted() throws Exception {
         final MockMvc mockMvc;
 
