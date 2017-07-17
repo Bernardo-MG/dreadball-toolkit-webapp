@@ -13,8 +13,23 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-/**
- * Codex controllers.
- */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.service;
+
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+
+/**
+ * Service for the affinity groups codex.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
+public interface AffinityGroupService {
+
+    /**
+     * Returns all the affinity groups.
+     * 
+     * @return all the affinity groups
+     */
+    public Iterable<? extends AffinityGroup> getAllAffinityGroups();
+
+}

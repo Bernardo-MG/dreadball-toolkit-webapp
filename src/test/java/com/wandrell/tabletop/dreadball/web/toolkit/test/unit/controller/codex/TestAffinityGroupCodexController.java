@@ -31,8 +31,8 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
-import com.wandrell.tabletop.dreadball.web.toolkit.codex.controller.AffinityGroupCodexController;
-import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.AffinityGroupService;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.controller.AffinityGroupCodexController;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.service.AffinityGroupService;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**

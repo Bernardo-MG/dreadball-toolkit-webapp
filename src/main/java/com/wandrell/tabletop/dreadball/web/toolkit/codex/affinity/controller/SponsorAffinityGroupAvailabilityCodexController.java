@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.SponsorAffinityGroupAvailabilityService;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.service.SponsorAffinityGroupAvailabilityService;
 
 /**
  * Controller for the affinity groups codex views.

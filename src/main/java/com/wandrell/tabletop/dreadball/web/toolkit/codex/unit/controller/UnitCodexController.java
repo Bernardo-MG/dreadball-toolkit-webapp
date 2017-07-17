@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex.controller;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.unit.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -31,7 +31,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.web.toolkit.codex.service.UnitService;
+import com.wandrell.tabletop.dreadball.web.toolkit.codex.unit.service.UnitService;
 
 /**
  * Controller for the unit codex views.

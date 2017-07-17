@@ -13,8 +13,24 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-/**
- * Codex services.
- */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.service;
+
+import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+
+/**
+ * Service for the Sponsor affinity group availabilities codex.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
+public interface SponsorAffinityGroupAvailabilityService {
+
+    /**
+     * Returns all the Sponsor affinity group availabilities.
+     * 
+     * @return all the Sponsor affinity group availabilities
+     */
+    public Iterable<SponsorAffinityGroupAvailability>
+            getAllSponsorAffinityGroupAvailabilities();
+
+}

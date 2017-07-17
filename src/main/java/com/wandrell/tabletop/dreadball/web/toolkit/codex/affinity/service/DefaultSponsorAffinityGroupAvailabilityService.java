@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex.service;
+package com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
