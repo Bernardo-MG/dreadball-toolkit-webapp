@@ -33,6 +33,8 @@ public interface SponsorCosts {
 
     /**
      * Returns the initial rank.
+     * <p>
+     * TODO: Move this to another interface
      * 
      * @return the initial rank
      */
