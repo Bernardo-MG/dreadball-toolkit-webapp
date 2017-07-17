@@ -20,6 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -164,12 +165,13 @@ public final class DefaultUnitService implements UnitService {
             final Pageable pageReq) {
         final Iterable<? extends AffinityUnit> filtered; // Filtered units
         final Collection<String> affNames;     // Affinity names
+        final Collection<AffinityGroup> affs;     // Affinity names
 
         // The affinities names are acquired
-        affNames = new ArrayList<>();
-        for (final AffinityGroup affinity : affinities) {
-            affNames.add(affinity.getName());
-        }
+        affs = new ArrayList<>();
+        affinities.iterator().forEachRemaining(affs::add);
+        affNames = affs.stream().map(a -> a.getName())
+                .collect(Collectors.toList());
 
         if (affNames.isEmpty()) {
             // There are no affinities, there is no need to filter
