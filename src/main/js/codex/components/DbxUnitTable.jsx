@@ -35,9 +35,9 @@ const DbxUnitTable = (props) => {
                         <td>{object.skill}</td>
                         <td>{object.armor}</td>
                         <td>{object.abilities}</td>
-                        <td>{object.stranger_cost}</td>
-                        <td>{object.ally_cost}</td>
-                        <td>{object.friend_cost}</td>
+                        <td>{object.strangerCost}</td>
+                        <td>{object.allyCost}</td>
+                        <td>{object.friendCost}</td>
                      </TableRow>;
             })}
          </tbody>
