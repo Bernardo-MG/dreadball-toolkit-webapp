@@ -1,7 +1,6 @@
 import { CALL_API } from 'pagination/actions/ActionTypes';
 import * as types from 'builder/actions/ActionTypes';
 import { BUILDER_DEFAULTS_REST_ENDPOINT as endpoint } from 'builder/requests/Endpoints';
-import { jsonToBuilderDefaults as parse } from 'builder/requests/utils';
 
 export const beginDbxTeamBuilding = () => {
    return {
