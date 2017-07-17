@@ -19,7 +19,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.codex.unit.service;
 import org.springframework.data.domain.Pageable;
 
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
@@ -40,17 +39,9 @@ public interface UnitService {
      *            affinities for filtering
      * @return the units available for the affinities
      */
-    public Iterable<Unit> getAllAffinityUnits(
+    public Iterable<? extends Unit> getAllAffinityUnits(
             final Iterable<? extends AffinityGroup> affinities,
             final Pageable pageReq);
-
-    /**
-     * Returns all the affinity units.
-     * 
-     * @return all the affinity units
-     */
-    public Iterable<? extends AffinityUnit>
-            getAllAffinityUnits(final Pageable pageReq);
 
     /**
      * Returns the unit created from the specified template and set up for the

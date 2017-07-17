@@ -66,7 +66,7 @@ public final class DefaultUnitService implements UnitService {
     }
 
     @Override
-    public final Iterable<Unit> getAllAffinityUnits(
+    public final Iterable<? extends Unit> getAllAffinityUnits(
             final Iterable<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
         final Collection<Unit> units;          // Available units
@@ -76,7 +76,7 @@ public final class DefaultUnitService implements UnitService {
         checkNotNull(pageReq, "Received a null pointer as pagination data");
 
         // Only units not hating any affinity are acquired
-        filtered = getUnitsFilteredByAffinities(affinities, pageReq);
+        filtered = getUnitsNotHatingAffinities(affinities, pageReq);
 
         // The received units are adapted and configured
         units = new ArrayList<>();
@@ -85,16 +85,6 @@ public final class DefaultUnitService implements UnitService {
         }
 
         return units;
-    }
-
-    @Override
-    public final Iterable<? extends AffinityUnit>
-            getAllAffinityUnits(final Pageable pageReq) {
-        final Collection<AffinityUnit> units;
-
-        checkNotNull(pageReq, "Received a null pointer as pagination data");
-
-        return getAffinityUnitRepository().findAll(pageReq);
     }
 
     @Override
@@ -169,7 +159,7 @@ public final class DefaultUnitService implements UnitService {
         return getDbxRules().getUnitCost(affinityLevel, unit);
     }
 
-    private final Iterable<? extends AffinityUnit> getUnitsFilteredByAffinities(
+    private final Iterable<? extends AffinityUnit> getUnitsNotHatingAffinities(
             final Iterable<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
         final Iterable<? extends AffinityUnit> filtered; // Filtered units

@@ -21,7 +21,6 @@ import java.util.Collection;
 
 import org.hamcrest.Matchers;
 import org.mockito.Mockito;
-import org.springframework.data.domain.Pageable;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
@@ -32,7 +31,6 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.unit.controller.UnitCodexController;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.unit.service.UnitService;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
@@ -112,7 +110,7 @@ public final class TestUnitCodexController {
     private final UnitCodexController getController() {
         final UnitService codex; // Mocked unit codex
         final Collection affUnits;
-        final Collection<Unit> units;
+        final Collection units;
 
         codex = Mockito.mock(UnitService.class);
 
@@ -126,12 +124,8 @@ public final class TestUnitCodexController {
         units.add(Mockito.mock(AffinityUnitMixIn.class));
         units.add(Mockito.mock(AffinityUnitMixIn.class));
 
-        Mockito.when(codex
-                .getAllAffinityUnits(org.mockito.Matchers.any(Pageable.class)))
-                .thenReturn(affUnits);
-        Mockito.when(codex.getAllAffinityUnits(
-                org.mockito.Matchers.any(Iterable.class),
-                org.mockito.Matchers.any(Pageable.class))).thenReturn(units);
+        Mockito.when(codex.getAllAffinityUnits(org.mockito.Matchers.any(),
+                org.mockito.Matchers.any())).thenReturn(units);
 
         return new UnitCodexController(codex);
     }

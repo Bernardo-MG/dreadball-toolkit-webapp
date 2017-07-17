@@ -72,9 +72,9 @@ public class UnitCodexController {
      * @return the view for all the affinity units
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<? extends Unit> getDbxUnits(
-            @RequestParam(name = "affinities", required = false,
-                    defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities,
+    public final Iterable<? extends Unit> getDbxUnits(@RequestParam(
+            name = "affinities", required = false,
+            defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities,
             @RequestParam(name = "page", defaultValue = "0") final Integer page,
             @RequestParam(name = "size",
                     defaultValue = "10") final Integer size,
@@ -82,7 +82,6 @@ public class UnitCodexController {
                     defaultValue = "") final String orderBy,
             @RequestParam(name = "direction",
                     defaultValue = "ASC") final Direction direction) {
-        final Iterable<? extends Unit> units;
         final Pageable pageReq;
 
         // TODO: Page and size may be stored automatically into a pageable
@@ -95,14 +94,7 @@ public class UnitCodexController {
             pageReq = new PageRequest(page, size, direction, orderBy);
         }
 
-        if (affinities.isEmpty()) {
-            units = getUnitCodexService().getAllAffinityUnits(pageReq);
-        } else {
-            units = getUnitCodexService().getAllAffinityUnits(affinities,
-                    pageReq);
-        }
-
-        return units;
+        return getUnitCodexService().getAllAffinityUnits(affinities, pageReq);
     }
 
     /**
