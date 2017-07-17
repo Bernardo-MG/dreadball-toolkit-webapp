@@ -18,6 +18,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -48,26 +49,14 @@ public class SponsorCostsController {
                 "Received a null pointer as sponsor costs");
     }
 
-    @GetMapping(path = "/defaults",
+    @GetMapping(path = "/costs",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final DefaultSponsorCosts getDefaults() {
+    public final SponsorCosts getDefaultCosts() {
         final DefaultSponsorCosts defaults;
 
         defaults = new DefaultSponsorCosts();
 
-        defaults.setCheerleaderCost(getSponsorCosts().getCheerleaderCost());
-        defaults.setCheerleaderRank(getSponsorCosts().getCheerleaderRank());
-        defaults.setDieCost(getSponsorCosts().getDieCost());
-        defaults.setDieRank(getSponsorCosts().getDieRank());
-        defaults.setInitialRank(getSponsorCosts().getInitialRank());
-        defaults.setMedibotCost(getSponsorCosts().getMedibotCost());
-        defaults.setMedibotRank(getSponsorCosts().getMedibotRank());
-        defaults.setMoveCost(getSponsorCosts().getMoveCost());
-        defaults.setMoveRank(getSponsorCosts().getMoveRank());
-        defaults.setSabotageCost(getSponsorCosts().getSabotageCost());
-        defaults.setSabotageRank(getSponsorCosts().getSabotageRank());
-        defaults.setWagerCost(getSponsorCosts().getWagerCost());
-        defaults.setWagerRank(getSponsorCosts().getWagerRank());
+        BeanUtils.copyProperties(getSponsorCosts(), defaults);
 
         return defaults;
     }
