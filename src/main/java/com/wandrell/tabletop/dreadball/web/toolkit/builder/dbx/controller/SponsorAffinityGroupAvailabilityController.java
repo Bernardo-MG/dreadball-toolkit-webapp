@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.controller;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -24,7 +24,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.service.SponsorAffinityGroupAvailabilityService;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.SponsorAffinityGroupAvailabilityService;
 
 /**
  * Controller for the affinity groups codex views.
@@ -32,25 +32,25 @@ import com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.service.Sponso
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/sponsorAffinityGroupAvailabilities")
-public class SponsorAffinityGroupAvailabilityCodexController {
+@RequestMapping("/rest/builder/affinity")
+public class SponsorAffinityGroupAvailabilityController {
 
     /**
      * Affinity groups codex service.
      */
-    private final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityCodex;
+    private final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
 
     /**
      * Constructs a controller with the specified dependencies.
      * 
-     * @param codex
+     * @param service
      *            affinity groups codex service
      */
-    public SponsorAffinityGroupAvailabilityCodexController(
-            final SponsorAffinityGroupAvailabilityService codex) {
+    public SponsorAffinityGroupAvailabilityController(
+            final SponsorAffinityGroupAvailabilityService service) {
         super();
 
-        sponsorAffinityGroupAvailabilityCodex = checkNotNull(codex,
+        sponsorAffinityGroupAvailabilityService = checkNotNull(service,
                 "Received a null pointer as Sponsor affinity groups availabilities codex service");
     }
 
@@ -62,7 +62,7 @@ public class SponsorAffinityGroupAvailabilityCodexController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final Iterable<SponsorAffinityGroupAvailability>
             getAffinityGroups() {
-        return getSponsorAffinityGroupAvailabilityCodex()
+        return getSponsorAffinityGroupAvailabilityService()
                 .getAllSponsorAffinityGroupAvailabilities();
     }
 
@@ -72,8 +72,8 @@ public class SponsorAffinityGroupAvailabilityCodexController {
      * @return the affinity groups service
      */
     private final SponsorAffinityGroupAvailabilityService
-            getSponsorAffinityGroupAvailabilityCodex() {
-        return sponsorAffinityGroupAvailabilityCodex;
+            getSponsorAffinityGroupAvailabilityService() {
+        return sponsorAffinityGroupAvailabilityService;
     }
 
 }

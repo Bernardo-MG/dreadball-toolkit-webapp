@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex.affinity.service;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 
