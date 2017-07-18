@@ -23,23 +23,26 @@ const applyParams = (url, params) => {
 
 const appendParamsMap = (map) => {
    let result = '';
+   let value;
 
    for (var key in map) {
       if (map.hasOwnProperty(key)) {
-         result = appendParams(result, key + '=' + map[key]);
+         result = appendParams(result, key, map[key]);
       }
    }
 
    return result;
 }
 
-const appendParams = (params, newParams) => {
+const appendParams = (params, key, value) => {
    let result = params;
 
-   if(result){
-      result = result + '&&';
+   if(value) {
+      if(result){
+         result = result + '&&';
+      }
+      result = result + key + '=' + value;
    }
-   result = result + newParams;
 
    return result;
 }
