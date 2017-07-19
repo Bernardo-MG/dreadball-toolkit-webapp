@@ -18,20 +18,13 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-import java.util.stream.Collectors;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.SponsorAffinityGroupAvailabilityService;
 
 /**
@@ -48,8 +41,6 @@ public class SponsorAffinityController {
      */
     private final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
 
-    private final SponsorCosts                            sponsorCosts;
-
     /**
      * Constructs a controller with the specified dependencies.
      * 
@@ -58,14 +49,11 @@ public class SponsorAffinityController {
      */
     @Autowired
     public SponsorAffinityController(
-            final SponsorAffinityGroupAvailabilityService service,
-            final SponsorCosts costs) {
+            final SponsorAffinityGroupAvailabilityService service) {
         super();
 
         sponsorAffinityGroupAvailabilityService = checkNotNull(service,
                 "Received a null pointer as Sponsor affinity groups availabilities codex service");
-        sponsorCosts = checkNotNull(costs,
-                "Received a null pointer as Sponsor costs service");
     }
 
     /**
@@ -80,28 +68,6 @@ public class SponsorAffinityController {
                 .getAllSponsorAffinityGroupAvailabilities();
     }
 
-    @GetMapping(path = "/selection",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinitiesSelection getSelectionResult(@RequestParam(
-            name = "affinities", required = false,
-            defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities) {
-        final Integer rankAdd;
-        final Integer rank;
-        final Iterable<String> filtered;
-
-        rankAdd = affinities.stream()
-                .filter(affinity -> affinity.getName().equals("rank_increase"))
-                .collect(Collectors.toList()).size();
-        filtered = affinities.stream()
-                .filter(affinity -> !affinity.getName().equals("rank_increase"))
-                .map(affinity -> affinity.getName())
-                .collect(Collectors.toList());
-
-        rank = getSponsorCosts().getInitialRank() + rankAdd;
-
-        return new SponsorAffinitiesSelection(filtered, rank);
-    }
-
     /**
      * Returns the affinity groups service.
      * 
@@ -110,10 +76,6 @@ public class SponsorAffinityController {
     private final SponsorAffinityGroupAvailabilityService
             getSponsorAffinityGroupAvailabilityService() {
         return sponsorAffinityGroupAvailabilityService;
-    }
-
-    private final SponsorCosts getSponsorCosts() {
-        return sponsorCosts;
     }
 
 }
