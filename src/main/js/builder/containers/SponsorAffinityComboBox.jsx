@@ -6,7 +6,7 @@ import * as Actions from 'builder/actions';
 
 const SponsorAffinityComboBox = (props) => {
    return (
-      <SponsorAffinitySelect index={props.index} source={props.source} handleSelection={props.actions.chooseSponsorAffinity} />
+      <SponsorAffinitySelect index={props.index} source={props.source} onChange={props.actions.chooseSponsorAffinity} />
    );
 };
 

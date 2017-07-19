@@ -3,16 +3,13 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
-
 public class SponsorAffinitiesSelection {
 
-    private final Iterable<DefaultAffinityGroup> affinities;
+    private final Iterable<String> affinities;
 
-    private final Integer                        rank;
+    private final Integer          rank;
 
-    public SponsorAffinitiesSelection(
-            final Iterable<DefaultAffinityGroup> affinities,
+    public SponsorAffinitiesSelection(final Iterable<String> affinities,
             final Integer rank) {
         super();
 
@@ -21,7 +18,7 @@ public class SponsorAffinitiesSelection {
         this.rank = checkNotNull(rank, "Received a null pointer as rank");
     }
 
-    public Iterable<DefaultAffinityGroup> getAffinities() {
+    public Iterable<String> getAffinities() {
         return affinities;
     }
 

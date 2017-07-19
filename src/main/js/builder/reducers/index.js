@@ -3,18 +3,17 @@ import { combineReducers } from 'redux';
 
 const sponsor = (state = { sponsorName: 'Sponsor name',
                            rank: 0, initialRank: 0, teamValue: 0,
-                           affinities: [], ranks: [], units: [],
+                           affinities: [], units: [],
                            coachingDice: 0, specialMoveCard: 0, nastySurpriseCard: 0, wager: 0, mediBot: 0, cheerleaders: 0 }, action) => {
    const { type, payload } = action;
-   const ranks = state.ranks.slice();
    const affinities = state.affinities.slice();
    const units = state.units.slice();
    let cost;
+   let rank;
    switch (type) {
    case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
       return {
          affinities: [],
-         ranks: [],
          rank: 0,
          initialRank: 0,
          teamValue: 0,
@@ -56,13 +55,11 @@ const sponsor = (state = { sponsorName: 'Sponsor name',
          defaults: { cost: costs, rankCost: rankCosts }
       };
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
-      affinities[action.index] = payload.affinity;
-      ranks[action.index] = payload.rank;
+      affinities[action.index] = payload;
 
       return {
          ...state,
-         affinities,
-         ranks
+         affinities
       };
    case ActionTypes.CHOOSE_SPONSOR_UNIT:
       units.push(payload);
@@ -101,20 +98,11 @@ const sponsor = (state = { sponsorName: 'Sponsor name',
          teamValue
       };
    case ActionTypes.RELOAD_SPONSOR_RANK:
-      const len = ranks.length;
       const initialRank = state.initialRank;
       const assetRankCosts = state.defaults.rankCost;
-      let rank;
 
       // Begins as the initial rank
       rank = initialRank;
-
-      // Adds chosen ranks
-      for (var i = 0; i < len; i++) {
-         if(ranks[i]) {
-            rank++;
-         }
-      }
 
       // Removes assets cost
       cost = state.cheerleaders * assetRankCosts.cheerleader;
@@ -138,6 +126,16 @@ const sponsor = (state = { sponsorName: 'Sponsor name',
       return {
          ...state,
          rank
+      };
+   case ActionTypes.REQUEST_AFFINITIES_VALIDATION_SUCCESS:
+      let affs = payload.affinities;
+
+      rank = payload.rank;
+
+      return {
+         ...state,
+         rank,
+         affinities: affs
       };
    case ActionTypes.UPDATE_SPONSOR_CHEERLEADERS:
       const cheerleaders = payload;

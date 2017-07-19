@@ -87,13 +87,14 @@ public class SponsorAffinityController {
             defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities) {
         final Integer rankAdd;
         final Integer rank;
-        final Iterable<DefaultAffinityGroup> filtered;
+        final Iterable<String> filtered;
 
         rankAdd = affinities.stream()
-                .filter(affinity -> affinity.getName().equals("rank"))
+                .filter(affinity -> affinity.getName().equals("rank_increase"))
                 .collect(Collectors.toList()).size();
         filtered = affinities.stream()
-                .filter(affinity -> !affinity.getName().equals("rank"))
+                .filter(affinity -> !affinity.getName().equals("rank_increase"))
+                .map(affinity -> affinity.getName())
                 .collect(Collectors.toList());
 
         rank = getSponsorCosts().getInitialRank() + rankAdd;

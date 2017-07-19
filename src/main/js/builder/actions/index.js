@@ -1,6 +1,6 @@
 import { CALL_API } from 'pagination/actions/ActionTypes';
 import * as types from 'builder/actions/ActionTypes';
-import { BUILDER_DEFAULTS_REST_ENDPOINT as endpoint } from 'builder/requests/Endpoints';
+import { BUILDER_DEFAULTS_REST_ENDPOINT as defaultsEndpoint, BUILDER_AFFINITIES_VALIDATION_REST_ENDPOINT as affinitiesEndpoint } from 'builder/requests/Endpoints';
 
 export const beginDbxTeamBuilding = () => {
    return {
@@ -8,11 +8,21 @@ export const beginDbxTeamBuilding = () => {
    }
 };
 
-export const chooseSponsorAffinity = (affinity, rank, index) => {
+export const chooseSponsorAffinity = (affinity, index) => {
    return {
       type: types.CHOOSE_SPONSOR_AFFINITY,
-      payload: { affinity, rank },
+      payload: affinity,
       index: index
+   }
+};
+
+export const validateSponsorAffinities = (affinities = []) => {
+   return {
+      [CALL_API]: {
+         types: [types.REQUEST_AFFINITIES_VALIDATION, types.REQUEST_AFFINITIES_VALIDATION_SUCCESS, types.REQUEST_AFFINITIES_VALIDATION_FAILURE],
+         endpoint: affinitiesEndpoint,
+         params: { affinities }
+      }
    }
 };
 
@@ -20,12 +30,6 @@ export const chooseSponsorUnit = (unit) => {
    return {
       type: types.CHOOSE_SPONSOR_UNIT,
       payload: unit
-   }
-};
-
-export const reloadSponsorRank = () => {
-   return {
-      type: types.RELOAD_SPONSOR_RANK
    }
 };
 
@@ -81,7 +85,7 @@ export const loadDefaults = () => {
    return {
       [CALL_API]: {
          types: [types.REQUEST_BUILDER_DEFAULTS, types.REQUEST_BUILDER_DEFAULTS_SUCCESS, types.REQUEST_BUILDER_DEFAULTS_FAILURE],
-         endpoint
+         endpoint: defaultsEndpoint
       }
    }
 };

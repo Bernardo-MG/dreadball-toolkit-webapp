@@ -5,35 +5,39 @@ class SponsorAffinitySelect extends Component {
 
    state = {};
    index;
-   handleSelection;
+   onChange;
 
    handleChange = (value) => {
       const selected = value.option.value;
-      const affinity = value.option.affinity;
-      const rank = value.option.rank;
+      let affinity;
+      
+      if(value.option.rank){
+         affinity = value.option.value;
+      } else {
+         affinity = value.option.affinity;
+      }
+      
       this.setState({
          affinity,
-         rank,
          value: selected
       });
 
-      this.handleSelection(affinity, rank, this.index);
+      this.onChange(affinity, this.index);
    };
 
    componentDidMount() {
-      this.props.handleSelection(this.state.value, this.state.rank, this.index);
+      this.props.onChange(this.state.value, this.index);
    }
 
    constructor(props) {
       super(props);
 
       this.index = props.index;
-      this.handleSelection = props.handleSelection;
+      this.onChange = props.onChange;
 
       const first = props.source[0];
       this.state.affinity = first.affinity;
       this.state.value = first.value;
-      this.state.rank = first.rank;
    }
 
    render() {
