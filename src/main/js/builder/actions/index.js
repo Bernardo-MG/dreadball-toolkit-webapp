@@ -1,6 +1,6 @@
 import { CALL_API } from 'pagination/actions/ActionTypes';
 import * as types from 'builder/actions/ActionTypes';
-import { BUILDER_DEFAULTS_REST_ENDPOINT as defaultsEndpoint, BUILDER_AFFINITIES_VALIDATION_REST_ENDPOINT as affinitiesEndpoint } from 'builder/requests/Endpoints';
+import { BUILDER_DEFAULTS_REST_ENDPOINT as defaultsEndpoint, BUILDER_VALIDATION_REST_ENDPOINT as validationEndpoint } from 'builder/requests/Endpoints';
 
 export const beginDbxTeamBuilding = () => {
    return {
@@ -16,11 +16,11 @@ export const chooseSponsorAffinity = (affinity, index) => {
    }
 };
 
-export const validateSponsorAffinities = (affinities = []) => {
+export const validateSponsorTeam = (affinities = []) => {
    return {
       [CALL_API]: {
-         types: [types.REQUEST_AFFINITIES_VALIDATION, types.REQUEST_AFFINITIES_VALIDATION_SUCCESS, types.REQUEST_AFFINITIES_VALIDATION_FAILURE],
-         endpoint: affinitiesEndpoint,
+         types: [types.REQUEST_SPONSOR_TEAM_VALIDATION, types.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS, types.REQUEST_SPONSOR_TEAM_VALIDATION_FAILURE],
+         endpoint: validationEndpoint,
          params: { affinities }
       }
    }

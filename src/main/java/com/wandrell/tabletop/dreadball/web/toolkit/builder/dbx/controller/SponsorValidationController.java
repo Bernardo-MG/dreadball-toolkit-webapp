@@ -18,19 +18,17 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamOptions;
 
 /**
  * Controller for the affinity groups codex views.
@@ -55,19 +53,17 @@ public class SponsorValidationController {
                 "Received a null pointer as Sponsor costs service");
     }
 
-    @GetMapping(path = "/affinity",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinitiesSelection getSelectionResult(@RequestParam(
-            name = "affinities", required = false,
-            defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities) {
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final SponsorAffinitiesSelection
+            getSelectionResult(final SponsorTeamOptions team) {
         final Integer rankAdd;
         final Integer rank;
         final Iterable<String> filtered;
 
-        rankAdd = affinities.stream()
+        rankAdd = team.getAffinities().stream()
                 .filter(affinity -> affinity.getName().equals("rank_increase"))
                 .collect(Collectors.toList()).size();
-        filtered = affinities.stream()
+        filtered = team.getAffinities().stream()
                 .filter(affinity -> !affinity.getName().equals("rank_increase"))
                 .map(affinity -> affinity.getName())
                 .collect(Collectors.toList());

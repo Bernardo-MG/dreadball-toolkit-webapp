@@ -127,15 +127,10 @@ const sponsor = (state = { sponsorName: 'Sponsor name',
          ...state,
          rank
       };
-   case ActionTypes.REQUEST_AFFINITIES_VALIDATION_SUCCESS:
-      let affs = payload.affinities;
-
-      rank = payload.rank;
-
+   case ActionTypes.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS:
       return {
          ...state,
-         rank,
-         affinities: affs
+         ...payload
       };
    case ActionTypes.UPDATE_SPONSOR_CHEERLEADERS:
       const cheerleaders = payload;
