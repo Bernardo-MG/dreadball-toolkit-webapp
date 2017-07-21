@@ -40,9 +40,9 @@ public interface SponsorCosts {
      */
     public Integer getInitialRank();
 
-    public Integer getMedibotCost();
+    public Integer getMediBotCost();
 
-    public Integer getMedibotRank();
+    public Integer getMediBotRank();
 
     public Integer getMoveCost();
 

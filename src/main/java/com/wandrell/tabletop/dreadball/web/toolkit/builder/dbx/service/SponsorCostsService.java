@@ -104,12 +104,12 @@ public class SponsorCostsService implements SponsorCosts {
     }
 
     @Override
-    public Integer getMedibotCost() {
+    public Integer getMediBotCost() {
         return medibotCost;
     }
 
     @Override
-    public Integer getMedibotRank() {
+    public Integer getMediBotRank() {
         return medibotRank;
     }
 

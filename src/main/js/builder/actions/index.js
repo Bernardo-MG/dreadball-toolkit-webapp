@@ -16,12 +16,14 @@ export const chooseSponsorAffinity = (affinity, index) => {
    }
 };
 
-export const validateSponsorTeam = (affinities = []) => {
+export const validateSponsorTeam = (affinities = [],
+                                    cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => {
    return {
       [CALL_API]: {
          types: [types.REQUEST_SPONSOR_TEAM_VALIDATION, types.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS, types.REQUEST_SPONSOR_TEAM_VALIDATION_FAILURE],
          endpoint: validationEndpoint,
-         params: { affinities }
+         params: { affinities,
+                     cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers}
       }
    }
 };
@@ -30,12 +32,6 @@ export const chooseSponsorUnit = (unit) => {
    return {
       type: types.CHOOSE_SPONSOR_UNIT,
       payload: unit
-   }
-};
-
-export const reloadSponsorTeamValue = () => {
-   return {
-      type: types.RELOAD_SPONSOR_TEAM_VALUE
    }
 };
 
@@ -78,14 +74,5 @@ export const updateSponsorCheerleaders = (value) => {
    return {
       type: types.UPDATE_SPONSOR_CHEERLEADERS,
       payload: value
-   }
-};
-
-export const loadDefaults = () => {
-   return {
-      [CALL_API]: {
-         types: [types.REQUEST_BUILDER_DEFAULTS, types.REQUEST_BUILDER_DEFAULTS_SUCCESS, types.REQUEST_BUILDER_DEFAULTS_FAILURE],
-         endpoint: defaultsEndpoint
-      }
    }
 };

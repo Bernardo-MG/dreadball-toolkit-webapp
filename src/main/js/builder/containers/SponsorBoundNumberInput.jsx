@@ -7,21 +7,27 @@ import BoundNumberInput from 'components/BoundNumberInput';
 class SponsorBoundNumberInput extends Component {
 
    handleChange;
-   reloadSponsorRank;
-   reloadSponsorTeamValue;
+   validate;
+
+   sponsor;
 
    setValue = (value) => {
       this.handleChange(value);
-      this.reloadSponsorRank();
-      this.reloadSponsorTeamValue();
+      this.validate(this.sponsor.affinities,
+            this.sponsor.cheerleaders, this.sponsor.coachingDice, this.sponsor.mediBots, this.sponsor.specialMoveCards, this.sponsor.nastySurpriseCards, this.sponsor.wagers);
    };
 
    constructor(props) {
       super(props);
+      
+      this.sponsor = props.sponsor;
 
       this.handleChange = props.handleChange;
-      this.reloadSponsorRank = props.actions.reloadSponsorRank;
-      this.reloadSponsorTeamValue = props.actions.reloadSponsorTeamValue;
+      this.validate = props.actions.validateSponsorTeam;
+   }
+
+   componentWillReceiveProps(props) {
+      this.sponsor = props.sponsor;
    }
 
    render() {
@@ -32,7 +38,9 @@ class SponsorBoundNumberInput extends Component {
 }
 
 const mapStateToProps = (state) => {
-   return {}
+   return {
+      sponsor: state.builder.sponsor
+   }
 };
 
 const mapDispatchToProps = (dispatch) => {

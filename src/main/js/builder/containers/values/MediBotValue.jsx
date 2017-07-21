@@ -10,7 +10,7 @@ const MediBotValue = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      rank: state.builder.sponsor.mediBot
+      rank: state.builder.sponsor.mediBots
    }
 };
 

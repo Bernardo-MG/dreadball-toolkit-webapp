@@ -12,7 +12,7 @@ const MediBotInput = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.mediBot
+      value: state.builder.sponsor.mediBots
    }
 };
 

@@ -59,7 +59,11 @@ public class SponsorValidationController {
         final Integer rankAdd;
         final Integer rank;
         final Iterable<String> filtered;
+        final Integer assetCost;
+        final Integer assetRankCost;
+        final Integer teamValue;
 
+        // TODO: This should be handled inside a service
         rankAdd = team.getAffinities().stream()
                 .filter(affinity -> affinity.getName().equals("rank_increase"))
                 .collect(Collectors.toList()).size();
@@ -68,9 +72,44 @@ public class SponsorValidationController {
                 .map(affinity -> affinity.getName())
                 .collect(Collectors.toList());
 
-        rank = getSponsorCosts().getInitialRank() + rankAdd;
+        assetCost = getAssetCost(team);
+        assetRankCost = getAssetRankCost(team);
 
-        return new SponsorAffinitiesSelection(filtered, rank);
+        rank = getSponsorCosts().getInitialRank() + rankAdd - assetRankCost;
+        teamValue = assetCost;
+
+        return new SponsorAffinitiesSelection(filtered, rank, rankAdd,
+                teamValue);
+    }
+
+    private final Integer getAssetRankCost(final SponsorTeamOptions team) {
+        Integer cost;
+
+        cost = 0;
+        cost += team.getCheerleaders() * getSponsorCosts().getCheerleaderRank();
+        cost += team.getCoachingDice() * getSponsorCosts().getDieRank();
+        cost += team.getMediBots() * getSponsorCosts().getMediBotRank();
+        cost += team.getSpecialMoveCards() * getSponsorCosts().getMoveRank();
+        cost += team.getNastySurpriseCards()
+                * getSponsorCosts().getSabotageRank();
+        cost += team.getWagers() * getSponsorCosts().getWagerRank();
+
+        return cost;
+    }
+
+    private final Integer getAssetCost(final SponsorTeamOptions team) {
+        Integer cost;
+
+        cost = 0;
+        cost += team.getCheerleaders() * getSponsorCosts().getCheerleaderCost();
+        cost += team.getCoachingDice() * getSponsorCosts().getDieCost();
+        cost += team.getMediBots() * getSponsorCosts().getMediBotCost();
+        cost += team.getSpecialMoveCards() * getSponsorCosts().getMoveCost();
+        cost += team.getNastySurpriseCards()
+                * getSponsorCosts().getSabotageCost();
+        cost += team.getWagers() * getSponsorCosts().getWagerCost();
+
+        return cost;
     }
 
     private final SponsorCosts getSponsorCosts() {

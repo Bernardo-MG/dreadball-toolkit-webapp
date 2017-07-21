@@ -10,7 +10,7 @@ const SpecialMoveCardValue = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      rank: state.builder.sponsor.specialMoveCard
+      rank: state.builder.sponsor.specialMoveCards
    }
 };
 

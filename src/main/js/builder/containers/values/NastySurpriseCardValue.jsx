@@ -10,7 +10,7 @@ const NastySurpriseCardValue = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      rank: state.builder.sponsor.nastySurpriseCard
+      rank: state.builder.sponsor.nastySurpriseCards
    }
 };
 

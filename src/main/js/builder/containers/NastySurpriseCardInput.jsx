@@ -12,7 +12,7 @@ const NastySurpriseCardInput = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.nastySurpriseCard
+      value: state.builder.sponsor.nastySurpriseCards
    }
 };
 

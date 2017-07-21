@@ -15,8 +15,7 @@ class ContainerDbxTeamBuilder extends Component {
       this.props = props;
 
       this.validateSponsorTeam = props.actions.validateSponsorTeam;
-      
-      this.props.actions.loadDefaults();
+
       this.props.actions.beginDbxTeamBuilding();
    }
 

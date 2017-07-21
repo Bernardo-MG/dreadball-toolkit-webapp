@@ -10,7 +10,7 @@ const WagerValue = (props) => {
 
 const mapStateToProps = (state) => {
    return {
-      rank: state.builder.sponsor.wager
+      rank: state.builder.sponsor.wagers
    }
 };
 
