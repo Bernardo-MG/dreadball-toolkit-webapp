@@ -7,12 +7,14 @@ import BoundNumberInput from 'components/BoundNumberInput';
 class SponsorBoundNumberInput extends Component {
 
    handleChange;
+   updateSponsor;
    validate;
 
    sponsor;
 
    setValue = (value) => {
       this.handleChange(value);
+      this.updateSponsor(value, this.sponsor);
       this.validate(this.sponsor.affinities,
             this.sponsor.cheerleaders, this.sponsor.coachingDice, this.sponsor.mediBots, this.sponsor.specialMoveCards, this.sponsor.nastySurpriseCards, this.sponsor.wagers);
    };
@@ -23,6 +25,7 @@ class SponsorBoundNumberInput extends Component {
       this.sponsor = props.sponsor;
 
       this.handleChange = props.handleChange;
+      this.updateSponsor = props.updateSponsor;
       this.validate = props.actions.validateSponsorTeam;
    }
 

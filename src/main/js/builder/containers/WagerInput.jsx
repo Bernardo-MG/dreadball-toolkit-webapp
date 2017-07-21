@@ -6,7 +6,8 @@ import SponsorBoundNumberInput from 'builder/containers/SponsorBoundNumberInput'
 
 const WagerInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorWager} />
+      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorWager}
+         updateSponsor={(value, sponsor) => sponsor.wagers = value} />
    );
 }
 

@@ -6,7 +6,8 @@ import SponsorBoundNumberInput from 'builder/containers/SponsorBoundNumberInput'
 
 const MediBotInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorMediBot} />
+      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorMediBot}
+         updateSponsor={(value, sponsor) => sponsor.mediBots = value} />
    );
 }
 

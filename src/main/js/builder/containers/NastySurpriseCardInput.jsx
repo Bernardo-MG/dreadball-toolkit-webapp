@@ -6,7 +6,8 @@ import SponsorBoundNumberInput from 'builder/containers/SponsorBoundNumberInput'
 
 const NastySurpriseCardInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorNastySurpriseCard} />
+      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorNastySurpriseCard}
+         updateSponsor={(value, sponsor) => sponsor.nastySurpriseCards = value} />
    );
 }
 
