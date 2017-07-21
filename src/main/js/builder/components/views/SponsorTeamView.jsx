@@ -15,12 +15,6 @@ import TextInput from 'grommet/components/TextInput';
 import SponsorTeamUnitTable from 'builder/containers/SponsorTeamUnitTable';
 import SponsorAddUnitTable from 'builder/containers/SponsorAddUnitTable';
 import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
-import CheerleadersInput from 'builder/containers/CheerleadersInput';
-import CoachingDiceInput from 'builder/containers/CoachingDiceInput';
-import MediBotInput from 'builder/containers/MediBotInput';
-import NastySurpriseCardInput from 'builder/containers/NastySurpriseCardInput';
-import SpecialMoveCardInput from 'builder/containers/SpecialMoveCardInput';
-import WagerInput from 'builder/containers/WagerInput';
 
 import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 

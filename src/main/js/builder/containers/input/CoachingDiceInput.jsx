@@ -2,18 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'builder/actions';
-import SponsorBoundNumberInput from 'builder/containers/SponsorBoundNumberInput';
+import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
-const NastySurpriseCardInput = (props) => {
+const CoachingDiceInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorNastySurpriseCard}
-         updateSponsor={(value, sponsor) => sponsor.nastySurpriseCards = value} />
+      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorCoachingDice}
+         updateSponsor={(value, sponsor) => sponsor.coachingDice = value} />
    );
 }
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.nastySurpriseCards
+      value: state.builder.sponsor.coachingDice
    }
 };
 
@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(NastySurpriseCardInput);
+)(CoachingDiceInput);

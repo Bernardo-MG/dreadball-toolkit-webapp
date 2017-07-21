@@ -2,18 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'builder/actions';
-import SponsorBoundNumberInput from 'builder/containers/SponsorBoundNumberInput';
+import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
-const CheerleadersInput = (props) => {
+const WagerInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorCheerleaders}
-         updateSponsor={(value, sponsor) => sponsor.cheerleaders = value}/>
+      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorWager}
+         updateSponsor={(value, sponsor) => sponsor.wagers = value} />
    );
 }
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.cheerleaders
+      value: state.builder.sponsor.wagers
    }
 };
 
@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(CheerleadersInput);
+)(WagerInput);

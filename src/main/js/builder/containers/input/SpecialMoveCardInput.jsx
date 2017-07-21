@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'builder/actions';
-import SponsorBoundNumberInput from 'builder/containers/SponsorBoundNumberInput';
+import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
 const SpecialMoveCardInput = (props) => {
    return (
