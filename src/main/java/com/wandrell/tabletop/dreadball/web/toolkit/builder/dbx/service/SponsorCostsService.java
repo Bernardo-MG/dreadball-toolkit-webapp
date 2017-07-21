@@ -41,12 +41,6 @@ public class SponsorCostsService implements SponsorCosts {
     @Value("${sponsor.asset.die.rank}")
     private Integer dieRank;
 
-    /**
-     * Initial rank.
-     */
-    @Value("${sponsor.rank.initial}")
-    private Integer initialRank;
-
     @Value("${sponsor.asset.medibot.cost}")
     private Integer medibotCost;
 
@@ -96,11 +90,6 @@ public class SponsorCostsService implements SponsorCosts {
     @Override
     public Integer getDieRank() {
         return dieRank;
-    }
-
-    @Override
-    public final Integer getInitialRank() {
-        return initialRank;
     }
 
     @Override

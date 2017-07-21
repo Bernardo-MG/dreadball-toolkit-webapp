@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
+import com.wandrell.tabletop.dreadball.build.dbx.SponsorDefaults;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -51,22 +52,31 @@ public class SponsorValidationController {
 
     private final TeamValorationCalculator<SponsorTeam> teamValorationCalculator;
 
+    private final SponsorDefaults                       sponsorDefaults;
+
     /**
      * Constructs a controller with the specified dependencies.
      * 
      */
     @Autowired
     public SponsorValidationController(final SponsorCosts costs,
+            final SponsorDefaults defaults,
             final RankCostCalculator rankCostCalculator,
             final TeamValorationCalculator<SponsorTeam> teamValorationCalculator) {
         super();
 
         sponsorCosts = checkNotNull(costs,
                 "Received a null pointer as Sponsor costs service");
+        sponsorDefaults = checkNotNull(defaults,
+                "Received a null pointer as Sponsor defaults service");
         this.rankCostCalculator = checkNotNull(rankCostCalculator,
                 "Received a null pointer as rank cost calculator");
         this.teamValorationCalculator = checkNotNull(teamValorationCalculator,
                 "Received a null pointer as team valoration calculator");
+    }
+
+    private final SponsorDefaults getSponsorDefaults() {
+        return sponsorDefaults;
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -104,7 +114,7 @@ public class SponsorValidationController {
         assetCost = sponsorTeam.getValoration();
         assetRankCost = sponsorTeam.getRankCost();
 
-        rank = getSponsorCosts().getInitialRank() + rankAdd - assetRankCost;
+        rank = getSponsorDefaults().getInitialRank() + rankAdd - assetRankCost;
         teamValue = assetCost;
 
         return new SponsorAffinitiesSelection(filtered, rank, rankAdd,

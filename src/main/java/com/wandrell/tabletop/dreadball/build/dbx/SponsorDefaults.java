@@ -21,30 +21,13 @@ package com.wandrell.tabletop.dreadball.build.dbx;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface SponsorCosts {
+public interface SponsorDefaults {
 
-    public Integer getCheerleaderCost();
-
-    public Integer getCheerleaderRank();
-
-    public Integer getDieCost();
-
-    public Integer getDieRank();
-
-    public Integer getMediBotCost();
-
-    public Integer getMediBotRank();
-
-    public Integer getSabotageCost();
-
-    public Integer getSabotageRank();
-
-    public Integer getSpecialMoveCost();
-
-    public Integer getSpecialMoveRank();
-
-    public Integer getWagerCost();
-
-    public Integer getWagerRank();
+    /**
+     * Returns the initial rank.
+     * 
+     * @return the initial rank
+     */
+    public Integer getInitialRank();
 
 }
