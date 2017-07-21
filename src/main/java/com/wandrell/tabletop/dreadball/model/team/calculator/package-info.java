@@ -17,4 +17,4 @@
  * Team calculators.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.model.team.calculator;
+package com.wandrell.tabletop.dreadball.model.team.calculator;

@@ -44,13 +44,13 @@ public interface SponsorCosts {
 
     public Integer getMediBotRank();
 
-    public Integer getMoveCost();
-
-    public Integer getMoveRank();
-
     public Integer getSabotageCost();
 
     public Integer getSabotageRank();
+
+    public Integer getSpecialMoveCost();
+
+    public Integer getSpecialMoveRank();
 
     public Integer getWagerCost();
 

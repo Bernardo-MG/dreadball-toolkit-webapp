@@ -27,6 +27,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
+import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
+import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
+import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
+import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamOptions;
 
@@ -39,18 +45,28 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 @RequestMapping("/rest/builder/validation")
 public class SponsorValidationController {
 
-    private final SponsorCosts sponsorCosts;
+    private final RankCostCalculator                    rankCostCalculator;
+
+    private final SponsorCosts                          sponsorCosts;
+
+    private final TeamValorationCalculator<SponsorTeam> teamValorationCalculator;
 
     /**
      * Constructs a controller with the specified dependencies.
      * 
      */
     @Autowired
-    public SponsorValidationController(final SponsorCosts costs) {
+    public SponsorValidationController(final SponsorCosts costs,
+            final RankCostCalculator rankCostCalculator,
+            final TeamValorationCalculator<SponsorTeam> teamValorationCalculator) {
         super();
 
         sponsorCosts = checkNotNull(costs,
                 "Received a null pointer as Sponsor costs service");
+        this.rankCostCalculator = checkNotNull(rankCostCalculator,
+                "Received a null pointer as rank cost calculator");
+        this.teamValorationCalculator = checkNotNull(teamValorationCalculator,
+                "Received a null pointer as team valoration calculator");
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -62,6 +78,13 @@ public class SponsorValidationController {
         final Integer assetCost;
         final Integer assetRankCost;
         final Integer teamValue;
+        final SponsorTeam sponsorTeam;
+        final Sponsor sponsor;
+
+        sponsor = new DefaultSponsor();
+
+        sponsorTeam = new DefaultSponsorTeam(sponsor,
+                getTeamValorationCalculator(), getRankCostCalculator());
 
         // TODO: This should be handled inside a service
         rankAdd = team.getAffinities().stream()
@@ -72,8 +95,14 @@ public class SponsorValidationController {
                 .map(affinity -> affinity.getName())
                 .collect(Collectors.toList());
 
-        assetCost = getAssetCost(team);
-        assetRankCost = getAssetRankCost(team);
+        sponsorTeam.setCheerleaders(team.getCheerleaders());
+        sponsorTeam.setCoachingDice(team.getCoachingDice());
+        sponsorTeam.setMediBots(team.getMediBots());
+        sponsorTeam.setSabotageCards(team.getNastySurpriseCards());
+        sponsorTeam.setWagers(team.getWagers());
+
+        assetCost = sponsorTeam.getValoration();
+        assetRankCost = sponsorTeam.getRankCost();
 
         rank = getSponsorCosts().getInitialRank() + rankAdd - assetRankCost;
         teamValue = assetCost;
@@ -82,38 +111,17 @@ public class SponsorValidationController {
                 teamValue);
     }
 
-    private final Integer getAssetRankCost(final SponsorTeamOptions team) {
-        Integer cost;
-
-        cost = 0;
-        cost += team.getCheerleaders() * getSponsorCosts().getCheerleaderRank();
-        cost += team.getCoachingDice() * getSponsorCosts().getDieRank();
-        cost += team.getMediBots() * getSponsorCosts().getMediBotRank();
-        cost += team.getSpecialMoveCards() * getSponsorCosts().getMoveRank();
-        cost += team.getNastySurpriseCards()
-                * getSponsorCosts().getSabotageRank();
-        cost += team.getWagers() * getSponsorCosts().getWagerRank();
-
-        return cost;
-    }
-
-    private final Integer getAssetCost(final SponsorTeamOptions team) {
-        Integer cost;
-
-        cost = 0;
-        cost += team.getCheerleaders() * getSponsorCosts().getCheerleaderCost();
-        cost += team.getCoachingDice() * getSponsorCosts().getDieCost();
-        cost += team.getMediBots() * getSponsorCosts().getMediBotCost();
-        cost += team.getSpecialMoveCards() * getSponsorCosts().getMoveCost();
-        cost += team.getNastySurpriseCards()
-                * getSponsorCosts().getSabotageCost();
-        cost += team.getWagers() * getSponsorCosts().getWagerCost();
-
-        return cost;
+    private final RankCostCalculator getRankCostCalculator() {
+        return rankCostCalculator;
     }
 
     private final SponsorCosts getSponsorCosts() {
         return sponsorCosts;
+    }
+
+    private final TeamValorationCalculator<SponsorTeam>
+            getTeamValorationCalculator() {
+        return teamValorationCalculator;
     }
 
 }

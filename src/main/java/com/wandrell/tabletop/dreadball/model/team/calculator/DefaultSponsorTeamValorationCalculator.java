@@ -14,11 +14,13 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.model.team.calculator;
+package com.wandrell.tabletop.dreadball.model.team.calculator;
 
-import org.springframework.beans.factory.annotation.Value;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.springframework.stereotype.Component;
 
+import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
 import com.wandrell.tabletop.dreadball.model.team.calculator.AbstractSponsorTeamValorationCalculator;
 
 /**
@@ -27,80 +29,53 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.AbstractSponsorTeam
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Component
-public final class AutowiredSponsorTeamValorationCalculator
+public final class DefaultSponsorTeamValorationCalculator
         extends AbstractSponsorTeamValorationCalculator {
 
-    /**
-     * Cost of a Cheerleader.
-     */
-    @Value("${sponsor.asset.cheerleader.cost}")
-    private Integer costCheerleader;
-
-    /**
-     * Cost of a Coaching Die.
-     */
-    @Value("${sponsor.asset.die.cost}")
-    private Integer costDie;
-
-    /**
-     * Cost of a Medibot.
-     */
-    @Value("${sponsor.asset.medibot.cost}")
-    private Integer costMediBot;
-
-    /**
-     * Cost of a Sabotage Card.
-     */
-    @Value("${sponsor.asset.sabotage.cost}")
-    private Integer costSabotage;
-
-    /**
-     * Cost of a Special Move Card.
-     */
-    @Value("${sponsor.asset.move.cost}")
-    private Integer costSpecialMove;
-
-    /**
-     * Cost of a Wager.
-     */
-    @Value("${sponsor.asset.wager.cost}")
-    private Integer costWager;
+    private final SponsorCosts costs;
 
     /**
      * Default constructor.
      */
-    public AutowiredSponsorTeamValorationCalculator() {
+    public DefaultSponsorTeamValorationCalculator(final SponsorCosts costs) {
         super();
+
+        this.costs = checkNotNull(costs,
+                "Received a null pointer as sponsor costs");
+    }
+
+    private final SponsorCosts getSponsorCosts() {
+        return costs;
     }
 
     @Override
     protected final Integer getCheerleaderCost() {
-        return costCheerleader;
+        return getSponsorCosts().getCheerleaderCost();
     }
 
     @Override
     protected final Integer getDieCost() {
-        return costDie;
+        return getSponsorCosts().getDieCost();
     }
 
     @Override
     protected final Integer getMediBotCost() {
-        return costMediBot;
+        return getSponsorCosts().getMediBotCost();
     }
 
     @Override
     protected final Integer getSabotageCost() {
-        return costSabotage;
+        return getSponsorCosts().getSabotageCost();
     }
 
     @Override
     protected final Integer getSpecialMoveCost() {
-        return costSpecialMove;
+        return getSponsorCosts().getSpecialMoveCost();
     }
 
     @Override
     protected final Integer getWagerCost() {
-        return costWager;
+        return getSponsorCosts().getWagerCost();
     }
 
 }

@@ -114,16 +114,6 @@ public class SponsorCostsService implements SponsorCosts {
     }
 
     @Override
-    public Integer getMoveCost() {
-        return moveCost;
-    }
-
-    @Override
-    public Integer getMoveRank() {
-        return moveRank;
-    }
-
-    @Override
     public Integer getSabotageCost() {
         return sabotageCost;
     }
@@ -131,6 +121,16 @@ public class SponsorCostsService implements SponsorCosts {
     @Override
     public Integer getSabotageRank() {
         return sabotageRank;
+    }
+
+    @Override
+    public Integer getSpecialMoveCost() {
+        return moveCost;
+    }
+
+    @Override
+    public Integer getSpecialMoveRank() {
+        return moveRank;
     }
 
     @Override

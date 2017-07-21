@@ -14,11 +14,13 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.model.team.calculator;
+package com.wandrell.tabletop.dreadball.model.team.calculator;
 
-import org.springframework.beans.factory.annotation.Value;
+import static com.google.common.base.Preconditions.checkNotNull;
+
 import org.springframework.stereotype.Component;
 
+import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
 import com.wandrell.tabletop.dreadball.model.team.calculator.AbstractRankCostCalculator;
 
 /**
@@ -27,50 +29,23 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.AbstractRankCostCal
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Component
-public final class AutowiredRankCostCalculator
+public final class DefaultRankCostCalculator
         extends AbstractRankCostCalculator {
 
-    /**
-     * Cost of a Cheerleader.
-     */
-    @Value("${sponsor.asset.cheerleader.rank}")
-    private Integer costCheerleader;
-
-    /**
-     * Cost of a Coaching Die.
-     */
-    @Value("${sponsor.asset.die.rank}")
-    private Integer costDie;
-
-    /**
-     * Cost of a Medibot.
-     */
-    @Value("${sponsor.asset.medibot.rank}")
-    private Integer costMediBot;
-
-    /**
-     * Cost of a Sabotage Card.
-     */
-    @Value("${sponsor.asset.sabotage.rank}")
-    private Integer costSabotage;
-
-    /**
-     * Cost of a Special Move Card.
-     */
-    @Value("${sponsor.asset.move.rank}")
-    private Integer costSpecialMove;
-
-    /**
-     * Cost of a Wager.
-     */
-    @Value("${sponsor.asset.wager.rank}")
-    private Integer costWager;
+    private final SponsorCosts costs;
 
     /**
      * Default constructor.
      */
-    public AutowiredRankCostCalculator() {
+    public DefaultRankCostCalculator(final SponsorCosts costs) {
         super();
+
+        this.costs = checkNotNull(costs,
+                "Received a null pointer as sponsor costs");
+    }
+
+    private final SponsorCosts getSponsorCosts() {
+        return costs;
     }
 
     /**
@@ -80,7 +55,7 @@ public final class AutowiredRankCostCalculator
      */
     @Override
     protected final Integer getCheerleaderCost() {
-        return costCheerleader;
+        return getSponsorCosts().getCheerleaderRank();
     }
 
     /**
@@ -90,7 +65,7 @@ public final class AutowiredRankCostCalculator
      */
     @Override
     protected final Integer getDieCost() {
-        return costDie;
+        return getSponsorCosts().getDieRank();
     }
 
     /**
@@ -100,7 +75,7 @@ public final class AutowiredRankCostCalculator
      */
     @Override
     protected final Integer getMediBotCost() {
-        return costMediBot;
+        return getSponsorCosts().getMediBotRank();
     }
 
     /**
@@ -110,7 +85,7 @@ public final class AutowiredRankCostCalculator
      */
     @Override
     protected final Integer getSabotageCost() {
-        return costSabotage;
+        return getSponsorCosts().getSabotageRank();
     }
 
     /**
@@ -120,7 +95,7 @@ public final class AutowiredRankCostCalculator
      */
     @Override
     protected final Integer getSpecialMoveCost() {
-        return costSpecialMove;
+        return getSponsorCosts().getSpecialMoveRank();
     }
 
     /**
@@ -130,7 +105,7 @@ public final class AutowiredRankCostCalculator
      */
     @Override
     protected final Integer getWagerCost() {
-        return costWager;
+        return getSponsorCosts().getWagerRank();
     }
 
 }

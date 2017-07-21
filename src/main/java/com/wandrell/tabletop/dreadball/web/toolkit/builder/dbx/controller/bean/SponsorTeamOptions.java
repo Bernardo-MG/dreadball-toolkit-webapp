@@ -16,9 +16,9 @@ public class SponsorTeamOptions {
 
     private Integer                          mediBots           = 0;
 
-    private Integer                          specialMoveCards   = 0;
-
     private Integer                          nastySurpriseCards = 0;
+
+    private Integer                          specialMoveCards   = 0;
 
     private Integer                          wagers             = 0;
 
@@ -30,53 +30,53 @@ public class SponsorTeamOptions {
         return affinities;
     }
 
-    public final void
-            setAffinities(final Collection<DefaultAffinityGroup> affinities) {
-        this.affinities = affinities;
-    }
-
     public Integer getCheerleaders() {
         return cheerleaders;
-    }
-
-    public void setCheerleaders(Integer cheerleaders) {
-        this.cheerleaders = cheerleaders;
     }
 
     public Integer getCoachingDice() {
         return coachingDice;
     }
 
-    public void setCoachingDice(Integer coachingDice) {
-        this.coachingDice = coachingDice;
-    }
-
     public Integer getMediBots() {
         return mediBots;
-    }
-
-    public void setMediBots(Integer mediBot) {
-        this.mediBots = mediBot;
-    }
-
-    public Integer getSpecialMoveCards() {
-        return specialMoveCards;
-    }
-
-    public void setSpecialMoveCards(Integer specialMoveCard) {
-        this.specialMoveCards = specialMoveCard;
     }
 
     public Integer getNastySurpriseCards() {
         return nastySurpriseCards;
     }
 
-    public void setNastySurpriseCards(Integer nastySurpriseCard) {
-        this.nastySurpriseCards = nastySurpriseCard;
+    public Integer getSpecialMoveCards() {
+        return specialMoveCards;
     }
 
     public Integer getWagers() {
         return wagers;
+    }
+
+    public final void
+            setAffinities(final Collection<DefaultAffinityGroup> affinities) {
+        this.affinities = affinities;
+    }
+
+    public void setCheerleaders(Integer cheerleaders) {
+        this.cheerleaders = cheerleaders;
+    }
+
+    public void setCoachingDice(Integer coachingDice) {
+        this.coachingDice = coachingDice;
+    }
+
+    public void setMediBots(Integer mediBot) {
+        this.mediBots = mediBot;
+    }
+
+    public void setNastySurpriseCards(Integer nastySurpriseCard) {
+        this.nastySurpriseCards = nastySurpriseCard;
+    }
+
+    public void setSpecialMoveCards(Integer specialMoveCard) {
+        this.specialMoveCards = specialMoveCard;
     }
 
     public void setWagers(Integer wager) {
