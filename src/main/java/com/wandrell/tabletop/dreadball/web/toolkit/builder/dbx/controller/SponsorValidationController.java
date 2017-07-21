@@ -26,7 +26,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorDefaults;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
@@ -48,8 +47,6 @@ public class SponsorValidationController {
 
     private final RankCostCalculator                    rankCostCalculator;
 
-    private final SponsorCosts                          sponsorCosts;
-
     private final TeamValorationCalculator<SponsorTeam> teamValorationCalculator;
 
     private final SponsorDefaults                       sponsorDefaults;
@@ -59,14 +56,11 @@ public class SponsorValidationController {
      * 
      */
     @Autowired
-    public SponsorValidationController(final SponsorCosts costs,
-            final SponsorDefaults defaults,
+    public SponsorValidationController(final SponsorDefaults defaults,
             final RankCostCalculator rankCostCalculator,
             final TeamValorationCalculator<SponsorTeam> teamValorationCalculator) {
         super();
 
-        sponsorCosts = checkNotNull(costs,
-                "Received a null pointer as Sponsor costs service");
         sponsorDefaults = checkNotNull(defaults,
                 "Received a null pointer as Sponsor defaults service");
         this.rankCostCalculator = checkNotNull(rankCostCalculator,
@@ -123,10 +117,6 @@ public class SponsorValidationController {
 
     private final RankCostCalculator getRankCostCalculator() {
         return rankCostCalculator;
-    }
-
-    private final SponsorCosts getSponsorCosts() {
-        return sponsorCosts;
     }
 
     private final TeamValorationCalculator<SponsorTeam>

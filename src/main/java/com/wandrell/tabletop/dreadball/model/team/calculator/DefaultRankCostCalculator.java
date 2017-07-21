@@ -18,10 +18,11 @@ package com.wandrell.tabletop.dreadball.model.team.calculator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
-import com.wandrell.tabletop.dreadball.model.team.calculator.AbstractRankCostCalculator;
 
 /**
  * Rank cost calculator.
@@ -37,7 +38,9 @@ public final class DefaultRankCostCalculator
     /**
      * Default constructor.
      */
-    public DefaultRankCostCalculator(final SponsorCosts costs) {
+    @Autowired
+    public DefaultRankCostCalculator(
+            @Qualifier("SponsorRankCosts") final SponsorCosts costs) {
         super();
 
         this.costs = checkNotNull(costs,
@@ -55,7 +58,7 @@ public final class DefaultRankCostCalculator
      */
     @Override
     protected final Integer getCheerleaderCost() {
-        return getSponsorCosts().getCheerleaderRank();
+        return getSponsorCosts().getCheerleaderCost();
     }
 
     /**
@@ -65,7 +68,7 @@ public final class DefaultRankCostCalculator
      */
     @Override
     protected final Integer getDieCost() {
-        return getSponsorCosts().getDieRank();
+        return getSponsorCosts().getDieCost();
     }
 
     /**
@@ -75,7 +78,7 @@ public final class DefaultRankCostCalculator
      */
     @Override
     protected final Integer getMediBotCost() {
-        return getSponsorCosts().getMediBotRank();
+        return getSponsorCosts().getMediBotCost();
     }
 
     /**
@@ -85,7 +88,7 @@ public final class DefaultRankCostCalculator
      */
     @Override
     protected final Integer getSabotageCost() {
-        return getSponsorCosts().getSabotageRank();
+        return getSponsorCosts().getSabotageCost();
     }
 
     /**
@@ -95,7 +98,7 @@ public final class DefaultRankCostCalculator
      */
     @Override
     protected final Integer getSpecialMoveCost() {
-        return getSponsorCosts().getSpecialMoveRank();
+        return getSponsorCosts().getSpecialMoveCost();
     }
 
     /**
@@ -105,7 +108,7 @@ public final class DefaultRankCostCalculator
      */
     @Override
     protected final Integer getWagerCost() {
-        return getSponsorCosts().getWagerRank();
+        return getSponsorCosts().getWagerCost();
     }
 
 }

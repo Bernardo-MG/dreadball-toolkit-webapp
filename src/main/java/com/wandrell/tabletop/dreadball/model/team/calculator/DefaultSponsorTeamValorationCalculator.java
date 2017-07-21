@@ -18,10 +18,10 @@ package com.wandrell.tabletop.dreadball.model.team.calculator;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
-import com.wandrell.tabletop.dreadball.model.team.calculator.AbstractSponsorTeamValorationCalculator;
 
 /**
  * Team valoration calculator for an {@code SponsorTeam}.
@@ -37,7 +37,8 @@ public final class DefaultSponsorTeamValorationCalculator
     /**
      * Default constructor.
      */
-    public DefaultSponsorTeamValorationCalculator(final SponsorCosts costs) {
+    public DefaultSponsorTeamValorationCalculator(
+            @Qualifier("SponsorCosts") final SponsorCosts costs) {
         super();
 
         this.costs = checkNotNull(costs,

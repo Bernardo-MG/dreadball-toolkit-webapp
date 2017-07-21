@@ -25,26 +25,14 @@ public interface SponsorCosts {
 
     public Integer getCheerleaderCost();
 
-    public Integer getCheerleaderRank();
-
     public Integer getDieCost();
-
-    public Integer getDieRank();
 
     public Integer getMediBotCost();
 
-    public Integer getMediBotRank();
-
     public Integer getSabotageCost();
-
-    public Integer getSabotageRank();
 
     public Integer getSpecialMoveCost();
 
-    public Integer getSpecialMoveRank();
-
     public Integer getWagerCost();
-
-    public Integer getWagerRank();
 
 }
