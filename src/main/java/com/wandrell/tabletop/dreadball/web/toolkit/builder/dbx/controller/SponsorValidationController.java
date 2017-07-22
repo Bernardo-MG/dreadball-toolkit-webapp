@@ -33,10 +33,9 @@ import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.calculator.CostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
-import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
-import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamOptions;
 
@@ -116,7 +115,7 @@ public class SponsorValidationController {
                 teamValue);
     }
 
-    private final RankCostCalculator getRankCostCalculator() {
+    private final CostCalculator<SponsorTeam> getRankCostCalculator() {
         return new DefaultRankCostCalculator(getSponsorRankCosts().getDieCost(),
                 getSponsorRankCosts().getSabotageCost(),
                 getSponsorRankCosts().getSpecialMoveCost(),
@@ -137,8 +136,7 @@ public class SponsorValidationController {
         return costs;
     }
 
-    private final TeamValorationCalculator<SponsorTeam>
-            getTeamValorationCalculator() {
+    private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
         return new SponsorTeamValorationCalculator(
                 getSponsorCosts().getDieCost(),
                 getSponsorCosts().getSabotageCost(),

@@ -32,8 +32,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
-import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
-import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.team.calculator.CostCalculator;
 import com.wandrell.tabletop.dreadball.report.dbx.DbxTeamReporter;
 import com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.controller.DbxReportController;
 import com.wandrell.tabletop.dreadball.web.toolkit.report.dbx.service.DefaultDbxTeamReporter;
@@ -122,8 +121,8 @@ public final class TestReportController {
         sessionAttrs = new LinkedHashMap<>();
         sessionAttrs.put(BeanConfig.TEAM_BEAN,
                 new DefaultSponsorTeam(new DefaultSponsor(),
-                        Mockito.mock(TeamValorationCalculator.class),
-                        Mockito.mock(RankCostCalculator.class)));
+                        Mockito.mock(CostCalculator.class),
+                        Mockito.mock(CostCalculator.class)));
 
         return sessionAttrs;
     }

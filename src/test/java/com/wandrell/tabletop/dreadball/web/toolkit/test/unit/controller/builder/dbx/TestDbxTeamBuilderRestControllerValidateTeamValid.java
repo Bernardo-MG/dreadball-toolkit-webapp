@@ -31,8 +31,7 @@ import org.springframework.validation.Validator;
 
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
-import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
-import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.team.calculator.CostCalculator;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.DbxTeamBuilderController;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.BeanConfig;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
@@ -114,8 +113,8 @@ public final class TestDbxTeamBuilderRestControllerValidateTeamValid {
         sessionAttrs = new LinkedHashMap<>();
         sessionAttrs.put(BeanConfig.TEAM_BEAN,
                 new DefaultSponsorTeam(new DefaultSponsor(),
-                        Mockito.mock(TeamValorationCalculator.class),
-                        Mockito.mock(RankCostCalculator.class)));
+                        Mockito.mock(CostCalculator.class),
+                        Mockito.mock(CostCalculator.class)));
 
         return sessionAttrs;
     }
