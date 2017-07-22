@@ -21,17 +21,21 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorDefaults;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.RankCostCalculator;
+import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.TeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamOptions;
@@ -45,11 +49,11 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 @RequestMapping("/rest/builder/validation")
 public class SponsorValidationController {
 
-    private final RankCostCalculator                    rankCostCalculator;
+    private final SponsorCosts    rankCosts;
 
-    private final TeamValorationCalculator<SponsorTeam> teamValorationCalculator;
+    private final SponsorCosts    costs;
 
-    private final SponsorDefaults                       sponsorDefaults;
+    private final SponsorDefaults sponsorDefaults;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -57,20 +61,16 @@ public class SponsorValidationController {
      */
     @Autowired
     public SponsorValidationController(final SponsorDefaults defaults,
-            final RankCostCalculator rankCostCalculator,
-            final TeamValorationCalculator<SponsorTeam> teamValorationCalculator) {
+            @Qualifier("SponsorCosts") final SponsorCosts sponsorCosts,
+            @Qualifier("SponsorRankCosts") final SponsorCosts sponsorRankCosts) {
         super();
 
         sponsorDefaults = checkNotNull(defaults,
                 "Received a null pointer as Sponsor defaults service");
-        this.rankCostCalculator = checkNotNull(rankCostCalculator,
-                "Received a null pointer as rank cost calculator");
-        this.teamValorationCalculator = checkNotNull(teamValorationCalculator,
-                "Received a null pointer as team valoration calculator");
-    }
-
-    private final SponsorDefaults getSponsorDefaults() {
-        return sponsorDefaults;
+        costs = checkNotNull(sponsorCosts,
+                "Received a null pointer as Sponsor costs");
+        rankCosts = checkNotNull(sponsorRankCosts,
+                "Received a null pointer as Sponsor rank costs");
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -116,12 +116,35 @@ public class SponsorValidationController {
     }
 
     private final RankCostCalculator getRankCostCalculator() {
-        return rankCostCalculator;
+        return new DefaultRankCostCalculator(getSponsorRankCosts().getDieCost(),
+                getSponsorRankCosts().getSabotageCost(),
+                getSponsorRankCosts().getSpecialMoveCost(),
+                getSponsorRankCosts().getCheerleaderCost(),
+                getSponsorRankCosts().getWagerCost(),
+                getSponsorRankCosts().getMediBotCost());
+    }
+
+    private final SponsorDefaults getSponsorDefaults() {
+        return sponsorDefaults;
+    }
+
+    private final SponsorCosts getSponsorRankCosts() {
+        return rankCosts;
+    }
+
+    private final SponsorCosts getSponsorCosts() {
+        return costs;
     }
 
     private final TeamValorationCalculator<SponsorTeam>
             getTeamValorationCalculator() {
-        return teamValorationCalculator;
+        return new SponsorTeamValorationCalculator(
+                getSponsorCosts().getDieCost(),
+                getSponsorCosts().getSabotageCost(),
+                getSponsorCosts().getSpecialMoveCost(),
+                getSponsorCosts().getCheerleaderCost(),
+                getSponsorCosts().getWagerCost(),
+                getSponsorCosts().getMediBotCost());
     }
 
 }
