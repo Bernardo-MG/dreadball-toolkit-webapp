@@ -18,6 +18,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,6 +37,8 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.team.calculator.CostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesOptions;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamOptions;
 
@@ -48,9 +51,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 @RequestMapping("/rest/builder/validation")
 public class SponsorValidationController {
 
-    private final SponsorCosts    rankCosts;
-
     private final SponsorCosts    costs;
+
+    private final SponsorCosts    rankCosts;
 
     private final SponsorDefaults sponsorDefaults;
 
@@ -72,12 +75,33 @@ public class SponsorValidationController {
                 "Received a null pointer as Sponsor rank costs");
     }
 
-    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinitiesSelection
-            getSelectionResult(final SponsorTeamOptions team) {
+    @GetMapping(path = "/affinities",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final SponsorAffinitiesSelection getAffinitiesSelectionResult(
+            final SponsorAffinitiesOptions affinities) {
         final Integer rankAdd;
         final Integer rank;
         final Iterable<String> filtered;
+
+        // TODO: This should be handled inside a service
+        rankAdd = affinities.getAffinities().stream()
+                .filter(affinity -> affinity.getName().equals("rank_increase"))
+                .collect(Collectors.toList()).size();
+        filtered = affinities.getAffinities().stream()
+                .filter(affinity -> !affinity.getName().equals("rank_increase"))
+                .map(affinity -> affinity.getName())
+                .collect(Collectors.toList());
+
+        rank = getSponsorDefaults().getInitialRank() + rankAdd;
+
+        return new SponsorAffinitiesSelection(filtered, rank, rank, 0);
+    }
+
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final SponsorAffinitiesSelection
+            getSelectionResult(final SponsorTeamOptions team) {
+        final Integer rank;
+        final Iterable<String> affinityNames;
         final Integer assetCost;
         final Integer assetRankCost;
         final Integer teamValue;
@@ -88,13 +112,10 @@ public class SponsorValidationController {
 
         sponsorTeam = new DefaultSponsorTeam(sponsor,
                 getTeamValorationCalculator(), getRankCostCalculator());
+        sponsorTeam.getSponsor().setAffinityGroups(
+                (Collection<AffinityGroup>) team.getAffinities());
 
-        // TODO: This should be handled inside a service
-        rankAdd = team.getAffinities().stream()
-                .filter(affinity -> affinity.getName().equals("rank_increase"))
-                .collect(Collectors.toList()).size();
-        filtered = team.getAffinities().stream()
-                .filter(affinity -> !affinity.getName().equals("rank_increase"))
+        affinityNames = team.getAffinities().stream()
                 .map(affinity -> affinity.getName())
                 .collect(Collectors.toList());
 
@@ -108,11 +129,11 @@ public class SponsorValidationController {
         assetCost = sponsorTeam.getValoration();
         assetRankCost = sponsorTeam.getRankCost();
 
-        rank = getSponsorDefaults().getInitialRank() + rankAdd - assetRankCost;
+        rank = team.getBaseRank() - assetRankCost;
         teamValue = assetCost;
 
-        return new SponsorAffinitiesSelection(filtered, rank, rankAdd,
-                teamValue);
+        return new SponsorAffinitiesSelection(affinityNames, rank,
+                team.getBaseRank(), teamValue);
     }
 
     private final CostCalculator<SponsorTeam> getRankCostCalculator() {
@@ -124,16 +145,16 @@ public class SponsorValidationController {
                 getSponsorRankCosts().getMediBotCost());
     }
 
+    private final SponsorCosts getSponsorCosts() {
+        return costs;
+    }
+
     private final SponsorDefaults getSponsorDefaults() {
         return sponsorDefaults;
     }
 
     private final SponsorCosts getSponsorRankCosts() {
         return rankCosts;
-    }
-
-    private final SponsorCosts getSponsorCosts() {
-        return costs;
     }
 
     private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {

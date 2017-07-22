@@ -7,20 +7,20 @@ import DbxTeamBuilder from 'builder/components/views/DbxTeamBuilder';
 class ContainerDbxTeamBuilder extends Component {
    
    props;
-   validateSponsorTeam;
+   validate;
 
    constructor(props) {
       super(props);
 
       this.props = props;
 
-      this.validateSponsorTeam = props.actions.validateSponsorTeam;
+      this.validate = props.actions.validateSponsorAffinities;
 
       this.props.actions.beginDbxTeamBuilding();
    }
 
    onFinishAffinities() {
-      this.validateSponsorTeam(this.props.affinities);
+      this.validate(this.props.affinities);
    }
 
    render() {

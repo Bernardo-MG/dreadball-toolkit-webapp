@@ -45,6 +45,11 @@ const sponsor = (state = { sponsorName: 'Sponsor name',
          ...state,
          ...payload
       };
+   case ActionTypes.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES_SUCCESS:
+      return {
+         ...state,
+         ...payload
+      };
    case ActionTypes.UPDATE_SPONSOR_CHEERLEADERS:
       const cheerleaders = payload;
 
