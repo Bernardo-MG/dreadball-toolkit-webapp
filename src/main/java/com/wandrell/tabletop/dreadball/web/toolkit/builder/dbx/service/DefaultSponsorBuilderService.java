@@ -21,7 +21,7 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.DefaultRankCostCalc
 import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamOptions;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 
 @Service
 public class DefaultSponsorBuilderService implements SponsorBuilderService {
@@ -69,7 +69,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
     @Override
     public SponsorAffinitiesSelection getSelectionResult(
             final Collection<? extends AffinityGroup> affinities,
-            final SponsorTeamOptions team) {
+            final SponsorTeamAssets assets, final Integer baseRank) {
         final Integer rank;
         final Iterable<String> affinityNames;
         final Integer assetCost;
@@ -88,21 +88,21 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         affinityNames = affinities.stream().map(affinity -> affinity.getName())
                 .collect(Collectors.toList());
 
-        sponsorTeam.setCheerleaders(team.getCheerleaders());
-        sponsorTeam.setCoachingDice(team.getCoachingDice());
-        sponsorTeam.setMediBots(team.getMediBots());
-        sponsorTeam.setSpecialMoveCards(team.getSpecialMoveCards());
-        sponsorTeam.setSabotageCards(team.getNastySurpriseCards());
-        sponsorTeam.setWagers(team.getWagers());
+        sponsorTeam.setCheerleaders(assets.getCheerleaders());
+        sponsorTeam.setCoachingDice(assets.getCoachingDice());
+        sponsorTeam.setMediBots(assets.getMediBots());
+        sponsorTeam.setSpecialMoveCards(assets.getSpecialMoveCards());
+        sponsorTeam.setSabotageCards(assets.getNastySurpriseCards());
+        sponsorTeam.setWagers(assets.getWagers());
 
         assetCost = sponsorTeam.getValoration();
         assetRankCost = sponsorTeam.getRankCost();
 
-        rank = team.getBaseRank() - assetRankCost;
+        rank = baseRank - assetRankCost;
         teamValue = assetCost;
 
-        return new SponsorAffinitiesSelection(affinityNames, rank,
-                team.getBaseRank(), teamValue);
+        return new SponsorAffinitiesSelection(affinityNames, rank, baseRank,
+                teamValue);
     }
 
     private final CostCalculator<SponsorTeam> getRankCostCalculator() {

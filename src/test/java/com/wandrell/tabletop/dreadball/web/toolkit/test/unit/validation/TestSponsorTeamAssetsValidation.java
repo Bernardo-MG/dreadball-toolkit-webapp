@@ -68,7 +68,7 @@ public final class TestSponsorTeamAssetsValidation {
         assets.setCheerleaders(-1);
         assets.setCoachingDice(-1);
         assets.setMediBots(-1);
-        assets.setSabotageCards(-1);
+        assets.setNastySurpriseCards(-1);
         assets.setSpecialMoveCards(-1);
         assets.setWagers(-1);
 
@@ -90,7 +90,7 @@ public final class TestSponsorTeamAssetsValidation {
         assets.setCheerleaders(null);
         assets.setCoachingDice(null);
         assets.setMediBots(null);
-        assets.setSabotageCards(null);
+        assets.setNastySurpriseCards(null);
         assets.setSpecialMoveCards(null);
         assets.setWagers(null);
 

@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamOptions;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.SponsorBuilderService;
 
 /**
@@ -66,8 +66,9 @@ public class SponsorValidationController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorAffinitiesSelection getSelectionResult(
             final ArrayList<DefaultAffinityGroup> affinities,
-            final SponsorTeamOptions team) {
-        return getSponsorBuilderService().getSelectionResult(affinities, team);
+            final SponsorTeamAssets assets, final Integer baseRank) {
+        return getSponsorBuilderService().getSelectionResult(affinities, assets,
+                baseRank);
     }
 
     private final SponsorBuilderService getSponsorBuilderService() {

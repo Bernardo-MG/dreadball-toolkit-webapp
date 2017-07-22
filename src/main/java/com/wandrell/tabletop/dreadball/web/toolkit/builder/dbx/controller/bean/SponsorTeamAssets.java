@@ -52,7 +52,7 @@ public class SponsorTeamAssets {
      */
     @NotNull
     @Min(0)
-    private Integer sabotageCards    = 0;
+    private Integer nastySurpriseCards    = 0;
 
     /**
      * Number of special move cards.
@@ -107,8 +107,8 @@ public class SponsorTeamAssets {
      * 
      * @return the number of sabotage cards
      */
-    public final Integer getSabotageCards() {
-        return sabotageCards;
+    public final Integer getNastySurpriseCards() {
+        return nastySurpriseCards;
     }
 
     /**
@@ -165,8 +165,8 @@ public class SponsorTeamAssets {
      * @param value
      *            the number of sabotage cards
      */
-    public final void setSabotageCards(final Integer value) {
-        sabotageCards = value;
+    public final void setNastySurpriseCards(final Integer value) {
+        nastySurpriseCards = value;
     }
 
     /**
