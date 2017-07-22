@@ -20,6 +20,7 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.CostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 
@@ -47,18 +48,17 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
     }
 
     @Override
-    public SponsorAffinitiesSelection getAffinitiesSelectionResult(
-            final Collection<? extends AffinityGroup> affinities) {
+    public SponsorAffinitiesSelection
+            getAffinitiesSelectionResult(final Collection<String> affinities) {
         final Integer rankAdd;
         final Integer rank;
         final Iterable<String> filtered;
 
         rankAdd = affinities.stream()
-                .filter(affinity -> affinity.getName().equals("rank_increase"))
+                .filter(affinity -> affinity.equals("rank_increase"))
                 .collect(Collectors.toList()).size();
         filtered = affinities.stream()
-                .filter(affinity -> !affinity.getName().equals("rank_increase"))
-                .map(affinity -> affinity.getName())
+                .filter(affinity -> !affinity.equals("rank_increase"))
                 .collect(Collectors.toList());
 
         rank = getSponsorDefaults().getInitialRank() + rankAdd;
@@ -68,25 +68,25 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
     @Override
     public SponsorAffinitiesSelection getSelectionResult(
-            final Collection<? extends AffinityGroup> affinities,
-            final SponsorTeamAssets assets, final Integer baseRank) {
+            final Collection<String> affinities, final SponsorTeamAssets assets,
+            final Integer baseRank) {
         final Integer rank;
-        final Iterable<String> affinityNames;
         final Integer assetCost;
         final Integer assetRankCost;
         final Integer teamValue;
         final SponsorTeam sponsorTeam;
         final Sponsor sponsor;
+        final Collection<AffinityGroup> affGroups;
 
         sponsor = new DefaultSponsor();
 
         sponsorTeam = new DefaultSponsorTeam(sponsor,
                 getTeamValorationCalculator(), getRankCostCalculator());
-        sponsorTeam.getSponsor()
-                .setAffinityGroups((Collection<AffinityGroup>) affinities);
 
-        affinityNames = affinities.stream().map(affinity -> affinity.getName())
+        affGroups = affinities.stream()
+                .map(affinity -> new DefaultAffinityGroup(affinity))
                 .collect(Collectors.toList());
+        sponsorTeam.getSponsor().setAffinityGroups(affGroups);
 
         sponsorTeam.setCheerleaders(assets.getCheerleaders());
         sponsorTeam.setCoachingDice(assets.getCoachingDice());
@@ -101,7 +101,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         rank = baseRank - assetRankCost;
         teamValue = assetCost;
 
-        return new SponsorAffinitiesSelection(affinityNames, rank, baseRank,
+        return new SponsorAffinitiesSelection(affinities, rank, baseRank,
                 teamValue);
     }
 
