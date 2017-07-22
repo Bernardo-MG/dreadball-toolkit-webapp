@@ -31,8 +31,8 @@ import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.rules.DefaultDbxRules;
 
 /**
- * Unit tests for {@link SponsorConstraints} testing the {@code getAffinityLevel}
- * method.
+ * Unit tests for {@link SponsorConstraints} testing the
+ * {@code getAffinityLevel} method.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

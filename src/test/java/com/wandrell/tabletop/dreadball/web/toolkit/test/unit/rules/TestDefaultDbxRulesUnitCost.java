@@ -27,7 +27,8 @@ import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.rules.DefaultDbxRules;
 
 /**
- * Unit tests for {@link SponsorConstraints} testing the {@code getUnitCost} method.
+ * Unit tests for {@link SponsorConstraints} testing the {@code getUnitCost}
+ * method.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

@@ -62,19 +62,19 @@ public class SponsorTeamOptions {
     }
 
     public void setMediBots(final Integer mediBot) {
-        this.mediBots = mediBot;
+        mediBots = mediBot;
     }
 
     public void setNastySurpriseCards(final Integer nastySurpriseCard) {
-        this.nastySurpriseCards = nastySurpriseCard;
+        nastySurpriseCards = nastySurpriseCard;
     }
 
     public void setSpecialMoveCards(final Integer specialMoveCard) {
-        this.specialMoveCards = specialMoveCard;
+        specialMoveCards = specialMoveCard;
     }
 
     public void setWagers(final Integer wager) {
-        this.wagers = wager;
+        wagers = wager;
     }
 
 }
