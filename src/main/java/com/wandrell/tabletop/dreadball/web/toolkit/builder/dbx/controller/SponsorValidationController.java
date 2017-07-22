@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
@@ -65,7 +66,7 @@ public class SponsorValidationController {
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorAffinitiesSelection getSelectionResult(
             final ArrayList<String> affinities, final SponsorTeamAssets assets,
-            final Integer baseRank) {
+            @RequestParam(defaultValue = "0") final Integer baseRank) {
         return getSponsorBuilderService().getSelectionResult(affinities, assets,
                 baseRank);
     }
