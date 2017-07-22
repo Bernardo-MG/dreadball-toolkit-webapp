@@ -1,36 +1,24 @@
 
 package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean;
 
-import java.util.ArrayList;
-import java.util.Collection;
-
-import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
-
 public class SponsorTeamOptions {
 
-    private Collection<? extends AffinityGroup> affinities         = new ArrayList<>();
+    private Integer baseRank           = 0;
 
-    private Integer                             baseRank           = 0;
+    private Integer cheerleaders       = 0;
 
-    private Integer                             cheerleaders       = 0;
+    private Integer coachingDice       = 0;
 
-    private Integer                             coachingDice       = 0;
+    private Integer mediBots           = 0;
 
-    private Integer                             mediBots           = 0;
+    private Integer nastySurpriseCards = 0;
 
-    private Integer                             nastySurpriseCards = 0;
+    private Integer specialMoveCards   = 0;
 
-    private Integer                             specialMoveCards   = 0;
-
-    private Integer                             wagers             = 0;
+    private Integer wagers             = 0;
 
     public SponsorTeamOptions() {
         super();
-    }
-
-    public final Collection<? extends AffinityGroup> getAffinities() {
-        return affinities;
     }
 
     public Integer getBaseRank() {
@@ -61,36 +49,31 @@ public class SponsorTeamOptions {
         return wagers;
     }
 
-    public final void
-            setAffinities(final Collection<DefaultAffinityGroup> affinities) {
-        this.affinities = affinities;
-    }
-
-    public void setBaseRank(Integer baseRank) {
+    public void setBaseRank(final Integer baseRank) {
         this.baseRank = baseRank;
     }
 
-    public void setCheerleaders(Integer cheerleaders) {
+    public void setCheerleaders(final Integer cheerleaders) {
         this.cheerleaders = cheerleaders;
     }
 
-    public void setCoachingDice(Integer coachingDice) {
+    public void setCoachingDice(final Integer coachingDice) {
         this.coachingDice = coachingDice;
     }
 
-    public void setMediBots(Integer mediBot) {
+    public void setMediBots(final Integer mediBot) {
         this.mediBots = mediBot;
     }
 
-    public void setNastySurpriseCards(Integer nastySurpriseCard) {
+    public void setNastySurpriseCards(final Integer nastySurpriseCard) {
         this.nastySurpriseCards = nastySurpriseCard;
     }
 
-    public void setSpecialMoveCards(Integer specialMoveCard) {
+    public void setSpecialMoveCards(final Integer specialMoveCard) {
         this.specialMoveCards = specialMoveCard;
     }
 
-    public void setWagers(Integer wager) {
+    public void setWagers(final Integer wager) {
         this.wagers = wager;
     }
 

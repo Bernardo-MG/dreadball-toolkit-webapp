@@ -18,13 +18,15 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesOptions;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamOptions;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.SponsorBuilderService;
@@ -56,15 +58,16 @@ public class SponsorValidationController {
     @GetMapping(path = "/affinities",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorAffinitiesSelection getAffinitiesSelectionResult(
-            final SponsorAffinitiesOptions affinities) {
+            final ArrayList<DefaultAffinityGroup> affinities) {
         return getSponsorBuilderService()
                 .getAffinitiesSelectionResult(affinities);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinitiesSelection
-            getSelectionResult(final SponsorTeamOptions team) {
-        return getSponsorBuilderService().getSelectionResult(team);
+    public final SponsorAffinitiesSelection getSelectionResult(
+            final ArrayList<DefaultAffinityGroup> affinities,
+            final SponsorTeamOptions team) {
+        return getSponsorBuilderService().getSelectionResult(affinities, team);
     }
 
     private final SponsorBuilderService getSponsorBuilderService() {
