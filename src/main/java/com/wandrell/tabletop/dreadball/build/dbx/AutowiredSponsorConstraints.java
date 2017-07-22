@@ -14,23 +14,21 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
+package com.wandrell.tabletop.dreadball.build.dbx;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import com.wandrell.tabletop.dreadball.build.dbx.SponsorConstraints;
+import org.springframework.stereotype.Component;
 
 /**
  * Service implementation of the {@code SponsorConstraints}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service
-public final class SponsorConstraintsService implements SponsorConstraints {
+@Component
+public final class AutowiredSponsorConstraints implements SponsorConstraints {
 
     /**
      * Maximum number of units a Sponsor may have.
@@ -66,7 +64,7 @@ public final class SponsorConstraintsService implements SponsorConstraints {
      *            maximum allowed valoration
      */
     @Autowired
-    public SponsorConstraintsService(
+    public AutowiredSponsorConstraints(
             @Value("${sponsor.players.min}") final Integer minUnits,
             @Value("${sponsor.players.max}") final Integer maxUnits,
             @Value("${sponsor.team.valoration.min}") final Integer minValoration,

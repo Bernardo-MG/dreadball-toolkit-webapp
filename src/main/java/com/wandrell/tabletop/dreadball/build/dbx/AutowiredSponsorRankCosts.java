@@ -14,74 +14,72 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
+package com.wandrell.tabletop.dreadball.build.dbx;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
 
 /**
  * Service implementation of the {@code SponsorCosts}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service("SponsorCosts")
-public class SponsorCostsService implements SponsorCosts {
+@Service("SponsorRankCosts")
+public class AutowiredSponsorRankCosts implements SponsorCosts {
 
-    @Value("${sponsor.asset.cheerleader.cost}")
-    private Integer cheerleaderCost;
+    @Value("${sponsor.asset.cheerleader.rank}")
+    private Integer cheerleaderRank;
 
-    @Value("${sponsor.asset.die.cost}")
-    private Integer dieCost;
+    @Value("${sponsor.asset.die.rank}")
+    private Integer dieRank;
 
-    @Value("${sponsor.asset.medibot.cost}")
-    private Integer medibotCost;
+    @Value("${sponsor.asset.medibot.rank}")
+    private Integer medibotRank;
 
-    @Value("${sponsor.asset.move.cost}")
-    private Integer moveCost;
+    @Value("${sponsor.asset.move.rank}")
+    private Integer moveRank;
 
-    @Value("${sponsor.asset.sabotage.cost}")
-    private Integer sabotageCost;
+    @Value("${sponsor.asset.sabotage.rank}")
+    private Integer sabotageRank;
 
-    @Value("${sponsor.asset.wager.cost}")
-    private Integer wagerCost;
+    @Value("${sponsor.asset.wager.rank}")
+    private Integer wagerRank;
 
     /**
      * Constructs a builder with the specified dependencies.
      */
-    public SponsorCostsService() {
+    public AutowiredSponsorRankCosts() {
         super();
     }
 
     @Override
     public Integer getCheerleaderCost() {
-        return cheerleaderCost;
+        return cheerleaderRank;
     }
 
     @Override
     public Integer getDieCost() {
-        return dieCost;
+        return dieRank;
     }
 
     @Override
     public Integer getMediBotCost() {
-        return medibotCost;
+        return medibotRank;
     }
 
     @Override
     public Integer getSabotageCost() {
-        return sabotageCost;
+        return sabotageRank;
     }
 
     @Override
     public Integer getSpecialMoveCost() {
-        return moveCost;
+        return moveRank;
     }
 
     @Override
     public Integer getWagerCost() {
-        return wagerCost;
+        return wagerRank;
     }
 
 }

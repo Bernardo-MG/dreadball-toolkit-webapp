@@ -14,20 +14,18 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
+package com.wandrell.tabletop.dreadball.build.dbx;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.stereotype.Service;
-
-import com.wandrell.tabletop.dreadball.build.dbx.SponsorDefaults;
+import org.springframework.stereotype.Component;
 
 /**
  * Service implementation of the {@code SponsorCosts}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service
-public class SponsorDefaultsService implements SponsorDefaults {
+@Component
+public class AutowiredSponsorDefaults implements SponsorDefaults {
 
     /**
      * Initial rank.
@@ -38,7 +36,7 @@ public class SponsorDefaultsService implements SponsorDefaults {
     /**
      * Constructs a builder with the specified dependencies.
      */
-    public SponsorDefaultsService() {
+    public AutowiredSponsorDefaults() {
         super();
     }
 
