@@ -102,6 +102,7 @@ public class SponsorValidationController {
         sponsorTeam.setCheerleaders(team.getCheerleaders());
         sponsorTeam.setCoachingDice(team.getCoachingDice());
         sponsorTeam.setMediBots(team.getMediBots());
+        sponsorTeam.setSpecialMoveCards(team.getSpecialMoveCards());
         sponsorTeam.setSabotageCards(team.getNastySurpriseCards());
         sponsorTeam.setWagers(team.getWagers());
 
