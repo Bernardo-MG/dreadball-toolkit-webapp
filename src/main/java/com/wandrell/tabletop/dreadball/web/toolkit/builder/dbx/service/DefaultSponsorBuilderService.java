@@ -21,6 +21,7 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.DefaultRankCostCalc
 import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 
@@ -45,25 +46,6 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
                 "Received a null pointer as Sponsor costs");
         rankCosts = checkNotNull(sponsorRankCosts,
                 "Received a null pointer as Sponsor rank costs");
-    }
-
-    @Override
-    public SponsorAffinitiesSelection
-            getAffinitiesSelectionResult(final Collection<String> affinities) {
-        final Integer rankAdd;
-        final Integer rank;
-        final Iterable<String> filtered;
-
-        rankAdd = affinities.stream()
-                .filter(affinity -> affinity.equals("rank_increase"))
-                .collect(Collectors.toList()).size();
-        filtered = affinities.stream()
-                .filter(affinity -> !affinity.equals("rank_increase"))
-                .collect(Collectors.toList());
-
-        rank = getSponsorDefaults().getInitialRank() + rankAdd;
-
-        return new SponsorAffinitiesSelection(filtered, rank, rank, 0);
     }
 
     @Override
@@ -103,6 +85,25 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
         return new SponsorAffinitiesSelection(affinities, rank, baseRank,
                 teamValue);
+    }
+
+    @Override
+    public SponsorAffinities
+            selectAffinities(final Collection<String> affinities) {
+        final Integer rankAdd;
+        final Integer rank;
+        final Iterable<String> filtered;
+
+        rankAdd = affinities.stream()
+                .filter(affinity -> affinity.equals("rank_increase"))
+                .collect(Collectors.toList()).size();
+        filtered = affinities.stream()
+                .filter(affinity -> !affinity.equals("rank_increase"))
+                .collect(Collectors.toList());
+
+        rank = getSponsorDefaults().getInitialRank() + rankAdd;
+
+        return new SponsorAffinities(filtered, rank, rank);
     }
 
     private final CostCalculator<SponsorTeam> getRankCostCalculator() {

@@ -27,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service.SponsorBuilderService;
@@ -55,20 +56,19 @@ public class SponsorValidationController {
                 "Received a null pointer as sponsor builder service");
     }
 
-    @GetMapping(path = "/affinities",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinitiesSelection
-            getAffinitiesSelectionResult(final ArrayList<String> affinities) {
-        return getSponsorBuilderService()
-                .getAffinitiesSelectionResult(affinities);
-    }
-
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorAffinitiesSelection getSelectionResult(
             final ArrayList<String> affinities, final SponsorTeamAssets assets,
             @RequestParam(defaultValue = "0") final Integer baseRank) {
         return getSponsorBuilderService().getSelectionResult(affinities, assets,
                 baseRank);
+    }
+
+    @GetMapping(path = "/affinities",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final SponsorAffinities
+            selectAffinities(final ArrayList<String> affinities) {
+        return getSponsorBuilderService().selectAffinities(affinities);
     }
 
     private final SponsorBuilderService getSponsorBuilderService() {
