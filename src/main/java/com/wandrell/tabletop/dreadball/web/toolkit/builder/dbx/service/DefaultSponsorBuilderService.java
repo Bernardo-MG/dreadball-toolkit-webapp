@@ -53,35 +53,21 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
             final Collection<String> affinities, final SponsorTeamAssets assets,
             final Integer baseRank) {
         final Integer rank;
-        final Integer assetCost;
         final Integer assetRankCost;
         final Integer teamValue;
         final SponsorTeam sponsorTeam;
-        final Sponsor sponsor;
         final Collection<AffinityGroup> affGroups;
-
-        sponsor = new DefaultSponsor();
-
-        sponsorTeam = new DefaultSponsorTeam(sponsor,
-                getTeamValorationCalculator(), getRankCostCalculator());
 
         affGroups = affinities.stream()
                 .map(affinity -> new DefaultAffinityGroup(affinity))
                 .collect(Collectors.toList());
-        sponsorTeam.getSponsor().setAffinityGroups(affGroups);
 
-        sponsorTeam.setCheerleaders(assets.getCheerleaders());
-        sponsorTeam.setCoachingDice(assets.getCoachingDice());
-        sponsorTeam.setMediBots(assets.getMediBots());
-        sponsorTeam.setSpecialMoveCards(assets.getSpecialMoveCards());
-        sponsorTeam.setSabotageCards(assets.getNastySurpriseCards());
-        sponsorTeam.setWagers(assets.getWagers());
+        sponsorTeam = getSponsorTeam(assets, affGroups);
 
-        assetCost = sponsorTeam.getValoration();
+        teamValue = sponsorTeam.getValoration();
         assetRankCost = sponsorTeam.getRankCost();
 
         rank = baseRank - assetRankCost;
-        teamValue = assetCost;
 
         return new SponsorAffinitiesSelection(affinities, rank, baseRank,
                 teamValue);
@@ -125,6 +111,28 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
     private final SponsorCosts getSponsorRankCosts() {
         return rankCosts;
+    }
+
+    private final SponsorTeam getSponsorTeam(final SponsorTeamAssets assets,
+            final Collection<AffinityGroup> affinities) {
+        final Sponsor sponsor;
+        final SponsorTeam sponsorTeam;
+
+        sponsor = new DefaultSponsor();
+
+        sponsorTeam = new DefaultSponsorTeam(sponsor,
+                getTeamValorationCalculator(), getRankCostCalculator());
+
+        sponsorTeam.getSponsor().setAffinityGroups(affinities);
+
+        sponsorTeam.setCheerleaders(assets.getCheerleaders());
+        sponsorTeam.setCoachingDice(assets.getCoachingDice());
+        sponsorTeam.setMediBots(assets.getMediBots());
+        sponsorTeam.setSpecialMoveCards(assets.getSpecialMoveCards());
+        sponsorTeam.setSabotageCards(assets.getNastySurpriseCards());
+        sponsorTeam.setWagers(assets.getWagers());
+
+        return sponsorTeam;
     }
 
     private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
