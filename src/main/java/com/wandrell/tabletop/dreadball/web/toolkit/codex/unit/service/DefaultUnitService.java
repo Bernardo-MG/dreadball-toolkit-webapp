@@ -20,8 +20,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.List;
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -70,8 +73,8 @@ public final class DefaultUnitService implements UnitService {
     public final Iterable<? extends Unit> getAllAffinityUnits(
             final Iterable<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
-        final Collection<Unit> units;          // Available units
-        final Iterable<? extends AffinityUnit> filtered; // Filtered units
+        final List<Unit> units;          // Available units
+        final Page<? extends AffinityUnit> filtered; // Filtered units
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(pageReq, "Received a null pointer as pagination data");
@@ -85,7 +88,7 @@ public final class DefaultUnitService implements UnitService {
             units.add(generateUnit(affUnit, affinities));
         }
 
-        return units;
+        return new PageImpl<>(units, pageReq, filtered.getTotalElements());
     }
 
     @Override
@@ -160,10 +163,10 @@ public final class DefaultUnitService implements UnitService {
         return getDbxRules().getUnitCost(affinityLevel, unit);
     }
 
-    private final Iterable<? extends AffinityUnit> getUnitsNotHatingAffinities(
+    private final Page<? extends AffinityUnit> getUnitsNotHatingAffinities(
             final Iterable<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
-        final Iterable<? extends AffinityUnit> filtered; // Filtered units
+        final Page<? extends AffinityUnit> filtered; // Filtered units
         final Collection<String> affNames;     // Affinity names
         final Collection<AffinityGroup> affs;     // Affinity names
 
