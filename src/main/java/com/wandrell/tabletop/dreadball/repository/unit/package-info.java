@@ -14,7 +14,7 @@
  * the License.
  */
 /**
- * Availabilities repositories.
+ * Units repositories.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.repository.availability;
+package com.wandrell.tabletop.dreadball.repository.unit;

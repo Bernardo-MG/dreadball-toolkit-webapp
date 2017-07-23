@@ -14,7 +14,7 @@
    <!-- ============================= CONFIGURATION ============================= -->
 
    <!-- Repositories -->
-   <jpa:repositories base-package="com.wandrell.tabletop.dreadball.web.toolkit.repository" />
+   <jpa:repositories base-package="com.wandrell.tabletop.dreadball.**.repository" />
 
    <!-- ================================== JPA ================================== -->
 

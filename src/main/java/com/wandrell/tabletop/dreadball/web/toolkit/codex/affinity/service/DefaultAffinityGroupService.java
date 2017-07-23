@@ -20,7 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.unit.AffinityGroupRepository;
+import com.wandrell.tabletop.dreadball.repository.unit.AffinityGroupRepository;
 
 /**
  * Default implementation of the affinity group codex service.

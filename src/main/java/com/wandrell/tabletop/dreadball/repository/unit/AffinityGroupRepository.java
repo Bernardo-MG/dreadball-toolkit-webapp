@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.repository.unit;
+package com.wandrell.tabletop.dreadball.repository.unit;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 

@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
-import com.wandrell.tabletop.dreadball.web.toolkit.repository.availability.SponsorAffinityGroupAvailabilityRepository;
+import com.wandrell.tabletop.dreadball.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 
 @Service("sponsorAffinityGroupAvailabilityService")
 public class DefaultSponsorAffinityGroupAvailabilityService

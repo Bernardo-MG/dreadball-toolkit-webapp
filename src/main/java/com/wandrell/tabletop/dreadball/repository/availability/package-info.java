@@ -13,19 +13,8 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
-package com.wandrell.tabletop.dreadball.web.toolkit.repository.availability;
-
-import org.springframework.data.repository.PagingAndSortingRepository;
-
-import com.wandrell.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
-
 /**
- * Repository for Sponsor affinity groups.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * Availabilities repositories.
  */
-public interface SponsorAffinityGroupAvailabilityRepository extends
-        PagingAndSortingRepository<PersistentSponsorAffinityGroupAvailability, Integer> {
 
-}
+package com.wandrell.tabletop.dreadball.repository.availability;
