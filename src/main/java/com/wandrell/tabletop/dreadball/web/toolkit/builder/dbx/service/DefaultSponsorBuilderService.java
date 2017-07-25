@@ -6,6 +6,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -29,6 +31,9 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 
 @Service
 public class DefaultSponsorBuilderService implements SponsorBuilderService {
+
+    private static final Logger          LOGGER = LoggerFactory
+            .getLogger(DefaultSponsorBuilderService.class);
 
     /**
      * Affinity units repository.

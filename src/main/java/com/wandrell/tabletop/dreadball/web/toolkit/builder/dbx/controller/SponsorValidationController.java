@@ -58,7 +58,8 @@ public class SponsorValidationController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorAffinitiesSelection getSelectionResult(
-            final ArrayList<String> affinities, final ArrayList<String> units,
+            @RequestParam("affinities") final ArrayList<String> affinities,
+            @RequestParam("units") final ArrayList<String> units,
             final SponsorTeamAssets assets,
             @RequestParam(defaultValue = "0") final Integer baseRank) {
         return getSponsorBuilderService().getSelectionResult(affinities, units,
@@ -67,8 +68,8 @@ public class SponsorValidationController {
 
     @GetMapping(path = "/affinities",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinities
-            selectAffinities(final ArrayList<String> affinities) {
+    public final SponsorAffinities selectAffinities(
+            @RequestParam("affinities") final ArrayList<String> affinities) {
         return getSponsorBuilderService().selectAffinities(affinities);
     }
 
