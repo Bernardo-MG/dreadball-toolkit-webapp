@@ -21,6 +21,8 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.DefaultRankCostCalc
 import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
+import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
@@ -28,16 +30,22 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 @Service
 public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
-    private final SponsorCosts    costs;
+    /**
+     * Affinity units repository.
+     */
+    private final AffinityUnitRepository affinityUnitRepository;
 
-    private final SponsorCosts    rankCosts;
+    private final SponsorCosts           costs;
 
-    private final SponsorDefaults sponsorDefaults;
+    private final SponsorCosts           rankCosts;
+
+    private final SponsorDefaults        sponsorDefaults;
 
     @Autowired
     public DefaultSponsorBuilderService(final SponsorDefaults defaults,
             @Qualifier("SponsorCosts") final SponsorCosts sponsorCosts,
-            @Qualifier("SponsorRankCosts") final SponsorCosts sponsorRankCosts) {
+            @Qualifier("SponsorRankCosts") final SponsorCosts sponsorRankCosts,
+            final AffinityUnitRepository unitsRepository) {
         super();
 
         sponsorDefaults = checkNotNull(defaults,
@@ -46,31 +54,47 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
                 "Received a null pointer as Sponsor costs");
         rankCosts = checkNotNull(sponsorRankCosts,
                 "Received a null pointer as Sponsor rank costs");
+        affinityUnitRepository = checkNotNull(unitsRepository,
+                "Received a null pointer as units repository");
     }
 
     @Override
     public SponsorAffinitiesSelection getSelectionResult(
-            final Collection<String> affinities, final SponsorTeamAssets assets,
+            final Collection<String> affinities,
+            final Collection<String> unitNames, final SponsorTeamAssets assets,
             final Integer baseRank) {
         final Integer rank;
         final Integer assetRankCost;
         final Integer teamValue;
         final SponsorTeam sponsorTeam;
         final Collection<AffinityGroup> affGroups;
+        final Collection<? extends Unit> units;
+        final Collection<String> acceptedUnits;
+
+        checkNotNull(affinities, "Received a null pointer as affinities");
+        checkNotNull(unitNames, "Received a null pointer as unit names");
+        checkNotNull(assets, "Received a null pointer as assets");
+        checkNotNull(baseRank, "Received a null pointer as base rank");
 
         affGroups = affinities.stream()
                 .map(affinity -> new DefaultAffinityGroup(affinity))
                 .collect(Collectors.toList());
 
-        sponsorTeam = getSponsorTeam(assets, affGroups);
+        units = getAffinityUnitRepository().findByTemplateName(unitNames);
+
+        sponsorTeam = getSponsorTeam(assets, units, affGroups);
 
         teamValue = sponsorTeam.getValoration();
         assetRankCost = sponsorTeam.getRankCost();
 
         rank = baseRank - assetRankCost;
 
-        return new SponsorAffinitiesSelection(affinities, rank, baseRank,
-                teamValue);
+        acceptedUnits = sponsorTeam.getPlayers().values().stream()
+                .map(unit -> unit.getTemplateName())
+                .collect(Collectors.toList());
+
+        return new SponsorAffinitiesSelection(affinities, acceptedUnits, rank,
+                baseRank, teamValue);
     }
 
     @Override
@@ -79,6 +103,8 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         final Integer rankAdd;
         final Integer rank;
         final Iterable<String> filtered;
+
+        checkNotNull(affinities, "Received a null pointer as affinities");
 
         rankAdd = affinities.stream()
                 .filter(affinity -> affinity.equals("rank_increase"))
@@ -90,6 +116,10 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         rank = getSponsorDefaults().getInitialRank() + rankAdd;
 
         return new SponsorAffinities(filtered, rank, rank);
+    }
+
+    private final AffinityUnitRepository getAffinityUnitRepository() {
+        return affinityUnitRepository;
     }
 
     private final CostCalculator<SponsorTeam> getRankCostCalculator() {
@@ -114,6 +144,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
     }
 
     private final SponsorTeam getSponsorTeam(final SponsorTeamAssets assets,
+            final Collection<? extends Unit> units,
             final Collection<AffinityGroup> affinities) {
         final Sponsor sponsor;
         final SponsorTeam sponsorTeam;
@@ -124,6 +155,11 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
                 getTeamValorationCalculator(), getRankCostCalculator());
 
         sponsorTeam.getSponsor().setAffinityGroups(affinities);
+
+        for (final Unit unit : units) {
+            // TODO: Set costs
+            sponsorTeam.addPlayer(unit);
+        }
 
         sponsorTeam.setCheerleaders(assets.getCheerleaders());
         sponsorTeam.setCoachingDice(assets.getCoachingDice());

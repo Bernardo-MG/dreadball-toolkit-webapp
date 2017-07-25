@@ -27,6 +27,7 @@ export const validateSponsorAffinities = (affinities = []) => {
 };
 
 export const validateSponsorTeam = (affinities = [],
+                                    units = [],
                                     baseRank = 0,
                                     cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => {
    return {
@@ -34,6 +35,7 @@ export const validateSponsorTeam = (affinities = [],
          types: [types.REQUEST_SPONSOR_TEAM_VALIDATION, types.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS, types.REQUEST_SPONSOR_TEAM_VALIDATION_FAILURE],
          endpoint: validationEndpoint,
          params: { affinities,
+                     units,
                      baseRank,
                      cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers}
       }

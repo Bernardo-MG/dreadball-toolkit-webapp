@@ -29,8 +29,8 @@ import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.S
 public interface SponsorBuilderService {
 
     public SponsorAffinitiesSelection getSelectionResult(
-            final Collection<String> affinities, final SponsorTeamAssets assets,
-            final Integer baseRank);
+            final Collection<String> affinities, final Collection<String> units,
+            final SponsorTeamAssets assets, final Integer baseRank);
 
     public SponsorAffinities
             selectAffinities(final Collection<String> affinities);

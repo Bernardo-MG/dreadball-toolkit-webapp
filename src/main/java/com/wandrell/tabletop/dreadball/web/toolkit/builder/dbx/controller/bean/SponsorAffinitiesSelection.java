@@ -13,13 +13,16 @@ public class SponsorAffinitiesSelection {
 
     private final Integer          teamValue;
 
+    private final Iterable<String> units;
+
     public SponsorAffinitiesSelection(final Iterable<String> affinities,
-            final Integer rank, final Integer baseRank,
-            final Integer teamValue) {
+            final Iterable<String> units, final Integer rank,
+            final Integer baseRank, final Integer teamValue) {
         super();
 
         this.affinities = checkNotNull(affinities,
                 "Received a null pointer as affinities");
+        this.units = checkNotNull(units, "Received a null pointer as units");
         this.rank = checkNotNull(rank, "Received a null pointer as rank");
         this.baseRank = checkNotNull(baseRank,
                 "Received a null pointer as base rank");
@@ -41,6 +44,10 @@ public class SponsorAffinitiesSelection {
 
     public Integer getTeamValue() {
         return teamValue;
+    }
+
+    public Iterable<String> getUnits() {
+        return units;
     }
 
 }

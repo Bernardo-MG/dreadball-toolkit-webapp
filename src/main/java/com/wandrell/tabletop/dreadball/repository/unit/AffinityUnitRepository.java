@@ -16,6 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.repository.unit;
 
+import java.util.Collection;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.Query;
@@ -55,5 +57,8 @@ public interface AffinityUnitRepository
      * @return the affinity unit with the specified template name
      */
     public PersistentAffinityUnit findOneByTemplateName(final String name);
+
+    public Collection<PersistentAffinityUnit>
+            findByTemplateName(final Iterable<String> names);
 
 }
