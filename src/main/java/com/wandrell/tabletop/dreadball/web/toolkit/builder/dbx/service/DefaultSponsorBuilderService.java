@@ -4,6 +4,7 @@ package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -81,11 +82,17 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         checkNotNull(assets, "Received a null pointer as assets");
         checkNotNull(baseRank, "Received a null pointer as base rank");
 
+        LOGGER.info("Units {}", unitNames);
+
         affGroups = affinities.stream()
                 .map(affinity -> new DefaultAffinityGroup(affinity))
                 .collect(Collectors.toList());
 
-        units = getAffinityUnitRepository().findByTemplateName(unitNames);
+        if (!unitNames.isEmpty()) {
+            units = getAffinityUnitRepository().findByTemplateName(unitNames);
+        } else {
+            units = Collections.emptyList();
+        }
 
         sponsorTeam = getSponsorTeam(assets, units, affGroups);
 
