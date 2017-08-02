@@ -13,18 +13,27 @@ class AddUnitTableRow extends Component {
 
    unit;
    index;
+   validateSponsorTeam;
+
+   sponsor;
 
    chooseUnit = () => {
-      this.chooseSponsorUnit(this.unit);
+      const units = this.sponsor.units.slice();
+      units.push(this.unit);
+      this.validateSponsorTeam(this.sponsor.affinities, units,
+            this.sponsor.baseRank,
+            this.sponsor.cheerleaders, this.sponsor.coachingDice, this.sponsor.mediBots, this.sponsor.specialMoveCards, this.sponsor.nastySurpriseCards, this.sponsor.wagers);
    };
 
    constructor(props) {
       super(props);
+      
+      this.sponsor = props.sponsor;
 
       this.unit = props.source.templateName;
       this.index = props.index;
       
-      this.chooseSponsorUnit = props.actions.chooseSponsorUnit;
+      this.validateSponsorTeam = props.actions.validateSponsorTeam;
    }
 
    render() {
@@ -46,7 +55,9 @@ class AddUnitTableRow extends Component {
 }
 
 const mapStateToProps = (state) => {
-   return {}
+   return {
+      sponsor: state.builder.sponsor
+   }
 };
 
 const mapDispatchToProps = (dispatch) => {

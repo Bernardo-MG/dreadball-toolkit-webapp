@@ -42,13 +42,6 @@ export const validateSponsorTeam = (affinities = [],
    }
 };
 
-export const chooseSponsorUnit = (unit) => {
-   return {
-      type: types.CHOOSE_SPONSOR_UNIT,
-      payload: unit
-   }
-};
-
 export const updateSponsorCoachingDice = (value) => {
    return {
       type: types.UPDATE_SPONSOR_COACHING_DICE,
