@@ -36,6 +36,15 @@ public class TeamPlayer {
     /**
      * Default constructor.
      */
+    public TeamPlayer(final String name) {
+        super();
+
+        templateName = name;
+    }
+
+    /**
+     * Default constructor.
+     */
     public TeamPlayer() {
         super();
     }

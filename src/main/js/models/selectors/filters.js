@@ -1,9 +1,16 @@
 
-export const filterById = (idSelector, loader, modelSelector) => (session, payload) => {
+export const filterById = (idSelector, loader, modelSelector, idProcessor) => (session, payload) => {
    let ids;
    let result;
+   let processor;
+   
+   if(idProcessor) {
+      processor = idProcessor;
+   } else {
+      processor = getIdsPaginated;
+   }
 
-   ids = getIdsPaginated(payload);   
+   ids = processor(payload);   
    if (ids.length) {
       result = filterByIds(modelSelector, idSelector, loader, session, ids);
    } else {

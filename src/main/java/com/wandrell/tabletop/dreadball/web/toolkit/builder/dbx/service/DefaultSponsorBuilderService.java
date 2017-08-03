@@ -5,6 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Iterator;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -29,6 +30,7 @@ import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.TeamPlayer;
 
 @Service
 public class DefaultSponsorBuilderService implements SponsorBuilderService {
@@ -75,7 +77,8 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         final SponsorTeam sponsorTeam;
         final Collection<AffinityGroup> affGroups;
         final Collection<? extends Unit> units;
-        final Collection<String> acceptedUnits;
+        final Collection<TeamPlayer> acceptedUnits;
+        final Iterator<TeamPlayer> unitsItr;
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(unitNames, "Received a null pointer as unit names");
@@ -102,8 +105,14 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         rank = baseRank - assetRankCost;
 
         acceptedUnits = sponsorTeam.getPlayers().values().stream()
-                .map(unit -> unit.getTemplateName())
+                .map(unit -> new TeamPlayer(unit.getTemplateName()))
                 .collect(Collectors.toList());
+
+        // TODO: Don't iterate twice
+        unitsItr = acceptedUnits.iterator();
+        for (Integer i = 1; i <= acceptedUnits.size(); i++) {
+            unitsItr.next().setPosition(i);
+        }
 
         return new SponsorAffinitiesSelection(affinities, acceptedUnits, rank,
                 baseRank, teamValue);

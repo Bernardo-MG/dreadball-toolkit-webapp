@@ -5,18 +5,18 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 public class SponsorAffinitiesSelection {
 
-    private final Iterable<String> affinities;
+    private final Iterable<String>     affinities;
 
-    private final Integer          baseRank;
+    private final Integer              baseRank;
 
-    private final Integer          rank;
+    private final Integer              rank;
 
-    private final Integer          teamValue;
+    private final Integer              teamValue;
 
-    private final Iterable<String> units;
+    private final Iterable<TeamPlayer> units;
 
     public SponsorAffinitiesSelection(final Iterable<String> affinities,
-            final Iterable<String> units, final Integer rank,
+            final Iterable<TeamPlayer> units, final Integer rank,
             final Integer baseRank, final Integer teamValue) {
         super();
 
@@ -46,7 +46,7 @@ public class SponsorAffinitiesSelection {
         return teamValue;
     }
 
-    public Iterable<String> getUnits() {
+    public Iterable<TeamPlayer> getUnits() {
         return units;
     }
 
