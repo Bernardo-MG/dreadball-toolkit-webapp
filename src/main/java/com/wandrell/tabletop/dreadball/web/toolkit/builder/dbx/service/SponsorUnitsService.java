@@ -14,26 +14,34 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.codex.unit.service;
+package com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.service;
 
 import org.springframework.data.domain.Pageable;
 
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 /**
- * Service for the units codex.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface UnitService {
+public interface SponsorUnitsService {
 
     /**
-     * Returns all the units.
+     * Returns all the affinity units for the specified affinity groups.
+     * <p>
+     * Units which hate any of the affinities won't be returned, for all the
+     * others the final cost will be calculated and set into the returned
+     * object.
      * 
+     * @param affinities
+     *            affinities for filtering
      * @param pageReq
      *            pagination data
-     * @return all the units
+     * @return the units available for the affinities
      */
-    public Iterable<? extends Unit> getAllAffinityUnits(final Pageable pageReq);
+    public Iterable<? extends Unit> getAllAffinityUnits(
+            final Iterable<? extends AffinityGroup> affinities,
+            final Pageable pageReq);
 
 }

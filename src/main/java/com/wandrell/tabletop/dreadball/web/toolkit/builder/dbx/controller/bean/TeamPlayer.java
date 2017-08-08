@@ -35,6 +35,9 @@ public class TeamPlayer {
 
     /**
      * Default constructor.
+     * 
+     * @param name
+     *            unit name
      */
     public TeamPlayer(final String name) {
         super();

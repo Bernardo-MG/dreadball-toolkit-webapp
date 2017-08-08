@@ -46,6 +46,8 @@ public class SponsorValidationController {
     /**
      * Constructs a controller with the specified dependencies.
      * 
+     * @param sponsorBuilderService
+     *            sponsor builder service
      */
     @Autowired
     public SponsorValidationController(

@@ -18,8 +18,6 @@ package com.wandrell.tabletop.dreadball.web.toolkit.codex.unit.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -29,7 +27,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.web.toolkit.codex.unit.service.UnitService;
 
@@ -63,18 +60,18 @@ public class UnitCodexController {
     /**
      * Returns the view for all the affinity units.
      * 
-     * @param affinities
-     *            affinities for filtering
      * @param page
      *            page number
      * @param size
      *            page size
+     * @param orderBy
+     *            field to order by
+     * @param direction
+     *            ordering direction
      * @return the view for all the affinity units
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<? extends Unit> getDbxUnits(@RequestParam(
-            name = "affinities", required = false,
-            defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities,
+    public final Iterable<? extends Unit> getDbxUnits(
             @RequestParam(name = "page", defaultValue = "0") final Integer page,
             @RequestParam(name = "size",
                     defaultValue = "10") final Integer size,
@@ -94,7 +91,7 @@ public class UnitCodexController {
             pageReq = new PageRequest(page, size, direction, orderBy);
         }
 
-        return getUnitCodexService().getAllAffinityUnits(affinities, pageReq);
+        return getUnitCodexService().getAllAffinityUnits(pageReq);
     }
 
     /**
