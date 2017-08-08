@@ -24,9 +24,13 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.CostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
 import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
+import com.wandrell.tabletop.dreadball.rules.DbxRules;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
@@ -49,11 +53,17 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
     private final SponsorDefaults        sponsorDefaults;
 
+    /**
+     * DBX rules.
+     */
+    private final DbxRules               dbxRules;
+
     @Autowired
     public DefaultSponsorBuilderService(final SponsorDefaults defaults,
             @Qualifier("SponsorCosts") final SponsorCosts sponsorCosts,
             @Qualifier("SponsorRankCosts") final SponsorCosts sponsorRankCosts,
-            final AffinityUnitRepository unitsRepository) {
+            final AffinityUnitRepository unitsRepository,
+            final DbxRules rules) {
         super();
 
         sponsorDefaults = checkNotNull(defaults,
@@ -64,6 +74,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
                 "Received a null pointer as Sponsor rank costs");
         affinityUnitRepository = checkNotNull(unitsRepository,
                 "Received a null pointer as units repository");
+        dbxRules = checkNotNull(rules, "Received a null pointer as DBX rules");
     }
 
     @Override
@@ -76,7 +87,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         final Integer teamValue;
         final SponsorTeam sponsorTeam;
         final Collection<AffinityGroup> affGroups;
-        final Collection<? extends Unit> units;
+        final Collection<? extends AffinityUnit> units;
         final Collection<TeamPlayer> acceptedUnits;
         final Iterator<TeamPlayer> unitsItr;
 
@@ -165,10 +176,13 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
     }
 
     private final SponsorTeam getSponsorTeam(final SponsorTeamAssets assets,
-            final Collection<? extends Unit> units,
+            final Collection<? extends AffinityUnit> units,
             final Collection<AffinityGroup> affinities) {
         final Sponsor sponsor;
         final SponsorTeam sponsorTeam;
+        Unit unitSetUp;
+        Integer cost;
+        AffinityLevel affinityLevel;  // Affinity level relationship
 
         sponsor = new DefaultSponsor();
 
@@ -177,9 +191,13 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
         sponsorTeam.getSponsor().setAffinityGroups(affinities);
 
-        for (final Unit unit : units) {
-            // TODO: Set costs
-            sponsorTeam.addPlayer(unit);
+        for (final AffinityUnit unit : units) {
+            affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
+            cost = getDbxRules().getUnitCost(affinityLevel, unit);
+            unitSetUp = new DefaultUnit(unit.getTemplateName(), cost,
+                    unit.getRole(), unit.getAttributes(), unit.getAbilities(),
+                    unit.getMvp(), unit.getGiant());
+            sponsorTeam.addPlayer(unitSetUp);
         }
 
         sponsorTeam.setCheerleaders(assets.getCheerleaders());
@@ -200,6 +218,15 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
                 getSponsorCosts().getCheerleaderCost(),
                 getSponsorCosts().getWagerCost(),
                 getSponsorCosts().getMediBotCost());
+    }
+
+    /**
+     * Returns the DBX rules.
+     * 
+     * @return the DBX rules
+     */
+    private final DbxRules getDbxRules() {
+        return dbxRules;
     }
 
 }
