@@ -49,6 +49,9 @@ public interface AffinityUnitRepository
             @Param("affinities") final Iterable<String> affinities,
             final Pageable pageReq);
 
+    public Collection<PersistentAffinityUnit>
+            findByTemplateName(final Iterable<String> names);
+
     /**
      * Returns the affinity unit with the specified template name.
      * 
@@ -57,8 +60,5 @@ public interface AffinityUnitRepository
      * @return the affinity unit with the specified template name
      */
     public PersistentAffinityUnit findOneByTemplateName(final String name);
-
-    public Collection<PersistentAffinityUnit>
-            findByTemplateName(final Iterable<String> names);
 
 }

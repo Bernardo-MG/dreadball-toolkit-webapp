@@ -35,6 +35,13 @@ public class TeamPlayer {
 
     /**
      * Default constructor.
+     */
+    public TeamPlayer() {
+        super();
+    }
+
+    /**
+     * Default constructor.
      * 
      * @param name
      *            unit name
@@ -43,13 +50,6 @@ public class TeamPlayer {
         super();
 
         templateName = name;
-    }
-
-    /**
-     * Default constructor.
-     */
-    public TeamPlayer() {
-        super();
     }
 
     /**

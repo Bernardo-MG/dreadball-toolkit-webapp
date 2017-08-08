@@ -72,10 +72,6 @@ public class SponsorAffinityController {
                 "Received a null pointer as Sponsor units service");
     }
 
-    private final SponsorUnitsService getSponsorUnitsService() {
-        return sponsorUnitsService;
-    }
-
     /**
      * Returns the view for all the affinity units.
      * 
@@ -125,6 +121,10 @@ public class SponsorAffinityController {
     private final SponsorAffinityGroupAvailabilityService
             getSponsorAffinityGroupAvailabilityService() {
         return sponsorAffinityGroupAvailabilityService;
+    }
+
+    private final SponsorUnitsService getSponsorUnitsService() {
+        return sponsorUnitsService;
     }
 
 }

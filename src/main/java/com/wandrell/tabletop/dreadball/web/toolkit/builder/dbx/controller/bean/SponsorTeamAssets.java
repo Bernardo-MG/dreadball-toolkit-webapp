@@ -31,42 +31,42 @@ public class SponsorTeamAssets {
      */
     @NotNull
     @Min(0)
-    private Integer cheerleaders     = 0;
+    private Integer cheerleaders       = 0;
 
     /**
      * Number of coaching dice.
      */
     @NotNull
     @Min(0)
-    private Integer coachingDice     = 0;
+    private Integer coachingDice       = 0;
 
     /**
      * Number of medi-bots.
      */
     @NotNull
     @Min(0)
-    private Integer mediBots         = 0;
+    private Integer mediBots           = 0;
 
     /**
      * Number of sabotage cards.
      */
     @NotNull
     @Min(0)
-    private Integer nastySurpriseCards    = 0;
+    private Integer nastySurpriseCards = 0;
 
     /**
      * Number of special move cards.
      */
     @NotNull
     @Min(0)
-    private Integer specialMoveCards = 0;
+    private Integer specialMoveCards   = 0;
 
     /**
      * Number of wagers.
      */
     @NotNull
     @Min(0)
-    private Integer wagers           = 0;
+    private Integer wagers             = 0;
 
     /**
      * Default constructor.
