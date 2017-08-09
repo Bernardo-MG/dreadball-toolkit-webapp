@@ -6,7 +6,8 @@ import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumber
 
 const MediBotInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorMediBot}
+      <SponsorBoundNumberInput {...props}
+         handleChange={props.actions.updateSponsorMediBot}
          updateSponsor={(value, sponsor) => sponsor.mediBots = value} />
    );
 }
@@ -14,13 +15,13 @@ const MediBotInput = (props) => {
 const mapStateToProps = (state) => {
    return {
       value: state.builder.sponsor.mediBots
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(Actions, dispatch)
-   }
+   };
 };
 
 export default connect(

@@ -11,11 +11,12 @@ const SponsorTeamValue = (props) => {
 const mapStateToProps = (state) => {
    return {
       teamValue: state.builder.sponsor.teamValue
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => {
+   return {};
+};
 
 export default connect(
    mapStateToProps,

@@ -6,7 +6,8 @@ import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumber
 
 const CoachingDiceInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorCoachingDice}
+      <SponsorBoundNumberInput {...props}
+         handleChange={props.actions.updateSponsorCoachingDice}
          updateSponsor={(value, sponsor) => sponsor.coachingDice = value} />
    );
 }
@@ -14,13 +15,13 @@ const CoachingDiceInput = (props) => {
 const mapStateToProps = (state) => {
    return {
       value: state.builder.sponsor.coachingDice
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(Actions, dispatch)
-   }
+   };
 };
 
 export default connect(

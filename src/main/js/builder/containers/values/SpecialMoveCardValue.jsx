@@ -11,11 +11,12 @@ const SpecialMoveCardValue = (props) => {
 const mapStateToProps = (state) => {
    return {
       rank: state.builder.sponsor.specialMoveCards
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => {
+   return {};
+};
 
 export default connect(
    mapStateToProps,

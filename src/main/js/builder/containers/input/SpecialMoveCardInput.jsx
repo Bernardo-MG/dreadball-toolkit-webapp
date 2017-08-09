@@ -6,7 +6,8 @@ import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumber
 
 const SpecialMoveCardInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorSpecialMoveCard}
+      <SponsorBoundNumberInput {...props}
+         handleChange={props.actions.updateSponsorSpecialMoveCard}
          updateSponsor={(value, sponsor) => sponsor.specialMoveCards = value} />
    );
 }
@@ -14,13 +15,13 @@ const SpecialMoveCardInput = (props) => {
 const mapStateToProps = (state) => {
    return {
       value: state.builder.sponsor.specialMoveCards
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(Actions, dispatch)
-   }
+   };
 };
 
 export default connect(

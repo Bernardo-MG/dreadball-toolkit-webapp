@@ -11,11 +11,12 @@ const WagerValue = (props) => {
 const mapStateToProps = (state) => {
    return {
       rank: state.builder.sponsor.wagers
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => {
+   return {};
+};
 
 export default connect(
    mapStateToProps,

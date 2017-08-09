@@ -6,7 +6,8 @@ import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumber
 
 const NastySurpriseCardInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorNastySurpriseCard}
+      <SponsorBoundNumberInput {...props}
+         handleChange={props.actions.updateSponsorNastySurpriseCard}
          updateSponsor={(value, sponsor) => sponsor.nastySurpriseCards = value} />
    );
 }
@@ -14,13 +15,13 @@ const NastySurpriseCardInput = (props) => {
 const mapStateToProps = (state) => {
    return {
       value: state.builder.sponsor.nastySurpriseCards
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(Actions, dispatch)
-   }
+   };
 };
 
 export default connect(

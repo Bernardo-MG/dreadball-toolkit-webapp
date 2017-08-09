@@ -11,11 +11,12 @@ const CheerleadersValue = (props) => {
 const mapStateToProps = (state) => {
    return {
       rank: state.builder.sponsor.cheerleaders
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => {
+   return {};
+};
 
 export default connect(
    mapStateToProps,

@@ -27,7 +27,7 @@ class AddUnitTableRow extends Component {
 
    constructor(props) {
       super(props);
-      
+
       this.sponsor = props.sponsor;
 
       this.unit = props.source.templateName;
@@ -57,13 +57,13 @@ class AddUnitTableRow extends Component {
 const mapStateToProps = (state) => {
    return {
       sponsor: state.builder.sponsor
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(actions, dispatch)
-   }
+   };
 };
 
 export default connect(

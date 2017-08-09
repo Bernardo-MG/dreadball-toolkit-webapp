@@ -11,11 +11,12 @@ const MediBotValue = (props) => {
 const mapStateToProps = (state) => {
    return {
       rank: state.builder.sponsor.mediBots
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => {
+   return {};
+};
 
 export default connect(
    mapStateToProps,

@@ -11,11 +11,12 @@ const SponsorCoachingDiceValue = (props) => {
 const mapStateToProps = (state) => {
    return {
       rank: state.builder.sponsor.coachingDice
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => {
+   return {};
+};
 
 export default connect(
    mapStateToProps,

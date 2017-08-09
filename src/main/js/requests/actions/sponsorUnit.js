@@ -14,5 +14,5 @@ export const fetch = (affinities = {}, page = 0, orderBy = 'name', order = 'ASC'
          order,
          params: { affinities }
       }
-   }
+   };
 };

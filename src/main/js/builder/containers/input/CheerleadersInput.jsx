@@ -6,7 +6,8 @@ import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumber
 
 const CheerleadersInput = (props) => {
    return (
-      <SponsorBoundNumberInput {...props} handleChange={props.actions.updateSponsorCheerleaders}
+      <SponsorBoundNumberInput {...props}
+         handleChange={props.actions.updateSponsorCheerleaders}
          updateSponsor={(value, sponsor) => sponsor.cheerleaders = value}/>
    );
 }
@@ -14,13 +15,13 @@ const CheerleadersInput = (props) => {
 const mapStateToProps = (state) => {
    return {
       value: state.builder.sponsor.cheerleaders
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(Actions, dispatch)
-   }
+   };
 };
 
 export default connect(

@@ -22,7 +22,7 @@ class SponsorBoundNumberInput extends Component {
 
    constructor(props) {
       super(props);
-      
+
       this.sponsor = props.sponsor;
 
       this.handleChange = props.handleChange;
@@ -44,13 +44,13 @@ class SponsorBoundNumberInput extends Component {
 const mapStateToProps = (state) => {
    return {
       sponsor: state.builder.sponsor
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(Actions, dispatch)
-   }
+   };
 };
 
 export default connect(

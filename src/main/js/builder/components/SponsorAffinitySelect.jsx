@@ -10,13 +10,13 @@ class SponsorAffinitySelect extends Component {
    handleChange = (value) => {
       const selected = value.option.value;
       let affinity;
-      
-      if(value.option.rank){
+
+      if (value.option.rank) {
          affinity = value.option.value;
       } else {
          affinity = value.option.affinity;
       }
-      
+
       this.setState({
          affinity,
          value: selected
