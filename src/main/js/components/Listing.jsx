@@ -8,13 +8,15 @@ const Listing = (props) => {
    return (
       <List>
          {props.source.map((element, i) => {
+            let item;
+
             if(element){
-               return (
-                  <ListItem key={i} alignContent='center' full={ false } separator='horizontal'>{element}</ListItem>
-               );
+               item = <ListItem key={i} alignContent='center' full={ false } separator='horizontal'>{element}</ListItem>;
             } else {
-               return null;
+               item = null;
             }
+
+            return item;
          })}
       </List>
    );
