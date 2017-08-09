@@ -5,7 +5,7 @@ import * as Actions from 'builder/actions';
 import DbxTeamBuilder from 'builder/components/views/DbxTeamBuilder';
 
 class ContainerDbxTeamBuilder extends Component {
-   
+
    props;
    validate;
 
@@ -33,7 +33,7 @@ class ContainerDbxTeamBuilder extends Component {
 const mapStateToProps = (state) => {
    return {
       affinities: state.builder.sponsor.affinities
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => ({

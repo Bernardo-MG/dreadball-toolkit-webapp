@@ -10,7 +10,7 @@ const NastySurpriseCardInput = (props) => {
          handleChange={props.actions.updateSponsorNastySurpriseCard}
          updateSponsor={(value, sponsor) => sponsor.nastySurpriseCards = value} />
    );
-}
+};
 
 const mapStateToProps = (state) => {
    return {

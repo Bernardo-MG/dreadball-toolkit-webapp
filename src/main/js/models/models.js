@@ -39,9 +39,9 @@ export class Affinity extends Model {
       case REQUEST_SPONSOR_UNITS_SUCCESS:
       case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
          const affinities = payload.entities.affinities;
-         if(affinities){
+         if (affinities) {
             forEachValue(affinities,
-                  affinity => {
+                  (affinity) => {
                      if (!Affinity.filter({ name: affinity.name }).exists()) {
                         Affinity.create(affinity);
                      }
@@ -81,7 +81,7 @@ SponsorAffinityAvailability.fields = {
    affinityGroups: many('Affinity', 'sponsorAvaAffinityGroups')
 };
 SponsorAffinityAvailability.options = {
-   idAttribute: 'name',
+   idAttribute: 'name'
 };
 
 export class Player extends ValidatingModel {
@@ -92,7 +92,7 @@ export class Player extends ValidatingModel {
          const units = payload.entities.units;
          forEachValue(units,
                unit => {
-                  if (!Player.filter({ templateName : unit.templateName }).exists()) {
+                  if (!Player.filter({ templateName: unit.templateName }).exists()) {
                      Player.create(unit);
                   }
                }
@@ -121,24 +121,6 @@ Player.fields = {
 Player.options = {
    idAttribute: 'templateName'
 };
-//Player.propTypes = {
-//   name: PropTypes.string.isRequired,
-//   role: PropTypes.string.isRequired,
-//   move: PropTypes.number.isRequired,
-//   strength: PropTypes.number.isRequired,
-//   speed: PropTypes.number.isRequired,
-//   skill: PropTypes.number.isRequired,
-//   armor: PropTypes.number.isRequired,
-//   stranger_cost: PropTypes.number,
-//   ally_cost: PropTypes.number,
-//   ally_cost: PropTypes.number,
-//   friend_cost: PropTypes.number,
-//   cost: PropTypes.number,
-//   abilities: PropTypes.arrayOf(PropTypes.oneOfType([
-//      PropTypes.instanceOf(Ability),
-//      PropTypes.string,
-//   ])).isRequired,
-//};
 
 export class RatedPlayer extends ValidatingModel {
    static reducer(action, RatedPlayer, session) {

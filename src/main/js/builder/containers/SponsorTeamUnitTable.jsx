@@ -10,8 +10,12 @@ class SponsorTeamUnitTable extends Component {
    constructor(props) {
       super(props);
 
-      let positions = props.sponsorUnits.map(unit => unit.position);
-      let posUnits = props.units.map((unit, i) => {return { position: positions[i], ...unit }});
+      const positions = props.sponsorUnits.map(unit => unit.position);
+      let posUnits = props.units.map((unit, i) => {
+         return {
+            position: positions[i], ...unit
+         };
+      });
 
       this.source = posUnits;
    }
@@ -27,11 +31,11 @@ const mapStateToProps = (state) => {
    return {
       units: unitsSponsor(state),
       sponsorUnits: state.builder.sponsor.units
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
-   return {}
+   return {};
 };
 
 export default connect(

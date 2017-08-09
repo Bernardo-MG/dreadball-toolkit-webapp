@@ -1,15 +1,9 @@
 import React, { Component } from 'react';
 
-import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
-import Columns from 'grommet/components/Columns';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
-import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
-import Layer from 'grommet/components/Layer';
-import NumberInput from 'grommet/components/NumberInput';
-import Section from 'grommet/components/Section';
 import TextInput from 'grommet/components/TextInput';
 
 import SponsorTeamUnitTable from 'builder/containers/SponsorTeamUnitTable';

@@ -1,10 +1,14 @@
 
 const appendBase = (url) => {
-   if(url.indexOf(ROUTE_BASE) === -1) {
-      return ROUTE_BASE + url
+   let result;
+   
+   if (url.indexOf(ROUTE_BASE) === -1) {
+      result = ROUTE_BASE + url;
    } else {
-      return url
+      result = url;
    }
+   
+   return result;
 }
 
 const applyParams = (url, params) => {
@@ -14,7 +18,7 @@ const applyParams = (url, params) => {
    urlParams = appendParamsMap(params);
 
    // Params are added to the URL
-   if(urlParams){
+   if (urlParams){
       result = result + '?' + urlParams;
    }
 
@@ -37,7 +41,7 @@ const appendParamsMap = (map) => {
 const appendParams = (params, key, value) => {
    let result = params;
 
-   if(value) {
+   if (value) {
       if(result){
          result = result + '&&';
       }

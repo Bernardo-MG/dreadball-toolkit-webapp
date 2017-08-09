@@ -8,8 +8,6 @@ const sponsor = (state = { sponsorName: 'Sponsor name',
    const { type, payload } = action;
    const affinities = state.affinities.slice();
    const units = state.units.slice();
-   let cost;
-   let rank;
    switch (type) {
    case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
       return {
@@ -25,7 +23,7 @@ const sponsor = (state = { sponsorName: 'Sponsor name',
          wagers: 0,
          mediBots: 0,
          cheerleaders: 0
-      }
+      };
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
       affinities[action.index] = payload;
 
@@ -101,4 +99,4 @@ const dbxBuilderReducer = combineReducers({
   sponsor
 });
 
-export default dbxBuilderReducer
+export default dbxBuilderReducer;

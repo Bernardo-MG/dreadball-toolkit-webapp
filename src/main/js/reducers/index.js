@@ -32,13 +32,13 @@ const pagination = combineReducers({
          REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE
       ]
    })
-})
+});
 
 const dreadballApp = combineReducers({
    pagination,
    builder,
    routing,
    orm : createReducer(orm)
-})
+});
 
-export default dreadballApp
+export default dreadballApp;

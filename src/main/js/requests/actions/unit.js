@@ -13,5 +13,5 @@ export const fetch = (page = 0, orderBy = 'name', order = 'ASC') => {
          orderBy,
          order
       }
-   }
+   };
 };

@@ -22,13 +22,13 @@ const mapStateToProps = (state) => {
    return {
       source: ratedUnitsPaginated(state),
       affinities: state.builder.sponsor.affinities
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(actions, dispatch)
-   }
+   };
 };
 
 export default connect(

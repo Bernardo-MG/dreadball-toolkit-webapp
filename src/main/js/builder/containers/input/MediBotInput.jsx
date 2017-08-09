@@ -10,7 +10,7 @@ const MediBotInput = (props) => {
          handleChange={props.actions.updateSponsorMediBot}
          updateSponsor={(value, sponsor) => sponsor.mediBots = value} />
    );
-}
+};
 
 const mapStateToProps = (state) => {
    return {

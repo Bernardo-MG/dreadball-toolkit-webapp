@@ -10,7 +10,7 @@ const SpecialMoveCardInput = (props) => {
          handleChange={props.actions.updateSponsorSpecialMoveCard}
          updateSponsor={(value, sponsor) => sponsor.specialMoveCards = value} />
    );
-}
+};
 
 const mapStateToProps = (state) => {
    return {

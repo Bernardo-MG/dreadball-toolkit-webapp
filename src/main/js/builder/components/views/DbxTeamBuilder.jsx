@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import Box from 'grommet/components/Box';
-
 import SponsorAffinitiesView from 'builder/components/views/SponsorAffinitiesView';
 import SponsorTeamView from 'builder/components/views/SponsorTeamView';
 

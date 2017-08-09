@@ -9,7 +9,7 @@ const middleware = [
    thunk,
    api,
    createLogger()
-]
+];
 
 const enhancer = compose(
    applyMiddleware(...middleware),
@@ -17,10 +17,10 @@ const enhancer = compose(
    DevTools.instrument()
 );
 
-const configureStore = initialState => createStore(
+const configureStore = (initialState) => createStore(
    rootReducer,
    initialState,
    enhancer
-)
+);
 
 export default configureStore;

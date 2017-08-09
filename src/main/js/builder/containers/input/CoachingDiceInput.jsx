@@ -10,7 +10,7 @@ const CoachingDiceInput = (props) => {
          handleChange={props.actions.updateSponsorCoachingDice}
          updateSponsor={(value, sponsor) => sponsor.coachingDice = value} />
    );
-}
+};
 
 const mapStateToProps = (state) => {
    return {

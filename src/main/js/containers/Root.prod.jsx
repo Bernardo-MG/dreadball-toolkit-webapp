@@ -13,11 +13,11 @@ const Root = ({ store, history }) => (
          <Router history={history} routes={routes} />
       </Provider>
    </IntlProvider>
-)
+);
 
 Root.propTypes = {
    store: PropTypes.object.isRequired,
    history: PropTypes.object.isRequired
-}
+};
 
-export default Root
+export default Root;

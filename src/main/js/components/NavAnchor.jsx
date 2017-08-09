@@ -9,7 +9,7 @@ import Anchor from 'grommet/components/Anchor';
 */
 export default class NavAnchor extends Component {
 
-   constructor () {
+   constructor() {
       super();
       this._onClick = this._onClick.bind(this);
    }
@@ -33,9 +33,9 @@ export default class NavAnchor extends Component {
       return (
             <Anchor {...props} className={className} href={href}
             onClick={this._onClick} />
-      )
+      );
    }
-};
+}
 
 NavAnchor.propTypes = {
    ...Anchor.propTypes,

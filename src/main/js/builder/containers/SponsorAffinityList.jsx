@@ -9,14 +9,14 @@ const SponsorAffinityList = (props) => {
    );
 };
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
    return {
       source: state.builder.sponsor.affinities
-   }
+   };
 };
 
-const mapDispatchToProps = dispatch => {
-   return {}
+const mapDispatchToProps = (dispatch) => {
+   return {};
 };
 
 export default connect(

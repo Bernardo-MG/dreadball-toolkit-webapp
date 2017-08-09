@@ -1,7 +1,6 @@
 import React from 'react';
 
 import Box from 'grommet/components/Box';
-import Form from 'grommet/components/Form';
 import Heading from 'grommet/components/Heading';
 
 import NextPageButton from 'containers/NextPageButton';

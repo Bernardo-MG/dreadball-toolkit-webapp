@@ -23,13 +23,13 @@ class AffinityGroupsComboPanel extends Component {
 const mapStateToProps = (state) => {
    return {
       source: avasToMap(sponsorAffAvasPaginated(state))
-   }
+   };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       actions: bindActionCreators(actions, dispatch)
-   }
+   };
 };
 
 export default connect(

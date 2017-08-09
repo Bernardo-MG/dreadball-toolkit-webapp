@@ -17,11 +17,11 @@ const Root = ({ store, history }) => (
          </div>
       </Provider>
    </IntlProvider>
-)
+);
 
 Root.propTypes = {
    store: PropTypes.object.isRequired,
    history: PropTypes.object.isRequired
-}
+};
 
-export default Root
+export default Root;

@@ -10,7 +10,7 @@ const CheerleadersInput = (props) => {
          handleChange={props.actions.updateSponsorCheerleaders}
          updateSponsor={(value, sponsor) => sponsor.cheerleaders = value}/>
    );
-}
+};
 
 const mapStateToProps = (state) => {
    return {

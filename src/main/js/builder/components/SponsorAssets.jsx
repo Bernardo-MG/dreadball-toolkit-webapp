@@ -8,8 +8,6 @@ import MediBotValue from 'builder/containers/values/MediBotValue';
 import NastySurpriseCardValue from 'builder/containers/values/NastySurpriseCardValue';
 import SpecialMoveCardValue from 'builder/containers/values/SpecialMoveCardValue';
 import SponsorCoachingDiceValue from 'builder/containers/values/SponsorCoachingDiceValue';
-import SponsorRankValue from 'builder/containers/values/SponsorRankValue';
-import SponsorTeamValue from 'builder/containers/values/SponsorTeamValue';
 import WagerValue from 'builder/containers/values/WagerValue';
 
 const SponsorAssets = () => {

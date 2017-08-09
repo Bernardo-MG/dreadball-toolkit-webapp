@@ -14,11 +14,12 @@ const SponsorNameLabel = (props) => {
 const mapStateToProps = (state) => {
    return {
       sponsorName: state.builder.sponsor.sponsorName
-   }
+   };
 };
 
-const mapDispatchToProps = (dispatch) => ({
-});
+const mapDispatchToProps = (dispatch) => {
+   return {};
+};
 
 export default connect(
    mapStateToProps,

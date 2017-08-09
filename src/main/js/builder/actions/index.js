@@ -5,14 +5,14 @@ import { BUILDER_DEFAULTS_REST_ENDPOINT as defaultsEndpoint, BUILDER_VALIDATION_
 export const beginDbxTeamBuilding = () => {
    return {
       type: types.BEGIN_DBX_TEAM_BUILDING
-   }
+   };
 };
 
 export const chooseSponsorAffinity = (affinity, index) => {
    return {
       type: types.CHOOSE_SPONSOR_AFFINITY,
       payload: affinity,
-      index: index
+      index
    }
 };
 
@@ -23,7 +23,7 @@ export const validateSponsorAffinities = (affinities = []) => {
          endpoint: validationAffinitiesEndpoint,
          params: { affinities }
       }
-   }
+   };
 };
 
 export const validateSponsorTeam = (affinities = [],
@@ -34,10 +34,7 @@ export const validateSponsorTeam = (affinities = [],
       [CALL_API]: {
          types: [types.REQUEST_SPONSOR_TEAM_VALIDATION, types.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS, types.REQUEST_SPONSOR_TEAM_VALIDATION_FAILURE],
          endpoint: validationEndpoint,
-         params: { affinities,
-                     units,
-                     baseRank,
-                     cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers}
+         params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
       }
    }
 };
