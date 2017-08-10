@@ -29,14 +29,18 @@ const getIdsPaginated = (payload) => {
 const filterByIds = (modelSelector, idSelector, loader, session, ids) => {
    let entityLoader;
 
-   if (loader){
+   if (loader) {
       entityLoader = loader;
    } else {
-      entityLoader = (entity) => entity;
+      entityLoader = (entity) => {
+         return entity;
+      };
    }
 
    const all = modelSelector(session).all().toModelArray();
-   return all.filter(entity => ids.includes(idSelector(entity))).map(entity => {
+   return all.filter((entity) => {
+      return ids.includes(idSelector(entity));
+   }).map((entity) => {
       return entityLoader(entity);
    });
 };
