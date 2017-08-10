@@ -38,9 +38,13 @@ class SponsorAffinitySelect extends Component {
       this.index = props.index;
       this.onChange = props.onChange;
 
-      const first = props.source[0];
-      this.state.affinity = first.affinity;
-      this.state.value = first.value;
+      if(props.source.length) {
+         const first = props.source[0];
+         this.state = {
+            affinity: first.affinity,
+            value: first.value
+         };
+      }
    }
 
    render() {
