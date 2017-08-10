@@ -1,22 +1,10 @@
 
-export const filterById = (idSelector, loader, modelSelector, idProcessor) => (session, payload) => {
-   let result;
-   let processor;
+const getSlice = (pagination) => {
+   const start = pagination.page * pagination.numberOfElements;
+   const end = start + pagination.numberOfElements;
+   const ids = pagination.ids.slice(start, end);
 
-   if (idProcessor) {
-      processor = idProcessor;
-   } else {
-      processor = getIdsPaginated;
-   }
-
-   const ids = processor(payload);
-   if (ids.length) {
-      result = filterByIds(modelSelector, idSelector, loader, session, ids);
-   } else {
-      result = [];
-   }
-
-   return result;
+   return ids;
 };
 
 const getIdsPaginated = (payload) => {
@@ -38,14 +26,6 @@ const getIdsPaginated = (payload) => {
    return ids;
 };
 
-const getSlice = (pagination) => {
-   const start = pagination.page * pagination.numberOfElements;
-   const end = start + pagination.numberOfElements;
-   const ids = pagination.ids.slice(start, end);
-
-   return ids;
-};
-
 const filterByIds = (modelSelector, idSelector, loader, session, ids) => {
    let entityLoader;
 
@@ -59,4 +39,24 @@ const filterByIds = (modelSelector, idSelector, loader, session, ids) => {
    return all.filter(entity => ids.includes(idSelector(entity))).map(entity => {
       return entityLoader(entity);
    });
+};
+
+export const filterById = (idSelector, loader, modelSelector, idProcessor) => (session, payload) => {
+   let result;
+   let processor;
+
+   if (idProcessor) {
+      processor = idProcessor;
+   } else {
+      processor = getIdsPaginated;
+   }
+
+   const ids = processor(payload);
+   if (ids.length) {
+      result = filterByIds(modelSelector, idSelector, loader, session, ids);
+   } else {
+      result = [];
+   }
+
+   return result;
 };
