@@ -13,7 +13,11 @@ const CoachingDiceInput = (props) => {
    return (
       <SponsorBoundNumberInput {...props}
          handleChange={props.actions.updateSponsorCoachingDice}
-         updateSponsor={(value, sponsor) => sponsor.coachingDice = value} />
+         updateSponsor={(value, sponsor) => {
+            const result = Object.assign({}, sponsor);
+            result.coachingDice = value;
+            return result;
+         }} />
    );
 };
 

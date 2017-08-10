@@ -13,7 +13,11 @@ const SpecialMoveCardInput = (props) => {
    return (
       <SponsorBoundNumberInput {...props}
          handleChange={props.actions.updateSponsorSpecialMoveCard}
-         updateSponsor={(value, sponsor) => sponsor.specialMoveCards = value} />
+         updateSponsor={(value, sponsor) => {
+            const result = Object.assign({}, sponsor);
+            result.specialMoveCards = value;
+            return result;
+         }} />
    );
 };
 

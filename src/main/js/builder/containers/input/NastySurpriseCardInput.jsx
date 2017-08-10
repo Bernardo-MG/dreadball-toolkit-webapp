@@ -13,7 +13,11 @@ const NastySurpriseCardInput = (props) => {
    return (
       <SponsorBoundNumberInput {...props}
          handleChange={props.actions.updateSponsorNastySurpriseCard}
-         updateSponsor={(value, sponsor) => sponsor.nastySurpriseCards = value} />
+         updateSponsor={(value, sponsor) => {
+            const result = Object.assign({}, sponsor);
+            result.nastySurpriseCards = value;
+            return result;
+         }} />
    );
 };
 

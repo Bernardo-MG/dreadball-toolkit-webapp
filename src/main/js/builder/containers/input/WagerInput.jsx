@@ -13,7 +13,11 @@ const WagerInput = (props) => {
    return (
       <SponsorBoundNumberInput {...props}
          handleChange={props.actions.updateSponsorWager}
-         updateSponsor={(value, sponsor) => sponsor.wagers = value} />
+         updateSponsor={(value, sponsor) => {
+            const result = Object.assign({}, sponsor);
+            result.wagers = value;
+            return result;
+         }} />
    );
 };
 

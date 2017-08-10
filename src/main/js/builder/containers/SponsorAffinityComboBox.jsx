@@ -21,7 +21,7 @@ SponsorAffinityComboBox.propTypes = {
    actions: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => {
+const mapStateToProps = () => {
    return {};
 };
 

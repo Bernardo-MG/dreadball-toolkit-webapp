@@ -13,7 +13,11 @@ const MediBotInput = (props) => {
    return (
       <SponsorBoundNumberInput {...props}
          handleChange={props.actions.updateSponsorMediBot}
-         updateSponsor={(value, sponsor) => sponsor.mediBots = value} />
+         updateSponsor={(value, sponsor) => {
+            const result = Object.assign({}, sponsor);
+            result.mediBots = value;
+            return result;
+         }} />
    );
 };
 
