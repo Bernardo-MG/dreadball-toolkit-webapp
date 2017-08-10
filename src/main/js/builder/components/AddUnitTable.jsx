@@ -27,7 +27,7 @@ const AddUnitTable = (props) => {
             </tr>
          </thead>
          <tbody>
-            {props.source.map(function (object, i) {
+            {props.source.map((object, i) => {
                return <AddUnitTableRow index={i} source={object} />;
             })}
          </tbody>
