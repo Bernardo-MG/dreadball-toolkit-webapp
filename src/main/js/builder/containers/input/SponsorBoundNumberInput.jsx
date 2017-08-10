@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as Actions from 'builder/actions';
+
 import BoundNumberInput from 'components/BoundNumberInput';
 
 class SponsorBoundNumberInput extends Component {
@@ -40,6 +45,13 @@ class SponsorBoundNumberInput extends Component {
       );
    }
 }
+
+SponsorBoundNumberInput.propTypes = {
+   handleChange: PropTypes.func.isRequired,
+   updateSponsor: PropTypes.func.isRequired,
+   actions: PropTypes.object.isRequired,
+   sponsor: PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state) => {
    return {

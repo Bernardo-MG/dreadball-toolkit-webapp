@@ -1,16 +1,24 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
+
 import Value from 'grommet/components/Value';
 
 const CheerleadersValue = (props) => {
    return (
-      <Value value={props.rank} label='cheerleaders' />
+      <Value value={props.cheers} label='cheerleaders' />
    );
+};
+
+CheerleadersValue.propTypes = {
+   cheers: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      rank: state.builder.sponsor.cheerleaders
+      cheers: state.builder.sponsor.cheerleaders
    };
 };
 

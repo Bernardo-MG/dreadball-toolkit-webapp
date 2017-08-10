@@ -1,7 +1,12 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as Actions from 'builder/actions';
+
 import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
 const WagerInput = (props) => {
@@ -10,6 +15,10 @@ const WagerInput = (props) => {
          handleChange={props.actions.updateSponsorWager}
          updateSponsor={(value, sponsor) => sponsor.wagers = value} />
    );
+};
+
+WagerInput.propTypes = {
+   actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {

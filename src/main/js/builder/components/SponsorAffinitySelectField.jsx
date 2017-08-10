@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import Box from 'grommet/components/Box';
 
 import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
@@ -14,6 +16,10 @@ const SponsorAffinitySelectField = (props) => {
          })}
       </Box>
    );
+};
+
+SponsorAffinitySelectField.propTypes = {
+   source: PropTypes.array.isRequired
 };
 
 export default SponsorAffinitySelectField;

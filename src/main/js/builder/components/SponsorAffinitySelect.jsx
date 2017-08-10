@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
 import Select from 'grommet/components/Select';
 
 class SponsorAffinitySelect extends Component {
@@ -49,5 +52,11 @@ class SponsorAffinitySelect extends Component {
       );
    }
 }
+
+SponsorAffinitySelect.propTypes = {
+   onChange: PropTypes.func.isRequired,
+   index: PropTypes.number.isRequired,
+   source: PropTypes.array.isRequired
+};
 
 export default SponsorAffinitySelect;

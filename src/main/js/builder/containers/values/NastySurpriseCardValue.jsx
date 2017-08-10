@@ -1,16 +1,24 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
+
 import Value from 'grommet/components/Value';
 
 const NastySurpriseCardValue = (props) => {
    return (
-      <Value value={props.rank} label='nasty_surprise_card' />
+      <Value value={props.cards} label='nasty_surprise_card' />
    );
+};
+
+NastySurpriseCardValue.propTypes = {
+   cards: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      rank: state.builder.sponsor.nastySurpriseCards
+      cards: state.builder.sponsor.nastySurpriseCards
    };
 };
 

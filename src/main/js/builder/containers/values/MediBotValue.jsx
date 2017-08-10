@@ -1,16 +1,24 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
+
 import Value from 'grommet/components/Value';
 
 const MediBotValue = (props) => {
    return (
-      <Value value={props.rank} label='medibot' />
+      <Value value={props.bots} label='medibot' />
    );
+};
+
+MediBotValue.propTypes = {
+   bots: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      rank: state.builder.sponsor.mediBots
+      bots: state.builder.sponsor.mediBots
    };
 };
 

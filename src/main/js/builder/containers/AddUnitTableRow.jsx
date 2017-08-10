@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -32,7 +34,7 @@ class AddUnitTableRow extends Component {
 
       this.unit = props.source.templateName;
       this.index = props.index;
-      
+
       this.validateSponsorTeam = props.actions.validateSponsorTeam;
    }
 
@@ -53,6 +55,13 @@ class AddUnitTableRow extends Component {
       );
    }
 }
+
+AddUnitTableRow.propTypes = {
+   sponsor: PropTypes.object.isRequired,
+   source: PropTypes.object.isRequired,
+   index: PropTypes.number.isRequired,
+   actions: PropTypes.object.isRequired
+};
 
 const mapStateToProps = (state) => {
    return {

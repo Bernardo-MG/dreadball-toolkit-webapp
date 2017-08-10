@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
 import NumberInput from 'grommet/components/NumberInput';
 
 class BoundNumberInput extends Component {
@@ -26,5 +29,9 @@ class BoundNumberInput extends Component {
       );
    }
 }
+
+BoundNumberInput.propTypes = {
+   handleChange: PropTypes.func.isRequired
+};
 
 export default BoundNumberInput;

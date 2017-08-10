@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 import Layer from 'grommet/components/Layer';
@@ -16,6 +18,12 @@ const SponsorTeamEditionLayer = (props) => {
          </Box>
       </Layer>
    );
+};
+
+SponsorTeamEditionLayer.propTypes = {
+   onClose: PropTypes.func.isRequired,
+   title: PropTypes.string.isRequired,
+   children: PropTypes.object.isRequired
 };
 
 export default SponsorTeamEditionLayer;

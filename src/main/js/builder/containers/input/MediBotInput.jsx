@@ -1,7 +1,12 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as Actions from 'builder/actions';
+
 import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
 const MediBotInput = (props) => {
@@ -10,6 +15,10 @@ const MediBotInput = (props) => {
          handleChange={props.actions.updateSponsorMediBot}
          updateSponsor={(value, sponsor) => sponsor.mediBots = value} />
    );
+};
+
+MediBotInput.propTypes = {
+   actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {

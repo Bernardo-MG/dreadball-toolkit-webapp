@@ -1,7 +1,12 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
+
 import * as Actions from 'builder/actions';
+
 import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
 const CoachingDiceInput = (props) => {
@@ -10,6 +15,10 @@ const CoachingDiceInput = (props) => {
          handleChange={props.actions.updateSponsorCoachingDice}
          updateSponsor={(value, sponsor) => sponsor.coachingDice = value} />
    );
+};
+
+CoachingDiceInput.propTypes = {
+   actions: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
