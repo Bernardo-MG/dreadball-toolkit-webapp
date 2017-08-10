@@ -15,7 +15,7 @@
       "react/prop-types": [2],
       "max-len": [1, 120, 2, {ignoreComments: true}],
       "indent": ["error", 3],
-      "arrow-body-style": ["error", "always"],
+      "arrow-body-style": ["error", "always", { "requireReturnForObjectLiteral": true }],
       "import/prefer-default-export": ["warn"],
       "comma-dangle": ["error", "never"],
       "arrow-parens": ["error", "always"]
