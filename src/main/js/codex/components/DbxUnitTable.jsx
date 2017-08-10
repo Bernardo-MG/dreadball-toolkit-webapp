@@ -1,4 +1,7 @@
 import React from 'react';
+
+import PropTypes from 'prop-types';
+
 import { injectIntl } from 'react-intl';
 
 import Table from 'grommet/components/Table';
@@ -43,6 +46,11 @@ const DbxUnitTable = (props) => {
          </tbody>
       </Table>
    );
+};
+
+DbxUnitTable.propTypes = {
+   intl: PropTypes.object.isRequired,
+   source: PropTypes.array.isRequired
 };
 
 export default injectIntl(DbxUnitTable);

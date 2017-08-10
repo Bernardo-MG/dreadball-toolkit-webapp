@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from 'builder/actions';
@@ -29,6 +32,11 @@ class ContainerDbxTeamBuilder extends Component {
       );
    }
 }
+
+ContainerDbxTeamBuilder.propTypes = {
+   actions: PropTypes.object.isRequired,
+   affinities: PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state) => {
    return {

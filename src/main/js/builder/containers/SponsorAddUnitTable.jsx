@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import * as actions from 'requests/actions/sponsorUnit';
+
 import { ratedUnitsPaginated } from 'models/selectors';
+
 import AddUnitTable from 'builder/components/AddUnitTable';
 
 class SponsorAddUnitTable extends Component {
@@ -17,6 +23,12 @@ class SponsorAddUnitTable extends Component {
       );
    }
 }
+
+SponsorAddUnitTable.propTypes = {
+   actions: PropTypes.object.isRequired,
+   affinities: PropTypes.array.isRequired,
+   source: PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state) => {
    return {

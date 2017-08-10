@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
 import { connect } from 'react-redux';
+
 import TeamUnitTable from 'builder/components/TeamUnitTable';
+
 import { unitsSponsor } from 'models/selectors';
 
 class SponsorTeamUnitTable extends Component {
-   
+
    source;
 
    constructor(props) {
@@ -26,6 +31,11 @@ class SponsorTeamUnitTable extends Component {
       );
    }
 }
+
+SponsorTeamUnitTable.propTypes = {
+   sponsorUnits: PropTypes.array.isRequired,
+   units: PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state) => {
    return {

@@ -1,8 +1,14 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
+
 import * as actions from 'requests/actions/sponsorAffAva';
+
 import { sponsorAffAvasPaginated } from 'models/selectors';
+
 import { avasToMap } from 'builder/utils';
 import SponsorAffinitySelectField from 'builder/components/SponsorAffinitySelectField';
 
@@ -19,6 +25,11 @@ class AffinityGroupsComboPanel extends Component {
    }
 
 }
+
+AffinityGroupsComboPanel.propTypes = {
+   actions: PropTypes.object.isRequired,
+   source: PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state) => {
    return {

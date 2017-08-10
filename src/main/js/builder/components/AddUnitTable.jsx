@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import Table from 'grommet/components/Table';
 
 import { injectIntl } from 'react-intl';
@@ -31,6 +33,11 @@ const AddUnitTable = (props) => {
          </tbody>
       </Table>
    );
+};
+
+AddUnitTable.propTypes = {
+   intl: PropTypes.object.isRequired,
+   source: PropTypes.array.isRequired
 };
 
 export default injectIntl(AddUnitTable);

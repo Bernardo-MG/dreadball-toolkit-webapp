@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -20,6 +22,11 @@ class LoadableDbxUnitTable extends Component {
       );
    }
 }
+
+LoadableDbxUnitTable.propTypes = {
+   actions: PropTypes.object.isRequired,
+   source: PropTypes.array.isRequired
+};
 
 const mapStateToProps = (state) => ({
    source: unitsPaginated(state)

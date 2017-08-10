@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+
+import PropTypes from 'prop-types';
+
 import * as actions from 'requests/actions/unit';
 import { bindActionCreators } from 'redux';
 import Button from 'grommet/components/Button';
@@ -17,6 +20,13 @@ class PreviousPageButton extends Component {
       );
    }
 }
+
+PreviousPageButton.propTypes = {
+   actions: PropTypes.object.isRequired,
+   page: PropTypes.number.isRequired,
+   lastPage: PropTypes.number.isRequired,
+   label: PropTypes.string.isRequired
+};
 
 const mapStateToProps = (state) => ({
    firstPage: state.pagination.units.first,

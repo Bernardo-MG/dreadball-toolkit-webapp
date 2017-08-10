@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
 import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
@@ -24,10 +26,10 @@ import EditionButton from 'components/buttons/EditionButton';
 class SponsorTeamView extends Component {
 
    state = {
-            editingAssets: false,
-            editingPlayers: false,
-            editingName: false
-         };
+      editingAssets: false,
+      editingPlayers: false,
+      editingName: false
+   };
 
    editAssets = () => {
       this.setState({ ...this.state, editingAssets: true });
@@ -52,10 +54,6 @@ class SponsorTeamView extends Component {
    finishEditName = () => {
       this.setState({ ...this.state, editingName: false });
    };
-
-   constructor (props) {
-     super(props);
-   }
 
    render() {
       let view = null;

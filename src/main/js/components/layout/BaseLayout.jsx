@@ -1,5 +1,7 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import App from 'grommet/components/App';
 import Box from 'grommet/components/Box';
 import Section from 'grommet/components/Section';
@@ -17,6 +19,10 @@ const BaseLayout = (props) => {
          </Box>
       </App>
    );
+};
+
+BaseLayout.propTypes = {
+   children: PropTypes.object.isRequired
 };
 
 export default BaseLayout;
