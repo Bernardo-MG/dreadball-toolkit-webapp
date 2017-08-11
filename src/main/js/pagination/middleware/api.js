@@ -47,8 +47,8 @@ export default store => (next) => (action) => {
          type: failureType,
          error: error.message || 'Something bad happened'
       }))
-   )
-}
+   );
+};
 
 const callApi = (url, parse) => fetchPaginated(url, parse);
 

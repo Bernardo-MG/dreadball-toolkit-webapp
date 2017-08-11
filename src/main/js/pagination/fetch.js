@@ -22,13 +22,17 @@ const paginatedContent = (content) => {
 };
 
 const setUpContent = (content) => {
+   let result;
+
    if (content.number === null || content.number === undefined) {
       // Pagination info is missing
       // The contents is returned without pagination details
-      return { payload: content };
+      result = { payload: content };
    } else {
-      return paginatedContent(content);
+      result = paginatedContent(content);
    }
+
+   return result;
 };
 
 const paginateJson = (json, parse) => {

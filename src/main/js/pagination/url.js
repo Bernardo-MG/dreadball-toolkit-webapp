@@ -18,7 +18,7 @@ const applyParams = (url, params) => {
    urlParams = appendParamsMap(params);
 
    // Params are added to the URL
-   if (urlParams){
+   if (urlParams) {
       result = result + '?' + urlParams;
    }
 

@@ -59,7 +59,7 @@ Affinity.options = {
 };
 
 export class SponsorAffinityAvailability extends Model {
-   static reducer(action, AvailabilityModel, session) {
+   static reducer(action, AvailabilityModel) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
@@ -87,7 +87,7 @@ SponsorAffinityAvailability.options = {
 };
 
 export class Player extends ValidatingModel {
-   static reducer(action, PlayerModel, session) {
+   static reducer(action, PlayerModel) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
@@ -126,7 +126,7 @@ Player.options = {
 };
 
 export class RatedPlayer extends ValidatingModel {
-   static reducer(action, RatedPlayerModel, session) {
+   static reducer(action, RatedPlayerModel) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_SPONSOR_UNITS_SUCCESS:

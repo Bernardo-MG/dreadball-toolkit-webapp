@@ -29,7 +29,7 @@ export default class NavAnchor extends Component {
       if (router.isActive(path)) {
          className += ' active';
       }
-      let href = router.createPath(path);
+      const href = router.createPath(path);
       return (
             <Anchor {...props} className={className} href={href}
             onClick={this._onClick} />
