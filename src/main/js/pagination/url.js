@@ -18,15 +18,14 @@ const appendParams = (params, key, value) => {
       if (result) {
          result += '&&';
       }
-      result = result + key + '=' + value;
+      result += `${key}=${value}`;
    }
 
    return result;
 };
 
-const appendParamsMap = (map) => {
-   return Object.keys(map).filter((key) => map.hasOwnProperty(key)).reduce((a , b) => appendParams(a, b, map[b]), '');
-};
+const appendParamsMap = (map) => 
+   Object.keys(map).filter((key) => map.hasOwnProperty(key)).reduce((a, b) => appendParams(a, b, map[b]), '');
 
 const applyParams = (url, params) => {
    let result = url;
@@ -36,7 +35,7 @@ const applyParams = (url, params) => {
 
    // Params are added to the URL
    if (urlParams) {
-      result = result + '?' + urlParams;
+      result += `?${urlParams}`;
    }
 
    return result;
