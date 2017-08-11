@@ -1,13 +1,6 @@
 
-export const dictionaryIds = (dictionary) => {
-   let keys = [];
-   for (var key in dictionary) {
-      if (dictionary.hasOwnProperty(key)) {
-         keys.push(key);
-      }
-   }
-
-   return keys;
+export const dictionaryIds = (dict) => {
+   return Object.keys(dict).filter((key) => dict.hasOwnProperty(key));
 };
 
 export const forEachValue = (dict, fn) => {
