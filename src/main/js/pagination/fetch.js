@@ -1,3 +1,4 @@
+import fetch from 'isomorphic-fetch';
 
 const paginatedContent = (content) => {
    const pagination = {
@@ -47,9 +48,7 @@ const handleResponse = (response, json, parse) => {
    return paginateJson(json, parse);
 };
 
-export const fetchPaginated = (url, parse) => {
-   return fetch(url)
-      .then((response) =>
+export const fetchPaginated = (url, parse) =>
+   fetch(url).then((response) =>
          response.json().then((json) => handleResponse(response, json, parse))
       );
-};
