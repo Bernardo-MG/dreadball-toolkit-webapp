@@ -15,9 +15,6 @@ const paginatedContent = (content) => {
       pagination
    };
 
-   delete result.number;
-   delete content.content;
-
    return result;
 };
 
