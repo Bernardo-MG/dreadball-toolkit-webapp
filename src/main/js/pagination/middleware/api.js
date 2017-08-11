@@ -2,6 +2,16 @@ import { CALL_API } from 'pagination/actions/ActionTypes';
 import { fetchPaginated } from 'pagination/fetch';
 import { getUrl } from 'pagination/url';
 
+const callApi = (url, parse) => fetchPaginated(url, parse);
+
+const actionWith = (action) => (data) => {
+   const finalAction = Object.assign({}, action, data);
+
+   delete finalAction[CALL_API];
+
+   return finalAction;
+};
+
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
 export default store => (next) => (action) => {
@@ -48,14 +58,4 @@ export default store => (next) => (action) => {
          error: error.message || 'Something bad happened'
       }))
    );
-};
-
-const callApi = (url, parse) => fetchPaginated(url, parse);
-
-const actionWith = (action) => (data) => {
-   const finalAction = Object.assign({}, action, data);
-
-   delete finalAction[CALL_API];
-
-   return finalAction;
 };

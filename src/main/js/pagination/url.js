@@ -24,8 +24,8 @@ const appendParams = (params, key, value) => {
    return result;
 };
 
-const appendParamsMap = (map) => 
-   Object.keys(map).filter((key) => map.hasOwnProperty(key)).reduce((a, b) => appendParams(a, b, map[b]), '');
+const appendParamsMap = (map) =>
+   Object.keys(map).filter((key) => Object.prototype.hasOwnProperty(map, key)).reduce((a, b) => appendParams(a, b, map[b]), '');
 
 const applyParams = (url, params) => {
    let result = url;
