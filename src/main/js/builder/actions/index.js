@@ -1,6 +1,6 @@
 import { CALL_API } from 'pagination/actions/ActionTypes';
 import * as types from 'builder/actions/ActionTypes';
-import { BUILDER_DEFAULTS_REST_ENDPOINT as defaultsEndpoint, BUILDER_VALIDATION_REST_ENDPOINT as validationEndpoint, BUILDER_VALIDATION_AFFINITIES_REST_ENDPOINT as validationAffinitiesEndpoint } from 'builder/requests/Endpoints';
+import { BUILDER_VALIDATION_REST_ENDPOINT as validationEndpoint, BUILDER_VALIDATION_AFFINITIES_REST_ENDPOINT as validationAffinitiesEndpoint } from 'builder/requests/Endpoints';
 
 export const beginDbxTeamBuilding = () => {
    return {
