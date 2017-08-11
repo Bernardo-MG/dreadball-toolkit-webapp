@@ -1,10 +1,9 @@
 import * as ActionTypes from 'builder/actions/ActionTypes';
 import { combineReducers } from 'redux';
 
-const sponsor = (state = { sponsorName: 'Sponsor name',
-                           rank: 0, baseRank: 0, teamValue: 0,
-                           affinities: [], units: [],
-                           coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 }, action) => {
+const sponsor = (
+      state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, teamValue: 0, affinities: [], units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
+      action) => {
    const { type, payload } = action;
    const affinities = state.affinities.slice();
    const units = state.units.slice();
@@ -48,55 +47,59 @@ const sponsor = (state = { sponsorName: 'Sponsor name',
          ...state,
          ...payload
       };
-   case ActionTypes.UPDATE_SPONSOR_CHEERLEADERS:
+   case ActionTypes.UPDATE_SPONSOR_CHEERLEADERS: {
       const cheerleaders = payload;
 
       return {
          ...state,
          cheerleaders
       };
-   case ActionTypes.UPDATE_SPONSOR_COACHING_DICE:
+   }
+   case ActionTypes.UPDATE_SPONSOR_COACHING_DICE: {
       const coachingDice = payload;
 
       return {
          ...state,
          coachingDice
       };
-   case ActionTypes.UPDATE_SPONSOR_MEDIBOT:
+   }
+   case ActionTypes.UPDATE_SPONSOR_MEDIBOT: {
       const mediBots = payload;
 
       return {
          ...state,
          mediBots
       };
-   case ActionTypes.UPDATE_SPONSOR_NASTY_SURPRISE_CARD:
+   }
+   case ActionTypes.UPDATE_SPONSOR_NASTY_SURPRISE_CARD: {
       const nastySurpriseCards = payload;
 
       return {
          ...state,
          nastySurpriseCards
       };
-   case ActionTypes.UPDATE_SPONSOR_SPECIAL_MOVE_CARD:
+   }
+   case ActionTypes.UPDATE_SPONSOR_SPECIAL_MOVE_CARD: {
       const specialMoveCards = payload;
 
       return {
          ...state,
          specialMoveCards
       };
-   case ActionTypes.UPDATE_SPONSOR_WAGER:
+   }
+   case ActionTypes.UPDATE_SPONSOR_WAGER: {
       const wagers = payload;
 
       return {
          ...state,
          wagers
       };
+   }
    default:
       return state;
    }
 };
 
-const dbxBuilderReducer = combineReducers({
-  sponsor
-});
+const dbxBuilderReducer = combineReducers({ sponsor });
 
 export default dbxBuilderReducer;

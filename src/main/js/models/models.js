@@ -10,7 +10,7 @@ export class Ability extends Model {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
-      case REQUEST_SPONSOR_UNITS_SUCCESS:
+      case REQUEST_SPONSOR_UNITS_SUCCESS: {
          // Gathers abilities sets
          const abilities = payload.entities.abilities;
          // Creates abilities
@@ -22,6 +22,7 @@ export class Ability extends Model {
                }
          );
          break;
+      }
       default:
       }
    }
@@ -37,7 +38,7 @@ export class Affinity extends Model {
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
       case REQUEST_SPONSOR_UNITS_SUCCESS:
-      case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
+      case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS: {
          const affinities = payload.entities.affinities;
          if (affinities) {
             forEachValue(affinities,
@@ -49,6 +50,7 @@ export class Affinity extends Model {
             );
          }
          break;
+      }
       default:
       }
    }
@@ -62,7 +64,7 @@ export class SponsorAffinityAvailability extends Model {
    static reducer(action, AvailabilityModel) {
       const { type, payload } = action;
       switch (type) {
-      case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
+      case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS: {
          const avas = payload.entities.sponsorAffinityAvailabilities;
          forEachValue(avas,
                (ava) => {
@@ -72,6 +74,7 @@ export class SponsorAffinityAvailability extends Model {
                }
          );
          break;
+      }
       default:
       }
    }
@@ -90,7 +93,7 @@ export class Player extends ValidatingModel {
    static reducer(action, PlayerModel) {
       const { type, payload } = action;
       switch (type) {
-      case REQUEST_UNITS_SUCCESS:
+      case REQUEST_UNITS_SUCCESS: {
          const units = payload.entities.units;
          forEachValue(units,
                (unit) => {
@@ -100,6 +103,7 @@ export class Player extends ValidatingModel {
                }
          );
          break;
+      }
       default:
       }
    }
@@ -129,7 +133,7 @@ export class RatedPlayer extends ValidatingModel {
    static reducer(action, RatedPlayerModel) {
       const { type, payload } = action;
       switch (type) {
-      case REQUEST_SPONSOR_UNITS_SUCCESS:
+      case REQUEST_SPONSOR_UNITS_SUCCESS: {
          const units = payload.entities.units;
          forEachValue(units,
                (unit) => {
@@ -139,6 +143,7 @@ export class RatedPlayer extends ValidatingModel {
                }
          );
          break;
+      }
       default:
       }
    }
