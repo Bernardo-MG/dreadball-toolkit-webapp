@@ -6,13 +6,7 @@ import { connect } from 'react-redux';
 
 import Label from 'grommet/components/Label';
 
-const SponsorNameLabel = (props) => {
-   return (
-      <Label>
-         { props.sponsorName }
-      </Label>
-   );
-};
+const SponsorNameLabel = (props) => <Label>{ props.sponsorName }</Label>;
 
 SponsorNameLabel.propTypes = {
    sponsorName: PropTypes.string.isRequired

@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
-const MediBotValue = (props) => {
-   return (
-      <Value value={props.bots} label='medibot' />
-   );
-};
+const MediBotValue = (props) => <Value value={props.bots} label='medibot' />;
 
 MediBotValue.propTypes = {
    bots: PropTypes.number.isRequired

@@ -10,29 +10,26 @@ import NastySurpriseCardInput from 'builder/containers/input/NastySurpriseCardIn
 import SpecialMoveCardInput from 'builder/containers/input/SpecialMoveCardInput';
 import WagerInput from 'builder/containers/input/WagerInput';
 
-const SponsorAssetsForm = (props) => {
-   return (
-         <Form>
-            <FormField label='coaching_dice'>
-               <CoachingDiceInput id='coaching_dice' name='coaching_dice' min={0} max={100}/>
-            </FormField>
-            <FormField label='special_move_card'>
-               <SpecialMoveCardInput id='special_move_card' name='special_move_card' min={0} max={100}/>
-            </FormField>
-            <FormField label='nasty_surprise_card'>
-               <NastySurpriseCardInput id='nasty_surprise_card' name='nasty_surprise_card' min={0} max={100}/>
-            </FormField>
-            <FormField label='wager'>
-               <WagerInput id='wager' name='wager' min={0} max={100}/>
-            </FormField>
-            <FormField label='medibot'>
-               <MediBotInput id='medibot' name='medibot' min={0} max={100}/>
-            </FormField>
-            <FormField label='cheerleaders'>
-               <CheerleadersInput id='cheerleaders' name='cheerleaders' min={0} max={100}/>
-            </FormField>
-         </Form>
-   );
-};
+const SponsorAssetsForm = (props) =>
+   <Form>
+      <FormField label='coaching_dice'>
+         <CoachingDiceInput id='coaching_dice' name='coaching_dice' min={0} max={100}/>
+      </FormField>
+      <FormField label='special_move_card'>
+         <SpecialMoveCardInput id='special_move_card' name='special_move_card' min={0} max={100}/>
+      </FormField>
+      <FormField label='nasty_surprise_card'>
+         <NastySurpriseCardInput id='nasty_surprise_card' name='nasty_surprise_card' min={0} max={100}/>
+      </FormField>
+      <FormField label='wager'>
+         <WagerInput id='wager' name='wager' min={0} max={100}/>
+      </FormField>
+      <FormField label='medibot'>
+         <MediBotInput id='medibot' name='medibot' min={0} max={100}/>
+      </FormField>
+      <FormField label='cheerleaders'>
+         <CheerleadersInput id='cheerleaders' name='cheerleaders' min={0} max={100}/>
+      </FormField>
+   </Form>;
 
 export default SponsorAssetsForm;

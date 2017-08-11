@@ -9,17 +9,14 @@ import * as Actions from 'builder/actions';
 
 import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
-const SpecialMoveCardInput = (props) => {
-   return (
-      <SponsorBoundNumberInput {...props}
-         handleChange={props.actions.updateSponsorSpecialMoveCard}
-         updateSponsor={(value, sponsor) => {
-            const result = Object.assign({}, sponsor);
-            result.specialMoveCards = value;
-            return result;
-         }} />
-   );
-};
+const SpecialMoveCardInput = (props) =>
+   <SponsorBoundNumberInput {...props}
+      handleChange={props.actions.updateSponsorSpecialMoveCard}
+      updateSponsor={(value, sponsor) => {
+         const result = Object.assign({}, sponsor);
+         result.specialMoveCards = value;
+         return result;
+      }} />;
 
 SpecialMoveCardInput.propTypes = {
    actions: PropTypes.object.isRequired

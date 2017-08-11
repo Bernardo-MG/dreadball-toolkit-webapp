@@ -21,8 +21,4 @@ const avaToMap = (ava) => {
    return result;
 };
 
-export const avasToMap = (avas) => {
-   return avas.map((ava) => {
-      return avaToMap(ava);
-   });
-};
+export const avasToMap = (avas) => avas.map((ava) => avaToMap(ava));

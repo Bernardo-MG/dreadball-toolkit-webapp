@@ -9,17 +9,14 @@ import * as Actions from 'builder/actions';
 
 import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
-const MediBotInput = (props) => {
-   return (
-      <SponsorBoundNumberInput {...props}
-         handleChange={props.actions.updateSponsorMediBot}
-         updateSponsor={(value, sponsor) => {
-            const result = Object.assign({}, sponsor);
-            result.mediBots = value;
-            return result;
-         }} />
-   );
-};
+const MediBotInput = (props) =>
+   <SponsorBoundNumberInput {...props}
+      handleChange={props.actions.updateSponsorMediBot}
+      updateSponsor={(value, sponsor) => {
+         const result = Object.assign({}, sponsor);
+         result.mediBots = value;
+         return result;
+      }} />;
 
 MediBotInput.propTypes = {
    actions: PropTypes.object.isRequired

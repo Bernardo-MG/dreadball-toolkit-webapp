@@ -32,17 +32,13 @@ const filterByIds = (modelSelector, idSelector, loader, session, ids) => {
    if (loader) {
       entityLoader = loader;
    } else {
-      entityLoader = (entity) => {
-         return entity;
-      };
+      entityLoader = (entity) => entity;
    }
 
    const all = modelSelector(session).all().toModelArray();
-   return all.filter((entity) => {
-      return ids.includes(idSelector(entity));
-   }).map((entity) => {
-      return entityLoader(entity);
-   });
+   return all
+      .filter((entity) => ids.includes(idSelector(entity)))
+      .map((entity) => entityLoader(entity));
 };
 
 export const filterById = (idSelector, loader, modelSelector, idProcessor) => (session, payload) => {

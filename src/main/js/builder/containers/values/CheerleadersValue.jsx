@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
-const CheerleadersValue = (props) => {
-   return (
-      <Value value={props.cheers} label='cheerleaders' />
-   );
-};
+const CheerleadersValue = (props) => <Value value={props.cheers} label='cheerleaders' />;
 
 CheerleadersValue.propTypes = {
    cheers: PropTypes.number.isRequired

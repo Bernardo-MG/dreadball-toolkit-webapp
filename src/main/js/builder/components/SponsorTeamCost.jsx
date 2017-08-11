@@ -5,17 +5,14 @@ import Box from 'grommet/components/Box';
 import SponsorRankValue from 'builder/containers/values/SponsorRankValue';
 import SponsorTeamValue from 'builder/containers/values/SponsorTeamValue';
 
-const SponsorTeamCost = () => {
-   return (
-      <Box direction='row'>
-         <Box pad='medium'>
-            <SponsorRankValue />
-         </Box>
-         <Box pad='medium'>
-            <SponsorTeamValue />
-         </Box>
+const SponsorTeamCost = () =>
+   <Box direction='row'>
+      <Box pad='medium'>
+         <SponsorRankValue />
       </Box>
-   );
-};
+      <Box pad='medium'>
+         <SponsorTeamValue />
+      </Box>
+   </Box>;
 
 export default SponsorTeamCost;

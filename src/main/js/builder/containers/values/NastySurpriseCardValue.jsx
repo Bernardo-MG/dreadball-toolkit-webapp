@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
-const NastySurpriseCardValue = (props) => {
-   return (
-      <Value value={props.cards} label='nasty_surprise_card' />
-   );
-};
+const NastySurpriseCardValue = (props) => <Value value={props.cards} label='nasty_surprise_card' />;
 
 NastySurpriseCardValue.propTypes = {
    cards: PropTypes.number.isRequired

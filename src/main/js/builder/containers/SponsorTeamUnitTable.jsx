@@ -15,8 +15,8 @@ class SponsorTeamUnitTable extends Component {
    constructor(props) {
       super(props);
 
-      const positions = props.sponsorUnits.map(unit => unit.position);
-      let posUnits = props.units.map((unit, i) => {
+      const positions = props.sponsorUnits.map((unit) => unit.position);
+      const posUnits = props.units.map((unit, i) => {
          return {
             position: positions[i], ...unit
          };

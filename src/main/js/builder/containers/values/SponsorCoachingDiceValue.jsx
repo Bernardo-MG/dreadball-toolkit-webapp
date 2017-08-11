@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
-const SponsorCoachingDiceValue = (props) => {
-   return (
-      <Value value={props.dice} label='coaching_dice' />
-   );
-};
+const SponsorCoachingDiceValue = (props) => <Value value={props.dice} label='coaching_dice' />;
 
 SponsorCoachingDiceValue.propTypes = {
    dice: PropTypes.number.isRequired

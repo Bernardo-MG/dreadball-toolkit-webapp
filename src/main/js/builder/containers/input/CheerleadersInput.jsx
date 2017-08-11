@@ -9,17 +9,14 @@ import * as Actions from 'builder/actions';
 
 import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
-const CheerleadersInput = (props) => {
-   return (
-      <SponsorBoundNumberInput {...props}
-         handleChange={props.actions.updateSponsorCheerleaders}
-         updateSponsor={(value, sponsor) => {
-            const result = Object.assign({}, sponsor);
-            result.cheerleaders = value;
-            return result;
-         }} />
-   );
-};
+const CheerleadersInput = (props) =>
+   <SponsorBoundNumberInput {...props}
+      handleChange={props.actions.updateSponsorCheerleaders}
+      updateSponsor={(value, sponsor) => {
+         const result = Object.assign({}, sponsor);
+         result.cheerleaders = value;
+         return result;
+      }} />;
 
 CheerleadersInput.propTypes = {
    actions: PropTypes.object.isRequired

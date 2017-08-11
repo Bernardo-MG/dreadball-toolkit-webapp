@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
-const SpecialMoveCardValue = (props) => {
-   return (
-      <Value value={props.cards} label='special_move_card' />
-   );
-};
+const SpecialMoveCardValue = (props) => <Value value={props.cards} label='special_move_card' />;
 
 SpecialMoveCardValue.propTypes = {
    cards: PropTypes.number.isRequired

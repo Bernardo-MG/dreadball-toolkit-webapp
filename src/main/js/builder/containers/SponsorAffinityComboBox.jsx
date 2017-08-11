@@ -9,11 +9,8 @@ import SponsorAffinitySelect from 'builder/components/SponsorAffinitySelect';
 
 import * as Actions from 'builder/actions';
 
-const SponsorAffinityComboBox = (props) => {
-   return (
-      <SponsorAffinitySelect index={props.index} source={props.source} onChange={props.actions.chooseSponsorAffinity} />
-   );
-};
+const SponsorAffinityComboBox = (props) =>
+   <SponsorAffinitySelect index={props.index} source={props.source} onChange={props.actions.chooseSponsorAffinity} />;
 
 SponsorAffinityComboBox.propTypes = {
    index: PropTypes.number.isRequired,

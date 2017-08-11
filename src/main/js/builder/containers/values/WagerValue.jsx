@@ -6,11 +6,7 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
-const WagerValue = (props) => {
-   return (
-      <Value value={props.rank} label='wager' />
-   );
-};
+const WagerValue = (props) => <Value value={props.rank} label='wager' />;
 
 WagerValue.propTypes = {
    rank: PropTypes.number.isRequired

@@ -9,11 +9,7 @@ import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox'
 const SponsorAffinitySelectField = (props) => {
    return (
       <Box>
-         {props.source.map((element, i) => {
-            return (
-               <SponsorAffinityComboBox index={i} key={i} source={element} />
-            );
-         })}
+         {props.source.map((element, i) => <SponsorAffinityComboBox index={i} key={i} source={element} />)}
       </Box>
    );
 };

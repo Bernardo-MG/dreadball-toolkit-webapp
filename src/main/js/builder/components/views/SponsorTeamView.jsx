@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
 
-import PropTypes from 'prop-types';
-
 import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
@@ -59,26 +57,26 @@ class SponsorTeamView extends Component {
       let view = null;
 
       if (this.state.editingAssets) {
-         view = 
+         view =
                <SponsorTeamEditionLayer title='assets' onClose={ this.finishEditAssets }>
                   <SponsorAssetsForm />
-               </SponsorTeamEditionLayer>
+               </SponsorTeamEditionLayer>;
       } else if (this.state.editingPlayers) {
-         view = 
+         view =
             <SponsorTeamEditionLayer title='players' onClose={ this.finishEditPlayers }>
                <SponsorAddUnitTable />
-            </SponsorTeamEditionLayer>
+            </SponsorTeamEditionLayer>;
       } else if (this.state.editingName) {
-         view = 
+         view =
             <SponsorTeamEditionLayer title='players' onClose={ this.finishEditName }>
                <Form>
                   <FormField label='sponsor_name'>
                      <TextInput id='sponsor_name' name='sponsor_name'/>
                   </FormField>
                </Form>
-            </SponsorTeamEditionLayer>
+            </SponsorTeamEditionLayer>;
       } else {
-         view = 
+         view =
             <Box>
                <Heading>sponsor_data</Heading>
                <Box direction='row'>
@@ -109,14 +107,14 @@ class SponsorTeamView extends Component {
                   </Box>
                   <SponsorTeamUnitTable />
                </Box>
-            </Box>
+            </Box>;
       }
 
       return (
          view
       );
-   };
+   }
 
-};
+}
 
 export default SponsorTeamView;
