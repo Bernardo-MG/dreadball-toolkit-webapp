@@ -1,13 +1,12 @@
 import { Model, many, attr } from 'redux-orm';
 import { REQUEST_UNITS_SUCCESS, REQUEST_SPONSOR_UNITS_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS } from 'requests/actions/ActionTypes';
 import propTypesMixin from 'redux-orm-proptypes';
-import { PropTypes } from 'react';
 import { forEachValue } from 'utils';
 
 const ValidatingModel = propTypesMixin(Model);
 
 export class Ability extends Model {
-   static reducer(action, Ability) {
+   static reducer(action, AbilityModel) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
@@ -17,12 +16,13 @@ export class Ability extends Model {
          // Creates abilities
          forEachValue(abilities,
                ability => {
-                  if (!Ability.filter({ name: ability.name }).exists()) {
-                     Ability.create(ability);
+                  if (!AbilityModel.filter({ name: ability.name }).exists()) {
+                     AbilityModel.create(ability);
                   }
                }
          );
          break;
+      default:
       }
    }
 }
@@ -32,7 +32,7 @@ Ability.options = {
 };
 
 export class Affinity extends Model {
-   static reducer(action, Affinity) {
+   static reducer(action, AffinityModel) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
@@ -42,13 +42,14 @@ export class Affinity extends Model {
          if (affinities) {
             forEachValue(affinities,
                   (affinity) => {
-                     if (!Affinity.filter({ name: affinity.name }).exists()) {
-                        Affinity.create(affinity);
+                     if (!AffinityModel.filter({ name: affinity.name }).exists()) {
+                        AffinityModel.create(affinity);
                      }
                   }
             );
          }
          break;
+      default:
       }
    }
 }
@@ -58,19 +59,20 @@ Affinity.options = {
 };
 
 export class SponsorAffinityAvailability extends Model {
-   static reducer(action, Availability, session) {
+   static reducer(action, AvailabilityModel, session) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
          const avas = payload.entities.sponsorAffinityAvailabilities;
          forEachValue(avas,
                ava => {
-                  if (!Availability.filter({ name: ava.name }).exists()) {
-                     Availability.create(ava);
+                  if (!AvailabilityModel.filter({ name: ava.name }).exists()) {
+                     AvailabilityModel.create(ava);
                   }
                }
          );
          break;
+      default:
       }
    }
 }
@@ -85,23 +87,24 @@ SponsorAffinityAvailability.options = {
 };
 
 export class Player extends ValidatingModel {
-   static reducer(action, Player, session) {
+   static reducer(action, PlayerModel, session) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_UNITS_SUCCESS:
          const units = payload.entities.units;
          forEachValue(units,
                unit => {
-                  if (!Player.filter({ templateName: unit.templateName }).exists()) {
-                     Player.create(unit);
+                  if (!PlayerModel.filter({ templateName: unit.templateName }).exists()) {
+                     PlayerModel.create(unit);
                   }
                }
          );
          break;
+      default:
       }
    }
 }
-Player.modelName = 'Player';
+RatedPlayerModel.modelName = 'Player';
 Player.fields = {
    name: attr(),
    role: attr(),
@@ -130,12 +133,13 @@ export class RatedPlayer extends ValidatingModel {
          const units = payload.entities.units;
          forEachValue(units,
                unit => {
-                  if (!RatedPlayer.filter({ templateName : unit.templateName }).exists()) {
-                     RatedPlayer.create(unit);
+                  if (!RatedPlayerModel.filter({ templateName : unit.templateName }).exists()) {
+                     RatedPlayerModel.create(unit);
                   }
                }
          );
          break;
+      default:
       }
    }
 }

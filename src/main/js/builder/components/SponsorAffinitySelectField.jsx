@@ -6,13 +6,10 @@ import Box from 'grommet/components/Box';
 
 import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
 
-const SponsorAffinitySelectField = (props) => {
-   return (
-      <Box>
-         {props.source.map((element, i) => <SponsorAffinityComboBox index={i} key={i} source={element} />)}
-      </Box>
-   );
-};
+const SponsorAffinitySelectField = (props) =>
+   <Box>
+      {props.source.map((element, i) => <SponsorAffinityComboBox index={i} key={i} source={element} />)}
+   </Box>;
 
 SponsorAffinitySelectField.propTypes = {
    source: PropTypes.array.isRequired

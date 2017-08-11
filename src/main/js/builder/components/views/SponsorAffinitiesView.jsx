@@ -8,16 +8,13 @@ import Form from 'grommet/components/Form';
 
 import AffinityGroupsComboPanel from 'builder/containers/AffinityGroupsComboPanel';
 
-const SponsorAffinitiesView = (props) => {
-   return (
-      <Form>
-         <AffinityGroupsComboPanel />
-         <Box margin='small'>
-            <Button onClick={ props.onClick } label='accept' />
-         </Box>
-      </Form>
-   );
-};
+const SponsorAffinitiesView = (props) =>
+   <Form>
+      <AffinityGroupsComboPanel />
+      <Box margin='small'>
+         <Button onClick={ props.onClick } label='accept' />
+      </Box>
+   </Form>;
 
 SponsorAffinitiesView.propTypes = {
    onClick: PropTypes.func.isRequired

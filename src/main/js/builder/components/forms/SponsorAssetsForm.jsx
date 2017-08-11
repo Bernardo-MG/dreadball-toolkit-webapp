@@ -10,7 +10,7 @@ import NastySurpriseCardInput from 'builder/containers/input/NastySurpriseCardIn
 import SpecialMoveCardInput from 'builder/containers/input/SpecialMoveCardInput';
 import WagerInput from 'builder/containers/input/WagerInput';
 
-const SponsorAssetsForm = (props) =>
+const SponsorAssetsForm = () =>
    <Form>
       <FormField label='coaching_dice'>
          <CoachingDiceInput id='coaching_dice' name='coaching_dice' min={0} max={100}/>
