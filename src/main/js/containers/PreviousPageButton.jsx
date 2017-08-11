@@ -24,18 +24,22 @@ class PreviousPageButton extends Component {
 PreviousPageButton.propTypes = {
    actions: PropTypes.object.isRequired,
    page: PropTypes.number.isRequired,
-   lastPage: PropTypes.number.isRequired,
+   firstPage: PropTypes.number.isRequired,
    label: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
-   firstPage: state.pagination.units.first,
-   page: state.pagination.units.page
-});
+const mapStateToProps = (state) => {
+   return {
+      firstPage: state.pagination.units.first,
+      page: state.pagination.units.page
+   };
+};
 
-const mapDispatchToProps = (dispatch) => ({
-   actions: bindActionCreators(actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => {
+   return {
+      actions: bindActionCreators(actions, dispatch)
+   };
+};
 
 export default connect(
    mapStateToProps,

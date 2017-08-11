@@ -28,13 +28,17 @@ LoadableDbxUnitTable.propTypes = {
    source: PropTypes.array.isRequired
 };
 
-const mapStateToProps = (state) => ({
-   source: unitsPaginated(state)
-});
+const mapStateToProps = (state) => {
+   return {
+      source: unitsPaginated(state)
+   };
+};
 
-const mapDispatchToProps = (dispatch) => ({
-   actions: bindActionCreators(actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => {
+   return {
+      actions: bindActionCreators(actions, dispatch)
+   };
+};
 
 export default connect(
    mapStateToProps,

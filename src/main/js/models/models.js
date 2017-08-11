@@ -15,7 +15,7 @@ export class Ability extends Model {
          const abilities = payload.entities.abilities;
          // Creates abilities
          forEachValue(abilities,
-               ability => {
+               (ability) => {
                   if (!AbilityModel.filter({ name: ability.name }).exists()) {
                      AbilityModel.create(ability);
                   }
@@ -28,7 +28,7 @@ export class Ability extends Model {
 }
 Ability.modelName = 'Ability';
 Ability.options = {
-   idAttribute: 'name',
+   idAttribute: 'name'
 };
 
 export class Affinity extends Model {
@@ -55,7 +55,7 @@ export class Affinity extends Model {
 }
 Affinity.modelName = 'Affinity';
 Affinity.options = {
-   idAttribute: 'name',
+   idAttribute: 'name'
 };
 
 export class SponsorAffinityAvailability extends Model {
@@ -65,7 +65,7 @@ export class SponsorAffinityAvailability extends Model {
       case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS:
          const avas = payload.entities.sponsorAffinityAvailabilities;
          forEachValue(avas,
-               ava => {
+               (ava) => {
                   if (!AvailabilityModel.filter({ name: ava.name }).exists()) {
                      AvailabilityModel.create(ava);
                   }
@@ -93,7 +93,7 @@ export class Player extends ValidatingModel {
       case REQUEST_UNITS_SUCCESS:
          const units = payload.entities.units;
          forEachValue(units,
-               unit => {
+               (unit) => {
                   if (!PlayerModel.filter({ templateName: unit.templateName }).exists()) {
                      PlayerModel.create(unit);
                   }
@@ -104,7 +104,7 @@ export class Player extends ValidatingModel {
       }
    }
 }
-RatedPlayerModel.modelName = 'Player';
+Player.modelName = 'Player';
 Player.fields = {
    name: attr(),
    role: attr(),
@@ -126,14 +126,14 @@ Player.options = {
 };
 
 export class RatedPlayer extends ValidatingModel {
-   static reducer(action, RatedPlayer, session) {
+   static reducer(action, RatedPlayerModel, session) {
       const { type, payload } = action;
       switch (type) {
       case REQUEST_SPONSOR_UNITS_SUCCESS:
          const units = payload.entities.units;
          forEachValue(units,
-               unit => {
-                  if (!RatedPlayerModel.filter({ templateName : unit.templateName }).exists()) {
+               (unit) => {
+                  if (!RatedPlayerModel.filter({ templateName: unit.templateName }).exists()) {
                      RatedPlayerModel.create(unit);
                   }
                }

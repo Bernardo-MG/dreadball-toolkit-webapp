@@ -9,4 +9,4 @@ export default <Route path="/" component={BaseLayout}>
    <IndexRoute component={Home}/>
    <Route path="/players" activeClassName="dbxPlayersLink" component={DbxPlayers}/>
    <Route path="/dbx" activeClassName="dbxTeamBuilderLink" component={ContainerDbxTeamBuilder}/>
-</Route>
+</Route>;

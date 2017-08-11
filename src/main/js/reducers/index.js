@@ -9,7 +9,7 @@ import { dictionaryIds } from 'utils';
 
 const pagination = combineReducers({
    units: paginate({
-      idsMapping: payload => dictionaryIds(payload.entities.units),
+      idsMapping: (payload) => dictionaryIds(payload.entities.units),
       types: [
          REQUEST_UNITS,
          REQUEST_UNITS_SUCCESS,
@@ -17,7 +17,7 @@ const pagination = combineReducers({
       ]
    }),
    ratedUnits: paginate({
-      idsMapping: payload => dictionaryIds(payload.entities.units),
+      idsMapping: (payload) => dictionaryIds(payload.entities.units),
       types: [
          REQUEST_SPONSOR_UNITS,
          REQUEST_SPONSOR_UNITS_SUCCESS,
@@ -25,7 +25,7 @@ const pagination = combineReducers({
       ]
    }),
    sponsorAffAvas: paginate({
-      idsMapping: payload => dictionaryIds(payload.entities.sponsorAffinityAvailabilities),
+      idsMapping: (payload) => dictionaryIds(payload.entities.sponsorAffinityAvailabilities),
       types: [
          REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES,
          REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS,
@@ -38,7 +38,7 @@ const dreadballApp = combineReducers({
    pagination,
    builder,
    routing,
-   orm : createReducer(orm)
+   orm: createReducer(orm)
 });
 
 export default dreadballApp;

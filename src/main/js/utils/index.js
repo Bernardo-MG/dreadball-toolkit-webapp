@@ -11,5 +11,5 @@ export const dictionaryIds = (dictionary) => {
 };
 
 export const forEachValue = (dict, fn) => {
-   Object.keys(dict).forEach(key => fn(dict[key]));
+   Object.keys(dict).forEach((key) => fn(dict[key]));
 };

@@ -1,15 +1,15 @@
 
 const appendBase = (url) => {
    let result;
-   
+
    if (url.indexOf(ROUTE_BASE) === -1) {
       result = ROUTE_BASE + url;
    } else {
       result = url;
    }
-   
+
    return result;
-}
+};
 
 const applyParams = (url, params) => {
    let result = url;
@@ -23,7 +23,7 @@ const applyParams = (url, params) => {
    }
 
    return result;
-}
+};
 
 const appendParamsMap = (map) => {
    let result = '';
@@ -36,24 +36,24 @@ const appendParamsMap = (map) => {
    }
 
    return result;
-}
+};
 
 const appendParams = (params, key, value) => {
    let result = params;
 
    if (value) {
-      if(result){
-         result = result + '&&';
+      if (result) {
+         result += '&&';
       }
       result = result + key + '=' + value;
    }
 
    return result;
-}
+};
 
 export const getUrl = (endpoint, params) => {
    const localEndpoint = appendBase(endpoint);
-   const url = applyParams(localEndpoint, params)
+   const url = applyParams(localEndpoint, params);
 
    return url;
-}
+};

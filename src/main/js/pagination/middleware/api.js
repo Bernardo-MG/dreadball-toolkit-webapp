@@ -26,38 +26,36 @@ export default store => (next) => (action) => {
    if (!Array.isArray(types) || types.length !== 3) {
       throw new Error('Expected an array of three action types.');
    }
-   if (!types.every(type => typeof type === 'string')) {
+   if (!types.every((type) => typeof type === 'string')) {
       throw new Error('Expected action types to be strings.');
    }
 
-   const processAction = actionWith(action)
-   const [ requestType, successType, failureType ] = types
+   const processAction = actionWith(action);
+   const [requestType, successType, failureType] = types;
 
-   next(processAction({ type: requestType }))
+   next(processAction({ type: requestType }));
 
    const urlParams = { orderBy, order, page, ...params };
    const url = getUrl(endpoint, urlParams);
 
    return callApi(url, parse).then(
-      response => next(processAction({
+      (response) => next(processAction({
          type: successType,
          ...response
       })),
-      error => next(processAction({
+      (error) => next(processAction({
          type: failureType,
          error: error.message || 'Something bad happened'
       }))
    )
 }
 
-const callApi = (url, parse) => {
-   return fetchPaginated(url, parse);
-}
+const callApi = (url, parse) => fetchPaginated(url, parse);
 
 const actionWith = (action) => (data) => {
-   const finalAction = Object.assign({}, action, data)
+   const finalAction = Object.assign({}, action, data);
 
-   delete finalAction[CALL_API]
+   delete finalAction[CALL_API];
 
-   return finalAction
-}
+   return finalAction;
+};

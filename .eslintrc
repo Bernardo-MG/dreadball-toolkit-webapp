@@ -13,7 +13,7 @@
    },
    "rules": {
       "react/prop-types": [2],
-      "max-len": [1, 120, 2, {ignoreComments: true}],
+      "max-len": [1, 120, 2, {"ignoreComments": true}],
       "indent": ["error", 3],
       "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
       "import/prefer-default-export": ["warn"],

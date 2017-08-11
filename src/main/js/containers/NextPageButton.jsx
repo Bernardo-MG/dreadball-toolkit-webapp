@@ -29,15 +29,19 @@ NextPageButton.propTypes = {
    label: PropTypes.string.isRequired
 };
 
-const mapStateToProps = (state) => ({
-   lastPage: state.pagination.units.last,
-   page: state.pagination.units.page,
-   totalPages: state.pagination.units.totalPages
-});
+const mapStateToProps = (state) => {
+   return {
+      lastPage: state.pagination.units.last,
+      totalPages: state.pagination.units.totalPages,
+      page: state.pagination.units.page
+   };
+};
 
-const mapDispatchToProps = (dispatch) => ({
-   actions: bindActionCreators(actions, dispatch)
-});
+const mapDispatchToProps = (dispatch) => {
+   return {
+      actions: bindActionCreators(actions, dispatch)
+   };
+};
 
 export default injectIntl(connect(
    mapStateToProps,
