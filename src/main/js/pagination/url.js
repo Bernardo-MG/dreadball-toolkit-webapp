@@ -25,16 +25,7 @@ const appendParams = (params, key, value) => {
 };
 
 const appendParamsMap = (map) => {
-   let result = '';
-   let value;
-
-   for (var key in map) {
-      if (map.hasOwnProperty(key)) {
-         result = appendParams(result, key, map[key]);
-      }
-   }
-
-   return result;
+   return Object.keys(map).filter((key) => map.hasOwnProperty(key)).reduce((a , b) => appendParams(a, b, map[b]), '');
 };
 
 const applyParams = (url, params) => {
