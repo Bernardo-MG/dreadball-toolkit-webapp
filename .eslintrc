@@ -18,6 +18,7 @@
       "arrow-body-style": ["error", "as-needed", { "requireReturnForObjectLiteral": true }],
       "import/prefer-default-export": ["warn"],
       "comma-dangle": ["error", "never"],
+      "no-underscore-dangle": ["error", { "allowAfterThis": true }],
       "arrow-parens": ["error", "always"]
    },
    "extends": [
