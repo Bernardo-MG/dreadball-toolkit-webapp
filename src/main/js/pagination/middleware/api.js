@@ -14,7 +14,7 @@ const actionWith = (action) => (data) => {
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
-export default store => (next) => (action) => {
+export default () => (next) => (action) => {
    const callAPI = action[CALL_API];
 
    if (typeof callAPI === 'undefined') {
