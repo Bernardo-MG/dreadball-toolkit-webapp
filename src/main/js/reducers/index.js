@@ -5,11 +5,10 @@ import builder from 'builder/reducers';
 import orm from 'models';
 import paginate from 'pagination/reducers';
 import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE, REQUEST_SPONSOR_UNITS, REQUEST_SPONSOR_UNITS_SUCCESS, REQUEST_SPONSOR_UNITS_FAILURE, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE } from 'requests/actions/ActionTypes';
-import { dictionaryIds } from 'utils';
 
 const pagination = combineReducers({
    units: paginate({
-      idsMapping: (payload) => dictionaryIds(payload.entities.units),
+      idsMapping: (payload) => Object.keys(payload.entities.units),
       types: [
          REQUEST_UNITS,
          REQUEST_UNITS_SUCCESS,
@@ -17,7 +16,7 @@ const pagination = combineReducers({
       ]
    }),
    ratedUnits: paginate({
-      idsMapping: (payload) => dictionaryIds(payload.entities.units),
+      idsMapping: (payload) => Object.keys(payload.entities.units),
       types: [
          REQUEST_SPONSOR_UNITS,
          REQUEST_SPONSOR_UNITS_SUCCESS,
@@ -25,7 +24,7 @@ const pagination = combineReducers({
       ]
    }),
    sponsorAffAvas: paginate({
-      idsMapping: (payload) => dictionaryIds(payload.entities.sponsorAffinityAvailabilities),
+      idsMapping: (payload) => Object.keys(payload.entities.sponsorAffinityAvailabilities),
       types: [
          REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES,
          REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS,
