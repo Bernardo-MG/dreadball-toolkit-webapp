@@ -11,15 +11,14 @@ const appendBase = (url) => {
    return result;
 };
 
-const applyParams = (url, params) => {
-   let result = url;
-   let urlParams = '';
+const appendParams = (params, key, value) => {
+   let result = params;
 
-   urlParams = appendParamsMap(params);
-
-   // Params are added to the URL
-   if (urlParams) {
-      result = result + '?' + urlParams;
+   if (value) {
+      if (result) {
+         result += '&&';
+      }
+      result = result + key + '=' + value;
    }
 
    return result;
@@ -38,14 +37,15 @@ const appendParamsMap = (map) => {
    return result;
 };
 
-const appendParams = (params, key, value) => {
-   let result = params;
+const applyParams = (url, params) => {
+   let result = url;
+   let urlParams = '';
 
-   if (value) {
-      if (result) {
-         result += '&&';
-      }
-      result = result + key + '=' + value;
+   urlParams = appendParamsMap(params);
+
+   // Params are added to the URL
+   if (urlParams) {
+      result = result + '?' + urlParams;
    }
 
    return result;
