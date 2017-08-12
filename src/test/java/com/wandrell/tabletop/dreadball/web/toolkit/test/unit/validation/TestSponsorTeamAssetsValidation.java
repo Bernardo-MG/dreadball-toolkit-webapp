@@ -26,7 +26,7 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.web.toolkit.builder.dbx.controller.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorTeamAssets;
 
 /**
  * Unit tests for {@link SponsorTeamAssets} bean validation.
