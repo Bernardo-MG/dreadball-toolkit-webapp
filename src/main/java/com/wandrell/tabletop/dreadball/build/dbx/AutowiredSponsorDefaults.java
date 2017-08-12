@@ -24,7 +24,7 @@ import org.springframework.stereotype.Component;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Component
+@Component("SponsorDefaults")
 public class AutowiredSponsorDefaults implements SponsorDefaults {
 
     /**

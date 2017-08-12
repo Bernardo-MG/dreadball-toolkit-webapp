@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean;
+package com.wandrell.tabletop.dreadball.build.dbx.bean;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

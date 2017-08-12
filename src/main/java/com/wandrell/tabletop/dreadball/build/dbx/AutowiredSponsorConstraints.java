@@ -27,7 +27,7 @@ import org.springframework.stereotype.Component;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Component
+@Component("SponsorConstraints")
 public final class AutowiredSponsorConstraints implements SponsorConstraints {
 
     /**

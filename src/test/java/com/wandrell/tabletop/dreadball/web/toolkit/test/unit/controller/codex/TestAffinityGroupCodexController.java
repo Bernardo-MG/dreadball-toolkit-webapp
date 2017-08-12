@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
 import com.wandrell.tabletop.dreadball.service.model.AffinityGroupService;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.codex.affinity.AffinityGroupCodexController;
+import com.wandrell.tabletop.dreadball.web.toolkit.controller.codex.AffinityGroupCodexController;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**

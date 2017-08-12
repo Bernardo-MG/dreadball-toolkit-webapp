@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.controller.codex.unit;
+package com.wandrell.tabletop.dreadball.web.toolkit.controller.codex;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

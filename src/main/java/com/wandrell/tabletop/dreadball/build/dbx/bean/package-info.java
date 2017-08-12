@@ -14,7 +14,7 @@
  * the License.
  */
 /**
- * Codex controllers.
+ * Forms beans.
  */
 
-package com.wandrell.tabletop.dreadball.web.toolkit.controller.codex.unit;
+package com.wandrell.tabletop.dreadball.build.dbx.bean;

@@ -14,13 +14,13 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.service.builder;
+package com.wandrell.tabletop.dreadball.build.dbx.service;
 
 import java.util.Collection;
 
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorAffinities;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorAffinitiesSelection;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinitiesSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
 
 /**
  * 

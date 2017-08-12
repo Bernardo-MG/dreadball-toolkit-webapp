@@ -27,10 +27,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.service.builder.SponsorBuilderService;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorAffinities;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorAffinitiesSelection;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinitiesSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
 
 /**
  * Controller for the affinity groups codex views.

@@ -32,7 +32,7 @@ import org.testng.annotations.Test;
 
 import com.wandrell.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
 import com.wandrell.tabletop.dreadball.service.model.UnitService;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.codex.unit.UnitCodexController;
+import com.wandrell.tabletop.dreadball.web.toolkit.controller.codex.UnitCodexController;
 import com.wandrell.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**

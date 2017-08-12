@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.service.builder;
+package com.wandrell.tabletop.dreadball.build.dbx.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -16,6 +16,10 @@ import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
 import com.wandrell.tabletop.dreadball.build.dbx.SponsorDefaults;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinitiesSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.TeamPlayer;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -31,10 +35,6 @@ import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorAffinities;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorAffinitiesSelection;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.SponsorTeamAssets;
-import com.wandrell.tabletop.dreadball.web.toolkit.controller.builder.dbx.bean.TeamPlayer;
 
 @Service
 public class DefaultSponsorBuilderService implements SponsorBuilderService {
