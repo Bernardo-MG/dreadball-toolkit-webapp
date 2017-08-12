@@ -11,6 +11,13 @@
          }
       }
    },
+   "env": {
+      "node": true
+   },
+   "globals": {
+      "ROUTE_BASE": false,
+      "document": false
+   },
    "rules": {
       "react/prop-types": [2],
       "max-len": [1, 220, 2, {"ignoreComments": true}],
