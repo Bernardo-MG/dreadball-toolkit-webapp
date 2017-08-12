@@ -19,7 +19,8 @@
       "import/prefer-default-export": ["warn"],
       "comma-dangle": ["error", "never"],
       "no-underscore-dangle": ["error", { "allowAfterThis": true }],
-      "arrow-parens": ["error", "always"]
+      "arrow-parens": ["error", "always"],
+      "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
    },
    "extends": [
       "plugin:react/recommended",
