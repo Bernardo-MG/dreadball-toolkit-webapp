@@ -50,7 +50,7 @@ public interface AffinityUnitRepository
             final Pageable pageReq);
 
     public Collection<PersistentAffinityUnit>
-            findByTemplateName(final Iterable<String> names);
+            findByTemplateNameIn(final Iterable<String> names);
 
     /**
      * Returns the affinity unit with the specified template name.

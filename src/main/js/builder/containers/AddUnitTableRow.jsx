@@ -17,25 +17,43 @@ class AddUnitTableRow extends Component {
    index;
    validateSponsorTeam;
 
-   sponsor;
-
    chooseUnit = () => {
-      const units = this.sponsor.units.map((unit) => unit.templateName);
+      const units = this.sponsorUnits.map((unit) => unit.templateName);
       units.push(this.unit);
-      this.validateSponsorTeam(this.sponsor.affinities, units,
-            this.sponsor.baseRank,
-            this.sponsor.cheerleaders, this.sponsor.coachingDice, this.sponsor.mediBots, this.sponsor.specialMoveCards, this.sponsor.nastySurpriseCards, this.sponsor.wagers);
+      this.validateSponsorTeam(this.affinities, units,
+            this.baseRank,
+            this.cheerleaders, this.coachingDice, this.mediBots, this.specialMoveCards, this.nastySurpriseCards, this.wagers);
    };
 
    constructor(props) {
       super(props);
 
-      this.sponsor = props.sponsor;
+      this.sponsorUnits = props.sponsorUnits;
+      this.baseRank = props.baseRank;
+      this.affinities = props.affinities;
+      this.cheerleaders = props.cheerleaders;
+      this.coachingDice = props.coachingDice;
+      this.mediBots = props.mediBots;
+      this.specialMoveCards = props.specialMoveCards;
+      this.nastySurpriseCards = props.nastySurpriseCards;
+      this.wagers = props.wagers;
 
       this.unit = props.source.templateName;
       this.index = props.index;
 
       this.validateSponsorTeam = props.actions.validateSponsorTeam;
+   }
+
+   componentWillReceiveProps(props) {
+      this.sponsorUnits = props.sponsorUnits;
+      this.baseRank = props.baseRank;
+      this.affinities = props.affinities;
+      this.cheerleaders = props.cheerleaders;
+      this.coachingDice = props.coachingDice;
+      this.mediBots = props.mediBots;
+      this.specialMoveCards = props.specialMoveCards;
+      this.nastySurpriseCards = props.nastySurpriseCards;
+      this.wagers = props.wagers;
    }
 
    render() {
@@ -57,7 +75,15 @@ class AddUnitTableRow extends Component {
 }
 
 AddUnitTableRow.propTypes = {
-   sponsor: PropTypes.object.isRequired,
+   sponsorUnits: PropTypes.object.isRequired,
+   baseRank: PropTypes.number.isRequired,
+   affinities: PropTypes.array.isRequired,
+   cheerleaders: PropTypes.number.isRequired,
+   coachingDice: PropTypes.number.isRequired,
+   mediBots: PropTypes.number.isRequired,
+   specialMoveCards: PropTypes.number.isRequired,
+   nastySurpriseCards: PropTypes.number.isRequired,
+   wagers: PropTypes.number.isRequired,
    source: PropTypes.object.isRequired,
    index: PropTypes.number.isRequired,
    actions: PropTypes.object.isRequired
@@ -65,7 +91,15 @@ AddUnitTableRow.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      sponsor: state.builder.sponsor
+      sponsorUnits: state.builder.sponsor.units,
+      baseRank: state.builder.sponsor.baseRank,
+      affinities: state.builder.sponsor.affinities,
+      cheerleaders: state.builder.sponsor.cheerleaders,
+      coachingDice: state.builder.sponsor.coachingDice,
+      mediBots: state.builder.sponsor.mediBots,
+      specialMoveCards: state.builder.sponsor.specialMoveCards,
+      nastySurpriseCards: state.builder.sponsor.nastySurpriseCards,
+      wagers: state.builder.sponsor.wagers
    };
 };
 

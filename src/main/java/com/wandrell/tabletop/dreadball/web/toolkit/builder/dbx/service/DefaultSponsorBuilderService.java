@@ -103,7 +103,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
                 .collect(Collectors.toList());
 
         if (!unitNames.isEmpty()) {
-            units = getAffinityUnitRepository().findByTemplateName(unitNames);
+            units = getAffinityUnitRepository().findByTemplateNameIn(unitNames);
         } else {
             units = Collections.emptyList();
         }
