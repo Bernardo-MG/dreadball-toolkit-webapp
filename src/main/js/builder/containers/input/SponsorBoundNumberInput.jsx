@@ -20,7 +20,8 @@ class SponsorBoundNumberInput extends Component {
    setValue = (value) => {
       this.handleChange(value);
       this.sponsor = this.updateSponsor(value, this.sponsor);
-      this.validate(this.sponsor.affinities, this.sponsor.units,
+      const units = this.sponsor.units.map((unit) => unit.templateName);
+      this.validate(this.sponsor.affinities, units,
             this.sponsor.baseRank,
             this.sponsor.cheerleaders, this.sponsor.coachingDice, this.sponsor.mediBots, this.sponsor.specialMoveCards, this.sponsor.nastySurpriseCards, this.sponsor.wagers);
    };

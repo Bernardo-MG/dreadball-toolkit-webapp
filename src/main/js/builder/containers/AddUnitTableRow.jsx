@@ -20,7 +20,7 @@ class AddUnitTableRow extends Component {
    sponsor;
 
    chooseUnit = () => {
-      const units = this.sponsor.units.slice();
+      const units = this.sponsor.units.map((unit) => unit.templateName);
       units.push(this.unit);
       this.validateSponsorTeam(this.sponsor.affinities, units,
             this.sponsor.baseRank,
