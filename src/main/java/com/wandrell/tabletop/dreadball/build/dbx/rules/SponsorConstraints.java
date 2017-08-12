@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.build.dbx;
+package com.wandrell.tabletop.dreadball.build.dbx.rules;
 
 /**
  * Constraints for the sponsor teams.

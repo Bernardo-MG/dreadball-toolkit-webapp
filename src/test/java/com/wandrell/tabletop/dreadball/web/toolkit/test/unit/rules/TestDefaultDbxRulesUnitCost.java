@@ -20,7 +20,7 @@ import org.mockito.Mockito;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.build.dbx.SponsorConstraints;
+import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorConstraints;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;

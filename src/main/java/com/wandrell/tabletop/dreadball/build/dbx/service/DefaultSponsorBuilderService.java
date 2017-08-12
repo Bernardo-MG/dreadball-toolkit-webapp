@@ -14,12 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.build.dbx.SponsorCosts;
-import com.wandrell.tabletop.dreadball.build.dbx.SponsorDefaults;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.TeamPlayer;
+import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorCosts;
+import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorDefaults;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;

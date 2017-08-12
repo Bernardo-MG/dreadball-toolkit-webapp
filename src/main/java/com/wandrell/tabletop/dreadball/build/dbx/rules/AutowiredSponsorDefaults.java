@@ -14,20 +14,35 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.build.dbx;
+package com.wandrell.tabletop.dreadball.build.dbx.rules;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
 
 /**
- * Costs for the sponsor teams.
+ * Service implementation of the {@code SponsorCosts}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface SponsorDefaults {
+@Component("SponsorDefaults")
+public class AutowiredSponsorDefaults implements SponsorDefaults {
 
     /**
-     * Returns the initial rank.
-     * 
-     * @return the initial rank
+     * Initial rank.
      */
-    public Integer getInitialRank();
+    @Value("${sponsor.rank.initial}")
+    private Integer initialRank;
+
+    /**
+     * Constructs a builder with the specified dependencies.
+     */
+    public AutowiredSponsorDefaults() {
+        super();
+    }
+
+    @Override
+    public final Integer getInitialRank() {
+        return initialRank;
+    }
 
 }

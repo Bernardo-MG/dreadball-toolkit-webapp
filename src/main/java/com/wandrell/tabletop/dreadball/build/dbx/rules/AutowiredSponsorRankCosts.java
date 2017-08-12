@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.build.dbx;
+package com.wandrell.tabletop.dreadball.build.dbx.rules;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;

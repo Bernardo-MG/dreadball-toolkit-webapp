@@ -13,8 +13,21 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-/**
- * DBX builders.
- */
 
-package com.wandrell.tabletop.dreadball.build.dbx;
+package com.wandrell.tabletop.dreadball.build.dbx.rules;
+
+/**
+ * Costs for the sponsor teams.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
+public interface SponsorDefaults {
+
+    /**
+     * Returns the initial rank.
+     * 
+     * @return the initial rank
+     */
+    public Integer getInitialRank();
+
+}
