@@ -13,22 +13,8 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
-package com.wandrell.tabletop.dreadball.build.dbx.service;
-
-import java.util.Collection;
-
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorSelection;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
-
 /**
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * Forms beans.
  */
-public interface SponsorBuilderService {
 
-    public SponsorSelection getSelectionResult(
-            final Collection<String> affinities, final Collection<String> units,
-            final SponsorTeamAssets assets, final Integer baseRank);
-
-}
+package com.wandrell.tabletop.dreadball.build.dbx.model;

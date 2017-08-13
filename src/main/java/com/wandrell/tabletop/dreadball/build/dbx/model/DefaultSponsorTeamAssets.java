@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.build.dbx.bean;
+package com.wandrell.tabletop.dreadball.build.dbx.model;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;

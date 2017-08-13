@@ -27,11 +27,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorTeamAssets;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorSelection;
-import com.wandrell.tabletop.dreadball.build.dbx.service.AffinitiesSelectionProcessor;
-import com.wandrell.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
+import com.wandrell.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.selection.AffinitiesSelectionProcessor;
+import com.wandrell.tabletop.dreadball.build.dbx.selection.SponsorTeamSelectionProcessor;
 
 /**
  * Controller for the affinity groups codex views.
@@ -42,9 +42,9 @@ import com.wandrell.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
 @RequestMapping("/rest/builder/validation")
 public class SponsorValidationController {
 
-    private final AffinitiesSelectionProcessor affProcessor;
+    private final AffinitiesSelectionProcessor  affProcessor;
 
-    private final SponsorBuilderService        builderService;
+    private final SponsorTeamSelectionProcessor builderService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -56,7 +56,7 @@ public class SponsorValidationController {
      */
     @Autowired
     public SponsorValidationController(
-            final SponsorBuilderService sponsorBuilderService,
+            final SponsorTeamSelectionProcessor sponsorBuilderService,
             final AffinitiesSelectionProcessor affinitiesProcessor) {
         super();
 
@@ -67,13 +67,13 @@ public class SponsorValidationController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorSelection getSelectionResult(
+    public final SponsorTeamSelection getSelectionResult(
             @RequestParam("affinities") final ArrayList<String> affinities,
             @RequestParam("units") final ArrayList<String> units,
             final DefaultSponsorTeamAssets assets,
             @RequestParam(defaultValue = "0") final Integer baseRank) {
-        return getSponsorBuilderService().getSelectionResult(affinities, units,
-                assets, baseRank);
+        return getSponsorBuilderService().selectTeam(affinities, units, assets,
+                baseRank);
     }
 
     @GetMapping(path = "/affinities",
@@ -88,7 +88,7 @@ public class SponsorValidationController {
         return affProcessor;
     }
 
-    private final SponsorBuilderService getSponsorBuilderService() {
+    private final SponsorTeamSelectionProcessor getSponsorBuilderService() {
         return builderService;
     }
 

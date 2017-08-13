@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.build.dbx.service;
+package com.wandrell.tabletop.dreadball.build.dbx.selection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -14,10 +14,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorSelection;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorSelection;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.TeamPlayer;
+import com.wandrell.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.model.TeamPlayer;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorCosts;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
@@ -36,10 +36,11 @@ import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 
 @Service
-public class DefaultSponsorBuilderService implements SponsorBuilderService {
+public class DefaultSponsorTeamSelectionProcessor
+        implements SponsorTeamSelectionProcessor {
 
     private static final Logger          LOGGER = LoggerFactory
-            .getLogger(DefaultSponsorBuilderService.class);
+            .getLogger(DefaultSponsorTeamSelectionProcessor.class);
 
     /**
      * Affinity units repository.
@@ -56,7 +57,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
     private final SponsorCosts           rankCosts;
 
     @Autowired
-    public DefaultSponsorBuilderService(
+    public DefaultSponsorTeamSelectionProcessor(
             @Qualifier("SponsorCosts") final SponsorCosts sponsorCosts,
             @Qualifier("SponsorRankCosts") final SponsorCosts sponsorRankCosts,
             final AffinityUnitRepository unitsRepository,
@@ -73,8 +74,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
     }
 
     @Override
-    public SponsorSelection getSelectionResult(
-            final Collection<String> affinities,
+    public SponsorTeamSelection selectTeam(final Collection<String> affinities,
             final Collection<String> unitNames, final SponsorTeamAssets assets,
             final Integer baseRank) {
         final Integer rank;
@@ -120,7 +120,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
             unitsItr.next().setPosition(i);
         }
 
-        return new DefaultSponsorSelection(affinities, acceptedUnits, rank,
+        return new DefaultSponsorTeamSelection(affinities, acceptedUnits, rank,
                 baseRank, teamValue);
     }
 

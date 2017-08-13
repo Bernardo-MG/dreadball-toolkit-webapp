@@ -14,11 +14,11 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.build.dbx.service;
+package com.wandrell.tabletop.dreadball.build.dbx.selection;
 
 import java.util.Collection;
 
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 
 /**
  * 

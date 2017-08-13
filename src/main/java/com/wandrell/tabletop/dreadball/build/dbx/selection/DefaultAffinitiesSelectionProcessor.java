@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.build.dbx.service;
+package com.wandrell.tabletop.dreadball.build.dbx.selection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -9,8 +9,8 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorAffinities;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.model.DefaultSponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorDefaults;
 
 @Service

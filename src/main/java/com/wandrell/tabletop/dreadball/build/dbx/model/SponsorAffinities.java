@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.build.dbx.bean;
+package com.wandrell.tabletop.dreadball.build.dbx.model;
 
 public interface SponsorAffinities {
 

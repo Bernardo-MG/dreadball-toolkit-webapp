@@ -1,9 +1,9 @@
 
-package com.wandrell.tabletop.dreadball.build.dbx.bean;
+package com.wandrell.tabletop.dreadball.build.dbx.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class DefaultSponsorSelection implements SponsorSelection {
+public class DefaultSponsorTeamSelection implements SponsorTeamSelection {
 
     private final Iterable<String>     affinities;
 
@@ -15,7 +15,7 @@ public class DefaultSponsorSelection implements SponsorSelection {
 
     private final Iterable<TeamPlayer> units;
 
-    public DefaultSponsorSelection(final Iterable<String> affinities,
+    public DefaultSponsorTeamSelection(final Iterable<String> affinities,
             final Iterable<TeamPlayer> units, final Integer rank,
             final Integer baseRank, final Integer teamValue) {
         super();
