@@ -1,5 +1,9 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
+import { injectIntl } from 'react-intl';
+
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 
@@ -8,18 +12,26 @@ import PreviousPageButton from 'containers/PreviousPageButton';
 
 import LoadableDbxUnitTable from 'codex/containers/LoadableDbxUnitTable';
 
-const DbxPlayers = () =>
+import buttonMessages from 'i18n/button';
+import titleMessages from 'i18n/title';
+
+const DbxPlayers = (props) =>
    <Box>
-      <Heading tag='h1'>dbx_players</Heading>
+      <Heading tag='h1'>{props.intl.formatMessage(titleMessages.dbxPlayers)}</Heading>
       <LoadableDbxUnitTable/>
       <Box direction='row'>
          <Box margin='small'>
-            <PreviousPageButton label='previous' />
+            <PreviousPageButton label={props.intl.formatMessage(buttonMessages.previous)} />
          </Box>
          <Box margin='small'>
-            <NextPageButton label='next' />
+            <NextPageButton label={props.intl.formatMessage(buttonMessages.next)} />
          </Box>
       </Box>
    </Box>;
 
-export default DbxPlayers;
+DbxPlayers.propTypes = {
+   intl: PropTypes.object.isRequired
+};
+
+
+export default injectIntl(DbxPlayers);
