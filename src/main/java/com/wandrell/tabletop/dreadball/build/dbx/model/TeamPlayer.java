@@ -53,6 +53,21 @@ public class TeamPlayer {
     }
 
     /**
+     * Default constructor.
+     * 
+     * @param name
+     *            unit name
+     * @param pos
+     *            unit position in team
+     */
+    public TeamPlayer(final Integer pos, final String name) {
+        super();
+
+        position = pos;
+        templateName = name;
+    }
+
+    /**
      * Returns the player team position.
      * 
      * @return the player team position

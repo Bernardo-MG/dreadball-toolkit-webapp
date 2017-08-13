@@ -5,7 +5,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -74,7 +73,8 @@ public class DefaultSponsorTeamSelectionProcessor
     }
 
     @Override
-    public SponsorTeamSelection selectTeam(final Collection<String> affinities,
+    public final SponsorTeamSelection selectTeam(
+            final Collection<String> affinities,
             final Collection<String> unitNames, final SponsorTeamAssets assets,
             final Integer baseRank) {
         final Integer rank;
@@ -84,7 +84,6 @@ public class DefaultSponsorTeamSelectionProcessor
         final Collection<AffinityGroup> affGroups;
         final Collection<? extends AffinityUnit> units;
         final Collection<TeamPlayer> acceptedUnits;
-        final Iterator<TeamPlayer> unitsItr;
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(unitNames, "Received a null pointer as unit names");
@@ -93,14 +92,12 @@ public class DefaultSponsorTeamSelectionProcessor
 
         LOGGER.info("Units {}", unitNames);
 
-        affGroups = affinities.stream()
-                .map(affinity -> new DefaultAffinityGroup(affinity))
-                .collect(Collectors.toList());
+        affGroups = getAffinityGroups(affinities);
 
-        if (!unitNames.isEmpty()) {
-            units = getAffinityUnitRepository().findByTemplateNameIn(unitNames);
-        } else {
+        if (unitNames.isEmpty()) {
             units = Collections.emptyList();
+        } else {
+            units = getAffinityUnitRepository().findByTemplateNameIn(unitNames);
         }
 
         sponsorTeam = getSponsorTeam(assets, units, affGroups);
@@ -110,18 +107,20 @@ public class DefaultSponsorTeamSelectionProcessor
 
         rank = baseRank - assetRankCost;
 
-        acceptedUnits = sponsorTeam.getPlayers().values().stream()
-                .map(unit -> new TeamPlayer(unit.getTemplateName()))
+        acceptedUnits = sponsorTeam.getPlayers().entrySet().stream()
+                .map(unit -> new TeamPlayer(unit.getKey(),
+                        unit.getValue().getTemplateName()))
                 .collect(Collectors.toList());
-
-        // TODO: Don't iterate twice
-        unitsItr = acceptedUnits.iterator();
-        for (Integer i = 1; i <= acceptedUnits.size(); i++) {
-            unitsItr.next().setPosition(i);
-        }
 
         return new DefaultSponsorTeamSelection(affinities, acceptedUnits, rank,
                 baseRank, teamValue);
+    }
+
+    private final Collection<AffinityGroup>
+            getAffinityGroups(final Collection<String> affinities) {
+        return affinities.stream()
+                .map(affinity -> new DefaultAffinityGroup(affinity))
+                .collect(Collectors.toList());
     }
 
     private final AffinityUnitRepository getAffinityUnitRepository() {
