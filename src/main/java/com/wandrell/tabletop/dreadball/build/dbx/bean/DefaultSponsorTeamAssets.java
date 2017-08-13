@@ -80,6 +80,7 @@ public class DefaultSponsorTeamAssets implements SponsorTeamAssets {
      * 
      * @return the number of cheerleaders
      */
+    @Override
     public final Integer getCheerleaders() {
         return cheerleaders;
     }
@@ -89,6 +90,7 @@ public class DefaultSponsorTeamAssets implements SponsorTeamAssets {
      * 
      * @return the number of coaching dice
      */
+    @Override
     public final Integer getCoachingDice() {
         return coachingDice;
     }
@@ -98,6 +100,7 @@ public class DefaultSponsorTeamAssets implements SponsorTeamAssets {
      * 
      * @return the number of medi-bots
      */
+    @Override
     public final Integer getMediBots() {
         return mediBots;
     }
@@ -107,6 +110,7 @@ public class DefaultSponsorTeamAssets implements SponsorTeamAssets {
      * 
      * @return the number of sabotage cards
      */
+    @Override
     public final Integer getNastySurpriseCards() {
         return nastySurpriseCards;
     }
@@ -116,6 +120,7 @@ public class DefaultSponsorTeamAssets implements SponsorTeamAssets {
      * 
      * @return the number of special move cards
      */
+    @Override
     public final Integer getSpecialMoveCards() {
         return specialMoveCards;
     }
@@ -125,6 +130,7 @@ public class DefaultSponsorTeamAssets implements SponsorTeamAssets {
      * 
      * @return the number of wagers
      */
+    @Override
     public final Integer getWagers() {
         return wagers;
     }

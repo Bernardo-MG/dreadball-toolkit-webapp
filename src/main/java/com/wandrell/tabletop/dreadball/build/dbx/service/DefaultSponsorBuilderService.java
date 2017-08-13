@@ -50,14 +50,14 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
     private final SponsorCosts           costs;
 
-    private final SponsorCosts           rankCosts;
-
-    private final SponsorDefaults        sponsorDefaults;
-
     /**
      * DBX rules.
      */
     private final DbxRules               dbxRules;
+
+    private final SponsorCosts           rankCosts;
+
+    private final SponsorDefaults        sponsorDefaults;
 
     @Autowired
     public DefaultSponsorBuilderService(final SponsorDefaults defaults,
@@ -155,6 +155,15 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
         return affinityUnitRepository;
     }
 
+    /**
+     * Returns the DBX rules.
+     * 
+     * @return the DBX rules
+     */
+    private final DbxRules getDbxRules() {
+        return dbxRules;
+    }
+
     private final CostCalculator<SponsorTeam> getRankCostCalculator() {
         return new DefaultRankCostCalculator(getSponsorRankCosts().getDieCost(),
                 getSponsorRankCosts().getSabotageCost(),
@@ -219,15 +228,6 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
                 getSponsorCosts().getCheerleaderCost(),
                 getSponsorCosts().getWagerCost(),
                 getSponsorCosts().getMediBotCost());
-    }
-
-    /**
-     * Returns the DBX rules.
-     * 
-     * @return the DBX rules
-     */
-    private final DbxRules getDbxRules() {
-        return dbxRules;
     }
 
 }
