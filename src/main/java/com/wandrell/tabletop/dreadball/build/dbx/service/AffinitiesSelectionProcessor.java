@@ -18,17 +18,15 @@ package com.wandrell.tabletop.dreadball.build.dbx.service;
 
 import java.util.Collection;
 
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorSelection;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
 
 /**
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface SponsorBuilderService {
+public interface AffinitiesSelectionProcessor {
 
-    public SponsorSelection getSelectionResult(
-            final Collection<String> affinities, final Collection<String> units,
-            final SponsorTeamAssets assets, final Integer baseRank);
+    public SponsorAffinities
+            selectAffinities(final Collection<String> affinities);
 
 }

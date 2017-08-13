@@ -3,8 +3,7 @@ package com.wandrell.tabletop.dreadball.build.dbx.bean;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class DefaultSponsorSelection
-        implements SponsorSelection {
+public class DefaultSponsorSelection implements SponsorSelection {
 
     private final Iterable<String>     affinities;
 

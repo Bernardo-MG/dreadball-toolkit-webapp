@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.service.AffinitiesSelectionProcessor;
 import com.wandrell.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
 
 /**
@@ -41,19 +42,26 @@ import com.wandrell.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
 @RequestMapping("/rest/builder/validation")
 public class SponsorValidationController {
 
-    private final SponsorBuilderService builderService;
+    private final AffinitiesSelectionProcessor affProcessor;
+
+    private final SponsorBuilderService        builderService;
 
     /**
      * Constructs a controller with the specified dependencies.
      * 
      * @param sponsorBuilderService
      *            sponsor builder service
+     * @param affinitiesProcessor
+     *            sponsor affinities selection processor
      */
     @Autowired
     public SponsorValidationController(
-            final SponsorBuilderService sponsorBuilderService) {
+            final SponsorBuilderService sponsorBuilderService,
+            final AffinitiesSelectionProcessor affinitiesProcessor) {
         super();
 
+        affProcessor = checkNotNull(affinitiesProcessor,
+                "Received a null pointer as affinities selection processor");
         builderService = checkNotNull(sponsorBuilderService,
                 "Received a null pointer as sponsor builder service");
     }
@@ -72,7 +80,12 @@ public class SponsorValidationController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorAffinities selectAffinities(
             @RequestParam("affinities") final ArrayList<String> affinities) {
-        return getSponsorBuilderService().selectAffinities(affinities);
+        return getAffinitiesSelectionProcessor().selectAffinities(affinities);
+    }
+
+    private final AffinitiesSelectionProcessor
+            getAffinitiesSelectionProcessor() {
+        return affProcessor;
     }
 
     private final SponsorBuilderService getSponsorBuilderService() {

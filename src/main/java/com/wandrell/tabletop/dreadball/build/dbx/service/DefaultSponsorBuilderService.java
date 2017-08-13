@@ -14,14 +14,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
-import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorSelection;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.TeamPlayer;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorCosts;
-import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorDefaults;
 import com.wandrell.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.wandrell.tabletop.dreadball.model.faction.Sponsor;
 import com.wandrell.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -58,18 +55,14 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
     private final SponsorCosts           rankCosts;
 
-    private final SponsorDefaults        sponsorDefaults;
-
     @Autowired
-    public DefaultSponsorBuilderService(final SponsorDefaults defaults,
+    public DefaultSponsorBuilderService(
             @Qualifier("SponsorCosts") final SponsorCosts sponsorCosts,
             @Qualifier("SponsorRankCosts") final SponsorCosts sponsorRankCosts,
             final AffinityUnitRepository unitsRepository,
             final DbxRules rules) {
         super();
 
-        sponsorDefaults = checkNotNull(defaults,
-                "Received a null pointer as Sponsor defaults service");
         costs = checkNotNull(sponsorCosts,
                 "Received a null pointer as Sponsor costs");
         rankCosts = checkNotNull(sponsorRankCosts,
@@ -127,29 +120,8 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
             unitsItr.next().setPosition(i);
         }
 
-        return new DefaultSponsorSelection(affinities, acceptedUnits,
-                rank, baseRank, teamValue);
-    }
-
-    @Override
-    public SponsorAffinities
-            selectAffinities(final Collection<String> affinities) {
-        final Integer rankAdd;
-        final Integer rank;
-        final Iterable<String> filtered;
-
-        checkNotNull(affinities, "Received a null pointer as affinities");
-
-        rankAdd = affinities.stream()
-                .filter(affinity -> affinity.equals("rank_increase"))
-                .collect(Collectors.toList()).size();
-        filtered = affinities.stream()
-                .filter(affinity -> !affinity.equals("rank_increase"))
-                .collect(Collectors.toList());
-
-        rank = getSponsorDefaults().getInitialRank() + rankAdd;
-
-        return new DefaultSponsorAffinities(filtered, rank, rank);
+        return new DefaultSponsorSelection(affinities, acceptedUnits, rank,
+                baseRank, teamValue);
     }
 
     private final AffinityUnitRepository getAffinityUnitRepository() {
@@ -176,10 +148,6 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
 
     private final SponsorCosts getSponsorCosts() {
         return costs;
-    }
-
-    private final SponsorDefaults getSponsorDefaults() {
-        return sponsorDefaults;
     }
 
     private final SponsorCosts getSponsorRankCosts() {
