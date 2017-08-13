@@ -4,6 +4,7 @@ import { createReducer } from 'redux-orm';
 import builder from 'builder/reducers';
 import orm from 'models';
 import paginate from 'pagination/reducers';
+import fetch from 'fetch/reducers';
 import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE, REQUEST_SPONSOR_UNITS, REQUEST_SPONSOR_UNITS_SUCCESS, REQUEST_SPONSOR_UNITS_FAILURE, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE } from 'requests/actions/ActionTypes';
 
 const pagination = combineReducers({
@@ -23,7 +24,7 @@ const pagination = combineReducers({
          REQUEST_SPONSOR_UNITS_FAILURE
       ]
    }),
-   sponsorAffAvas: paginate({
+   sponsorAffAvas: fetch({
       idsMapping: (payload) => Object.keys(payload.entities.sponsorAffinityAvailabilities),
       types: [
          REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES,

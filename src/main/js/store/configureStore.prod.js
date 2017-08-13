@@ -2,10 +2,12 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import rootReducer from 'reducers';
 import paginatedApi from 'middleware/pagination';
+import statusApi from 'middleware/statusFetch';
 
 const middleware = [
    thunk,
-   paginatedApi
+   paginatedApi,
+   statusApi
 ]
 
 const enhancer = applyMiddleware(...middleware);

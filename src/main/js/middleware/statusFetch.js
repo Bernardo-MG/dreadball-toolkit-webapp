@@ -1,21 +1,21 @@
-import { CALL_API_PAGINATED } from 'pagination/actions/ActionTypes';
-import { fetchPaginated } from 'pagination/fetch';
+import { CALL_API_STATUS } from 'fetch/actions/ActionTypes';
+import { fetchStatus } from 'fetch';
 import { getUrl } from 'fetch/url';
 
-const callApi = (url, parse) => fetchPaginated(url, parse);
+const callApi = (url, parse) => fetchStatus(url, parse);
 
 const actionWith = (action) => (data) => {
    const finalAction = Object.assign({}, action, data);
 
-   delete finalAction[CALL_API_PAGINATED];
+   delete finalAction[CALL_API_STATUS];
 
    return finalAction;
 };
 
-// A Redux middleware that interprets actions with CALL_API_PAGINATED info specified.
+// A Redux middleware that interprets actions with CALL_API_STATUS info specified.
 // Performs the call and promises when such actions are dispatched.
 export default () => (next) => (action) => {
-   const callAPI = action[CALL_API_PAGINATED];
+   const callAPI = action[CALL_API_STATUS];
 
    if (typeof callAPI === 'undefined') {
       return next(action);
