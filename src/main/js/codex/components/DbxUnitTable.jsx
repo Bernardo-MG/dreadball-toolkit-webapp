@@ -5,27 +5,26 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 
 import Table from 'grommet/components/Table';
+import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
 import unitMessages from 'i18n/unit';
 
 const DbxUnitTable = (props) =>
    <Table>
-      <thead>
-         <tr>
-            <th>{props.intl.formatMessage(unitMessages.name)}</th>
-            <th>{props.intl.formatMessage(unitMessages.role)}</th>
-            <th>{props.intl.formatMessage(unitMessages.move)}</th>
-            <th>{props.intl.formatMessage(unitMessages.strength)}</th>
-            <th>{props.intl.formatMessage(unitMessages.speed)}</th>
-            <th>{props.intl.formatMessage(unitMessages.skill)}</th>
-            <th>{props.intl.formatMessage(unitMessages.armor)}</th>
-            <th>{props.intl.formatMessage(unitMessages.abilities)}</th>
-            <th>{props.intl.formatMessage(unitMessages.stranger_cost)}</th>
-            <th>{props.intl.formatMessage(unitMessages.ally_cost)}</th>
-            <th>{props.intl.formatMessage(unitMessages.friend_cost)}</th>
-         </tr>
-      </thead>
+      <TableHeader labels={[
+         props.intl.formatMessage(unitMessages.name),
+         props.intl.formatMessage(unitMessages.role),
+         props.intl.formatMessage(unitMessages.move),
+         props.intl.formatMessage(unitMessages.strength),
+         props.intl.formatMessage(unitMessages.speed),
+         props.intl.formatMessage(unitMessages.skill),
+         props.intl.formatMessage(unitMessages.armor),
+         props.intl.formatMessage(unitMessages.abilities),
+         props.intl.formatMessage(unitMessages.stranger_cost),
+         props.intl.formatMessage(unitMessages.ally_cost),
+         props.intl.formatMessage(unitMessages.friend_cost)
+      ]} />
       <tbody>
          { props.source.map((object, i) =>
             <TableRow key={i}>
