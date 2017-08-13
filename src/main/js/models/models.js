@@ -112,7 +112,7 @@ Player.modelName = 'Player';
 Player.fields = {
    name: attr(),
    role: attr(),
-   move: attr(),
+   movement: attr(),
    strength: attr(),
    speed: attr(),
    skill: attr(),
@@ -152,7 +152,7 @@ RatedPlayer.modelName = 'RatedPlayer';
 RatedPlayer.fields = {
    name: attr(),
    role: attr(),
-   move: attr(),
+   movement: attr(),
    strength: attr(),
    speed: attr(),
    skill: attr(),

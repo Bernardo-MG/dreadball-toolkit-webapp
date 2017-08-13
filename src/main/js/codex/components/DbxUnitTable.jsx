@@ -31,7 +31,7 @@ const DbxUnitTable = (props) =>
             <TableRow key={i}>
                <td>{object.name}</td>
                <td>{object.role}</td>
-               <td>{object.move}</td>
+               <td>{object.movement}</td>
                <td>{object.strength}</td>
                <td>{object.speed}</td>
                <td>{object.skill}</td>

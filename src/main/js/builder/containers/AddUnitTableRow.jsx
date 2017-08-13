@@ -62,7 +62,7 @@ class AddUnitTableRow extends Component {
             <td><Button label='add' onClick={this.chooseUnit} /></td>
             <td>{this.props.source.name}</td>
             <td>{this.props.source.role}</td>
-            <td>{this.props.source.move}</td>
+            <td>{this.props.source.movement}</td>
             <td>{this.props.source.strength}</td>
             <td>{this.props.source.speed}</td>
             <td>{this.props.source.skill}</td>
