@@ -1,7 +1,7 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx.bean;
 
-public interface SponsorAffinitiesSelection {
+public interface SponsorSelection {
 
     public Iterable<String> getAffinities();
 

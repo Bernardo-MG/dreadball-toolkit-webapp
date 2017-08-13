@@ -19,7 +19,7 @@ package com.wandrell.tabletop.dreadball.build.dbx.service;
 import java.util.Collection;
 
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinitiesSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
 
 /**
@@ -28,7 +28,7 @@ import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
  */
 public interface SponsorBuilderService {
 
-    public SponsorAffinitiesSelection getSelectionResult(
+    public SponsorSelection getSelectionResult(
             final Collection<String> affinities, final Collection<String> units,
             final SponsorTeamAssets assets, final Integer baseRank);
 

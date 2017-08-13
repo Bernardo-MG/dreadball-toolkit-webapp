@@ -15,9 +15,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorAffinities;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorAffinitiesSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinitiesSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.TeamPlayer;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorCosts;
@@ -80,7 +80,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
     }
 
     @Override
-    public SponsorAffinitiesSelection getSelectionResult(
+    public SponsorSelection getSelectionResult(
             final Collection<String> affinities,
             final Collection<String> unitNames, final SponsorTeamAssets assets,
             final Integer baseRank) {
@@ -127,7 +127,7 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
             unitsItr.next().setPosition(i);
         }
 
-        return new DefaultSponsorAffinitiesSelection(affinities, acceptedUnits,
+        return new DefaultSponsorSelection(affinities, acceptedUnits,
                 rank, baseRank, teamValue);
     }
 
