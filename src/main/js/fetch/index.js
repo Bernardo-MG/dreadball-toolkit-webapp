@@ -1,22 +1,13 @@
 import fetch from 'isomorphic-fetch';
 
-const setUpContent = (content) => {
-   return { payload: content };
-};
-
-const paginateJson = (json, parse) => {
-   const content = setUpContent(json);
-   content.payload = parse(content.payload);
-
-   return content;
-};
-
 const handleResponse = (response, json, parse) => {
    if (!response.ok) {
       return Promise.reject(json);
    }
 
-   return paginateJson(json, parse);
+   const payload = parse(json);
+
+   return { payload };
 };
 
 export const fetchStatus = (url, parse) =>
