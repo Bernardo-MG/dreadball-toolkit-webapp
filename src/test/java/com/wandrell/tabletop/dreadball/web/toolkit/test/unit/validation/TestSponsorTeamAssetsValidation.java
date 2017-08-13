@@ -26,10 +26,10 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorTeamAssets;
 
 /**
- * Unit tests for {@link SponsorTeamAssets} bean validation.
+ * Unit tests for {@link DefaultSponsorTeamAssets} bean validation.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -60,10 +60,10 @@ public final class TestSponsorTeamAssetsValidation {
      */
     @Test
     public final void testValidation_NegativeAssets_Error() {
-        final SponsorTeamAssets assets; // Tested assets
-        final Set<ConstraintViolation<SponsorTeamAssets>> errors;
+        final DefaultSponsorTeamAssets assets; // Tested assets
+        final Set<ConstraintViolation<DefaultSponsorTeamAssets>> errors;
 
-        assets = new SponsorTeamAssets();
+        assets = new DefaultSponsorTeamAssets();
 
         assets.setCheerleaders(-1);
         assets.setCoachingDice(-1);
@@ -82,10 +82,10 @@ public final class TestSponsorTeamAssetsValidation {
      */
     @Test
     public final void testValidation_NullAssets_Error() {
-        final SponsorTeamAssets assets; // Tested assets
-        final Set<ConstraintViolation<SponsorTeamAssets>> errors;
+        final DefaultSponsorTeamAssets assets; // Tested assets
+        final Set<ConstraintViolation<DefaultSponsorTeamAssets>> errors;
 
-        assets = new SponsorTeamAssets();
+        assets = new DefaultSponsorTeamAssets();
 
         assets.setCheerleaders(null);
         assets.setCoachingDice(null);

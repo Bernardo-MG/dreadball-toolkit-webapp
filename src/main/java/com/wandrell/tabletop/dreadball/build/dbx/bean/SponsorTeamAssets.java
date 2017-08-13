@@ -16,177 +16,53 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx.bean;
 
-import javax.validation.constraints.Min;
-import javax.validation.constraints.NotNull;
-
 /**
  * Form data for the Sponsor team assets.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class SponsorTeamAssets {
-
-    /**
-     * Number of cheerleaders.
-     */
-    @NotNull
-    @Min(0)
-    private Integer cheerleaders       = 0;
-
-    /**
-     * Number of coaching dice.
-     */
-    @NotNull
-    @Min(0)
-    private Integer coachingDice       = 0;
-
-    /**
-     * Number of medi-bots.
-     */
-    @NotNull
-    @Min(0)
-    private Integer mediBots           = 0;
-
-    /**
-     * Number of sabotage cards.
-     */
-    @NotNull
-    @Min(0)
-    private Integer nastySurpriseCards = 0;
-
-    /**
-     * Number of special move cards.
-     */
-    @NotNull
-    @Min(0)
-    private Integer specialMoveCards   = 0;
-
-    /**
-     * Number of wagers.
-     */
-    @NotNull
-    @Min(0)
-    private Integer wagers             = 0;
-
-    /**
-     * Default constructor.
-     */
-    public SponsorTeamAssets() {
-        super();
-    }
+public interface SponsorTeamAssets {
 
     /**
      * Returns the number of cheerleaders.
      * 
      * @return the number of cheerleaders
      */
-    public final Integer getCheerleaders() {
-        return cheerleaders;
-    }
+    public Integer getCheerleaders();
 
     /**
      * Returns the number of coaching dice.
      * 
      * @return the number of coaching dice
      */
-    public final Integer getCoachingDice() {
-        return coachingDice;
-    }
+    public Integer getCoachingDice();
 
     /**
      * Returns the number of medi-bots.
      * 
      * @return the number of medi-bots
      */
-    public final Integer getMediBots() {
-        return mediBots;
-    }
+    public Integer getMediBots();
 
     /**
      * Returns the number of sabotage cards.
      * 
      * @return the number of sabotage cards
      */
-    public final Integer getNastySurpriseCards() {
-        return nastySurpriseCards;
-    }
+    public Integer getNastySurpriseCards();
 
     /**
      * Returns the number of special move cards.
      * 
      * @return the number of special move cards
      */
-    public final Integer getSpecialMoveCards() {
-        return specialMoveCards;
-    }
+    public Integer getSpecialMoveCards();
 
     /**
      * Returns the number of wagers.
      * 
      * @return the number of wagers
      */
-    public final Integer getWagers() {
-        return wagers;
-    }
-
-    /**
-     * Sets the number of cheerleaders.
-     * 
-     * @param value
-     *            the number of cheerleaders
-     */
-    public final void setCheerleaders(final Integer value) {
-        cheerleaders = value;
-    }
-
-    /**
-     * Sets the number of coaching dice.
-     * 
-     * @param value
-     *            the number of coaching dice
-     */
-    public final void setCoachingDice(final Integer value) {
-        coachingDice = value;
-    }
-
-    /**
-     * Sets the number of medibots.
-     * 
-     * @param value
-     *            the number of medibots
-     */
-    public final void setMediBots(final Integer value) {
-        mediBots = value;
-    }
-
-    /**
-     * Sets the number of sabotage cards.
-     * 
-     * @param value
-     *            the number of sabotage cards
-     */
-    public final void setNastySurpriseCards(final Integer value) {
-        nastySurpriseCards = value;
-    }
-
-    /**
-     * Sets the number of special move cards.
-     * 
-     * @param value
-     *            the number of special move cards
-     */
-    public final void setSpecialMoveCards(final Integer value) {
-        specialMoveCards = value;
-    }
-
-    /**
-     * Sets the number of wagers.
-     * 
-     * @param value
-     *            the number of wagers
-     */
-    public final void setWagers(final Integer value) {
-        wagers = value;
-    }
+    public Integer getWagers();
 
 }

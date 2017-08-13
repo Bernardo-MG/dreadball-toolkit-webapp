@@ -27,9 +27,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinitiesSelection;
-import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
 
 /**
@@ -62,7 +62,7 @@ public class SponsorValidationController {
     public final SponsorAffinitiesSelection getSelectionResult(
             @RequestParam("affinities") final ArrayList<String> affinities,
             @RequestParam("units") final ArrayList<String> units,
-            final SponsorTeamAssets assets,
+            final DefaultSponsorTeamAssets assets,
             @RequestParam(defaultValue = "0") final Integer baseRank) {
         return getSponsorBuilderService().getSelectionResult(affinities, units,
                 assets, baseRank);
