@@ -12,7 +12,7 @@ import unitMessages from 'i18n/unit';
 
 const DbxUnitTable = (props) =>
    <Table>
-      <TableHeader labels={[
+      <TableHeader sortIndex={0} sortAscending={true} onSort={props.onSort} labels={[
          props.intl.formatMessage(unitMessages.name),
          props.intl.formatMessage(unitMessages.role),
          props.intl.formatMessage(unitMessages.move),
@@ -46,7 +46,8 @@ const DbxUnitTable = (props) =>
 
 DbxUnitTable.propTypes = {
    intl: PropTypes.object.isRequired,
-   source: PropTypes.array.isRequired
+   source: PropTypes.array.isRequired,
+   onSort: PropTypes.func
 };
 
 export default injectIntl(DbxUnitTable);

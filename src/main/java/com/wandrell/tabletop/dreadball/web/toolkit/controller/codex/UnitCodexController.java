@@ -18,6 +18,8 @@ package com.wandrell.tabletop.dreadball.web.toolkit.controller.codex;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -39,10 +41,13 @@ import com.wandrell.tabletop.dreadball.service.model.UnitService;
 @RequestMapping("/rest/units")
 public class UnitCodexController {
 
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(UnitCodexController.class);
+
     /**
      * Unit codex service.
      */
-    private final UnitService unitCodexService;
+    private final UnitService   unitCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -81,6 +86,9 @@ public class UnitCodexController {
                     defaultValue = "ASC") final Direction direction) {
         final Pageable pageReq;
 
+        LOGGER.debug("orderBy: {}", orderBy);
+        LOGGER.debug("direction: {}", direction);
+
         // TODO: Page and size may be stored automatically into a pageable
         // Check:
         // https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-seven-pagination/
@@ -91,7 +99,10 @@ public class UnitCodexController {
             pageReq = new PageRequest(page, size, direction, orderBy);
         }
 
-        return getUnitCodexService().getAllAffinityUnits(pageReq);
+        final Iterable<? extends Unit> result;
+        result = getUnitCodexService().getAllAffinityUnits(pageReq);
+
+        return result;
     }
 
     /**

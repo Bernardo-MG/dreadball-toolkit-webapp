@@ -16,9 +16,61 @@ class LoadableDbxUnitTable extends Component {
       this.props.actions.fetch();
    }
 
+   sort = (fetch, clear) => (index, ascending) => {
+      let order;
+      let field;
+
+      if (ascending) {
+         order = 'ASC';
+      } else {
+         order = 'DESC';
+      }
+
+      switch (index) {
+      case 0:
+         // Name
+         field = 'name';
+         break;
+      case 1:
+         // Role
+         field = 'position';
+         break;
+      case 2:
+         // Movement
+         field = 'move';
+         break;
+      case 3:
+         // Strength
+         field = 'strength';
+         break;
+      case 4:
+         // Speed
+         field = 'speed';
+         break;
+      case 5:
+         // Skill
+         field = 'skill';
+         break;
+      case 6:
+         // Armor
+         field = 'armor';
+         break;
+      case 7:
+         // Abilities
+         field = 'abilities';
+         break;
+      default:
+         // Name
+         field = 'name';
+      }
+
+      clear();
+      fetch(0, field, order);
+   }
+
    render() {
       return (
-         <DbxUnitTable source={this.props.source}/>
+         <DbxUnitTable onSort={this.sort(this.props.actions.fetch, this.props.actions.clear)} source={this.props.source} />
       );
    }
 }

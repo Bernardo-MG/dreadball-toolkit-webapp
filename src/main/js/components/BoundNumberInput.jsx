@@ -6,7 +6,6 @@ import NumberInput from 'grommet/components/NumberInput';
 
 class BoundNumberInput extends Component {
 
-   state = {};
    handleChange;
 
    constructor(props) {
@@ -19,7 +18,7 @@ class BoundNumberInput extends Component {
       if (event.target.value) {
          this.handleChange(Number.parseInt(event.target.value, 10));
       } else {
-         this.setState({ value: 0 });
+         this.handleChange(0);
       }
    };
 

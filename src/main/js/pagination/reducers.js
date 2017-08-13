@@ -1,6 +1,6 @@
 import union from 'lodash/union';
 
-const updatePagination = (state, action, idsMapping, requestType, successType, failureType) => {
+const updatePagination = (state, action, idsMapping, requestType, successType, failureType, clearType) => {
    const { type, payload } = action;
 
    switch (type) {
@@ -28,6 +28,12 @@ const updatePagination = (state, action, idsMapping, requestType, successType, f
          ...state,
          isFetching: false
       };
+   case clearType:
+      return {
+         ...state,
+         ids: [],
+         isFetching: false
+      };
    default:
       return state;
    }
@@ -36,14 +42,7 @@ const updatePagination = (state, action, idsMapping, requestType, successType, f
 // Creates a reducer managing pagination, given the action types to handle,
 // and a function telling how to extract the key from an action.
 const paginate = ({ idsMapping, types }) => {
-   if (!Array.isArray(types) || types.length !== 3) {
-      throw new Error('Expected types to be an array of three elements.');
-   }
-   if (!types.every((t) => typeof t === 'string')) {
-      throw new Error('Expected types to be strings.');
-   }
-
-   const [requestType, successType, failureType] = types;
+   const [requestType, successType, failureType, clearType] = types;
 
    return (state = { isFetching: false, ids: [], first: true, last: true, numberOfElements: 0, totalElements: 0, page: 0, totalPages: 0 }, action) => {
       // Update pagination by key
@@ -52,7 +51,8 @@ const paginate = ({ idsMapping, types }) => {
       case requestType:
       case successType:
       case failureType:
-         return updatePagination(state, action, idsMapping, requestType, successType, failureType);
+      case clearType:
+         return updatePagination(state, action, idsMapping, requestType, successType, failureType, clearType);
       default:
          return state;
       }
