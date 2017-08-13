@@ -24,9 +24,18 @@ import EditionButton from 'components/buttons/EditionButton';
 class SponsorTeamView extends Component {
 
    state = {
+      editingAffinities: false,
       editingAssets: false,
       editingPlayers: false,
       editingName: false
+   };
+
+   editAffinities = () => {
+      this.setState({ ...this.state, editingAffinities: true });
+   };
+
+   finishEditAffinities = () => {
+      this.setState({ ...this.state, editingAffinities: false });
    };
 
    editAssets = () => {
