@@ -1,11 +1,11 @@
-import { createStore, applyMiddleware } from 'redux'
-import thunk from 'redux-thunk'
-import rootReducer from 'reducers'
-import api from 'pagination/middleware/api'
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import rootReducer from 'reducers';
+import paginatedApi from 'middleware/pagination';
 
 const middleware = [
    thunk,
-   api
+   paginatedApi
 ]
 
 const enhancer = applyMiddleware(...middleware);

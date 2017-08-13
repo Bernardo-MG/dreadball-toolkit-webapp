@@ -1,4 +1,4 @@
-import { CALL_API } from 'pagination/actions/ActionTypes';
+import { CALL_API_PAGINATED } from 'pagination/actions/ActionTypes';
 import * as types from 'builder/actions/ActionTypes';
 import { BUILDER_VALIDATION_REST_ENDPOINT as validationEndpoint, BUILDER_VALIDATION_AFFINITIES_REST_ENDPOINT as validationAffinitiesEndpoint } from 'builder/requests/Endpoints';
 
@@ -18,7 +18,7 @@ export const chooseSponsorAffinity = (affinity, index) => {
 
 export const validateSponsorAffinities = (affinities = []) => {
    return {
-      [CALL_API]: {
+      [CALL_API_PAGINATED]: {
          types: [types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES, types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES_SUCCESS, types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES_FAILURE],
          endpoint: validationAffinitiesEndpoint,
          params: { affinities }
@@ -31,7 +31,7 @@ export const validateSponsorTeam = (affinities = [],
                                     baseRank = 0,
                                     cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => {
    return {
-      [CALL_API]: {
+      [CALL_API_PAGINATED]: {
          types: [types.REQUEST_SPONSOR_TEAM_VALIDATION, types.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS, types.REQUEST_SPONSOR_TEAM_VALIDATION_FAILURE],
          endpoint: validationEndpoint,
          params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
