@@ -12,7 +12,6 @@ import PreviousPageButton from 'containers/PreviousPageButton';
 
 import LoadableDbxUnitTable from 'codex/containers/LoadableDbxUnitTable';
 
-import buttonMessages from 'i18n/button';
 import titleMessages from 'i18n/title';
 
 const DbxPlayers = (props) =>
@@ -21,10 +20,10 @@ const DbxPlayers = (props) =>
       <LoadableDbxUnitTable/>
       <Box direction='row'>
          <Box margin='small'>
-            <PreviousPageButton label={props.intl.formatMessage(buttonMessages.previous)} />
+            <PreviousPageButton />
          </Box>
          <Box margin='small'>
-            <NextPageButton label={props.intl.formatMessage(buttonMessages.next)} />
+            <NextPageButton />
          </Box>
       </Box>
    </Box>;
