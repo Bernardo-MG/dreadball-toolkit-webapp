@@ -14,7 +14,7 @@ const SponsorAffinityComboBox = (props) =>
 
 SponsorAffinityComboBox.propTypes = {
    index: PropTypes.number.isRequired,
-   source: PropTypes.object.isRequired,
+   source: PropTypes.array.isRequired,
    actions: PropTypes.object.isRequired
 };
 
