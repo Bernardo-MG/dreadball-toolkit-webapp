@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.bean.DefaultSponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorAffinitiesSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.bean.SponsorTeamAssets;
@@ -126,8 +127,8 @@ public class DefaultSponsorBuilderService implements SponsorBuilderService {
             unitsItr.next().setPosition(i);
         }
 
-        return new SponsorAffinitiesSelection(affinities, acceptedUnits, rank,
-                baseRank, teamValue);
+        return new DefaultSponsorAffinitiesSelection(affinities, acceptedUnits,
+                rank, baseRank, teamValue);
     }
 
     @Override
