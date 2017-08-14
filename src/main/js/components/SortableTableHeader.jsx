@@ -10,7 +10,7 @@ class SortableTableHeader extends Component {
 
    state = {
       index: 0,
-      ascending: true
+      ascending: false
    }
 
    sort = (index, ascending) => {

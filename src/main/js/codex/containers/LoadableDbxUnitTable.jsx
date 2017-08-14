@@ -16,14 +16,14 @@ class LoadableDbxUnitTable extends Component {
       this.props.actions.fetch();
    }
 
-   sort = (fetch) => (index, ascending) => {
+   sort = (fetch) => (index, descending) => {
       let order;
       let field;
 
-      if (ascending) {
-         order = 'ASC';
-      } else {
+      if (descending) {
          order = 'DESC';
+      } else {
+         order = 'ASC';
       }
 
       switch (index) {
