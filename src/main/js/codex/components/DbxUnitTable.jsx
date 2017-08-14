@@ -5,14 +5,15 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 
 import Table from 'grommet/components/Table';
-import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
+
+import SortableTableHeader from 'components/SortableTableHeader';
 
 import unitMessages from 'i18n/unit';
 
 const DbxUnitTable = (props) =>
    <Table>
-      <TableHeader sortIndex={0} sortAscending={true} onSort={props.onSort} labels={[
+      <SortableTableHeader sortIndex={0} sortAscending={true} onSort={props.onSort} labels={[
          props.intl.formatMessage(unitMessages.name),
          props.intl.formatMessage(unitMessages.role),
          props.intl.formatMessage(unitMessages.move),
