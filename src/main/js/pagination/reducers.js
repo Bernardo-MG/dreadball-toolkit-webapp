@@ -44,19 +44,8 @@ const updatePagination = (state, action, idsMapping, requestType, successType, f
 const paginate = ({ idsMapping, types }) => {
    const [requestType, successType, failureType, clearType] = types;
 
-   return (state = { isFetching: false, ids: [], first: true, last: true, numberOfElements: 0, totalElements: 0, page: 0, totalPages: 0 }, action) => {
-      // Update pagination by key
-      const { type } = action;
-      switch (type) {
-      case requestType:
-      case successType:
-      case failureType:
-      case clearType:
-         return updatePagination(state, action, idsMapping, requestType, successType, failureType, clearType);
-      default:
-         return state;
-      }
-   };
+   return (state = { isFetching: false, ids: [], first: true, last: true, numberOfElements: 0, totalElements: 0, page: 0, totalPages: 0 }, action) =>
+      updatePagination(state, action, idsMapping, requestType, successType, failureType, clearType);
 };
 
 export default paginate;
