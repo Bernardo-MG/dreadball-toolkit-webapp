@@ -3,7 +3,7 @@ import { CALL_API_PAGINATED } from 'pagination/actions/ActionTypes';
 import { SPONSOR_AFFINITY_UNITS_REST_ENDPOINT as endpoint } from 'requests/Endpoints';
 import { jsonToUnits as parse } from 'requests/utils/unit';
 
-export const fetch = (affinities = {}, page = 0, orderBy = 'name', order = 'ASC') => {
+export const fetch = (affinities = {}, page = 0, orderBy = 'name', direction = 'ASC') => {
    return {
       [CALL_API_PAGINATED]: {
          types: [REQUEST_SPONSOR_UNITS, REQUEST_SPONSOR_UNITS_SUCCESS, REQUEST_SPONSOR_UNITS_FAILURE],
@@ -11,7 +11,7 @@ export const fetch = (affinities = {}, page = 0, orderBy = 'name', order = 'ASC'
          page,
          parse,
          orderBy,
-         order,
+         direction,
          params: { affinities }
       }
    };

@@ -3,7 +3,7 @@ import { CALL_API_PAGINATED } from 'pagination/actions/ActionTypes';
 import { AFFINITY_UNITS_REST_ENDPOINT as endpoint } from 'requests/Endpoints';
 import { jsonToUnits as parse } from 'requests/utils/unit';
 
-export const fetch = (page = 0, orderBy = 'name', order = 'ASC', replace = false) => {
+export const fetch = (page = 0, orderBy = 'name', direction = 'ASC', replace = false) => {
    return {
       [CALL_API_PAGINATED]: {
          types: [REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE],
@@ -11,7 +11,7 @@ export const fetch = (page = 0, orderBy = 'name', order = 'ASC', replace = false
          page,
          parse,
          orderBy,
-         order,
+         direction,
          replace
       }
    };

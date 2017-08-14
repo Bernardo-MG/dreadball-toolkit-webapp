@@ -4,7 +4,7 @@ import middleware from 'fetch/middleware';
 
 const getParams = (content) => {
    let { params } = content;
-   const { page, orderBy, order } = content;
+   const { page, orderBy, direction } = content;
 
    if (!params) {
       params = {};
@@ -14,7 +14,7 @@ const getParams = (content) => {
       ...params,
       page,
       orderBy,
-      order
+      direction
    };
 };
 
