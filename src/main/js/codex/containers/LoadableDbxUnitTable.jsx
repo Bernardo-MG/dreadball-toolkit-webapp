@@ -59,6 +59,18 @@ class LoadableDbxUnitTable extends Component {
          // Abilities
          field = 'abilities';
          break;
+      case 8:
+         // Stranger cost
+         field = 'costStranger';
+         break;
+      case 9:
+         // Ally cost
+         field = 'costAlly';
+         break;
+      case 10:
+         // Friend cost
+         field = 'costFriend';
+         break;
       default:
          // Name
          field = 'name';
