@@ -13,14 +13,17 @@ export class Ability extends Model {
       case REQUEST_SPONSOR_UNITS_SUCCESS: {
          // Gathers abilities sets
          const abilities = payload.entities.abilities;
-         // Creates abilities
-         forEachValue(abilities,
-               (ability) => {
-                  if (!AbilityModel.filter({ name: ability.name }).exists()) {
-                     AbilityModel.create(ability);
+
+         if (abilities) {
+            // Creates abilities
+            forEachValue(abilities,
+                  (ability) => {
+                     if (!AbilityModel.filter({ name: ability.name }).exists()) {
+                        AbilityModel.create(ability);
+                     }
                   }
-               }
-         );
+            );
+         }
          break;
       }
       default:
