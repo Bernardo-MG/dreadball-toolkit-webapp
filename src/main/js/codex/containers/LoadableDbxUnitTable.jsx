@@ -16,7 +16,7 @@ class LoadableDbxUnitTable extends Component {
       this.props.actions.fetch();
    }
 
-   sort = (fetch, clear) => (index, ascending) => {
+   sort = (fetch) => (index, ascending) => {
       let order;
       let field;
 
@@ -64,13 +64,12 @@ class LoadableDbxUnitTable extends Component {
          field = 'name';
       }
 
-      clear();
-      fetch(0, field, order);
+      fetch(0, field, order, true);
    }
 
    render() {
       return (
-         <DbxUnitTable onSort={this.sort(this.props.actions.fetch, this.props.actions.clear)} source={this.props.source} />
+         <DbxUnitTable onSort={this.sort(this.props.actions.fetch)} source={this.props.source} />
       );
    }
 }
