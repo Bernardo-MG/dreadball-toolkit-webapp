@@ -37,23 +37,23 @@ class LoadableDbxUnitTable extends Component {
          break;
       case 2:
          // Movement
-         field = 'move';
+         field = 'attributes.movement';
          break;
       case 3:
          // Strength
-         field = 'strength';
+         field = 'attributes.strength';
          break;
       case 4:
          // Speed
-         field = 'speed';
+         field = 'attributes.speed';
          break;
       case 5:
          // Skill
-         field = 'skill';
+         field = 'attributes.skill';
          break;
       case 6:
          // Armor
-         field = 'armor';
+         field = 'attributes.armor';
          break;
       case 7:
          // Abilities
