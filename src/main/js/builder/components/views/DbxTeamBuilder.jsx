@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
+import Box from 'grommet/components/Box';
+
 import SponsorAffinitiesView from 'builder/components/views/SponsorAffinitiesView';
 import SponsorTeamView from 'builder/components/views/SponsorTeamView';
 
@@ -27,7 +29,10 @@ class DbxTeamBuilder extends Component {
       if (this.state.affinitiesChosen) {
          view = <SponsorTeamView />;
       } else {
-         view = <SponsorAffinitiesView onClick={ this.finishedAffinities } />;
+         view =
+            <Box justify='center' align='center'>
+               <SponsorAffinitiesView onClick={ this.finishedAffinities } />
+            </Box>;
       }
 
       return (
