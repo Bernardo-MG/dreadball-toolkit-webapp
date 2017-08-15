@@ -15,6 +15,7 @@
       "node": true
    },
    "globals": {
+      "REPO_URL": false,
       "ROUTE_BASE": false,
       "document": false
    },

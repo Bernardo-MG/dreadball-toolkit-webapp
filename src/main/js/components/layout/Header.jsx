@@ -3,6 +3,7 @@ import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
 import NavAnchor from 'components/NavAnchor';
+import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
 
 const AppHeader = () =>
    <Header justify="center" colorIndex="neutral-4">
@@ -13,6 +14,7 @@ const AppHeader = () =>
           <NavAnchor path="/dbx">dbx_team_creation</NavAnchor>
           <NavAnchor path="/players">units_list</NavAnchor>
         </Menu>
+      <a href={REPO_URL}><SocialGithubIcon /></a>
       </Box>
    </Header>;
 

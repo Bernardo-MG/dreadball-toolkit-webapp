@@ -8,6 +8,9 @@ const env = process.env.NODE_ENV || 'development';
 // Base route
 const APP_ROUTE = '/dreadball';
 
+// Project URL
+const PROJECT_REPO_URL = 'https://github.com/Bernardo-MG/dreadball-toolkit-webpage';
+
 // Input directory
 const INPUT_PATH = './src/main/js/';
 const INPUT_PATH_ENTRY = INPUT_PATH + 'index.js';
@@ -41,7 +44,8 @@ plugins = [
       'process.env': {
          NODE_ENV: JSON.stringify(env)
       },
-      ROUTE_BASE : JSON.stringify(APP_ROUTE)
+      ROUTE_BASE : JSON.stringify(APP_ROUTE),
+      REPO_URL : JSON.stringify(PROJECT_REPO_URL)
    }) 
 ]
 
