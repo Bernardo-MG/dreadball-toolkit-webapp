@@ -7,10 +7,10 @@ import SponsorTeamValue from 'builder/containers/values/SponsorTeamValue';
 
 const SponsorTeamCost = () =>
    <Box direction='row'>
-      <Box pad='medium'>
+      <Box pad='small'>
          <SponsorRankValue />
       </Box>
-      <Box pad='medium'>
+      <Box pad='small'>
          <SponsorTeamValue />
       </Box>
    </Box>;

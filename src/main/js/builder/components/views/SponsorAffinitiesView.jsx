@@ -11,7 +11,7 @@ import AffinityGroupsComboPanel from 'builder/containers/AffinityGroupsComboPane
 const SponsorAffinitiesView = (props) =>
    <Form>
       <AffinityGroupsComboPanel />
-      <Box margin='small'>
+      <Box justify='center' align='center' margin='small'>
          <Button onClick={ props.onClick } label='accept' />
       </Box>
    </Form>;

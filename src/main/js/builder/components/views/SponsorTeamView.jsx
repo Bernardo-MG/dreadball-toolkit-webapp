@@ -89,10 +89,14 @@ class SponsorTeamView extends Component {
             <Box>
                <Heading>sponsor_data</Heading>
                <Box direction='row'>
-                  <SponsorNameLabel/>
-                  <EditionButton onClick={ this.editName } a11yTitle='edit_name' />
+                  <Box direction='row'>
+                     <SponsorNameLabel/>
+                     <EditionButton onClick={ this.editName } a11yTitle='edit_name' />
+                  </Box>
+                  <Box>
+                     <SponsorTeamCost />
+                  </Box>
                </Box>
-               <SponsorTeamCost />
                <Box direction='row'>
                   <Box size='medium'>
                      <Box direction='row'>
