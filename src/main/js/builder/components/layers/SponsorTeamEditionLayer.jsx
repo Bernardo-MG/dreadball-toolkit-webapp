@@ -12,7 +12,7 @@ const SponsorTeamEditionLayer = (props) =>
    <Layer closer={true} onClose={ props.onClose } >
       <Heading tag='h2'>{ props.title }</Heading>
       <SponsorTeamCost />
-      <Box full={true}>
+      <Box flex={true} pad='small'>
          {props.children}
       </Box>
    </Layer>;
