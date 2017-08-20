@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import FormField from 'grommet/components/FormField';
-import TextInput from 'grommet/components/TextInput';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -27,7 +26,7 @@ class SponsorNameInput extends Component {
    render() {
       return (
          <FormField label='sponsor_name'>
-            <TextInput id='sponsor_name' name='sponsor_name' value={this.props.sponsorName} onDOMChange={this.updateValue}/>
+            <input id='sponsor_name' name='sponsor_name' type='text' value={this.props.sponsorName} onChange={this.updateValue}/>
          </FormField>
       );
    }
