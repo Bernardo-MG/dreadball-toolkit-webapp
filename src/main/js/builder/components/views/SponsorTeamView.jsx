@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
+import Tab from 'grommet/components/Tab';
+import Tabs from 'grommet/components/Tabs';
 
 import SponsorTeamUnitTable from 'builder/containers/SponsorTeamUnitTable';
 import SponsorAddUnitTable from 'builder/containers/SponsorAddUnitTable';
@@ -9,13 +11,10 @@ import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
 
 import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 
-import SponsorAssets from 'builder/components/SponsorAssets';
 import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
 import SponsorNameInput from 'builder/containers/SponsorNameInput';
 
 import SponsorTeamEditionLayer from 'builder/components/layers/SponsorTeamEditionLayer';
-
-import SponsorNameLabel from 'builder/containers/labels/SponsorNameLabel';
 
 import EditionButton from 'components/buttons/EditionButton';
 
@@ -23,9 +22,7 @@ class SponsorTeamView extends Component {
 
    state = {
       editingAffinities: false,
-      editingAssets: false,
-      editingPlayers: false,
-      editingName: false
+      editingPlayers: false
    };
 
    editAffinities = () => {
@@ -36,14 +33,6 @@ class SponsorTeamView extends Component {
       this.setState({ ...this.state, editingAffinities: false });
    };
 
-   editAssets = () => {
-      this.setState({ ...this.state, editingAssets: true });
-   };
-
-   finishEditAssets = () => {
-      this.setState({ ...this.state, editingAssets: false });
-   };
-
    editPlayers = () => {
       this.setState({ ...this.state, editingPlayers: true });
    };
@@ -52,72 +41,49 @@ class SponsorTeamView extends Component {
       this.setState({ ...this.state, editingPlayers: false });
    };
 
-   editName = () => {
-      this.setState({ ...this.state, editingName: true });
-   };
-
-   finishEditName = () => {
-      this.setState({ ...this.state, editingName: false });
-   };
-   updateValue = (event) => {
-      event.preventDefault();
-   };
-
    render() {
       let view = null;
 
-      if (this.state.editingAssets) {
-         view =
-               <SponsorTeamEditionLayer title='assets' onClose={ this.finishEditAssets }>
-                  <SponsorAssetsForm />
-               </SponsorTeamEditionLayer>;
-      } else if (this.state.editingPlayers) {
+      if (this.state.editingPlayers) {
          view =
             <SponsorTeamEditionLayer title='players' onClose={ this.finishEditPlayers }>
                <SponsorAddUnitTable />
             </SponsorTeamEditionLayer>;
-      } else if (this.state.editingName) {
-         view =
-            <SponsorTeamEditionLayer title='players' onClose={ this.finishEditName }>
-               <SponsorNameInput />
-            </SponsorTeamEditionLayer>;
       } else {
          view =
-            <Box>
-               <Heading>sponsor_data</Heading>
-               <Box direction='row'>
-                  <Box direction='row'>
-                     <SponsorNameLabel/>
-                     <EditionButton onClick={ this.editName } a11yTitle='edit_name' />
+            <Tabs>
+               <Tab title='First Title'>
+                  <Box>
+                     <Box>
+                        <SponsorTeamCost />
+                     </Box>
+                     <Box>
+                        <SponsorNameInput />
+                     </Box>
+                     <Heading tag='h2'>assets</Heading>
+                     <SponsorAssetsForm />
+                     <Box size='medium'>
+                        <Box direction='row'>
+                           <Heading tag='h2'>affinities</Heading>
+                           <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
+                        </Box>
+                        <SponsorAffinityList />
+                     </Box>
                   </Box>
+               </Tab>
+               <Tab title='players'>
                   <Box>
                      <SponsorTeamCost />
                   </Box>
-               </Box>
-               <Box direction='row'>
-                  <Box size='medium'>
+                  <Box>
                      <Box direction='row'>
-                        <Heading tag='h2'>affinities</Heading>
-                        <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
+                        <Heading tag='h2'>players</Heading>
+                        <EditionButton onClick={ this.editPlayers } a11yTitle='edit_players' />
                      </Box>
-                     <SponsorAffinityList />
+                     <SponsorTeamUnitTable />
                   </Box>
-                  <Box full='horizontal'>
-                     <Box direction='row'>
-                        <Heading tag='h2'>assets</Heading>
-                        <EditionButton onClick={ this.editAssets } a11yTitle='edit_assets' />
-                     </Box>
-                     <SponsorAssets />
-                  </Box>
-               </Box>
-               <Box>
-                  <Box direction='row'>
-                     <Heading tag='h2'>players</Heading>
-                     <EditionButton onClick={ this.editPlayers } a11yTitle='edit_players' />
-                  </Box>
-                  <SponsorTeamUnitTable />
-               </Box>
-            </Box>;
+               </Tab>
+            </Tabs>;
       }
 
       return (
