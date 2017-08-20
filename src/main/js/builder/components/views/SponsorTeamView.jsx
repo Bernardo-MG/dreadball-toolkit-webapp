@@ -1,10 +1,7 @@
 import React, { Component } from 'react';
 
 import Box from 'grommet/components/Box';
-import Form from 'grommet/components/Form';
-import FormField from 'grommet/components/FormField';
 import Heading from 'grommet/components/Heading';
-import TextInput from 'grommet/components/TextInput';
 
 import SponsorTeamUnitTable from 'builder/containers/SponsorTeamUnitTable';
 import SponsorAddUnitTable from 'builder/containers/SponsorAddUnitTable';
@@ -14,6 +11,7 @@ import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 
 import SponsorAssets from 'builder/components/SponsorAssets';
 import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
+import SponsorNameInput from 'builder/containers/SponsorNameInput';
 
 import SponsorTeamEditionLayer from 'builder/components/layers/SponsorTeamEditionLayer';
 
@@ -61,6 +59,9 @@ class SponsorTeamView extends Component {
    finishEditName = () => {
       this.setState({ ...this.state, editingName: false });
    };
+   updateValue = (event) => {
+      event.preventDefault();
+   };
 
    render() {
       let view = null;
@@ -78,11 +79,7 @@ class SponsorTeamView extends Component {
       } else if (this.state.editingName) {
          view =
             <SponsorTeamEditionLayer title='players' onClose={ this.finishEditName }>
-               <Form>
-                  <FormField label='sponsor_name'>
-                     <TextInput id='sponsor_name' name='sponsor_name'/>
-                  </FormField>
-               </Form>
+               <SponsorNameInput />
             </SponsorTeamEditionLayer>;
       } else {
          view =

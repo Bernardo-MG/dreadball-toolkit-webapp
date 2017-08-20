@@ -39,6 +39,13 @@ export const validateSponsorTeam = (affinities = [],
    };
 };
 
+export const updateSponsorName = (value) => {
+   return {
+      type: types.UPDATE_SPONSOR_NAME,
+      payload: value
+   };
+};
+
 export const updateSponsorCoachingDice = (value) => {
    return {
       type: types.UPDATE_SPONSOR_COACHING_DICE,

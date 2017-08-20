@@ -47,6 +47,12 @@ const sponsor = (
          ...state,
          ...payload
       };
+   case ActionTypes.UPDATE_SPONSOR_NAME: {
+      return {
+         ...state,
+         sponsorName: payload
+      };
+   }
    case ActionTypes.UPDATE_SPONSOR_CHEERLEADERS: {
       const cheerleaders = payload;
 
