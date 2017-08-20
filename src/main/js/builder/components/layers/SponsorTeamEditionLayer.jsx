@@ -3,6 +3,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import Box from 'grommet/components/Box';
+import Button from 'grommet/components/Button';
 import Heading from 'grommet/components/Heading';
 import Layer from 'grommet/components/Layer';
 
@@ -14,6 +15,9 @@ const SponsorTeamEditionLayer = (props) =>
       <SponsorTeamCost />
       <Box flex={true} pad='small'>
          {props.children}
+      </Box>
+      <Box pad='small'>
+         <Button label='accept' onClick={ props.onClose } />
       </Box>
    </Layer>;
 
