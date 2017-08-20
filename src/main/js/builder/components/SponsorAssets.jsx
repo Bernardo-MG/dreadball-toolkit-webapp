@@ -12,22 +12,22 @@ import WagerValue from 'builder/containers/values/WagerValue';
 
 const SponsorAssets = () =>
    <Columns>
-      <Box pad='medium'>
+      <Box pad='small'>
          <SponsorCoachingDiceValue />
       </Box>
-      <Box pad='medium'>
+      <Box pad='small'>
          <SpecialMoveCardValue />
       </Box>
-      <Box pad='medium'>
+      <Box pad='small'>
          <NastySurpriseCardValue />
       </Box>
-      <Box pad='medium'>
+      <Box pad='small'>
          <WagerValue />
       </Box>
-      <Box pad='medium'>
+      <Box pad='small'>
          <MediBotValue />
       </Box>
-      <Box pad='medium'>
+      <Box pad='small'>
          <CheerleadersValue />
       </Box>
    </Columns>;
