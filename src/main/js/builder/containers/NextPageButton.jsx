@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -13,11 +13,22 @@ import PageChangeButton from 'components/PageChangeButton';
 
 import buttonMessages from 'i18n/button';
 
-const NextPageButton = (props) =>
-   <PageChangeButton changePage={nextPage} fetch={props.actions.fetch} page={props.page} endingPage={props.lastPage}
-      label={props.intl.formatMessage(buttonMessages.next)} />;
+class NextPageButton extends Component {
+
+   fetch = (page = 0, orderBy = 'name', direction = 'ASC') => {
+      this.props.actions.fetch(this.props.affinities, page, orderBy, direction);
+   };
+
+   render() {
+      return (
+         <PageChangeButton changePage={nextPage} fetch={this.fetch} page={this.props.page} endingPage={this.props.lastPage}
+            label={this.props.intl.formatMessage(buttonMessages.next)} />
+      );
+   }
+}
 
 NextPageButton.propTypes = {
+   affinities: PropTypes.array.isRequired,
    actions: PropTypes.object.isRequired,
    page: PropTypes.number.isRequired,
    lastPage: PropTypes.bool,
@@ -26,6 +37,7 @@ NextPageButton.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
+      affinities: state.builder.sponsor.affinities,
       lastPage: state.pagination.ratedUnits.last,
       page: state.pagination.ratedUnits.page
    };
