@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -6,34 +6,16 @@ import { injectIntl } from 'react-intl';
 
 import * as actions from 'requests/actions/unit';
 import { bindActionCreators } from 'redux';
-import Button from 'grommet/components/Button';
 import { connect } from 'react-redux';
 import { previousPage } from 'pagination/move';
 
+import PageChangeButton from 'components/PageChangeButton';
+
 import buttonMessages from 'i18n/button';
 
-class PreviousPageButton extends Component {
-
-   callApi = () => {
-      previousPage(this.props.actions.fetch, this.props.page, this.props.firstPage);
-   };
-
-   constructor(props) {
-      super(props);
-
-      if (this.props.label) {
-         this.label = this.props.label;
-      } else {
-         this.label = props.intl.formatMessage(buttonMessages.previous);
-      }
-   }
-
-   render() {
-      return (
-         <Button onClick={this.callApi} label={this.label}/>
-      );
-   }
-}
+const PreviousPageButton = (props) =>
+   <PageChangeButton changePage={previousPage} fetch={props.actions.fetch} page={props.page} endingPage={props.firstPage}
+      label={props.intl.formatMessage(buttonMessages.previous)} />;
 
 PreviousPageButton.propTypes = {
    actions: PropTypes.object.isRequired,
