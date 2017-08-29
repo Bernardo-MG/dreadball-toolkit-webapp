@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import Box from 'grommet/components/Box';
 import Split from 'grommet/components/Split';
 
+import DbxUnitPanel from 'builder/components/DbxUnitPanel';
 import NextPageButton from 'builder/containers/NextPageButton';
 import PreviousPageButton from 'builder/containers/PreviousPageButton';
 
 import DbxUnitList from 'codex/components/DbxUnitList';
-import DbxUnitPanel from 'codex/components/DbxUnitPanel';
 
 class DbxTeamPlayersPanel extends Component {
 
@@ -38,7 +38,7 @@ class DbxTeamPlayersPanel extends Component {
       if (this.state.selected) {
          details = <DbxUnitPanel source={this.state.selected} />;
       } else {
-         details = <div/>;
+         details = <h1>pick_player</h1>;
       }
 
       return (

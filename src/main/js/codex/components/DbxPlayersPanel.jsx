@@ -38,7 +38,7 @@ class DbxPlayersPanel extends Component {
       if (this.state.selected) {
          details = <DbxUnitPanel source={this.state.selected} />;
       } else {
-         details = <div/>;
+         details = <h1>pick_player</h1>;
       }
 
       return (
