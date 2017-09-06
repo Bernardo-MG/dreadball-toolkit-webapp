@@ -33,7 +33,6 @@ const SponsorTeamView = () =>
                <Box size='medium'>
                   <Box direction='row'>
                      <Heading tag='h2'>affinities</Heading>
-                     <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
                   </Box>
                   <SponsorAffinityList />
                </Box>
