@@ -15,8 +15,6 @@ import SponsorNameInput from 'builder/containers/input/SponsorNameInput';
 
 import BoundDbxTeamPlayersPanel from 'builder/containers/BoundDbxTeamPlayersPanel';
 
-import EditionButton from 'components/buttons/EditionButton';
-
 const SponsorTeamView = () =>
    <Tabs>
       <Tab title='First Title'>
