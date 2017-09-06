@@ -60,7 +60,7 @@ class AddUnitButton extends Component {
 }
 
 AddUnitButton.propTypes = {
-   sponsorUnits: PropTypes.object.isRequired,
+   sponsorUnits: PropTypes.array.isRequired,
    baseRank: PropTypes.number.isRequired,
    affinities: PropTypes.array.isRequired,
    cheerleaders: PropTypes.number.isRequired,
