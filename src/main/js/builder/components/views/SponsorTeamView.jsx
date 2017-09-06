@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
@@ -17,7 +17,7 @@ import BoundDbxTeamPlayersPanel from 'builder/containers/BoundDbxTeamPlayersPane
 
 import EditionButton from 'components/buttons/EditionButton';
 
-const SponsorTeamView = (props) =>
+const SponsorTeamView = () =>
    <Tabs>
       <Tab title='First Title'>
          <Box>
@@ -38,10 +38,7 @@ const SponsorTeamView = (props) =>
                   <SponsorAffinityList />
                </Box>
                <Box size='medium'>
-                  <Box direction='row'>
-                     <Heading tag='h2'>players</Heading>
-                     <EditionButton onClick={ this.editPlayers } a11yTitle='edit_players' />
-                  </Box>
+                  <Heading tag='h2'>players</Heading>
                   <SponsorUnitList />
                </Box>
             </Box>
