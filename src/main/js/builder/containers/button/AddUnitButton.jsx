@@ -50,6 +50,8 @@ class AddUnitButton extends Component {
       this.specialMoveCards = props.specialMoveCards;
       this.nastySurpriseCards = props.nastySurpriseCards;
       this.wagers = props.wagers;
+
+      this.unit = props.unit;
    }
 
    render() {
