@@ -17,72 +17,44 @@ import BoundDbxTeamPlayersPanel from 'builder/containers/BoundDbxTeamPlayersPane
 
 import EditionButton from 'components/buttons/EditionButton';
 
-class SponsorTeamView extends Component {
-
-   state = {
-      editingAffinities: false,
-      editingPlayers: false
-   };
-
-   editAffinities = () => {
-      this.setState({ ...this.state, editingAffinities: true });
-   };
-
-   finishEditAffinities = () => {
-      this.setState({ ...this.state, editingAffinities: false });
-   };
-
-   editPlayers = () => {
-      this.setState({ ...this.state, editingPlayers: true });
-   };
-
-   finishEditPlayers = () => {
-      this.setState({ ...this.state, editingPlayers: false });
-   };
-
-   render() {
-      return (
-         <Tabs>
-            <Tab title='First Title'>
-               <Box>
-                  <Box>
-                     <SponsorTeamCost />
-                  </Box>
-                  <Box>
-                     <SponsorNameInput />
-                  </Box>
-                  <Heading tag='h2'>assets</Heading>
-                  <SponsorAssetsForm />
+const SponsorTeamView = (props) =>
+   <Tabs>
+      <Tab title='First Title'>
+         <Box>
+            <Box>
+               <SponsorTeamCost />
+            </Box>
+            <Box>
+               <SponsorNameInput />
+            </Box>
+            <Heading tag='h2'>assets</Heading>
+            <SponsorAssetsForm />
+            <Box direction='row'>
+               <Box size='medium'>
                   <Box direction='row'>
-                     <Box size='medium'>
-                        <Box direction='row'>
-                           <Heading tag='h2'>affinities</Heading>
-                           <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
-                        </Box>
-                        <SponsorAffinityList />
-                     </Box>
-                     <Box size='medium'>
-                        <Box direction='row'>
-                           <Heading tag='h2'>players</Heading>
-                           <EditionButton onClick={ this.editPlayers } a11yTitle='edit_players' />
-                        </Box>
-                        <SponsorUnitList />
-                     </Box>
+                     <Heading tag='h2'>affinities</Heading>
+                     <EditionButton onClick={ this.editAffinities } a11yTitle='edit_affinities' />
                   </Box>
+                  <SponsorAffinityList />
                </Box>
-            </Tab>
-            <Tab title='players'>
-               <Box>
-                  <SponsorTeamCost />
+               <Box size='medium'>
+                  <Box direction='row'>
+                     <Heading tag='h2'>players</Heading>
+                     <EditionButton onClick={ this.editPlayers } a11yTitle='edit_players' />
+                  </Box>
+                  <SponsorUnitList />
                </Box>
-               <Box>
-                  <BoundDbxTeamPlayersPanel />
-               </Box>
-            </Tab>
-         </Tabs>
-      );
-   }
-
-}
+            </Box>
+         </Box>
+      </Tab>
+      <Tab title='players'>
+         <Box>
+            <SponsorTeamCost />
+         </Box>
+         <Box>
+            <BoundDbxTeamPlayersPanel />
+         </Box>
+      </Tab>
+   </Tabs>;
 
 export default SponsorTeamView;
