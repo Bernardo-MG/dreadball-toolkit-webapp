@@ -6,8 +6,8 @@ import Box from 'grommet/components/Box';
 import Split from 'grommet/components/Split';
 
 import DbxUnitPanel from 'builder/components/DbxUnitPanel';
-import NextPageButton from 'builder/containers/NextPageButton';
-import PreviousPageButton from 'builder/containers/PreviousPageButton';
+import NextPageButton from 'builder/containers/button/NextPageButton';
+import PreviousPageButton from 'builder/containers/button/PreviousPageButton';
 
 import DbxUnitList from 'codex/components/DbxUnitList';
 

@@ -11,7 +11,7 @@ import SponsorUnitList from 'builder/containers/SponsorUnitList';
 import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 
 import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
-import SponsorNameInput from 'builder/containers/SponsorNameInput';
+import SponsorNameInput from 'builder/containers/input/SponsorNameInput';
 
 import BoundDbxTeamPlayersPanel from 'builder/containers/BoundDbxTeamPlayersPanel';
 
