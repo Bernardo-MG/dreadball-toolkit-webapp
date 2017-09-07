@@ -63,7 +63,7 @@ public class DefaultAffinitiesSelectionAssembler
             getValidAffinities(final Collection<String> affinities) {
         return affinities.stream()
                 .filter(affinity -> !affinity.equals("rank_increase"))
-                .collect(Collectors.toList());
+                .collect(Collectors.toSet());
     }
 
 }
