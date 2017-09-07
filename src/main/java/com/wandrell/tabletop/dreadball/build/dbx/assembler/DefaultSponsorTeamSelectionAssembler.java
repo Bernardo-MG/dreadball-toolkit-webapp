@@ -41,9 +41,6 @@ import com.wandrell.tabletop.dreadball.rules.DbxRules;
 public class DefaultSponsorTeamSelectionAssembler
         implements SponsorTeamSelectionAssembler {
 
-    private static final Logger          LOGGER = LoggerFactory
-            .getLogger(DefaultSponsorTeamSelectionAssembler.class);
-
     /**
      * Affinity units repository.
      */
@@ -92,8 +89,6 @@ public class DefaultSponsorTeamSelectionAssembler
         checkNotNull(unitNames, "Received a null pointer as unit names");
         checkNotNull(assets, "Received a null pointer as assets");
         checkNotNull(baseRank, "Received a null pointer as base rank");
-
-        LOGGER.info("Units {}", unitNames);
 
         affGroups = getAffinityGroups(affinities);
 

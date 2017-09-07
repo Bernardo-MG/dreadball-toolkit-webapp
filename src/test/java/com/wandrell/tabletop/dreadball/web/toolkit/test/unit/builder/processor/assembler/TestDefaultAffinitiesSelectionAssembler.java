@@ -53,7 +53,7 @@ public final class TestDefaultAffinitiesSelectionAssembler {
     }
 
     @Test
-    public final void testAssemble_NoRank_NoRank() {
+    public final void testAssemble_NoRank_NoReturnedRank() {
         final AffinitiesSelectionAssembler assembler;
         final Collection<String> affinities;
         final SponsorAffinities result;
@@ -65,6 +65,21 @@ public final class TestDefaultAffinitiesSelectionAssembler {
         result = assembler.assemble(affinities, 0);
 
         Assert.assertEquals(result.getBaseRank(), new Integer(0));
+    }
+
+    @Test
+    public final void testAssemble_Rank_ReturnedRank() {
+        final AffinitiesSelectionAssembler assembler;
+        final Collection<String> affinities;
+        final SponsorAffinities result;
+
+        assembler = getAffinitiesSelectionAssembler();
+
+        affinities = new ArrayList<>();
+
+        result = assembler.assemble(affinities, 6);
+
+        Assert.assertEquals(result.getBaseRank(), new Integer(6));
     }
 
     @Test

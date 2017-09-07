@@ -83,7 +83,7 @@ public final class DefaultSponsorBuilderAssemblerService
             getValidAffinities(final Collection<String> affinities) {
         return affinities.stream()
                 .filter(affinity -> !affinity.equals("rank_increase"))
-                .collect(Collectors.toSet());
+                .collect(Collectors.toList());
     }
 
 }
