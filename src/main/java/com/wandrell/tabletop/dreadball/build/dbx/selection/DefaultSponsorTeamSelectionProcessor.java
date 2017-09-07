@@ -3,8 +3,11 @@ package com.wandrell.tabletop.dreadball.build.dbx.selection;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
@@ -94,11 +97,7 @@ public class DefaultSponsorTeamSelectionProcessor
 
         affGroups = getAffinityGroups(affinities);
 
-        if (unitNames.isEmpty()) {
-            units = Collections.emptyList();
-        } else {
-            units = getAffinityUnitRepository().findByTemplateNameIn(unitNames);
-        }
+        units = getUnits(unitNames);
 
         sponsorTeam = getSponsorTeam(assets, units, affGroups);
 
@@ -196,6 +195,29 @@ public class DefaultSponsorTeamSelectionProcessor
                 getSponsorCosts().getCheerleaderCost(),
                 getSponsorCosts().getWagerCost(),
                 getSponsorCosts().getMediBotCost());
+    }
+
+    private final Collection<? extends AffinityUnit>
+            getUnits(final Collection<String> unitNames) {
+        final Collection<? extends AffinityUnit> read;
+        final Collection<AffinityUnit> units;
+        final Map<String, ? extends AffinityUnit> readMap;
+
+        if (unitNames.isEmpty()) {
+            read = Collections.emptyList();
+        } else {
+            read = getAffinityUnitRepository().findByTemplateNameIn(unitNames);
+        }
+
+        readMap = read.stream().collect(Collectors
+                .toMap(AffinityUnit::getTemplateName, Function.identity()));
+
+        units = new ArrayList<>();
+        for (final String name : unitNames) {
+            units.add(readMap.get(name));
+        }
+
+        return units;
     }
 
 }
