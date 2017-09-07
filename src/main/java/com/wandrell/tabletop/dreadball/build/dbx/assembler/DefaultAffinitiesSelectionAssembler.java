@@ -3,9 +3,12 @@ package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.stream.Collectors;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Sets;
 import com.wandrell.tabletop.dreadball.build.dbx.model.DefaultSponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorDefaults;
@@ -28,13 +31,16 @@ public class DefaultAffinitiesSelectionAssembler
     public final SponsorAffinities assemble(final Iterable<String> affinities,
             final Integer rank) {
         final Integer totalRank;
+        final Iterable<String> valid;
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(rank, "Received a null pointer as rank");
 
+        valid = Sets.newHashSet(affinities);
+
         totalRank = getSponsorDefaults().getInitialRank() + rank;
 
-        return new DefaultSponsorAffinities(affinities, totalRank, totalRank);
+        return new DefaultSponsorAffinities(valid, totalRank, totalRank);
     }
 
     private final SponsorDefaults getSponsorDefaults() {
