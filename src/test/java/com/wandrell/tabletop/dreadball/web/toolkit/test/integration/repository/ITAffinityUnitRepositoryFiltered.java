@@ -27,17 +27,16 @@ import org.springframework.test.context.testng.AbstractTransactionalTestNGSpring
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
-import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
-public class ITAffinityUnitRepository
+public class ITAffinityUnitRepositoryFiltered
         extends AbstractTransactionalTestNGSpringContextTests {
 
     @Autowired
     private AffinityUnitRepository repository;
 
-    public ITAffinityUnitRepository() {
+    public ITAffinityUnitRepositoryFiltered() {
         super();
     }
 
@@ -86,18 +85,6 @@ public class ITAffinityUnitRepository
                 (repository.findAllFilteredByHatedAffinities(affinities,
                         pageReq)).getTotalElements(),
                 4);
-    }
-
-    @Test
-    public final void testFindOneByTemplateName_Existing_ExpectedResult() {
-        final Unit unit;
-        final String templateName;
-
-        templateName = "unit_1_affinity";
-
-        unit = repository.findOneByTemplateName(templateName);
-
-        Assert.assertEquals(unit.getTemplateName(), templateName);
     }
 
 }

@@ -52,13 +52,4 @@ public interface AffinityUnitRepository
     public Collection<PersistentAffinityUnit>
             findByTemplateNameIn(final Iterable<String> names);
 
-    /**
-     * Returns the affinity unit with the specified template name.
-     * 
-     * @param name
-     *            template name to search for
-     * @return the affinity unit with the specified template name
-     */
-    public PersistentAffinityUnit findOneByTemplateName(final String name);
-
 }

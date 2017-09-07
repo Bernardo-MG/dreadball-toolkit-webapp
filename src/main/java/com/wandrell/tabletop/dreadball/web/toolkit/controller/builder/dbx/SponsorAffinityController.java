@@ -90,12 +90,13 @@ public class SponsorAffinityController {
     public final Iterable<? extends Unit> getDbxUnits(@RequestParam(
             name = "affinities", required = false,
             defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities,
-            @RequestParam(name = "page", defaultValue = "0") final Integer page,
-            @RequestParam(name = "size",
+            @RequestParam(name = "page", required = false,
+                    defaultValue = "0") final Integer page,
+            @RequestParam(name = "size", required = false,
                     defaultValue = "10") final Integer size,
-            @RequestParam(name = "orderBy",
+            @RequestParam(name = "orderBy", required = false,
                     defaultValue = "") final String orderBy,
-            @RequestParam(name = "direction",
+            @RequestParam(name = "direction", required = false,
                     defaultValue = "ASC") final Direction direction) {
         final Pageable pageReq;
 
