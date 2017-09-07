@@ -32,7 +32,7 @@ public final class TestDefaultAffinitiesSelectionAssembler {
         affinities.add("affinity_1");
         affinities.add("affinity_2");
 
-        result = assembler.assemble(affinities);
+        result = assembler.assemble(affinities, 0);
 
         Assert.assertEquals(Iterables.size(result.getAffinities()), 2);
     }
@@ -47,13 +47,13 @@ public final class TestDefaultAffinitiesSelectionAssembler {
 
         affinities = new ArrayList<>();
 
-        result = assembler.assemble(affinities);
+        result = assembler.assemble(affinities, 0);
 
         Assert.assertEquals(Iterables.size(result.getAffinities()), 0);
     }
 
     @Test
-    public final void testAssemble_NoAffinities_NoRank() {
+    public final void testAssemble_NoRank_NoRank() {
         final AffinitiesSelectionAssembler assembler;
         final Collection<String> affinities;
         final SponsorAffinities result;
@@ -62,7 +62,7 @@ public final class TestDefaultAffinitiesSelectionAssembler {
 
         affinities = new ArrayList<>();
 
-        result = assembler.assemble(affinities);
+        result = assembler.assemble(affinities, 0);
 
         Assert.assertEquals(result.getBaseRank(), new Integer(0));
     }
@@ -81,7 +81,7 @@ public final class TestDefaultAffinitiesSelectionAssembler {
         affinities.add("affinity_2");
         affinities.add("affinity_1");
 
-        result = assembler.assemble(affinities);
+        result = assembler.assemble(affinities, 0);
 
         Assert.assertEquals(Iterables.size(result.getAffinities()), 2);
     }

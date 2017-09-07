@@ -16,8 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
-import java.util.Collection;
-
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 
 /**
@@ -26,6 +24,7 @@ import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
  */
 public interface AffinitiesSelectionAssembler {
 
-    public SponsorAffinities assemble(final Collection<String> affinities);
+    public SponsorAffinities assemble(final Iterable<String> affinities,
+            final Integer rank);
 
 }
