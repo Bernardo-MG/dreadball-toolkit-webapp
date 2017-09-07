@@ -3,15 +3,9 @@ package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Map;
-import java.util.function.Function;
 import java.util.stream.Collectors;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -34,32 +28,25 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 
 @Service
 public class DefaultSponsorTeamSelectionAssembler
         implements SponsorTeamSelectionAssembler {
 
-    /**
-     * Affinity units repository.
-     */
-    private final AffinityUnitRepository affinityUnitRepository;
-
-    private final SponsorCosts           costs;
+    private final SponsorCosts costs;
 
     /**
      * DBX rules.
      */
-    private final DbxRules               dbxRules;
+    private final DbxRules     dbxRules;
 
-    private final SponsorCosts           rankCosts;
+    private final SponsorCosts rankCosts;
 
     @Autowired
     public DefaultSponsorTeamSelectionAssembler(
             @Qualifier("SponsorCosts") final SponsorCosts sponsorCosts,
             @Qualifier("SponsorRankCosts") final SponsorCosts sponsorRankCosts,
-            final AffinityUnitRepository unitsRepository,
             final DbxRules rules) {
         super();
 
@@ -67,32 +54,27 @@ public class DefaultSponsorTeamSelectionAssembler
                 "Received a null pointer as Sponsor costs");
         rankCosts = checkNotNull(sponsorRankCosts,
                 "Received a null pointer as Sponsor rank costs");
-        affinityUnitRepository = checkNotNull(unitsRepository,
-                "Received a null pointer as units repository");
         dbxRules = checkNotNull(rules, "Received a null pointer as DBX rules");
     }
 
     @Override
     public final SponsorTeamSelection assemble(
             final Collection<String> affinities,
-            final Collection<String> unitNames, final SponsorTeamAssets assets,
-            final Integer baseRank) {
+            final Collection<? extends AffinityUnit> units,
+            final SponsorTeamAssets assets, final Integer baseRank) {
         final Integer rank;
         final Integer assetRankCost;
         final Integer teamValue;
         final SponsorTeam sponsorTeam;
         final Collection<AffinityGroup> affGroups;
-        final Collection<? extends AffinityUnit> units;
         final Collection<TeamPlayer> acceptedUnits;
 
         checkNotNull(affinities, "Received a null pointer as affinities");
-        checkNotNull(unitNames, "Received a null pointer as unit names");
+        checkNotNull(units, "Received a null pointer as units");
         checkNotNull(assets, "Received a null pointer as assets");
         checkNotNull(baseRank, "Received a null pointer as base rank");
 
         affGroups = getAffinityGroups(affinities);
-
-        units = getUnits(unitNames);
 
         sponsorTeam = getSponsorTeam(assets, units, affGroups);
 
@@ -115,10 +97,6 @@ public class DefaultSponsorTeamSelectionAssembler
         return affinities.stream()
                 .map(affinity -> new DefaultAffinityGroup(affinity))
                 .collect(Collectors.toList());
-    }
-
-    private final AffinityUnitRepository getAffinityUnitRepository() {
-        return affinityUnitRepository;
     }
 
     /**
@@ -190,29 +168,6 @@ public class DefaultSponsorTeamSelectionAssembler
                 getSponsorCosts().getCheerleaderCost(),
                 getSponsorCosts().getWagerCost(),
                 getSponsorCosts().getMediBotCost());
-    }
-
-    private final Collection<? extends AffinityUnit>
-            getUnits(final Collection<String> unitNames) {
-        final Collection<? extends AffinityUnit> read;
-        final Collection<AffinityUnit> units;
-        final Map<String, ? extends AffinityUnit> readMap;
-
-        if (unitNames.isEmpty()) {
-            read = Collections.emptyList();
-        } else {
-            read = getAffinityUnitRepository().findByTemplateNameIn(unitNames);
-        }
-
-        readMap = read.stream().collect(Collectors
-                .toMap(AffinityUnit::getTemplateName, Function.identity()));
-
-        units = new ArrayList<>();
-        for (final String name : unitNames) {
-            units.add(readMap.get(name));
-        }
-
-        return units;
     }
 
 }
