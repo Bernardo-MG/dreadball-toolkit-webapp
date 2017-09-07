@@ -30,11 +30,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.wandrell.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
 import com.wandrell.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
-import com.wandrell.tabletop.dreadball.service.model.SponsorAffinityGroupAvailabilityService;
-import com.wandrell.tabletop.dreadball.service.model.SponsorUnitsService;
 
 /**
  * Controller for the affinity groups codex views.
@@ -43,33 +42,23 @@ import com.wandrell.tabletop.dreadball.service.model.SponsorUnitsService;
  */
 @RestController
 @RequestMapping("/rest/builder")
-public class SponsorAffinityController {
+public class SponsorQueryController {
 
-    /**
-     * Affinity groups codex service.
-     */
-    private final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
-
-    private final SponsorUnitsService                     sponsorUnitsService;
+    private final SponsorBuilderService builderService;
 
     /**
      * Constructs a controller with the specified dependencies.
      * 
-     * @param service
-     *            affinity groups codex service
-     * @param unitsService
+     * @param sponsorBuilderService
      *            sponsor units service
      */
     @Autowired
-    public SponsorAffinityController(
-            final SponsorAffinityGroupAvailabilityService service,
-            final SponsorUnitsService unitsService) {
+    public SponsorQueryController(
+            final SponsorBuilderService sponsorBuilderService) {
         super();
 
-        sponsorAffinityGroupAvailabilityService = checkNotNull(service,
-                "Received a null pointer as Sponsor affinity groups availabilities codex service");
-        sponsorUnitsService = checkNotNull(unitsService,
-                "Received a null pointer as Sponsor units service");
+        builderService = checkNotNull(sponsorBuilderService,
+                "Received a null pointer as builder service");
     }
 
     /**
@@ -81,8 +70,7 @@ public class SponsorAffinityController {
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final Iterable<SponsorAffinityGroupAvailability>
             getAffinityGroups() {
-        return getSponsorAffinityGroupAvailabilityService()
-                .getAllSponsorAffinityGroupAvailabilities();
+        return getSponsorBuilderService().getAffinityGroupAvailabilities();
     }
 
     @GetMapping(path = "/units",
@@ -110,22 +98,11 @@ public class SponsorAffinityController {
             pageReq = new PageRequest(page, size, direction, orderBy);
         }
 
-        return getSponsorUnitsService().getAllAffinityUnits(affinities,
-                pageReq);
+        return getSponsorBuilderService().getAffinityUnits(affinities, pageReq);
     }
 
-    /**
-     * Returns the affinity groups service.
-     * 
-     * @return the affinity groups service
-     */
-    private final SponsorAffinityGroupAvailabilityService
-            getSponsorAffinityGroupAvailabilityService() {
-        return sponsorAffinityGroupAvailabilityService;
-    }
-
-    private final SponsorUnitsService getSponsorUnitsService() {
-        return sponsorUnitsService;
+    private final SponsorBuilderService getSponsorBuilderService() {
+        return builderService;
     }
 
 }
