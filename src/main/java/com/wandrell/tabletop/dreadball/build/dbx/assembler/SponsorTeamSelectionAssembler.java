@@ -14,19 +14,21 @@
  * the License.
  */
 
-package com.wandrell.tabletop.dreadball.build.dbx.selection;
+package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
 import java.util.Collection;
 
-import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
 
 /**
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface AffinitiesSelectionProcessor {
+public interface SponsorTeamSelectionAssembler {
 
-    public SponsorAffinities
-            selectAffinities(final Collection<String> affinities);
+    public SponsorTeamSelection assemble(final Collection<String> affinities,
+            final Collection<String> units, final SponsorTeamAssets assets,
+            final Integer baseRank);
 
 }

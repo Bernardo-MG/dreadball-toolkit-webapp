@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.build.dbx.selection;
+package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -14,13 +14,13 @@ import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorDefaults;
 
 @Service
-public class DefaultAffinitiesSelectionProcessor
-        implements AffinitiesSelectionProcessor {
+public class DefaultAffinitiesSelectionAssembler
+        implements AffinitiesSelectionAssembler {
 
     private final SponsorDefaults sponsorDefaults;
 
     @Autowired
-    public DefaultAffinitiesSelectionProcessor(final SponsorDefaults defaults) {
+    public DefaultAffinitiesSelectionAssembler(final SponsorDefaults defaults) {
         super();
 
         sponsorDefaults = checkNotNull(defaults,
@@ -29,12 +29,13 @@ public class DefaultAffinitiesSelectionProcessor
 
     @Override
     public final SponsorAffinities
-            selectAffinities(final Collection<String> affinities) {
+            assemble(final Collection<String> affinities) {
         final Integer rank;
         final Iterable<String> filtered;
 
         checkNotNull(affinities, "Received a null pointer as affinities");
 
+        // TODO: Ensure these are existing affinities
         filtered = getValidAffinities(affinities);
         rank = getRank(affinities);
 

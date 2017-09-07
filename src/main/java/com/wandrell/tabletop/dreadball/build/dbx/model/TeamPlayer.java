@@ -45,10 +45,13 @@ public class TeamPlayer {
      * 
      * @param name
      *            unit name
+     * @param pos
+     *            unit position in team
      */
-    public TeamPlayer(final String name) {
+    public TeamPlayer(final Integer pos, final String name) {
         super();
 
+        position = pos;
         templateName = name;
     }
 
@@ -57,13 +60,10 @@ public class TeamPlayer {
      * 
      * @param name
      *            unit name
-     * @param pos
-     *            unit position in team
      */
-    public TeamPlayer(final Integer pos, final String name) {
+    public TeamPlayer(final String name) {
         super();
 
-        position = pos;
         templateName = name;
     }
 

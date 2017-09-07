@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.build.dbx.selection;
+package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -38,11 +38,11 @@ import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 
 @Service
-public class DefaultSponsorTeamSelectionProcessor
-        implements SponsorTeamSelectionProcessor {
+public class DefaultSponsorTeamSelectionAssembler
+        implements SponsorTeamSelectionAssembler {
 
     private static final Logger          LOGGER = LoggerFactory
-            .getLogger(DefaultSponsorTeamSelectionProcessor.class);
+            .getLogger(DefaultSponsorTeamSelectionAssembler.class);
 
     /**
      * Affinity units repository.
@@ -59,7 +59,7 @@ public class DefaultSponsorTeamSelectionProcessor
     private final SponsorCosts           rankCosts;
 
     @Autowired
-    public DefaultSponsorTeamSelectionProcessor(
+    public DefaultSponsorTeamSelectionAssembler(
             @Qualifier("SponsorCosts") final SponsorCosts sponsorCosts,
             @Qualifier("SponsorRankCosts") final SponsorCosts sponsorRankCosts,
             final AffinityUnitRepository unitsRepository,
@@ -76,7 +76,7 @@ public class DefaultSponsorTeamSelectionProcessor
     }
 
     @Override
-    public final SponsorTeamSelection selectTeam(
+    public final SponsorTeamSelection assemble(
             final Collection<String> affinities,
             final Collection<String> unitNames, final SponsorTeamAssets assets,
             final Integer baseRank) {
