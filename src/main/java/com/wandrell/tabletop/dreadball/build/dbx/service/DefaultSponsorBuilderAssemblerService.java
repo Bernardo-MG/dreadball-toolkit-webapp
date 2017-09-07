@@ -18,7 +18,9 @@ import com.wandrell.tabletop.dreadball.build.dbx.assembler.SponsorTeamSelectionA
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
+import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 
 @Service
@@ -68,17 +70,27 @@ public final class DefaultSponsorBuilderAssemblerService
             final Collection<String> affinities, final Collection<String> units,
             final SponsorTeamAssets assets, final Integer baseRank) {
         final Collection<? extends AffinityUnit> affUnits;
+        final Collection<AffinityGroup> affs;
         // TODO: Validate
 
         affUnits = getUnits(units);
+        affs = getAffinityGroups(affinities);
 
-        return getSponsorTeamSelectionAssembler().assemble(affinities, affUnits,
+        return getSponsorTeamSelectionAssembler().assemble(affs, affUnits,
                 assets, baseRank);
     }
 
     private final AffinitiesSelectionAssembler
             getAffinitiesSelectionAssembler() {
         return affAssembler;
+    }
+
+    private final Collection<AffinityGroup>
+            getAffinityGroups(final Collection<String> affinities) {
+        // TODO: Read from DB
+        return affinities.stream()
+                .map(affinity -> new DefaultAffinityGroup(affinity))
+                .collect(Collectors.toList());
     }
 
     private final AffinityUnitRepository getAffinityUnitRepository() {

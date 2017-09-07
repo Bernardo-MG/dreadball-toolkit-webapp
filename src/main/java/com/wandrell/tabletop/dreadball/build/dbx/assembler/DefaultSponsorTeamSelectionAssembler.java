@@ -25,7 +25,6 @@ import com.wandrell.tabletop.dreadball.model.team.calculator.SponsorTeamValorati
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityLevel;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
@@ -59,24 +58,25 @@ public class DefaultSponsorTeamSelectionAssembler
 
     @Override
     public final SponsorTeamSelection assemble(
-            final Collection<String> affinities,
+            final Collection<AffinityGroup> affinities,
             final Collection<? extends AffinityUnit> units,
             final SponsorTeamAssets assets, final Integer baseRank) {
         final Integer rank;
         final Integer assetRankCost;
         final Integer teamValue;
         final SponsorTeam sponsorTeam;
-        final Collection<AffinityGroup> affGroups;
         final Collection<TeamPlayer> acceptedUnits;
+        final Collection<String> affNames;
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(units, "Received a null pointer as units");
         checkNotNull(assets, "Received a null pointer as assets");
         checkNotNull(baseRank, "Received a null pointer as base rank");
 
-        affGroups = getAffinityGroups(affinities);
+        affNames = affinities.stream().map(aff -> aff.getName())
+                .collect(Collectors.toList());
 
-        sponsorTeam = getSponsorTeam(assets, units, affGroups);
+        sponsorTeam = getSponsorTeam(assets, units, affinities);
 
         teamValue = sponsorTeam.getValoration();
         assetRankCost = sponsorTeam.getRankCost();
@@ -88,15 +88,8 @@ public class DefaultSponsorTeamSelectionAssembler
                         unit.getValue().getTemplateName()))
                 .collect(Collectors.toList());
 
-        return new DefaultSponsorTeamSelection(affinities, acceptedUnits, rank,
+        return new DefaultSponsorTeamSelection(affNames, acceptedUnits, rank,
                 baseRank, teamValue);
-    }
-
-    private final Collection<AffinityGroup>
-            getAffinityGroups(final Collection<String> affinities) {
-        return affinities.stream()
-                .map(affinity -> new DefaultAffinityGroup(affinity))
-                .collect(Collectors.toList());
     }
 
     /**
