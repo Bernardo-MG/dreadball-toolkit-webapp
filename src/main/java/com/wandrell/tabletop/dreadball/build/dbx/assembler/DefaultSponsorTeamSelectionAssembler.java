@@ -67,16 +67,13 @@ public class DefaultSponsorTeamSelectionAssembler
         final Integer assetRankCost;
         final Integer teamValue;
         final SponsorTeam sponsorTeam;
-        final Collection<TeamPlayer> acceptedUnits;
-        final Collection<String> affNames;
+        final Iterable<TeamPlayer> acceptedUnits;
+        final Iterable<String> affNames;
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(units, "Received a null pointer as units");
         checkNotNull(assets, "Received a null pointer as assets");
         checkNotNull(baseRank, "Received a null pointer as base rank");
-
-        affNames = StreamSupport.stream(affinities.spliterator(), false)
-                .map(aff -> aff.getName()).collect(Collectors.toList());
 
         sponsorTeam = getSponsorTeam(assets, units, affinities);
 
@@ -86,10 +83,8 @@ public class DefaultSponsorTeamSelectionAssembler
         // TODO: Receive the rank increase instead of the base rank
         rank = baseRank - assetRankCost;
 
-        acceptedUnits = sponsorTeam.getPlayers().entrySet().stream()
-                .map(unit -> new TeamPlayer(unit.getKey(),
-                        unit.getValue().getTemplateName()))
-                .collect(Collectors.toList());
+        acceptedUnits = getTeamPlayers(sponsorTeam);
+        affNames = getNames(affinities);
 
         return new DefaultSponsorTeamSelection(affNames, acceptedUnits, rank,
                 baseRank, teamValue);
@@ -102,6 +97,21 @@ public class DefaultSponsorTeamSelectionAssembler
      */
     private final DbxRules getDbxRules() {
         return dbxRules;
+    }
+
+    private final SponsorTeam getDefaultSponsorTeam() {
+        final Sponsor sponsor;
+
+        sponsor = new DefaultSponsor();
+
+        return new DefaultSponsorTeam(sponsor, getTeamValorationCalculator(),
+                getRankCostCalculator());
+    }
+
+    private final Iterable<String>
+            getNames(final Iterable<AffinityGroup> affinities) {
+        return StreamSupport.stream(affinities.spliterator(), false)
+                .map(AffinityGroup::getName).collect(Collectors.toList());
     }
 
     private final CostCalculator<SponsorTeam> getRankCostCalculator() {
@@ -124,16 +134,12 @@ public class DefaultSponsorTeamSelectionAssembler
     private final SponsorTeam getSponsorTeam(final SponsorTeamAssets assets,
             final Iterable<AffinityUnit> units,
             final Iterable<AffinityGroup> affinities) {
-        final Sponsor sponsor;
         final SponsorTeam sponsorTeam;
         Unit unitSetUp;
         Integer cost;
         AffinityLevel affinityLevel;  // Affinity level relationship
 
-        sponsor = new DefaultSponsor();
-
-        sponsorTeam = new DefaultSponsorTeam(sponsor,
-                getTeamValorationCalculator(), getRankCostCalculator());
+        sponsorTeam = getDefaultSponsorTeam();
 
         sponsorTeam.getSponsor()
                 .setAffinityGroups(Lists.newArrayList(affinities));
@@ -155,6 +161,14 @@ public class DefaultSponsorTeamSelectionAssembler
         sponsorTeam.setWagers(assets.getWagers());
 
         return sponsorTeam;
+    }
+
+    private final Iterable<TeamPlayer>
+            getTeamPlayers(final SponsorTeam sponsorTeam) {
+        return sponsorTeam.getPlayers().entrySet().stream()
+                .map(unit -> new TeamPlayer(unit.getKey(),
+                        unit.getValue().getTemplateName()))
+                .collect(Collectors.toList());
     }
 
     private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
