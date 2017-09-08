@@ -17,8 +17,8 @@ import BoundDbxTeamPlayersPanel from 'builder/containers/BoundDbxTeamPlayersPane
 
 const SponsorTeamView = () =>
    <Tabs>
-      <Tab title='First Title'>
-         <Box>
+      <Tab title='assets'>
+         <Box justify='center' align='center'>
             <Box>
                <SponsorTeamCost />
             </Box>
@@ -27,14 +27,14 @@ const SponsorTeamView = () =>
             </Box>
             <Heading tag='h2'>assets</Heading>
             <SponsorAssetsForm />
-            <Box direction='row'>
-               <Box size='medium'>
+            <Box direction='row' pad='small'>
+               <Box pad='small' size='medium'>
                   <Box direction='row'>
                      <Heading tag='h2'>affinities</Heading>
                   </Box>
                   <SponsorAffinityList />
                </Box>
-               <Box size='medium'>
+               <Box pad='small' size='medium'>
                   <Heading tag='h2'>players</Heading>
                   <SponsorUnitList />
                </Box>

@@ -3,7 +3,6 @@ package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.Collection;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
