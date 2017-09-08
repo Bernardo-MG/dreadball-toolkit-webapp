@@ -20,7 +20,7 @@ import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
-import com.wandrell.tabletop.dreadball.model.unit.DefaultAffinityGroup;
+import com.wandrell.tabletop.dreadball.repository.unit.AffinityGroupRepository;
 import com.wandrell.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 
 @Service
@@ -28,6 +28,8 @@ public final class DefaultSponsorBuilderAssemblerService
         implements SponsorBuilderAssemblerService {
 
     private final AffinitiesSelectionAssembler  affAssembler;
+
+    private final AffinityGroupRepository       affinityGroupRepository;
 
     /**
      * Affinity units repository.
@@ -40,7 +42,8 @@ public final class DefaultSponsorBuilderAssemblerService
     public DefaultSponsorBuilderAssemblerService(
             final SponsorTeamSelectionAssembler sponsorTeamAssembler,
             final AffinitiesSelectionAssembler affinitiesAssembler,
-            final AffinityUnitRepository unitsRepository) {
+            final AffinityUnitRepository unitsRepository,
+            final AffinityGroupRepository affinityRepository) {
         super();
 
         teamAssembler = checkNotNull(sponsorTeamAssembler,
@@ -49,6 +52,8 @@ public final class DefaultSponsorBuilderAssemblerService
                 "Received a null pointer as affinities selection assembler");
         affinityUnitRepository = checkNotNull(unitsRepository,
                 "Received a null pointer as units repository");
+        affinityGroupRepository = checkNotNull(affinityRepository,
+                "Received a null pointer as affinities repository");
     }
 
     @Override
@@ -85,12 +90,19 @@ public final class DefaultSponsorBuilderAssemblerService
         return affAssembler;
     }
 
-    private final Collection<AffinityGroup>
+    private final AffinityGroupRepository getAffinityGroupRepository() {
+        return affinityGroupRepository;
+    }
+
+    private final Iterable<AffinityGroup>
             getAffinityGroups(final Collection<String> affinities) {
-        // TODO: Read from DB
-        return affinities.stream()
-                .map(affinity -> new DefaultAffinityGroup(affinity))
-                .collect(Collectors.toList());
+        final Collection<AffinityGroup> result;
+
+        result = new ArrayList<>();
+
+        result.addAll(getAffinityGroupRepository().findByNameIn(affinities));
+
+        return result;
     }
 
     private final AffinityUnitRepository getAffinityUnitRepository() {
@@ -113,7 +125,7 @@ public final class DefaultSponsorBuilderAssemblerService
         return teamAssembler;
     }
 
-    private final Collection<AffinityUnit>
+    private final Iterable<AffinityUnit>
             getUnits(final Collection<String> unitNames) {
         final Collection<? extends AffinityUnit> read;
         final Collection<AffinityUnit> units;

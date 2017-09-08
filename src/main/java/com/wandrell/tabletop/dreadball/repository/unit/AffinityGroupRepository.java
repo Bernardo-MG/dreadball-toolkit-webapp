@@ -16,6 +16,8 @@
 
 package com.wandrell.tabletop.dreadball.repository.unit;
 
+import java.util.Collection;
+
 import org.springframework.data.repository.PagingAndSortingRepository;
 
 import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinityGroup;
@@ -27,5 +29,8 @@ import com.wandrell.tabletop.dreadball.model.persistence.unit.PersistentAffinity
  */
 public interface AffinityGroupRepository
         extends PagingAndSortingRepository<PersistentAffinityGroup, Integer> {
+
+    public Collection<PersistentAffinityGroup>
+            findByNameIn(final Iterable<String> names);
 
 }
