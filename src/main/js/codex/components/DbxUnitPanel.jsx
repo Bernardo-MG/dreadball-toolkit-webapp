@@ -10,6 +10,7 @@ import Heading from 'grommet/components/Heading';
 import Label from 'grommet/components/Label';
 import Value from 'grommet/components/Value';
 
+import abilityMessages from 'i18n/ability';
 import unitMessages from 'i18n/unit';
 import unitNameMessages from 'i18n/unitName';
 import unitRoleMessages from 'i18n/role';
@@ -19,7 +20,7 @@ const DbxUnitPanel = (props) =>
       <Heading tag='h1'>{props.intl.formatMessage(unitNameMessages[props.source.name])}</Heading>
       <Label>{props.intl.formatMessage(unitRoleMessages[props.source.role])}</Label>
       <Heading tag='h2'>{props.intl.formatMessage(unitMessages.abilities)}</Heading>
-      <Label>{props.source.abilities}</Label>
+      <Label>{props.source.abilities.map((a) => props.intl.formatMessage(abilityMessages[a])).join(', ')}</Label>
       <Heading tag='h2'>{props.intl.formatMessage(unitMessages.attributes)}</Heading>
       <Box>
          <Columns size='small'>
