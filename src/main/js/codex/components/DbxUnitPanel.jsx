@@ -2,54 +2,61 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
+import { injectIntl } from 'react-intl';
+
 import Box from 'grommet/components/Box';
 import Columns from 'grommet/components/Columns';
 import Heading from 'grommet/components/Heading';
 import Label from 'grommet/components/Label';
 import Value from 'grommet/components/Value';
 
+import unitMessages from 'i18n/unit';
+import unitNameMessages from 'i18n/unitName';
+import unitRoleMessages from 'i18n/role';
+
 const DbxUnitPanel = (props) =>
    <Box>
-      <Heading tag='h1'>{props.source.name}</Heading>
-      <Label>{props.source.role}</Label>
-      <Heading tag='h2'>abilities</Heading>
+      <Heading tag='h1'>{props.intl.formatMessage(unitNameMessages[props.source.name])}</Heading>
+      <Label>{props.intl.formatMessage(unitRoleMessages[props.source.role])}</Label>
+      <Heading tag='h2'>{props.intl.formatMessage(unitMessages.abilities)}</Heading>
       <Label>{props.source.abilities}</Label>
-      <Heading tag='h2'>attributes</Heading>
+      <Heading tag='h2'>{props.intl.formatMessage(unitMessages.attributes)}</Heading>
       <Box>
          <Columns size='small'>
             <Box pad='small'>
-               <Value value={props.source.movement} label='movement' />
+               <Value value={props.source.movement} label={props.intl.formatMessage(unitMessages.movement)} />
             </Box>
             <Box pad='small'>
-               <Value value={props.source.strength} label='strength' />
+               <Value value={props.source.strength} label={props.intl.formatMessage(unitMessages.strength)} />
             </Box>
             <Box pad='small'>
-               <Value value={props.source.speed} label='speed' />
+               <Value value={props.source.speed} label={props.intl.formatMessage(unitMessages.speed)} />
             </Box>
             <Box pad='small'>
-               <Value value={props.source.skill} label='skill' />
+               <Value value={props.source.skill} label={props.intl.formatMessage(unitMessages.skill)} />
             </Box>
             <Box pad='small'>
-               <Value value={props.source.armor} label='armor' />
+               <Value value={props.source.armor} label={props.intl.formatMessage(unitMessages.armor)} />
             </Box>
          </Columns>
       </Box>
-      <Heading tag='h2'>costs</Heading>
+      <Heading tag='h2'>{props.intl.formatMessage(unitMessages.costs)}</Heading>
       <Columns size='small'>
          <Box pad='small'>
-            <Value value={props.source.friendCost} label='friendCost' />
+            <Value value={props.source.friendCost} label={props.intl.formatMessage(unitMessages.friendCost)} />
          </Box>
          <Box pad='small'>
-            <Value value={props.source.allyCost} label='allyCost' />
+            <Value value={props.source.allyCost} label={props.intl.formatMessage(unitMessages.allyCost)} />
          </Box>
          <Box pad='small'>
-            <Value value={props.source.strangerCost} label='strangerCost' />
+            <Value value={props.source.strangerCost} label={props.intl.formatMessage(unitMessages.strangerCost)} />
          </Box>
       </Columns>
    </Box>;
 
 DbxUnitPanel.propTypes = {
-   source: PropTypes.object.isRequired
+   source: PropTypes.object.isRequired,
+   intl: PropTypes.object.isRequired
 };
 
-export default DbxUnitPanel;
+export default injectIntl(DbxUnitPanel);

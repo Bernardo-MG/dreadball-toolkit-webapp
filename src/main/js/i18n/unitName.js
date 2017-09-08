@@ -21,10 +21,6 @@ const unitNameMessages = defineMessages({
       id: 'unit.anneMarieHelder',
       defaultMessage: 'Anne-Marie Helder'
    },
-   anne_marie_helder: {
-      id: 'unit.anneMarieHelder',
-      defaultMessage: 'Anne-Marie Helder'
-   },
    asterian_guard: {
       id: 'unit.asterian.guard',
       defaultMessage: 'Asterian guard'
@@ -60,10 +56,6 @@ const unitNameMessages = defineMessages({
    brickbat_vognar: {
       id: 'unit.brickbatVognar',
       defaultMessage: '\'Brickbat\' Vognar'
-   },
-   brokr_guard: {
-      id: 'unit.brokr.guard',
-      defaultMessage: 'Brokr guard'
    },
    brokr_jack: {
       id: 'unit.brokr.jack',
@@ -304,10 +296,6 @@ const unitNameMessages = defineMessages({
    nameless_bloodsucker: {
       id: 'unit.nameless.bloodsucker',
       defaultMessage: 'Nameless Bloodsucker'
-   },
-   nameless_guard_sticky: {
-      id: 'unit.nameless.guard.sticky',
-      defaultMessage: 'Nameless sticky guard'
    },
    nameless_guard_sticky: {
       id: 'unit.nameless.guard.sticky',

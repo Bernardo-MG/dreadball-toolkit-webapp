@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
+import { injectIntl } from 'react-intl';
+
 import Box from 'grommet/components/Box';
 import Split from 'grommet/components/Split';
 
@@ -10,6 +12,8 @@ import PreviousPageButton from 'codex/containers/PreviousPageButton';
 
 import DbxUnitList from 'codex/components/DbxUnitList';
 import DbxUnitPanel from 'codex/components/DbxUnitPanel';
+
+import labelMessages from 'i18n/label';
 
 class DbxPlayersPanel extends Component {
 
@@ -38,7 +42,7 @@ class DbxPlayersPanel extends Component {
       if (this.state.selected) {
          details = <DbxUnitPanel source={this.state.selected} />;
       } else {
-         details = <h1>pick_player</h1>;
+         details = <h1>{this.props.intl.formatMessage(labelMessages.pickPlayer)}</h1>;
       }
 
       return (
@@ -57,13 +61,14 @@ class DbxPlayersPanel extends Component {
                <Box pad='small'>
                   { details }
                </Box>
-             </Split>
+            </Split>
       );
    }
 }
 
 DbxPlayersPanel.propTypes = {
-   units: PropTypes.array.isRequired
+   units: PropTypes.array.isRequired,
+   intl: PropTypes.object.isRequired
 };
 
-export default DbxPlayersPanel;
+export default injectIntl(DbxPlayersPanel);
