@@ -24,7 +24,7 @@ const DbxUnitPanel = (props) =>
       <Box>
          <Columns size='small'>
             <Box pad='small'>
-               <Value value={props.source.movement} label={props.intl.formatMessage(unitMessages.movement)} />
+               <Value value={props.source.movement} label={props.intl.formatMessage(unitMessages.move)} />
             </Box>
             <Box pad='small'>
                <Value value={props.source.strength} label={props.intl.formatMessage(unitMessages.strength)} />
@@ -40,16 +40,16 @@ const DbxUnitPanel = (props) =>
             </Box>
          </Columns>
       </Box>
-      <Heading tag='h2'>{props.intl.formatMessage(unitMessages.costs)}</Heading>
+      <Heading tag='h2'>{props.intl.formatMessage(unitMessages.cost)}</Heading>
       <Columns size='small'>
          <Box pad='small'>
-            <Value value={props.source.friendCost} label={props.intl.formatMessage(unitMessages.friendCost)} />
+            <Value value={props.source.friendCost} label={props.intl.formatMessage(unitMessages.friend_cost)} />
          </Box>
          <Box pad='small'>
-            <Value value={props.source.allyCost} label={props.intl.formatMessage(unitMessages.allyCost)} />
+            <Value value={props.source.allyCost} label={props.intl.formatMessage(unitMessages.ally_cost)} />
          </Box>
          <Box pad='small'>
-            <Value value={props.source.strangerCost} label={props.intl.formatMessage(unitMessages.strangerCost)} />
+            <Value value={props.source.strangerCost} label={props.intl.formatMessage(unitMessages.stranger_cost)} />
          </Box>
       </Columns>
    </Box>;
