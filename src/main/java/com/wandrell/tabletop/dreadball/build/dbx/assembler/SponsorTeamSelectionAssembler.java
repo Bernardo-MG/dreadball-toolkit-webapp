@@ -16,8 +16,6 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
-import java.util.Collection;
-
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
@@ -30,8 +28,8 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 public interface SponsorTeamSelectionAssembler {
 
     public SponsorTeamSelection assemble(
-            final Collection<AffinityGroup> affinities,
-            final Collection<? extends AffinityUnit> units,
-            final SponsorTeamAssets assets, final Integer baseRank);
+            final Iterable<AffinityGroup> affinities,
+            final Iterable<AffinityUnit> units, final SponsorTeamAssets assets,
+            final Integer baseRank);
 
 }

@@ -69,8 +69,8 @@ public final class DefaultSponsorBuilderAssemblerService
     public final SponsorTeamSelection assembleSponsorTeamSelection(
             final Collection<String> affinities, final Collection<String> units,
             final SponsorTeamAssets assets, final Integer baseRank) {
-        final Collection<? extends AffinityUnit> affUnits;
-        final Collection<AffinityGroup> affs;
+        final Iterable<AffinityUnit> affUnits;
+        final Iterable<AffinityGroup> affs;
         // TODO: Validate
 
         affUnits = getUnits(units);
@@ -113,7 +113,7 @@ public final class DefaultSponsorBuilderAssemblerService
         return teamAssembler;
     }
 
-    private final Collection<? extends AffinityUnit>
+    private final Collection<AffinityUnit>
             getUnits(final Collection<String> unitNames) {
         final Collection<? extends AffinityUnit> read;
         final Collection<AffinityUnit> units;

@@ -5,11 +5,13 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
 import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
+import com.google.common.collect.Lists;
 import com.wandrell.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
@@ -58,9 +60,9 @@ public class DefaultSponsorTeamSelectionAssembler
 
     @Override
     public final SponsorTeamSelection assemble(
-            final Collection<AffinityGroup> affinities,
-            final Collection<? extends AffinityUnit> units,
-            final SponsorTeamAssets assets, final Integer baseRank) {
+            final Iterable<AffinityGroup> affinities,
+            final Iterable<AffinityUnit> units, final SponsorTeamAssets assets,
+            final Integer baseRank) {
         final Integer rank;
         final Integer assetRankCost;
         final Integer teamValue;
@@ -73,14 +75,15 @@ public class DefaultSponsorTeamSelectionAssembler
         checkNotNull(assets, "Received a null pointer as assets");
         checkNotNull(baseRank, "Received a null pointer as base rank");
 
-        affNames = affinities.stream().map(aff -> aff.getName())
-                .collect(Collectors.toList());
+        affNames = StreamSupport.stream(affinities.spliterator(), false)
+                .map(aff -> aff.getName()).collect(Collectors.toList());
 
         sponsorTeam = getSponsorTeam(assets, units, affinities);
 
         teamValue = sponsorTeam.getValoration();
         assetRankCost = sponsorTeam.getRankCost();
 
+        // TODO: Receive the rank increase instead of the base rank
         rank = baseRank - assetRankCost;
 
         acceptedUnits = sponsorTeam.getPlayers().entrySet().stream()
@@ -119,8 +122,8 @@ public class DefaultSponsorTeamSelectionAssembler
     }
 
     private final SponsorTeam getSponsorTeam(final SponsorTeamAssets assets,
-            final Collection<? extends AffinityUnit> units,
-            final Collection<AffinityGroup> affinities) {
+            final Iterable<AffinityUnit> units,
+            final Iterable<AffinityGroup> affinities) {
         final Sponsor sponsor;
         final SponsorTeam sponsorTeam;
         Unit unitSetUp;
@@ -132,7 +135,8 @@ public class DefaultSponsorTeamSelectionAssembler
         sponsorTeam = new DefaultSponsorTeam(sponsor,
                 getTeamValorationCalculator(), getRankCostCalculator());
 
-        sponsorTeam.getSponsor().setAffinityGroups(affinities);
+        sponsorTeam.getSponsor()
+                .setAffinityGroups(Lists.newArrayList(affinities));
 
         for (final AffinityUnit unit : units) {
             affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
