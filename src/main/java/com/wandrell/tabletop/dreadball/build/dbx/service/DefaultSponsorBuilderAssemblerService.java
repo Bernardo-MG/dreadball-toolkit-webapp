@@ -14,10 +14,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.wandrell.tabletop.dreadball.build.dbx.assembler.AffinitiesSelectionAssembler;
+import com.wandrell.tabletop.dreadball.build.dbx.assembler.SponsorTeamAssembler;
 import com.wandrell.tabletop.dreadball.build.dbx.assembler.SponsorTeamSelectionAssembler;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 import com.wandrell.tabletop.dreadball.repository.unit.AffinityGroupRepository;
@@ -36,17 +38,22 @@ public final class DefaultSponsorBuilderAssemblerService
      */
     private final AffinityUnitRepository        affinityUnitRepository;
 
-    private final SponsorTeamSelectionAssembler teamAssembler;
+    private final SponsorTeamAssembler          teamAssembler;
+
+    private final SponsorTeamSelectionAssembler teamSelectionAssembler;
 
     @Autowired
     public DefaultSponsorBuilderAssemblerService(
-            final SponsorTeamSelectionAssembler sponsorTeamAssembler,
+            final SponsorTeamAssembler sponsorTeamAssembler,
+            final SponsorTeamSelectionAssembler sponsorTeamSelectionAssembler,
             final AffinitiesSelectionAssembler affinitiesAssembler,
             final AffinityUnitRepository unitsRepository,
             final AffinityGroupRepository affinityRepository) {
         super();
 
         teamAssembler = checkNotNull(sponsorTeamAssembler,
+                "Received a null pointer as team assembler");
+        teamSelectionAssembler = checkNotNull(sponsorTeamSelectionAssembler,
                 "Received a null pointer as team selection assembler");
         affAssembler = checkNotNull(affinitiesAssembler,
                 "Received a null pointer as affinities selection assembler");
@@ -76,13 +83,15 @@ public final class DefaultSponsorBuilderAssemblerService
             final SponsorTeamAssets assets, final Integer baseRank) {
         final Iterable<AffinityUnit> affUnits;
         final Iterable<AffinityGroup> affs;
+        final SponsorTeam team;
         // TODO: Validate
 
         affUnits = getUnits(units);
         affs = getAffinityGroups(affinities);
 
-        return getSponsorTeamSelectionAssembler().assemble(affs, affUnits,
-                assets, baseRank);
+        team = getSponsorTeamAssembler().assemble(affs, affUnits, assets);
+
+        return getSponsorTeamSelectionAssembler().assemble(team, baseRank);
     }
 
     private final AffinitiesSelectionAssembler
@@ -120,9 +129,13 @@ public final class DefaultSponsorBuilderAssemblerService
         return rank;
     }
 
+    private final SponsorTeamAssembler getSponsorTeamAssembler() {
+        return teamAssembler;
+    }
+
     private final SponsorTeamSelectionAssembler
             getSponsorTeamSelectionAssembler() {
-        return teamAssembler;
+        return teamSelectionAssembler;
     }
 
     private final Iterable<AffinityUnit>

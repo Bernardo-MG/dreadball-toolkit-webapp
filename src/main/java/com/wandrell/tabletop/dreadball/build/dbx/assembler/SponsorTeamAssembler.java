@@ -16,16 +16,18 @@
 
 package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
-import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 
 /**
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface SponsorTeamSelectionAssembler {
+public interface SponsorTeamAssembler {
 
-    public SponsorTeamSelection assemble(final SponsorTeam team,
-            final Integer baseRank);
+    public SponsorTeam assemble(final Iterable<AffinityGroup> affinities,
+            final Iterable<AffinityUnit> units, final SponsorTeamAssets assets);
 
 }
