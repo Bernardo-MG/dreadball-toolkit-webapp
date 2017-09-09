@@ -89,9 +89,10 @@ public final class DefaultSponsorBuilderAssemblerService
         affUnits = getUnits(units);
         affs = getAffinityGroups(affinities);
 
-        team = getSponsorTeamAssembler().assemble(affs, affUnits, assets);
+        team = getSponsorTeamAssembler().assemble(affs, affUnits, assets,
+                baseRank);
 
-        return getSponsorTeamSelectionAssembler().assemble(team, baseRank);
+        return getSponsorTeamSelectionAssembler().assemble(team);
     }
 
     private final AffinitiesSelectionAssembler
@@ -108,7 +109,6 @@ public final class DefaultSponsorBuilderAssemblerService
         final Collection<AffinityGroup> result;
 
         result = new ArrayList<>();
-
         result.addAll(getAffinityGroupRepository().findByNameIn(affinities));
 
         return result;

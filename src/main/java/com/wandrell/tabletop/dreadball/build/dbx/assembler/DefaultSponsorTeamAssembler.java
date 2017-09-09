@@ -52,8 +52,8 @@ public class DefaultSponsorTeamAssembler implements SponsorTeamAssembler {
 
     @Override
     public final SponsorTeam assemble(final Iterable<AffinityGroup> affinities,
-            final Iterable<AffinityUnit> units,
-            final SponsorTeamAssets assets) {
+            final Iterable<AffinityUnit> units, final SponsorTeamAssets assets,
+            final Integer rank) {
         final SponsorTeam sponsorTeam;
         Unit unitSetUp;
         Integer cost;
@@ -62,9 +62,11 @@ public class DefaultSponsorTeamAssembler implements SponsorTeamAssembler {
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(units, "Received a null pointer as units");
         checkNotNull(assets, "Received a null pointer as assets");
+        checkNotNull(rank, "Received a null pointer as rank");
 
         sponsorTeam = getDefaultSponsorTeam();
 
+        sponsorTeam.getSponsor().setRank(rank);
         sponsorTeam.getSponsor()
                 .setAffinityGroups(Lists.newArrayList(affinities));
 

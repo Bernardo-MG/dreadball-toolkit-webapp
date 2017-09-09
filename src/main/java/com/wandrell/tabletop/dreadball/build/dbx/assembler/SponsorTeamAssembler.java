@@ -28,6 +28,7 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityUnit;
 public interface SponsorTeamAssembler {
 
     public SponsorTeam assemble(final Iterable<AffinityGroup> affinities,
-            final Iterable<AffinityUnit> units, final SponsorTeamAssets assets);
+            final Iterable<AffinityUnit> units, final SponsorTeamAssets assets,
+            final Integer rank);
 
 }

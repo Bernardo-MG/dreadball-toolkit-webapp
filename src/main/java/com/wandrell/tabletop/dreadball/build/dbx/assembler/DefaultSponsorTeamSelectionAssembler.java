@@ -25,8 +25,7 @@ public class DefaultSponsorTeamSelectionAssembler
     }
 
     @Override
-    public final SponsorTeamSelection assemble(final SponsorTeam team,
-            final Integer baseRank) {
+    public final SponsorTeamSelection assemble(final SponsorTeam team) {
         final Integer rank;
         final Integer assetRankCost;
         final Integer teamValue;
@@ -34,19 +33,17 @@ public class DefaultSponsorTeamSelectionAssembler
         final Iterable<String> affNames;
 
         checkNotNull(team, "Received a null pointer as team");
-        checkNotNull(baseRank, "Received a null pointer as base rank");
 
         teamValue = team.getValoration();
         assetRankCost = team.getRankCost();
 
-        // TODO: Receive the rank increase instead of the base rank
-        rank = baseRank - assetRankCost;
+        rank = team.getSponsor().getRank() - assetRankCost;
 
         acceptedUnits = getTeamPlayers(team);
         affNames = getNames(team.getSponsor().getAffinityGroups());
 
         return new DefaultSponsorTeamSelection(affNames, acceptedUnits, rank,
-                baseRank, teamValue);
+                team.getSponsor().getRank(), teamValue);
     }
 
     private final Iterable<String>

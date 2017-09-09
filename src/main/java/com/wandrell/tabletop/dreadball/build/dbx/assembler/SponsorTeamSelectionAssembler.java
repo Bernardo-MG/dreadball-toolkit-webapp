@@ -25,7 +25,6 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
  */
 public interface SponsorTeamSelectionAssembler {
 
-    public SponsorTeamSelection assemble(final SponsorTeam team,
-            final Integer baseRank);
+    public SponsorTeamSelection assemble(final SponsorTeam team);
 
 }
