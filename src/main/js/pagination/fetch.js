@@ -8,6 +8,7 @@ const paginatedContent = (content) => {
       totalElements: content.totalElements,
       page: content.number,
       totalPages: content.totalPages,
+      pageSize: content.size,
       sort: content.sort
    };
 

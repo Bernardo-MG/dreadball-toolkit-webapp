@@ -1,6 +1,6 @@
 
 const getSlice = (pagination) => {
-   const start = pagination.page * pagination.numberOfElements;
+   const start = pagination.page * pagination.pageSize;
    const end = start + pagination.numberOfElements;
    const ids = pagination.ids.slice(start, end);
 
