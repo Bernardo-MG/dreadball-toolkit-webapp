@@ -3,6 +3,7 @@ package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
@@ -14,6 +15,7 @@ import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.model.TeamPlayer;
 import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
+import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 @Service
 public class DefaultSponsorTeamSelectionAssembler
@@ -39,7 +41,7 @@ public class DefaultSponsorTeamSelectionAssembler
 
         rank = team.getSponsor().getRank() - assetRankCost;
 
-        acceptedUnits = getTeamPlayers(team);
+        acceptedUnits = getTeamPlayers(team.getPlayers());
         affNames = getNames(team.getSponsor().getAffinityGroups());
 
         return new DefaultSponsorTeamSelection(affNames, acceptedUnits, rank,
@@ -49,12 +51,12 @@ public class DefaultSponsorTeamSelectionAssembler
     private final Iterable<String>
             getNames(final Iterable<AffinityGroup> affinities) {
         return StreamSupport.stream(affinities.spliterator(), false)
-                .map(AffinityGroup::getName).collect(Collectors.toList());
+                .map(AffinityGroup::getName).collect(Collectors.toSet());
     }
 
     private final Iterable<TeamPlayer>
-            getTeamPlayers(final SponsorTeam sponsorTeam) {
-        return sponsorTeam.getPlayers().entrySet().stream()
+            getTeamPlayers(final Map<Integer, Unit> units) {
+        return units.entrySet().stream()
                 .map(unit -> new TeamPlayer(unit.getKey(),
                         unit.getValue().getTemplateName()))
                 .collect(Collectors.toList());
