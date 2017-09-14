@@ -4,14 +4,13 @@ package com.wandrell.tabletop.dreadball.build.dbx.assembler;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import com.google.common.collect.Sets;
 import com.wandrell.tabletop.dreadball.build.dbx.model.DefaultSponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorDefaults;
 
-@Service
+@Component
 public class DefaultAffinitiesSelectionAssembler
         implements AffinitiesSelectionAssembler {
 

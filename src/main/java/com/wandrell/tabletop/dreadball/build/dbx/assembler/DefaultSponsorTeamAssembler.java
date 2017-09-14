@@ -5,8 +5,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import com.google.common.collect.Lists;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorCosts;
@@ -24,7 +23,7 @@ import com.wandrell.tabletop.dreadball.model.unit.DefaultUnit;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 
-@Service
+@Component
 public class DefaultSponsorTeamAssembler implements SponsorTeamAssembler {
 
     private final SponsorCosts costs;

@@ -8,8 +8,7 @@ import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
+import org.springframework.stereotype.Component;
 import com.wandrell.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
 import com.wandrell.tabletop.dreadball.build.dbx.model.TeamPlayer;
@@ -17,7 +16,7 @@ import com.wandrell.tabletop.dreadball.model.team.SponsorTeam;
 import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
-@Service
+@Component
 public class DefaultSponsorTeamSelectionAssembler
         implements SponsorTeamSelectionAssembler {
 
