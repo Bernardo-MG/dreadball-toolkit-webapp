@@ -159,12 +159,17 @@
             </pluginManagement>
          </build>
       </profile>
+      <!-- ============================================== -->
+      <!-- ============= DATABASE PROFILES ============== -->
+      <!-- ============================================== -->
       <profile>
          <!-- H2 database profile -->
          <!-- Prepares the project to make use of an H2 in-memory database -->
          <id>h2</id>
          <properties>
             <!-- Access data -->
+            <!-- Default values for testing and development -->
+            <!-- Override them for production -->
             <database.url>jdbc:h2:mem:dreadball_toolkit</database.url>
             <database.username>sa</database.username>
             <database.password></database.password>
@@ -186,6 +191,8 @@
          <id>mysql</id>
          <properties>
             <!-- Access data -->
+            <!-- Default values for testing and development -->
+            <!-- Override them for production -->
             <database.url>jdbc:mysql://localhost:3306/dreadball_toolkit</database.url>
             <database.username>root</database.username>
             <database.password></database.password>
@@ -201,43 +208,9 @@
             </dependency>
          </dependencies>
       </profile>
-      <profile>
-         <!-- Release site deployment profile -->
-         <!-- Sets the site repository to point to the releases repo -->
-         <id>deployment-release</id>
-         <activation>
-            <!-- Active by default so the repository appears in the reports -->
-            <activeByDefault>true</activeByDefault>
-         </activation>
-         <distributionManagement>
-            <site>
-               <id>site</id>
-               <name>Project Documentation Site</name>
-               <url>scp://docs.wandrell.com:2222/home1/duenco/www/maven/dreadball-toolkit-webpage</url>
-            </site>
-         </distributionManagement>
-      </profile>
-      <profile>
-         <!-- Development site deployment profile -->
-         <!-- Sets the site repository to point to the development repo -->
-         <id>deployment-development</id>
-         <distributionManagement>
-            <site>
-               <id>site-development</id>
-               <name>Project Development Documentation Site</name>
-               <url>scp://docs.wandrell.com:2222/home1/duenco/www/development/maven/dreadball-toolkit-webpage</url>
-            </site>
-         </distributionManagement>
-      </profile>
-      <profile>
-         <!-- Deployment profile -->
-         <!-- Sets ups the environment for deployment -->
-         <id>deployment</id>
-         <properties>
-            <!-- Tests are skipped -->
-            <maven.test.skip>true</maven.test.skip>
-         </properties>
-      </profile>
+      <!-- ============================================== -->
+      <!-- ========= EMBEDDED SERVER PROFILES =========== -->
+      <!-- ============================================== -->
       <profile>
          <!-- Jetty profile -->
          <!-- Sets ups Jetty for testing and local deployment -->
@@ -328,6 +301,71 @@
             </plugins>
          </build>
       </profile>
+      <!-- ============================================== -->
+      <!-- ============ DEPLOYMENT PROFILES ============= -->
+      <!-- ============================================== -->
+      <profile>
+         <!-- Release site deployment profile -->
+         <!-- Sets the site repository to point to the releases repo -->
+         <id>deployment-release</id>
+         <activation>
+            <!-- Active by default so the repository appears in the reports -->
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <distributionManagement>
+            <site>
+               <id>site</id>
+               <name>Project Documentation Site</name>
+               <url>scp://docs.wandrell.com:2222/home1/duenco/www/maven/dreadball-toolkit-webpage</url>
+            </site>
+         </distributionManagement>
+      </profile>
+      <profile>
+         <!-- Development site deployment profile -->
+         <!-- Sets the site repository to point to the development repo -->
+         <id>deployment-development</id>
+         <distributionManagement>
+            <site>
+               <id>site-development</id>
+               <name>Project Development Documentation Site</name>
+               <url>scp://docs.wandrell.com:2222/home1/duenco/www/development/maven/dreadball-toolkit-webpage</url>
+            </site>
+         </distributionManagement>
+      </profile>
+      <profile>
+         <!-- Deployment profile -->
+         <!-- Sets ups the environment for deployment -->
+         <id>deployment</id>
+         <properties>
+            <!-- Tests are skipped -->
+            <maven.test.skip>true</maven.test.skip>
+         </properties>
+      </profile>
+      <!-- ============================================== -->
+      <!-- =========== RUNTIME ENV PROFILES ============= -->
+      <!-- ============================================== -->
+      <profile>
+         <!-- Production profile -->
+         <!-- Sets ups the environment for production -->
+         <id>production</id>
+         <properties>
+            <!-- Production Node environment flag -->
+            <node.env>production</node.env>
+         </properties>
+      </profile>
+      <profile>
+         <!-- Development profile -->
+         <!-- Sets ups the environment for development and testing -->
+         <id>development</id>
+         <activation>
+            <!-- Active by default to ease development -->
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <properties>
+            <!-- development Node environment flag -->
+            <node.env>development</node.env>
+         </properties>
+      </profile>
    </profiles>
 
    <!-- ********************************************** -->
@@ -383,7 +421,6 @@
       <!-- ============================================== -->
       <!-- ============= NODE ENVIRONMENT =============== -->
       <!-- ============================================== -->
-      <node.env>development</node.env>
       <node.env.rootRoute>${server.rootPath}</node.env.rootRoute>
       <node.env.repoUrl>${project.scm.url}</node.env.repoUrl>
       <node.env.inputPath>./src/main/js/</node.env.inputPath>

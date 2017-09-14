@@ -77,11 +77,13 @@ $ mvn verify -P h2,tomcat7
 
 ### Packaging the WAR
 
-When creating the WAR file the database connection credentials should be set:
+When creating the WAR file the database connection credentials should be set manually:
 
 ```
-$ mvn package -P mysql -Ddatabase.username=[username] -Ddatabase.password=[password] -Ddatabase.url=jdbc:mysql://localhost:3306/dreadball_toolkit
+$ mvn package -P production,mysql -Ddatabase.username=[username] -Ddatabase.password=[password] -Ddatabase.url=[DB url]
 ```
+
+Otherwise the project will try to use the default testing values.
 
 ## Collaborate
 
