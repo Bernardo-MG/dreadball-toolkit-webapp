@@ -6,24 +6,24 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 const env = process.env.NODE_ENV || 'development';
 
 // Base route
-const APP_ROUTE = '/dreadball';
+const APP_ROUTE = process.env.APP_ROUTE || '/app';
 
 // Project URL
-const PROJECT_REPO_URL = 'https://github.com/Bernardo-MG/dreadball-toolkit-webpage';
+const PROJECT_REPO_URL = process.env.REPO_URL;
 
 // Input directory
-const INPUT_PATH = './src/main/js/';
+const INPUT_PATH = process.env.INPUT_PATH;
 const INPUT_PATH_ENTRY = INPUT_PATH + 'index.js';
 
 // Output directory
 const OUTPUT_FILE_CSS = 'style.css';
 const OUTPUT_FILE_VENDOR = 'vendor.bundle.js';
 
-const OUTPUT_PATH = './target/generated-ui/';
+const OUTPUT_PATH = process.env.OUTPUT_PATH;
 const OUTPUT_PATH_BUNDLE = OUTPUT_PATH + 'bundle.js';
 
 // Modules dependencies directory
-const MODULE_PATH = './node_modules';
+const MODULE_PATH = process.env.MODULE_PATH;
 
 process.traceDeprecation = true;
 
@@ -52,6 +52,7 @@ plugins = [
 var devtool = null;
 if (env === 'production') {
    // Production specific configuration
+   devtool = false,
    plugins.push(
       new webpack.optimize.UglifyJsPlugin({
          compress: {
