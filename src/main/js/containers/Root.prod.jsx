@@ -1,7 +1,7 @@
-import React, { PropTypes } from 'react'
-import { Provider } from 'react-redux'
-import routes from 'routes'
-import { Router } from 'react-router'
+import React, { PropTypes } from 'react';
+import { Provider } from 'react-redux';
+import routes from 'routes';
+import { Router } from 'react-router';
 import { IntlProvider } from 'react-intl';
 import Cookie from 'js-cookie';
 
