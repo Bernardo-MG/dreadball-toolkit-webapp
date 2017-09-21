@@ -3,7 +3,7 @@ package com.wandrell.tabletop.dreadball.build.dbx.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class DefaultSponsorAffinities implements SponsorAffinities {
+public final class DefaultSponsorAffinities implements SponsorAffinities {
 
     private final Iterable<String> affinities;
 
@@ -28,12 +28,12 @@ public class DefaultSponsorAffinities implements SponsorAffinities {
     }
 
     @Override
-    public Integer getBaseRank() {
+    public final Integer getBaseRank() {
         return baseRank;
     }
 
     @Override
-    public Integer getRank() {
+    public final Integer getRank() {
         return rank;
     }
 

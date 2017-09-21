@@ -24,7 +24,7 @@ import com.wandrell.tabletop.dreadball.model.unit.Unit;
 import com.wandrell.tabletop.dreadball.rules.DbxRules;
 
 @Component
-public class DefaultSponsorTeamAssembler implements SponsorTeamAssembler {
+public final class DefaultSponsorTeamAssembler implements SponsorTeamAssembler {
 
     private final SponsorCosts costs;
 

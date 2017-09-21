@@ -24,7 +24,7 @@ import javax.validation.constraints.NotNull;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class DefaultSponsorTeamAssets implements SponsorTeamAssets {
+public final class DefaultSponsorTeamAssets implements SponsorTeamAssets {
 
     /**
      * Number of cheerleaders.

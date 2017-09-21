@@ -3,7 +3,7 @@ package com.wandrell.tabletop.dreadball.build.dbx.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public class DefaultSponsorTeamSelection implements SponsorTeamSelection {
+public final class DefaultSponsorTeamSelection implements SponsorTeamSelection {
 
     private final Iterable<String>     affinities;
 
@@ -31,27 +31,27 @@ public class DefaultSponsorTeamSelection implements SponsorTeamSelection {
     }
 
     @Override
-    public Iterable<String> getAffinities() {
+    public final Iterable<String> getAffinities() {
         return affinities;
     }
 
     @Override
-    public Integer getBaseRank() {
+    public final Integer getBaseRank() {
         return baseRank;
     }
 
     @Override
-    public Integer getRank() {
+    public final Integer getRank() {
         return rank;
     }
 
     @Override
-    public Integer getTeamValue() {
+    public final Integer getTeamValue() {
         return teamValue;
     }
 
     @Override
-    public Iterable<TeamPlayer> getUnits() {
+    public final Iterable<TeamPlayer> getUnits() {
         return units;
     }
 

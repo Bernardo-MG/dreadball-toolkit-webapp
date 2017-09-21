@@ -43,14 +43,14 @@ public final class DefaultSponsorBuilderService
     }
 
     @Override
-    public Iterable<SponsorAffinityGroupAvailability>
+    public final Iterable<SponsorAffinityGroupAvailability>
             getAffinityGroupAvailabilities() {
         return getSponsorAffinityGroupAvailabilityService()
                 .getAllSponsorAffinityGroupAvailabilities();
     }
 
     @Override
-    public Iterable<? extends Unit> getAffinityUnits(
+    public final Iterable<? extends Unit> getAffinityUnits(
             final Iterable<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
         return getSponsorUnitsService().getAllAffinityUnits(affinities,
@@ -65,9 +65,9 @@ public final class DefaultSponsorBuilderService
     }
 
     @Override
-    public SponsorTeamSelection selectTeam(final Collection<String> affinities,
-            final Collection<String> units, final SponsorTeamAssets assets,
-            final Integer baseRank) {
+    public final SponsorTeamSelection selectTeam(
+            final Collection<String> affinities, final Collection<String> units,
+            final SponsorTeamAssets assets, final Integer baseRank) {
         return getSponsorBuilderAssemblerService().assembleSponsorTeamSelection(
                 affinities, units, assets, baseRank);
     }

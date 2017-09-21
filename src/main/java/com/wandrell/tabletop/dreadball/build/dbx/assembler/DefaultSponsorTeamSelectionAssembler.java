@@ -17,7 +17,7 @@ import com.wandrell.tabletop.dreadball.model.unit.AffinityGroup;
 import com.wandrell.tabletop.dreadball.model.unit.Unit;
 
 @Component
-public class DefaultSponsorTeamSelectionAssembler
+public final class DefaultSponsorTeamSelectionAssembler
         implements SponsorTeamSelectionAssembler {
 
     @Autowired

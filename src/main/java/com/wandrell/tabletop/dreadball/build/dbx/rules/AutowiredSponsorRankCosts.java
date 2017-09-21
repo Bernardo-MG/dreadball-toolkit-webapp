@@ -53,32 +53,32 @@ public class AutowiredSponsorRankCosts implements SponsorCosts {
     }
 
     @Override
-    public Integer getCheerleaderCost() {
+    public final Integer getCheerleaderCost() {
         return cheerleaderRank;
     }
 
     @Override
-    public Integer getDieCost() {
+    public final Integer getDieCost() {
         return dieRank;
     }
 
     @Override
-    public Integer getMediBotCost() {
+    public final Integer getMediBotCost() {
         return medibotRank;
     }
 
     @Override
-    public Integer getSabotageCost() {
+    public final Integer getSabotageCost() {
         return sabotageRank;
     }
 
     @Override
-    public Integer getSpecialMoveCost() {
+    public final Integer getSpecialMoveCost() {
         return moveRank;
     }
 
     @Override
-    public Integer getWagerCost() {
+    public final Integer getWagerCost() {
         return wagerRank;
     }
 

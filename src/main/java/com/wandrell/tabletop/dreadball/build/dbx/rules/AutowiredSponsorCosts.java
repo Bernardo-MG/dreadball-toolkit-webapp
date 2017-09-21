@@ -25,7 +25,7 @@ import org.springframework.stereotype.Component;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Component("SponsorCosts")
-public class AutowiredSponsorCosts implements SponsorCosts {
+public final class AutowiredSponsorCosts implements SponsorCosts {
 
     @Value("${sponsor.asset.cheerleader.cost}")
     private Integer cheerleaderCost;
@@ -53,32 +53,32 @@ public class AutowiredSponsorCosts implements SponsorCosts {
     }
 
     @Override
-    public Integer getCheerleaderCost() {
+    public final Integer getCheerleaderCost() {
         return cheerleaderCost;
     }
 
     @Override
-    public Integer getDieCost() {
+    public final Integer getDieCost() {
         return dieCost;
     }
 
     @Override
-    public Integer getMediBotCost() {
+    public final Integer getMediBotCost() {
         return medibotCost;
     }
 
     @Override
-    public Integer getSabotageCost() {
+    public final Integer getSabotageCost() {
         return sabotageCost;
     }
 
     @Override
-    public Integer getSpecialMoveCost() {
+    public final Integer getSpecialMoveCost() {
         return moveCost;
     }
 
     @Override
-    public Integer getWagerCost() {
+    public final Integer getWagerCost() {
         return wagerCost;
     }
 

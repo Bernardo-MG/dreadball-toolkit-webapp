@@ -11,7 +11,7 @@ import com.wandrell.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.wandrell.tabletop.dreadball.build.dbx.rules.SponsorDefaults;
 
 @Component
-public class DefaultAffinitiesSelectionAssembler
+public final class DefaultAffinitiesSelectionAssembler
         implements AffinitiesSelectionAssembler {
 
     private final SponsorDefaults sponsorDefaults;
