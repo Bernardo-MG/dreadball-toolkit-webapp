@@ -54,9 +54,6 @@ public final class DefaultSponsorTeamAssembler implements SponsorTeamAssembler {
             final Iterable<AffinityUnit> units, final SponsorTeamAssets assets,
             final Integer rank) {
         final SponsorTeam sponsorTeam;
-        Unit unitSetUp;
-        Integer cost;
-        AffinityLevel affinityLevel;  // Affinity level relationship
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(units, "Received a null pointer as units");
@@ -69,14 +66,7 @@ public final class DefaultSponsorTeamAssembler implements SponsorTeamAssembler {
         sponsorTeam.getSponsor()
                 .setAffinityGroups(Lists.newArrayList(affinities));
 
-        for (final AffinityUnit unit : units) {
-            affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
-            cost = getDbxRules().getUnitCost(affinityLevel, unit);
-            unitSetUp = new DefaultUnit(unit.getTemplateName(), cost,
-                    unit.getRole(), unit.getAttributes(), unit.getAbilities(),
-                    unit.getMvp(), unit.getGiant());
-            sponsorTeam.addPlayer(unitSetUp);
-        }
+        setPlayers(sponsorTeam, affinities, units);
 
         sponsorTeam.setCheerleaders(assets.getCheerleaders());
         sponsorTeam.setCoachingDice(assets.getCoachingDice());
@@ -131,6 +121,25 @@ public final class DefaultSponsorTeamAssembler implements SponsorTeamAssembler {
                 getSponsorCosts().getCheerleaderCost(),
                 getSponsorCosts().getWagerCost(),
                 getSponsorCosts().getMediBotCost());
+    }
+
+    private final void setPlayers(final SponsorTeam sponsorTeam,
+            final Iterable<AffinityGroup> affinities,
+            final Iterable<AffinityUnit> units) {
+        Unit unitSetUp;
+        Integer cost;
+        AffinityLevel affinityLevel; // Affinity level relationship
+
+        for (final AffinityUnit unit : units) {
+            affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
+            cost = getDbxRules().getUnitCost(affinityLevel, unit);
+
+            unitSetUp = new DefaultUnit(unit.getTemplateName(), cost,
+                    unit.getRole(), unit.getAttributes(), unit.getAbilities(),
+                    unit.getMvp(), unit.getGiant());
+
+            sponsorTeam.addPlayer(unitSetUp);
+        }
     }
 
 }

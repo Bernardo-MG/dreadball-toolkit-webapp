@@ -1,5 +1,5 @@
 
-package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.builder.processor.assembler;
+package com.wandrell.tabletop.dreadball.web.toolkit.test.unit.builder.assembler;
 
 import java.util.Arrays;
 import java.util.Collections;
