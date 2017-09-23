@@ -30,7 +30,7 @@ class DbxTeamBuilder extends Component {
          view = <SponsorTeamView />;
       } else {
          view =
-            <Box justify='center' align='center'>
+            <Box justify='center' align='center' pad='medium'>
                <SponsorAffinitiesView onClick={ this.finishedAffinities } />
             </Box>;
       }
