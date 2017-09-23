@@ -5,6 +5,9 @@ var ExtractTextPlugin = require('extract-text-webpack-plugin');
 // Environment profile
 const env = process.env.NODE_ENV || 'development';
 
+// Project version
+const PROJECT_VERSION = process.env.APP_VERSION || '';
+
 // Base route
 const APP_ROUTE = process.env.APP_ROUTE || '/app';
 
@@ -44,6 +47,7 @@ plugins = [
       'process.env': {
          NODE_ENV: JSON.stringify(env)
       },
+      APP_VERSION : JSON.stringify(PROJECT_VERSION),
       ROUTE_BASE : JSON.stringify(APP_ROUTE),
       REPO_URL : JSON.stringify(PROJECT_REPO_URL)
    }) 

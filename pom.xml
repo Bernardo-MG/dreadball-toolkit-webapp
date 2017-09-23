@@ -421,6 +421,7 @@
       <!-- ============================================== -->
       <!-- ============= NODE ENVIRONMENT =============== -->
       <!-- ============================================== -->
+      <node.env.appVersion>v${project.version}</node.env.appVersion>
       <node.env.rootRoute>${server.rootPath}</node.env.rootRoute>
       <node.env.repoUrl>${project.scm.url}</node.env.repoUrl>
       <node.env.inputPath>./src/main/js/</node.env.inputPath>
@@ -1023,6 +1024,7 @@
                   <configuration>
                      <environmentVariables>
                         <NODE_ENV>${node.env}</NODE_ENV>
+                        <APP_VERSION>${node.env.appVersion}</APP_VERSION>
                         <APP_ROUTE>${node.env.rootRoute}</APP_ROUTE>
                         <REPO_URL>${node.env.repoUrl}</REPO_URL>
                         <INPUT_PATH>${node.env.inputPath}</INPUT_PATH>

@@ -22,7 +22,8 @@ const AppHeader = (props) =>
            <NavAnchor path='/dbx'>{props.intl.formatMessage(titleMessages.dbxTeamBuilder)}</NavAnchor>
            <NavAnchor path='/players'>{props.intl.formatMessage(titleMessages.dbxPlayers)}</NavAnchor>
         </Menu>
-      <a href={REPO_URL}><SocialGithubIcon /></a>
+        <p>{APP_VERSION}</p>
+        <a href={REPO_URL}><SocialGithubIcon /></a>
       </Box>
    </Header>;
 

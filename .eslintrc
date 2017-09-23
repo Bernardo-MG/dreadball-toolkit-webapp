@@ -15,8 +15,9 @@
       "node": true
    },
    "globals": {
-      "REPO_URL": false,
+      "APP_VERSION": false,
       "ROUTE_BASE": false,
+      "REPO_URL": false,
       "document": false
    },
    "rules": {
