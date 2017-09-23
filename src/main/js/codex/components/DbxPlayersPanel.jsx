@@ -47,7 +47,7 @@ class DbxPlayersPanel extends Component {
 
       return (
             <Split flex='right' showOnResponsive='both' separator={true}>
-               <Box justify='center' align='center' pad='medium'>
+               <Box justify='center' align='center'>
                   <DbxUnitList onSelect={this.selectUnit} source={this.props.units} />
                   <Box direction='row'>
                      <Box margin='small'>
@@ -58,7 +58,7 @@ class DbxPlayersPanel extends Component {
                      </Box>
                   </Box>
                </Box>
-               <Box pad='small'>
+               <Box>
                   { details }
                </Box>
             </Split>
