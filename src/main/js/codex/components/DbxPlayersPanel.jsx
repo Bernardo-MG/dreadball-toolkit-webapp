@@ -58,7 +58,7 @@ class DbxPlayersPanel extends Component {
                      </Box>
                   </Box>
                </Box>
-               <Box>
+               <Box pad='medium'>
                   { details }
                </Box>
             </Split>
