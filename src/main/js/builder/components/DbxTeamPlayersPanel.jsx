@@ -13,6 +13,8 @@ import DbxUnitList from 'codex/components/DbxUnitList';
 
 import AddUnitButton from 'builder/containers/button/AddUnitButton';
 
+import SponsorTeamCost from 'builder/components/SponsorTeamCost';
+
 class DbxTeamPlayersPanel extends Component {
 
    state = { selected: '' };
@@ -49,6 +51,7 @@ class DbxTeamPlayersPanel extends Component {
       return (
             <Split flex='right' showOnResponsive='both' separator={true}>
                <Box justify='center' align='center' pad='medium'>
+                  <SponsorTeamCost />
                   <DbxUnitList onSelect={this.selectUnit} source={this.props.units} />
                   { addButton }
                   <Box direction='row'>

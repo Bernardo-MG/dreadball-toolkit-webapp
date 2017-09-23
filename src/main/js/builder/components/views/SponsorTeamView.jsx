@@ -43,9 +43,6 @@ const SponsorTeamView = () =>
       </Tab>
       <Tab title='players'>
          <Box>
-            <SponsorTeamCost />
-         </Box>
-         <Box>
             <BoundDbxTeamPlayersPanel />
          </Box>
       </Tab>
