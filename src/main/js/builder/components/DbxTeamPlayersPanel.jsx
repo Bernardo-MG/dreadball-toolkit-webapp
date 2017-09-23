@@ -11,6 +11,8 @@ import PreviousPageButton from 'builder/containers/button/PreviousPageButton';
 
 import DbxUnitList from 'codex/components/DbxUnitList';
 
+import AddUnitButton from 'builder/containers/button/AddUnitButton';
+
 class DbxTeamPlayersPanel extends Component {
 
    state = { selected: '' };
@@ -35,16 +37,20 @@ class DbxTeamPlayersPanel extends Component {
 
    render() {
       let details;
+      let addButton;
       if (this.state.selected) {
          details = <DbxUnitPanel source={this.state.selected} />;
+         addButton = <AddUnitButton unit={this.state.selected.templateName} />;
       } else {
          details = <h1>pick_player</h1>;
+         addButton = null;
       }
 
       return (
             <Split flex='right' showOnResponsive='both' separator={true}>
                <Box justify='center' align='center' pad='medium'>
                   <DbxUnitList onSelect={this.selectUnit} source={this.props.units} />
+                  { addButton }
                   <Box direction='row'>
                      <Box margin='small'>
                         <PreviousPageButton />
