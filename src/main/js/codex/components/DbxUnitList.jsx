@@ -4,23 +4,24 @@ import PropTypes from 'prop-types';
 
 import { injectIntl } from 'react-intl';
 
-import List from 'grommet/components/List';
-import ListItem from 'grommet/components/ListItem';
+import Accordion from 'grommet/components/Accordion';
+import AccordionPanel from 'grommet/components/AccordionPanel';
+
+import DbxUnitPanel from 'codex/components/DbxUnitPanel';
 
 import unitNameMessages from 'i18n/unitName';
 
 const DbxUnitList = (props) =>
-   <List selectable={true} onSelect={props.onSelect} >
+   <Accordion>
       { props.source.map((unit, i) =>
-         <ListItem key={i}>
-            <span>{props.intl.formatMessage(unitNameMessages[unit.name])}</span>
-         </ListItem>
+         <AccordionPanel heading={props.intl.formatMessage(unitNameMessages[unit.name])} key={i}>
+            <DbxUnitPanel source={unit} />
+         </AccordionPanel>
          )}
-   </List>;
+   </Accordion>;
 
 DbxUnitList.propTypes = {
    source: PropTypes.array.isRequired,
-   onSelect: PropTypes.func.isRequired,
    intl: PropTypes.object.isRequired
 };
 
