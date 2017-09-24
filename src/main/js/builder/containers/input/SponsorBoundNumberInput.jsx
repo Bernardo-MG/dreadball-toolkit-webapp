@@ -22,8 +22,8 @@ class SponsorBoundNumberInput extends Component {
       this.sponsor = this.updateSponsor(value, this.sponsor);
       const units = this.sponsor.units.map((unit) => unit.templateName);
       this.validate(this.sponsor.affinities, units,
-            this.sponsor.baseRank,
-            this.sponsor.cheerleaders, this.sponsor.coachingDice, this.sponsor.mediBots, this.sponsor.specialMoveCards, this.sponsor.nastySurpriseCards, this.sponsor.wagers);
+         this.sponsor.baseRank,
+         this.sponsor.cheerleaders, this.sponsor.coachingDice, this.sponsor.mediBots, this.sponsor.specialMoveCards, this.sponsor.nastySurpriseCards, this.sponsor.wagers);
    };
 
    constructor(props) {

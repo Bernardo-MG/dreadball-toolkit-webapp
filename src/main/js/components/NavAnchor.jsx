@@ -31,7 +31,7 @@ export default class NavAnchor extends Component {
       }
       const href = router.createPath(path);
       return (
-            <Anchor {...props} className={className} href={href}
+         <Anchor {...props} className={className} href={href}
             onClick={this._onClick} />
       );
    }

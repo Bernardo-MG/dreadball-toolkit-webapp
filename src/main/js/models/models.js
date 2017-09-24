@@ -17,11 +17,11 @@ export class Ability extends Model {
          if (abilities) {
             // Creates abilities
             forEachValue(abilities,
-                  (ability) => {
-                     if (!AbilityModel.filter({ name: ability.name }).exists()) {
-                        AbilityModel.create(ability);
-                     }
+               (ability) => {
+                  if (!AbilityModel.filter({ name: ability.name }).exists()) {
+                     AbilityModel.create(ability);
                   }
+               }
             );
          }
          break;
@@ -45,11 +45,11 @@ export class Affinity extends Model {
          const affinities = payload.entities.affinities;
          if (affinities) {
             forEachValue(affinities,
-                  (affinity) => {
-                     if (!AffinityModel.filter({ name: affinity.name }).exists()) {
-                        AffinityModel.create(affinity);
-                     }
+               (affinity) => {
+                  if (!AffinityModel.filter({ name: affinity.name }).exists()) {
+                     AffinityModel.create(affinity);
                   }
+               }
             );
          }
          break;
@@ -70,11 +70,11 @@ export class SponsorAffinityAvailability extends Model {
       case REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS: {
          const avas = payload.entities.sponsorAffinityAvailabilities;
          forEachValue(avas,
-               (ava) => {
-                  if (!AvailabilityModel.filter({ name: ava.name }).exists()) {
-                     AvailabilityModel.create(ava);
-                  }
+            (ava) => {
+               if (!AvailabilityModel.filter({ name: ava.name }).exists()) {
+                  AvailabilityModel.create(ava);
                }
+            }
          );
          break;
       }
@@ -99,11 +99,11 @@ export class Player extends ValidatingModel {
       case REQUEST_UNITS_SUCCESS: {
          const units = payload.entities.units;
          forEachValue(units,
-               (unit) => {
-                  if (!PlayerModel.filter({ templateName: unit.templateName }).exists()) {
-                     PlayerModel.create(unit);
-                  }
+            (unit) => {
+               if (!PlayerModel.filter({ templateName: unit.templateName }).exists()) {
+                  PlayerModel.create(unit);
                }
+            }
          );
          break;
       }
@@ -139,11 +139,11 @@ export class RatedPlayer extends ValidatingModel {
       case REQUEST_SPONSOR_UNITS_SUCCESS: {
          const units = payload.entities.units;
          forEachValue(units,
-               (unit) => {
-                  if (!RatedPlayerModel.filter({ templateName: unit.templateName }).exists()) {
-                     RatedPlayerModel.create(unit);
-                  }
+            (unit) => {
+               if (!RatedPlayerModel.filter({ templateName: unit.templateName }).exists()) {
+                  RatedPlayerModel.create(unit);
                }
+            }
          );
          break;
       }

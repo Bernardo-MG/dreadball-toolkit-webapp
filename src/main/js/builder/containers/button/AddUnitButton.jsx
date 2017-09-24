@@ -18,8 +18,8 @@ class AddUnitButton extends Component {
       const units = this.sponsorUnits.map((unit) => unit.templateName);
       units.push(this.unit);
       this.validateSponsorTeam(this.affinities, units,
-            this.baseRank,
-            this.cheerleaders, this.coachingDice, this.mediBots, this.specialMoveCards, this.nastySurpriseCards, this.wagers);
+         this.baseRank,
+         this.cheerleaders, this.coachingDice, this.mediBots, this.specialMoveCards, this.nastySurpriseCards, this.wagers);
    };
 
    constructor(props) {

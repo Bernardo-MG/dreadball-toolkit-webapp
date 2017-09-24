@@ -49,24 +49,24 @@ class DbxTeamPlayersPanel extends Component {
       }
 
       return (
-            <Split flex='right' showOnResponsive='both' separator={true}>
-               <Box justify='center' align='center' pad='medium'>
-                  <SponsorTeamCost />
-                  <DbxUnitList onSelect={this.selectUnit} source={this.props.units} />
-                  { addButton }
-                  <Box direction='row'>
-                     <Box margin='small'>
-                        <PreviousPageButton />
-                     </Box>
-                     <Box margin='small'>
-                        <NextPageButton />
-                     </Box>
+         <Split flex='right' showOnResponsive='both' separator={true}>
+            <Box justify='center' align='center' pad='medium'>
+               <SponsorTeamCost />
+               <DbxUnitList onSelect={this.selectUnit} source={this.props.units} />
+               { addButton }
+               <Box direction='row'>
+                  <Box margin='small'>
+                     <PreviousPageButton />
+                  </Box>
+                  <Box margin='small'>
+                     <NextPageButton />
                   </Box>
                </Box>
-               <Box pad='small'>
-                  { details }
-               </Box>
-             </Split>
+            </Box>
+            <Box pad='small'>
+               { details }
+            </Box>
+          </Split>
       );
    }
 }
