@@ -7,7 +7,6 @@ import { injectIntl } from 'react-intl';
 import Box from 'grommet/components/Box';
 import Columns from 'grommet/components/Columns';
 import Heading from 'grommet/components/Heading';
-import Label from 'grommet/components/Label';
 import Value from 'grommet/components/Value';
 
 import abilityMessages from 'i18n/ability';
@@ -18,8 +17,8 @@ import unitRoleMessages from 'i18n/role';
 const DbxUnitPanel = (props) =>
    <Box>
       <Heading tag='h1'>{props.intl.formatMessage(unitNameMessages[props.source.name])}</Heading>
-      <Label>{props.intl.formatMessage(unitMessages.role)}: {props.intl.formatMessage(unitRoleMessages[props.source.role])}</Label>
-      <Label>{props.intl.formatMessage(unitMessages.abilities)}: {props.source.abilities.map((a) => props.intl.formatMessage(abilityMessages[a])).join(', ')}</Label>
+      <Box>{props.intl.formatMessage(unitMessages.role)}: {props.intl.formatMessage(unitRoleMessages[props.source.role])}</Box>
+      <Box>{props.intl.formatMessage(unitMessages.abilities)}: {props.source.abilities.map((a) => props.intl.formatMessage(abilityMessages[a])).join(', ')}</Box>
       <Box>
          <Columns size='small'>
             <Box pad='small'>
