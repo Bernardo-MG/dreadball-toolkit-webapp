@@ -14,7 +14,7 @@ import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
 import titleMessages from 'i18n/title';
 
 const AppHeader = (props) =>
-   <Header justify='center' colorIndex='neutral-4' siz='small'>
+   <Header justify='center' colorIndex='neutral-4' size='small'>
       <Box size={ { width: { max: 'xxlarge' } } } direction='row'
          responsive={false} justify='start' align='center'
          pad={ { horizontal: 'medium' } } flex='grow'>
