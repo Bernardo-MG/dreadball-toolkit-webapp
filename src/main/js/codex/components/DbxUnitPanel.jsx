@@ -18,10 +18,8 @@ import unitRoleMessages from 'i18n/role';
 const DbxUnitPanel = (props) =>
    <Box>
       <Heading tag='h1'>{props.intl.formatMessage(unitNameMessages[props.source.name])}</Heading>
-      <Label>{props.intl.formatMessage(unitRoleMessages[props.source.role])}</Label>
-      <Heading tag='h2'>{props.intl.formatMessage(unitMessages.abilities)}</Heading>
-      <Label>{props.source.abilities.map((a) => props.intl.formatMessage(abilityMessages[a])).join(', ')}</Label>
-      <Heading tag='h2'>{props.intl.formatMessage(unitMessages.attributes)}</Heading>
+      <Label>{props.intl.formatMessage(unitMessages.role)}: {props.intl.formatMessage(unitRoleMessages[props.source.role])}</Label>
+      <Label>{props.intl.formatMessage(unitMessages.abilities)}: {props.source.abilities.map((a) => props.intl.formatMessage(abilityMessages[a])).join(', ')}</Label>
       <Box>
          <Columns size='small'>
             <Box pad='small'>
@@ -41,7 +39,6 @@ const DbxUnitPanel = (props) =>
             </Box>
          </Columns>
       </Box>
-      <Heading tag='h2'>{props.intl.formatMessage(unitMessages.cost)}</Heading>
       <Columns size='small'>
          <Box pad='small'>
             <Value value={props.source.friendCost} label={props.intl.formatMessage(unitMessages.friend_cost)} />
