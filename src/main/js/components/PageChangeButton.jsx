@@ -20,7 +20,7 @@ class PageChangeButton extends Component {
 
    render() {
       return (
-         <Button onClick={this.move} label={this.props.label}/>
+         <Button onClick={this.move} label={this.props.label} icon={this.props.icon} />
       );
    }
 }
@@ -30,7 +30,8 @@ PageChangeButton.propTypes = {
    fetch: PropTypes.func.isRequired,
    page: PropTypes.number.isRequired,
    endingPage: PropTypes.bool,
-   label: PropTypes.string
+   label: PropTypes.string,
+   icon: PropTypes.object
 };
 
 export default PageChangeButton;
