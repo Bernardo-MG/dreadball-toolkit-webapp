@@ -21,7 +21,6 @@ class DbxUnitPanel extends Component {
       let allyCost;
       let strangerCost;
       let cost;
-      const costs;
 
       if (this.props.source.friendCost) {
          friendCost =
@@ -56,7 +55,7 @@ class DbxUnitPanel extends Component {
          cost = null;
       }
 
-      costs =
+      const costs =
          <Columns size='small'>
             {friendCost}
             {allyCost}
