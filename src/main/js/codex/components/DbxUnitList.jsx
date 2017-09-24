@@ -20,7 +20,7 @@ const DbxUnitList = (props) =>
                <DbxUnitPanel source={unit} />
             </Box>
          </AccordionPanel>
-         )}
+      )}
    </Accordion>;
 
 DbxUnitList.propTypes = {

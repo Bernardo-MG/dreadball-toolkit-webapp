@@ -51,5 +51,5 @@ const handleResponse = (response, json, parse) => {
 
 export const fetchPaginated = (url, parse) =>
    fetch(url).then((response) =>
-         response.json().then((json) => handleResponse(response, json, parse))
-      );
+      response.json().then((json) => handleResponse(response, json, parse))
+   );
