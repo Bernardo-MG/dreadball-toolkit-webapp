@@ -66,7 +66,7 @@ class DbxTeamPlayersPanel extends Component {
             <Box pad='small'>
                { details }
             </Box>
-          </Split>
+         </Split>
       );
    }
 }
