@@ -122,10 +122,11 @@ module.exports = {
             {
                test : /(\.js|\.jsx)$/,
                exclude: /node_modules/,
-               loader : 'babel-loader',
-               query : {
-                  cacheDirectory : true,
-                  presets : [ 'es2015', 'stage-0', 'react' ]
+               use: {
+                  loader : 'babel-loader',
+                  options : {
+                     presets : [ 'env', 'stage-0', 'react' ]
+                  }
                }
             },
             {
