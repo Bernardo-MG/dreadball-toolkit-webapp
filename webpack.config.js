@@ -84,7 +84,6 @@ if (env === 'production') {
    // Development specific configuration
    devtool = 'inline-source-map',
    plugins = plugins.concat([
-      new webpack.HotModuleReplacementPlugin(),
       new webpack.LoaderOptionsPlugin({
          debug: true
       })
