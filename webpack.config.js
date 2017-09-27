@@ -57,7 +57,7 @@ var devtool = null;
 if (env === 'production') {
    // Production specific configuration
    devtool = false,
-   plugins.push(
+   plugins = plugins.concat([
       new webpack.optimize.UglifyJsPlugin({
          compress: {
             warnings: false,
@@ -79,11 +79,13 @@ if (env === 'production') {
             screw_ie8: true
          }
       })
-   );
+   ]);
 } else {
    // Development specific configuration
    devtool = 'inline-source-map',
    plugins = plugins.concat([
+      new webpack.NamedModulesPlugin(),
+      new webpack.HotModuleReplacementPlugin(),
       new webpack.LoaderOptionsPlugin({
          debug: true
       })
