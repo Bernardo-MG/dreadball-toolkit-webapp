@@ -2,7 +2,7 @@
   "name": "dreadball-toolkit-webpage",
   "version": "0.1.0",
   "description": "A team builder and utilities page for Dreadball",
-  "author": "Bernardo Martínez Garrido",
+  "author": "Bernardo Martï¿½nez Garrido",
   "homepage": "https://www.github.com/bernardo-mg/dreadball-toolkit-webpage",
   "license": "Apache-2.0",
   "keywords": [
@@ -47,6 +47,7 @@
   },
   "devDependencies": {
     "babel-core": "~6.26.0",
+    "babel-eslint": "~8.0.0",
     "babel-loader": "~7.1.2",
     "babel-preset-env": "~1.6.0",
     "babel-preset-react": "~6.24.1",
