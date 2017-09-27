@@ -1,7 +1,4 @@
 import { Model, many, attr } from 'redux-orm';
-import propTypesMixin from 'redux-orm-proptypes';
-
-const ValidatingModel = propTypesMixin(Model);
 
 export class Ability extends Model {}
 Ability.modelName = 'Ability';
@@ -26,7 +23,7 @@ SponsorAffinityAvailability.options = {
    idAttribute: 'name'
 };
 
-export class Player extends ValidatingModel {}
+export class Player extends Model {}
 Player.modelName = 'Player';
 Player.fields = {
    name: attr(),
@@ -48,7 +45,7 @@ Player.options = {
    idAttribute: 'templateName'
 };
 
-export class RatedPlayer extends ValidatingModel {}
+export class RatedPlayer extends Model {}
 RatedPlayer.modelName = 'RatedPlayer';
 RatedPlayer.fields = {
    name: attr(),
