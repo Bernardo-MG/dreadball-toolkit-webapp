@@ -11,7 +11,6 @@ env:
   - SERVER=jetty DATABASE=h2 ENV=production
   - SERVER=jetty DATABASE=mysql ENV=development
   - SERVER=tomcat7 DATABASE=h2 ENV=development
-  - SERVER=tomcat7 DATABASE=mysql ENV=development
 dist: precise
 
 before_install:
