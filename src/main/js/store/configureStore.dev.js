@@ -10,6 +10,7 @@ const middleware = [
    thunk,
    paginatedApi,
    statusApi,
+   // Redux logger is included
    createLogger()
 ];
 

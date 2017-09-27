@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { createSelector as ormCreateSelector } from 'redux-orm';
+import { createSelector as createOrmSelector } from 'redux-orm';
 import orm from 'models';
 import { playerFilter, ratedPlayerFilter, sponsorPlayerFilter, sponsorAffinityAvailabilityFilter } from 'models/selectors/modelFilters';
 
@@ -9,23 +9,23 @@ const ormSelector = (state) => state.orm;
 export const unitsSponsor = createSelector(
    ormSelector,
    (state) => state.builder.sponsor.units,
-   ormCreateSelector(orm, sponsorPlayerFilter)
+   createOrmSelector(orm, sponsorPlayerFilter)
 );
 
 export const unitsPaginated = createSelector(
    ormSelector,
    (state) => state.pagination.units,
-   ormCreateSelector(orm, playerFilter)
+   createOrmSelector(orm, playerFilter)
 );
 
 export const ratedUnitsPaginated = createSelector(
    ormSelector,
    (state) => state.pagination.ratedUnits,
-   ormCreateSelector(orm, ratedPlayerFilter)
+   createOrmSelector(orm, ratedPlayerFilter)
 );
 
 export const sponsorAffAvasPaginated = createSelector(
    ormSelector,
    (state) => state.pagination.sponsorAffAvas,
-   ormCreateSelector(orm, sponsorAffinityAvailabilityFilter)
+   createOrmSelector(orm, sponsorAffinityAvailabilityFilter)
 );
