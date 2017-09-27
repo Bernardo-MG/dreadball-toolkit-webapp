@@ -20,7 +20,7 @@ SponsorAffinityAvailability.modelName = 'SponsorAffinityAvailability';
 SponsorAffinityAvailability.fields = {
    name: attr(),
    includingRankIncrease: attr(),
-   affinityGroups: many('Affinity', 'sponsorAvaAffinityGroups')
+   affinityGroups: many('Affinity', 'sponsorAvas')
 };
 SponsorAffinityAvailability.options = {
    idAttribute: 'name'
@@ -40,9 +40,9 @@ Player.fields = {
    ally_cost: attr(),
    friend_cost: attr(),
    cost: attr(),
-   abilities: many('Ability', 'unitAbilities'),
-   affinityGroups: many('Affinity', 'unitAffinityGroups'),
-   hatedAffinityGroups: many('Affinity', 'unitHatedAffinityGroups')
+   abilities: many('Ability', 'units'),
+   affinityGroups: many('Affinity', 'units'),
+   hatedAffinityGroups: many('Affinity', 'unitsHates')
 };
 Player.options = {
    idAttribute: 'templateName'
@@ -62,9 +62,9 @@ RatedPlayer.fields = {
    ally_cost: attr(),
    friend_cost: attr(),
    cost: attr(),
-   abilities: many('Ability', 'ratedPlayerAbilities'),
-   affinityGroups: many('Affinity', 'ratedPlayerUnitAffinityGroups'),
-   hatedAffinityGroups: many('Affinity', 'ratedPlayerUnitHatedAffinityGroups')
+   abilities: many('Ability', 'ratedUnits'),
+   affinityGroups: many('Affinity', 'ratedUnits'),
+   hatedAffinityGroups: many('Affinity', 'ratedUnitsHates')
 };
 RatedPlayer.options = {
    idAttribute: 'templateName'
