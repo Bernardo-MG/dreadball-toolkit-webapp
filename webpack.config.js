@@ -28,8 +28,6 @@ const OUTPUT_PATH_BUNDLE = OUTPUT_PATH + 'bundle.js';
 // Modules dependencies directory
 const MODULE_PATH = process.env.MODULE_PATH;
 
-process.traceDeprecation = true;
-
 // Plugins
 plugins = [
    new ExtractTextPlugin({
@@ -82,6 +80,7 @@ if (env === 'production') {
    ]);
 } else {
    // Development specific configuration
+   process.traceDeprecation = true;
    devtool = 'inline-source-map',
    plugins = plugins.concat([
       new webpack.NamedModulesPlugin(),
