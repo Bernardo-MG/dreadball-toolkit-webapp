@@ -43,15 +43,8 @@ const filterByIds = (modelSelector, idSelector, loader, session, ids) => {
 
 export const filterById = (idSelector, loader, modelSelector, idProcessor) => (session, payload) => {
    let result;
-   let processor;
 
-   if (idProcessor) {
-      processor = idProcessor;
-   } else {
-      processor = getIdsPaginated;
-   }
-
-   const ids = processor(payload);
+   const ids = idProcessor(payload);
    if (ids.length) {
       result = filterByIds(modelSelector, idSelector, loader, session, ids);
    } else {
@@ -60,3 +53,5 @@ export const filterById = (idSelector, loader, modelSelector, idProcessor) => (s
 
    return result;
 };
+
+export const filterByIdPaginated = (idSelector, loader, modelSelector) => filterById(idSelector, loader, modelSelector, getIdsPaginated);

@@ -6,26 +6,46 @@ import { playerFilter, ratedPlayerFilter, sponsorPlayerFilter, sponsorAffinityAv
 // Selects the state managed by Redux-ORM.
 const ormSelector = (state) => state.orm;
 
+const unitsSponsorOrm = createOrmSelector(
+   orm,
+   sponsorPlayerFilter
+);
+
+const unitsPaginatedOrm = createOrmSelector(
+   orm,
+   playerFilter
+);
+
+const ratedUnitsPaginatedOrm = createOrmSelector(
+   orm,
+   ratedPlayerFilter
+);
+
+const sponsorAffAvasPaginatedOrm = createOrmSelector(
+   orm,
+   sponsorAffinityAvailabilityFilter
+);
+
 export const unitsSponsor = createSelector(
    ormSelector,
    (state) => state.builder.sponsor.units,
-   createOrmSelector(orm, sponsorPlayerFilter)
+   unitsSponsorOrm
 );
 
 export const unitsPaginated = createSelector(
    ormSelector,
    (state) => state.pagination.units,
-   createOrmSelector(orm, playerFilter)
+   unitsPaginatedOrm
 );
 
 export const ratedUnitsPaginated = createSelector(
    ormSelector,
    (state) => state.pagination.ratedUnits,
-   createOrmSelector(orm, ratedPlayerFilter)
+   ratedUnitsPaginatedOrm
 );
 
 export const sponsorAffAvasPaginated = createSelector(
    ormSelector,
    (state) => state.pagination.sponsorAffAvas,
-   createOrmSelector(orm, sponsorAffinityAvailabilityFilter)
+   sponsorAffAvasPaginatedOrm
 );
