@@ -26,27 +26,15 @@ const getIdsPaginated = (payload) => {
    return ids;
 };
 
-const filterByIds = (modelSelector, idSelector, loader, session, ids) => {
-   let entityLoader;
-
-   if (loader) {
-      entityLoader = loader;
-   } else {
-      entityLoader = (entity) => entity;
-   }
-
-   const all = modelSelector(session).all().toModelArray();
-   return all
-      .filter((entity) => ids.includes(idSelector(entity)))
-      .map((entity) => entityLoader(entity));
-};
-
 export const filterById = (idSelector, loader, modelSelector, idProcessor) => (session, payload) => {
    let result;
 
    const ids = idProcessor(payload);
    if (ids.length) {
-      result = filterByIds(modelSelector, idSelector, loader, session, ids);
+      const all = modelSelector(session).all().toModelArray();
+      result = all
+         .filter((entity) => ids.includes(idSelector(entity)))
+         .map((entity) => loader(entity));
    } else {
       result = [];
    }

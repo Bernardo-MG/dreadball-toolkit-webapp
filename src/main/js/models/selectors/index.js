@@ -1,7 +1,7 @@
 import { createSelector } from 'reselect';
 import { createSelector as createOrmSelector } from 'redux-orm';
 import orm from 'models';
-import { playerFilter, ratedPlayerFilter, sponsorPlayerFilter, sponsorAffinityAvailabilityFilter } from 'models/selectors/modelFilters';
+import { playerFilterPaginated, ratedPlayerFilterPaginated, sponsorPlayerFilter, sponsorAffinityAvailabilityFilterPaginated } from 'models/selectors/modelFilters';
 
 // Selects the state managed by Redux-ORM.
 const ormSelector = (state) => state.orm;
@@ -13,17 +13,17 @@ const unitsSponsorOrm = createOrmSelector(
 
 const unitsPaginatedOrm = createOrmSelector(
    orm,
-   playerFilter
+   playerFilterPaginated
 );
 
 const ratedUnitsPaginatedOrm = createOrmSelector(
    orm,
-   ratedPlayerFilter
+   ratedPlayerFilterPaginated
 );
 
 const sponsorAffAvasPaginatedOrm = createOrmSelector(
    orm,
-   sponsorAffinityAvailabilityFilter
+   sponsorAffinityAvailabilityFilterPaginated
 );
 
 export const unitsSponsor = createSelector(
