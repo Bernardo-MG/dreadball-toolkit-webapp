@@ -1,4 +1,4 @@
-import fetch from 'isomorphic-fetch';
+import request from 'superagent';
 
 const handleResponse = (response, json, parse) => {
    if (!response.ok) {
@@ -11,6 +11,6 @@ const handleResponse = (response, json, parse) => {
 };
 
 export const fetchStatus = (url, parse) =>
-   fetch(url).then((response) =>
-      response.json().then((json) => handleResponse(response, json, parse))
+   request.get(url).set('Accept', 'application/json').then((response) =>
+      handleResponse(response, response.body, parse)
    );
