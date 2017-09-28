@@ -10,7 +10,7 @@ const handleResponse = (response, json, parse) => {
    return { payload };
 };
 
-export const fetchStatus = (url, parse) =>
-   request.get(url).set('Accept', 'application/json').then((response) =>
+export const fetchStatus = (url, params, parse) =>
+   request.get(url).query(params).set('Accept', 'application/json').then((response) =>
       handleResponse(response, response.body, parse)
    );

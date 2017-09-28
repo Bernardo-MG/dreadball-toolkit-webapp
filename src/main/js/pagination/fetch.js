@@ -49,7 +49,7 @@ const handleResponse = (response, json, parse) => {
    return paginateJson(json, parse);
 };
 
-export const fetchPaginated = (url, parse) =>
-   request.get(url).set('Accept', 'application/json').then((response) =>
+export const fetchPaginated = (url, params, parse) =>
+   request.get(url).query(params).set('Accept', 'application/json').then((response) =>
       handleResponse(response, response.body, parse)
    );

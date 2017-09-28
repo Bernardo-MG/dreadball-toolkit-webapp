@@ -1,5 +1,4 @@
 import { CALL_API_STATUS } from 'fetch/actions/ActionTypes';
-import { getUrl } from 'fetch/url';
 
 const actionWith = (action) => (data) => {
    const finalAction = Object.assign({}, action, data);
@@ -7,6 +6,18 @@ const actionWith = (action) => (data) => {
    delete finalAction[CALL_API_STATUS];
 
    return finalAction;
+};
+
+const appendBase = (url) => {
+   let result;
+
+   if (url.indexOf(ROUTE_BASE) === -1) {
+      result = ROUTE_BASE + url;
+   } else {
+      result = url;
+   }
+
+   return result;
 };
 
 const middleware = (next, action, getParams, fetch, key) => {
@@ -39,10 +50,9 @@ const middleware = (next, action, getParams, fetch, key) => {
 
    next(processAction({ type: requestType }));
 
-   const urlParams = { ...params };
-   const url = getUrl(endpoint, urlParams);
+   const url = appendBase(endpoint);
 
-   return fetch(url, parse).then(
+   return fetch(url, params, parse).then(
       (response) => next(processAction({
          type: successType,
          ...response
