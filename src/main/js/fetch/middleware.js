@@ -20,7 +20,23 @@ const appendBase = (url) => {
    return result;
 };
 
-const middleware = (next, action, getParams, fetch, key) => {
+const getParams = (content) => {
+   let { params } = content;
+   const { page, orderBy, direction } = content;
+
+   if (!params) {
+      params = {};
+   }
+
+   return {
+      ...params,
+      page,
+      orderBy,
+      direction
+   };
+};
+
+const middleware = (next, action, fetch, key) => {
    const callAPI = action[key];
 
    if (typeof callAPI === 'undefined') {
