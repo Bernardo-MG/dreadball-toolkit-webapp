@@ -4,7 +4,7 @@ import orm from 'models';
 import { playerFilterPaginated, ratedPlayerFilterPaginated, sponsorPlayerFilter, sponsorAffinityAvailabilityFilterPaginated } from 'models/selectors/modelFilters';
 
 // Selects the state managed by Redux-ORM.
-const ormSelector = (state) => state.orm;
+const ormSelector = (state) => state.model;
 
 const unitsSponsorOrm = createOrmSelector(
    orm,
