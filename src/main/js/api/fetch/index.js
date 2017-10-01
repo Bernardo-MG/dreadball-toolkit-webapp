@@ -49,3 +49,8 @@ export const fetchPaginated = (url, params, parse) =>
    request.get(url).query(params).set('Accept', 'application/json').then((response) =>
       handleResponse(response, response.body, parse)
    );
+
+export const defaultFetch = (url, params) =>
+   request.get(url).query(params).set('Accept', 'application/json').then((response) =>
+      handleResponse(response, response.body, (json) => json)
+   );

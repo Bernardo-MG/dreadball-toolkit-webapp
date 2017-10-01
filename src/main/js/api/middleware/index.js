@@ -35,7 +35,7 @@ const getParams = (content) => {
    };
 };
 
-const middleware = (next, action, fetch, key) => {
+const middleware = (next, action, defaultFetch, key) => {
    const callAPI = action[key];
 
    if (typeof callAPI === 'undefined') {
@@ -44,11 +44,11 @@ const middleware = (next, action, fetch, key) => {
 
    const params = getParams(callAPI);
 
-   let { parse } = callAPI;
+   let { fetch } = callAPI;
    const { endpoint, types } = callAPI;
 
-   if (!parse) {
-      parse = (json) => json;
+   if (!fetch) {
+      fetch = defaultFetch;
    }
    if (typeof endpoint !== 'string') {
       throw new Error('Specify a string endpoint URL.');
@@ -67,7 +67,7 @@ const middleware = (next, action, fetch, key) => {
 
    const url = appendBase(endpoint);
 
-   return fetch(url, params, parse).then(
+   return fetch(url, params).then(
       (response) => next(processAction({
          type: successType,
          ...response
