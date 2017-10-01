@@ -1,5 +1,5 @@
 import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE } from 'models/actions/ActionTypes';
-import { CALL_API_PAGINATED } from 'api/pagination/actions/ActionTypes';
+import { CALL_API_PAGINATED } from 'api/ActionTypes';
 import { AFFINITY_UNITS_REST_ENDPOINT as endpoint } from 'models/Endpoints';
 import { normalize } from 'normalizr';
 import { unit } from 'models/schema';
