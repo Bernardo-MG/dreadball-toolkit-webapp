@@ -1,9 +1,9 @@
 import union from 'lodash/union';
-import { CALL_API_PAGINATED } from 'api/ActionTypes';
+import { CALL_API } from 'api/ActionTypes';
 
 const updatePagination = (state, action, idsMapping, requestType, successType, failureType) => {
    const { type, payload } = action;
-   const callApi = action[CALL_API_PAGINATED];
+   const callApi = action[CALL_API];
 
    let replace = false;
    if (callApi) {

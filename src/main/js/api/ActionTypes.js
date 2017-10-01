@@ -1,2 +1,1 @@
-export const CALL_API_STATUS = 'CALL_API_STATUS';
-export const CALL_API_PAGINATED = 'CALL_API_PAGINATED';
+export const CALL_API = 'CALL_API';
