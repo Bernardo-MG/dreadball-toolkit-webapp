@@ -43,3 +43,5 @@ export const filterById = (idSelector, loader, modelSelector, idProcessor) => (s
 };
 
 export const filterByIdPaginated = (idSelector, loader, modelSelector) => filterById(idSelector, loader, modelSelector, getIdsPaginated);
+
+export const filterAll = (idSelector, loader, modelSelector) => (session) => modelSelector(session).all().toModelArray().map((entity) => loader(entity));

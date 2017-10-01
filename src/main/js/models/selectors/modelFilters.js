@@ -1,11 +1,9 @@
-import { filterById, filterByIdPaginated } from 'models/selectors/filters';
+import { filterById, filterByIdPaginated, filterAll } from 'models/selectors/filters';
 import { loadPlayer, loadSponsorAffAva } from 'models/selectors/loaders';
 
 const templateNameSelector = (entity) => entity.templateName;
 
 const nameSelector = (entity) => entity.name;
-
-export const filterAll = (idSelector, loader, modelSelector) => (session) => modelSelector(session).all().toModelArray().map((entity) => loader(entity));
 
 export const playerFilterPaginated = filterByIdPaginated(templateNameSelector, loadPlayer, (session) => session.Player);
 
