@@ -19,7 +19,9 @@ export const chooseSponsorAffinity = (affinity, index) => {
 export const validateSponsorAffinities = (affinities = []) => {
    return {
       [CALL_API]: {
-         types: [types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES, types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES_SUCCESS, types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES_FAILURE],
+         requestType: types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES,
+         successType: types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES_SUCCESS,
+         failureType: types.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES_FAILURE,
          endpoint: validationAffinitiesEndpoint,
          params: { affinities }
       }
@@ -33,7 +35,9 @@ export const validateSponsorTeam = (
    cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => {
    return {
       [CALL_API]: {
-         types: [types.REQUEST_SPONSOR_TEAM_VALIDATION, types.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS, types.REQUEST_SPONSOR_TEAM_VALIDATION_FAILURE],
+         requestType: types.REQUEST_SPONSOR_TEAM_VALIDATION,
+         successType: types.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS,
+         failureType: types.REQUEST_SPONSOR_TEAM_VALIDATION_FAILURE,
          endpoint: validationEndpoint,
          params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
       }

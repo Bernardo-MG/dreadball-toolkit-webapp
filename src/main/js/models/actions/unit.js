@@ -10,7 +10,9 @@ const parse = (json) => normalize(json, [unit]);
 export const fetch = (page = 0, orderBy = 'name', direction = 'ASC', replace = false) => {
    return {
       [CALL_API]: {
-         types: [REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE],
+         requestType: REQUEST_UNITS,
+         successType: REQUEST_UNITS_SUCCESS,
+         failureType: REQUEST_UNITS_FAILURE,
          endpoint,
          page,
          fetch: (url, params) => fetchPaginated(url, params, parse),

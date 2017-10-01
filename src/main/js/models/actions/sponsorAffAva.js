@@ -10,7 +10,9 @@ export const parse = (json) => normalize(json, [sponsorAffinityAvailability]);
 export const fetch = () => {
    return {
       [CALL_API]: {
-         types: [REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS, REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE],
+         requestType: REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES,
+         successType: REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_SUCCESS,
+         failureType: REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES_FAILURE,
          endpoint,
          fetch: (url, params) => fetchPaginated(url, params, parse)
       }

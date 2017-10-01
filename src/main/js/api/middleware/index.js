@@ -1,8 +1,9 @@
+import { CALL_API } from 'api/ActionTypes';
 
-const actionWith = (action, key) => (data) => {
+const actionWith = (action) => (data) => {
    const finalAction = Object.assign({}, action, data);
 
-   delete finalAction[key];
+   delete finalAction[CALL_API];
 
    return finalAction;
 };
@@ -35,8 +36,8 @@ const getParams = (content) => {
    };
 };
 
-const middleware = (next, action, defaultFetch, key) => {
-   const callAPI = action[key];
+const middleware = (next, action, defaultFetch) => {
+   const callAPI = action[CALL_API];
 
    if (typeof callAPI === 'undefined') {
       return next(action);
@@ -45,7 +46,7 @@ const middleware = (next, action, defaultFetch, key) => {
    const params = getParams(callAPI);
 
    let { fetch } = callAPI;
-   const { endpoint, types } = callAPI;
+   const { endpoint, requestType, successType, failureType } = callAPI;
 
    if (!fetch) {
       fetch = defaultFetch;
@@ -53,16 +54,10 @@ const middleware = (next, action, defaultFetch, key) => {
    if (typeof endpoint !== 'string') {
       throw new Error('Specify a string endpoint URL.');
    }
-   if (!Array.isArray(types) || types.length !== 3) {
-      throw new Error('Expected an array of three action types.');
-   }
-   if (!types.every((type) => typeof type === 'string')) {
-      throw new Error('Expected action types to be strings.');
-   }
 
-   const processAction = actionWith(action, key);
-   const [requestType, successType, failureType] = types;
+   const processAction = actionWith(action);
 
+   // Processing request action
    next(processAction({ type: requestType }));
 
    const url = appendBase(endpoint);
@@ -74,7 +69,7 @@ const middleware = (next, action, defaultFetch, key) => {
       })),
       (error) => next(processAction({
          type: failureType,
-         error: error.message || 'Something bad happened'
+         error: error.message || 'Request failed'
       }))
    );
 };
