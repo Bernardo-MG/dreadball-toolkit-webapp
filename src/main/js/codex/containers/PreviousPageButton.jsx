@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as actions from 'requests/actions/unit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { previousPage } from 'pagination/move';
+import { previousPage } from 'api/pagination/move';
 
 import BackIcon from 'grommet/components/icons/base/CaretBack';
 

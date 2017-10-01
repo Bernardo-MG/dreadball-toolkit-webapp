@@ -7,7 +7,7 @@ import { injectIntl } from 'react-intl';
 import * as actions from 'requests/actions/sponsorUnit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { nextPage } from 'pagination/move';
+import { nextPage } from 'api/pagination/move';
 
 import PageChangeButton from 'components/PageChangeButton';
 

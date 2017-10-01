@@ -1,4 +1,4 @@
-import { CALL_API_PAGINATED } from 'pagination/actions/ActionTypes';
+import { CALL_API_PAGINATED } from 'api/pagination/actions/ActionTypes';
 import * as types from 'builder/actions/ActionTypes';
 import { BUILDER_VALIDATION_REST_ENDPOINT as validationEndpoint, BUILDER_VALIDATION_AFFINITIES_REST_ENDPOINT as validationAffinitiesEndpoint } from 'builder/requests/Endpoints';
 

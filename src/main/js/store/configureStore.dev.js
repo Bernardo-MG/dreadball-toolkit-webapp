@@ -3,8 +3,8 @@ import thunk from 'redux-thunk';
 import { createLogger } from 'redux-logger';
 import rootReducer from 'reducers';
 import DevTools from 'components/DevTools';
-import paginatedApi from 'middleware/pagination';
-import statusApi from 'middleware/statusFetch';
+import paginatedApi from 'api/middleware/pagination';
+import statusApi from 'api/middleware/statusFetch';
 
 const middleware = [
    thunk,

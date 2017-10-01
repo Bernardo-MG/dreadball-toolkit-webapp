@@ -1,9 +1,8 @@
-import { CALL_API_STATUS } from 'fetch/actions/ActionTypes';
 
-const actionWith = (action) => (data) => {
+const actionWith = (action, key) => (data) => {
    const finalAction = Object.assign({}, action, data);
 
-   delete finalAction[CALL_API_STATUS];
+   delete finalAction[key];
 
    return finalAction;
 };
@@ -61,7 +60,7 @@ const middleware = (next, action, fetch, key) => {
       throw new Error('Expected action types to be strings.');
    }
 
-   const processAction = actionWith(action);
+   const processAction = actionWith(action, key);
    const [requestType, successType, failureType] = types;
 
    next(processAction({ type: requestType }));

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import * as actions from 'requests/actions/unit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { nextPage } from 'pagination/move';
+import { nextPage } from 'api/pagination/move';
 
 import NextIcon from 'grommet/components/icons/base/CaretNext';
 

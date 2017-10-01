@@ -1,5 +1,5 @@
 import { REQUEST_SPONSOR_UNITS, REQUEST_SPONSOR_UNITS_SUCCESS, REQUEST_SPONSOR_UNITS_FAILURE } from 'requests/actions/ActionTypes';
-import { CALL_API_PAGINATED } from 'pagination/actions/ActionTypes';
+import { CALL_API_PAGINATED } from 'api/pagination/actions/ActionTypes';
 import { SPONSOR_AFFINITY_UNITS_REST_ENDPOINT as endpoint } from 'requests/Endpoints';
 import { jsonToUnits as parse } from 'requests/utils/unit';
 
