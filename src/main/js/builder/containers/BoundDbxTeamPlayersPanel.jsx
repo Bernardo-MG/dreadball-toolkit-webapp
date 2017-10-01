@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as actions from 'requests/actions/sponsorUnit';
+import * as actions from 'models/actions/sponsorUnit';
 import { ratedUnitsPaginated } from 'models/selectors';
 
 import DbxTeamPlayersPanel from 'builder/components/DbxTeamPlayersPanel';

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as actions from 'requests/actions/sponsorAffAva';
+import * as actions from 'models/actions/sponsorAffAva';
 
 import { sponsorAffAvasPaginated } from 'models/selectors';
 

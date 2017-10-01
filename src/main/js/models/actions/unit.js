@@ -1,4 +1,4 @@
-import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE } from 'requests/actions/ActionTypes';
+import { REQUEST_UNITS, REQUEST_UNITS_SUCCESS, REQUEST_UNITS_FAILURE } from 'models/actions/ActionTypes';
 import { CALL_API_PAGINATED } from 'api/pagination/actions/ActionTypes';
 import { AFFINITY_UNITS_REST_ENDPOINT as endpoint } from 'requests/Endpoints';
 import { jsonToUnits as parse } from 'requests/utils/unit';

@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import * as actions from 'requests/actions/unit';
+import * as actions from 'models/actions/unit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { nextPage } from 'api/pagination/move';

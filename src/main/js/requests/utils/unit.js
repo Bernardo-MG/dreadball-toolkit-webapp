@@ -1,4 +1,4 @@
 import { normalize } from 'normalizr';
-import { unit } from 'requests/schema';
+import { unit } from 'models/schema';
 
 export const jsonToUnits = (json) => normalize(json, [unit]);

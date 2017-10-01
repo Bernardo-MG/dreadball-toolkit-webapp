@@ -1,4 +1,4 @@
 import { normalize } from 'normalizr';
-import { sponsorAffinityAvailability } from 'requests/schema';
+import { sponsorAffinityAvailability } from 'models/schema';
 
 export const jsonToSponsorAffinityGroupAvailabilities = (json) => normalize(json, [sponsorAffinityAvailability]);

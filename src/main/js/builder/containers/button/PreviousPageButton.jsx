@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { injectIntl } from 'react-intl';
 
-import * as actions from 'requests/actions/sponsorUnit';
+import * as actions from 'models/actions/sponsorUnit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import { previousPage } from 'api/pagination/move';
