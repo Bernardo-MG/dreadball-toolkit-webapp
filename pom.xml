@@ -455,9 +455,9 @@
       <mockito.version>1.10.19</mockito.version>
       <mysql.version>5.1.39</mysql.version>
       <servlet.version>3.1.0</servlet.version>
-      <slf4j.version>1.7.22</slf4j.version>
-      <spring.data.version>1.11.0.RELEASE</spring.data.version>
-      <spring.version>4.3.6.RELEASE</spring.version>
+      <slf4j.version>1.7.25</slf4j.version>
+      <spring.data.version>1.11.7.RELEASE</spring.data.version>
+      <spring.version>4.3.11.RELEASE</spring.version>
       <taglibs.version>1.2.5</taglibs.version>
       <testng.version>6.10</testng.version>
       <thymeleaf.version>3.0.3.RELEASE</thymeleaf.version>
