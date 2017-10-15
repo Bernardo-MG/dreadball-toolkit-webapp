@@ -1,4 +1,4 @@
-import { fetchPaginated as fetch } from 'api/fetch';
+import { defaultFetch as fetch } from 'api/fetch';
 import middleware from 'api/middleware';
 
 // A Redux middleware that interprets actions with CALL_API_STATUS info specified.
