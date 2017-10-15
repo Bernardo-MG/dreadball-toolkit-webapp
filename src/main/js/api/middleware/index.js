@@ -46,7 +46,7 @@ const middleware = (next, action, defaultFetch) => {
    const params = getParams(callAPI);
 
    let { fetch } = callAPI;
-   const { endpoint, requestType, successType, failureType } = callAPI;
+   const { endpoint, requestType, successType, failureType, chained } = callAPI;
 
    if (!fetch) {
       fetch = defaultFetch;
@@ -63,10 +63,16 @@ const middleware = (next, action, defaultFetch) => {
    const url = appendBase(endpoint);
 
    return fetch(url, params).then(
-      (response) => next(processAction({
-         type: successType,
-         ...response
-      })),
+      (response) => {
+         next(processAction({
+            type: successType,
+            ...response
+         }));
+         chained.forEach((type) => next(processAction({
+            type,
+            ...response
+         })));
+      },
       (error) => next(processAction({
          type: failureType,
          error: error.message || 'Request failed'
