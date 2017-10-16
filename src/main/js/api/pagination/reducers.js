@@ -1,9 +1,12 @@
 import union from 'lodash/union';
-import { CALL_API } from 'api/ActionTypes';
+import { CALL_API, REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE } from 'api/ActionTypes';
 
-const updatePagination = (state, action, idsMapping, requestType, successType, failureType) => {
+const updatePagination = (state, action, idsMapping, store) => {
    const { type, payload } = action;
    const callApi = action[CALL_API];
+   const requestType = `${REQUEST}_${store}`;
+   const successType = `${REQUEST_SUCCESS}_${store}`;
+   const failureType = `${REQUEST_FAILURE}_${store}`;
 
    let replace = false;
    if (callApi) {
@@ -49,11 +52,8 @@ const updatePagination = (state, action, idsMapping, requestType, successType, f
 
 // Creates a reducer managing pagination, given the action types to handle,
 // and a function telling how to extract the key from an action.
-const paginate = ({ idsMapping, types }) => {
-   const [requestType, successType, failureType] = types;
-
-   return (state = { isFetching: false, ids: [], first: true, last: true, numberOfElements: 0, totalElements: 0, page: 0, totalPages: 0 }, action) =>
-      updatePagination(state, action, idsMapping, requestType, successType, failureType);
-};
+const paginate = ({ idsMapping, store }) =>
+   (state = { isFetching: false, ids: [], first: true, last: true, numberOfElements: 0, totalElements: 0, page: 0, totalPages: 0 }, action) =>
+      updatePagination(state, action, idsMapping, store);
 
 export default paginate;

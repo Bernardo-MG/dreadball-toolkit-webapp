@@ -1,4 +1,4 @@
-import { CALL_API } from 'api/ActionTypes';
+import { CALL_API, REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE } from 'api/ActionTypes';
 
 const actionWith = (action) => (data) => {
    const finalAction = Object.assign({}, action, data);
@@ -46,7 +46,10 @@ const middleware = (next, action, defaultFetch) => {
    const params = getParams(callAPI);
 
    let { fetch } = callAPI;
-   const { endpoint, requestType, successType, failureType, chained } = callAPI;
+   const { endpoint, store, chained } = callAPI;
+   const requestType = `${REQUEST}_${store}`;
+   const successType = `${REQUEST_SUCCESS}_${store}`;
+   const failureType = `${REQUEST_FAILURE}_${store}`;
 
    if (!fetch) {
       fetch = defaultFetch;
