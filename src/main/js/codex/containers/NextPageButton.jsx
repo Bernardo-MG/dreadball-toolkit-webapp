@@ -6,12 +6,11 @@ import * as actions from 'models/actions/unit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import Button from 'grommet/components/Button';
 import NextIcon from 'grommet/components/icons/base/CaretNext';
 
-import PageChangeButton from 'components/PageChangeButton';
-
 const NextPageButton = (props) =>
-   <PageChangeButton changePage={props.actions.moveNextPage} icon={<NextIcon/>} />;
+   <Button onClick={props.actions.moveNextPage} icon={<NextIcon/>} />;
 
 NextPageButton.propTypes = {
    actions: PropTypes.object.isRequired

@@ -6,12 +6,11 @@ import * as actions from 'models/actions/unit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import Button from 'grommet/components/Button';
 import BackIcon from 'grommet/components/icons/base/CaretBack';
 
-import PageChangeButton from 'components/PageChangeButton';
-
 const PreviousPageButton = (props) =>
-   <PageChangeButton changePage={props.actions.movePrevPage} icon={<BackIcon/>} />;
+   <Button onClick={props.actions.movePrevPage} icon={<BackIcon/>} />;
 
 PreviousPageButton.propTypes = {
    actions: PropTypes.object.isRequired
