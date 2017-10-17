@@ -5,26 +5,20 @@ import PropTypes from 'prop-types';
 import * as actions from 'models/actions/unit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { nextPage } from 'api/pagination/move';
 
 import NextIcon from 'grommet/components/icons/base/CaretNext';
 
 import PageChangeButton from 'components/PageChangeButton';
 
 const NextPageButton = (props) =>
-   <PageChangeButton changePage={nextPage} fetch={props.actions.fetch} page={props.page} endingPage={props.lastPage} icon={<NextIcon/>} />;
+   <PageChangeButton changePage={props.actions.moveNextPage} icon={<NextIcon/>} />;
 
 NextPageButton.propTypes = {
-   actions: PropTypes.object.isRequired,
-   page: PropTypes.number.isRequired,
-   lastPage: PropTypes.bool
+   actions: PropTypes.object.isRequired
 };
 
-const mapStateToProps = (state) => {
-   return {
-      lastPage: state.pagination.units.last,
-      page: state.pagination.units.page
-   };
+const mapStateToProps = () => {
+   return {};
 };
 
 const mapDispatchToProps = (dispatch) => {

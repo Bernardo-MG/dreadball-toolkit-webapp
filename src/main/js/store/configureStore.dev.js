@@ -5,9 +5,11 @@ import rootReducer from 'reducers';
 import DevTools from 'components/DevTools';
 import paginatedApi from 'api/middleware/pagination';
 import statusApi from 'api/middleware/statusFetch';
+import movePage from 'api/middleware/move';
 
 const middleware = [
    thunk,
+   movePage,
    paginatedApi,
    statusApi,
    // Redux logger is included

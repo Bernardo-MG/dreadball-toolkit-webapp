@@ -1,5 +1,5 @@
 import union from 'lodash/union';
-import { CALL_API, REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE } from 'api/ActionTypes';
+import { CALL_API, REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CHANGE_PAGE } from 'api/ActionTypes';
 
 const updatePagination = (state, action, idsMapping, store) => {
    const { type, payload } = action;
@@ -7,11 +7,14 @@ const updatePagination = (state, action, idsMapping, store) => {
    const requestType = `${REQUEST}_${store}`;
    const successType = `${REQUEST_SUCCESS}_${store}`;
    const failureType = `${REQUEST_FAILURE}_${store}`;
+   const prevType = `${CHANGE_PAGE}_PREV_${store}`;
+   const nextType = `${CHANGE_PAGE}_NEXT_${store}`;
 
    let replace = false;
    if (callApi) {
       replace = callApi.replace;
    }
+   let page = state.page;
 
    switch (type) {
    case requestType:
@@ -44,6 +47,24 @@ const updatePagination = (state, action, idsMapping, store) => {
       return {
          ...state,
          isFetching: false
+      };
+   case prevType:
+      if (!state.first) {
+         page -= 1;
+      }
+
+      return {
+         ...state,
+         page
+      };
+   case nextType:
+      if (!state.last) {
+         page += 1;
+      }
+
+      return {
+         ...state,
+         page
       };
    default:
       return state;

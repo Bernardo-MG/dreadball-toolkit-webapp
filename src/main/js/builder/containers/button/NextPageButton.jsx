@@ -7,11 +7,10 @@ import { injectIntl } from 'react-intl';
 import * as actions from 'models/actions/sponsorUnit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import { nextPage } from 'api/pagination/move';
 
 import PageChangeButton from 'components/PageChangeButton';
 
-import buttonMessages from 'i18n/button';
+import NextIcon from 'grommet/components/icons/base/CaretNext';
 
 class NextPageButton extends Component {
 
@@ -21,8 +20,7 @@ class NextPageButton extends Component {
 
    render() {
       return (
-         <PageChangeButton changePage={nextPage} fetch={this.fetch} page={this.props.page} endingPage={this.props.lastPage}
-            label={this.props.intl.formatMessage(buttonMessages.next)} />
+         <PageChangeButton changePage={this.props.actions.moveNextPage} icon={<NextIcon/>} />
       );
    }
 }
@@ -30,16 +28,12 @@ class NextPageButton extends Component {
 NextPageButton.propTypes = {
    affinities: PropTypes.array.isRequired,
    actions: PropTypes.object.isRequired,
-   page: PropTypes.number.isRequired,
-   lastPage: PropTypes.bool,
    intl: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      affinities: state.builder.sponsor.affinities,
-      lastPage: state.pagination.ratedUnits.last,
-      page: state.pagination.ratedUnits.page
+      affinities: state.builder.sponsor.affinities
    };
 };
 

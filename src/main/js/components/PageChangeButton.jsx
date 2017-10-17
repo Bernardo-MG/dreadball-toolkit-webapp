@@ -9,7 +9,7 @@ class PageChangeButton extends Component {
    changePage;
 
    move = () => {
-      this.changePage(this.props.fetch, this.props.page, this.props.endingPage);
+      this.changePage();
    };
 
    constructor(props) {
@@ -20,17 +20,13 @@ class PageChangeButton extends Component {
 
    render() {
       return (
-         <Button onClick={this.move} label={this.props.label} icon={this.props.icon} />
+         <Button onClick={this.move} icon={this.props.icon} />
       );
    }
 }
 
 PageChangeButton.propTypes = {
    changePage: PropTypes.func.isRequired,
-   fetch: PropTypes.func.isRequired,
-   page: PropTypes.number.isRequired,
-   endingPage: PropTypes.bool,
-   label: PropTypes.string,
    icon: PropTypes.object
 };
 
