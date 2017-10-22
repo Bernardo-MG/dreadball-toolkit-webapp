@@ -7,8 +7,8 @@ const middleware = (state, next, action) => {
       return next(action);
    }
 
-   const { fetch, direction, store, storeSelector } = action;
-   const changePageType = `${CHANGE_PAGE}_${direction}_${store}`;
+   const { fetch, direction, tag, storeSelector } = action;
+   const changePageType = `${CHANGE_PAGE}_${direction}_${tag}`;
 
    const changeAction = {
       type: changePageType
