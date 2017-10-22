@@ -1,51 +1,35 @@
 import { createSelector } from 'reselect';
-import { createSelector as createOrmSelector } from 'redux-orm';
-import orm from 'models';
-import { playerFilterPaginated, ratedPlayerFilterPaginated, sponsorPlayerFilter, sponsorAffinityAvailabilityFilterPaginated } from 'models/selectors/modelFilters';
 
-// Selects the state managed by Redux-ORM.
-const ormSelector = (state) => state.model;
+const filterByKeys = (data, keys) => {
+   const result = [];
 
-const unitsSponsorOrm = createOrmSelector(
-   orm,
-   sponsorPlayerFilter
-);
+   keys.forEach((k) => {
+      if (k in data) {
+         result.push(data[k]);
+      }
+   });
 
-const unitsPaginatedOrm = createOrmSelector(
-   orm,
-   playerFilterPaginated
-);
-
-const ratedUnitsPaginatedOrm = createOrmSelector(
-   orm,
-   ratedPlayerFilterPaginated
-);
-
-const sponsorAffAvasPaginatedOrm = createOrmSelector(
-   orm,
-   sponsorAffinityAvailabilityFilterPaginated
-);
+   return result;
+};
 
 export const unitsSponsor = createSelector(
-   ormSelector,
    (state) => state.builder.sponsor.units,
-   unitsSponsorOrm
+   (data) => Object.values(data)
 );
 
 export const unitsPaginated = createSelector(
-   ormSelector,
-   (state) => state.pagination.units,
-   unitsPaginatedOrm
+   (state) => state.model.units,
+   (state) => state.pagination.units.ids,
+   (data, ids) => filterByKeys(data, ids)
 );
 
 export const ratedUnitsPaginated = createSelector(
-   ormSelector,
-   (state) => state.pagination.ratedUnits,
-   ratedUnitsPaginatedOrm
+   (state) => state.model.ratedUnits,
+   (state) => state.pagination.ratedUnits.ids,
+   (data, ids) => filterByKeys(data, ids)
 );
 
 export const sponsorAffAvasPaginated = createSelector(
-   ormSelector,
-   (state) => state.pagination.sponsorAffAvas,
-   sponsorAffAvasPaginatedOrm
+   (state) => state.model.sponsorAffinityAvailabilities,
+   (data) => Object.values(data)
 );

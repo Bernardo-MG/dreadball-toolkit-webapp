@@ -1,86 +1,52 @@
 import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS, CREATE_RATED_UNITS, CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES } from 'models/actions/ActionTypes';
-import orm from 'models';
-import { forEachValue } from 'utils';
 
-const model = (state, action) => {
-   const session = orm.session(state);
-
+const model = (state = { sponsorAffinityAvailabilities: [], abilities: [], affinities: [], units: [], ratedUnits: [] }, action) => {
    const { type, payload } = action;
 
    switch (type) {
    case CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES: {
-      const avas = payload.entities.sponsorAffinityAvailabilities;
+      const sponsorAffinityAvailabilities = payload.entities.sponsorAffinityAvailabilities;
 
-      forEachValue(avas,
-         (ava) => {
-            if (!session.SponsorAffinityAvailability.filter({ name: ava.name }).exists()) {
-               session.SponsorAffinityAvailability.create(ava);
-            }
-         }
-      );
-
-      break;
+      return {
+         ...state,
+         sponsorAffinityAvailabilities
+      };
    }
    case CREATE_ABILITIES: {
       const abilities = payload.entities.abilities;
 
-      if (abilities) {
-         // Creates abilities
-         forEachValue(abilities,
-            (ability) => {
-               if (!session.Ability.filter({ name: ability.name }).exists()) {
-                  session.Ability.create(ability);
-               }
-            }
-         );
-      }
-
-      break;
+      return {
+         ...state,
+         abilities
+      };
    }
    case CREATE_AFFINITIES: {
       const affinities = payload.entities.affinities;
 
-      if (affinities) {
-         forEachValue(affinities,
-            (affinity) => {
-               if (!session.Affinity.filter({ name: affinity.name }).exists()) {
-                  session.Affinity.create(affinity);
-               }
-            }
-         );
-      }
-
-      break;
+      return {
+         ...state,
+         affinities
+      };
    }
    case CREATE_UNITS: {
       const units = payload.entities.units;
 
-      forEachValue(units,
-         (unit) => {
-            if (!session.Player.filter({ templateName: unit.templateName }).exists()) {
-               session.Player.create(unit);
-            }
-         }
-      );
-
-      break;
+      return {
+         ...state,
+         units
+      };
    }
    case CREATE_RATED_UNITS: {
-      const units = payload.entities.units;
+      const ratedUnits = payload.entities.units;
 
-      forEachValue(units,
-         (unit) => {
-            if (!session.RatedPlayer.filter({ templateName: unit.templateName }).exists()) {
-               session.RatedPlayer.create(unit);
-            }
-         }
-      );
-
-      break;
+      return {
+         ...state,
+         ratedUnits
+      };
    }
    default:
+      return state;
    }
-   return session.state;
 };
 
 export default model;
