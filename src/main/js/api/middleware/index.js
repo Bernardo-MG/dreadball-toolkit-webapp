@@ -46,10 +46,10 @@ const middleware = (next, action, defaultFetch) => {
    const params = getParams(callAPI);
 
    let { fetch } = callAPI;
-   const { endpoint, store, chained } = callAPI;
-   const requestType = `${REQUEST}_${store}`;
-   const successType = `${REQUEST_SUCCESS}_${store}`;
-   const failureType = `${REQUEST_FAILURE}_${store}`;
+   const { endpoint, tag, chained } = callAPI;
+   const requestType = `${REQUEST}_${tag}`;
+   const successType = `${REQUEST_SUCCESS}_${tag}`;
+   const failureType = `${REQUEST_FAILURE}_${tag}`;
 
    if (!fetch) {
       fetch = defaultFetch;

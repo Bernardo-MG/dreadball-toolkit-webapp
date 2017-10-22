@@ -10,7 +10,7 @@ const parse = (json) => normalize(json, [unit]);
 export const fetch = (affinities = {}, page = 0, orderBy = 'name', direction = 'ASC') => {
    return {
       [CALL_API]: {
-         store: 'SPONSOR_UNITS',
+         tag: 'SPONSOR_UNITS',
          chained: [CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS],
          endpoint,
          page,

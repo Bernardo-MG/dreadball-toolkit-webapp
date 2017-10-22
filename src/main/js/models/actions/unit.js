@@ -10,7 +10,7 @@ const parse = (json) => normalize(json, [unit]);
 export const fetch = (page = 0, orderBy = 'name', direction = 'ASC', replace = false) => {
    return {
       [CALL_API]: {
-         store: 'UNITS',
+         tag: 'UNITS',
          chained: [CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_RATED_UNITS],
          endpoint,
          page,
@@ -25,7 +25,7 @@ export const fetch = (page = 0, orderBy = 'name', direction = 'ASC', replace = f
 export const movePrevPage = () => {
    return {
       type: CHANGE_PAGE,
-      store: 'UNITS',
+      tag: 'UNITS',
       storeSelector: (state) => state.pagination.units,
       direction: 'PREV',
       fetch
@@ -35,7 +35,7 @@ export const movePrevPage = () => {
 export const moveNextPage = () => {
    return {
       type: CHANGE_PAGE,
-      store: 'UNITS',
+      tag: 'UNITS',
       storeSelector: (state) => state.pagination.units,
       direction: 'NEXT',
       fetch
