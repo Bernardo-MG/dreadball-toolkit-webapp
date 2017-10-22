@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import * as actions from 'models/actions/sponsorAffAva';
 
-import { sponsorAffAvasPaginated } from 'models/selectors';
+import { selectSponsorAffAvas } from 'models/selectors';
 
 import { avasToMap } from 'builder/utils';
 import SponsorAffinitySelectField from 'builder/components/SponsorAffinitySelectField';
@@ -33,7 +33,7 @@ AffinityGroupsComboPanel.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      source: avasToMap(sponsorAffAvasPaginated(state))
+      source: avasToMap(selectSponsorAffAvas(state))
    };
 };
 

@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actions from 'models/actions/unit';
-import { unitsPaginated } from 'models/selectors';
+import { selectUnits } from 'models/selectors';
 
 import DbxPlayersPanel from 'codex/components/DbxPlayersPanel';
 
@@ -30,7 +30,7 @@ BoundDbxPlayersPanel.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      units: unitsPaginated(state)
+      units: selectUnits(state)
    };
 };
 

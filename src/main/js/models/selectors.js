@@ -12,24 +12,19 @@ const filterByKeys = (data, keys) => {
    return result;
 };
 
-export const unitsSponsor = createSelector(
-   (state) => state.builder.sponsor.units,
-   (data) => Object.values(data)
-);
-
-export const unitsPaginated = createSelector(
+export const selectUnits = createSelector(
    (state) => state.model.units,
    (state) => state.pagination.units.ids,
    (data, ids) => filterByKeys(data, ids)
 );
 
-export const ratedUnitsPaginated = createSelector(
+export const selectRatedUnits = createSelector(
    (state) => state.model.ratedUnits,
    (state) => state.pagination.ratedUnits.ids,
    (data, ids) => filterByKeys(data, ids)
 );
 
-export const sponsorAffAvasPaginated = createSelector(
+export const selectSponsorAffAvas = createSelector(
    (state) => state.model.sponsorAffinityAvailabilities,
    (data) => Object.values(data)
 );

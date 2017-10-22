@@ -6,7 +6,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import * as actions from 'models/actions/sponsorUnit';
-import { ratedUnitsPaginated } from 'models/selectors';
+import { selectRatedUnits } from 'models/selectors';
 
 import DbxTeamPlayersPanel from 'builder/components/DbxTeamPlayersPanel';
 
@@ -31,7 +31,7 @@ BoundDbxTeamPlayersPanel.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      source: ratedUnitsPaginated(state),
+      source: selectRatedUnits(state),
       affinities: state.builder.sponsor.affinities
    };
 };
