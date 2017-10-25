@@ -59,19 +59,23 @@ public class SponsorAssemblerController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeamSelection getSelectionResult(
-            @RequestParam("affinities") final ArrayList<String> affinities,
-            @RequestParam("units") final ArrayList<String> units,
-            final DefaultSponsorTeamAssets assets,
-            @RequestParam(defaultValue = "0") final Integer baseRank) {
+    public final SponsorTeamSelection
+            getSelectionResult(@RequestParam(name = "affinities",
+                    defaultValue = "") final ArrayList<String> affinities,
+                    @RequestParam(name = "units",
+                            defaultValue = "") final ArrayList<String> units,
+                    final DefaultSponsorTeamAssets assets,
+                    @RequestParam(name = "baseRank",
+                            defaultValue = "0") final Integer baseRank) {
         return getSponsorBuilderService().selectTeam(affinities, units, assets,
                 baseRank);
     }
 
     @GetMapping(path = "/affinities",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinities selectAffinities(
-            @RequestParam("affinities") final ArrayList<String> affinities) {
+    public final SponsorAffinities
+            selectAffinities(@RequestParam(name = "affinities",
+                    defaultValue = "") final ArrayList<String> affinities) {
         return getSponsorBuilderService().selectAffinities(affinities);
     }
 
