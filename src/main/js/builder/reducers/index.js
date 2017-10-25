@@ -42,10 +42,15 @@ const sponsor = (
          ...state,
          ...payload
       };
-   case ActionTypes.REQUEST_SPONSOR_TEAM_VALIDATION_AFFINITIES_SUCCESS:
+   case ActionTypes.SET_BASE_RANK:
       return {
          ...state,
-         ...payload
+         baseRank: payload.baseRank
+      };
+   case ActionTypes.SET_RANK:
+      return {
+         ...state,
+         rank: payload.rank
       };
    case ActionTypes.UPDATE_SPONSOR_NAME: {
       return {

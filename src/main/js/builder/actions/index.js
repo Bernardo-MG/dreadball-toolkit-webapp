@@ -1,4 +1,4 @@
-import { CALL_API } from 'api/ActionTypes';
+import { callApi } from 'api/actions';
 import * as types from 'builder/actions/ActionTypes';
 import { BUILDER_VALIDATION_REST_ENDPOINT as validationEndpoint, BUILDER_VALIDATION_AFFINITIES_REST_ENDPOINT as validationAffinitiesEndpoint } from 'builder/requests/Endpoints';
 
@@ -16,29 +16,22 @@ export const chooseSponsorAffinity = (affinity, index) => {
    };
 };
 
-export const validateSponsorAffinities = (affinities = []) => {
-   return {
-      [CALL_API]: {
-         tag: 'SPONSOR_TEAM_VALIDATION_AFFINITIES',
-         endpoint: validationAffinitiesEndpoint,
-         params: { affinities }
-      }
-   };
-};
+export const validateSponsorAffinities = (affinities = []) => callApi({
+   tag: 'SPONSOR_TEAM_VALIDATION_AFFINITIES',
+   chained: [types.SET_BASE_RANK, types.SET_RANK],
+   endpoint: validationAffinitiesEndpoint,
+   params: { affinities }
+});
 
 export const validateSponsorTeam = (
    affinities = [],
    units = [],
    baseRank = 0,
-   cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => {
-   return {
-      [CALL_API]: {
-         tag: 'SPONSOR_TEAM_VALIDATION',
-         endpoint: validationEndpoint,
-         params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
-      }
-   };
-};
+   cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => callApi({
+   tag: 'SPONSOR_TEAM_VALIDATION',
+   endpoint: validationEndpoint,
+   params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
+});
 
 export const updateSponsorName = (value) => {
    return {
