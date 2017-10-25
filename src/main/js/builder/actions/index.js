@@ -29,6 +29,7 @@ export const validateSponsorTeam = (
    baseRank = 0,
    cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => callApi({
    tag: 'SPONSOR_TEAM_VALIDATION',
+   chained: [types.SET_BASE_RANK, types.SET_RANK, types.SET_TEAM_VALUE],
    endpoint: validationEndpoint,
    params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
 });

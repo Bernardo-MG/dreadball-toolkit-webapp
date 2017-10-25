@@ -52,6 +52,11 @@ const sponsor = (
          ...state,
          rank: payload.rank
       };
+   case ActionTypes.SET_TEAM_VALUE:
+      return {
+         ...state,
+         teamValue: payload.teamValue
+      };
    case ActionTypes.UPDATE_SPONSOR_NAME: {
       return {
          ...state,
