@@ -1,11 +1,15 @@
 import { createStore, applyMiddleware } from 'redux';
-import thunk from 'redux-thunk';
+import createSagaMiddleware from 'redux-saga';
 import rootReducer from 'reducers';
 import paginatedApi from 'middleware/pagination';
 import statusApi from 'middleware/statusFetch';
 
+import { generateUnitSaga } from 'models/sagas/unit';
+
+const sagaMiddleware = createSagaMiddleware();
+
 const middleware = [
-   thunk,
+   sagaMiddleware,
    paginatedApi,
    statusApi
 ];
@@ -17,5 +21,7 @@ const configureStore = (initialState) => createStore(
    initialState,
    enhancer
 );
+
+sagaMiddleware.run(generateUnitSaga);
 
 export default configureStore;

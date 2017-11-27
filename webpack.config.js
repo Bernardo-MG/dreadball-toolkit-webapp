@@ -125,7 +125,11 @@ module.exports = {
                use: {
                   loader : 'babel-loader',
                   options : {
-                     presets : [ 'env', 'stage-0', 'react' ]
+                     presets : [ 
+                        ["env", {
+                           "targets": { node: "6" },
+                        }],
+                        'stage-0', 'react' ]
                   }
                }
             },
