@@ -3,8 +3,7 @@ import createSagaMiddleware from 'redux-saga';
 import rootReducer from 'reducers';
 import paginatedApi from 'middleware/pagination';
 import statusApi from 'middleware/statusFetch';
-
-import { generateUnitSaga } from 'models/sagas/unit';
+import rootSaga from 'sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -24,4 +23,10 @@ const configureStore = (initialState) => createStore(
 
 sagaMiddleware.run(generateUnitSaga);
 
-export default configureStore;
+export default () => {
+   const store = configureStore();
+
+   sagaMiddleware.run(rootSaga);
+
+   return store;
+};

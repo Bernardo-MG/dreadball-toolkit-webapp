@@ -1,5 +1,10 @@
-import { put } from 'redux-saga/effects';
+import { put, takeLatest } from 'redux-saga/effects';
+
+function* requestUnits() {
+   console.log('Fetching data');
+   yield put({ type: 'ACTION' });
+}
 
 export function* generateUnitSaga() {
-   yield put({ type: 'ACTION' });
+   yield takeLatest('CHOOSE_SPONSOR_AFFINITY', requestUnits);
 }
