@@ -1,8 +1,10 @@
-import { generateUnitSaga } from 'models/sagas/unit';
+import { generateUnit, nextUnitPage, prevUnitPage } from 'models/sagas/unit';
 import { fork } from 'redux-saga/effects';
 
 export default function* rootSaga() {
    yield [
-      fork(generateUnitSaga)
+      fork(generateUnit),
+      fork(nextUnitPage),
+      fork(prevUnitPage)
    ];
 }
