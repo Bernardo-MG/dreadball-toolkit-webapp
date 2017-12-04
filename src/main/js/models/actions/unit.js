@@ -9,16 +9,11 @@ const parse = (json) => normalize(json, [unit]);
 
 const tag = 'UNITS';
 
-export const fetch = (page = 0, orderBy = 'name', direction = 'ASC', replace = false) => callApi({
-   tag,
-   chained: [CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS],
-   endpoint,
-   page,
-   fetch: (url, params) => fetchPaginated(url, params, parse),
-   orderBy,
-   direction,
-   replace
-});
+export const fetch = (affinity, index) => {
+   return {
+      type: 'REQUEST_UNITS'
+   };
+};
 
 export const movePrevPage = () => previousPage({
    tag,
