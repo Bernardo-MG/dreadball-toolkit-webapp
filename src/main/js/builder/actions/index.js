@@ -1,6 +1,4 @@
-import { callApi } from 'api/actions';
 import * as types from 'builder/actions/ActionTypes';
-import { BUILDER_VALIDATION_REST_ENDPOINT as validationEndpoint } from 'builder/requests/Endpoints';
 
 export const beginDbxTeamBuilding = () => {
    return {
@@ -27,12 +25,12 @@ export const validateSponsorTeam = (
    affinities = [],
    units = [],
    baseRank = 0,
-   cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => callApi({
-   tag: 'SPONSOR_TEAM_VALIDATION',
-   chained: [types.SET_BASE_RANK, types.SET_RANK, types.SET_TEAM_VALUE],
-   endpoint: validationEndpoint,
-   params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
-});
+   cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => {
+   return {
+      type: 'SPONSOR_TEAM_VALIDATION',
+      params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
+   };
+};
 
 export const updateSponsorName = (value) => {
    return {
