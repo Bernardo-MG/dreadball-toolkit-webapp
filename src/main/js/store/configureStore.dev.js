@@ -3,16 +3,12 @@ import createSagaMiddleware from 'redux-saga';
 import { createLogger } from 'redux-logger';
 import rootReducer from 'reducers';
 import DevTools from 'components/DevTools';
-import paginatedApi from 'api/middleware/pagination';
-import movePage from 'api/middleware/move';
 import rootSaga from 'sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
 const middleware = [
    sagaMiddleware,
-   movePage,
-   paginatedApi,
    // Redux logger is included
    createLogger()
 ];

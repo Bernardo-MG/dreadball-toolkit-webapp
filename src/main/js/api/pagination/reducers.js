@@ -1,18 +1,16 @@
 import union from 'lodash/union';
-import { CALL_API, REQUEST, REQUEST_SUCCESS, REQUEST_FAILURE, CHANGE_PAGE } from 'api/ActionTypes';
 
 const updatePagination = (state, action, idsMapping, store) => {
    const { type, payload } = action;
-   const callApi = action[CALL_API];
-   const requestType = `${REQUEST}_${store}`;
-   const successType = `${REQUEST_SUCCESS}_${store}`;
-   const failureType = `${REQUEST_FAILURE}_${store}`;
-   const prevType = `${CHANGE_PAGE}_PREV_${store}`;
-   const nextType = `${CHANGE_PAGE}_NEXT_${store}`;
+   const requestType = `REQUEST_${store}`;
+   const successType = `REQUEST_SUCCESS_${store}`;
+   const failureType = `REQUEST_FAILURE_${store}`;
+   const prevType = `CHANGE_PAGE_PREV_${store}`;
+   const nextType = `CHANGE_PAGE_NEXT_${store}`;
 
    let replace = false;
-   if (callApi) {
-      replace = callApi.replace;
+   if (action.replace) {
+      replace = action.replace;
    }
    let page = state.page;
 
