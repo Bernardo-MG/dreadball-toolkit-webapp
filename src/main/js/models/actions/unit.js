@@ -4,6 +4,7 @@ export const fetch = () => {
       type: 'REQUEST_UNITS'
    };
 };
+
 export const movePrevPage = () => {
    return {
       type: 'CHANGE_PAGE_PREV_UNITS'

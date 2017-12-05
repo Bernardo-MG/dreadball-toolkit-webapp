@@ -4,20 +4,9 @@ import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS } from 'models/action
 import { normalize } from 'normalizr';
 import { fetchPaginated } from 'api/fetch';
 import { unit } from 'models/schema';
+import { appendBase } from 'utils';
 
 const parse = (json) => normalize(json, [unit]);
-
-const appendBase = (url) => {
-   let result;
-
-   if (url.indexOf(ROUTE_BASE) === -1) {
-      result = ROUTE_BASE + url;
-   } else {
-      result = url;
-   }
-
-   return result;
-};
 
 const fullEndpoint = appendBase(endpoint);
 
