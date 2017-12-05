@@ -4,6 +4,7 @@ export const fetch = () => {
       type: 'REQUEST_SPONSOR_UNITS'
    };
 };
+
 export const movePrevPage = () => {
    return {
       type: 'CHANGE_PAGE_PREV_SPONSOR_UNITS'
