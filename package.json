@@ -17,7 +17,7 @@
     "url": "https://www.github.com/bernardo-mg/dreadball-toolkit-webpage/issues"
   },
   "scripts": {
-    "watch": "webpack --watch -d"
+    "test": "jest"
   },
   "dependencies": {
     "css-loader": "~0.28.7",
@@ -58,6 +58,7 @@
     "eslint-plugin-import": "~2.7.0",
     "eslint-plugin-jsx-a11y": "~5.1.1",
     "eslint-plugin-react": "~7.4.0",
+    "jest": "~21.2.1",
     "redux-devtools": "~3.4.0",
     "redux-devtools-dock-monitor": "~1.1.1",
     "redux-devtools-log-monitor": "~1.2.0",
