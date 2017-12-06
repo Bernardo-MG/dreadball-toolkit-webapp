@@ -103,7 +103,7 @@ module.exports = {
       filename : 'bundle.js'
    },
    resolve : {
-      extensions : [ '.scss', '.css', '.js', '.jsx', '.json' ],
+      extensions : [ '.scss', '.css', '.js', '.json' ],
       modules : [
          'src/main/js',
          path.resolve(__dirname, INPUT_PATH),
@@ -114,13 +114,13 @@ module.exports = {
    module : {
       rules : [
        		{
-               test : /(\.js|\.jsx)$/,
+               test : /(\.js)$/,
                enforce: 'pre',
                exclude: /node_modules/,
                loader: 'eslint-loader'
             },
             {
-               test : /(\.js|\.jsx)$/,
+               test : /(\.js)$/,
                exclude: /node_modules/,
                use: {
                   loader : 'babel-loader',
