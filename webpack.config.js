@@ -129,7 +129,7 @@ module.exports = {
                         ["env", {
                            "targets": { node: "6" },
                         }],
-                        'stage-0', 'react' ]
+                        'es2015', 'stage-0', 'react' ]
                   }
                }
             },
