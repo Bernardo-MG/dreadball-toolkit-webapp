@@ -47,7 +47,7 @@ const updatePagination = (state, action, idsMapping, store) => {
          isFetching: false
       };
    case prevType:
-      if (!state.first) {
+      if ((!state.first) && (page > 0)) {
          page -= 1;
       }
 
