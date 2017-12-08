@@ -1,11 +1,11 @@
 import paginate from '../reducers';
 
 const reducer = paginate({
-   idsMapping: (payload) => Object.keys(payload.entities.units),
+   idsMapping: (payload) => Object.keys(payload),
    store: 'TEST'
 });
 
-describe('Paginated reducer reducer', () => {
+describe('Paginated reducer - Page change', () => {
    it('should not move to the next page when it is the last page', () => {
       expect(
          reducer({ "page": 0, "last": true }, {
