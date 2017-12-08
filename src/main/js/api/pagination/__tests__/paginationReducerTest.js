@@ -49,7 +49,7 @@ describe('Paginated reducer', () => {
       expect(
          reducer({}, {
             type: 'REQUEST_SUCCESS_TEST',
-            payload: [1, 2, 3]
+            payload: ["0", "1", "2"]
          })).toEqual(
          {
             "ids": ["0", "1", "2"],
@@ -65,7 +65,7 @@ describe('Paginated reducer', () => {
             "ids": ["0", "2", "5"]
          }, {
             type: 'REQUEST_SUCCESS_TEST',
-            payload: [1, 2, 3]
+            payload: ["0", "1", "2"]
          })).toEqual(
          {
             "ids": ["0", "2", "5", "1"],
