@@ -9,7 +9,7 @@ import * as actions from 'models/actions/sponsorAffAva';
 
 import { selectSponsorAffAvas } from 'models/selectors';
 
-import { avasToMap } from 'builder/utils';
+import { avasToMap } from 'builder/models/utils';
 import SponsorAffinitySelectField from 'builder/components/SponsorAffinitySelectField';
 
 class AffinityGroupsComboPanel extends Component {

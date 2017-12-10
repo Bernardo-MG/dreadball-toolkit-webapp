@@ -1,13 +1,15 @@
 
+const affinityToMap = (affinity) => {
+   return {
+      label: affinity,
+      affinity,
+      value: affinity,
+      rank: false
+   };
+};
+
 const avaToMap = (ava) => {
-   const result = ava.affinityGroups.map((affinity) => {
-      return {
-         label: affinity,
-         affinity,
-         value: affinity,
-         rank: false
-      };
-   });
+   const result = ava.affinityGroups.map((affinity) => affinityToMap(affinity));
 
    if (ava.includingRankIncrease) {
       result.push({
