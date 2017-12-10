@@ -8,8 +8,11 @@ import Heading from 'grommet/components/Heading';
 import Label from 'grommet/components/Label';
 import Value from 'grommet/components/Value';
 
+import AddUnitButton from 'builder/containers/button/AddUnitButton';
+
 const DbxUnitPanel = (props) =>
    <Box>
+      <AddUnitButton unit={props.source} />
       <Box direction='row'>
          <Heading tag='h1'>{props.source.name}</Heading>
       </Box>

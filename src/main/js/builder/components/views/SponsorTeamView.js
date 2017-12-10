@@ -6,7 +6,7 @@ import Tab from 'grommet/components/Tab';
 import Tabs from 'grommet/components/Tabs';
 
 import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
-import SponsorUnitList from 'builder/containers/SponsorUnitList';
+import SponsorUnitNameList from 'builder/containers/SponsorUnitNameList';
 
 import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 
@@ -36,7 +36,7 @@ const SponsorTeamView = () =>
                </Box>
                <Box pad='small' size='medium'>
                   <Heading tag='h2'>players</Heading>
-                  <SponsorUnitList />
+                  <SponsorUnitNameList />
                </Box>
             </Box>
          </Box>

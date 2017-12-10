@@ -7,7 +7,7 @@ import Listing from 'components/Listing';
 import { connect } from 'react-redux';
 
 
-class SponsorUnitList extends Component {
+class SponsorUnitNameList extends Component {
 
    source;
 
@@ -28,7 +28,7 @@ class SponsorUnitList extends Component {
    }
 }
 
-SponsorUnitList.propTypes = {
+SponsorUnitNameList.propTypes = {
    sponsorUnits: PropTypes.array.isRequired
 };
 
@@ -45,4 +45,4 @@ const mapDispatchToProps = () => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorUnitList);
+)(SponsorUnitNameList);
