@@ -1,16 +1,6 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
-import { BUILDER_VALIDATION_REST_ENDPOINT as validationEndpoint, BUILDER_VALIDATION_AFFINITIES_REST_ENDPOINT as validationAffinitiesEndpoint } from 'builder/requests/Endpoints';
 import * as types from 'builder/actions/ActionTypes';
-import { Fetcher } from 'api/fetch';
-import { appendBase } from 'utils';
-
-const fullValidationAffinitiesEndpoint = appendBase(validationAffinitiesEndpoint);
-
-const fullValidationEndpoint = appendBase(validationEndpoint);
-
-const avasValidationFetcher = new Fetcher(fullValidationAffinitiesEndpoint);
-
-const teamValidationFetcher = new Fetcher(fullValidationEndpoint);
+import { teamValidationFetcher, avasValidationFetcher } from 'builder/requests/fetchers';
 
 function fetchValidateAvas(params) {
    return avasValidationFetcher.fetch(params);

@@ -1,16 +1,6 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
-import { SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT as endpoint } from 'models/Endpoints';
-import { CREATE_AFFINITIES, CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES } from 'models/actions/ActionTypes';
-import { normalize } from 'normalizr';
-import { Fetcher } from 'api/fetch';
-import { sponsorAffinityAvailability } from 'models/schema';
-import { appendBase } from 'utils';
-
-const parse = (json) => normalize(json, [sponsorAffinityAvailability]);
-
-const fullEndpoint = appendBase(endpoint);
-
-const fetcher = new Fetcher(fullEndpoint, parse);
+import * as types from 'models/actions/ActionTypes';
+import { fetcherAvaAff as fetcher } from 'models/requests/fetchers';
 
 function fetchAvas(params) {
    return fetcher.fetch(params);
@@ -19,8 +9,8 @@ function fetchAvas(params) {
 function* requestAffAvas(action) {
    const payload = yield call(fetchAvas, { ...action.params });
    yield put({ type: 'REQUEST_SUCCESS_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', ...payload });
-   yield put({ type: CREATE_AFFINITIES, ...payload });
-   yield put({ type: CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, ...payload });
+   yield put({ type: types.CREATE_AFFINITIES, ...payload });
+   yield put({ type: types.CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, ...payload });
 }
 
 export function* generateAffAvas() {

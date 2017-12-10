@@ -1,16 +1,6 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
-import { AFFINITY_UNITS_REST_ENDPOINT as endpoint } from 'models/Endpoints';
-import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS } from 'models/actions/ActionTypes';
-import { normalize } from 'normalizr';
-import { Fetcher } from 'api/fetch';
-import { unit } from 'models/schema';
-import { appendBase } from 'utils';
-
-const parse = (json) => normalize(json, [unit]);
-
-const fullEndpoint = appendBase(endpoint);
-
-const fetcher = new Fetcher(fullEndpoint, parse);
+import * as types from 'models/actions/ActionTypes';
+import { fetcherUnit as fetcher } from 'models/requests/fetchers';
 
 const pageSelector = (state) => state.pagination.units.page;
 
@@ -22,9 +12,9 @@ function* requestUnits(action) {
    const page = yield select(pageSelector);
    const units = yield call(fetchUnits, { page, ...action.params });
    yield put({ type: 'REQUEST_SUCCESS_UNITS', ...units });
-   yield put({ type: CREATE_ABILITIES, ...units });
-   yield put({ type: CREATE_AFFINITIES, ...units });
-   yield put({ type: CREATE_UNITS, ...units });
+   yield put({ type: types.CREATE_ABILITIES, ...units });
+   yield put({ type: types.CREATE_AFFINITIES, ...units });
+   yield put({ type: types.CREATE_UNITS, ...units });
 }
 
 export function* generateUnit() {
@@ -38,4 +28,3 @@ export function* nextUnitPage() {
 export function* prevUnitPage() {
    yield takeLatest('CHANGE_PAGE_PREV_UNITS', requestUnits);
 }
-
