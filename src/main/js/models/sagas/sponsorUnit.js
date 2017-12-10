@@ -1,8 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/ActionTypes';
 import { fetcherSponsorUnit as fetcher } from 'models/requests/fetchers';
-
-const pageSelector = (state) => state.pagination.units.page;
+import { sponsorUnitPageSelector as pageSelector } from 'models/selectors/page';
 
 export function fetchSponsorUnits(params) {
    return fetcher.fetch(params);
