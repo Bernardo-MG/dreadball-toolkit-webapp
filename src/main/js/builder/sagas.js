@@ -23,6 +23,7 @@ function* requestValidateTeam(action) {
    yield put({ type: types.SET_BASE_RANK, ...payload });
    yield put({ type: types.SET_RANK, ...payload });
    yield put({ type: types.SET_TEAM_VALUE, ...payload });
+   yield put({ type: types.SET_SPONSOR_UNITS, ...payload });
 }
 
 export function* validateAffAvas() {
@@ -31,4 +32,8 @@ export function* validateAffAvas() {
 
 export function* validateTeam() {
    yield takeLatest('SPONSOR_TEAM_VALIDATION', requestValidateTeam);
+}
+
+export function* chooseUnitAndValidateTeam() {
+   yield takeLatest('CHOOSE_SPONSOR_UNIT', requestValidateTeam);
 }

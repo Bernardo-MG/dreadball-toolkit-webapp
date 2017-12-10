@@ -6,7 +6,6 @@ const sponsor = (
    action) => {
    const { type, payload } = action;
    const affinities = state.affinities.slice();
-   const units = state.units.slice();
    switch (type) {
    case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
       return {
@@ -30,12 +29,10 @@ const sponsor = (
          ...state,
          affinities
       };
-   case ActionTypes.CHOOSE_SPONSOR_UNIT:
-      units.push(payload);
-
+   case ActionTypes.SET_SPONSOR_UNITS:
       return {
          ...state,
-         units
+         units: payload.units
       };
    case ActionTypes.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS:
       return {

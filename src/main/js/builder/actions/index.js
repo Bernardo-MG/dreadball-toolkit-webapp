@@ -14,6 +14,13 @@ export const chooseSponsorAffinity = (affinity, index) => {
    };
 };
 
+export const chooseSponsorUnit = (unit) => {
+   return {
+      type: types.CHOOSE_SPONSOR_UNIT,
+      payload: unit
+   };
+};
+
 export const validateSponsorAffinities = (affinities = []) => {
    return {
       type: 'SPONSOR_TEAM_VALIDATION_AFFINITIES',
