@@ -10,10 +10,10 @@ import Button from 'grommet/components/Button';
 import BackIcon from 'grommet/components/icons/base/CaretBack';
 
 const PreviousPageButton = (props) =>
-   <Button onClick={props.actions.movePrevPage} icon={<BackIcon/>} />;
+   <Button onClick={props.action} icon={<BackIcon/>} />;
 
 PreviousPageButton.propTypes = {
-   actions: PropTypes.object.isRequired
+   action: PropTypes.object.isRequired
 };
 
 const mapStateToProps = () => {
@@ -22,7 +22,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(actions, dispatch)
+      action: bindActionCreators(actions.movePrevPage, dispatch)
    };
 };
 

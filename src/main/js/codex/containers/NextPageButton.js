@@ -10,10 +10,10 @@ import Button from 'grommet/components/Button';
 import NextIcon from 'grommet/components/icons/base/CaretNext';
 
 const NextPageButton = (props) =>
-   <Button onClick={props.actions.moveNextPage} icon={<NextIcon/>} />;
+   <Button onClick={props.action} icon={<NextIcon/>} />;
 
 NextPageButton.propTypes = {
-   actions: PropTypes.object.isRequired
+   action: PropTypes.object.isRequired
 };
 
 const mapStateToProps = () => {
@@ -22,7 +22,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(actions, dispatch)
+      action: bindActionCreators(actions.moveNextPage, dispatch)
    };
 };
 
