@@ -2,7 +2,7 @@ import { put, takeLatest, call } from 'redux-saga/effects';
 import { SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT as endpoint } from 'models/Endpoints';
 import { CREATE_AFFINITIES, CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES } from 'models/actions/ActionTypes';
 import { normalize } from 'normalizr';
-import { fetchPaginated } from 'api/fetch';
+import { Fetcher } from 'api/fetch';
 import { sponsorAffinityAvailability } from 'models/schema';
 import { appendBase } from 'utils';
 
@@ -10,11 +10,10 @@ const parse = (json) => normalize(json, [sponsorAffinityAvailability]);
 
 const fullEndpoint = appendBase(endpoint);
 
+const fetcher = new Fetcher(fullEndpoint, parse);
+
 function fetchAvas(params) {
-   return fetchPaginated(fullEndpoint, params, parse).then(
-      (response) => response,
-      (error) => error.message || 'Request failed'
-   );
+   return fetcher.fetch(params);
 }
 
 function* requestAffAvas(action) {
@@ -27,4 +26,3 @@ function* requestAffAvas(action) {
 export function* generateAffAvas() {
    yield takeLatest('REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', requestAffAvas);
 }
-

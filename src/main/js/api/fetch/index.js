@@ -45,12 +45,28 @@ const handleResponse = (response, json, parse) => {
    return content;
 };
 
-export const fetchPaginated = (url, params, parse) =>
+const fetchPaginated = (url, params, parse) =>
    request.get(url).query(params).set('Accept', 'application/json').then((response) =>
       handleResponse(response, response.body, parse)
    );
 
-export const defaultFetch = (url, params) =>
-   request.get(url).query(params).set('Accept', 'application/json').then((response) =>
-      handleResponse(response, response.body, (json) => json)
-   );
+export const Fetcher = class {
+
+   constructor(url, processor) {
+      this.url = url;
+
+      if (processor) {
+         this.processor = processor;
+      } else {
+         this.processor = (json) => json;
+      }
+   }
+
+   fetch(params) {
+      return fetchPaginated(this.url, params, this.processor).then(
+         (response) => response,
+         (error) => error.message || 'Request failed'
+      );
+   }
+
+};

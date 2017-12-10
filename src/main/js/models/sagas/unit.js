@@ -2,7 +2,7 @@ import { put, takeLatest, call, select } from 'redux-saga/effects';
 import { AFFINITY_UNITS_REST_ENDPOINT as endpoint } from 'models/Endpoints';
 import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS } from 'models/actions/ActionTypes';
 import { normalize } from 'normalizr';
-import { fetchPaginated } from 'api/fetch';
+import { Fetcher } from 'api/fetch';
 import { unit } from 'models/schema';
 import { appendBase } from 'utils';
 
@@ -10,13 +10,12 @@ const parse = (json) => normalize(json, [unit]);
 
 const fullEndpoint = appendBase(endpoint);
 
+const fetcher = new Fetcher(fullEndpoint, parse);
+
 const pageSelector = (state) => state.pagination.units.page;
 
 export function fetchUnits(params) {
-   return fetchPaginated(fullEndpoint, params, parse).then(
-      (response) => response,
-      (error) => error.message || 'Request failed'
-   );
+   return fetcher.fetch(params);
 }
 
 function* requestUnits(action) {
