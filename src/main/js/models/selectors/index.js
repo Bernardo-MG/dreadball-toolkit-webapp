@@ -1,16 +1,5 @@
 import { createSelector } from 'reselect';
-
-const filterByKeys = (data, keys) => {
-   const result = [];
-
-   keys.forEach((k) => {
-      if (k in data) {
-         result.push(data[k]);
-      }
-   });
-
-   return result;
-};
+import { filterByKeys } from 'models/selectors/utils';
 
 export const selectUnits = createSelector(
    (state) => state.model.units,
