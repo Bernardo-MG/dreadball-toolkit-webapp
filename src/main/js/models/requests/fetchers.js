@@ -1,7 +1,7 @@
 import { normalize } from 'normalizr';
 import { Fetcher } from 'api/fetch';
 import { unit, sponsorAffinityAvailability } from 'models/schema';
-import { appendBase } from 'utils';
+import { appendBase } from 'api/utils';
 import { SPONSOR_AFFINITY_UNITS_REST_ENDPOINT as endpointSponsorUnit, AFFINITY_UNITS_REST_ENDPOINT as endpointUnit, SPONSOR_AFFINITY_GROUP_AVAS_REST_ENDPOINT as endpointAvaAff } from 'models/requests/endpoints';
 
 const parseSponsorUnit = (json) => normalize(json, [unit]);
