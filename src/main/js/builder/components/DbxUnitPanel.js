@@ -12,7 +12,7 @@ import AddUnitButton from 'builder/containers/button/AddUnitButton';
 
 const DbxUnitPanel = (props) =>
    <Box>
-      <AddUnitButton unit={props.source.name} />
+      <AddUnitButton unit={props.source.templateName} />
       <Box direction='row'>
          <Heading tag='h1'>{props.source.name}</Heading>
       </Box>
