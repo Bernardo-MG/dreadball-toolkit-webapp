@@ -42,7 +42,7 @@ const SponsorTeamView = () =>
          </Box>
       </Tab>
       <Tab title='players'>
-         <Box>
+         <Box pad='medium' full={true}>
             <BoundDbxTeamPlayersPanel />
          </Box>
       </Tab>

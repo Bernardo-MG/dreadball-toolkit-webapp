@@ -13,7 +13,7 @@ const NextPageButton = (props) =>
    <Button onClick={props.action} icon={<NextIcon/>} />;
 
 NextPageButton.propTypes = {
-   action: PropTypes.object.isRequired
+   action: PropTypes.func.isRequired
 };
 
 const mapStateToProps = () => {

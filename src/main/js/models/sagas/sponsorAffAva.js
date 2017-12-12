@@ -13,6 +13,6 @@ function* requestAffAvas(action) {
    yield put({ type: types.CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, ...payload });
 }
 
-export function* generateAffAvas() {
-   yield takeLatest('REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', requestAffAvas);
-}
+export const affAvasSagas = [
+   takeLatest('REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', requestAffAvas)
+];

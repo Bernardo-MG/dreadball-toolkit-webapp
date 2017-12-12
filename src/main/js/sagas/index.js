@@ -1,20 +1,11 @@
-import { generateUnit, nextUnitPage, prevUnitPage } from 'models/sagas/unit';
-import { generateSponsorUnit, nextSponsorUnitPage, prevSponsorUnitPage } from 'models/sagas/sponsorUnit';
-import { generateAffAvas } from 'models/sagas/sponsorAffAva';
-import { validateAffAvas, validateTeam, chooseUnitAndValidateTeam } from 'builder/sagas';
-import { fork } from 'redux-saga/effects';
+import { unitSagas } from 'models/sagas/unit';
+import { sponsorUnitSagas } from 'models/sagas/sponsorUnit';
+import { affAvasSagas } from 'models/sagas/sponsorAffAva';
+import { builderSagas } from 'builder/sagas';
+import { all } from 'redux-saga/effects';
 
 export default function* rootSaga() {
    yield [
-      fork(generateUnit),
-      fork(nextUnitPage),
-      fork(prevUnitPage),
-      fork(generateSponsorUnit),
-      fork(nextSponsorUnitPage),
-      fork(prevSponsorUnitPage),
-      fork(generateAffAvas),
-      fork(validateAffAvas),
-      fork(validateTeam),
-      fork(chooseUnitAndValidateTeam)
+      all([...unitSagas, ...sponsorUnitSagas, ...affAvasSagas, ...builderSagas])
    ];
 }

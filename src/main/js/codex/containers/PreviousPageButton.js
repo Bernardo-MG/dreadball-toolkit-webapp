@@ -13,7 +13,7 @@ const PreviousPageButton = (props) =>
    <Button onClick={props.action} icon={<BackIcon/>} />;
 
 PreviousPageButton.propTypes = {
-   action: PropTypes.object.isRequired
+   action: PropTypes.func.isRequired
 };
 
 const mapStateToProps = () => {

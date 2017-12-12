@@ -43,14 +43,8 @@ function* loadUnitAndRequestValidateTeam(action) {
    yield call(requestValidateTeam, { params });
 }
 
-export function* validateAffAvas() {
-   yield takeLatest('SPONSOR_TEAM_VALIDATION_AFFINITIES', requestValidateAffAvas);
-}
-
-export function* validateTeam() {
-   yield takeLatest('SPONSOR_TEAM_VALIDATION', requestValidateTeam);
-}
-
-export function* chooseUnitAndValidateTeam() {
-   yield takeLatest('CHOOSE_SPONSOR_UNIT', loadUnitAndRequestValidateTeam);
-}
+export const builderSagas = [
+   takeLatest('SPONSOR_TEAM_VALIDATION_AFFINITIES', requestValidateAffAvas),
+   takeLatest('SPONSOR_TEAM_VALIDATION', requestValidateTeam),
+   takeLatest('CHOOSE_SPONSOR_UNIT', loadUnitAndRequestValidateTeam)
+];

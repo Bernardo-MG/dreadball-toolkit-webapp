@@ -16,14 +16,8 @@ function* requestSponsorUnits(action) {
    yield put({ type: types.CREATE_RATED_UNITS, ...units });
 }
 
-export function* generateSponsorUnit() {
-   yield takeLatest('REQUEST_SPONSOR_UNITS', requestSponsorUnits);
-}
-
-export function* nextSponsorUnitPage() {
-   yield takeLatest('CHANGE_PAGE_NEXT_SPONSOR_UNITS', requestSponsorUnits);
-}
-
-export function* prevSponsorUnitPage() {
-   yield takeLatest('CHANGE_PAGE_PREV_SPONSOR_UNITS', requestSponsorUnits);
-}
+export const sponsorUnitSagas = [
+   takeLatest('REQUEST_SPONSOR_UNITS', requestSponsorUnits),
+   takeLatest('CHANGE_PAGE_NEXT_SPONSOR_UNITS', requestSponsorUnits),
+   takeLatest('CHANGE_PAGE_PREV_SPONSOR_UNITS', requestSponsorUnits)
+];

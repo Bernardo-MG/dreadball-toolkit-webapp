@@ -16,14 +16,8 @@ function* requestUnits(action) {
    yield put({ type: types.CREATE_UNITS, ...units });
 }
 
-export function* generateUnit() {
-   yield takeLatest('REQUEST_UNITS', requestUnits);
-}
-
-export function* nextUnitPage() {
-   yield takeLatest('CHANGE_PAGE_NEXT_UNITS', requestUnits);
-}
-
-export function* prevUnitPage() {
-   yield takeLatest('CHANGE_PAGE_PREV_UNITS', requestUnits);
-}
+export const unitSagas = [
+   takeLatest('REQUEST_UNITS', requestUnits),
+   takeLatest('CHANGE_PAGE_NEXT_UNITS', requestUnits),
+   takeLatest('CHANGE_PAGE_PREV_UNITS', requestUnits)
+];

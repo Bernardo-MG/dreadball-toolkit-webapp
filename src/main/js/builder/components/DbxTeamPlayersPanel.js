@@ -27,8 +27,10 @@ class DbxTeamPlayersPanel extends Component {
 
    render() {
       return (
-         <Box pad='medium' full={true}>
-            <SponsorTeamCost />
+         <Box margin='small'>
+            <Box margin='small'>
+               <SponsorTeamCost />
+            </Box>
             <AddDbxUnitList source={this.props.units} />
             <Box direction='row'>
                <Box margin='small'>
