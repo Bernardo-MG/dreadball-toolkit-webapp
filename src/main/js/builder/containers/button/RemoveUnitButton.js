@@ -7,14 +7,14 @@ import { connect } from 'react-redux';
 
 import Button from 'grommet/components/Button';
 
-import { addTeamUnit } from 'builder/actions';
+import { removeTeamUnit } from 'builder/actions';
 
-import AddIcon from 'grommet/components/icons/base/AddCircle';
+import SubtractIcon from 'grommet/components/icons/base/SubtractCircle';
 
-const AddUnitButton = (props) =>
-   <Button onClick={() => props.action(props.unit)} icon={<AddIcon/>} />;
+const RemoveUnitButton = (props) =>
+   <Button onClick={() => props.action(props.unit)} icon={<SubtractIcon/>} />;
 
-AddUnitButton.propTypes = {
+RemoveUnitButton.propTypes = {
    unit: PropTypes.string.isRequired,
    action: PropTypes.object.isRequired
 };
@@ -25,11 +25,11 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(addTeamUnit, dispatch)
+      action: bindActionCreators(removeTeamUnit, dispatch)
    };
 };
 
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(AddUnitButton);
+)(RemoveUnitButton);

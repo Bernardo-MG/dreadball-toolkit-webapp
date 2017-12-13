@@ -4,8 +4,14 @@ import PropTypes from 'prop-types';
 
 import Listing from 'components/Listing';
 
+import RemovableTeamUnit from 'builder/containers/RemovableTeamUnit';
+
 import { connect } from 'react-redux';
 
+
+function toComponent(name) {
+   return <RemovableTeamUnit unit={name} />;
+}
 
 class SponsorUnitNameList extends Component {
 
@@ -14,11 +20,11 @@ class SponsorUnitNameList extends Component {
    constructor(props) {
       super(props);
 
-      this.source = props.sponsorUnits.map((unit) => unit.templateName);
+      this.source = props.sponsorUnits.map((unit) => unit.templateName).map((name) => toComponent(name));
    }
 
    componentWillReceiveProps(props) {
-      this.source = props.sponsorUnits.map((unit) => unit.templateName);
+      this.source = props.sponsorUnits.map((unit) => unit.templateName).map((name) => toComponent(name));
    }
 
    render() {
