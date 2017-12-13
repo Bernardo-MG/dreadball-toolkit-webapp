@@ -24,7 +24,7 @@ const unitsSelection = (state) => state.builder.sponsor.units;
 
 const baseRankSelection = (state) => state.builder.sponsor.baseRank;
 
-function* setUnit(action) {
+function* addUnit(action) {
    const affinities = yield select(affinitiesSelection);
    const units = yield select(unitsSelection);
    const baseRank = yield select(baseRankSelection);
@@ -35,8 +35,20 @@ function* setUnit(action) {
    yield call(request, { params });
 }
 
+function* removeUnit(action) {
+   const affinities = yield select(affinitiesSelection);
+   const units = yield select(unitsSelection);
+   const baseRank = yield select(baseRankSelection);
+
+   units.filter((u) => u !== action.payload);
+
+   const params = { affinities, units, baseRank };
+   yield call(request, { params });
+}
+
 export const teamSagas = [
    takeLatest('SPONSOR_TEAM_VALIDATION', request),
    takeLatest('REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION', build),
-   takeLatest('CHOOSE_SPONSOR_UNIT', setUnit)
+   takeLatest(types.ADD_TEAM_UNIT, addUnit),
+   takeLatest(types.REMOVE_TEAM_UNIT, removeUnit)
 ];

@@ -14,9 +14,16 @@ export const chooseSponsorAffinity = (affinity, index) => {
    };
 };
 
-export const chooseSponsorUnit = (unit) => {
+export const addTeamUnit = (unit) => {
    return {
-      type: types.CHOOSE_SPONSOR_UNIT,
+      type: types.ADD_TEAM_UNIT,
+      payload: unit
+   };
+};
+
+export const removeTeamUnit = (unit) => {
+   return {
+      type: types.REMOVE_TEAM_UNIT,
       payload: unit
    };
 };
