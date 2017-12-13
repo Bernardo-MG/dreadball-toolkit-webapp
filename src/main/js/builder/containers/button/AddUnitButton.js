@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -9,38 +9,14 @@ import Button from 'grommet/components/Button';
 
 import * as actions from 'builder/actions';
 
-class AddUnitButton extends Component {
+import AddIcon from 'grommet/components/icons/base/AddCircle';
 
-   unit;
-   action;
-
-   chooseUnit = () => {
-      this.action(this.unit);
-   };
-
-   constructor(props) {
-      super(props);
-
-      this.unit = props.unit;
-
-      this.action = props.actions.chooseSponsorUnit;
-   }
-
-   componentWillReceiveProps(props) {
-      this.unit = props.unit;
-   }
-
-   render() {
-      return (
-         <Button label='add' onClick={this.chooseUnit} />
-      );
-   }
-
-}
+const AddUnitButton = (props) =>
+   <Button onClick={() => props.action(props.unit)} icon={<AddIcon/>} />;
 
 AddUnitButton.propTypes = {
    unit: PropTypes.string.isRequired,
-   actions: PropTypes.object.isRequired
+   action: PropTypes.object.isRequired
 };
 
 const mapStateToProps = () => {
@@ -49,7 +25,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(actions, dispatch)
+      action: bindActionCreators(actions.addTeamUnit, dispatch)
    };
 };
 
