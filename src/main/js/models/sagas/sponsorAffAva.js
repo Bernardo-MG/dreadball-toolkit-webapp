@@ -7,8 +7,8 @@ function fetch(params) {
 }
 
 function* request(action) {
-   const payload = yield call(fetch, { ...action.params });
-   yield put({ type: 'REQUEST_SUCCESS_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', ...payload });
+   const response = yield call(fetch, { ...action.params });
+   yield put({ type: 'REQUEST_SUCCESS_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', ...response });
 }
 
 function* build(action) {
