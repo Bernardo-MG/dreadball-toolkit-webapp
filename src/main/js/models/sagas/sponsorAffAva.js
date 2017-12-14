@@ -1,6 +1,7 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import * as types from 'models/actions/ActionTypes';
 import { fetcherAvaAff as fetcher } from 'models/requests/fetchers';
+import { requestSuccess } from 'models/actions/sponsorAffAva';
 
 function fetch(params) {
    return fetcher.fetch(params);
@@ -8,7 +9,7 @@ function fetch(params) {
 
 function* request(action) {
    const response = yield call(fetch, { ...action.params });
-   yield put({ type: 'REQUEST_SUCCESS_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', ...response });
+   yield put(requestSuccess(response.payload));
 }
 
 function* build(action) {
@@ -17,6 +18,6 @@ function* build(action) {
 }
 
 export const affAvasSagas = [
-   takeLatest('REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', request),
-   takeLatest('REQUEST_SUCCESS_SPONSOR_AFFINITY_GROUP_AVAILABILITIES', build)
+   takeLatest(types.REQUEST_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, request),
+   takeLatest(types.REQUEST_SUCCESS_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, build)
 ];

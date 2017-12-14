@@ -8,9 +8,7 @@ function fetch(params) {
 
 function* request(action) {
    const payload = yield call(fetch, action.params);
-   yield put({ type: 'REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION_AFFINITIES', ...payload });
-   yield put({ type: types.SET_BASE_RANK, ...payload });
-   yield put({ type: types.SET_RANK, ...payload });
+   yield put({ type: types.REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION_AFFINITIES, ...payload });
 }
 
 function* build(action) {
@@ -19,6 +17,6 @@ function* build(action) {
 }
 
 export const affinitiesSagas = [
-   takeLatest('SPONSOR_TEAM_VALIDATION_AFFINITIES', request),
-   takeLatest('REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION_AFFINITIES', build)
+   takeLatest(types.TEAM_AFFINITIES_VALIDATION, request),
+   takeLatest(types.REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION_AFFINITIES, build)
 ];

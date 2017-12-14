@@ -2,6 +2,7 @@ import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/ActionTypes';
 import { fetcherUnit as fetcher } from 'models/requests/fetchers';
 import { unitPageSelector as pageSelector } from 'models/selectors/page';
+import { requestSuccess } from 'models/actions/unit';
 
 export function fetch(params) {
    return fetcher.fetch(params);
@@ -10,7 +11,7 @@ export function fetch(params) {
 function* request(action) {
    const page = yield select(pageSelector);
    const response = yield call(fetch, { page, ...action.params });
-   yield put({ type: 'REQUEST_SUCCESS_UNITS', ...response });
+   yield put(requestSuccess(response.payload, response.pagination));
 }
 
 function* build(action) {
@@ -20,8 +21,8 @@ function* build(action) {
 }
 
 export const unitSagas = [
-   takeLatest('REQUEST_UNITS', request),
-   takeLatest('REQUEST_SUCCESS_UNITS', build),
-   takeLatest('CHANGE_PAGE_NEXT_UNITS', request),
-   takeLatest('CHANGE_PAGE_PREV_UNITS', request)
+   takeLatest(types.REQUEST_UNITS, request),
+   takeLatest(types.REQUEST_SUCCESS_UNITS, build),
+   takeLatest(types.CHANGE_PAGE_NEXT_UNITS, request),
+   takeLatest(types.CHANGE_PAGE_PREV_UNITS, request)
 ];

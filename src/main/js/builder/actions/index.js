@@ -30,7 +30,7 @@ export const removeTeamUnit = (unit) => {
 
 export const validateSponsorAffinities = (affinities = []) => {
    return {
-      type: 'SPONSOR_TEAM_VALIDATION_AFFINITIES',
+      type: types.TEAM_AFFINITIES_VALIDATION,
       params: { affinities }
    };
 };
@@ -41,7 +41,7 @@ export const validateSponsorTeam = (
    baseRank = 0,
    cheerleaders = 0, coachingDice = 0, mediBots = 0, specialMoveCards = 0, nastySurpriseCards = 0, wagers = 0) => {
    return {
-      type: 'SPONSOR_TEAM_VALIDATION',
+      type: types.TEAM_VALIDATION,
       params: { affinities, units, baseRank, cheerleaders, coachingDice, mediBots, specialMoveCards, nastySurpriseCards, wagers }
    };
 };

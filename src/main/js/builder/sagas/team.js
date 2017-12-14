@@ -8,14 +8,14 @@ function fetch(params) {
 
 function* request(action) {
    const response = yield call(fetch, action.params);
-   yield put({ type: 'REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION', ...response });
+   yield put({ type: types.REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION, ...response });
 }
 
 function* build(action) {
    yield put({ type: types.SET_BASE_RANK, payload: action.payload });
    yield put({ type: types.SET_RANK, payload: action.payload });
    yield put({ type: types.SET_TEAM_VALUE, payload: action.payload });
-   yield put({ type: types.SET_SPONSOR_UNITS, payload: action.payload });
+   yield put({ type: types.SET_TEAM_UNITS, payload: action.payload });
 }
 
 const affinitiesSelection = (state) => state.builder.sponsor.affinities;
@@ -47,8 +47,8 @@ function* removeUnit(action) {
 }
 
 export const teamSagas = [
-   takeLatest('SPONSOR_TEAM_VALIDATION', request),
-   takeLatest('REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION', build),
+   takeLatest(types.TEAM_VALIDATION, request),
+   takeLatest(types.REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION, build),
    takeLatest(types.ADD_TEAM_UNIT, addUnit),
    takeLatest(types.REMOVE_TEAM_UNIT, removeUnit)
 ];

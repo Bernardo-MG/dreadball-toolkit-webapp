@@ -29,15 +29,10 @@ const sponsor = (
          ...state,
          affinities
       };
-   case ActionTypes.SET_SPONSOR_UNITS:
+   case ActionTypes.SET_TEAM_UNITS:
       return {
          ...state,
          units: payload.units
-      };
-   case ActionTypes.REQUEST_SPONSOR_TEAM_VALIDATION_SUCCESS:
-      return {
-         ...state,
-         ...payload
       };
    case ActionTypes.SET_BASE_RANK:
       return {
