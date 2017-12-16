@@ -29,25 +29,35 @@ const sponsor = (
          ...state,
          affinities
       };
+   case ActionTypes.ADD_TEAM_UNIT:
+      return {
+         ...state,
+         units: [...state.units, payload]
+      };
+   case ActionTypes.REMOVE_TEAM_UNIT:
+      return {
+         ...state,
+         units: state.units.filter((unit) => unit !== payload)
+      };
    case ActionTypes.SET_TEAM_UNITS:
       return {
          ...state,
-         units: payload.units
+         units: payload
       };
    case ActionTypes.SET_BASE_RANK:
       return {
          ...state,
-         baseRank: payload.baseRank
+         baseRank: payload
       };
    case ActionTypes.SET_RANK:
       return {
          ...state,
-         rank: payload.rank
+         rank: payload
       };
    case ActionTypes.SET_TEAM_VALUE:
       return {
          ...state,
-         teamValue: payload.teamValue
+         teamValue: payload
       };
    case ActionTypes.SET_SPONSOR_NAME: {
       return {
@@ -56,51 +66,39 @@ const sponsor = (
       };
    }
    case ActionTypes.SET_SPONSOR_CHEERLEADERS: {
-      const cheerleaders = payload;
-
       return {
          ...state,
-         cheerleaders
+         cheerleaders: payload
       };
    }
    case ActionTypes.SET_SPONSOR_COACHING_DICE: {
-      const coachingDice = payload;
-
       return {
          ...state,
-         coachingDice
+         coachingDice: payload
       };
    }
    case ActionTypes.SET_SPONSOR_MEDIBOT: {
-      const mediBots = payload;
-
       return {
          ...state,
-         mediBots
+         mediBots: payload
       };
    }
    case ActionTypes.SET_SPONSOR_NASTY_SURPRISE_CARD: {
-      const nastySurpriseCards = payload;
-
       return {
          ...state,
-         nastySurpriseCards
+         nastySurpriseCards: payload
       };
    }
    case ActionTypes.SET_SPONSOR_SPECIAL_MOVE_CARD: {
-      const specialMoveCards = payload;
-
       return {
          ...state,
-         specialMoveCards
+         specialMoveCards: payload
       };
    }
    case ActionTypes.SET_SPONSOR_WAGER: {
-      const wagers = payload;
-
       return {
          ...state,
-         wagers
+         wagers: payload
       };
    }
    default:

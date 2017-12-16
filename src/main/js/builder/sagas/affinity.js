@@ -13,8 +13,8 @@ function* request(action) {
 }
 
 function* build(action) {
-   yield put({ type: types.SET_BASE_RANK, payload: action.payload });
-   yield put({ type: types.SET_RANK, payload: action.payload });
+   yield put({ type: types.SET_BASE_RANK, payload: action.payload.baseRank });
+   yield put({ type: types.SET_RANK, payload: action.payload.rank });
 }
 
 export const affinitiesSagas = [
