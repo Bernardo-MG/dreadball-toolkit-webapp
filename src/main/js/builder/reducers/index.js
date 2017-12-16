@@ -39,11 +39,6 @@ const sponsor = (
          ...state,
          units: state.units.filter((unit) => unit !== payload)
       };
-   case ActionTypes.SET_TEAM_UNITS:
-      return {
-         ...state,
-         units: payload
-      };
    case ActionTypes.SET_BASE_RANK:
       return {
          ...state,

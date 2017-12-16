@@ -10,7 +10,7 @@ import RemoveUnitButton from 'builder/containers/button/RemoveUnitButton';
 
 
 const RemovableTeamUnit = (props) =>
-   <Box>props.unit <RemoveUnitButton unit={props.unit} /></Box>;
+   <Box>{props.unit} <RemoveUnitButton unit={props.unit} /></Box>;
 
 RemovableTeamUnit.propTypes = {
    unit: PropTypes.string.isRequired

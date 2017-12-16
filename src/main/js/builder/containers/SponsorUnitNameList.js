@@ -20,11 +20,11 @@ class SponsorUnitNameList extends Component {
    constructor(props) {
       super(props);
 
-      this.source = props.sponsorUnits.map((unit) => unit.templateName).map((name) => toComponent(name));
+      this.source = props.sponsorUnits.map((name) => toComponent(name));
    }
 
    componentWillReceiveProps(props) {
-      this.source = props.sponsorUnits.map((unit) => unit.templateName).map((name) => toComponent(name));
+      this.source = props.sponsorUnits.map((name) => toComponent(name));
    }
 
    render() {

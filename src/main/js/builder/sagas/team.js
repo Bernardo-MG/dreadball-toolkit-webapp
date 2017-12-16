@@ -16,7 +16,6 @@ function* build(action) {
    yield put({ type: types.SET_BASE_RANK, payload: action.payload.baseRank });
    yield put({ type: types.SET_RANK, payload: action.payload.rank });
    yield put({ type: types.SET_TEAM_VALUE, payload: action.payload.teamValue });
-   yield put({ type: types.SET_TEAM_UNITS, payload: action.payload.units });
 }
 
 const affinitiesSelection = (state) => state.builder.sponsor.affinities;
