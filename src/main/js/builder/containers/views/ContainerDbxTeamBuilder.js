@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import { beginDbxTeamBuilding, validateSponsorAffinities } from 'builder/actions';
+import { clearTeam, validateSponsorAffinities } from 'builder/actions';
 import DbxTeamBuilder from 'builder/components/views/DbxTeamBuilder';
 
 class ContainerDbxTeamBuilder extends Component {
@@ -49,7 +49,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
    return {
       actionValidate: bindActionCreators(validateSponsorAffinities, dispatch),
-      actionBegin: bindActionCreators(beginDbxTeamBuilding, dispatch)
+      actionBegin: bindActionCreators(clearTeam, dispatch)
    };
 };
 

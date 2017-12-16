@@ -7,7 +7,7 @@ const sponsor = (
    const { type, payload } = action;
    const affinities = state.affinities.slice();
    switch (type) {
-   case ActionTypes.BEGIN_DBX_TEAM_BUILDING:
+   case ActionTypes.CLEAR_TEAM:
       return {
          affinities: [],
          rank: 0,

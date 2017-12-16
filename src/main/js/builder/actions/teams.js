@@ -1,8 +1,8 @@
 import * as types from 'builder/actions/ActionTypes';
 
-export const beginDbxTeamBuilding = () => {
+export const clearTeam = () => {
    return {
-      type: types.BEGIN_DBX_TEAM_BUILDING
+      type: types.CLEAR_TEAM
    };
 };
 
