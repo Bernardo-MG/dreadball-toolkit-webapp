@@ -60,37 +60,37 @@ const sponsor = (
          sponsorName: payload
       };
    }
-   case ActionTypes.SET_SPONSOR_CHEERLEADERS: {
+   case ActionTypes.SET_CHEERLEADERS: {
       return {
          ...state,
          cheerleaders: payload
       };
    }
-   case ActionTypes.SET_SPONSOR_COACHING_DICE: {
+   case ActionTypes.SET_COACHING_DICE: {
       return {
          ...state,
          coachingDice: payload
       };
    }
-   case ActionTypes.SET_SPONSOR_MEDIBOT: {
+   case ActionTypes.SET_MEDIBOT: {
       return {
          ...state,
          mediBots: payload
       };
    }
-   case ActionTypes.SET_SPONSOR_NASTY_SURPRISE_CARD: {
+   case ActionTypes.SET_NASTY_SURPRISE_CARD: {
       return {
          ...state,
          nastySurpriseCards: payload
       };
    }
-   case ActionTypes.SET_SPONSOR_SPECIAL_MOVE_CARD: {
+   case ActionTypes.SET_SPECIAL_MOVE_CARD: {
       return {
          ...state,
          specialMoveCards: payload
       };
    }
-   case ActionTypes.SET_SPONSOR_WAGER: {
+   case ActionTypes.SET_WAGER: {
       return {
          ...state,
          wagers: payload

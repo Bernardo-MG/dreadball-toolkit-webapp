@@ -20,7 +20,7 @@ export const removeTeamUnit = (unit) => {
    };
 };
 
-export const validateSponsorTeam = (
+export const validateTeam = (
    affinities = [],
    units = [],
    baseRank = 0,
@@ -31,58 +31,58 @@ export const validateSponsorTeam = (
    };
 };
 
-export const validateSponsorTeamSuccess = (payload) => {
+export const validateTeamSuccess = (payload) => {
    return {
-      type: types.REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION,
+      type: types.REQUEST_SUCCESS_TEAM_VALIDATION,
       payload
    };
 };
 
-export const updateSponsorName = (value) => {
+export const setSponsorName = (value) => {
    return {
       type: types.SET_SPONSOR_NAME,
       payload: value
    };
 };
 
-export const updateSponsorCoachingDice = (value) => {
+export const setCoachingDice = (value) => {
    return {
-      type: types.SET_SPONSOR_COACHING_DICE,
+      type: types.SET_COACHING_DICE,
       payload: value
    };
 };
 
-export const updateSponsorSpecialMoveCard = (value) => {
+export const setSpecialMoveCard = (value) => {
    return {
-      type: types.SET_SPONSOR_SPECIAL_MOVE_CARD,
+      type: types.SET_SPECIAL_MOVE_CARD,
       payload: value
    };
 };
 
-export const updateSponsorNastySurpriseCard = (value) => {
+export const setNastySurpriseCard = (value) => {
    return {
-      type: types.SET_SPONSOR_NASTY_SURPRISE_CARD,
+      type: types.SET_NASTY_SURPRISE_CARD,
       payload: value
    };
 };
 
-export const updateSponsorWager = (value) => {
+export const setWager = (value) => {
    return {
-      type: types.SET_SPONSOR_WAGER,
+      type: types.SET_WAGER,
       payload: value
    };
 };
 
-export const updateSponsorMediBot = (value) => {
+export const setMediBot = (value) => {
    return {
-      type: types.SET_SPONSOR_MEDIBOT,
+      type: types.SET_MEDIBOT,
       payload: value
    };
 };
 
-export const updateSponsorCheerleaders = (value) => {
+export const setCheerleaders = (value) => {
    return {
-      type: types.SET_SPONSOR_CHEERLEADERS,
+      type: types.SET_CHEERLEADERS,
       payload: value
    };
 };

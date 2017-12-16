@@ -19,5 +19,5 @@ function* build(action) {
 
 export const affinitiesSagas = [
    takeLatest(types.TEAM_AFFINITIES_VALIDATION, request),
-   takeLatest(types.REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION_AFFINITIES, build)
+   takeLatest(types.REQUEST_SUCCESS_TEAM_VALIDATION_AFFINITIES, build)
 ];

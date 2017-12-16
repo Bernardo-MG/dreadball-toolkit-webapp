@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { validateSponsorTeam } from 'builder/actions';
+import { validateTeam } from 'builder/actions';
 
 import BoundNumberInput from 'components/BoundNumberInput';
 
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(validateSponsorTeam, dispatch)
+      action: bindActionCreators(validateTeam, dispatch)
    };
 };
 

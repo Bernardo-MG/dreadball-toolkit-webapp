@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { updateSponsorSpecialMoveCard } from 'builder/actions';
+import { setSpecialMoveCard } from 'builder/actions';
 
 import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(updateSponsorSpecialMoveCard, dispatch)
+      action: bindActionCreators(setSpecialMoveCard, dispatch)
    };
 };
 
