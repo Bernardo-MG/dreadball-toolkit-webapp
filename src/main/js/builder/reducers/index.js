@@ -49,13 +49,13 @@ const sponsor = (
          ...state,
          teamValue: payload.teamValue
       };
-   case ActionTypes.UPDATE_SPONSOR_NAME: {
+   case ActionTypes.SET_SPONSOR_NAME: {
       return {
          ...state,
          sponsorName: payload
       };
    }
-   case ActionTypes.UPDATE_SPONSOR_CHEERLEADERS: {
+   case ActionTypes.SET_SPONSOR_CHEERLEADERS: {
       const cheerleaders = payload;
 
       return {
@@ -63,7 +63,7 @@ const sponsor = (
          cheerleaders
       };
    }
-   case ActionTypes.UPDATE_SPONSOR_COACHING_DICE: {
+   case ActionTypes.SET_SPONSOR_COACHING_DICE: {
       const coachingDice = payload;
 
       return {
@@ -71,7 +71,7 @@ const sponsor = (
          coachingDice
       };
    }
-   case ActionTypes.UPDATE_SPONSOR_MEDIBOT: {
+   case ActionTypes.SET_SPONSOR_MEDIBOT: {
       const mediBots = payload;
 
       return {
@@ -79,7 +79,7 @@ const sponsor = (
          mediBots
       };
    }
-   case ActionTypes.UPDATE_SPONSOR_NASTY_SURPRISE_CARD: {
+   case ActionTypes.SET_SPONSOR_NASTY_SURPRISE_CARD: {
       const nastySurpriseCards = payload;
 
       return {
@@ -87,7 +87,7 @@ const sponsor = (
          nastySurpriseCards
       };
    }
-   case ActionTypes.UPDATE_SPONSOR_SPECIAL_MOVE_CARD: {
+   case ActionTypes.SET_SPONSOR_SPECIAL_MOVE_CARD: {
       const specialMoveCards = payload;
 
       return {
@@ -95,7 +95,7 @@ const sponsor = (
          specialMoveCards
       };
    }
-   case ActionTypes.UPDATE_SPONSOR_WAGER: {
+   case ActionTypes.SET_SPONSOR_WAGER: {
       const wagers = payload;
 
       return {

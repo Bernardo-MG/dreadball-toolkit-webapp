@@ -7,7 +7,7 @@ function fetch(params) {
    return fetcher.fetch(params);
 }
 
-function* request(action) {
+function* requestValidation(action) {
    const response = yield call(fetch, action.params);
    yield put(validateSponsorTeamSuccess(response.payload));
 }
@@ -33,7 +33,7 @@ function* addUnit(action) {
    units.push(action.payload);
 
    const params = { affinities, units, baseRank };
-   yield call(request, { params });
+   yield call(requestValidation, { params });
 }
 
 function* removeUnit(action) {
@@ -44,11 +44,11 @@ function* removeUnit(action) {
    units.filter((u) => u !== action.payload);
 
    const params = { affinities, units, baseRank };
-   yield call(request, { params });
+   yield call(requestValidation, { params });
 }
 
 export const teamSagas = [
-   takeLatest(types.TEAM_VALIDATION, request),
+   takeLatest(types.TEAM_VALIDATION, requestValidation),
    takeLatest(types.REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION, build),
    takeLatest(types.ADD_TEAM_UNIT, addUnit),
    takeLatest(types.REMOVE_TEAM_UNIT, removeUnit)
