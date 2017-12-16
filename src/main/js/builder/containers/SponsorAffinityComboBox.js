@@ -7,15 +7,15 @@ import { bindActionCreators } from 'redux';
 
 import SponsorAffinitySelect from 'builder/components/SponsorAffinitySelect';
 
-import * as Actions from 'builder/actions';
+import { chooseSponsorAffinity } from 'builder/actions';
 
 const SponsorAffinityComboBox = (props) =>
-   <SponsorAffinitySelect index={props.index} source={props.source} onChange={props.actions.chooseSponsorAffinity} />;
+   <SponsorAffinitySelect index={props.index} source={props.source} onChange={props.action} />;
 
 SponsorAffinityComboBox.propTypes = {
    index: PropTypes.number.isRequired,
    source: PropTypes.array.isRequired,
-   actions: PropTypes.object.isRequired
+   action: PropTypes.func.isRequired
 };
 
 const mapStateToProps = () => {
@@ -24,7 +24,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(Actions, dispatch)
+      action: bindActionCreators(chooseSponsorAffinity, dispatch)
    };
 };
 

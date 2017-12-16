@@ -7,7 +7,7 @@ import FormField from 'grommet/components/FormField';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as actions from 'builder/actions';
+import { updateSponsorName } from 'builder/actions';
 
 class SponsorNameInput extends Component {
 
@@ -20,7 +20,7 @@ class SponsorNameInput extends Component {
    constructor(props) {
       super(props);
 
-      this.update = props.actions.updateSponsorName;
+      this.update = props.action;
    }
 
    render() {
@@ -33,7 +33,7 @@ class SponsorNameInput extends Component {
 }
 
 SponsorNameInput.propTypes = {
-   actions: PropTypes.object.isRequired,
+   action: PropTypes.func.isRequired,
    sponsorName: PropTypes.string.isRequired
 };
 
@@ -45,7 +45,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(actions, dispatch)
+      action: bindActionCreators(updateSponsorName, dispatch)
    };
 };
 

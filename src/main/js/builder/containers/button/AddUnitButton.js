@@ -16,7 +16,7 @@ const AddUnitButton = (props) =>
 
 AddUnitButton.propTypes = {
    unit: PropTypes.string.isRequired,
-   action: PropTypes.object.isRequired
+   action: PropTypes.func.isRequired
 };
 
 const mapStateToProps = () => {

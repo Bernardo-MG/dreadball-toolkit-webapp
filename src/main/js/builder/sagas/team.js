@@ -1,6 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/ActionTypes';
 import { teamValidationFetcher as fetcher } from 'builder/requests/fetchers';
+import { validateSponsorTeamSuccess } from 'builder/actions';
 
 function fetch(params) {
    return fetcher.fetch(params);
@@ -8,7 +9,7 @@ function fetch(params) {
 
 function* request(action) {
    const response = yield call(fetch, action.params);
-   yield put({ type: types.REQUEST_SUCCESS_SPONSOR_TEAM_VALIDATION, ...response });
+   yield put(validateSponsorTeamSuccess(response.payload));
 }
 
 function* build(action) {

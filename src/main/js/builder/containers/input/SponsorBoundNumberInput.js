@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as Actions from 'builder/actions';
+import { validateSponsorTeam } from 'builder/actions';
 
 import BoundNumberInput from 'components/BoundNumberInput';
 
@@ -33,7 +33,7 @@ class SponsorBoundNumberInput extends Component {
 
       this.handleChange = props.handleChange;
       this.updateSponsor = props.updateSponsor;
-      this.validate = props.actions.validateSponsorTeam;
+      this.validate = props.action;
    }
 
    componentWillReceiveProps(props) {
@@ -50,7 +50,7 @@ class SponsorBoundNumberInput extends Component {
 SponsorBoundNumberInput.propTypes = {
    handleChange: PropTypes.func.isRequired,
    updateSponsor: PropTypes.func.isRequired,
-   actions: PropTypes.object.isRequired,
+   action: PropTypes.func.isRequired,
    sponsor: PropTypes.object.isRequired
 };
 
@@ -62,7 +62,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(Actions, dispatch)
+      action: bindActionCreators(validateSponsorTeam, dispatch)
    };
 };
 

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
-import * as Actions from 'builder/actions';
+import { beginDbxTeamBuilding, validateSponsorAffinities } from 'builder/actions';
 import DbxTeamBuilder from 'builder/components/views/DbxTeamBuilder';
 
 class ContainerDbxTeamBuilder extends Component {
@@ -17,9 +17,9 @@ class ContainerDbxTeamBuilder extends Component {
 
       this.props = props;
 
-      this.validate = props.actions.validateSponsorAffinities;
+      this.validate = props.actionValidate;
 
-      this.props.actions.beginDbxTeamBuilding();
+      this.props.actionBegin();
    }
 
    onFinishAffinities() {
@@ -34,7 +34,8 @@ class ContainerDbxTeamBuilder extends Component {
 }
 
 ContainerDbxTeamBuilder.propTypes = {
-   actions: PropTypes.object.isRequired,
+   actionValidate: PropTypes.func.isRequired,
+   actionBegin: PropTypes.func.isRequired,
    affinities: PropTypes.array.isRequired
 };
 
@@ -47,7 +48,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(Actions, dispatch)
+      actionValidate: bindActionCreators(validateSponsorAffinities, dispatch),
+      actionBegin: bindActionCreators(beginDbxTeamBuilding, dispatch)
    };
 };
 

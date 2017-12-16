@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import * as Actions from 'builder/actions';
+import { updateSponsorMediBot } from 'builder/actions';
 
 import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
 
 const MediBotInput = (props) =>
    <SponsorBoundNumberInput {...props}
-      handleChange={props.actions.updateSponsorMediBot}
+      handleChange={props.action}
       updateSponsor={(value, sponsor) => {
          const result = Object.assign({}, sponsor);
          result.mediBots = value;
@@ -19,7 +19,7 @@ const MediBotInput = (props) =>
       }} />;
 
 MediBotInput.propTypes = {
-   actions: PropTypes.object.isRequired
+   action: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -30,7 +30,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(Actions, dispatch)
+      action: bindActionCreators(updateSponsorMediBot, dispatch)
    };
 };
 
