@@ -7,7 +7,7 @@ import Button from 'grommet/components/Button';
 import Form from 'grommet/components/Form';
 import Heading from 'grommet/components/Heading';
 
-import AffinityGroupsComboPanel from 'builder/containers/AffinityGroupsComboPanel';
+import AffinityGroupsComboPanel from 'builder/affinities/containers/AffinityGroupsComboPanel';
 
 const SponsorAffinitiesView = (props) =>
    <Form>

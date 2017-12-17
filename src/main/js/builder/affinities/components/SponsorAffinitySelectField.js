@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Box from 'grommet/components/Box';
 
-import SponsorAffinityComboBox from 'builder/containers/SponsorAffinityComboBox';
+import SponsorAffinityComboBox from 'builder/affinities/containers/SponsorAffinityComboBox';
 
 const SponsorAffinitySelectField = (props) =>
    <Box>

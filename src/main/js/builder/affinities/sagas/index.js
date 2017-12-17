@@ -1,6 +1,6 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
 import * as types from 'builder/actions/ActionTypes';
-import { avasValidationFetcher as fetcher } from 'builder/requests/fetchers';
+import { avasValidationFetcher as fetcher } from 'builder/affinities/requests/fetchers';
 import { validationSuccess } from 'builder/actions';
 
 function fetch(params) {

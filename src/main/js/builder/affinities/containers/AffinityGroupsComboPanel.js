@@ -7,10 +7,9 @@ import { connect } from 'react-redux';
 
 import { fetch } from 'models/actions/sponsorAffAva';
 
-import { selectSponsorAffAvas } from 'models/selectors';
+import { selectSponsorAffAvasAsMaps } from 'models/selectors';
 
-import { avasToMap } from 'builder/models/utils';
-import SponsorAffinitySelectField from 'builder/components/SponsorAffinitySelectField';
+import SponsorAffinitySelectField from 'builder/affinities/components/SponsorAffinitySelectField';
 
 class AffinityGroupsComboPanel extends Component {
 
@@ -33,7 +32,7 @@ AffinityGroupsComboPanel.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      source: avasToMap(selectSponsorAffAvas(state))
+      source: selectSponsorAffAvasAsMaps(state)
    };
 };
 

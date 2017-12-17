@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import SponsorAffinitySelect from 'builder/components/SponsorAffinitySelect';
+import SponsorAffinitySelect from 'builder/affinities/components/SponsorAffinitySelect';
 
 import { chooseSponsorAffinity } from 'builder/actions';
 

@@ -1,2 +1,5 @@
-export const BUILDER_VALIDATION_REST_ENDPOINT = '/rest/builder/validation';
-export const BUILDER_VALIDATION_AFFINITIES_REST_ENDPOINT = '/rest/builder/validation/affinities';
+import { appendBase } from 'api/utils';
+
+const VALIDATION_REST_ENDPOINT = '/rest/builder/validation';
+
+export const validationEndpoint = appendBase(VALIDATION_REST_ENDPOINT);
