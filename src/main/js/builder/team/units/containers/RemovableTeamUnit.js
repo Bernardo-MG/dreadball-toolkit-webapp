@@ -6,7 +6,7 @@ import Box from 'grommet/components/Box';
 
 import { connect } from 'react-redux';
 
-import RemoveUnitButton from 'builder/containers/button/RemoveUnitButton';
+import RemoveUnitButton from 'builder/team/units/containers/buttons/RemoveUnitButton';
 
 const RemovableTeamUnit = (props) =>
    <Box>{props.unit} <RemoveUnitButton unit={props.unit} /></Box>;

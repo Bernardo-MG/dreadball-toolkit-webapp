@@ -1,2 +1,2 @@
-export * from 'builder/actions/affinities';
-export * from 'builder/actions/teams';
+export * from 'builder/affinities/actions';
+export * from 'builder/team/actions';

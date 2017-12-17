@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { fetch } from 'models/actions/sponsorUnit';
 import { selectRatedUnits } from 'models/selectors';
 
-import DbxTeamPlayersPanel from 'builder/components/DbxTeamPlayersPanel';
+import DbxTeamPlayersPanel from 'builder/team/units/components/DbxTeamPlayersPanel';
 
 class BoundDbxTeamPlayersPanel extends Component {
 

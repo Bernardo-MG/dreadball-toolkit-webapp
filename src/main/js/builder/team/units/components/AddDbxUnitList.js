@@ -8,7 +8,7 @@ import Accordion from 'grommet/components/Accordion';
 import AccordionPanel from 'grommet/components/AccordionPanel';
 import Box from 'grommet/components/Box';
 
-import DbxUnitPanel from 'builder/components/DbxUnitPanel';
+import DbxUnitPanel from 'builder/team/units/components/DbxUnitPanel';
 
 import unitNameMessages from 'i18n/unitName';
 

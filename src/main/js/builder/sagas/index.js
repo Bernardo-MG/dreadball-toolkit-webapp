@@ -1,4 +1,4 @@
-import { teamSagas } from 'builder/sagas/team';
+import { teamSagas } from 'builder/team/sagas';
 import { affinitiesSagas } from 'builder/affinities/sagas';
 
 export const builderSagas = [

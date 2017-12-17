@@ -8,7 +8,7 @@ import Heading from 'grommet/components/Heading';
 import Label from 'grommet/components/Label';
 import Value from 'grommet/components/Value';
 
-import AddUnitButton from 'builder/containers/button/AddUnitButton';
+import AddUnitButton from 'builder/team/units/containers/buttons/AddUnitButton';
 
 const DbxUnitPanel = (props) =>
    <Box>

@@ -1,4 +1,4 @@
 import { Fetcher } from 'api/fetch';
-import { validationEndpoint, validationAffinitiesEndpoint } from 'builder/requests/endpoints';
+import { validationAffinitiesEndpoint } from 'builder/affinities/requests/endpoints';
 
 export const avasValidationFetcher = new Fetcher(validationAffinitiesEndpoint);

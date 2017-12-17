@@ -5,15 +5,15 @@ import Heading from 'grommet/components/Heading';
 import Tab from 'grommet/components/Tab';
 import Tabs from 'grommet/components/Tabs';
 
-import SponsorAffinityList from 'builder/containers/SponsorAffinityList';
-import SponsorUnitNameList from 'builder/containers/SponsorUnitNameList';
+import SponsorAffinityList from 'builder/affinities/containers/SponsorAffinityList';
+import SponsorUnitNameList from 'builder/team/units/containers/SponsorUnitNameList';
 
 import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 
 import SponsorAssetsForm from 'builder/components/forms/SponsorAssetsForm';
 import SponsorNameInput from 'builder/containers/input/SponsorNameInput';
 
-import BoundDbxTeamPlayersPanel from 'builder/containers/BoundDbxTeamPlayersPanel';
+import BoundDbxTeamPlayersPanel from 'builder/team/units/containers/BoundDbxTeamPlayersPanel';
 
 const SponsorTeamView = () =>
    <Tabs>

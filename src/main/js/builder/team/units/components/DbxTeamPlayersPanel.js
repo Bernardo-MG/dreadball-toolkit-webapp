@@ -4,10 +4,10 @@ import PropTypes from 'prop-types';
 
 import Box from 'grommet/components/Box';
 
-import NextPageButton from 'builder/containers/button/NextPageButton';
-import PreviousPageButton from 'builder/containers/button/PreviousPageButton';
+import NextPageButton from 'builder/team/units/containers/buttons/NextPageButton';
+import PreviousPageButton from 'builder/team/units/containers/buttons/PreviousPageButton';
 
-import AddDbxUnitList from 'builder/components/AddDbxUnitList';
+import AddDbxUnitList from 'builder/team/units/components/AddDbxUnitList';
 
 import SponsorTeamCost from 'builder/components/SponsorTeamCost';
 

@@ -1,6 +1,6 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/ActionTypes';
-import { teamValidationFetcher as fetcher } from 'builder/requests/fetchers';
+import { teamValidationFetcher as fetcher } from 'builder/team/requests/fetchers';
 import { validateTeamSuccess } from 'builder/actions';
 
 function fetch(params) {
