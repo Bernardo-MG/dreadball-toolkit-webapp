@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as actions from 'models/actions/sponsorAffAva';
+import { fetch } from 'models/actions/sponsorAffAva';
 
 import { selectSponsorAffAvas } from 'models/selectors';
 
@@ -15,7 +15,7 @@ import SponsorAffinitySelectField from 'builder/components/SponsorAffinitySelect
 class AffinityGroupsComboPanel extends Component {
 
    componentDidMount() {
-      this.props.actions.fetch();
+      this.props.action();
    }
 
    render() {
@@ -27,7 +27,7 @@ class AffinityGroupsComboPanel extends Component {
 }
 
 AffinityGroupsComboPanel.propTypes = {
-   actions: PropTypes.object.isRequired,
+   action: PropTypes.func.isRequired,
    source: PropTypes.array.isRequired
 };
 
@@ -39,7 +39,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(actions, dispatch)
+      action: bindActionCreators(fetch, dispatch)
    };
 };
 

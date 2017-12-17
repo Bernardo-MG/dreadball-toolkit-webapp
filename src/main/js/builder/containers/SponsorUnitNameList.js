@@ -8,7 +8,6 @@ import RemovableTeamUnit from 'builder/containers/RemovableTeamUnit';
 
 import { connect } from 'react-redux';
 
-
 function toComponent(name) {
    return <RemovableTeamUnit unit={name} />;
 }

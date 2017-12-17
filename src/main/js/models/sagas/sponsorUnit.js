@@ -8,9 +8,14 @@ export function fetch(params) {
    return fetcher.fetch(params);
 }
 
+const affinitiesSelection = (state) => state.builder.sponsor.affinities;
+
 function* request(action) {
    const page = yield select(pageSelector);
-   const response = yield call(fetch, { page, ...action.params });
+   const affinities = yield select(affinitiesSelection);
+
+   const params = { ...action.params, affinities };
+   const response = yield call(fetch, { page, params });
    yield put(requestSuccess(response.payload, response.pagination));
 }
 
@@ -21,8 +26,8 @@ function* build(action) {
 }
 
 export const sponsorUnitSagas = [
-   takeLatest(types.REQUEST_SPONSOR_UNITS, request),
-   takeLatest(types.REQUEST_SUCCESS_SPONSOR_UNITS, build),
-   takeLatest(types.CHANGE_PAGE_NEXT_SPONSOR_UNITS, request),
-   takeLatest(types.CHANGE_PAGE_PREV_SPONSOR_UNITS, request)
+   takeLatest(types.REQUEST_TEAM_UNITS, request),
+   takeLatest(types.REQUEST_SUCCESS_TEAM_UNITS, build),
+   takeLatest(types.CHANGE_PAGE_NEXT_TEAM_UNITS, request),
+   takeLatest(types.CHANGE_PAGE_PREV_TEAM_UNITS, request)
 ];

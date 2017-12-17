@@ -11,7 +11,7 @@ const pagination = combineReducers({
    }),
    ratedUnits: paginate({
       idsMapping: (payload) => Object.keys(payload.entities.units),
-      store: 'SPONSOR_UNITS'
+      store: 'TEAM_UNITS'
    })
 });
 

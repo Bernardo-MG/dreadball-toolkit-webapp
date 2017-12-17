@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 
 import RemoveUnitButton from 'builder/containers/button/RemoveUnitButton';
 
-
 const RemovableTeamUnit = (props) =>
    <Box>{props.unit} <RemoveUnitButton unit={props.unit} /></Box>;
 

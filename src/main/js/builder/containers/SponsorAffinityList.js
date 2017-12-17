@@ -6,7 +6,6 @@ import Listing from 'components/Listing';
 
 import { connect } from 'react-redux';
 
-
 const SponsorAffinityList = (props) =>
    <Listing source={props.source} />;
 
