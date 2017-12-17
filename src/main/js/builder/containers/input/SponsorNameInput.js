@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -7,30 +7,12 @@ import FormField from 'grommet/components/FormField';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { updateSponsorName } from 'builder/actions';
+import { setSponsorName } from 'builder/actions';
 
-class SponsorNameInput extends Component {
-
-   update;
-
-   updateValue = (event) => {
-      this.update(event.target.value);
-   };
-
-   constructor(props) {
-      super(props);
-
-      this.update = props.action;
-   }
-
-   render() {
-      return (
-         <FormField label='sponsor_name'>
-            <input id='sponsor_name' name='sponsor_name' type='text' value={this.props.sponsorName} onChange={this.updateValue}/>
-         </FormField>
-      );
-   }
-}
+const SponsorNameInput = (props) =>
+   <FormField label='sponsor_name'>
+      <input id='sponsor_name' name='sponsor_name' type='text' value={props.sponsorName} onChange={(event) => props.action(event.target.value)}/>
+   </FormField>;
 
 SponsorNameInput.propTypes = {
    action: PropTypes.func.isRequired,
@@ -45,7 +27,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(updateSponsorName, dispatch)
+      action: bindActionCreators(setSponsorName, dispatch)
    };
 };
 

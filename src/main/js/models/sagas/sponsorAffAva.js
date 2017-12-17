@@ -14,7 +14,7 @@ function* request(action) {
 
 function* build(action) {
    yield put({ type: types.CREATE_AFFINITIES, payload: action.payload });
-   yield put({ type: types.CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, payload: action.payload });
+   yield put({ type: types.CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES, payload: action.payload.entities.sponsorAffinityAvailabilities });
 }
 
 export const affAvasSagas = [

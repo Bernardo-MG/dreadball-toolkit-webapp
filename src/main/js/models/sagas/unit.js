@@ -15,9 +15,9 @@ function* request(action) {
 }
 
 function* build(action) {
-   yield put({ type: types.CREATE_ABILITIES, payload: action.payload });
-   yield put({ type: types.CREATE_AFFINITIES, payload: action.payload });
-   yield put({ type: types.CREATE_UNITS, payload: action.payload });
+   yield put({ type: types.CREATE_ABILITIES, payload: action.payload.entities.abilities });
+   yield put({ type: types.CREATE_AFFINITIES, payload: action.payload.entities.affinities });
+   yield put({ type: types.CREATE_UNITS, payload: action.payload.entities.units });
 }
 
 export const unitSagas = [

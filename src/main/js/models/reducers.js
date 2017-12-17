@@ -5,43 +5,33 @@ const model = (state = { sponsorAffinityAvailabilities: [], abilities: [], affin
 
    switch (type) {
    case CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES: {
-      const sponsorAffinityAvailabilities = payload.entities.sponsorAffinityAvailabilities;
-
       return {
          ...state,
-         sponsorAffinityAvailabilities
+         sponsorAffinityAvailabilities: payload
       };
    }
    case CREATE_ABILITIES: {
-      const abilities = payload.entities.abilities;
-
       return {
          ...state,
-         abilities
+         abilities: payload
       };
    }
    case CREATE_AFFINITIES: {
-      const affinities = payload.entities.affinities;
-
       return {
          ...state,
-         affinities
+         affinities: payload
       };
    }
    case CREATE_UNITS: {
-      const units = payload.entities.units;
-
       return {
          ...state,
-         units
+         units: payload
       };
    }
    case CREATE_RATED_UNITS: {
-      const ratedUnits = payload.entities.units;
-
       return {
          ...state,
-         ratedUnits
+         ratedUnits: payload
       };
    }
    default:
