@@ -1,49 +1,32 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { injectIntl } from 'react-intl';
-
-import * as actions from 'models/actions/sponsorUnit';
+import { movePrevPage } from 'models/actions/sponsorUnit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import PageChangeButton from 'components/PageChangeButton';
-
+import Button from 'grommet/components/Button';
 import BackIcon from 'grommet/components/icons/base/CaretBack';
 
-class PreviousPageButton extends Component {
-
-   fetch = (page = 0, orderBy = 'name', direction = 'ASC') => {
-      this.props.actions.fetch(this.props.affinities, page, orderBy, direction);
-   };
-
-   render() {
-      return (
-         <PageChangeButton changePage={this.props.actions.moveNextPage} icon={<BackIcon/>} />
-      );
-   }
-}
+const PreviousPageButton = (props) =>
+   <Button onClick={props.action} icon={<BackIcon/>} />;
 
 PreviousPageButton.propTypes = {
-   affinities: PropTypes.array.isRequired,
-   actions: PropTypes.object.isRequired,
-   intl: PropTypes.object.isRequired
+   action: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
-   return {
-      affinities: state.builder.sponsor.affinities
-   };
+const mapStateToProps = () => {
+   return {};
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(actions, dispatch)
+      action: bindActionCreators(movePrevPage, dispatch)
    };
 };
 
-export default injectIntl(connect(
+export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(PreviousPageButton));
+)(PreviousPageButton);

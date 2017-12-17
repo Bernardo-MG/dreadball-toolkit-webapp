@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import * as actions from 'models/actions/unit';
+import { fetch } from 'models/actions/unit';
 import { selectUnits } from 'models/selectors';
 
 import DbxPlayersPanel from 'codex/components/DbxPlayersPanel';
@@ -13,7 +13,7 @@ import DbxPlayersPanel from 'codex/components/DbxPlayersPanel';
 class BoundDbxPlayersPanel extends Component {
 
    componentDidMount() {
-      this.props.actions.fetch();
+      this.props.action();
    }
 
    render() {
@@ -24,7 +24,7 @@ class BoundDbxPlayersPanel extends Component {
 }
 
 BoundDbxPlayersPanel.propTypes = {
-   actions: PropTypes.object.isRequired,
+   action: PropTypes.func.isRequired,
    units: PropTypes.array.isRequired
 };
 
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      actions: bindActionCreators(actions, dispatch)
+      action: bindActionCreators(fetch, dispatch)
    };
 };
 

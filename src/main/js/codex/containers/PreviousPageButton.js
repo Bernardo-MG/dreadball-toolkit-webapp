@@ -2,7 +2,7 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import * as actions from 'models/actions/unit';
+import { movePrevPage } from 'models/actions/unit';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
@@ -22,7 +22,7 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(actions.movePrevPage, dispatch)
+      action: bindActionCreators(movePrevPage, dispatch)
    };
 };
 
