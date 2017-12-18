@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import BoundDbxPlayersPanel from 'codex/containers/BoundDbxPlayersPanel';
-import ContainerDbxTeamBuilder from 'builder/views/containers/views/ContainerDbxTeamBuilder';
+import ContainerDbxTeamBuilder from 'builder/views/containers/ContainerDbxTeamBuilder';
 import BaseLayout from 'components/layout/BaseLayout';
 import Home from 'components/views/Home';
 
