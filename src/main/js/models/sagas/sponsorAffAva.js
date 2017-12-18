@@ -1,5 +1,5 @@
 import { put, takeLatest, call } from 'redux-saga/effects';
-import * as types from 'models/actions/ActionTypes';
+import * as types from 'models/actions/actionTypes';
 import { fetcherAvaAff as fetcher } from 'models/requests/fetchers';
 import { requestSuccess } from 'models/actions/sponsorAffAva';
 

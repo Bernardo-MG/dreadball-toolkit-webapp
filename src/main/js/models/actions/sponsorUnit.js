@@ -1,4 +1,4 @@
-import { REQUEST_TEAM_UNITS, CHANGE_PAGE_PREV_TEAM_UNITS, CHANGE_PAGE_NEXT_TEAM_UNITS, REQUEST_SUCCESS_TEAM_UNITS } from 'models/actions/ActionTypes';
+import { REQUEST_TEAM_UNITS, CHANGE_PAGE_PREV_TEAM_UNITS, CHANGE_PAGE_NEXT_TEAM_UNITS, REQUEST_SUCCESS_TEAM_UNITS } from 'models/actions/actionTypes';
 
 export const fetch = () => {
    return {

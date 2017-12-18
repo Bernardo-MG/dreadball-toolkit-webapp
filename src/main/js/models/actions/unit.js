@@ -1,4 +1,4 @@
-import { REQUEST_UNITS, CHANGE_PAGE_PREV_UNITS, CHANGE_PAGE_NEXT_UNITS, REQUEST_SUCCESS_UNITS } from 'models/actions/ActionTypes';
+import { REQUEST_UNITS, CHANGE_PAGE_PREV_UNITS, CHANGE_PAGE_NEXT_UNITS, REQUEST_SUCCESS_UNITS } from 'models/actions/actionTypes';
 
 export const fetch = () => {
    return {
