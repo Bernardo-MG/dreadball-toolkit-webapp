@@ -5,36 +5,36 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setWager } from 'builder/actions';
+import { setMediBot } from 'builder/actions';
 
-import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
+import SponsorBoundNumberInput from 'builder/team/containers/input/SponsorBoundNumberInput';
 
-const WagerInput = (props) =>
+const MediBotInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
       updateSponsor={(value, sponsor) => {
          const result = Object.assign({}, sponsor);
-         result.wagers = value;
+         result.mediBots = value;
          return result;
       }} />;
 
-WagerInput.propTypes = {
+MediBotInput.propTypes = {
    action: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.wagers
+      value: state.builder.sponsor.mediBots
    };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(setWager, dispatch)
+      action: bindActionCreators(setMediBot, dispatch)
    };
 };
 
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(WagerInput);
+)(MediBotInput);

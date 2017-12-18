@@ -1,4 +1,4 @@
-import * as ActionTypes from 'builder/actions/ActionTypes';
+import * as ActionTypes from 'builder/actions/actionTypes';
 import { combineReducers } from 'redux';
 
 const sponsor = (

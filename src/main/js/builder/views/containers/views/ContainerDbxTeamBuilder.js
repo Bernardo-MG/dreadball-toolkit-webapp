@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearTeam, validateSponsorAffinities } from 'builder/actions';
-import DbxTeamBuilder from 'builder/components/views/DbxTeamBuilder';
+import DbxTeamBuilder from 'builder/views/components/DbxTeamBuilder';
 
 class ContainerDbxTeamBuilder extends Component {
 

@@ -1,4 +1,4 @@
-import * as types from 'builder/actions/ActionTypes';
+import * as types from 'builder/affinities/actions/actionTypes';
 
 export const chooseSponsorAffinity = (affinity, index) => {
    return {

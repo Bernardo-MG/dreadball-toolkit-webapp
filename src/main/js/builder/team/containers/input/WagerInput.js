@@ -5,36 +5,36 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setCheerleaders } from 'builder/actions';
+import { setWager } from 'builder/actions';
 
-import SponsorBoundNumberInput from 'builder/containers/input/SponsorBoundNumberInput';
+import SponsorBoundNumberInput from 'builder/team/containers/input/SponsorBoundNumberInput';
 
-const CheerleadersInput = (props) =>
+const WagerInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
       updateSponsor={(value, sponsor) => {
          const result = Object.assign({}, sponsor);
-         result.cheerleaders = value;
+         result.wagers = value;
          return result;
       }} />;
 
-CheerleadersInput.propTypes = {
+WagerInput.propTypes = {
    action: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.cheerleaders
+      value: state.builder.sponsor.wagers
    };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(setCheerleaders, dispatch)
+      action: bindActionCreators(setWager, dispatch)
    };
 };
 
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(CheerleadersInput);
+)(WagerInput);
