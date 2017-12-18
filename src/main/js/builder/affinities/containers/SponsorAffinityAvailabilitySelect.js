@@ -5,14 +5,14 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import SponsorAffinitySelect from 'builder/affinities/components/SponsorAffinitySelect';
+import AffinityAvailabilitySelect from 'builder/affinities/components/AffinityAvailabilitySelect';
 
 import { chooseSponsorAffinity } from 'builder/actions';
 
-const SponsorAffinityComboBox = (props) =>
-   <SponsorAffinitySelect index={props.index} source={props.source} onChange={props.action} />;
+const SponsorAffinityAvailabilitySelect = (props) =>
+   <AffinityAvailabilitySelect index={props.index} source={props.source} onChange={props.action} />;
 
-SponsorAffinityComboBox.propTypes = {
+SponsorAffinityAvailabilitySelect.propTypes = {
    index: PropTypes.number.isRequired,
    source: PropTypes.array.isRequired,
    action: PropTypes.func.isRequired
@@ -31,4 +31,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorAffinityComboBox);
+)(SponsorAffinityAvailabilitySelect);

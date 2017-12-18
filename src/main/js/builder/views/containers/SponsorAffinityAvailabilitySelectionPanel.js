@@ -9,9 +9,9 @@ import { fetch } from 'models/actions/sponsorAffAva';
 
 import { selectSponsorAffAvasAsMaps } from 'models/selectors';
 
-import SponsorAffinitySelectField from 'builder/affinities/components/SponsorAffinitySelectField';
+import SponsorAffinityAvailabilitySelectField from 'builder/affinities/components/SponsorAffinityAvailabilitySelectField';
 
-class AffinityGroupsComboPanel extends Component {
+class SponsorAffinityAvailabilitySelectionPanel extends Component {
 
    componentDidMount() {
       this.props.action();
@@ -19,13 +19,13 @@ class AffinityGroupsComboPanel extends Component {
 
    render() {
       return (
-         <SponsorAffinitySelectField source={this.props.source} />
+         <SponsorAffinityAvailabilitySelectField source={this.props.source} />
       );
    }
 
 }
 
-AffinityGroupsComboPanel.propTypes = {
+SponsorAffinityAvailabilitySelectionPanel.propTypes = {
    action: PropTypes.func.isRequired,
    source: PropTypes.array.isRequired
 };
@@ -45,4 +45,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(AffinityGroupsComboPanel);
+)(SponsorAffinityAvailabilitySelectionPanel);

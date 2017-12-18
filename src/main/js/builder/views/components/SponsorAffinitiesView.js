@@ -7,12 +7,12 @@ import Button from 'grommet/components/Button';
 import Form from 'grommet/components/Form';
 import Heading from 'grommet/components/Heading';
 
-import AffinityGroupsComboPanel from 'builder/affinities/containers/AffinityGroupsComboPanel';
+import SponsorAffinityAvailabilitySelectionPanel from 'builder/views/containers/SponsorAffinityAvailabilitySelectionPanel';
 
 const SponsorAffinitiesView = (props) =>
    <Form>
       <Heading>choose_affinities</Heading>
-      <AffinityGroupsComboPanel />
+      <SponsorAffinityAvailabilitySelectionPanel />
       <Box justify='center' align='center' margin='small'>
          <Button onClick={ props.onClick } label='accept' />
       </Box>

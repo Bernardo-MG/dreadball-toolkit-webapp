@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Select from 'grommet/components/Select';
 
-class SponsorAffinitySelect extends Component {
+class AffinityAvailabilitySelect extends Component {
 
    state = {};
    index;
@@ -57,10 +57,10 @@ class SponsorAffinitySelect extends Component {
    }
 }
 
-SponsorAffinitySelect.propTypes = {
+AffinityAvailabilitySelect.propTypes = {
    onChange: PropTypes.func.isRequired,
    index: PropTypes.number.isRequired,
    source: PropTypes.array.isRequired
 };
 
-export default SponsorAffinitySelect;
+export default AffinityAvailabilitySelect;

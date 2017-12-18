@@ -5,7 +5,7 @@ import Heading from 'grommet/components/Heading';
 import Tab from 'grommet/components/Tab';
 import Tabs from 'grommet/components/Tabs';
 
-import SponsorAffinityList from 'builder/affinities/containers/SponsorAffinityList';
+import SponsorAffinitiesList from 'builder/affinities/containers/SponsorAffinitiesList';
 import SponsorUnitNameList from 'builder/units/containers/SponsorUnitNameList';
 
 import SponsorTeamCost from 'builder/team/components/SponsorTeamCost';
@@ -32,7 +32,7 @@ const SponsorTeamView = () =>
                   <Box direction='row'>
                      <Heading tag='h2'>affinities</Heading>
                   </Box>
-                  <SponsorAffinityList />
+                  <SponsorAffinitiesList />
                </Box>
                <Box pad='small' size='medium'>
                   <Heading tag='h2'>players</Heading>
