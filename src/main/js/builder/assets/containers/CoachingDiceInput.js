@@ -7,18 +7,13 @@ import { bindActionCreators } from 'redux';
 
 import { setCoachingDice } from 'builder/assets/actions';
 
-import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
+import BoundNumberInput from 'components/BoundNumberInput';
 
 import { coachingDiceSelector } from 'builder/assets/selectors';
 
 const CoachingDiceInput = (props) =>
-   <SponsorBoundNumberInput {...props}
-      handleChange={props.action}
-      updateSponsor={(value, sponsor) => {
-         const result = Object.assign({}, sponsor);
-         result.coachingDice = value;
-         return result;
-      }} />;
+   <BoundNumberInput {...props}
+      handleChange={props.action} />;
 
 CoachingDiceInput.propTypes = {
    action: PropTypes.func.isRequired

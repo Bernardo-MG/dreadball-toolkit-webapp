@@ -7,18 +7,13 @@ import { bindActionCreators } from 'redux';
 
 import { setSpecialMoveCard } from 'builder/assets/actions';
 
-import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
+import BoundNumberInput from 'components/BoundNumberInput';
 
 import { specialMoveCardsSelector } from 'builder/assets/selectors';
 
 const SpecialMoveCardInput = (props) =>
-   <SponsorBoundNumberInput {...props}
-      handleChange={props.action}
-      updateSponsor={(value, sponsor) => {
-         const result = Object.assign({}, sponsor);
-         result.specialMoveCards = value;
-         return result;
-      }} />;
+   <BoundNumberInput {...props}
+      handleChange={props.action} />;
 
 SpecialMoveCardInput.propTypes = {
    action: PropTypes.func.isRequired

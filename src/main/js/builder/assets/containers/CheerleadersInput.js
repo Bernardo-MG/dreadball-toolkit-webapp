@@ -7,18 +7,13 @@ import { bindActionCreators } from 'redux';
 
 import { setCheerleaders } from 'builder/assets/actions';
 
-import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
+import BoundNumberInput from 'components/BoundNumberInput';
 
 import { cheerleadersSelector } from 'builder/assets/selectors';
 
 const CheerleadersInput = (props) =>
-   <SponsorBoundNumberInput {...props}
-      handleChange={props.action}
-      updateSponsor={(value, sponsor) => {
-         const result = Object.assign({}, sponsor);
-         result.cheerleaders = value;
-         return result;
-      }} />;
+   <BoundNumberInput {...props}
+      handleChange={props.action} />;
 
 CheerleadersInput.propTypes = {
    action: PropTypes.func.isRequired

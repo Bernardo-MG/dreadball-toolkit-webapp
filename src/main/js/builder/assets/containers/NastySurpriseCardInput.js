@@ -7,18 +7,13 @@ import { bindActionCreators } from 'redux';
 
 import { setNastySurpriseCard } from 'builder/assets/actions';
 
-import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
+import BoundNumberInput from 'components/BoundNumberInput';
 
 import { nastySurpriseCardsSelector } from 'builder/assets/selectors';
 
 const NastySurpriseCardInput = (props) =>
-   <SponsorBoundNumberInput {...props}
-      handleChange={props.action}
-      updateSponsor={(value, sponsor) => {
-         const result = Object.assign({}, sponsor);
-         result.nastySurpriseCards = value;
-         return result;
-      }} />;
+   <BoundNumberInput {...props}
+      handleChange={props.action} />;
 
 NastySurpriseCardInput.propTypes = {
    action: PropTypes.func.isRequired

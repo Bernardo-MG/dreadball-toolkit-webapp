@@ -2,6 +2,7 @@ import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/actionTypes';
 import { teamValidationFetcher as fetcher } from 'builder/validations/requests/fetchers';
 import { validateTeamSuccess } from 'builder/validations/actions';
+import { assetsSelector } from 'builder/assets/selectors';
 
 function fetch(params) {
    return fetcher.fetch(params);
@@ -25,17 +26,23 @@ const unitsSelection = (state) => state.builder.sponsor.units;
 const baseRankSelection = (state) => state.builder.sponsor.baseRank;
 
 function* validateTeam() {
+   const assets = yield select(assetsSelector);
    const affinities = yield select(affinitiesSelection);
    const units = yield select(unitsSelection);
    const baseRank = yield select(baseRankSelection);
 
-   const params = { affinities, units, baseRank };
+   const params = { affinities, units, baseRank, ...assets };
    yield call(requestValidation, { params });
 }
 
 export const validationSagas = [
-   takeLatest(types.TEAM_VALIDATION, requestValidation),
-   takeLatest(types.REQUEST_SUCCESS_TEAM_VALIDATION, build),
+   takeLatest(types.SET_CHEERLEADERS, validateTeam),
+   takeLatest(types.SET_COACHING_DICE, validateTeam),
+   takeLatest(types.SET_MEDIBOT, validateTeam),
+   takeLatest(types.SET_NASTY_SURPRISE_CARD, validateTeam),
+   takeLatest(types.SET_SPECIAL_MOVE_CARD, validateTeam),
+   takeLatest(types.SET_WAGER, validateTeam),
    takeLatest(types.ADD_TEAM_UNIT, validateTeam),
-   takeLatest(types.REMOVE_TEAM_UNIT, validateTeam)
+   takeLatest(types.REMOVE_TEAM_UNIT, validateTeam),
+   takeLatest(types.REQUEST_SUCCESS_TEAM_VALIDATION, build)
 ];

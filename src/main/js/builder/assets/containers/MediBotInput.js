@@ -7,18 +7,13 @@ import { bindActionCreators } from 'redux';
 
 import { setMediBot } from 'builder/assets/actions';
 
-import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
+import BoundNumberInput from 'components/BoundNumberInput';
 
 import { mediBotsSelector } from 'builder/assets/selectors';
 
 const MediBotInput = (props) =>
-   <SponsorBoundNumberInput {...props}
-      handleChange={props.action}
-      updateSponsor={(value, sponsor) => {
-         const result = Object.assign({}, sponsor);
-         result.mediBots = value;
-         return result;
-      }} />;
+   <BoundNumberInput {...props}
+      handleChange={props.action} />;
 
 MediBotInput.propTypes = {
    action: PropTypes.func.isRequired
