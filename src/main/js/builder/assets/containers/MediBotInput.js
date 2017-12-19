@@ -9,6 +9,8 @@ import { setMediBot } from 'builder/assets/actions';
 
 import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
 
+import { mediBotsSelector } from 'builder/assets/selectors';
+
 const MediBotInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
@@ -24,7 +26,7 @@ MediBotInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.mediBots
+      value: mediBotsSelector(state)
    };
 };
 

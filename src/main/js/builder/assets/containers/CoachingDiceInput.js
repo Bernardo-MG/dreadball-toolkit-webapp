@@ -9,6 +9,8 @@ import { setCoachingDice } from 'builder/assets/actions';
 
 import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
 
+import { coachingDiceSelector } from 'builder/assets/selectors';
+
 const CoachingDiceInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
@@ -24,7 +26,7 @@ CoachingDiceInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.coachingDice
+      value: coachingDiceSelector(state)
    };
 };
 

@@ -9,6 +9,8 @@ import { setSpecialMoveCard } from 'builder/assets/actions';
 
 import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
 
+import { specialMoveCardsSelector } from 'builder/assets/selectors';
+
 const SpecialMoveCardInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
@@ -24,7 +26,7 @@ SpecialMoveCardInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.specialMoveCards
+      value: specialMoveCardsSelector(state)
    };
 };
 

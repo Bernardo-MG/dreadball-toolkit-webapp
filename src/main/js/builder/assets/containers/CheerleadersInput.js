@@ -9,6 +9,8 @@ import { setCheerleaders } from 'builder/assets/actions';
 
 import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
 
+import { cheerleadersSelector } from 'builder/assets/selectors';
+
 const CheerleadersInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
@@ -24,7 +26,7 @@ CheerleadersInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.cheerleaders
+      value: cheerleadersSelector(state)
    };
 };
 

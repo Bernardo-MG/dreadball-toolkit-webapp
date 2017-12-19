@@ -9,6 +9,8 @@ import { setWager } from 'builder/assets/actions';
 
 import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
 
+import { specialMoveCardsSelector } from 'builder/assets/selectors';
+
 const WagerInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
@@ -24,7 +26,7 @@ WagerInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.wagers
+      value: specialMoveCardsSelector(state)
    };
 };
 

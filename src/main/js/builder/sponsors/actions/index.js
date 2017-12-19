@@ -1,4 +1,4 @@
-import * as types from 'builder/team/actions/actionTypes';
+import * as types from 'builder/sponsors/actions/actionTypes';
 
 export const clearTeam = () => {
    return {

@@ -2,8 +2,8 @@ import React from 'react';
 
 import Box from 'grommet/components/Box';
 
-import SponsorRankValue from 'builder/team/containers/values/SponsorRankValue';
-import SponsorTeamValue from 'builder/team/containers/values/SponsorTeamValue';
+import SponsorRankValue from 'builder/sponsors/containers/SponsorRankValue';
+import SponsorTeamValue from 'builder/sponsors/containers/SponsorTeamValue';
 
 const SponsorTeamCost = () =>
    <Box direction='row'>

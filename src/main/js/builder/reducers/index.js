@@ -1,5 +1,6 @@
 import * as ActionTypes from 'builder/actions/actionTypes';
 import { combineReducers } from 'redux';
+import assets from 'builder/assets/reducers';
 
 const sponsor = (
    state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, teamValue: 0, affinities: [], units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
@@ -14,13 +15,7 @@ const sponsor = (
          baseRank: 0,
          teamValue: 0,
          units: [],
-         sponsorName: 'Sponsor name',
-         coachingDice: 0,
-         specialMoveCards: 0,
-         nastySurpriseCards: 0,
-         wagers: 0,
-         mediBots: 0,
-         cheerleaders: 0
+         sponsorName: 'Sponsor name'
       };
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
       affinities[action.index] = payload;
@@ -54,53 +49,11 @@ const sponsor = (
          ...state,
          teamValue: payload
       };
-   case ActionTypes.SET_SPONSOR_NAME: {
-      return {
-         ...state,
-         sponsorName: payload
-      };
-   }
-   case ActionTypes.SET_CHEERLEADERS: {
-      return {
-         ...state,
-         cheerleaders: payload
-      };
-   }
-   case ActionTypes.SET_COACHING_DICE: {
-      return {
-         ...state,
-         coachingDice: payload
-      };
-   }
-   case ActionTypes.SET_MEDIBOT: {
-      return {
-         ...state,
-         mediBots: payload
-      };
-   }
-   case ActionTypes.SET_NASTY_SURPRISE_CARD: {
-      return {
-         ...state,
-         nastySurpriseCards: payload
-      };
-   }
-   case ActionTypes.SET_SPECIAL_MOVE_CARD: {
-      return {
-         ...state,
-         specialMoveCards: payload
-      };
-   }
-   case ActionTypes.SET_WAGER: {
-      return {
-         ...state,
-         wagers: payload
-      };
-   }
    default:
       return state;
    }
 };
 
-const dbxBuilderReducer = combineReducers({ sponsor });
+const dbxBuilderReducer = combineReducers({ sponsor, assets });
 
 export default dbxBuilderReducer;

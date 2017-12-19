@@ -9,6 +9,8 @@ import { setNastySurpriseCard } from 'builder/assets/actions';
 
 import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
 
+import { nastySurpriseCardsSelector } from 'builder/assets/selectors';
+
 const NastySurpriseCardInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
@@ -24,7 +26,7 @@ NastySurpriseCardInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.nastySurpriseCards
+      value: nastySurpriseCardsSelector(state)
    };
 };
 

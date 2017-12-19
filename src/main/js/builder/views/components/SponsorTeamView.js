@@ -8,10 +8,10 @@ import Tabs from 'grommet/components/Tabs';
 import SponsorAffinitiesList from 'builder/affinities/containers/SponsorAffinitiesList';
 import SponsorUnitNameList from 'builder/units/containers/SponsorUnitNameList';
 
-import SponsorTeamCost from 'builder/team/components/SponsorTeamCost';
+import SponsorTeamCost from 'builder/sponsors/components/SponsorTeamCost';
 
 import SponsorAssetsForm from 'builder/assets/components/SponsorAssetsForm';
-import SponsorNameInput from 'builder/team/containers/input/SponsorNameInput';
+import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
 
 import BoundDbxTeamPlayersPanel from 'builder/views/containers/BoundDbxTeamPlayersPanel';
 
