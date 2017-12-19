@@ -1,7 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/actionTypes';
-import { teamValidationFetcher as fetcher } from 'builder/team/requests/fetchers';
-import { validateTeamSuccess } from 'builder/team/actions';
+import { teamValidationFetcher as fetcher } from 'builder/validations/requests/fetchers';
+import { validateTeamSuccess } from 'builder/validations/actions';
 
 function fetch(params) {
    return fetcher.fetch(params);
@@ -33,7 +33,7 @@ function* validateTeam() {
    yield call(requestValidation, { params });
 }
 
-export const teamSagas = [
+export const validationSagas = [
    takeLatest(types.TEAM_VALIDATION, requestValidation),
    takeLatest(types.REQUEST_SUCCESS_TEAM_VALIDATION, build),
    takeLatest(types.ADD_TEAM_UNIT, validateTeam),
