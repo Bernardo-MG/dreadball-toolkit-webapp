@@ -6,20 +6,6 @@ export const clearTeam = () => {
    };
 };
 
-export const addTeamUnit = (unit) => {
-   return {
-      type: types.ADD_TEAM_UNIT,
-      payload: unit
-   };
-};
-
-export const removeTeamUnit = (unit) => {
-   return {
-      type: types.REMOVE_TEAM_UNIT,
-      payload: unit
-   };
-};
-
 export const validateTeam = (
    affinities = [],
    units = [],
@@ -41,48 +27,6 @@ export const validateTeamSuccess = (payload) => {
 export const setSponsorName = (value) => {
    return {
       type: types.SET_SPONSOR_NAME,
-      payload: value
-   };
-};
-
-export const setCoachingDice = (value) => {
-   return {
-      type: types.SET_COACHING_DICE,
-      payload: value
-   };
-};
-
-export const setSpecialMoveCard = (value) => {
-   return {
-      type: types.SET_SPECIAL_MOVE_CARD,
-      payload: value
-   };
-};
-
-export const setNastySurpriseCard = (value) => {
-   return {
-      type: types.SET_NASTY_SURPRISE_CARD,
-      payload: value
-   };
-};
-
-export const setWager = (value) => {
-   return {
-      type: types.SET_WAGER,
-      payload: value
-   };
-};
-
-export const setMediBot = (value) => {
-   return {
-      type: types.SET_MEDIBOT,
-      payload: value
-   };
-};
-
-export const setCheerleaders = (value) => {
-   return {
-      type: types.SET_CHEERLEADERS,
       payload: value
    };
 };

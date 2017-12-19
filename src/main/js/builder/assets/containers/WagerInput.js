@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setWager } from 'builder/actions';
+import { setWager } from 'builder/assets/actions';
 
-import SponsorBoundNumberInput from 'builder/team/containers/input/SponsorBoundNumberInput';
+import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
 
 const WagerInput = (props) =>
    <SponsorBoundNumberInput {...props}

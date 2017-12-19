@@ -4,12 +4,12 @@ import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
 
-import CheerleadersInput from 'builder/team/containers/input/CheerleadersInput';
-import CoachingDiceInput from 'builder/team/containers/input/CoachingDiceInput';
-import MediBotInput from 'builder/team/containers/input/MediBotInput';
-import NastySurpriseCardInput from 'builder/team/containers/input/NastySurpriseCardInput';
-import SpecialMoveCardInput from 'builder/team/containers/input/SpecialMoveCardInput';
-import WagerInput from 'builder/team/containers/input/WagerInput';
+import CheerleadersInput from 'builder/assets/containers/CheerleadersInput';
+import CoachingDiceInput from 'builder/assets/containers/CoachingDiceInput';
+import MediBotInput from 'builder/assets/containers/MediBotInput';
+import NastySurpriseCardInput from 'builder/assets/containers/NastySurpriseCardInput';
+import SpecialMoveCardInput from 'builder/assets/containers/SpecialMoveCardInput';
+import WagerInput from 'builder/assets/containers/WagerInput';
 
 const SponsorAssetsForm = () =>
    <Form>

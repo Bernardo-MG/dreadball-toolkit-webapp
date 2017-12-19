@@ -5,36 +5,36 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
-import { setCoachingDice } from 'builder/actions';
+import { setNastySurpriseCard } from 'builder/assets/actions';
 
-import SponsorBoundNumberInput from 'builder/team/containers/input/SponsorBoundNumberInput';
+import SponsorBoundNumberInput from 'builder/assets/containers/SponsorBoundNumberInput';
 
-const CoachingDiceInput = (props) =>
+const NastySurpriseCardInput = (props) =>
    <SponsorBoundNumberInput {...props}
       handleChange={props.action}
       updateSponsor={(value, sponsor) => {
          const result = Object.assign({}, sponsor);
-         result.coachingDice = value;
+         result.nastySurpriseCards = value;
          return result;
       }} />;
 
-CoachingDiceInput.propTypes = {
+NastySurpriseCardInput.propTypes = {
    action: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      value: state.builder.sponsor.coachingDice
+      value: state.builder.sponsor.nastySurpriseCards
    };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(setCoachingDice, dispatch)
+      action: bindActionCreators(setNastySurpriseCard, dispatch)
    };
 };
 
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(CoachingDiceInput);
+)(NastySurpriseCardInput);

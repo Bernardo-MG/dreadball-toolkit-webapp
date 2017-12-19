@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import Button from 'grommet/components/Button';
 
-import { removeTeamUnit } from 'builder/actions';
+import { removeTeamUnit } from 'builder/units/actions';
 
 import SubtractIcon from 'grommet/components/icons/base/SubtractCircle';
 

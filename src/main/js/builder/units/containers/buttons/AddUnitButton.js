@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import Button from 'grommet/components/Button';
 
-import { addTeamUnit } from 'builder/actions';
+import { addTeamUnit } from 'builder/units/actions';
 
 import AddIcon from 'grommet/components/icons/base/AddCircle';
 

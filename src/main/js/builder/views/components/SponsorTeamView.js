@@ -10,7 +10,7 @@ import SponsorUnitNameList from 'builder/units/containers/SponsorUnitNameList';
 
 import SponsorTeamCost from 'builder/team/components/SponsorTeamCost';
 
-import SponsorAssetsForm from 'builder/team/components/forms/SponsorAssetsForm';
+import SponsorAssetsForm from 'builder/assets/components/SponsorAssetsForm';
 import SponsorNameInput from 'builder/team/containers/input/SponsorNameInput';
 
 import BoundDbxTeamPlayersPanel from 'builder/views/containers/BoundDbxTeamPlayersPanel';
