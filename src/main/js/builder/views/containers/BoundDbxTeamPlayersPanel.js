@@ -14,7 +14,7 @@ import DbxTeamPlayersPanel from 'builder/views/components/DbxTeamPlayersPanel';
 class BoundDbxTeamPlayersPanel extends Component {
 
    componentDidMount() {
-      this.props.action(this.props.affinities);
+      this.props.action();
    }
 
    render() {
@@ -26,14 +26,12 @@ class BoundDbxTeamPlayersPanel extends Component {
 
 BoundDbxTeamPlayersPanel.propTypes = {
    action: PropTypes.func.isRequired,
-   affinities: PropTypes.array.isRequired,
    source: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      source: selectRatedUnits(state),
-      affinities: selectAffinities(state)
+      source: selectRatedUnits(state)
    };
 };
 
