@@ -9,7 +9,7 @@ import PreviousPageButton from 'builder/units/containers/buttons/PreviousPageBut
 
 import AddDbxUnitList from 'builder/units/components/AddDbxUnitList';
 
-import SponsorTeamCost from 'builder/sponsors/components/SponsorTeamCost';
+import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
 class DbxTeamPlayersPanel extends Component {
 
