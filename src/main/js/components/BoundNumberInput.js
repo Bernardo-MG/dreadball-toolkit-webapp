@@ -23,8 +23,9 @@ class BoundNumberInput extends Component {
    };
 
    render() {
+      const { handleChange, ...rest } = this.props;
       return (
-         <NumberInput {...this.props} onChange={this.updateValue} />
+         <NumberInput {...rest} onChange={this.updateValue} />
       );
    }
 }
