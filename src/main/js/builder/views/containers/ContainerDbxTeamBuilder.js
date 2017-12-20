@@ -6,7 +6,6 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { clearTeam, validateSponsorAffinities } from 'builder/actions';
 import DbxTeamBuilder from 'builder/views/components/DbxTeamBuilder';
-import { selectAffinities } from 'builder/affinities/selectors';
 
 class ContainerDbxTeamBuilder extends Component {
 
@@ -24,7 +23,7 @@ class ContainerDbxTeamBuilder extends Component {
    }
 
    onFinishAffinities() {
-      this.validate(this.props.affinities);
+      this.validate();
    }
 
    render() {
@@ -36,14 +35,11 @@ class ContainerDbxTeamBuilder extends Component {
 
 ContainerDbxTeamBuilder.propTypes = {
    actionValidate: PropTypes.func.isRequired,
-   actionBegin: PropTypes.func.isRequired,
-   affinities: PropTypes.array.isRequired
+   actionBegin: PropTypes.func.isRequired
 };
 
-const mapStateToProps = (state) => {
-   return {
-      affinities: selectAffinities(state)
-   };
+const mapStateToProps = () => {
+   return {};
 };
 
 

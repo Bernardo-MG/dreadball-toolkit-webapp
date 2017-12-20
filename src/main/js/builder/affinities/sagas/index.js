@@ -1,14 +1,18 @@
-import { put, takeLatest, call } from 'redux-saga/effects';
+import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/actionTypes';
 import { avasValidationFetcher as fetcher } from 'builder/affinities/requests/fetchers';
 import { validationSuccess } from 'builder/actions';
+
+import { selectAffinities } from 'builder/affinities/selectors';
 
 function fetch(params) {
    return fetcher.fetch(params);
 }
 
 function* request(action) {
-   const response = yield call(fetch, action.params);
+   const affinities = yield select(selectAffinities);
+
+   const response = yield call(fetch, { ...action.params, affinities });
    yield put(validationSuccess(response.payload));
 }
 
