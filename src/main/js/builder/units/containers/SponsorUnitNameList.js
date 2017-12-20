@@ -8,6 +8,8 @@ import RemovableTeamUnit from 'builder/units/components/RemovableTeamUnit';
 
 import { connect } from 'react-redux';
 
+import { selectUnits } from 'builder/units/selectors';
+
 function toComponent(name) {
    return <RemovableTeamUnit unit={name} />;
 }
@@ -39,7 +41,7 @@ SponsorUnitNameList.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      sponsorUnits: state.builder.sponsor.units
+      sponsorUnits: selectUnits(state)
    };
 };
 
