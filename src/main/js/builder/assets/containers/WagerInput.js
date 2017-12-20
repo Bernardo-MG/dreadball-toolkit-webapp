@@ -9,7 +9,7 @@ import { setWager } from 'builder/assets/actions';
 
 import BoundNumberInput from 'components/BoundNumberInput';
 
-import { specialMoveCardsSelector } from 'builder/assets/selectors';
+import { selectWagers } from 'builder/assets/selectors';
 
 const WagerInput = (props) =>
    <BoundNumberInput {...props}
@@ -21,7 +21,7 @@ WagerInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: specialMoveCardsSelector(state)
+      value: selectWagers(state)
    };
 };
 

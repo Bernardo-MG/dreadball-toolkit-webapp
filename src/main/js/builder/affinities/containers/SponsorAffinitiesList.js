@@ -6,6 +6,8 @@ import Listing from 'components/Listing';
 
 import { connect } from 'react-redux';
 
+import { selectAffinities } from 'builder/affinities/selectors';
+
 const SponsorAffinitiesList = (props) =>
    <Listing source={props.source} />;
 
@@ -15,7 +17,7 @@ SponsorAffinitiesList.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      source: state.builder.sponsor.affinities
+      source: selectAffinities(state)
    };
 };
 

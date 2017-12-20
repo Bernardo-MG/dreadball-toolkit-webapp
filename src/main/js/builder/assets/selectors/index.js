@@ -1,14 +1,14 @@
 
-export const assetsSelector = (state) => state.builder.assets;
+export const selectAssets = (state) => state.builder.assets;
 
-export const cheerleadersSelector = (state) => assetsSelector(state).cheerleaders;
+export const selectCheerleaders = (state) => selectAssets(state).cheerleaders;
 
-export const coachingDiceSelector = (state) => assetsSelector(state).coachingDice;
+export const selectCoachingDice = (state) => selectAssets(state).coachingDice;
 
-export const mediBotsSelector = (state) => assetsSelector(state).mediBots;
+export const selectMediBots = (state) => selectAssets(state).mediBots;
 
-export const nastySurpriseCardsSelector = (state) => assetsSelector(state).nastySurpriseCards;
+export const selectNastySurpriseCards = (state) => selectAssets(state).nastySurpriseCards;
 
-export const specialMoveCardsSelector = (state) => assetsSelector(state).specialMoveCards;
+export const selectSpecialMoveCards = (state) => selectAssets(state).specialMoveCards;
 
-export const wagersSelector = (state) => assetsSelector(state).wagers;
+export const selectWagers = (state) => selectAssets(state).wagers;

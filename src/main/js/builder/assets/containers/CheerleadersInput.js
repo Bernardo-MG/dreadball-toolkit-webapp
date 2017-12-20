@@ -9,7 +9,7 @@ import { setCheerleaders } from 'builder/assets/actions';
 
 import BoundNumberInput from 'components/BoundNumberInput';
 
-import { cheerleadersSelector } from 'builder/assets/selectors';
+import { selectCheerleaders } from 'builder/assets/selectors';
 
 const CheerleadersInput = (props) =>
    <BoundNumberInput {...props}
@@ -21,7 +21,7 @@ CheerleadersInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: cheerleadersSelector(state)
+      value: selectCheerleaders(state)
    };
 };
 

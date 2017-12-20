@@ -9,7 +9,7 @@ import { setSpecialMoveCard } from 'builder/assets/actions';
 
 import BoundNumberInput from 'components/BoundNumberInput';
 
-import { specialMoveCardsSelector } from 'builder/assets/selectors';
+import { selectSpecialMoveCards } from 'builder/assets/selectors';
 
 const SpecialMoveCardInput = (props) =>
    <BoundNumberInput {...props}
@@ -21,7 +21,7 @@ SpecialMoveCardInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: specialMoveCardsSelector(state)
+      value: selectSpecialMoveCards(state)
    };
 };
 

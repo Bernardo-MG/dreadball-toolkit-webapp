@@ -9,7 +9,7 @@ import { setNastySurpriseCard } from 'builder/assets/actions';
 
 import BoundNumberInput from 'components/BoundNumberInput';
 
-import { nastySurpriseCardsSelector } from 'builder/assets/selectors';
+import { selectNastySurpriseCards } from 'builder/assets/selectors';
 
 const NastySurpriseCardInput = (props) =>
    <BoundNumberInput {...props}
@@ -21,7 +21,7 @@ NastySurpriseCardInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: nastySurpriseCardsSelector(state)
+      value: selectNastySurpriseCards(state)
    };
 };
 

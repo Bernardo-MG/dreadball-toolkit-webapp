@@ -9,7 +9,7 @@ import { setCoachingDice } from 'builder/assets/actions';
 
 import BoundNumberInput from 'components/BoundNumberInput';
 
-import { coachingDiceSelector } from 'builder/assets/selectors';
+import { selectCoachingDice } from 'builder/assets/selectors';
 
 const CoachingDiceInput = (props) =>
    <BoundNumberInput {...props}
@@ -21,7 +21,7 @@ CoachingDiceInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: coachingDiceSelector(state)
+      value: selectCoachingDice(state)
    };
 };
 

@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
+import { selectTeamValue } from 'builder/sponsors/selectors';
+
 const SponsorTeamValue = (props) => <Value value={props.teamValue} label='teamValue' />;
 
 SponsorTeamValue.propTypes = {
@@ -14,7 +16,7 @@ SponsorTeamValue.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      teamValue: state.builder.sponsor.teamValue
+      teamValue: selectTeamValue(state)
    };
 };
 

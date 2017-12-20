@@ -6,6 +6,8 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
+import { selectRank } from 'builder/sponsors/selectors';
+
 const SponsorRankValue = (props) => <Value value={props.rank} label='rank' />;
 
 SponsorRankValue.propTypes = {
@@ -14,7 +16,7 @@ SponsorRankValue.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      rank: state.builder.sponsor.rank
+      rank: selectRank(state)
    };
 };
 

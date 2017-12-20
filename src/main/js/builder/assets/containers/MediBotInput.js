@@ -9,7 +9,7 @@ import { setMediBot } from 'builder/assets/actions';
 
 import BoundNumberInput from 'components/BoundNumberInput';
 
-import { mediBotsSelector } from 'builder/assets/selectors';
+import { selectMediBots } from 'builder/assets/selectors';
 
 const MediBotInput = (props) =>
    <BoundNumberInput {...props}
@@ -21,7 +21,7 @@ MediBotInput.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      value: mediBotsSelector(state)
+      value: selectMediBots(state)
    };
 };
 
