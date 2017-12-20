@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Listing from 'components/Listing';
 
-import RemovableTeamUnit from 'builder/units/containers/RemovableTeamUnit';
+import RemovableTeamUnit from 'builder/units/components/RemovableTeamUnit';
 
 import { connect } from 'react-redux';
 
