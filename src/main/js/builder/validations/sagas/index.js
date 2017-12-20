@@ -2,7 +2,11 @@ import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/actionTypes';
 import { teamValidationFetcher as fetcher } from 'builder/validations/requests/fetchers';
 import { validateTeamSuccess } from 'builder/validations/actions';
+
 import { selectAssets } from 'builder/assets/selectors';
+import { selectAffinities } from 'builder/affinities/selectors';
+import { selectBaseRank } from 'builder/sponsors/selectors';
+import { selectUnits } from 'builder/units/selectors';
 
 function fetch(params) {
    return fetcher.fetch(params);
@@ -19,17 +23,11 @@ function* build(action) {
    yield put({ type: types.SET_TEAM_VALUE, payload: action.payload.teamValue });
 }
 
-const affinitiesSelection = (state) => state.builder.sponsor.affinities;
-
-const unitsSelection = (state) => state.builder.sponsor.units;
-
-const baseRankSelection = (state) => state.builder.sponsor.baseRank;
-
 function* validateTeam() {
    const assets = yield select(selectAssets);
-   const affinities = yield select(affinitiesSelection);
-   const units = yield select(unitsSelection);
-   const baseRank = yield select(baseRankSelection);
+   const affinities = yield select(selectAffinities);
+   const units = yield select(selectUnits);
+   const baseRank = yield select(selectBaseRank);
 
    const params = { affinities, units, baseRank, ...assets };
    yield call(requestValidation, { params });
