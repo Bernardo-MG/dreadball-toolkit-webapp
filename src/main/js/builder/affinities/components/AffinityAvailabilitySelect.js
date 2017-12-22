@@ -11,21 +11,13 @@ class AffinityAvailabilitySelect extends Component {
    onChange;
 
    handleChange = (value) => {
-      const selected = value.option.value;
-      let affinity;
-
-      if (value.option.rank) {
-         affinity = value.option.value;
-      } else {
-         affinity = value.option.affinity;
-      }
+      const selected = value.option;
 
       this.setState({
-         affinity,
          value: selected
       });
 
-      this.onChange(affinity, this.index);
+      this.onChange(selected.value, this.index);
    };
 
    componentDidMount() {
@@ -41,8 +33,7 @@ class AffinityAvailabilitySelect extends Component {
       if (props.source.length) {
          const first = props.source[0];
          this.state = {
-            affinity: first.affinity,
-            value: first.value
+            value: first
          };
       }
    }
