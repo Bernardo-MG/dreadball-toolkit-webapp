@@ -11,7 +11,7 @@ import { fetch } from 'models/actions/sponsorAffAva';
 
 import { selectSponsorAffAvas } from 'models/selectors';
 
-import { avasToMap } from 'builder/views/tools';
+import { affinityOptionsFromAvas } from 'builder/views/utils';
 
 import SponsorAffinityAvailabilitySelectField from 'builder/affinities/components/SponsorAffinityAvailabilitySelectField';
 
@@ -22,7 +22,7 @@ class SponsorAffinityAvailabilitySelectionPanel extends Component {
    constructor(props) {
       super(props);
 
-      this.values = avasToMap(props.source, props.intl);
+      this.values = affinityOptionsFromAvas(props.source, props.intl);
    }
 
    componentDidMount() {
@@ -30,7 +30,7 @@ class SponsorAffinityAvailabilitySelectionPanel extends Component {
    }
 
    componentWillReceiveProps(props) {
-      this.values = avasToMap(props.source, props.intl);
+      this.values = affinityOptionsFromAvas(props.source, props.intl);
    }
 
    render() {

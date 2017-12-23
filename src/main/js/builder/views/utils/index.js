@@ -21,4 +21,4 @@ const avaToMap = (ava, intl) => {
    return result;
 };
 
-export const avasToMap = (avas, intl) => avas.map((ava) => avaToMap(ava, intl));
+export const affinityOptionsFromAvas = (avas, intl) => avas.map((ava) => avaToMap(ava, intl));
