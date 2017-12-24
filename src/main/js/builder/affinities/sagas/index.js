@@ -1,18 +1,27 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/actionTypes';
-import { avasValidationFetcher as fetcher } from 'builder/affinities/requests/fetchers';
-import { validationSuccess } from 'builder/actions';
+import { avasValidationFetcher, avasOptionsFetcher } from 'builder/affinities/requests/fetchers';
+import { validationSuccess, optionsRequestSuccess } from 'builder/actions';
 
 import { selectAffinities } from 'builder/affinities/selectors';
 
-function fetch(params) {
-   return fetcher.fetch(params);
+function fetchValidation(params) {
+   return avasValidationFetcher.fetch(params);
 }
 
-function* request(action) {
+function fetchOptions(params) {
+   return avasOptionsFetcher.fetch(params);
+}
+
+function* requestOptions(action) {
+   const response = yield call(fetchOptions, { ...action.params });
+   yield put(optionsRequestSuccess(response.payload));
+}
+
+function* requestValidation(action) {
    const affinities = yield select(selectAffinities);
 
-   const response = yield call(fetch, { ...action.params, affinities });
+   const response = yield call(fetchValidation, { ...action.params, affinities });
    yield put(validationSuccess(response.payload));
 }
 
@@ -21,7 +30,13 @@ function* build(action) {
    yield put({ type: types.SET_RANK, payload: action.payload.rank });
 }
 
+function* buildOptions(action) {
+   yield put({ type: types.SET_AFFINITY_OPTIONS, payload: action.payload });
+}
+
 export const affinitiesSagas = [
-   takeLatest(types.TEAM_AFFINITIES_VALIDATION, request),
+   takeLatest(types.REQUEST_SPONSOR_AFFINITY_GROUP_OPTIONS, requestOptions),
+   takeLatest(types.REQUEST_SUCCESS_SPONSOR_AFFINITY_GROUP_OPTIONS, buildOptions),
+   takeLatest(types.TEAM_AFFINITIES_VALIDATION, requestValidation),
    takeLatest(types.REQUEST_SUCCESS_TEAM_VALIDATION_AFFINITIES, build)
 ];

@@ -7,35 +7,21 @@ import { injectIntl } from 'react-intl';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetch } from 'models/actions/sponsorAffAva';
+import { fetchAffinityOptions as fetch } from 'builder/affinities/actions';
 
-import { selectSponsorAffAvas } from 'models/selectors';
-
-import { affinityOptionsFromAvas } from 'builder/views/utils';
+import { selectAffinityOptions } from 'builder/affinities/selectors';
 
 import SponsorAffinityAvailabilitySelectField from 'builder/affinities/components/SponsorAffinityAvailabilitySelectField';
 
 class SponsorAffinityAvailabilitySelectionPanel extends Component {
 
-   values;
-
-   constructor(props) {
-      super(props);
-
-      this.values = affinityOptionsFromAvas(props.source, props.intl);
-   }
-
    componentDidMount() {
       this.props.action();
    }
 
-   componentWillReceiveProps(props) {
-      this.values = affinityOptionsFromAvas(props.source, props.intl);
-   }
-
    render() {
       return (
-         <SponsorAffinityAvailabilitySelectField source={this.values} />
+         <SponsorAffinityAvailabilitySelectField source={this.props.source} />
       );
    }
 
@@ -49,7 +35,7 @@ SponsorAffinityAvailabilitySelectionPanel.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      source: selectSponsorAffAvas(state)
+      source: selectAffinityOptions(state)
    };
 };
 

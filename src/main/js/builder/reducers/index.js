@@ -1,12 +1,13 @@
 import * as ActionTypes from 'builder/actions/actionTypes';
 import { combineReducers } from 'redux';
 import assets from 'builder/assets/reducers';
+import affinities from 'builder/affinities/reducers';
 
 const sponsor = (
    state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, teamValue: 0, affinities: [], units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
    action) => {
    const { type, payload } = action;
-   const affinities = state.affinities.slice();
+   const affs = state.affinities.slice();
    switch (type) {
    case ActionTypes.CLEAR_TEAM:
       return {
@@ -18,11 +19,11 @@ const sponsor = (
          sponsorName: 'Sponsor name'
       };
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
-      affinities[action.index] = payload;
+      affs[action.index] = payload;
 
       return {
          ...state,
-         affinities
+         affs
       };
    case ActionTypes.ADD_TEAM_UNIT:
       return {
@@ -54,6 +55,6 @@ const sponsor = (
    }
 };
 
-const dbxBuilderReducer = combineReducers({ sponsor, assets });
+const dbxBuilderReducer = combineReducers({ sponsor, assets, affinities });
 
 export default dbxBuilderReducer;

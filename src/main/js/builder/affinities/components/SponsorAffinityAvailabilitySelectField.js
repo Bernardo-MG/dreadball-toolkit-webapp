@@ -8,7 +8,7 @@ import SponsorAffinityAvailabilitySelect from 'builder/affinities/containers/Spo
 
 const SponsorAffinityAvailabilitySelectField = (props) =>
    <Box>
-      {props.source.map((element, i) => <SponsorAffinityAvailabilitySelect index={i} key={i} source={element} />)}
+      {props.source.map((element, i) => <SponsorAffinityAvailabilitySelect index={i} key={i} source={element.options} />)}
    </Box>;
 
 SponsorAffinityAvailabilitySelectField.propTypes = {

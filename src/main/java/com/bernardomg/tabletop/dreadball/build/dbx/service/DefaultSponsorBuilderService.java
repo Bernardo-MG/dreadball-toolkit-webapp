@@ -4,10 +4,16 @@ package com.bernardomg.tabletop.dreadball.build.dbx.service;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
+import java.util.stream.StreamSupport;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.bernardomg.tabletop.dreadball.build.dbx.model.ImmutableOption;
+import com.bernardomg.tabletop.dreadball.build.dbx.model.ImmutableOptionGroup;
+import com.bernardomg.tabletop.dreadball.build.dbx.model.Option;
+import com.bernardomg.tabletop.dreadball.build.dbx.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
 import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
@@ -43,10 +49,13 @@ public final class DefaultSponsorBuilderService
     }
 
     @Override
-    public final Iterable<SponsorAffinityGroupAvailability>
-            getAffinityGroupAvailabilities() {
-        return getSponsorAffinityGroupAvailabilityService()
-                .getAllSponsorAffinityGroupAvailabilities();
+    public final Iterable<OptionGroup> getAffinityOptionGroups() {
+        final Iterable<SponsorAffinityGroupAvailability> avas;
+
+        avas = getAffinityGroupAvailabilities();
+
+        return StreamSupport.stream(avas.spliterator(), false)
+                .map(this::toOptionGroup).collect(Collectors.toList());
     }
 
     @Override
@@ -72,6 +81,12 @@ public final class DefaultSponsorBuilderService
                 affinities, units, assets, baseRank);
     }
 
+    private final Iterable<SponsorAffinityGroupAvailability>
+            getAffinityGroupAvailabilities() {
+        return getSponsorAffinityGroupAvailabilityService()
+                .getAllSponsorAffinityGroupAvailabilities();
+    }
+
     private final SponsorAffinityGroupAvailabilityService
             getSponsorAffinityGroupAvailabilityService() {
         return affinityGroupAvailabilityService;
@@ -85,5 +100,25 @@ public final class DefaultSponsorBuilderService
     private final SponsorUnitsService getSponsorUnitsService() {
         return unitsService;
     }
+
+    private final Option toOption(final AffinityGroup affinity) {
+        return new ImmutableOption(affinity.getName(), affinity.getName());
+    };
+
+    private final OptionGroup
+            toOptionGroup(final SponsorAffinityGroupAvailability ava) {
+        final Collection<Option> options;
+
+        options = StreamSupport
+                .stream(ava.getAffinityGroups().spliterator(), false)
+                .map(this::toOption).collect(Collectors.toList());
+
+        if (ava.isIncludingRankIncrease()) {
+            // TODO: Use a constant
+            options.add(new ImmutableOption("rank_increase", "rank_increase"));
+        }
+
+        return new ImmutableOptionGroup(ava.getName(), options);
+    };
 
 }

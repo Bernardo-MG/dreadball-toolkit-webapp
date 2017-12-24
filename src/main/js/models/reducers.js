@@ -1,15 +1,9 @@
-import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS, CREATE_RATED_UNITS, CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES } from 'models/actions/actionTypes';
+import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS, CREATE_RATED_UNITS } from 'models/actions/actionTypes';
 
 const model = (state = { sponsorAffinityAvailabilities: [], abilities: [], affinities: [], units: [], ratedUnits: [] }, action) => {
    const { type, payload } = action;
 
    switch (type) {
-   case CREATE_SPONSOR_AFFINITY_GROUP_AVAILABILITIES: {
-      return {
-         ...state,
-         sponsorAffinityAvailabilities: payload
-      };
-   }
    case CREATE_ABILITIES: {
       return {
          ...state,
