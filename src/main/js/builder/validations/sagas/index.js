@@ -4,7 +4,7 @@ import { teamValidationFetcher as fetcher } from 'builder/validations/requests/f
 import { validateTeamSuccess } from 'builder/validations/actions';
 
 import { selectAssets } from 'builder/assets/selectors';
-import { selectAffinities } from 'builder/affinities/selectors';
+import { selectChosenAffinities } from 'builder/affinities/selectors';
 import { selectBaseRank } from 'builder/sponsors/selectors';
 import { selectUnits } from 'builder/units/selectors';
 
@@ -25,7 +25,7 @@ function* build(action) {
 
 function* validateTeam() {
    const assets = yield select(selectAssets);
-   const affinities = yield select(selectAffinities);
+   const affinities = yield select(selectChosenAffinities);
    const units = yield select(selectUnits);
    const baseRank = yield select(selectBaseRank);
 

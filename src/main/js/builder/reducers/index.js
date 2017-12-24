@@ -4,13 +4,12 @@ import assets from 'builder/assets/reducers';
 import affinities from 'builder/affinities/reducers';
 
 const sponsor = (
-   state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, teamValue: 0, affinities: [], units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
+   state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, teamValue: 0, units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
    action) => {
    const { type, payload } = action;
    switch (type) {
    case ActionTypes.CLEAR_TEAM:
       return {
-         affinities: [],
          rank: 0,
          baseRank: 0,
          teamValue: 0,

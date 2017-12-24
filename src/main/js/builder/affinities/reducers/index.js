@@ -16,6 +16,12 @@ const affinities = (
          options: payload
       };
    }
+   case ActionTypes.SET_CHOSEN_AFFINITIES: {
+      return {
+         ...state,
+         chosen: payload
+      };
+   }
    case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
       affs[action.index] = payload;
 
