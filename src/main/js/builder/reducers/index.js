@@ -7,7 +7,6 @@ const sponsor = (
    state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, teamValue: 0, affinities: [], units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
    action) => {
    const { type, payload } = action;
-   const affs = state.affinities.slice();
    switch (type) {
    case ActionTypes.CLEAR_TEAM:
       return {
@@ -17,13 +16,6 @@ const sponsor = (
          teamValue: 0,
          units: [],
          sponsorName: 'Sponsor name'
-      };
-   case ActionTypes.CHOOSE_SPONSOR_AFFINITY:
-      affs[action.index] = payload;
-
-      return {
-         ...state,
-         affs
       };
    case ActionTypes.ADD_TEAM_UNIT:
       return {

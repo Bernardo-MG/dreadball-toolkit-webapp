@@ -3,7 +3,7 @@ import * as types from 'builder/actions/actionTypes';
 import { avasValidationFetcher, avasOptionsFetcher } from 'builder/affinities/requests/fetchers';
 import { validationSuccess, optionsRequestSuccess } from 'builder/actions';
 
-import { selectAffinities } from 'builder/affinities/selectors';
+import { selectChosenAffinities } from 'builder/affinities/selectors';
 
 function fetchValidation(params) {
    return avasValidationFetcher.fetch(params);
@@ -19,7 +19,7 @@ function* requestOptions(action) {
 }
 
 function* requestValidation(action) {
-   const affinities = yield select(selectAffinities);
+   const affinities = yield select(selectChosenAffinities);
 
    const response = yield call(fetchValidation, { ...action.params, affinities });
    yield put(validationSuccess(response.payload));

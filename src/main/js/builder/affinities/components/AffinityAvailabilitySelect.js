@@ -14,14 +14,16 @@ class AffinityAvailabilitySelect extends Component {
       const selected = value.option;
 
       this.setState({
-         value: selected
+         option: selected
       });
 
       this.onChange(selected.value, this.index);
    };
 
    componentDidMount() {
-      this.props.onChange(this.state.value, this.index);
+      if (this.state.option) {
+         this.props.onChange(this.state.option.value, this.index);
+      }
    }
 
    constructor(props) {
@@ -33,7 +35,7 @@ class AffinityAvailabilitySelect extends Component {
       if (props.source.length) {
          const first = props.source[0];
          this.state = {
-            value: first
+            option: first
          };
       }
    }
@@ -42,7 +44,7 @@ class AffinityAvailabilitySelect extends Component {
       return (
          <Select placeHolder='None'
             options={this.props.source}
-            value={this.state.value}
+            value={this.state.option}
             onChange={this.handleChange} />
       );
    }
