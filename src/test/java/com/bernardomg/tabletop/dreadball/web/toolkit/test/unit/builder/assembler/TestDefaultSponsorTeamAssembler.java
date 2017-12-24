@@ -4,9 +4,9 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.assemble
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.bernardomg.tabletop.dreadball.build.dbx.assembler.DefaultSponsorTeamAssembler;
 import com.bernardomg.tabletop.dreadball.build.dbx.assembler.SponsorTeamAssembler;

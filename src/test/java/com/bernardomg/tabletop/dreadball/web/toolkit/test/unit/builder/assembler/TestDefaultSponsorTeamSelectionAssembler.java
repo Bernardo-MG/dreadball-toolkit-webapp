@@ -6,9 +6,9 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.bernardomg.tabletop.dreadball.build.dbx.assembler.DefaultSponsorTeamSelectionAssembler;
 import com.bernardomg.tabletop.dreadball.build.dbx.assembler.SponsorTeamSelectionAssembler;
@@ -17,8 +17,8 @@ import com.bernardomg.tabletop.dreadball.model.faction.Sponsor;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
-import com.beust.jcommander.internal.Maps;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 
 public final class TestDefaultSponsorTeamSelectionAssembler {
 

@@ -16,9 +16,9 @@
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.rules;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.bernardomg.tabletop.dreadball.build.dbx.rules.SponsorConstraints;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;

@@ -21,10 +21,10 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
+import org.junit.Assert;
+import org.junit.Before;
+import org.junit.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
-import org.testng.Assert;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 import com.bernardomg.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamAssets;
 
@@ -50,7 +50,7 @@ public final class TestSponsorTeamAssetsValidation {
     /**
      * Sets up the validator for the tests.
      */
-    @BeforeTest
+    @Before
     public final void setUpValidator() {
         validator = createValidator();
     }

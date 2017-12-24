@@ -3,9 +3,9 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.assemble
 
 import java.util.Collections;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.mockito.Mockito;
-import org.testng.Assert;
-import org.testng.annotations.Test;
 
 import com.bernardomg.tabletop.dreadball.build.dbx.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.build.dbx.service.DefaultSponsorBuilderService;

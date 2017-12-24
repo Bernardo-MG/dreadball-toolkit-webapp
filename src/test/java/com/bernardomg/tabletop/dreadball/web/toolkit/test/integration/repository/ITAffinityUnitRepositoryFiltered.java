@@ -19,19 +19,19 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.repositor
 import java.util.ArrayList;
 import java.util.Collection;
 
+import org.junit.Assert;
+import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.testng.AbstractTransactionalTestNGSpringContextTests;
-import org.testng.Assert;
-import org.testng.annotations.Test;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
 public class ITAffinityUnitRepositoryFiltered
-        extends AbstractTransactionalTestNGSpringContextTests {
+        extends AbstractJUnit4SpringContextTests {
 
     @Autowired
     private AffinityUnitRepository repository;

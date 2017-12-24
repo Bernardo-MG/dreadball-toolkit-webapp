@@ -20,6 +20,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.hamcrest.Matchers;
+import org.junit.Before;
+import org.junit.Test;
 import org.mockito.Mockito;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -27,8 +29,6 @@ import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
-import org.testng.annotations.BeforeTest;
-import org.testng.annotations.Test;
 
 import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
 import com.bernardomg.tabletop.dreadball.service.model.AffinityGroupService;
@@ -58,7 +58,7 @@ public final class TestAffinityGroupCodexController {
     /**
      * Sets up the mocked MVC context.
      */
-    @BeforeTest
+    @Before
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
     }
