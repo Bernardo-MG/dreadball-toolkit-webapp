@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl';
 
 const affinityMessages = defineMessages({
+   rank_increase: {
+      id: 'affinity.rank',
+      defaultMessage: 'Rank +1'
+   },
    alien: {
       id: 'affinity.alien',
       defaultMessage: 'Alien'
