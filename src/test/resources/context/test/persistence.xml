@@ -7,12 +7,17 @@
       http://www.springframework.org/schema/context 
       http://www.springframework.org/schema/context/spring-context.xsd">
 
-   <!-- Scans for services -->
-   <context:component-scan base-package="com.bernardomg.tabletop.dreadball.web.toolkit.builder.service" />
-   <context:component-scan base-package="com.bernardomg.tabletop.dreadball.web.toolkit.factory" />
-   <context:component-scan base-package="com.bernardomg.tabletop.dreadball.web.toolkit.model.team.calculator" />
+   <!-- Imports -->
+   <import resource="classpath:context/persistence.xml" />
 
-   <!-- Other services -->
-   <bean id="dbxRules" class="${service.rules.version}" />
-
+   <!-- Database initializer -->
+   <jdbc:initialize-database data-source="dataSource">
+      <jdbc:script location="${jdbc.script.drop.dbx}" />
+      <jdbc:script location="${jdbc.script.drop.common}" />
+      <jdbc:script location="${jdbc.script.init.common}" />
+      <jdbc:script location="${jdbc.script.init.dbx}" />
+      <jdbc:script location="${jdbc.script.load.common}" />
+      <jdbc:script location="${jdbc.script.load.dbx}" />
+   </jdbc:initialize-database>
+   
 </beans>

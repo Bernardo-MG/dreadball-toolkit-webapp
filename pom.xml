@@ -866,8 +866,8 @@
          <testResource>
             <directory>src/test/resources/</directory>
             <includes>
-               <!-- Filter the DBX builder context -->
-               <include>context/test-db-context.xml</include>
+               <!-- Filter the test contexts -->
+               <include>context/*.xml</include>
             </includes>
             <filtering>true</filtering>
          </testResource>

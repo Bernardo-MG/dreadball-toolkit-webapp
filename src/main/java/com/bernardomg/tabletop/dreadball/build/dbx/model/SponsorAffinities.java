@@ -7,6 +7,11 @@ public interface SponsorAffinities {
 
     public Integer getBaseRank();
 
+    /**
+     * TODO: This value seems to be the same as the base rank, remove it
+     * 
+     * @return
+     */
     public Integer getRank();
 
 }

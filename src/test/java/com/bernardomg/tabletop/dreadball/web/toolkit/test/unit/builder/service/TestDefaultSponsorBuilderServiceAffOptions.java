@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.assembler;
+package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.service;
 
 import java.util.ArrayList;
 import java.util.Collection;

@@ -71,6 +71,7 @@ public final class DefaultSponsorBuilderAssemblerService
         final Iterable<String> valid;
         // TODO: Validate
 
+        // TODO: Combine these operations with the assembler
         rank = getRank(affinities);
         // TODO: Ensure these are existing affinities
         valid = getValidAffinities(affinities);
