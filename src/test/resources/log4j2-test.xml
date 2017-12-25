@@ -25,6 +25,10 @@
          <AppenderRef ref="file" />
       </logger>
 
+      <Logger name="org.springframework" level="debug" additivity="false">
+         <AppenderRef ref="file" />
+      </Logger>
+
       <!-- Queries logs -->
 
       <logger name="org.hibernate.SQL" level="trace" additivity="false">

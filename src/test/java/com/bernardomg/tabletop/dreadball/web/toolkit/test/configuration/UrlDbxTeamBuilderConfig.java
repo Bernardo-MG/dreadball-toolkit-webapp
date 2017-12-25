@@ -24,24 +24,9 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration;
 public final class UrlDbxTeamBuilderConfig {
 
     /**
-     * Team assets REST URL.
-     */
-    public static final String URL_ASSETS   = "/builder/team/dbx/assets";
-
-    /**
-     * Player addition REST URL.
-     */
-    public static final String URL_PLAYERS  = "/builder/team/dbx/players";
-
-    /**
-     * Form view URL.
-     */
-    public static final String URL_SPONSOR  = "/builder/team/dbx/sponsor";
-
-    /**
      * Team validation REST URL.
      */
-    public static final String URL_VALIDATE = "/builder/team/dbx/validate";
+    public static final String URL_VALIDATE_AFFINITIES = "/rest/builder/validation/affinities";
 
     /**
      * Default constructor to avoid initialization.

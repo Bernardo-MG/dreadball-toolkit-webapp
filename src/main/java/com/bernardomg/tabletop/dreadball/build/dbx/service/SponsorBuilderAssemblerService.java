@@ -10,7 +10,7 @@ import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
 public interface SponsorBuilderAssemblerService {
 
     public SponsorAffinities
-            assembleSponsorAffinities(final Collection<String> affinities);
+            assembleSponsorAffinities(final Iterable<String> affinities);
 
     public SponsorTeamSelection assembleSponsorTeamSelection(
             final Collection<String> affinities, final Collection<String> units,

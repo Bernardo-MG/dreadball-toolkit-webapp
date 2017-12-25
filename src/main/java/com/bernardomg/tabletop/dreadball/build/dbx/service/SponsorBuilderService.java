@@ -21,7 +21,7 @@ public interface SponsorBuilderService {
             final Pageable pageable);
 
     public SponsorAffinities
-            selectAffinities(final Collection<String> affinities);
+            selectAffinities(final Iterable<String> affinities);
 
     public SponsorTeamSelection selectTeam(final Collection<String> affinities,
             final Collection<String> units, final SponsorTeamAssets assets,

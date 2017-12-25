@@ -68,7 +68,7 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final SponsorAffinities
-            selectAffinities(final Collection<String> affinities) {
+            selectAffinities(final Iterable<String> affinities) {
         return getSponsorBuilderAssemblerService()
                 .assembleSponsorAffinities(affinities);
     }
