@@ -67,16 +67,7 @@ public final class DefaultSponsorBuilderAssemblerService
     @Override
     public final SponsorAffinities
             assembleSponsorAffinities(final Collection<String> affinities) {
-        final Integer rank;
-        final Iterable<String> valid;
-        // TODO: Validate
-
-        // TODO: Combine these operations with the assembler
-        rank = getRank(affinities);
-        // TODO: Ensure these are existing affinities
-        valid = getValidAffinities(affinities);
-
-        return getAffinitiesSelectionAssembler().assemble(valid, rank);
+        return getAffinitiesSelectionAssembler().assemble(affinities);
     }
 
     @Override
@@ -120,17 +111,6 @@ public final class DefaultSponsorBuilderAssemblerService
         return affinityUnitRepository;
     }
 
-    private final Integer getRank(final Collection<String> affinities) {
-        final Integer rank;
-
-        // TODO: This doesn't look like a good solution
-        rank = affinities.stream()
-                .filter(affinity -> affinity.equals("rank_increase"))
-                .collect(Collectors.toList()).size();
-
-        return rank;
-    }
-
     private final SponsorTeamAssembler getSponsorTeamAssembler() {
         return teamAssembler;
     }
@@ -161,13 +141,6 @@ public final class DefaultSponsorBuilderAssemblerService
         }
 
         return units;
-    }
-
-    private final Iterable<String>
-            getValidAffinities(final Collection<String> affinities) {
-        return affinities.stream()
-                .filter(affinity -> !affinity.equals("rank_increase"))
-                .collect(Collectors.toList());
     }
 
 }

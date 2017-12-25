@@ -24,7 +24,6 @@ import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorAffinities;
  */
 public interface AffinitiesSelectionAssembler {
 
-    public SponsorAffinities assemble(final Iterable<String> affinities,
-            final Integer rank);
+    public SponsorAffinities assemble(final Iterable<String> affinities);
 
 }
