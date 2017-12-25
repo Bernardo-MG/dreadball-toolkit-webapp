@@ -40,7 +40,6 @@ public class ITDefaultSponsorBuilderServiceSelectAffs
         affinities.add("rank_increase");
         result = service.selectAffinities(affinities);
 
-        Assert.assertEquals(6, result.getBaseRank().intValue());
         Assert.assertEquals(6, result.getRank().intValue());
         Assert.assertEquals(4, Iterables.size(result.getAffinities()));
     }
@@ -53,7 +52,6 @@ public class ITDefaultSponsorBuilderServiceSelectAffs
         affinities = new ArrayList<>();
         result = service.selectAffinities(affinities);
 
-        Assert.assertEquals(5, result.getBaseRank().intValue());
         Assert.assertEquals(5, result.getRank().intValue());
         Assert.assertEquals(0, Iterables.size(result.getAffinities()));
     }

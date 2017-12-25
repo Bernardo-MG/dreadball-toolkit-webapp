@@ -38,7 +38,7 @@ public final class DefaultAffinitiesSelectionAssembler
 
         totalRank = getSponsorDefaults().getInitialRank() + rank;
 
-        return new DefaultSponsorAffinities(valid, totalRank, totalRank);
+        return new DefaultSponsorAffinities(valid, totalRank);
     }
 
     private final SponsorDefaults getSponsorDefaults() {

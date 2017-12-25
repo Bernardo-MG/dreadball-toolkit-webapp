@@ -64,7 +64,7 @@ public final class TestDefaultAffinitiesSelectionAssembler {
 
         result = assembler.assemble(affinities, 0);
 
-        Assert.assertEquals(result.getBaseRank(), new Integer(0));
+        Assert.assertEquals(result.getRank(), new Integer(0));
     }
 
     @Test
@@ -79,7 +79,7 @@ public final class TestDefaultAffinitiesSelectionAssembler {
 
         result = assembler.assemble(affinities, 6);
 
-        Assert.assertEquals(result.getBaseRank(), new Integer(6));
+        Assert.assertEquals(result.getRank(), new Integer(6));
     }
 
     @Test
