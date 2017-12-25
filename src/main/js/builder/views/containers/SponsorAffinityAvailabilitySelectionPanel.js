@@ -27,8 +27,7 @@ class SponsorAffinityAvailabilitySelectionPanel extends Component {
 
 SponsorAffinityAvailabilitySelectionPanel.propTypes = {
    action: PropTypes.func.isRequired,
-   source: PropTypes.array.isRequired,
-   intl: PropTypes.object.isRequired
+   source: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => {
