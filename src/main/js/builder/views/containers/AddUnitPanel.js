@@ -5,22 +5,24 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetch } from 'models/actions/sponsorUnit';
 import { selectRatedUnits } from 'models/selectors';
 
 import Box from 'grommet/components/Box';
-
-import NextPageButton from 'builder/units/containers/buttons/NextPageButton';
-import PreviousPageButton from 'builder/units/containers/buttons/PreviousPageButton';
+import Button from 'grommet/components/Button';
 
 import AddUnitList from 'builder/units/components/AddUnitList';
 
 import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
+import BackIcon from 'grommet/components/icons/base/CaretBack';
+import NextIcon from 'grommet/components/icons/base/CaretNext';
+
+import { fetch, movePrevPage, moveNextPage } from 'models/actions/sponsorUnit';
+
 class AddUnitPanel extends Component {
 
    componentDidMount() {
-      this.props.action();
+      this.props.load();
    }
 
    render() {
@@ -32,10 +34,10 @@ class AddUnitPanel extends Component {
             <AddUnitList source={this.props.units} />
             <Box direction='row'>
                <Box margin='small'>
-                  <PreviousPageButton />
+                  <Button onClick={this.props.pageBack} icon={<BackIcon/>} />
                </Box>
                <Box margin='small'>
-                  <NextPageButton />
+                  <Button onClick={this.props.pageForward} icon={<NextIcon/>} />
                </Box>
             </Box>
          </Box>
@@ -44,7 +46,9 @@ class AddUnitPanel extends Component {
 }
 
 AddUnitPanel.propTypes = {
-   action: PropTypes.func.isRequired,
+   load: PropTypes.func.isRequired,
+   pageBack: PropTypes.func.isRequired,
+   pageForward: PropTypes.func.isRequired,
    units: PropTypes.array.isRequired
 };
 
@@ -56,7 +60,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(fetch, dispatch)
+      load: bindActionCreators(fetch, dispatch),
+      pageBack: bindActionCreators(movePrevPage, dispatch),
+      pageForward: bindActionCreators(moveNextPage, dispatch)
    };
 };
 
