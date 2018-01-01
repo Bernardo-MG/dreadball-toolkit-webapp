@@ -12,8 +12,6 @@ import Button from 'grommet/components/Button';
 
 import AddUnitList from 'builder/units/components/AddUnitList';
 
-import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
-
 import BackIcon from 'grommet/components/icons/base/CaretBack';
 import NextIcon from 'grommet/components/icons/base/CaretNext';
 
@@ -27,10 +25,7 @@ class AddUnitPanel extends Component {
 
    render() {
       return (
-         <Box margin='small'>
-            <Box margin='small'>
-               <SponsorTeamCost />
-            </Box>
+         <Box margin='small' full={true}>
             <AddUnitList source={this.props.units} />
             <Box direction='row'>
                <Box margin='small'>

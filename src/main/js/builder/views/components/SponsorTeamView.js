@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 
+import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
+import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
+import Split from 'grommet/components/Split';
 
 import SponsorAffinitiesList from 'builder/affinities/containers/SponsorAffinitiesList';
 import SponsorUnitNameList from 'builder/units/containers/SponsorUnitNameList';
@@ -49,9 +52,6 @@ class SponsorTeamView extends Component {
          view =
             <Box justify='center' align='center' pad='medium'>
                <Box>
-                  <SponsorTeamCost />
-               </Box>
-               <Box>
                   <SponsorNameInput />
                </Box>
                <Heading tag='h2'>assets</Heading>
@@ -64,16 +64,17 @@ class SponsorTeamView extends Component {
       }
 
       return (
-         <Box direction='row' full={true} flex={true}>
-            <Box
-               justify='center'
-               align='center'
-               pad='medium'
-               full={true} flex={true}>
-               { view }
-            </Box>
+         <Split flex="left" separator={true}>
+            <Article>
+               <Header>
+                  <SponsorTeamCost />
+               </Header>
+               <Box flex={true}>
+                  { view }
+               </Box>
+            </Article>
             <SponsorTeamViewSidebar onSelectAssets={this.showAssets} onSelectAddUnits={this.showAddUnits} onSelectUnits={this.showUnits} />
-         </Box>
+         </Split>
       );
    }
 }
