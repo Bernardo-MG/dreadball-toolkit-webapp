@@ -16,14 +16,18 @@ import BoundDbxTeamPlayersPanel from 'builder/views/containers/BoundDbxTeamPlaye
 
 class SponsorTeamView extends Component {
 
-   state = { showUnits: false, showSidebar: true };
+   state = { view: 'assets', showSidebar: true };
 
    showUnits = () => {
-      this.setState({ showUnits: true });
+      this.setState({ view: 'units' });
+   }
+
+   showAddUnits = () => {
+      this.setState({ view: 'addUnits' });
    }
 
    showAssets = () => {
-      this.setState({ showUnits: false });
+      this.setState({ view: 'assets' });
    }
 
    toggleSideBar = () => {
@@ -33,10 +37,15 @@ class SponsorTeamView extends Component {
    render() {
       let view = null;
 
-      if (this.state.showUnits) {
+      if (this.state.view === 'addUnits') {
+         view = <BoundDbxTeamPlayersPanel />;
+      } else if (this.state.view === 'units') {
          view =
-            <BoundDbxTeamPlayersPanel />;
-      } else {
+            <Box>
+               <Heading tag='h2'>players</Heading>
+               <SponsorUnitNameList />
+            </Box>;
+      } else if (this.state.view === 'assets') {
          view =
             <Box justify='center' align='center' pad='medium'>
                <Box>
@@ -47,17 +56,9 @@ class SponsorTeamView extends Component {
                </Box>
                <Heading tag='h2'>assets</Heading>
                <SponsorAssetsForm />
-               <Box direction='row' pad='small'>
-                  <Box pad='small' size='medium'>
-                     <Box direction='row'>
-                        <Heading tag='h2'>affinities</Heading>
-                     </Box>
-                     <SponsorAffinitiesList />
-                  </Box>
-                  <Box pad='small' size='medium'>
-                     <Heading tag='h2'>players</Heading>
-                     <SponsorUnitNameList />
-                  </Box>
+               <Box>
+                  <Heading tag='h2'>affinities</Heading>
+                  <SponsorAffinitiesList />
                </Box>
             </Box>;
       }
@@ -71,7 +72,7 @@ class SponsorTeamView extends Component {
                full={true} flex={true}>
                { view }
             </Box>
-            <SponsorTeamViewSidebar onSelectAssets={this.showAssets} onSelectUnits={this.showUnits} />
+            <SponsorTeamViewSidebar onSelectAssets={this.showAssets} onSelectAddUnits={this.showAddUnits} onSelectUnits={this.showUnits} />
          </Box>
       );
    }

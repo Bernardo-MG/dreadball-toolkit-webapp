@@ -16,6 +16,7 @@ class SponsorTeamViewSidebar extends Component {
             <Box pad="medium">
                <Menu>
                   <Button align="start" plain={true} label="assets" onClick={this.props.onSelectAssets} />
+                  <Button align="start" plain={true} label="add_units" onClick={this.props.onSelectAddUnits} />
                   <Button align="start" plain={true} label="units" onClick={this.props.onSelectUnits} />
                </Menu>
             </Box>
@@ -26,6 +27,7 @@ class SponsorTeamViewSidebar extends Component {
 
 SponsorTeamViewSidebar.propTypes = {
    onSelectAssets: PropTypes.func.isRequired,
+   onSelectAddUnits: PropTypes.func.isRequired,
    onSelectUnits: PropTypes.func.isRequired
 };
 
