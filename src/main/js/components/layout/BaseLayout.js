@@ -3,16 +3,16 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 import App from 'grommet/components/App';
-import Box from 'grommet/components/Box';
+import Split from 'grommet/components/Split';
 
-import Header from 'components/layout/Header';
+import MainSidebar from 'components/layout/MainSidebar';
 
 const BaseLayout = (props) =>
    <App centered={false}>
-      <Box full={true}>
-         <Header />
+      <Split flex="right">
+         <MainSidebar />
          {props.children}
-      </Box>
+      </Split>
    </App>;
 
 BaseLayout.propTypes = {

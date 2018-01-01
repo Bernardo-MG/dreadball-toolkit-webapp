@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
 
 import Box from 'grommet/components/Box';
-import Sidebar from 'grommet/components/Sidebar';
-import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
-import Title from 'grommet/components/Title';
-import Menu from 'grommet/components/Menu';
-import Button from 'grommet/components/Button';
 
 import SponsorAffinitiesList from 'builder/affinities/containers/SponsorAffinitiesList';
 import SponsorUnitNameList from 'builder/units/containers/SponsorUnitNameList';
@@ -14,13 +9,14 @@ import SponsorUnitNameList from 'builder/units/containers/SponsorUnitNameList';
 import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
 import SponsorAssetsForm from 'builder/views/components/SponsorAssetsForm';
+import SponsorTeamViewSidebar from 'builder/views/components/SponsorTeamViewSidebar';
 import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
 
 import BoundDbxTeamPlayersPanel from 'builder/views/containers/BoundDbxTeamPlayersPanel';
 
 class SponsorTeamView extends Component {
 
-   state = { showUnits: false };
+   state = { showUnits: false, showSidebar: true };
 
    showUnits = () => {
       this.setState({ showUnits: true });
@@ -28,6 +24,10 @@ class SponsorTeamView extends Component {
 
    showAssets = () => {
       this.setState({ showUnits: false });
+   }
+
+   toggleSideBar = () => {
+      this.setState({ showSidebar: !this.state.showSidebar });
    }
 
    render() {
@@ -67,32 +67,14 @@ class SponsorTeamView extends Component {
             <Box
                justify='center'
                align='center'
-               pad='medium'>
-               <Sidebar>
-                  <Header pad='medium'
-                     justify='between'>
-                     <Title>options</Title>
-                  </Header>
-                  <Box flex='grow'
-                     justify='start'>
-                     <Menu primary={true}>
-                        <Button onClick={this.showAssets}>assets</Button>
-                        <Button onClick={this.showUnits}>units</Button>
-                     </Menu>
-                  </Box>
-               </Sidebar>
-            </Box>
-            <Box
-               justify='center'
-               align='center'
                pad='medium'
                full={true} flex={true}>
                { view }
             </Box>
+            <SponsorTeamViewSidebar onSelectAssets={this.showAssets} onSelectUnits={this.showUnits} />
          </Box>
       );
    }
 }
-
 
 export default SponsorTeamView;
