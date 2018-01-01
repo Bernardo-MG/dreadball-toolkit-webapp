@@ -12,7 +12,7 @@ import DbxUnitPanel from 'builder/views/components/DbxUnitPanel';
 
 import unitNameMessages from 'i18n/unitName';
 
-const AddDbxUnitList = (props) =>
+const AddUnitList = (props) =>
    <Accordion>
       { props.source.map((unit, i) =>
          <AccordionPanel heading={props.intl.formatMessage(unitNameMessages[unit.name])} key={i}>
@@ -23,9 +23,9 @@ const AddDbxUnitList = (props) =>
       )}
    </Accordion>;
 
-AddDbxUnitList.propTypes = {
+AddUnitList.propTypes = {
    source: PropTypes.array.isRequired,
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(AddDbxUnitList);
+export default injectIntl(AddUnitList);

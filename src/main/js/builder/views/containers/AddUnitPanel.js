@@ -2,27 +2,25 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
+import { fetch } from 'models/actions/sponsorUnit';
+import { selectRatedUnits } from 'models/selectors';
+
 import Box from 'grommet/components/Box';
 
 import NextPageButton from 'builder/units/containers/buttons/NextPageButton';
 import PreviousPageButton from 'builder/units/containers/buttons/PreviousPageButton';
 
-import AddDbxUnitList from 'builder/units/components/AddDbxUnitList';
+import AddUnitList from 'builder/units/components/AddUnitList';
 
 import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
-class DbxTeamPlayersPanel extends Component {
+class AddUnitPanel extends Component {
 
-   units = [];
-
-   constructor(props) {
-      super(props);
-
-      this.units = props.units;
-   }
-
-   componentWillReceiveProps(props) {
-      this.units = props.units;
+   componentDidMount() {
+      this.props.action();
    }
 
    render() {
@@ -31,7 +29,7 @@ class DbxTeamPlayersPanel extends Component {
             <Box margin='small'>
                <SponsorTeamCost />
             </Box>
-            <AddDbxUnitList source={this.props.units} />
+            <AddUnitList source={this.props.units} />
             <Box direction='row'>
                <Box margin='small'>
                   <PreviousPageButton />
@@ -43,11 +41,26 @@ class DbxTeamPlayersPanel extends Component {
          </Box>
       );
    }
-
 }
 
-DbxTeamPlayersPanel.propTypes = {
+AddUnitPanel.propTypes = {
+   action: PropTypes.func.isRequired,
    units: PropTypes.array.isRequired
 };
 
-export default DbxTeamPlayersPanel;
+const mapStateToProps = (state) => {
+   return {
+      units: selectRatedUnits(state)
+   };
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      action: bindActionCreators(fetch, dispatch)
+   };
+};
+
+export default connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(AddUnitPanel);

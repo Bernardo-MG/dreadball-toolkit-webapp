@@ -12,7 +12,7 @@ import SponsorAssetsForm from 'builder/views/components/SponsorAssetsForm';
 import SponsorTeamViewSidebar from 'builder/views/components/SponsorTeamViewSidebar';
 import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
 
-import BoundDbxTeamPlayersPanel from 'builder/views/containers/BoundDbxTeamPlayersPanel';
+import AddUnitPanel from 'builder/views/containers/AddUnitPanel';
 
 class SponsorTeamView extends Component {
 
@@ -38,7 +38,7 @@ class SponsorTeamView extends Component {
       let view = null;
 
       if (this.state.view === 'addUnits') {
-         view = <BoundDbxTeamPlayersPanel />;
+         view = <AddUnitPanel />;
       } else if (this.state.view === 'units') {
          view =
             <Box>
