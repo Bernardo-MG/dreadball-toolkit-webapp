@@ -4,12 +4,12 @@ import PropTypes from 'prop-types';
 
 import { injectIntl } from 'react-intl';
 
+import Anchor from 'grommet/components/Anchor';
 import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
 import Sidebar from 'grommet/components/Sidebar';
 import Footer from 'grommet/components/Footer';
 
-import NavAnchor from 'components/NavAnchor';
 import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
 
 import titleMessages from 'i18n/title';
@@ -20,8 +20,8 @@ const AppHeader = (props) =>
          <p>APP_NAME</p>
       </Header>
       <Menu fill={true} primary={true}>
-         <NavAnchor path='/dbx'>{props.intl.formatMessage(titleMessages.dbxTeamBuilder)}</NavAnchor>
-         <NavAnchor path='/players'>{props.intl.formatMessage(titleMessages.dbxPlayers)}</NavAnchor>
+         <Anchor path='/dbx' label={props.intl.formatMessage(titleMessages.dbxTeamBuilder)} />
+         <Anchor path='/players' label={props.intl.formatMessage(titleMessages.dbxPlayers)} />
       </Menu>
       <Footer pad={ { horizontal: 'medium', vertical: 'small' } }>
          <p>{APP_VERSION}</p> <a href={REPO_URL}><SocialGithubIcon /></a>
