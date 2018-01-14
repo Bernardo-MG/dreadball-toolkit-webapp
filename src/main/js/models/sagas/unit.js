@@ -1,7 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
 import { fetcherUnit as fetcher } from 'models/requests/fetchers';
-import { unitPageSelector as pageSelector } from 'models/selectors/page';
+import { selectCurrentUnitPage as pageSelector } from 'models/selectors/page';
 import { requestSuccess } from 'models/actions/unit';
 
 export function fetch(params) {

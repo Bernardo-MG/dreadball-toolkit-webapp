@@ -4,6 +4,8 @@ import PropTypes from 'prop-types';
 
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
+import Label from 'grommet/components/Label';
+import Value from 'grommet/components/Value';
 
 import UnitList from 'codex/components/UnitList';
 
@@ -32,6 +34,11 @@ class PlayersPagesPanel extends Component {
                <Box margin='small'>
                   <Button onClick={this.props.previousPage} icon={<BackIcon/>} />
                </Box>
+               <Box direction='row' margin='small'>
+                  <Value value={this.props.page} />
+                  <Label>/</Label>
+                  <Value value={this.props.totalPages} />
+               </Box>
                <Box margin='small'>
                   <Button onClick={this.props.nextPage} icon={<NextIcon/>} />
                </Box>
@@ -44,7 +51,9 @@ class PlayersPagesPanel extends Component {
 PlayersPagesPanel.propTypes = {
    units: PropTypes.array.isRequired,
    previousPage: PropTypes.func.isRequired,
-   nextPage: PropTypes.func.isRequired
+   nextPage: PropTypes.func.isRequired,
+   page: PropTypes.number.isRequired,
+   totalPages: PropTypes.number.isRequired
 };
 
 export default PlayersPagesPanel;
