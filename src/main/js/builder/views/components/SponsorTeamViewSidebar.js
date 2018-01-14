@@ -12,7 +12,7 @@ class SponsorTeamViewSidebar extends Component {
 
    render() {
       return (
-         <Sidebar size="medium" colorIndex="light-2">
+         <Sidebar size="small" colorIndex="light-2">
             <Box pad="medium">
                <Menu>
                   <Button align="start" plain={true} label="assets" onClick={this.props.onSelectAssets} />
