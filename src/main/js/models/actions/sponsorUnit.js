@@ -2,19 +2,22 @@ import { REQUEST_TEAM_UNITS, CHANGE_PAGE_PREV_TEAM_UNITS, CHANGE_PAGE_NEXT_TEAM_
 
 export const fetch = () => {
    return {
-      type: REQUEST_TEAM_UNITS
+      type: REQUEST_TEAM_UNITS,
+      params: { orderBy: 'templateName' }
    };
 };
 
 export const movePrevPage = () => {
    return {
-      type: CHANGE_PAGE_PREV_TEAM_UNITS
+      type: CHANGE_PAGE_PREV_TEAM_UNITS,
+      params: { orderBy: 'templateName' }
    };
 };
 
 export const moveNextPage = () => {
    return {
-      type: CHANGE_PAGE_NEXT_TEAM_UNITS
+      type: CHANGE_PAGE_NEXT_TEAM_UNITS,
+      params: { orderBy: 'templateName' }
    };
 };
 

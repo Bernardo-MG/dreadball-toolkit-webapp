@@ -2,19 +2,22 @@ import { REQUEST_UNITS, CHANGE_PAGE_PREV_UNITS, CHANGE_PAGE_NEXT_UNITS, REQUEST_
 
 export const fetch = () => {
    return {
-      type: REQUEST_UNITS
+      type: REQUEST_UNITS,
+      params: { orderBy: 'templateName' }
    };
 };
 
 export const movePrevPage = () => {
    return {
-      type: CHANGE_PAGE_PREV_UNITS
+      type: CHANGE_PAGE_PREV_UNITS,
+      params: { orderBy: 'templateName' }
    };
 };
 
 export const moveNextPage = () => {
    return {
-      type: CHANGE_PAGE_NEXT_UNITS
+      type: CHANGE_PAGE_NEXT_UNITS,
+      params: { orderBy: 'templateName' }
    };
 };
 
