@@ -445,8 +445,8 @@
       <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
       <hibernate.version>5.1.0.Final</hibernate.version>
       <hikari.version>2.6.0</hikari.version>
+      <itext.version>5.5.12</itext.version>
       <jackson.version>2.9.2</jackson.version>
-      <jasperreports.version>6.4.0</jasperreports.version>
       <jodaTime.hibernate.version>1.4</jodaTime.hibernate.version>
       <jodaTime.jsp.version>1.1.1</jodaTime.jsp.version>
       <jodaTime.version>2.9.7</jodaTime.version>
@@ -713,12 +713,12 @@
          <version>${thymeleaf.version}</version>
       </dependency>
       <!-- ============================================== -->
-      <!-- ============== JASPERREPORTS ================= -->
+      <!-- ============== ITEXT ================= -->
       <!-- ============================================== -->
       <dependency>
-         <groupId>net.sf.jasperreports</groupId>
-         <artifactId>jasperreports</artifactId>
-         <version>${jasperreports.version}</version>
+         <groupId>com.itextpdf</groupId>
+         <artifactId>itextpdf</artifactId>
+         <version>${itext.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================== LOGGING =================== -->

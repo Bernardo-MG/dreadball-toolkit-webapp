@@ -17,6 +17,8 @@ import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
 
 import AddUnitPanel from 'builder/views/containers/AddUnitPanel';
 
+import TeamReportButton from 'builder/views/containers/TeamReportButton';
+
 class SponsorTeamView extends Component {
 
    state = { view: 'assets', showSidebar: true };
@@ -67,7 +69,10 @@ class SponsorTeamView extends Component {
          <Split flex="left" separator={true}>
             <Article>
                <Header>
-                  <SponsorTeamCost />
+                  <Box direction='row'>
+                     <SponsorTeamCost />
+                     <TeamReportButton />
+                  </Box>
                </Header>
                <Box flex={true}>
                   { view }
