@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetch } from 'models/actions/unit';
+import { fetch, moveNextPage, movePrevPage } from 'models/actions/unit';
 import { selectUnits } from 'models/selectors';
 
 import PlayersPagesPanel from 'codex/components/PlayersPagesPanel';
@@ -13,19 +13,21 @@ import PlayersPagesPanel from 'codex/components/PlayersPagesPanel';
 class BoundDbxPlayersPanel extends Component {
 
    componentDidMount() {
-      this.props.action();
+      this.props.load();
    }
 
    render() {
       return (
-         <PlayersPagesPanel units={this.props.units} />
+         <PlayersPagesPanel units={this.props.units} previousPage={this.props.previousPage} nextPage={this.props.nextPage} />
       );
    }
 }
 
 BoundDbxPlayersPanel.propTypes = {
-   action: PropTypes.func.isRequired,
-   units: PropTypes.array.isRequired
+   load: PropTypes.func.isRequired,
+   units: PropTypes.array.isRequired,
+   previousPage: PropTypes.func.isRequired,
+   nextPage: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -36,7 +38,9 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(fetch, dispatch)
+      load: bindActionCreators(fetch, dispatch),
+      previousPage: bindActionCreators(movePrevPage, dispatch),
+      nextPage: bindActionCreators(moveNextPage, dispatch)
    };
 };
 

@@ -3,11 +3,12 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
 import Box from 'grommet/components/Box';
-
-import NextPageButton from 'codex/containers/NextPageButton';
-import PreviousPageButton from 'codex/containers/PreviousPageButton';
+import Button from 'grommet/components/Button';
 
 import UnitList from 'codex/components/UnitList';
+
+import BackIcon from 'grommet/components/icons/base/CaretBack';
+import NextIcon from 'grommet/components/icons/base/CaretNext';
 
 class PlayersPagesPanel extends Component {
 
@@ -29,10 +30,10 @@ class PlayersPagesPanel extends Component {
             <UnitList source={this.props.units} />
             <Box direction='row' justify='center' align='center'>
                <Box margin='small'>
-                  <PreviousPageButton />
+                  <Button onClick={this.props.previousPage} icon={<BackIcon/>} />
                </Box>
                <Box margin='small'>
-                  <NextPageButton />
+                  <Button onClick={this.props.nextPage} icon={<NextIcon/>} />
                </Box>
             </Box>
          </Box>
@@ -41,7 +42,9 @@ class PlayersPagesPanel extends Component {
 }
 
 PlayersPagesPanel.propTypes = {
-   units: PropTypes.array.isRequired
+   units: PropTypes.array.isRequired,
+   previousPage: PropTypes.func.isRequired,
+   nextPage: PropTypes.func.isRequired
 };
 
 export default PlayersPagesPanel;
