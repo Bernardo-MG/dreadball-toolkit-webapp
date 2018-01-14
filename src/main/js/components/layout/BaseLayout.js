@@ -9,7 +9,7 @@ import MainSidebar from 'components/layout/MainSidebar';
 
 const BaseLayout = (props) =>
    <App centered={false}>
-      <Split flex="right">
+      <Split flex="right" separator={true} >
          <MainSidebar />
          {props.children}
       </Split>
