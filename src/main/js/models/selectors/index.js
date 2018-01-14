@@ -12,3 +12,5 @@ export const selectRatedUnits = createSelector(
    (state) => state.pagination.ratedUnits.ids,
    (data, ids) => filterByKeys(data, ids)
 );
+
+export const selectSponsorAffinities = (state) => state.builder.sponsor.affinities;
