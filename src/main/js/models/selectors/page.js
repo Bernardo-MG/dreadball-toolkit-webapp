@@ -1,5 +1,5 @@
 
-export const sponsorselectCurrentUnitPage = (state) => state.pagination.ratedUnits.page;
+export const selectCurrentRatedUnitPage = (state) => state.pagination.ratedUnits.page;
 
 export const selectCurrentUnitPage = (state) => state.pagination.units.page;
 
