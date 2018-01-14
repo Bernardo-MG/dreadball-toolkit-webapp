@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { fetch, moveNextPage, movePrevPage } from 'models/actions/unit';
 import { selectUnits } from 'models/selectors';
-import { selectCurrentUnitPage, selectTotalUnitPages } from 'models/selectors/page';
+import { selectCurrentUnitPageVisual, selectTotalUnitPages } from 'models/selectors/page';
 
 import PlayersPagesPanel from 'codex/components/PlayersPagesPanel';
 
@@ -38,7 +38,7 @@ BoundDbxPlayersPanel.propTypes = {
 const mapStateToProps = (state) => {
    return {
       units: selectUnits(state),
-      page: selectCurrentUnitPage(state),
+      page: selectCurrentUnitPageVisual(state),
       totalPages: selectTotalUnitPages(state)
    };
 };
