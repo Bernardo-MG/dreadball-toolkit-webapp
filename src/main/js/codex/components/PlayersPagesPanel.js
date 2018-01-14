@@ -34,11 +34,9 @@ class PlayersPagesPanel extends Component {
                <Box margin='small'>
                   <Button onClick={this.props.previousPage} icon={<BackIcon/>} />
                </Box>
-               <Box direction='row' margin='small'>
-                  <Value value={this.props.page} />
-                  <Label>/</Label>
-                  <Value value={this.props.totalPages} />
-               </Box>
+               <Value value={this.props.page} />
+               <Label>/</Label>
+               <Value value={this.props.totalPages} />
                <Box margin='small'>
                   <Button onClick={this.props.nextPage} icon={<NextIcon/>} />
                </Box>
