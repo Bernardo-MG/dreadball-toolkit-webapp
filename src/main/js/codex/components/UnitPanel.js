@@ -14,7 +14,7 @@ import unitMessages from 'i18n/unit';
 import unitNameMessages from 'i18n/unitName';
 import unitRoleMessages from 'i18n/role';
 
-class DbxUnitPanel extends Component {
+class UnitPanel extends Component {
 
    render() {
       let friendCost;
@@ -93,9 +93,9 @@ class DbxUnitPanel extends Component {
    }
 }
 
-DbxUnitPanel.propTypes = {
+UnitPanel.propTypes = {
    source: PropTypes.object.isRequired,
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(DbxUnitPanel);
+export default injectIntl(UnitPanel);

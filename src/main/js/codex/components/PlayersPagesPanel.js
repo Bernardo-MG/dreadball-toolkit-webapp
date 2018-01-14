@@ -7,9 +7,9 @@ import Box from 'grommet/components/Box';
 import NextPageButton from 'codex/containers/NextPageButton';
 import PreviousPageButton from 'codex/containers/PreviousPageButton';
 
-import DbxUnitList from 'codex/components/DbxUnitList';
+import UnitList from 'codex/components/UnitList';
 
-class DbxPlayersPanel extends Component {
+class PlayersPagesPanel extends Component {
 
    units = [];
 
@@ -26,7 +26,7 @@ class DbxPlayersPanel extends Component {
    render() {
       return (
          <Box pad='medium' full={true}>
-            <DbxUnitList source={this.props.units} />
+            <UnitList source={this.props.units} />
             <Box direction='row' justify='center' align='center'>
                <Box margin='small'>
                   <PreviousPageButton />
@@ -40,8 +40,8 @@ class DbxPlayersPanel extends Component {
    }
 }
 
-DbxPlayersPanel.propTypes = {
+PlayersPagesPanel.propTypes = {
    units: PropTypes.array.isRequired
 };
 
-export default DbxPlayersPanel;
+export default PlayersPagesPanel;

@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { fetch } from 'models/actions/unit';
 import { selectUnits } from 'models/selectors';
 
-import DbxPlayersPanel from 'codex/components/DbxPlayersPanel';
+import PlayersPagesPanel from 'codex/components/PlayersPagesPanel';
 
 class BoundDbxPlayersPanel extends Component {
 
@@ -18,7 +18,7 @@ class BoundDbxPlayersPanel extends Component {
 
    render() {
       return (
-         <DbxPlayersPanel units={this.props.units} />
+         <PlayersPagesPanel units={this.props.units} />
       );
    }
 }
