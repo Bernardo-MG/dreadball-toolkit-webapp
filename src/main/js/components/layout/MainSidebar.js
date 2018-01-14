@@ -13,11 +13,12 @@ import Footer from 'grommet/components/Footer';
 import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
 
 import titleMessages from 'i18n/title';
+import appMessages from 'i18n/app';
 
 const AppHeader = (props) =>
    <Sidebar size="medium" colorIndex="light-2">
       <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
-         <p>APP_NAME</p>
+         {props.intl.formatMessage(appMessages.name)}
       </Header>
       <Menu fill={true} primary={true}>
          <Anchor path='/dbx' label={props.intl.formatMessage(titleMessages.dbxTeamBuilder)} />
