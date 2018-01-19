@@ -5,6 +5,7 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 
 import Anchor from 'grommet/components/Anchor';
+import Button from 'grommet/components/Button';
 import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
 import Sidebar from 'grommet/components/Sidebar';
@@ -25,7 +26,7 @@ const AppHeader = (props) =>
          <Anchor path='/players' label={props.intl.formatMessage(titleMessages.dbxPlayers)} />
       </Menu>
       <Footer pad={ { horizontal: 'medium', vertical: 'small' } }>
-         <p>{APP_VERSION}</p> <a href={REPO_URL}><SocialGithubIcon /></a>
+         <p>{APP_VERSION}</p> <Button href={REPO_URL} icon={<SocialGithubIcon/>} />
       </Footer>
    </Sidebar>;
 
