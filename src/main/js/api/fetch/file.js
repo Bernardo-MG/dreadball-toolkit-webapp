@@ -37,7 +37,7 @@ export const Fetcher = class {
          .parse(parse.image)
          .then(
             (response) => {
-               showFile(response.body, response.type, this.filename);
+               this.showFile(response.body, response.type, this.filename);
             },
             (error) => error.message || 'Request failed'
          );
