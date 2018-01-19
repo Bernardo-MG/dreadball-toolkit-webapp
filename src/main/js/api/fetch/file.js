@@ -3,28 +3,28 @@ import request, { parse } from 'superagent';
 function showFile(blob) {
    // It is necessary to create a new blob object with mime-type explicitly set
    // otherwise only Chrome works like it should
-   let newBlob = new Blob([blob], { type: 'application/pdf' });
+   const newBlob = new Blob([blob], { type: 'application/pdf' });
 
    // IE doesn't allow using a blob object directly as link href
    // instead it is necessary to use msSaveOrOpenBlob
    if (window.navigator && window.navigator.msSaveOrOpenBlob) {
       window.navigator.msSaveOrOpenBlob(newBlob);
       return;
-   } 
+   }
 
    // For other browsers: 
    // Create a link pointing to the ObjectURL containing the blob.
    const data = window.URL.createObjectURL(newBlob);
-   var link = document.createElement('a');
+   const link = document.createElement('a');
    link.href = data;
-   link.download="file.pdf";
+   link.download = 'file.pdf';
    link.click();
    setTimeout(() => {
-         // For Firefox it is necessary to delay revoking the ObjectURL
-         window.URL.revokeObjectURL(data);
-      }
-      , 100
-   )
+      // For Firefox it is necessary to delay revoking the ObjectURL
+      window.URL.revokeObjectURL(data);
+   },
+   100
+   );
 }
 
 export const Fetcher = class {
