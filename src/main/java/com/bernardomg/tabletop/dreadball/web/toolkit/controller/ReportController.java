@@ -39,7 +39,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bernardomg.tabletop.dreadball.report.DreadballReportBuilder;
-import com.itextpdf.text.DocumentException;
 
 /**
  * Controller for generating reports.
@@ -77,21 +76,20 @@ public class ReportController {
      *            HTTP request
      * @param response
      *            HTTP response
-     * @throws IOException
-     *             if there is a problem when streaming into the response
-     * @throws DocumentException
-     *             if there is a problem during the report generation
      */
     @GetMapping
     public final void getPdfReport(final Model model,
             final HttpServletRequest request,
-            final HttpServletResponse response)
-            throws IOException, DocumentException {
+            final HttpServletResponse response) {
         response.setContentType(MediaType.APPLICATION_PDF_VALUE);
         response.setHeader("Content-disposition",
                 String.format("inline; filename=%s.pdf", FILENAME));
 
-        getReportBuilder().createPdf(response.getOutputStream());
+        try {
+            getReportBuilder().createPdf(response.getOutputStream());
+        } catch (final IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private final DreadballReportBuilder getReportBuilder() {
