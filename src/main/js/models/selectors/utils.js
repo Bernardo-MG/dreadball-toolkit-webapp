@@ -10,3 +10,9 @@ export const filterByKeys = (data, keys) => {
 
    return result;
 };
+
+export const selectAllValues = (data) => {
+   const keys = Object.keys(data);
+
+   return filterByKeys(data, keys);
+};

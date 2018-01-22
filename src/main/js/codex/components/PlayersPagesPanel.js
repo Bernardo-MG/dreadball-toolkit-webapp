@@ -7,7 +7,7 @@ import Button from 'grommet/components/Button';
 import Label from 'grommet/components/Label';
 import Value from 'grommet/components/Value';
 
-import UnitList from 'codex/components/UnitList';
+import UnitTable from 'codex/components/UnitTable';
 
 import BackIcon from 'grommet/components/icons/base/CaretBack';
 import NextIcon from 'grommet/components/icons/base/CaretNext';
@@ -29,7 +29,7 @@ class PlayersPagesPanel extends Component {
    render() {
       return (
          <Box pad='medium' full={true}>
-            <UnitList source={this.props.units} />
+            <UnitTable source={this.props.units} onMore={this.props.nextPage} />
             <Box direction='row' justify='center' align='center'>
                <Box margin='small'>
                   <Button onClick={this.props.previousPage} icon={<BackIcon/>} />
