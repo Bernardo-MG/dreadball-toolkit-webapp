@@ -2,20 +2,17 @@ import union from 'lodash/union';
 
 const updatePagination = (state, action, idsMapping, store) => {
    const { type, payload } = action;
-   const requestType = `REQUEST_${store}`;
    const successType = `REQUEST_SUCCESS_${store}`;
    const failureType = `REQUEST_FAILURE_${store}`;
-   const prevType = `CHANGE_PAGE_PREV_${store}`;
-   const nextType = `CHANGE_PAGE_NEXT_${store}`;
+   const fetchingType = `FETCHING_${store}`;
 
    let replace = false;
    if (action.replace) {
       replace = action.replace;
    }
-   let page = state.page;
 
    switch (type) {
-   case requestType:
+   case fetchingType:
       return {
          ...state,
          isFetching: true
@@ -46,24 +43,6 @@ const updatePagination = (state, action, idsMapping, store) => {
          ...state,
          isFetching: false
       };
-   case prevType:
-      if ((!state.first) && (page > 0)) {
-         page -= 1;
-      }
-
-      return {
-         ...state,
-         page
-      };
-   case nextType:
-      if (!state.last) {
-         page += 1;
-      }
-
-      return {
-         ...state,
-         page
-      };
    default:
       return state;
    }
@@ -72,7 +51,7 @@ const updatePagination = (state, action, idsMapping, store) => {
 // Creates a reducer managing pagination, given the action types to handle,
 // and a function telling how to extract the key from an action.
 const paginate = ({ idsMapping, store }) =>
-   (state = { isFetching: false, ids: [], first: true, last: true, numberOfElements: 0, totalElements: 0, page: 0, totalPages: 0 }, action) =>
+   (state = { isFetching: false, ids: [], first: true, last: false, numberOfElements: 0, totalElements: 0, page: 0, totalPages: 0 }, action) =>
       updatePagination(state, action, idsMapping, store);
 
 export default paginate;

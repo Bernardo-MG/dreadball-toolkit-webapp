@@ -12,11 +12,22 @@ describe('Paginated reducer', () => {
             "first": true,
             "ids": [],
             "isFetching": false,
-            "last": true,
+            "last": false,
             "numberOfElements": 0,
             "page": 0,
             "totalElements": 0,
             "totalPages": 0
+         }
+      )
+   })
+
+   it('should start fetching on fetching', () => {
+      expect(
+         reducer({}, {
+            type: 'FETCHING_TEST'
+         })).toEqual(
+         {
+            "isFetching": true
          }
       )
    })
