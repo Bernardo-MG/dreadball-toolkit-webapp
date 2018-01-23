@@ -11,11 +11,13 @@ import unitNameMessages from 'i18n/unitName';
 
 const UnitTable = (props) =>
    <Table onMore={props.onMore}>
-      { props.source.map((unit, i) =>
-         <TableRow key={i}>
-            <td>{props.intl.formatMessage(unitNameMessages[unit.name])}</td>
-         </TableRow>
-      )}
+      <tbody>
+         { props.source.map((unit, i) =>
+            <TableRow key={i}>
+               <td>{props.intl.formatMessage(unitNameMessages[unit.name])}</td>
+            </TableRow>
+         )}
+      </tbody>
    </Table>;
 
 UnitTable.propTypes = {
