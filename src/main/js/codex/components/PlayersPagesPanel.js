@@ -29,7 +29,7 @@ class PlayersPagesPanel extends Component {
    render() {
       return (
          <Box pad='medium' full={true}>
-            <UnitTable source={this.props.units} onMore={this.props.nextPage} />
+            <UnitTable source={this.props.units} onMore={!this.props.lastPage ? () => this.props.nextPage() : null} />
             <Box direction='row' justify='center' align='center'>
                <Box margin='small'>
                   <Button onClick={this.props.previousPage} icon={<BackIcon/>} />
@@ -51,7 +51,8 @@ PlayersPagesPanel.propTypes = {
    previousPage: PropTypes.func.isRequired,
    nextPage: PropTypes.func.isRequired,
    page: PropTypes.number.isRequired,
-   totalPages: PropTypes.number.isRequired
+   totalPages: PropTypes.number.isRequired,
+   lastPage: PropTypes.bool.isRequired
 };
 
 export default PlayersPagesPanel;
