@@ -22,6 +22,16 @@ describe('Model reducer', () => {
          { units: { unit1 : 'values', unit2 : 'values', unit3 : 'values', unit4 : 'values', unit5 : 'values' } }
       )
    }),
+   it('ignores undefined units', () => {
+      expect(
+         model({ units: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }, {
+            type: types.CREATE_UNITS,
+            payload: undefined
+         })
+      ).toEqual(
+         { units: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }
+      )
+   }),
    it('creates abilities', () => {
       expect(
          model({}, {
@@ -40,6 +50,16 @@ describe('Model reducer', () => {
          })
       ).toEqual(
          { abilities: { ability1 : 'values', ability2 : 'values', ability3 : 'values', ability4 : 'values', ability5 : 'values' } }
+      )
+   }),
+   it('ignores undefined abilities', () => {
+      expect(
+         model({ abilities: { ability1 : 'values', ability2 : 'values', ability3 : 'values' } }, {
+            type: types.CREATE_ABILITIES,
+            payload: undefined
+         })
+      ).toEqual(
+         { abilities: { ability1 : 'values', ability2 : 'values', ability3 : 'values' } }
       )
    }),
    it('creates affinities', () => {
@@ -62,6 +82,16 @@ describe('Model reducer', () => {
          { affinities: { affinity1 : 'values', affinity2 : 'values', affinity3 : 'values', affinity4 : 'values', affinity5 : 'values' } }
       )
    }),
+   it('ignores undefined affinities', () => {
+      expect(
+         model({ affinities: { affinity1 : 'values', affinity2 : 'values', affinity3 : 'values' } }, {
+            type: types.CREATE_AFFINITIES,
+            payload: undefined
+         })
+      ).toEqual(
+         { affinities: { affinity1 : 'values', affinity2 : 'values', affinity3 : 'values' } }
+      )
+   }),
    it('creates rated units', () => {
       expect(
          model({}, {
@@ -80,6 +110,16 @@ describe('Model reducer', () => {
          })
       ).toEqual(
          { ratedUnits: { unit1 : 'values', unit2 : 'values', unit3 : 'values', unit4 : 'values', unit5 : 'values' } }
+      )
+   }),
+   it('ignores undefined units', () => {
+      expect(
+         model({ ratedUnits: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }, {
+            type: types.CREATE_RATED_UNITS,
+            payload: undefined
+         })
+      ).toEqual(
+         { ratedUnits: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }
       )
    })
 });
