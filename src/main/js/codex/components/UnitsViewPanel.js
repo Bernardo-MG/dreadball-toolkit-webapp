@@ -4,6 +4,7 @@ import PropTypes from 'prop-types';
 
 import { injectIntl } from 'react-intl';
 
+import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
 import Layer from 'grommet/components/Layer';
 import Table from 'grommet/components/Table';
@@ -38,7 +39,9 @@ class UnitsViewPanel extends Component {
       if (selection) {
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
-               <UnitPanel source={selection} />
+               <Article size='large'>
+                  <UnitPanel source={selection} />
+               </Article>
             </Layer>
          );
       } else {
