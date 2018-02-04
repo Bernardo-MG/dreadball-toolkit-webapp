@@ -10,7 +10,7 @@ import TableRow from 'grommet/components/TableRow';
 import unitNameMessages from 'i18n/unitName';
 
 const UnitTable = (props) =>
-   <Table onMore={props.onMore}>
+   <Table selectable={true} onSelect={props.onSelect} onMore={props.onMore}>
       <tbody>
          { props.source.map((unit, i) =>
             <TableRow key={i}>
@@ -23,6 +23,7 @@ const UnitTable = (props) =>
 UnitTable.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func.isRequired,
+   onSelect: PropTypes.func.isRequired,
    intl: PropTypes.object.isRequired
 };
 

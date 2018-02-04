@@ -5,13 +5,11 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import Box from 'grommet/components/Box';
-
 import { fetch, moveNextPage } from 'models/actions/unit';
 import { selectUnits } from 'models/selectors';
 import { selectLastUnitPage } from 'models/selectors/page';
 
-import UnitTable from 'codex/components/UnitTable';
+import UnitsViewPanel from 'codex/components/UnitsViewPanel';
 
 class UnitsScrollPanel extends Component {
 
@@ -21,9 +19,7 @@ class UnitsScrollPanel extends Component {
 
    render() {
       return (
-         <Box pad='medium' full={true}>
-            <UnitTable source={this.props.units} onMore={!this.props.lastPage ? () => this.props.nextPage() : null} />
-         </Box>
+         <UnitsViewPanel source={this.props.units} onMore={!this.props.lastPage ? () => this.props.nextPage() : null} />
       );
    }
 }
