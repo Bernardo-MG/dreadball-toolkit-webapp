@@ -16,7 +16,8 @@ function* request(action, pageStep) {
       yield put({ type: types.FETCHING_UNITS });
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;
-      const response = yield call(fetch, { page, ...action.params });
+      const params = { ...action.params, page };
+      const response = yield call(fetch, params);
       yield put(requestSuccess(response.payload, response.pagination));
    }
 }

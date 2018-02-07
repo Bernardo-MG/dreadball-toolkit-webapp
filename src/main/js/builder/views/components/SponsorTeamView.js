@@ -74,9 +74,7 @@ class SponsorTeamView extends Component {
                      <TeamReportButton />
                   </Box>
                </Header>
-               <Box flex={true}>
-                  { view }
-               </Box>
+               { view }
             </Article>
             <SponsorTeamViewSidebar onSelectAssets={this.showAssets} onSelectAddUnits={this.showAddUnits} onSelectUnits={this.showUnits} />
          </Split>

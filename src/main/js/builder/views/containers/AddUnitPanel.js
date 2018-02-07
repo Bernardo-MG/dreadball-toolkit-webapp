@@ -5,17 +5,12 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { selectRatedUnits } from 'models/selectors';
+import { selectRatedUnits as selectUnits } from 'models/selectors';
+import { selectLastRatedUnitPage as selectLastPage } from 'models/selectors/page';
 
-import Box from 'grommet/components/Box';
-import Button from 'grommet/components/Button';
+import AddUnitScrollablePanel from 'builder/units/components/AddUnitScrollablePanel';
 
-import AddUnitList from 'builder/units/components/AddUnitList';
-
-import BackIcon from 'grommet/components/icons/base/CaretBack';
-import NextIcon from 'grommet/components/icons/base/CaretNext';
-
-import { fetch, movePrevPage, moveNextPage } from 'models/actions/sponsorUnit';
+import { fetch, moveNextPage } from 'models/actions/sponsorUnit';
 
 class AddUnitPanel extends Component {
 
@@ -25,39 +20,29 @@ class AddUnitPanel extends Component {
 
    render() {
       return (
-         <Box margin='small' full={true}>
-            <AddUnitList source={this.props.units} />
-            <Box direction='row'>
-               <Box margin='small'>
-                  <Button onClick={this.props.pageBack} icon={<BackIcon/>} />
-               </Box>
-               <Box margin='small'>
-                  <Button onClick={this.props.pageForward} icon={<NextIcon/>} />
-               </Box>
-            </Box>
-         </Box>
+         <AddUnitScrollablePanel source={this.props.units} onMore={!this.props.lastPage ? () => this.props.nextPage() : null} />
       );
    }
 }
 
 AddUnitPanel.propTypes = {
    load: PropTypes.func.isRequired,
-   pageBack: PropTypes.func.isRequired,
-   pageForward: PropTypes.func.isRequired,
+   lastPage: PropTypes.bool.isRequired,
+   nextPage: PropTypes.func.isRequired,
    units: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      units: selectRatedUnits(state)
+      units: selectUnits(state),
+      lastPage: selectLastPage(state)
    };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
       load: bindActionCreators(fetch, dispatch),
-      pageBack: bindActionCreators(movePrevPage, dispatch),
-      pageForward: bindActionCreators(moveNextPage, dispatch)
+      nextPage: bindActionCreators(moveNextPage, dispatch)
    };
 };
 

@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { fetch, moveNextPage } from 'models/actions/unit';
 import { selectUnits } from 'models/selectors';
-import { selectLastUnitPage } from 'models/selectors/page';
+import { selectLastUnitPage as selectLastPage } from 'models/selectors/page';
 
 import UnitsViewPanel from 'codex/components/UnitsViewPanel';
 
@@ -26,16 +26,15 @@ class UnitsScrollPanel extends Component {
 
 UnitsScrollPanel.propTypes = {
    load: PropTypes.func.isRequired,
-   units: PropTypes.array.isRequired,
    lastPage: PropTypes.bool.isRequired,
-   nextPage: PropTypes.func.isRequired
+   nextPage: PropTypes.func.isRequired,
+   units: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
       units: selectUnits(state),
-      nextPage: PropTypes.func.isRequired,
-      lastPage: selectLastUnitPage(state)
+      lastPage: selectLastPage(state)
    };
 };
 

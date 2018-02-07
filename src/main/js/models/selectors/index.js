@@ -9,4 +9,4 @@ export const selectRatedUnits = createSelector(
    (data, ids) => filterByKeys(data, ids)
 );
 
-export const selectSponsorAffinities = (state) => state.builder.sponsor.affinities;
+export const selectSponsorAffinities = (state) => state.builder.affinities.chosen;
