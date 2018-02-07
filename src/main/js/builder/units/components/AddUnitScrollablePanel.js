@@ -10,7 +10,7 @@ import Layer from 'grommet/components/Layer';
 import Table from 'grommet/components/Table';
 import TableRow from 'grommet/components/TableRow';
 
-import UnitPanel from 'codex/components/UnitPanel';
+import DbxUnitPanel from 'builder/units/components/DbxUnitPanel';
 
 import unitNameMessages from 'i18n/unitName';
 
@@ -40,7 +40,7 @@ class AddUnitScrollablePanel extends Component {
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
                <Article size='large'>
-                  <UnitPanel source={selection} />
+                  <DbxUnitPanel source={selection} />
                </Article>
             </Layer>
          );
