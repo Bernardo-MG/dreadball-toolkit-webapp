@@ -13,6 +13,7 @@ import TableRow from 'grommet/components/TableRow';
 import UnitPanel from 'codex/components/UnitPanel';
 
 import unitNameMessages from 'i18n/unitName';
+import unitRoleMessages from 'i18n/role';
 
 class UnitsViewPanel extends Component {
 
@@ -56,6 +57,7 @@ class UnitsViewPanel extends Component {
                   { this.props.source.map((unit, i) =>
                      <TableRow onClick={() => select(unit)} key={i}>
                         <td>{this.props.intl.formatMessage(unitNameMessages[unit.name])}</td>
+                        <td>{this.props.intl.formatMessage(unitRoleMessages[unit.role])}</td>
                      </TableRow>
                   )}
                </tbody>

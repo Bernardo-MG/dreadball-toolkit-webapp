@@ -13,6 +13,7 @@ import TableRow from 'grommet/components/TableRow';
 import DbxUnitPanel from 'builder/units/components/DbxUnitPanel';
 
 import unitNameMessages from 'i18n/unitName';
+import unitRoleMessages from 'i18n/role';
 
 class AddUnitScrollablePanel extends Component {
 
@@ -56,6 +57,8 @@ class AddUnitScrollablePanel extends Component {
                   { this.props.source.map((unit, i) =>
                      <TableRow onClick={() => select(unit)} key={i}>
                         <td>{this.props.intl.formatMessage(unitNameMessages[unit.name])}</td>
+                        <td>{this.props.intl.formatMessage(unitRoleMessages[unit.role])}</td>
+                        <td>{unit.cost}</td>
                      </TableRow>
                   )}
                </tbody>
