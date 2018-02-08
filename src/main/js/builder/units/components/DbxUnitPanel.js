@@ -2,52 +2,28 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
+import { injectIntl } from 'react-intl';
+
 import Box from 'grommet/components/Box';
-import Columns from 'grommet/components/Columns';
 import Heading from 'grommet/components/Heading';
-import Label from 'grommet/components/Label';
-import Value from 'grommet/components/Value';
 
 import AddUnitButton from 'builder/units/containers/buttons/AddUnitButton';
+import UnitPanel from 'codex/components/UnitPanel';
+
+import unitNameMessages from 'i18n/unitName';
 
 const DbxUnitPanel = (props) =>
    <Box>
-      <AddUnitButton unit={props.source.templateName} />
       <Box direction='row'>
-         <Heading tag='h1'>{props.source.name}</Heading>
+         <AddUnitButton unit={props.source.templateName} />
+         <Heading tag='h1'>{props.intl.formatMessage(unitNameMessages[props.source.name])}</Heading>
       </Box>
-      <Label>{props.source.role}</Label>
-      <Heading tag='h2'>abilities</Heading>
-      <Label>{props.source.abilities}</Label>
-      <Heading tag='h2'>attributes</Heading>
-      <Box>
-         <Columns size='small'>
-            <Box pad='small'>
-               <Value value={props.source.movement} label='movement' />
-            </Box>
-            <Box pad='small'>
-               <Value value={props.source.strength} label='strength' />
-            </Box>
-            <Box pad='small'>
-               <Value value={props.source.speed} label='speed' />
-            </Box>
-            <Box pad='small'>
-               <Value value={props.source.skill} label='skill' />
-            </Box>
-            <Box pad='small'>
-               <Value value={props.source.armor} label='armor' />
-            </Box>
-         </Columns>
-      </Box>
-      <Columns size='small'>
-         <Box pad='small'>
-            <Value value={props.source.cost} label='cost' />
-         </Box>
-      </Columns>
+      <UnitPanel source={props.source} />
    </Box>;
 
 DbxUnitPanel.propTypes = {
-   source: PropTypes.object.isRequired
+   source: PropTypes.object.isRequired,
+   intl: PropTypes.object.isRequired
 };
 
-export default DbxUnitPanel;
+export default injectIntl(DbxUnitPanel);
