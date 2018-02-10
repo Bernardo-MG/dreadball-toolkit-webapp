@@ -17,4 +17,4 @@
  * Team building controllers.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.controller.builder.dbx;
+package com.bernardomg.tabletop.dreadball.build.dbx.controller;

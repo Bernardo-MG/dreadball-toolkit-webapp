@@ -14,13 +14,12 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.controller.builder.dbx;
+package com.bernardomg.tabletop.dreadball.codex.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-
-import org.springframework.beans.factory.annotation.Autowired;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -30,62 +29,65 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.OptionGroup;
-import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
+import com.bernardomg.tabletop.dreadball.service.model.UnitService;
 
 /**
- * Controller for the affinity groups codex views.
+ * Controller for the unit codex views.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/builder")
-public class SponsorQueryController {
+@RequestMapping("/rest/units")
+public class UnitCodexController {
 
-    private final SponsorBuilderService builderService;
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(UnitCodexController.class);
+
+    /**
+     * Unit codex service.
+     */
+    private final UnitService   unitCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
      * 
-     * @param sponsorBuilderService
-     *            sponsor units service
+     * @param codex
+     *            unit codex service
      */
-    @Autowired
-    public SponsorQueryController(
-            final SponsorBuilderService sponsorBuilderService) {
+    public UnitCodexController(final UnitService codex) {
         super();
 
-        builderService = checkNotNull(sponsorBuilderService,
-                "Received a null pointer as builder service");
+        unitCodexService = checkNotNull(codex,
+                "Received a null pointer as unit codex service");
     }
 
     /**
      * Returns the view for all the affinity units.
      * 
+     * @param page
+     *            page number
+     * @param size
+     *            page size
+     * @param orderBy
+     *            field to order by
+     * @param direction
+     *            ordering direction
      * @return the view for all the affinity units
      */
-    @GetMapping(path = "/affinity",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<OptionGroup> getAffinityGroups() {
-        return getSponsorBuilderService().getAffinityOptionGroups();
-    }
-
-    @GetMapping(path = "/units",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<? extends Unit> getDbxUnits(@RequestParam(
-            name = "affinities", required = false,
-            defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities,
-            @RequestParam(name = "page", required = false,
-                    defaultValue = "0") final Integer page,
-            @RequestParam(name = "size", required = false,
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final Iterable<? extends Unit> getDbxUnits(
+            @RequestParam(name = "page", defaultValue = "0") final Integer page,
+            @RequestParam(name = "size",
                     defaultValue = "10") final Integer size,
-            @RequestParam(name = "orderBy", required = false,
+            @RequestParam(name = "orderBy",
                     defaultValue = "") final String orderBy,
-            @RequestParam(name = "direction", required = false,
+            @RequestParam(name = "direction",
                     defaultValue = "ASC") final Direction direction) {
         final Pageable pageReq;
+
+        LOGGER.debug("orderBy: {}", orderBy);
+        LOGGER.debug("direction: {}", direction);
 
         // TODO: Page and size may be stored automatically into a pageable
         // Check:
@@ -97,11 +99,19 @@ public class SponsorQueryController {
             pageReq = new PageRequest(page, size, direction, orderBy);
         }
 
-        return getSponsorBuilderService().getAffinityUnits(affinities, pageReq);
+        final Iterable<? extends Unit> result;
+        result = getUnitCodexService().getAllAffinityUnits(pageReq);
+
+        return result;
     }
 
-    private final SponsorBuilderService getSponsorBuilderService() {
-        return builderService;
+    /**
+     * Returns the unit codex service.
+     * 
+     * @return the unit codex service
+     */
+    private final UnitService getUnitCodexService() {
+        return unitCodexService;
     }
 
 }

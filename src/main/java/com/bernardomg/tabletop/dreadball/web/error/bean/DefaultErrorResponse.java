@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.controller.error.bean;
+package com.bernardomg.tabletop.dreadball.web.error.bean;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

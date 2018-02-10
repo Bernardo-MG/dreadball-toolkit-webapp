@@ -30,9 +30,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.bernardomg.tabletop.dreadball.codex.controller.AffinityGroupCodexController;
 import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
 import com.bernardomg.tabletop.dreadball.service.model.AffinityGroupService;
-import com.bernardomg.tabletop.dreadball.web.toolkit.controller.codex.AffinityGroupCodexController;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**

@@ -22,7 +22,7 @@
  * SOFTWARE.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.controller;
+package com.bernardomg.tabletop.dreadball.report.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

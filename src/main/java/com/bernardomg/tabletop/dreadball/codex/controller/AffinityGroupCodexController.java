@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.controller.codex;
+package com.bernardomg.tabletop.dreadball.codex.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

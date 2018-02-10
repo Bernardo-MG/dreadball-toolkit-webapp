@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.controller.error;
+package com.bernardomg.tabletop.dreadball.web.error;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -31,8 +31,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 
-import com.bernardomg.tabletop.dreadball.web.toolkit.controller.error.bean.DefaultErrorResponse;
-import com.bernardomg.tabletop.dreadball.web.toolkit.controller.error.bean.ErrorResponse;
+import com.bernardomg.tabletop.dreadball.web.error.bean.DefaultErrorResponse;
+import com.bernardomg.tabletop.dreadball.web.error.bean.ErrorResponse;
 
 /**
  * Initializes all the controllers with a common configuration.

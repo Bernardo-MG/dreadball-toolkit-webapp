@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.controller.builder.dbx;
+package com.bernardomg.tabletop.dreadball.build.dbx.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 

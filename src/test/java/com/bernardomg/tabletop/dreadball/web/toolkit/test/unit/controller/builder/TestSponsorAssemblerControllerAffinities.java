@@ -29,11 +29,11 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import com.bernardomg.tabletop.dreadball.build.dbx.controller.SponsorAssemblerController;
 import com.bernardomg.tabletop.dreadball.build.dbx.model.DefaultSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.web.toolkit.controller.builder.dbx.SponsorAssemblerController;
-import com.bernardomg.tabletop.dreadball.web.toolkit.controller.codex.AffinityGroupCodexController;
+import com.bernardomg.tabletop.dreadball.codex.controller.AffinityGroupCodexController;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 import com.google.common.collect.Iterables;
 
