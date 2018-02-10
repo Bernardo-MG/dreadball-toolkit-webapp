@@ -7,8 +7,8 @@ import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
+import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
 import com.itextpdf.text.BaseColor;
-import com.itextpdf.text.Chapter;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
@@ -29,16 +29,48 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
     }
 
     @Override
-    public final void createPdf(final OutputStream output) {
+    public final void createPdf(final SponsorTeamSelection team,
+            final OutputStream output) {
         try {
-            create(output);
+            create(team, output);
         } catch (final IOException | DocumentException e) {
             e.printStackTrace();
         }
     }
 
-    private final void create(final OutputStream output)
-            throws IOException, DocumentException {
+    private final void addRows(final SponsorTeamSelection team,
+            final PdfPTable table) {
+        table.addCell("cheerleaders");
+        table.addCell(String.valueOf(team.getAssets().getCheerleaders()));
+
+        table.addCell("coaching_dice");
+        table.addCell(String.valueOf(team.getAssets().getCoachingDice()));
+
+        table.addCell("medibots");
+        table.addCell(String.valueOf(team.getAssets().getMediBots()));
+
+        table.addCell("nasty_surprise_cards");
+        table.addCell(String.valueOf(team.getAssets().getNastySurpriseCards()));
+
+        table.addCell("special_move_cards");
+        table.addCell(String.valueOf(team.getAssets().getSpecialMoveCards()));
+
+        table.addCell("wager");
+        table.addCell(String.valueOf(team.getAssets().getWagers()));
+    }
+
+    private final void addTableHeader(final PdfPTable table) {
+        Stream.of("asset", "value").forEach(columnTitle -> {
+            final PdfPCell header = new PdfPCell();
+            header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            header.setBorderWidth(2);
+            header.setPhrase(new Phrase(columnTitle));
+            table.addCell(header);
+        });
+    }
+
+    private final void create(final SponsorTeamSelection team,
+            final OutputStream output) throws IOException, DocumentException {
         final Document document = new Document();
         PdfWriter.getInstance(document, output);
         document.open();
@@ -54,7 +86,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         final PdfPTable table = new PdfPTable(2);
         addTableHeader(table);
-        addRows(table);
+        addRows(team, table);
         assets.add(table);
 
         final Paragraph header = new Paragraph(chunk);
@@ -65,36 +97,6 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         document.add(linebreak);
         document.add(assets);
         document.close();
-    }
-
-    private void addTableHeader(final PdfPTable table) {
-        Stream.of("asset", "value").forEach(columnTitle -> {
-            final PdfPCell header = new PdfPCell();
-            header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            header.setBorderWidth(2);
-            header.setPhrase(new Phrase(columnTitle));
-            table.addCell(header);
-        });
-    }
-
-    private void addRows(final PdfPTable table) {
-        table.addCell("cheerleaders");
-        table.addCell("0");
-
-        table.addCell("coaching_dice");
-        table.addCell("0");
-
-        table.addCell("medibots");
-        table.addCell("0");
-
-        table.addCell("nasty_surprise_cards");
-        table.addCell("0");
-
-        table.addCell("special_move_cards");
-        table.addCell("0");
-
-        table.addCell("wager");
-        table.addCell("0");
     }
 
 }

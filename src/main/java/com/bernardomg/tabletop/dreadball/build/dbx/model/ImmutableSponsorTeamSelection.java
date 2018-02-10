@@ -3,9 +3,12 @@ package com.bernardomg.tabletop.dreadball.build.dbx.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public final class DefaultSponsorTeamSelection implements SponsorTeamSelection {
+public final class ImmutableSponsorTeamSelection
+        implements SponsorTeamSelection {
 
     private final Iterable<String>     affinities;
+
+    private final SponsorTeamAssets    assets;
 
     private final Integer              baseRank;
 
@@ -15,9 +18,10 @@ public final class DefaultSponsorTeamSelection implements SponsorTeamSelection {
 
     private final Iterable<TeamPlayer> units;
 
-    public DefaultSponsorTeamSelection(final Iterable<String> affinities,
+    public ImmutableSponsorTeamSelection(final Iterable<String> affinities,
             final Iterable<TeamPlayer> units, final Integer rank,
-            final Integer baseRank, final Integer teamValue) {
+            final Integer baseRank, final Integer teamValue,
+            final SponsorTeamAssets assets) {
         super();
 
         this.affinities = checkNotNull(affinities,
@@ -28,11 +32,18 @@ public final class DefaultSponsorTeamSelection implements SponsorTeamSelection {
                 "Received a null pointer as base rank");
         this.teamValue = checkNotNull(teamValue,
                 "Received a null pointer as team value");
+        this.assets = checkNotNull(assets,
+                "Received a null pointer as team assets");
     }
 
     @Override
     public final Iterable<String> getAffinities() {
         return affinities;
+    }
+
+    @Override
+    public final SponsorTeamAssets getAssets() {
+        return assets;
     }
 
     @Override

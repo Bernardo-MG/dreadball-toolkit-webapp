@@ -10,7 +10,8 @@ import java.util.stream.StreamSupport;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.build.dbx.model.ImmutableSponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.build.dbx.model.TeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
@@ -33,6 +34,7 @@ public final class DefaultSponsorTeamSelectionAssembler
         final Integer teamValue;
         final Iterable<TeamPlayer> acceptedUnits;
         final Iterable<String> affNames;
+        final DefaultSponsorTeamAssets assets;
 
         checkNotNull(team, "Received a null pointer as team");
 
@@ -44,8 +46,16 @@ public final class DefaultSponsorTeamSelectionAssembler
         acceptedUnits = getTeamPlayers(team.getPlayers());
         affNames = getNames(team.getSponsor().getAffinityGroups());
 
-        return new DefaultSponsorTeamSelection(affNames, acceptedUnits, rank,
-                team.getSponsor().getRank(), teamValue);
+        assets = new DefaultSponsorTeamAssets();
+        assets.setCheerleaders(team.getCheerleaders());
+        assets.setCoachingDice(team.getCoachingDice());
+        assets.setMediBots(team.getMediBots());
+        assets.setNastySurpriseCards(team.getSabotageCards());
+        assets.setSpecialMoveCards(team.getSpecialMoveCards());
+        assets.setWagers(team.getWagers());
+
+        return new ImmutableSponsorTeamSelection(affNames, acceptedUnits, rank,
+                team.getSponsor().getRank(), teamValue, assets);
     }
 
     private final Iterable<String>

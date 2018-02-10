@@ -27,6 +27,8 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.controller;
 import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
+import java.io.OutputStream;
+import java.util.ArrayList;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -37,7 +39,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
+import com.bernardomg.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderAssemblerService;
 import com.bernardomg.tabletop.dreadball.report.DreadballReportBuilder;
 
 /**
@@ -55,41 +61,56 @@ public class ReportController {
     /**
      * Default report file name.
      */
-    private static final String          FILENAME = "EntityReport";
+    private static final String                  FILENAME = "EntityReport";
 
-    private final DreadballReportBuilder reportBuilder;
+    private final DreadballReportBuilder         reportBuilder;
+
+    private final SponsorBuilderAssemblerService teamAssembler;
 
     @Autowired
-    public ReportController(final DreadballReportBuilder builder) {
+    public ReportController(final DreadballReportBuilder builder,
+            final SponsorBuilderAssemblerService assembler) {
         super();
 
         reportBuilder = checkNotNull(builder,
                 "Received a null pointer as report builder");
+        teamAssembler = checkNotNull(assembler,
+                "Received a null pointer as team assembler");
     }
 
-    /**
-     * Generates a PDF report and returns it in the response.
-     * 
-     * @param model
-     *            model
-     * @param request
-     *            HTTP request
-     * @param response
-     *            HTTP response
-     */
     @GetMapping
     public final void getPdfReport(final Model model,
             final HttpServletRequest request,
-            final HttpServletResponse response) {
+            final HttpServletResponse response,
+            @RequestParam(name = "affinities",
+                    defaultValue = "") final ArrayList<String> affinities,
+            @RequestParam(name = "units",
+                    defaultValue = "") final ArrayList<String> units,
+            final DefaultSponsorTeamAssets assets,
+            @RequestParam(name = "baseRank",
+                    defaultValue = "0") final Integer baseRank) {
+        final SponsorTeamSelection team;
+        final OutputStream output;
+
         response.setContentType(MediaType.APPLICATION_PDF_VALUE);
         response.setHeader("Content-disposition",
                 String.format("inline; filename=%s.pdf", FILENAME));
 
+        // TODO: Merge with the PDF creation
+        team = getSponsorTeamAssembler().assembleSponsorTeamSelection(
+                affinities, units, assets, baseRank);
+
         try {
-            getReportBuilder().createPdf(response.getOutputStream());
+            output = response.getOutputStream();
         } catch (final IOException e) {
-            e.printStackTrace();
+            throw new RuntimeException(e);
         }
+
+        getReportBuilder().createPdf(team, output);
+    }
+
+    private final SponsorBuilderAssemblerService getSponsorTeamAssembler() {
+        return teamAssembler;
     }
 
     private final DreadballReportBuilder getReportBuilder() {

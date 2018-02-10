@@ -5,6 +5,8 @@ public interface SponsorTeamSelection {
 
     public Iterable<String> getAffinities();
 
+    public SponsorTeamAssets getAssets();
+
     public Integer getBaseRank();
 
     public Integer getRank();
