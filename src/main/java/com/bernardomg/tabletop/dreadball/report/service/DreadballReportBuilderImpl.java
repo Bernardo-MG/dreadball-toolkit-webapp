@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dreadball.report;
+package com.bernardomg.tabletop.dreadball.report.service;
 
 import java.io.IOException;
 import java.io.OutputStream;

@@ -44,7 +44,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamAssets;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.service.SponsorBuilderAssemblerService;
-import com.bernardomg.tabletop.dreadball.report.DreadballReportBuilder;
+import com.bernardomg.tabletop.dreadball.report.service.DreadballReportBuilder;
 
 /**
  * Controller for generating reports.
