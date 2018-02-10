@@ -125,7 +125,7 @@ public final class TestUnitCodexControllerPagination {
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private final CodexService getCodexService() {
-        final CodexService service;   // Mocked unit codex
+        final CodexService service;   // Mocked service
         final Collection<Unit> units; // Returned units
 
         service = Mockito.mock(CodexService.class);

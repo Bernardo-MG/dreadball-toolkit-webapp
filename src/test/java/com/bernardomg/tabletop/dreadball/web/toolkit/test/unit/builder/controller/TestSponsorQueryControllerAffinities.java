@@ -14,9 +14,10 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.codex.controller;
+package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controller;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 
 import org.hamcrest.Matchers;
@@ -31,21 +32,19 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.bernardomg.tabletop.dreadball.codex.controller.UnitCodexController;
-import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
-import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
-import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
+import com.bernardomg.tabletop.dreadball.build.controller.SponsorQueryController;
+import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.model.Option;
+import com.bernardomg.tabletop.dreadball.model.OptionGroup;
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
- * Unit tests for {@link UnitCodexController}, validating the results of REST
- * requests.
- * <p>
- * The tested controller gives support only for GET requests.
+ * Unit tests for {@link SponsorQueryController}, validating the results of REST
+ * requests for affinity groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestUnitCodexController {
+public final class TestSponsorQueryControllerAffinities {
 
     /**
      * Mocked MVC context.
@@ -55,7 +54,7 @@ public final class TestUnitCodexController {
     /**
      * Default constructor;
      */
-    public TestUnitCodexController() {
+    public TestSponsorQueryControllerAffinities() {
         super();
     }
 
@@ -85,7 +84,7 @@ public final class TestUnitCodexController {
 
         // The response model contains the expected attributes
         result.andExpect(
-                MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
+                MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(1)));
     }
 
     /**
@@ -93,22 +92,26 @@ public final class TestUnitCodexController {
      * 
      * @return a controller with mocked dependencies
      */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    private final UnitCodexController getController() {
-        final CodexService service;   // Mocked service
-        final Collection<Unit> units; // Returned units
+    private final SponsorQueryController getController() {
+        final SponsorBuilderService service;  // Mocked service
+        final Collection<OptionGroup> groups; // Returned option groups
+        final OptionGroup group;              // Returned option group
+        final Option option;                  // Returned option group
 
-        service = Mockito.mock(CodexService.class);
+        service = Mockito.mock(SponsorBuilderService.class);
 
-        units = new ArrayList<>();
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
+        groups = new ArrayList<>();
 
-        Mockito.when(service.getAffinityUnits(org.mockito.Matchers.any()))
-                .thenReturn((Iterable) units);
+        option = Mockito.mock(Option.class);
 
-        return new UnitCodexController(service);
+        group = Mockito.mock(OptionGroup.class);
+        Mockito.when(group.getOptions()).thenReturn(Arrays.asList(option));
+
+        groups.add(group);
+
+        Mockito.when(service.getAffinityOptions()).thenReturn(groups);
+
+        return new SponsorQueryController(service);
     }
 
     /**
@@ -117,7 +120,8 @@ public final class TestUnitCodexController {
      * @return a request builder prepared for reading units
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlUnitCodexConfig.URL_UNITS);
+        return MockMvcRequestBuilders
+                .get(UrlDbxTeamBuilderConfig.URL_AFFINITIES);
     }
 
 }

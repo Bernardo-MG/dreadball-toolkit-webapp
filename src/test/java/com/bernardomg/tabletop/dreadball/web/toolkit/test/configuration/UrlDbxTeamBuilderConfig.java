@@ -17,14 +17,19 @@
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration;
 
 /**
- * Contains configuration information for the controller URLs.
+ * Contains configuration information for the builder controller URLs.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class UrlDbxTeamBuilderConfig {
 
     /**
-     * Team validation REST URL.
+     * Affinity groups REST URL.
+     */
+    public static final String URL_AFFINITIES          = "/rest/builder/affinity";
+
+    /**
+     * Affinities validation REST URL.
      */
     public static final String URL_VALIDATE_AFFINITIES = "/rest/builder/validation/affinities";
 

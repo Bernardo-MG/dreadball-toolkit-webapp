@@ -43,7 +43,7 @@ import com.fasterxml.jackson.databind.module.SimpleModule;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Component
-public final class JsonModelModule extends SimpleModule {
+public final class JsonDreadballModelModule extends SimpleModule {
 
     /**
      * Serialization id.
@@ -53,7 +53,7 @@ public final class JsonModelModule extends SimpleModule {
     /**
      * Constructs the module with the specified parameters.
      */
-    public JsonModelModule() {
+    public JsonDreadballModelModule() {
         super();
     }
 

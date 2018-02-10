@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.controller.builder;
+package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controller;
 
 import java.util.Collections;
 
@@ -42,7 +42,7 @@ import com.google.common.collect.Iterables;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorAssemblerControllerAffinities {
+public final class TestSponsorValidationController {
 
     private ArgumentCaptor<Iterable> captor;
 
@@ -56,7 +56,7 @@ public final class TestSponsorAssemblerControllerAffinities {
     /**
      * Default constructor;
      */
-    public TestSponsorAssemblerControllerAffinities() {
+    public TestSponsorValidationController() {
         super();
     }
 

@@ -39,16 +39,17 @@ public final class DreadballObjectMapper extends ObjectMapper {
     /**
      * Constructs the mapper with the specified parameters.
      * 
-     * @param module
-     *            module with the mapper configuration
+     * @param dreadballModule
+     *            module for the Dreadball model
      */
     @Autowired
-    public DreadballObjectMapper(final JsonModelModule module) {
+    public DreadballObjectMapper(
+            final JsonDreadballModelModule dreadballModule) {
         super();
 
-        checkNotNull(module, "Received a null pointer as JSON module");
+        checkNotNull(dreadballModule, "Received a null pointer as JSON module");
 
-        registerModule(module);
+        registerModule(dreadballModule);
     }
 
 }

@@ -62,13 +62,13 @@ public class SponsorQueryController {
     }
 
     /**
-     * Returns the view for all the affinity units.
+     * Returns all the available affinities for a Sponsor.
      * 
-     * @return the view for all the affinity units
+     * @return all the available affinities for a Sponsor
      */
     @GetMapping(path = "/affinity",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<OptionGroup> getAffinityGroups() {
+    public final Iterable<OptionGroup> getAffinityOptions() {
         return getSponsorBuilderService().getAffinityOptions();
     }
 

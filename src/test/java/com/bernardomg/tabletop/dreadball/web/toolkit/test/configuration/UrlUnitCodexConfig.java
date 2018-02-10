@@ -17,21 +17,16 @@
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration;
 
 /**
- * Contains configuration information for the controller URLs.
+ * Contains configuration information for the codex controller URLs.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public final class UrlUnitCodexConfig {
 
     /**
-     * Affinity groups REST endpoint.
-     */
-    public static final String URL_AFFINITY_GROUPS = "/rest/affinityGroups";
-
-    /**
      * Units REST endpoint.
      */
-    public static final String URL_UNITS           = "/rest/units";
+    public static final String URL_UNITS = "/rest/units";
 
     /**
      * Default constructor to avoid initialization.

@@ -14,6 +14,11 @@ import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 
 public interface SponsorBuilderService {
 
+    /**
+     * Returns all the available affinities for a Sponsor.
+     * 
+     * @return all the available affinities for a Sponsor
+     */
     public Iterable<OptionGroup> getAffinityOptions();
 
     public Iterable<? extends Unit> getUnitOptions(
@@ -23,8 +28,8 @@ public interface SponsorBuilderService {
     public SponsorAffinities
             validateAffinities(final Iterable<String> affinities);
 
-    public SponsorTeamSelection validateTeam(final Collection<String> affinities,
-            final Collection<String> units, final SponsorTeamAssets assets,
-            final Integer baseRank);
+    public SponsorTeamSelection validateTeam(
+            final Collection<String> affinities, final Collection<String> units,
+            final SponsorTeamAssets assets, final Integer baseRank);
 
 }
