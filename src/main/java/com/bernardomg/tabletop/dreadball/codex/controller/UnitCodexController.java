@@ -45,9 +45,11 @@ public class UnitCodexController {
             .getLogger(UnitCodexController.class);
 
     /**
-     * Unit codex service.
+     * Codex service.
+     * <p>
+     * This allows querying for the data to be shown.
      */
-    private final CodexService   unitCodexService;
+    private final CodexService  unitCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -63,7 +65,7 @@ public class UnitCodexController {
     }
 
     /**
-     * Returns the view for all the affinity units.
+     * Returns a group of units with affinities.
      * 
      * @param page
      *            page number
@@ -73,10 +75,10 @@ public class UnitCodexController {
      *            field to order by
      * @param direction
      *            ordering direction
-     * @return the view for all the affinity units
+     * @return a group of units with affinities
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<? extends Unit> getDbxUnits(
+    public final Iterable<? extends Unit> getAffinityUnits(
             @RequestParam(name = "page", defaultValue = "0") final Integer page,
             @RequestParam(name = "size",
                     defaultValue = "10") final Integer size,
@@ -100,7 +102,7 @@ public class UnitCodexController {
         }
 
         final Iterable<? extends Unit> result;
-        result = getUnitCodexService().getAllAffinityUnits(pageReq);
+        result = getUnitCodexService().getAffinityUnits(pageReq);
 
         return result;
     }

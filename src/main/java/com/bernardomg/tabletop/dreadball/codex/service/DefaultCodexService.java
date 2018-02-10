@@ -25,7 +25,7 @@ import com.bernardomg.tabletop.dreadball.model.persistence.unit.PersistentAffini
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 
 /**
- * Default implementation of the unit codex service.
+ * Default implementation of the codex service.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -52,7 +52,7 @@ public final class DefaultCodexService implements CodexService {
 
     @Override
     public final Iterable<PersistentAffinityUnit>
-            getAllAffinityUnits(final Pageable pageReq) {
+            getAffinityUnits(final Pageable pageReq) {
 
         checkNotNull(pageReq, "Received a null pointer as pagination data");
 

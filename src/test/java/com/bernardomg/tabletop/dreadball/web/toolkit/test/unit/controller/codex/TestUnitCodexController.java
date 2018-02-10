@@ -124,7 +124,7 @@ public final class TestUnitCodexController {
         units.add(Mockito.mock(AffinityUnitMixIn.class));
         units.add(Mockito.mock(AffinityUnitMixIn.class));
 
-        Mockito.when(codex.getAllAffinityUnits(org.mockito.Matchers.any()))
+        Mockito.when(codex.getAffinityUnits(org.mockito.Matchers.any()))
                 .thenReturn(units);
 
         return new UnitCodexController(codex);

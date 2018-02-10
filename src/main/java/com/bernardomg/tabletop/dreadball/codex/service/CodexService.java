@@ -21,19 +21,24 @@ import org.springframework.data.domain.Pageable;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 
 /**
- * Service for the units codex.
+ * Service for the codex.
+ * <p>
+ * It takes care of queries for game data, such as units info.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface CodexService {
 
     /**
-     * Returns all the units.
+     * Returns a group of units with affinities.
+     * <p>
+     * These have a group of affinities which will mark the final cost of the
+     * unit.
      * 
-     * @param pageReq
+     * @param pageable
      *            pagination data
      * @return all the units
      */
-    public Iterable<? extends Unit> getAllAffinityUnits(final Pageable pageReq);
+    public Iterable<? extends Unit> getAffinityUnits(final Pageable pageable);
 
 }
