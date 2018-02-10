@@ -19,6 +19,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.service;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -34,6 +35,7 @@ import com.bernardomg.tabletop.dreadball.model.service.SponsorBuilderAssemblerSe
 import com.bernardomg.tabletop.dreadball.model.service.SponsorUnitsService;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.DefaultAffinityGroup;
+import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 import com.google.common.collect.Iterables;
 
 /**
@@ -102,6 +104,21 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
     }
 
     /**
+     * Verifies that the option group contains the affinity group name.
+     */
+    @Test
+    public final void testGetAffinityOptions_Name() {
+        final SponsorBuilderService service;   // Tested service
+        final Collection<OptionGroup> options; // Returned data
+
+        service = getAffinitiesAndRankSponsorBuilderService();
+
+        options = service.getAffinityOptions();
+
+        Assert.assertEquals("A", options.iterator().next().getName());
+    }
+
+    /**
      * Verifies that when there are no affinities the result is empty.
      */
     @Test
@@ -166,6 +183,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
             getAffinitiesAndRankSponsorBuilderService() {
         final SponsorBuilderAssemblerService sponsorBuilderAssemblerService;
         final SponsorUnitsService sponsorUnitsService;
+        final SponsorDefaults defaults;
         final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
         final Collection<SponsorAffinityGroupAvailability> avas;
         final Collection<AffinityGroup> affinities;
@@ -173,6 +191,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
         sponsorBuilderAssemblerService = Mockito
                 .mock(SponsorBuilderAssemblerService.class);
         sponsorUnitsService = Mockito.mock(SponsorUnitsService.class);
+        defaults = Mockito.mock(SponsorDefaults.class);
 
         sponsorAffinityGroupAvailabilityService = Mockito
                 .mock(SponsorAffinityGroupAvailabilityService.class);
@@ -191,7 +210,8 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
                 .getAllSponsorAffinityGroupAvailabilities()).thenReturn(avas);
 
         return new DefaultSponsorBuilderService(sponsorBuilderAssemblerService,
-                sponsorUnitsService, sponsorAffinityGroupAvailabilityService);
+                sponsorUnitsService, sponsorAffinityGroupAvailabilityService,
+                defaults);
     }
 
     /**
@@ -204,6 +224,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
     private final SponsorBuilderService getAffinitiesSponsorBuilderService() {
         final SponsorBuilderAssemblerService sponsorBuilderAssemblerService;
         final SponsorUnitsService sponsorUnitsService;
+        final SponsorDefaults defaults;
         final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
         final Collection<SponsorAffinityGroupAvailability> avas;
         final Collection<AffinityGroup> affinities;
@@ -211,6 +232,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
         sponsorBuilderAssemblerService = Mockito
                 .mock(SponsorBuilderAssemblerService.class);
         sponsorUnitsService = Mockito.mock(SponsorUnitsService.class);
+        defaults = Mockito.mock(SponsorDefaults.class);
 
         sponsorAffinityGroupAvailabilityService = Mockito
                 .mock(SponsorAffinityGroupAvailabilityService.class);
@@ -229,7 +251,8 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
                 .getAllSponsorAffinityGroupAvailabilities()).thenReturn(avas);
 
         return new DefaultSponsorBuilderService(sponsorBuilderAssemblerService,
-                sponsorUnitsService, sponsorAffinityGroupAvailabilityService);
+                sponsorUnitsService, sponsorAffinityGroupAvailabilityService,
+                defaults);
     }
 
     /**
@@ -242,11 +265,13 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
     private final SponsorBuilderService getNoAffinitiesSponsorBuilderService() {
         final SponsorBuilderAssemblerService sponsorBuilderAssemblerService;
         final SponsorUnitsService sponsorUnitsService;
+        final SponsorDefaults defaults;
         final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
 
         sponsorBuilderAssemblerService = Mockito
                 .mock(SponsorBuilderAssemblerService.class);
         sponsorUnitsService = Mockito.mock(SponsorUnitsService.class);
+        defaults = Mockito.mock(SponsorDefaults.class);
 
         sponsorAffinityGroupAvailabilityService = Mockito
                 .mock(SponsorAffinityGroupAvailabilityService.class);
@@ -255,7 +280,8 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
                 .thenReturn(Collections.emptyList());
 
         return new DefaultSponsorBuilderService(sponsorBuilderAssemblerService,
-                sponsorUnitsService, sponsorAffinityGroupAvailabilityService);
+                sponsorUnitsService, sponsorAffinityGroupAvailabilityService,
+                defaults);
     }
 
 }

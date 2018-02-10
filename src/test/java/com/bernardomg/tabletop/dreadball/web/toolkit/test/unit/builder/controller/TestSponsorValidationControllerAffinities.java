@@ -153,7 +153,8 @@ public final class TestSponsorValidationControllerAffinities {
         result = new DefaultSponsorAffinities(Collections.emptyList(), 0);
 
         captor = ArgumentCaptor.forClass(Iterable.class);
-        Mockito.when(sponsorBuilderService.validateAffinities(captor.capture()))
+        Mockito.when(sponsorBuilderService
+                .validateSponsorAffinities(captor.capture()))
                 .thenReturn(result);
 
         return sponsorBuilderService;

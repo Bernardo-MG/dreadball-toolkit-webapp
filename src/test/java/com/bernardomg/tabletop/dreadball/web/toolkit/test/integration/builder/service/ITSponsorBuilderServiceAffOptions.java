@@ -28,7 +28,8 @@ import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 
 /**
- * Integration tests for {@link SponsorBuilderService}.
+ * Integration tests for {@link SponsorBuilderService}, verifying queries for
+ * affinity options.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */

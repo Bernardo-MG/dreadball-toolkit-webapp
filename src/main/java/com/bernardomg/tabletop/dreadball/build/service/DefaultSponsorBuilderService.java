@@ -10,6 +10,7 @@ import java.util.stream.StreamSupport;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
 import com.bernardomg.tabletop.dreadball.model.Option;
@@ -23,6 +24,7 @@ import com.bernardomg.tabletop.dreadball.model.service.SponsorBuilderAssemblerSe
 import com.bernardomg.tabletop.dreadball.model.service.SponsorUnitsService;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
+import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 
 @Service
 public final class DefaultSponsorBuilderService
@@ -32,12 +34,15 @@ public final class DefaultSponsorBuilderService
 
     private final SponsorBuilderAssemblerService          assemblerService;
 
+    private final SponsorDefaults                         sponsorDefaults;
+
     private final SponsorUnitsService                     unitsService;
 
     public DefaultSponsorBuilderService(
             final SponsorBuilderAssemblerService sponsorBuilderAssemblerService,
             final SponsorUnitsService sponsorUnitsService,
-            final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService) {
+            final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService,
+            final SponsorDefaults defaults) {
         super();
 
         assemblerService = checkNotNull(sponsorBuilderAssemblerService,
@@ -47,6 +52,8 @@ public final class DefaultSponsorBuilderService
         affinityGroupAvailabilityService = checkNotNull(
                 sponsorAffinityGroupAvailabilityService,
                 "Received a null pointer as affinites availabilities service");
+        sponsorDefaults = checkNotNull(defaults,
+                "Received a null pointer as Sponsor defaults service");
     }
 
     @Override
@@ -71,9 +78,23 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final SponsorAffinities
-            validateAffinities(final Iterable<String> affinities) {
-        return getSponsorBuilderAssemblerService()
-                .assembleSponsorAffinities(affinities);
+            validateSponsorAffinities(final Iterable<String> affinities) {
+        final Integer totalRank;
+        final Iterable<String> valid;
+        final Integer rank;
+
+        // TODO: Validate
+        // TODO: Ensure these are existing affinities
+
+        checkNotNull(affinities, "Received a null pointer as affinities");
+
+        rank = getRank(affinities);
+        valid = getFilterOutRankOption(affinities);
+
+        totalRank = getSponsorDefaults().getInitialRank() + rank;
+
+        return new DefaultSponsorAffinities(valid, totalRank);
+
     }
 
     @Override
@@ -84,6 +105,20 @@ public final class DefaultSponsorBuilderService
                 affinities, units, assets, baseRank);
     }
 
+    private final Iterable<String>
+            getFilterOutRankOption(final Iterable<String> affinities) {
+        return StreamSupport.stream(affinities.spliterator(), false)
+                .filter(affinity -> !affinity.equals("rank_increase"))
+                .collect(Collectors.toSet());
+    }
+
+    private final Integer getRank(final Iterable<String> affinities) {
+        // TODO: This doesn't look like a good solution
+        return StreamSupport.stream(affinities.spliterator(), false)
+                .filter(affinity -> affinity.equals("rank_increase"))
+                .collect(Collectors.toList()).size();
+    }
+
     private final SponsorAffinityGroupAvailabilityService
             getSponsorAffinityGroupAvailabilityService() {
         return affinityGroupAvailabilityService;
@@ -92,6 +127,10 @@ public final class DefaultSponsorBuilderService
     private final SponsorBuilderAssemblerService
             getSponsorBuilderAssemblerService() {
         return assemblerService;
+    }
+
+    private final SponsorDefaults getSponsorDefaults() {
+        return sponsorDefaults;
     }
 
     private final SponsorUnitsService getSponsorUnitsService() {

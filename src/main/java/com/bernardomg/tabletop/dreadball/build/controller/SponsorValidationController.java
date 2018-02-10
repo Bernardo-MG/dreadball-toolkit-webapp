@@ -58,6 +58,24 @@ public class SponsorValidationController {
                 "Received a null pointer as sponsor builder service");
     }
 
+    /**
+     * Validates a set of Sponsor affinities.
+     * <p>
+     * This is meant to be used for validating the affinities selected when
+     * creating a Sponsor.
+     * 
+     * @param affinities
+     *            sponsor affinities
+     * @return the valid affinities
+     */
+    @GetMapping(path = "/affinities",
+            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public final SponsorAffinities
+            validateSponsorAffinities(@RequestParam(name = "affinities",
+                    defaultValue = "") final ArrayList<String> affinities) {
+        return getSponsorBuilderService().validateSponsorAffinities(affinities);
+    }
+
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeamSelection
             validateTeam(@RequestParam(name = "affinities",
@@ -69,14 +87,6 @@ public class SponsorValidationController {
                             defaultValue = "0") final Integer baseRank) {
         return getSponsorBuilderService().validateTeam(affinities, units,
                 assets, baseRank);
-    }
-
-    @GetMapping(path = "/affinities",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinities
-            validateAffinities(@RequestParam(name = "affinities",
-                    defaultValue = "") final ArrayList<String> affinities) {
-        return getSponsorBuilderService().validateAffinities(affinities);
     }
 
     private final SponsorBuilderService getSponsorBuilderService() {

@@ -28,8 +28,20 @@ public interface SponsorBuilderService {
             final Iterable<? extends AffinityGroup> affinities,
             final Pageable pageable);
 
+    /**
+     * Validates a set of Sponsor affinities.
+     * <p>
+     * This is meant to be used for validating the affinities selected when
+     * creating a Sponsor.
+     * <p>
+     * The valid affinities are returned inside a new object.
+     * 
+     * @param affinities
+     *            affinities to validate
+     * @return the valid affinities
+     */
     public SponsorAffinities
-            validateAffinities(final Iterable<String> affinities);
+            validateSponsorAffinities(final Iterable<String> affinities);
 
     public SponsorTeamSelection validateTeam(
             final Collection<String> affinities, final Collection<String> units,

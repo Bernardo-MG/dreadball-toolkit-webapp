@@ -29,6 +29,12 @@ import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.google.common.collect.Iterables;
 
+/**
+ * Integration tests for {@link SponsorBuilderService}, verifying affinity
+ * options validation.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 @ContextConfiguration(
         locations = { "classpath:context/test-service-context.xml" })
 public class ITSponsorBuilderServiceValidateAffs
@@ -53,10 +59,25 @@ public class ITSponsorBuilderServiceValidateAffs
         affinities.add("affinity_3");
         affinities.add("affinity_4");
         affinities.add("rank_increase");
-        result = service.validateAffinities(affinities);
+        result = service.validateSponsorAffinities(affinities);
 
         Assert.assertEquals(6, result.getRank().intValue());
         Assert.assertEquals(4, Iterables.size(result.getAffinities()));
+    }
+
+    /**
+     * Verifies that when no affinities are received the default rank is
+     * returned.
+     */
+    @Test
+    public final void testValidateAffinities_NoAffinities_DefaultRank() {
+        final Collection<String> affinities;
+        final SponsorAffinities result;
+
+        affinities = new ArrayList<>();
+        result = service.validateSponsorAffinities(affinities);
+
+        Assert.assertEquals(5, result.getRank().intValue());
     }
 
     @Test
@@ -65,9 +86,8 @@ public class ITSponsorBuilderServiceValidateAffs
         final SponsorAffinities result;
 
         affinities = new ArrayList<>();
-        result = service.validateAffinities(affinities);
+        result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(5, result.getRank().intValue());
         Assert.assertEquals(0, Iterables.size(result.getAffinities()));
     }
 
