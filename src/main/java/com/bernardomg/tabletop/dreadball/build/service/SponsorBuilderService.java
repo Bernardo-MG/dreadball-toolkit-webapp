@@ -19,7 +19,7 @@ public interface SponsorBuilderService {
      * 
      * @return all the available affinities for a Sponsor
      */
-    public Iterable<OptionGroup> getAffinityOptions();
+    public Collection<OptionGroup> getAffinityOptions();
 
     public Iterable<? extends Unit> getUnitOptions(
             final Iterable<? extends AffinityGroup> affinities,

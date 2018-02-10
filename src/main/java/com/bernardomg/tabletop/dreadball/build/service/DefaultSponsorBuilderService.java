@@ -50,7 +50,7 @@ public final class DefaultSponsorBuilderService
     }
 
     @Override
-    public final Iterable<OptionGroup> getAffinityOptions() {
+    public final Collection<OptionGroup> getAffinityOptions() {
         final Iterable<SponsorAffinityGroupAvailability> avas;
 
         avas = getAffinityGroupAvailabilities();
