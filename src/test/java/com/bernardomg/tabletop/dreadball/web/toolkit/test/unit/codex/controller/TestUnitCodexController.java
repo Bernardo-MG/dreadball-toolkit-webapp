@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.controller.codex;
+package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.codex.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -23,6 +23,7 @@ import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.ResultActions;
@@ -33,11 +34,14 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.bernardomg.tabletop.dreadball.codex.controller.UnitCodexController;
 import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
 import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
+import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**
- * Unit tests for {@link SponsorCreationController}, checking the results of
- * REST requests.
+ * Unit tests for {@link UnitCodexController}, validating the results of REST
+ * requests.
+ * <p>
+ * The tested controller gives support only for GET requests.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -60,33 +64,18 @@ public final class TestUnitCodexController {
      */
     @Before
     public final void setUpMockContext() {
-        mockMvc = MockMvcBuilders.standaloneSetup(getController()).build();
+        mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
     }
 
     /**
-     * Tests getting the units with affinities returns the expected results.
+     * Verifies that the data read from the service is returned.
      */
     @Test
-    public final void testGet_Affinities_ExpectedResults() throws Exception {
-        final ResultActions result; // Request result
-
-        // TODO: Add a test ensuring that the controller initializes the list
-
-        result = mockMvc.perform(getGetRequest("affinity"));
-
-        // The operation was accepted
-        result.andExpect(MockMvcResultMatchers.status().isOk());
-
-        // The response model contains the expected attributes
-        result.andExpect(
-                MockMvcResultMatchers.jsonPath("$", Matchers.hasSize(3)));
-    }
-
-    /**
-     * Tests getting the units with no affinities returns the expected results.
-     */
-    @Test
-    public final void testGet_NoAffinities_ExpectedResults() throws Exception {
+    public final void testGet_ExpectedResults() throws Exception {
         final ResultActions result; // Request result
 
         result = mockMvc.perform(getGetRequest());
@@ -100,53 +89,35 @@ public final class TestUnitCodexController {
     }
 
     /**
-     * Returns a mocked controller.
-     * <p>
-     * It has all the dependencies stubbed.
+     * Returns a controller with mocked dependencies.
      * 
-     * @return a mocked controller
+     * @return a controller with mocked dependencies
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     private final UnitCodexController getController() {
-        final CodexService codex; // Mocked unit codex
-        final Collection affUnits;
-        final Collection units;
+        final CodexService service;   // Mocked unit codex
+        final Collection<Unit> units; // Returned units
 
-        codex = Mockito.mock(CodexService.class);
-
-        affUnits = new ArrayList<>();
-        affUnits.add(Mockito.mock(AffinityUnitMixIn.class));
-        affUnits.add(Mockito.mock(AffinityUnitMixIn.class));
-        affUnits.add(Mockito.mock(AffinityUnitMixIn.class));
+        service = Mockito.mock(CodexService.class);
 
         units = new ArrayList<>();
         units.add(Mockito.mock(AffinityUnitMixIn.class));
         units.add(Mockito.mock(AffinityUnitMixIn.class));
         units.add(Mockito.mock(AffinityUnitMixIn.class));
 
-        Mockito.when(codex.getAffinityUnits(org.mockito.Matchers.any()))
-                .thenReturn(units);
+        Mockito.when(service.getAffinityUnits(org.mockito.Matchers.any()))
+                .thenReturn((Iterable) units);
 
-        return new UnitCodexController(codex);
+        return new UnitCodexController(service);
     }
 
     /**
-     * Returns a request builder for getting the tested form view.
+     * Returns a request builder prepared for reading units.
      * 
-     * @return a request builder for the form view
+     * @return a request builder prepared for reading units
      */
     private final RequestBuilder getGetRequest() {
         return MockMvcRequestBuilders.get(UrlUnitCodexConfig.URL_UNITS);
-    }
-
-    /**
-     * Returns a request builder for getting the tested form view.
-     * 
-     * @return a request builder for the form view
-     */
-    private final RequestBuilder getGetRequest(final String affinity) {
-        return MockMvcRequestBuilders
-                .get(UrlUnitCodexConfig.URL_UNITS + "?affinities=" + affinity);
     }
 
 }
