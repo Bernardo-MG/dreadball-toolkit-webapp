@@ -16,6 +16,9 @@ public interface SponsorBuilderService {
 
     /**
      * Returns all the available affinities for a Sponsor.
+     * <p>
+     * These will be stored into options, allowing these affinities to be
+     * selectable.
      * 
      * @return all the available affinities for a Sponsor
      */

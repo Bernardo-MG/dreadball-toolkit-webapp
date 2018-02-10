@@ -60,21 +60,21 @@ public class SponsorValidationController {
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeamSelection
-            getSelectionResult(@RequestParam(name = "affinities",
+            validateTeam(@RequestParam(name = "affinities",
                     defaultValue = "") final ArrayList<String> affinities,
                     @RequestParam(name = "units",
                             defaultValue = "") final ArrayList<String> units,
                     final DefaultSponsorTeamAssets assets,
                     @RequestParam(name = "baseRank",
                             defaultValue = "0") final Integer baseRank) {
-        return getSponsorBuilderService().validateTeam(affinities, units, assets,
-                baseRank);
+        return getSponsorBuilderService().validateTeam(affinities, units,
+                assets, baseRank);
     }
 
     @GetMapping(path = "/affinities",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorAffinities
-            selectAffinities(@RequestParam(name = "affinities",
+            validateAffinities(@RequestParam(name = "affinities",
                     defaultValue = "") final ArrayList<String> affinities) {
         return getSponsorBuilderService().validateAffinities(affinities);
     }

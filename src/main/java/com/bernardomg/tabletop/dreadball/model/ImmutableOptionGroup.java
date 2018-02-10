@@ -1,14 +1,16 @@
 
 package com.bernardomg.tabletop.dreadball.model;
 
+import java.util.Collection;
+
 public final class ImmutableOptionGroup implements OptionGroup {
 
-    private final String           name;
+    private final String             name;
 
-    private final Iterable<Option> options;
+    private final Collection<Option> options;
 
     public ImmutableOptionGroup(final String name,
-            final Iterable<Option> options) {
+            final Collection<Option> options) {
         super();
 
         this.name = name;
@@ -21,7 +23,7 @@ public final class ImmutableOptionGroup implements OptionGroup {
     }
 
     @Override
-    public final Iterable<Option> getOptions() {
+    public final Collection<Option> getOptions() {
         return options;
     }
 

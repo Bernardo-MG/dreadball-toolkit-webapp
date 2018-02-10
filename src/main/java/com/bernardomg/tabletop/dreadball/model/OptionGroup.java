@@ -1,6 +1,8 @@
 
 package com.bernardomg.tabletop.dreadball.model;
 
+import java.util.Collection;
+
 import com.fasterxml.jackson.annotation.JsonAutoDetect;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
@@ -12,6 +14,6 @@ public interface OptionGroup {
     public String getName();
 
     @JsonProperty
-    public Iterable<Option> getOptions();
+    public Collection<Option> getOptions();
 
 }

@@ -53,10 +53,12 @@ public final class DefaultSponsorBuilderService
     public final Collection<OptionGroup> getAffinityOptions() {
         final Iterable<SponsorAffinityGroupAvailability> avas;
 
-        avas = getAffinityGroupAvailabilities();
+        // Acquires all the availabilities
+        avas = getSponsorAffinityGroupAvailabilityService()
+                .getAllSponsorAffinityGroupAvailabilities();
 
-        return StreamSupport.stream(avas.spliterator(), false)
-                .map(this::toOptionGroup).collect(Collectors.toList());
+        // The availabilities are transformed into options
+        return toOptionGroups(avas);
     }
 
     @Override
@@ -82,12 +84,6 @@ public final class DefaultSponsorBuilderService
                 affinities, units, assets, baseRank);
     }
 
-    private final Iterable<SponsorAffinityGroupAvailability>
-            getAffinityGroupAvailabilities() {
-        return getSponsorAffinityGroupAvailabilityService()
-                .getAllSponsorAffinityGroupAvailabilities();
-    }
-
     private final SponsorAffinityGroupAvailabilityService
             getSponsorAffinityGroupAvailabilityService() {
         return affinityGroupAvailabilityService;
@@ -102,24 +98,64 @@ public final class DefaultSponsorBuilderService
         return unitsService;
     }
 
+    /**
+     * Returns an {@link Option} created from the received
+     * {@link AffinityGroup}.
+     * 
+     * @param affinity
+     *            affinity to transform
+     * @return transformed affinity
+     */
     private final Option toOption(final AffinityGroup affinity) {
         return new ImmutableOption(affinity.getName(), affinity.getName());
-    };
+    }
 
+    /**
+     * Returns an {@link OptionGroup} created from the received
+     * {@link SponsorAffinityGroupAvailability}.
+     * <p>
+     * The affinity groups contained in the
+     * {@code SponsorAffinityGroupAvailability} are transformed into options by
+     * using {@link #toOption(AffinityGroup) toOption}.
+     * 
+     * @param ava
+     *            availability to transform
+     * @return transformed availability
+     */
     private final OptionGroup
             toOptionGroup(final SponsorAffinityGroupAvailability ava) {
         final Collection<Option> options;
 
+        // Creates options from the affinities
         options = StreamSupport
                 .stream(ava.getAffinityGroups().spliterator(), false)
                 .map(this::toOption).collect(Collectors.toList());
 
+        // If the availability allows increasing the rank this is added as an
+        // option
         if (ava.isIncludingRankIncrease()) {
             // TODO: Use a constant
             options.add(new ImmutableOption("rank_increase", "rank_increase"));
         }
 
         return new ImmutableOptionGroup(ava.getName(), options);
+    };
+
+    /**
+     * Returns a collection of {@link OptionGroup} created from the received
+     * collection of {@link SponsorAffinityGroupAvailability}.
+     * <p>
+     * Each {@code SponsorAffinityGroupAvailability} is transformed by using
+     * {@link #toOptionGroup(SponsorAffinityGroupAvailability) toOptionGroup}.
+     * 
+     * @param avas
+     *            availabilities to transform
+     * @return transformed availabilities
+     */
+    private final Collection<OptionGroup> toOptionGroups(
+            final Iterable<SponsorAffinityGroupAvailability> avas) {
+        return StreamSupport.stream(avas.spliterator(), false)
+                .map(this::toOptionGroup).collect(Collectors.toList());
     };
 
 }

@@ -63,6 +63,9 @@ public class SponsorQueryController {
 
     /**
      * Returns all the available affinities for a Sponsor.
+     * <p>
+     * These will be stored into options, allowing these affinities to be
+     * selected by the user through a combo box or similar UI component.
      * 
      * @return all the available affinities for a Sponsor
      */

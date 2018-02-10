@@ -23,6 +23,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
+import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -37,13 +38,17 @@ import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTe
 import com.google.common.collect.Iterables;
 
 /**
- * Unit tests for {@link AffinityGroupCodexController}, checking the results of
+ * Unit tests for {@link SponsorValidationController}, checking the results of
  * REST requests.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorValidationController {
+public final class TestSponsorValidationControllerAffinities {
 
+    /**
+     * Argument captor for the affinities parameter.
+     */
+    @SuppressWarnings("rawtypes")
     private ArgumentCaptor<Iterable> captor;
 
     /**
@@ -51,12 +56,15 @@ public final class TestSponsorValidationController {
      */
     private MockMvc                  mockMvc;
 
+    /**
+     * Mocked service.
+     */
     private SponsorBuilderService    service;
 
     /**
      * Default constructor;
      */
-    public TestSponsorValidationController() {
+    public TestSponsorValidationControllerAffinities() {
         super();
     }
 
@@ -67,16 +75,26 @@ public final class TestSponsorValidationController {
     public final void setUpMockContext() {
         service = getSponsorBuilderService();
         mockMvc = MockMvcBuilders.standaloneSetup(getController(service))
-                .alwaysExpect(MockMvcResultMatchers.status().isOk()).build();
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
     }
 
+    /**
+     * Verifies that the affinity received as parameter is sent to the service.
+     */
     @Test
     public final void testGet_AffParam_Affinities() throws Exception {
-        mockMvc.perform(getGetRequest("affinity_1"));
+        mockMvc.perform(getGetRequest("aff"));
 
         Assert.assertEquals(1, Iterables.size(captor.getValue()));
     }
 
+    /**
+     * Verifies that if no affinities are received then an empty collection is
+     * sent to the service.
+     */
     @Test
     public final void testGet_NoParams_NoAffinities() throws Exception {
         mockMvc.perform(getGetRequest());
@@ -97,21 +115,35 @@ public final class TestSponsorValidationController {
     }
 
     /**
-     * Returns a request builder for getting the tested form view.
+     * Returns a request builder prepared for validating affinities with no
+     * affinities.
      * 
-     * @return a request builder for the form view
+     * @return a request builder with no affinities
      */
     private final RequestBuilder getGetRequest() {
         return MockMvcRequestBuilders
                 .get(UrlDbxTeamBuilderConfig.URL_VALIDATE_AFFINITIES);
     }
 
+    /**
+     * Returns a request builder prepared for validating the specified affinity.
+     * 
+     * @return a request builder prepared for validating the specified affinity
+     */
     private final RequestBuilder getGetRequest(final String affinity) {
         return MockMvcRequestBuilders
                 .get(UrlDbxTeamBuilderConfig.URL_VALIDATE_AFFINITIES
                         + "?affinities={}", affinity);
     }
 
+    /**
+     * Returns a mocked service.
+     * <p>
+     * It is prepared for using the pagination data argument captor.
+     * 
+     * @return a mocked service
+     */
+    @SuppressWarnings("unchecked")
     private final SponsorBuilderService getSponsorBuilderService() {
         final SponsorBuilderService sponsorBuilderService;
         final SponsorAffinities result;

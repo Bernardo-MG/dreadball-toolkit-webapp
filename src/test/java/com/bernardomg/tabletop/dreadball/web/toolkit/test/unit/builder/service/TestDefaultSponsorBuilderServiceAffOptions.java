@@ -1,12 +1,24 @@
+/**
+ * Copyright 2016 the original author or authors
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.service;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.stream.Collectors;
-import java.util.stream.StreamSupport;
-
 import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -24,17 +36,46 @@ import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.google.common.collect.Iterables;
 
+/**
+ * Unit tests for {@link DefaultSponsorBuilderService}, validating the affinity
+ * options read method.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
 public class TestDefaultSponsorBuilderServiceAffOptions {
 
+    /**
+     * Default constructor.
+     */
     public TestDefaultSponsorBuilderServiceAffOptions() {
         super();
     }
 
+    /**
+     * Verifies that an option is created for each affinity.
+     */
+    @Test
+    public final void testGetAffinityOptions_Affinities_OptionForEach() {
+        final SponsorBuilderService service; // Tested service
+        final Iterable<OptionGroup> options; // Returned data
+
+        service = getAffinitiesSponsorBuilderService();
+
+        options = service.getAffinityOptions();
+
+        Assert.assertEquals(4,
+                Iterables.size(options.iterator().next().getOptions()));
+    }
+
+    /**
+     * Verifies that when there is a rank option then an additional option is
+     * returned.
+     */
     @Test
     public final void
-            testGetAffinityOptionGroups_AffinitiesAndRank_AddsAdditionalOption() {
-        final SponsorBuilderService service;
-        final Iterable<OptionGroup> options;
+            testGetAffinityOptions_AffinitiesAndRank_AddsAdditionalOption() {
+        final SponsorBuilderService service; // Tested service
+        final Iterable<OptionGroup> options; // Returned data
 
         service = getAffinitiesAndRankSponsorBuilderService();
 
@@ -44,49 +85,83 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
                 Iterables.size(options.iterator().next().getOptions()));
     }
 
+    /**
+     * Verifies that when there is an affinity group then an option group is
+     * returned.
+     */
     @Test
-    public final void
-            testGetAffinityOptionGroups_AffinitiesAndRank_ContainsRank() {
-        final SponsorBuilderService service;
-        final Iterable<OptionGroup> options;
-        final Collection<String> values;
+    public final void testGetAffinityOptions_AffinityGroup_ReturnsGroup() {
+        final SponsorBuilderService service;   // Tested service
+        final Collection<OptionGroup> options; // Returned data
 
         service = getAffinitiesAndRankSponsorBuilderService();
 
         options = service.getAffinityOptions();
 
-        values = StreamSupport
-                .stream(options.iterator().next().getOptions().spliterator(),
-                        false)
-                .map(Option::getValue).collect(Collectors.toList());
-        Assert.assertTrue(values.contains("rank_increase"));
+        Assert.assertEquals(1, options.size());
     }
 
+    /**
+     * Verifies that when there are no affinities the result is empty.
+     */
     @Test
-    public final void
-            testGetAffinityOptionGroups_AffinitiesAndRank_ReturnsGroup() {
-        final SponsorBuilderService service;
-        final Iterable<OptionGroup> options;
-
-        service = getAffinitiesAndRankSponsorBuilderService();
-
-        options = service.getAffinityOptions();
-
-        Assert.assertEquals(1, Iterables.size(options));
-    }
-
-    @Test
-    public final void testGetAffinityOptionGroups_NoAffinities_Empty() {
-        final SponsorBuilderService service;
-        final Iterable<OptionGroup> options;
+    public final void testGetAffinityOptions_NoAffinities_Empty() {
+        final SponsorBuilderService service;   // Tested service
+        final Collection<OptionGroup> options; // Returned data
 
         service = getNoAffinitiesSponsorBuilderService();
 
         options = service.getAffinityOptions();
 
-        Assert.assertEquals(0, Iterables.size(options));
+        Assert.assertEquals(0, options.size());
     }
 
+    /**
+     * Verifies that when the group does not include a rank none is returned as
+     * an option.
+     */
+    @Test
+    public final void testGetAffinityOptions_NoRank_ContainsNoRank() {
+        final SponsorBuilderService service;   // Tested service
+        final Collection<OptionGroup> options; // Returned data
+        final Boolean found;
+
+        service = getAffinitiesSponsorBuilderService();
+
+        options = service.getAffinityOptions();
+
+        found = options.stream().flatMap((o) -> o.getOptions().stream())
+                .map(Option::getValue)
+                .anyMatch((v) -> v.equals("rank_increase"));
+        Assert.assertFalse(found);
+    }
+
+    /**
+     * Verifies that when the group includes rank it is returned as an option.
+     */
+    @Test
+    public final void testGetAffinityOptions_Rank_ContainsRank() {
+        final SponsorBuilderService service;   // Tested service
+        final Collection<OptionGroup> options; // Returned data
+        final Boolean found;
+
+        service = getAffinitiesAndRankSponsorBuilderService();
+
+        options = service.getAffinityOptions();
+
+        found = options.stream().flatMap((o) -> o.getOptions().stream())
+                .map(Option::getValue)
+                .anyMatch((v) -> v.equals("rank_increase"));
+        Assert.assertTrue(found);
+    }
+
+    /**
+     * Returns a service with affinities and rank option.
+     * <p>
+     * All the dependencies are mocked.
+     * 
+     * @return service with affinities
+     */
     private final SponsorBuilderService
             getAffinitiesAndRankSponsorBuilderService() {
         final SponsorBuilderAssemblerService sponsorBuilderAssemblerService;
@@ -111,6 +186,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
         avas = new ArrayList<>();
         avas.add(new DefaultSponsorAffinityGroupAvailability("A", affinities,
                 true));
+
         Mockito.when(sponsorAffinityGroupAvailabilityService
                 .getAllSponsorAffinityGroupAvailabilities()).thenReturn(avas);
 
@@ -118,6 +194,51 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
                 sponsorUnitsService, sponsorAffinityGroupAvailabilityService);
     }
 
+    /**
+     * Returns a service with affinities, but no rank option.
+     * <p>
+     * All the dependencies are mocked.
+     * 
+     * @return service with affinities
+     */
+    private final SponsorBuilderService getAffinitiesSponsorBuilderService() {
+        final SponsorBuilderAssemblerService sponsorBuilderAssemblerService;
+        final SponsorUnitsService sponsorUnitsService;
+        final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
+        final Collection<SponsorAffinityGroupAvailability> avas;
+        final Collection<AffinityGroup> affinities;
+
+        sponsorBuilderAssemblerService = Mockito
+                .mock(SponsorBuilderAssemblerService.class);
+        sponsorUnitsService = Mockito.mock(SponsorUnitsService.class);
+
+        sponsorAffinityGroupAvailabilityService = Mockito
+                .mock(SponsorAffinityGroupAvailabilityService.class);
+
+        affinities = new ArrayList<>();
+        affinities.add(new DefaultAffinityGroup("aff1"));
+        affinities.add(new DefaultAffinityGroup("aff2"));
+        affinities.add(new DefaultAffinityGroup("aff3"));
+        affinities.add(new DefaultAffinityGroup("aff4"));
+
+        avas = new ArrayList<>();
+        avas.add(new DefaultSponsorAffinityGroupAvailability("A", affinities,
+                false));
+
+        Mockito.when(sponsorAffinityGroupAvailabilityService
+                .getAllSponsorAffinityGroupAvailabilities()).thenReturn(avas);
+
+        return new DefaultSponsorBuilderService(sponsorBuilderAssemblerService,
+                sponsorUnitsService, sponsorAffinityGroupAvailabilityService);
+    }
+
+    /**
+     * Returns a service with no affinities.
+     * <p>
+     * All the dependencies are mocked.
+     * 
+     * @return service with no affinities
+     */
     private final SponsorBuilderService getNoAffinitiesSponsorBuilderService() {
         final SponsorBuilderAssemblerService sponsorBuilderAssemblerService;
         final SponsorUnitsService sponsorUnitsService;
