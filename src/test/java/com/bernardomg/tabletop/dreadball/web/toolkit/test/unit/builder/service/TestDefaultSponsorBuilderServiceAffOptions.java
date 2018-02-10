@@ -11,8 +11,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.service.DefaultSponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.build.service.DefaultSponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.DefaultSponsorAffinityGroupAvailability;

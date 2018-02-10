@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dreadball.build.dbx.service;
+package com.bernardomg.tabletop.dreadball.build.service;
 
 import java.util.Collection;
 

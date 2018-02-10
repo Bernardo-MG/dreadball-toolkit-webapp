@@ -29,8 +29,8 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.controller.SponsorValidationController;
-import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.build.controller.SponsorValidationController;
+import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.codex.controller.AffinityGroupCodexController;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
