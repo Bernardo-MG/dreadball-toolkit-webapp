@@ -3,7 +3,7 @@ package com.bernardomg.tabletop.dreadball.report;
 
 import java.io.OutputStream;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 
 public interface DreadballReportBuilder {
 

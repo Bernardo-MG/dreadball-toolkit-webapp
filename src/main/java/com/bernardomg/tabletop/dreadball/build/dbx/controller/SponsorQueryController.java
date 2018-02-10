@@ -30,8 +30,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 
@@ -69,7 +69,7 @@ public class SponsorQueryController {
     @GetMapping(path = "/affinity",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final Iterable<OptionGroup> getAffinityGroups() {
-        return getSponsorBuilderService().getAffinityOptionGroups();
+        return getSponsorBuilderService().getAffinityOptions();
     }
 
     @GetMapping(path = "/units",
@@ -97,7 +97,7 @@ public class SponsorQueryController {
             pageReq = new PageRequest(page, size, direction, orderBy);
         }
 
-        return getSponsorBuilderService().getAffinityUnits(affinities, pageReq);
+        return getSponsorBuilderService().getUnitOptions(affinities, pageReq);
     }
 
     private final SponsorBuilderService getSponsorBuilderService() {

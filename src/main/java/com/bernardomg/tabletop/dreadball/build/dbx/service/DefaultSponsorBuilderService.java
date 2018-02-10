@@ -10,18 +10,19 @@ import java.util.stream.StreamSupport;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.ImmutableOption;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.ImmutableOptionGroup;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.Option;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.OptionGroup;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
+import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
+import com.bernardomg.tabletop.dreadball.model.Option;
+import com.bernardomg.tabletop.dreadball.model.OptionGroup;
+import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+import com.bernardomg.tabletop.dreadball.model.service.SponsorAffinityGroupAvailabilityService;
+import com.bernardomg.tabletop.dreadball.model.service.SponsorBuilderAssemblerService;
+import com.bernardomg.tabletop.dreadball.model.service.SponsorUnitsService;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
-import com.bernardomg.tabletop.dreadball.service.model.SponsorAffinityGroupAvailabilityService;
-import com.bernardomg.tabletop.dreadball.service.model.SponsorUnitsService;
 
 @Service
 public final class DefaultSponsorBuilderService
@@ -49,7 +50,7 @@ public final class DefaultSponsorBuilderService
     }
 
     @Override
-    public final Iterable<OptionGroup> getAffinityOptionGroups() {
+    public final Iterable<OptionGroup> getAffinityOptions() {
         final Iterable<SponsorAffinityGroupAvailability> avas;
 
         avas = getAffinityGroupAvailabilities();
@@ -59,7 +60,7 @@ public final class DefaultSponsorBuilderService
     }
 
     @Override
-    public final Iterable<? extends Unit> getAffinityUnits(
+    public final Iterable<? extends Unit> getUnitOptions(
             final Iterable<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
         return getSponsorUnitsService().getAllAffinityUnits(affinities,
@@ -68,13 +69,13 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final SponsorAffinities
-            selectAffinities(final Iterable<String> affinities) {
+            validateAffinities(final Iterable<String> affinities) {
         return getSponsorBuilderAssemblerService()
                 .assembleSponsorAffinities(affinities);
     }
 
     @Override
-    public final SponsorTeamSelection selectTeam(
+    public final SponsorTeamSelection validateTeam(
             final Collection<String> affinities, final Collection<String> units,
             final SponsorTeamAssets assets, final Integer baseRank) {
         return getSponsorBuilderAssemblerService().assembleSponsorTeamSelection(

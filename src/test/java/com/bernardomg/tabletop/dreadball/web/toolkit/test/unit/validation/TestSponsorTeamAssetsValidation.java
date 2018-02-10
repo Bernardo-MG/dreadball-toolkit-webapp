@@ -26,7 +26,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamAssets;
 
 /**
  * Unit tests for {@link DefaultSponsorTeamAssets} bean validation.

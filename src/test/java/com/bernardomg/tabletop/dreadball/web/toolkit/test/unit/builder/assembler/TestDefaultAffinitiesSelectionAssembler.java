@@ -8,10 +8,10 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.assembler.AffinitiesSelectionAssembler;
-import com.bernardomg.tabletop.dreadball.build.dbx.assembler.DefaultAffinitiesSelectionAssembler;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.build.dbx.rules.SponsorDefaults;
+import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
+import com.bernardomg.tabletop.dreadball.model.assembler.AffinitiesSelectionAssembler;
+import com.bernardomg.tabletop.dreadball.model.assembler.DefaultAffinitiesSelectionAssembler;
+import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 import com.google.common.collect.Iterables;
 
 public final class TestDefaultAffinitiesSelectionAssembler {

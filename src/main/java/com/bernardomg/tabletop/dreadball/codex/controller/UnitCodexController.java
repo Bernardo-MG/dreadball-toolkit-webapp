@@ -29,8 +29,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bernardomg.tabletop.dreadball.model.service.UnitService;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
-import com.bernardomg.tabletop.dreadball.service.model.UnitService;
 
 /**
  * Controller for the unit codex views.

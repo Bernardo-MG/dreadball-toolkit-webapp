@@ -10,8 +10,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.google.common.collect.Iterables;
 
 @ContextConfiguration(
@@ -38,7 +38,7 @@ public class ITDefaultSponsorBuilderServiceSelectAffs
         affinities.add("affinity_3");
         affinities.add("affinity_4");
         affinities.add("rank_increase");
-        result = service.selectAffinities(affinities);
+        result = service.validateAffinities(affinities);
 
         Assert.assertEquals(6, result.getRank().intValue());
         Assert.assertEquals(4, Iterables.size(result.getAffinities()));
@@ -50,7 +50,7 @@ public class ITDefaultSponsorBuilderServiceSelectAffs
         final SponsorAffinities result;
 
         affinities = new ArrayList<>();
-        result = service.selectAffinities(affinities);
+        result = service.validateAffinities(affinities);
 
         Assert.assertEquals(5, result.getRank().intValue());
         Assert.assertEquals(0, Iterables.size(result.getAffinities()));

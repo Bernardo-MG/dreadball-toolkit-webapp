@@ -41,9 +41,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.DefaultSponsorTeamAssets;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
-import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderAssemblerService;
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.model.service.SponsorBuilderAssemblerService;
 import com.bernardomg.tabletop.dreadball.report.DreadballReportBuilder;
 
 /**
@@ -109,12 +109,12 @@ public class ReportController {
         getReportBuilder().createPdf(team, output);
     }
 
-    private final SponsorBuilderAssemblerService getSponsorTeamAssembler() {
-        return teamAssembler;
-    }
-
     private final DreadballReportBuilder getReportBuilder() {
         return reportBuilder;
+    }
+
+    private final SponsorBuilderAssemblerService getSponsorTeamAssembler() {
+        return teamAssembler;
     }
 
 }

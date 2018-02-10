@@ -10,9 +10,9 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.assembler.DefaultSponsorTeamSelectionAssembler;
-import com.bernardomg.tabletop.dreadball.build.dbx.assembler.SponsorTeamSelectionAssembler;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.model.assembler.DefaultSponsorTeamSelectionAssembler;
+import com.bernardomg.tabletop.dreadball.model.assembler.SponsorTeamSelectionAssembler;
 import com.bernardomg.tabletop.dreadball.model.faction.Sponsor;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;

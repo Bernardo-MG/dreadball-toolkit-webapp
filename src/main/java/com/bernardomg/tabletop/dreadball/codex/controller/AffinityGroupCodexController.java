@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.bernardomg.tabletop.dreadball.model.service.AffinityGroupService;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
-import com.bernardomg.tabletop.dreadball.service.model.AffinityGroupService;
 
 /**
  * Controller for the affinity groups codex views.

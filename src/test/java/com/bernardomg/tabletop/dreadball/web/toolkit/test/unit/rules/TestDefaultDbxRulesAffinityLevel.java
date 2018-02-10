@@ -23,12 +23,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.rules.SponsorConstraints;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
 import com.bernardomg.tabletop.dreadball.rules.DefaultDbxRules;
+import com.bernardomg.tabletop.dreadball.rules.SponsorConstraints;
 
 /**
  * Unit tests for {@link SponsorConstraints} testing the

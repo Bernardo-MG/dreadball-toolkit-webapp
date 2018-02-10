@@ -11,17 +11,17 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.model.Option;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.build.dbx.service.DefaultSponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderAssemblerService;
 import com.bernardomg.tabletop.dreadball.build.dbx.service.SponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.model.Option;
+import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.DefaultSponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+import com.bernardomg.tabletop.dreadball.model.service.SponsorAffinityGroupAvailabilityService;
+import com.bernardomg.tabletop.dreadball.model.service.SponsorBuilderAssemblerService;
+import com.bernardomg.tabletop.dreadball.model.service.SponsorUnitsService;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.DefaultAffinityGroup;
-import com.bernardomg.tabletop.dreadball.service.model.SponsorAffinityGroupAvailabilityService;
-import com.bernardomg.tabletop.dreadball.service.model.SponsorUnitsService;
 import com.google.common.collect.Iterables;
 
 public class TestDefaultSponsorBuilderServiceAffOptions {
@@ -38,7 +38,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         service = getAffinitiesAndRankSponsorBuilderService();
 
-        options = service.getAffinityOptionGroups();
+        options = service.getAffinityOptions();
 
         Assert.assertEquals(5,
                 Iterables.size(options.iterator().next().getOptions()));
@@ -53,7 +53,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         service = getAffinitiesAndRankSponsorBuilderService();
 
-        options = service.getAffinityOptionGroups();
+        options = service.getAffinityOptions();
 
         values = StreamSupport
                 .stream(options.iterator().next().getOptions().spliterator(),
@@ -70,7 +70,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         service = getAffinitiesAndRankSponsorBuilderService();
 
-        options = service.getAffinityOptionGroups();
+        options = service.getAffinityOptions();
 
         Assert.assertEquals(1, Iterables.size(options));
     }
@@ -82,7 +82,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         service = getNoAffinitiesSponsorBuilderService();
 
-        options = service.getAffinityOptionGroups();
+        options = service.getAffinityOptions();
 
         Assert.assertEquals(0, Iterables.size(options));
     }

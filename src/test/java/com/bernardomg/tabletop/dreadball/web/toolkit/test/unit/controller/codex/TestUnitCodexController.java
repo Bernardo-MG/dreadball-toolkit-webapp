@@ -32,7 +32,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.bernardomg.tabletop.dreadball.codex.controller.UnitCodexController;
 import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
-import com.bernardomg.tabletop.dreadball.service.model.UnitService;
+import com.bernardomg.tabletop.dreadball.model.service.UnitService;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
 
 /**

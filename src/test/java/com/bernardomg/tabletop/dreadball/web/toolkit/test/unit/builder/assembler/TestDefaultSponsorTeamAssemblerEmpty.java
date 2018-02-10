@@ -7,14 +7,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dreadball.build.dbx.assembler.DefaultSponsorTeamAssembler;
-import com.bernardomg.tabletop.dreadball.build.dbx.assembler.SponsorTeamAssembler;
-import com.bernardomg.tabletop.dreadball.build.dbx.model.SponsorTeamAssets;
-import com.bernardomg.tabletop.dreadball.build.dbx.rules.SponsorCosts;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.model.assembler.DefaultSponsorTeamAssembler;
+import com.bernardomg.tabletop.dreadball.model.assembler.SponsorTeamAssembler;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
+import com.bernardomg.tabletop.dreadball.rules.SponsorCosts;
 
 public final class TestDefaultSponsorTeamAssemblerEmpty {
 
