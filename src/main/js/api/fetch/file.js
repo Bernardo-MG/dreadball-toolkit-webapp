@@ -32,8 +32,9 @@ export const Fetcher = class {
       this.filename = 'team.pdf';
    }
 
-   fetch() {
+   fetch(params) {
       return request.get(this.url)
+         .query(params)
          .responseType('blob')
          .parse(parse.image)
          .then(
