@@ -29,7 +29,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.bernardomg.tabletop.dreadball.model.service.UnitService;
+import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 
 /**
@@ -47,7 +47,7 @@ public class UnitCodexController {
     /**
      * Unit codex service.
      */
-    private final UnitService   unitCodexService;
+    private final CodexService   unitCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
@@ -55,7 +55,7 @@ public class UnitCodexController {
      * @param codex
      *            unit codex service
      */
-    public UnitCodexController(final UnitService codex) {
+    public UnitCodexController(final CodexService codex) {
         super();
 
         unitCodexService = checkNotNull(codex,
@@ -110,7 +110,7 @@ public class UnitCodexController {
      * 
      * @return the unit codex service
      */
-    private final UnitService getUnitCodexService() {
+    private final CodexService getUnitCodexService() {
         return unitCodexService;
     }
 

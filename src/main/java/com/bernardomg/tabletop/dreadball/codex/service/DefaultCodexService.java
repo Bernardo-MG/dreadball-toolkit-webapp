@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.model.service;
+package com.bernardomg.tabletop.dreadball.codex.service;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
@@ -30,7 +30,7 @@ import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service("unitService")
-public final class DefaultUnitService implements UnitService {
+public final class DefaultCodexService implements CodexService {
 
     /**
      * Affinity units repository.
@@ -43,7 +43,7 @@ public final class DefaultUnitService implements UnitService {
      * @param repository
      *            affinity units repository
      */
-    public DefaultUnitService(final AffinityUnitRepository repository) {
+    public DefaultCodexService(final AffinityUnitRepository repository) {
         super();
 
         affinityUnitRepository = checkNotNull(repository,

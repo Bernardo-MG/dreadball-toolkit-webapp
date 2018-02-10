@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.model.service;
+package com.bernardomg.tabletop.dreadball.codex.service;
 
 import org.springframework.data.domain.Pageable;
 
@@ -25,7 +25,7 @@ import com.bernardomg.tabletop.dreadball.model.unit.Unit;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface UnitService {
+public interface CodexService {
 
     /**
      * Returns all the units.
