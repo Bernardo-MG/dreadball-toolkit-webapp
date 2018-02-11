@@ -159,7 +159,7 @@ public final class TestUnitCodexControllerPagination {
      */
     private final RequestBuilder getGetRequestWithPage() {
         return MockMvcRequestBuilders
-                .get(UrlUnitCodexConfig.URL_UNITS + "?page={}", 10);
+                .get(UrlUnitCodexConfig.URL_UNITS + "?page=10");
     }
 
 }
