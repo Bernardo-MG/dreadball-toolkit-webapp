@@ -70,7 +70,7 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final Iterable<? extends Unit> getUnitOptions(
-            final Iterable<? extends AffinityGroup> affinities,
+            final Collection<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
         return getSponsorUnitsService().getAllAffinityUnits(affinities,
                 pageReq);
@@ -78,7 +78,7 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final SponsorAffinities
-            validateSponsorAffinities(final Iterable<String> affinities) {
+            validateSponsorAffinities(final Collection<String> affinities) {
         final Integer totalRank;
         final Iterable<String> valid;
         final Integer rank;
@@ -105,18 +105,16 @@ public final class DefaultSponsorBuilderService
                 affinities, units, assets, baseRank);
     }
 
-    private final Iterable<String>
-            getFilterOutRankOption(final Iterable<String> affinities) {
-        return StreamSupport.stream(affinities.spliterator(), false)
+    private final Collection<String>
+            getFilterOutRankOption(final Collection<String> affinities) {
+        return affinities.stream()
                 .filter(affinity -> !affinity.equals("rank_increase"))
                 .collect(Collectors.toSet());
     }
 
-    private final Integer getRank(final Iterable<String> affinities) {
-        // TODO: This doesn't look like a good solution
-        return StreamSupport.stream(affinities.spliterator(), false)
-                .filter(affinity -> affinity.equals("rank_increase"))
-                .collect(Collectors.toList()).size();
+    private final Integer getRank(final Collection<String> affinities) {
+        return (int) affinities.stream()
+                .filter(affinity -> affinity.equals("rank_increase")).count();
     }
 
     private final SponsorAffinityGroupAvailabilityService

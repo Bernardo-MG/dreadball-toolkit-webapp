@@ -25,7 +25,7 @@ public interface SponsorBuilderService {
     public Collection<OptionGroup> getAffinityOptions();
 
     public Iterable<? extends Unit> getUnitOptions(
-            final Iterable<? extends AffinityGroup> affinities,
+            final Collection<? extends AffinityGroup> affinities,
             final Pageable pageable);
 
     /**
@@ -41,7 +41,7 @@ public interface SponsorBuilderService {
      * @return the valid affinities
      */
     public SponsorAffinities
-            validateSponsorAffinities(final Iterable<String> affinities);
+            validateSponsorAffinities(final Collection<String> affinities);
 
     public SponsorTeamSelection validateTeam(
             final Collection<String> affinities, final Collection<String> units,

@@ -16,6 +16,7 @@
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controller;
 
+import java.util.Collection;
 import java.util.Collections;
 
 import org.junit.Assert;
@@ -49,17 +50,17 @@ public final class TestSponsorValidationControllerAffinities {
      * Argument captor for the affinities parameter.
      */
     @SuppressWarnings("rawtypes")
-    private ArgumentCaptor<Iterable> captor;
+    private ArgumentCaptor<Collection> captor;
 
     /**
      * Mocked MVC context.
      */
-    private MockMvc                  mockMvc;
+    private MockMvc                    mockMvc;
 
     /**
      * Mocked service.
      */
-    private SponsorBuilderService    service;
+    private SponsorBuilderService      service;
 
     /**
      * Default constructor;
@@ -152,7 +153,7 @@ public final class TestSponsorValidationControllerAffinities {
 
         result = new DefaultSponsorAffinities(Collections.emptyList(), 0);
 
-        captor = ArgumentCaptor.forClass(Iterable.class);
+        captor = ArgumentCaptor.forClass(Collection.class);
         Mockito.when(sponsorBuilderService
                 .validateSponsorAffinities(captor.capture()))
                 .thenReturn(result);

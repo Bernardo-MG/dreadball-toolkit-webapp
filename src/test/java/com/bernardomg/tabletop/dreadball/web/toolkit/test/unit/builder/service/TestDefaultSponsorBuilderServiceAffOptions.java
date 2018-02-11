@@ -39,7 +39,7 @@ import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 import com.google.common.collect.Iterables;
 
 /**
- * Unit tests for {@link DefaultSponsorBuilderService}, validating the affinity
+ * Unit tests for {@link DefaultSponsorBuilderService}, verifying the affinity
  * options read method.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
