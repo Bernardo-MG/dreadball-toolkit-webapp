@@ -40,16 +40,24 @@ import com.google.common.collect.Iterables;
 public class ITSponsorBuilderServiceValidateAffs
         extends AbstractJUnit4SpringContextTests {
 
+    /**
+     * Tested service.
+     */
     @Autowired
     private SponsorBuilderService service;
 
+    /**
+     * Default constructor.
+     */
     public ITSponsorBuilderServiceValidateAffs() {
         super();
     }
 
+    /**
+     * Verifies that the affinities are validated correctly.
+     */
     @Test
-    public final void
-            testValidateAffinities_AffinitiesAndRank_AddsAdditionalOption() {
+    public final void testValidateAffinities_ExpectedResult() {
         final Collection<String> affinities;
         final SponsorAffinities result;
 
@@ -63,32 +71,6 @@ public class ITSponsorBuilderServiceValidateAffs
 
         Assert.assertEquals(6, result.getRank().intValue());
         Assert.assertEquals(4, Iterables.size(result.getAffinities()));
-    }
-
-    /**
-     * Verifies that when no affinities are received the default rank is
-     * returned.
-     */
-    @Test
-    public final void testValidateAffinities_NoAffinities_DefaultRank() {
-        final Collection<String> affinities;
-        final SponsorAffinities result;
-
-        affinities = new ArrayList<>();
-        result = service.validateSponsorAffinities(affinities);
-
-        Assert.assertEquals(5, result.getRank().intValue());
-    }
-
-    @Test
-    public final void testValidateAffinities_NoAffinities_EmptyResult() {
-        final Collection<String> affinities;
-        final SponsorAffinities result;
-
-        affinities = new ArrayList<>();
-        result = service.validateSponsorAffinities(affinities);
-
-        Assert.assertEquals(0, Iterables.size(result.getAffinities()));
     }
 
 }
