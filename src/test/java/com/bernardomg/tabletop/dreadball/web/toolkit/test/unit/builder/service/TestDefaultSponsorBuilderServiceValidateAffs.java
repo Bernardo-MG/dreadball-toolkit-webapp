@@ -55,8 +55,8 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     public final void
             testValidateSponsorAffinities_Affinities_ExpectedAffinitiesResult() {
         final SponsorBuilderService service; // Tested service
-        final Collection<String> affinities;
-        final SponsorAffinities result;
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
 
         service = getSponsorBuilderService();
 
@@ -77,8 +77,8 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     public final void
             testValidateSponsorAffinities_Affinities_NoRankIncrease_NoReturnedRank() {
         final SponsorBuilderService service; // Tested service
-        final Collection<String> affinities;
-        final SponsorAffinities result;
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
 
         service = getSponsorBuilderService();
 
@@ -99,8 +99,8 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     public final void
             testValidateSponsorAffinities_Affinities_RankIncrease_ExpectedAffinitiesResult() {
         final SponsorBuilderService service; // Tested service
-        final Collection<String> affinities;
-        final SponsorAffinities result;
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
 
         service = getSponsorBuilderService();
 
@@ -115,6 +115,26 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     }
 
     /**
+     * Verifies that if no affinities are received then the base rank is
+     * returned.
+     */
+    @Test
+    public final void
+            testValidateSponsorAffinities_NoAffinities_BaseRank_ReturnsBaseRank() {
+        final SponsorBuilderService service; // Tested service
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
+
+        service = getSponsorBuilderServiceBaseRank();
+
+        affinities = new ArrayList<>();
+
+        result = service.validateSponsorAffinities(affinities);
+
+        Assert.assertEquals(new Integer(5), result.getRank());
+    }
+
+    /**
      * Verifies that if no affinities are received then no affinities are
      * returned.
      */
@@ -122,8 +142,8 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     public final void
             testValidateSponsorAffinities_NoAffinities_NoAffinitiesResult() {
         final SponsorBuilderService service; // Tested service
-        final Collection<String> affinities;
-        final SponsorAffinities result;
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
 
         service = getSponsorBuilderService();
 
@@ -141,8 +161,8 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     public final void
             testValidateSponsorAffinities_NoAffinities_NoReturnedRank() {
         final SponsorBuilderService service; // Tested service
-        final Collection<String> affinities;
-        final SponsorAffinities result;
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
 
         service = getSponsorBuilderService();
 
@@ -161,8 +181,8 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     public final void
             testValidateSponsorAffinities_RankIncrease_NoAffinities() {
         final SponsorBuilderService service; // Tested service
-        final Collection<String> affinities;
-        final SponsorAffinities result;
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
 
         service = getSponsorBuilderService();
 
@@ -181,8 +201,8 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     @Test
     public final void testValidateSponsorAffinities_RankIncrease_Rank() {
         final SponsorBuilderService service; // Tested service
-        final Collection<String> affinities;
-        final SponsorAffinities result;
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
 
         service = getSponsorBuilderService();
 
@@ -202,8 +222,8 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     public final void
             testValidateSponsorAffinities_RepeatedAffinities_NoRepeatedAffinitiesResult() {
         final SponsorBuilderService service; // Tested service
-        final Collection<String> affinities;
-        final SponsorAffinities result;
+        final Collection<String> affinities; // Affinities for the test
+        final SponsorAffinities result;      // Result from the validation
 
         service = getSponsorBuilderService();
 
@@ -218,11 +238,11 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     }
 
     /**
-     * Returns a service.
+     * Returns a service with no base rank.
      * <p>
      * All the dependencies are mocked.
      * 
-     * @return service to test
+     * @return service with no base rank
      */
     private final SponsorBuilderService getSponsorBuilderService() {
         final SponsorBuilderAssemblerService sponsorBuilderAssemblerService;
@@ -233,7 +253,40 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
         sponsorBuilderAssemblerService = Mockito
                 .mock(SponsorBuilderAssemblerService.class);
         sponsorUnitsService = Mockito.mock(SponsorUnitsService.class);
+
         defaults = Mockito.mock(SponsorDefaults.class);
+        Mockito.when(defaults.getInitialRank()).thenReturn(0);
+
+        sponsorAffinityGroupAvailabilityService = Mockito
+                .mock(SponsorAffinityGroupAvailabilityService.class);
+        Mockito.when(sponsorAffinityGroupAvailabilityService
+                .getAllSponsorAffinityGroupAvailabilities())
+                .thenReturn(Collections.emptyList());
+
+        return new DefaultSponsorBuilderService(sponsorBuilderAssemblerService,
+                sponsorUnitsService, sponsorAffinityGroupAvailabilityService,
+                defaults);
+    }
+
+    /**
+     * Returns a service with base rank.
+     * <p>
+     * All the dependencies are mocked.
+     * 
+     * @return service with base rank
+     */
+    private final SponsorBuilderService getSponsorBuilderServiceBaseRank() {
+        final SponsorBuilderAssemblerService sponsorBuilderAssemblerService;
+        final SponsorUnitsService sponsorUnitsService;
+        final SponsorDefaults defaults;
+        final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
+
+        sponsorBuilderAssemblerService = Mockito
+                .mock(SponsorBuilderAssemblerService.class);
+        sponsorUnitsService = Mockito.mock(SponsorUnitsService.class);
+
+        defaults = Mockito.mock(SponsorDefaults.class);
+        Mockito.when(defaults.getInitialRank()).thenReturn(5);
 
         sponsorAffinityGroupAvailabilityService = Mockito
                 .mock(SponsorAffinityGroupAvailabilityService.class);
