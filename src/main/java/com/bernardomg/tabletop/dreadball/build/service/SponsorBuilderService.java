@@ -43,6 +43,15 @@ public interface SponsorBuilderService {
     public SponsorAffinities
             validateSponsorAffinities(final Collection<String> affinities);
 
+    /**
+     * Validates a team.
+     * <p>
+     * This is meant for validating the team while building it.
+     * 
+     * @param selection
+     *            the team values
+     * @return a valid team
+     */
     public SponsorTeam
             validateTeam(final DefaultSponsorTeamValidationSelection selection);
 

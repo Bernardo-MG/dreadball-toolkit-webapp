@@ -33,7 +33,7 @@ import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 
 /**
- * Controller for the affinity groups codex views.
+ * Controller for validating the team being built.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -41,6 +41,9 @@ import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 @RequestMapping("/rest/builder/validation")
 public class SponsorValidationController {
 
+    /**
+     * Builder service.
+     */
     private final SponsorBuilderService builderService;
 
     /**
@@ -92,9 +95,9 @@ public class SponsorValidationController {
     }
 
     /**
-     * Returns the tested service.
+     * Returns the builder service.
      * 
-     * @return the tested service
+     * @return the builder service
      */
     private final SponsorBuilderService getSponsorBuilderService() {
         return builderService;

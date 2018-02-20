@@ -18,17 +18,13 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamAssets;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
-import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamAssets;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
-import com.bernardomg.tabletop.dreadball.model.TeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.bernardomg.tabletop.dreadball.model.service.SponsorAffinityGroupAvailabilityService;
@@ -145,27 +141,18 @@ public final class DefaultSponsorBuilderService
             final DefaultSponsorTeamValidationSelection selection) {
         final Iterable<AffinityUnit> affUnits;
         final Iterable<AffinityGroup> affs;
-        final SponsorTeam team;
         // TODO: Validate
 
         affUnits = getUnits(selection.getUnits());
         affs = getAffinityGroups(selection.getAffinities());
 
-        team = assemble(affs, affUnits, selection, selection.getBaseRank());
-
-        // return assemble(team);
-        return team;
+        return assemble(affs, affUnits, selection, selection.getBaseRank());
     }
 
     private final SponsorTeam assemble(final Iterable<AffinityGroup> affinities,
             final Iterable<AffinityUnit> units, final SponsorTeamAssets assets,
             final Integer rank) {
         final SponsorTeam sponsorTeam;
-
-        checkNotNull(affinities, "Received a null pointer as affinities");
-        checkNotNull(units, "Received a null pointer as units");
-        checkNotNull(assets, "Received a null pointer as assets");
-        checkNotNull(rank, "Received a null pointer as rank");
 
         sponsorTeam = new DefaultSponsorTeam(new DefaultSponsor(),
                 getTeamValorationCalculator(), getRankCostCalculator());
@@ -184,36 +171,6 @@ public final class DefaultSponsorBuilderService
         sponsorTeam.setWagers(assets.getWagers());
 
         return sponsorTeam;
-    }
-
-    private final SponsorTeamSelection assemble(final SponsorTeam team) {
-        final Integer rank;
-        final Integer assetRankCost;
-        final Integer teamValue;
-        final Collection<TeamPlayer> acceptedUnits;
-        final Collection<String> affNames;
-        final DefaultSponsorTeamAssets assets;
-
-        checkNotNull(team, "Received a null pointer as team");
-
-        teamValue = team.getValoration();
-        assetRankCost = team.getRankCost();
-
-        rank = team.getSponsor().getRank() - assetRankCost;
-
-        acceptedUnits = getTeamPlayers(team.getPlayers());
-        affNames = getNames(team.getSponsor().getAffinityGroups());
-
-        assets = new DefaultSponsorTeamAssets();
-        assets.setCheerleaders(team.getCheerleaders());
-        assets.setCoachingDice(team.getCoachingDice());
-        assets.setMediBots(team.getMediBots());
-        assets.setNastySurpriseCards(team.getNastySurpriseCards());
-        assets.setSpecialMoveCards(team.getSpecialMoveCards());
-        assets.setWagers(team.getWagers());
-
-        return new ImmutableSponsorTeamSelection(affNames, acceptedUnits, rank,
-                team.getSponsor().getRank(), teamValue, assets);
     }
 
     private final AffinityGroupRepository getAffinityGroupRepository() {
@@ -249,12 +206,6 @@ public final class DefaultSponsorBuilderService
                 .collect(Collectors.toSet());
     }
 
-    private final Collection<String>
-            getNames(final Iterable<AffinityGroup> affinities) {
-        return StreamSupport.stream(affinities.spliterator(), false)
-                .map(AffinityGroup::getName).collect(Collectors.toSet());
-    }
-
     private final Integer getRank(final Collection<String> affinities) {
         return (int) affinities.stream()
                 .filter(affinity -> affinity.equals("rank_increase")).count();
@@ -288,14 +239,6 @@ public final class DefaultSponsorBuilderService
 
     private final SponsorUnitsService getSponsorUnitsService() {
         return unitsService;
-    }
-
-    private final Collection<TeamPlayer>
-            getTeamPlayers(final Map<Integer, Unit> units) {
-        return units.entrySet().stream()
-                .map(unit -> new TeamPlayer(unit.getKey(),
-                        unit.getValue().getTemplateName()))
-                .collect(Collectors.toList());
     }
 
     private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
