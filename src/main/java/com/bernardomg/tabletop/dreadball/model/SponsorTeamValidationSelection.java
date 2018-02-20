@@ -16,12 +16,18 @@
 
 package com.bernardomg.tabletop.dreadball.model;
 
+import java.util.Collection;
+
 /**
  * Form data for the Sponsor team assets.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface SponsorTeamAssets {
+public interface SponsorTeamValidationSelection {
+
+    public Collection<String> getAffinities();
+
+    public Integer getBaseRank();
 
     /**
      * Returns the number of cheerleaders.
@@ -51,12 +57,18 @@ public interface SponsorTeamAssets {
      */
     public Integer getNastySurpriseCards();
 
+    public Integer getRank();
+
     /**
      * Returns the number of special move cards.
      * 
      * @return the number of special move cards
      */
     public Integer getSpecialMoveCards();
+
+    public Integer getTeamValue();
+
+    public Collection<String> getUnits();
 
     /**
      * Returns the number of wagers.

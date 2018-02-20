@@ -18,13 +18,12 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
 import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.bernardomg.tabletop.dreadball.model.service.SponsorAffinityGroupAvailabilityService;
@@ -137,8 +136,8 @@ public final class DefaultSponsorBuilderService
     }
 
     @Override
-    public final SponsorTeam validateTeam(
-            final DefaultSponsorTeamValidationSelection selection) {
+    public final SponsorTeam
+            validateTeam(final SponsorTeamValidationSelection selection) {
         final Iterable<AffinityUnit> affUnits;
         final Iterable<AffinityGroup> affs;
         // TODO: Validate
@@ -150,8 +149,8 @@ public final class DefaultSponsorBuilderService
     }
 
     private final SponsorTeam assemble(final Iterable<AffinityGroup> affinities,
-            final Iterable<AffinityUnit> units, final SponsorTeamAssets assets,
-            final Integer rank) {
+            final Iterable<AffinityUnit> units,
+            final SponsorTeamValidationSelection assets, final Integer rank) {
         final SponsorTeam sponsorTeam;
 
         sponsorTeam = new DefaultSponsorTeam(new DefaultSponsor(),

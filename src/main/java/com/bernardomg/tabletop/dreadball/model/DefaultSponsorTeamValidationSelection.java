@@ -8,7 +8,7 @@ import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
 public final class DefaultSponsorTeamValidationSelection
-        implements SponsorTeamAssets {
+        implements SponsorTeamValidationSelection {
 
     private Collection<String> affinities         = Collections.emptyList();
 
@@ -66,10 +66,12 @@ public final class DefaultSponsorTeamValidationSelection
         super();
     }
 
+    @Override
     public final Collection<String> getAffinities() {
         return affinities;
     }
 
+    @Override
     public final Integer getBaseRank() {
         return baseRank;
     }
@@ -94,6 +96,7 @@ public final class DefaultSponsorTeamValidationSelection
         return nastySurpriseCards;
     }
 
+    @Override
     public final Integer getRank() {
         return rank;
     }
@@ -103,10 +106,12 @@ public final class DefaultSponsorTeamValidationSelection
         return specialMoveCards;
     }
 
+    @Override
     public final Integer getTeamValue() {
         return teamValue;
     }
 
+    @Override
     public final Collection<String> getUnits() {
         return units;
     }
