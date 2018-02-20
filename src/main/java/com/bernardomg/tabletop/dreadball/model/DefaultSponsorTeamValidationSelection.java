@@ -42,8 +42,6 @@ public final class DefaultSponsorTeamValidationSelection
     @Min(0)
     private Integer            nastySurpriseCards = 0;
 
-    private Integer            rank               = 0;
-
     /**
      * Number of special move cards.
      */
@@ -97,11 +95,6 @@ public final class DefaultSponsorTeamValidationSelection
     }
 
     @Override
-    public final Integer getRank() {
-        return rank;
-    }
-
-    @Override
     public final Integer getSpecialMoveCards() {
         return specialMoveCards;
     }
@@ -143,10 +136,6 @@ public final class DefaultSponsorTeamValidationSelection
 
     public final void setNastySurpriseCards(final Integer value) {
         nastySurpriseCards = value;
-    }
-
-    public final void setRank(final Integer rank) {
-        this.rank = rank;
     }
 
     public final void setSpecialMoveCards(final Integer value) {

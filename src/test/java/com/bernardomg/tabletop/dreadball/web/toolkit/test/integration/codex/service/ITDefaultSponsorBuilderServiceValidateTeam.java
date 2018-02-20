@@ -116,11 +116,10 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
-        selection.setRank(5);
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(4), result.getCurrentRank());
+        Assert.assertEquals(new Integer(8), result.getCurrentRank());
     }
 
     /**
@@ -138,11 +137,10 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
-        selection.setRank(5);
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(1), result.getRankCost());
+        Assert.assertEquals(new Integer(2), result.getRankCost());
     }
 
     /**
@@ -160,11 +158,10 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
-        selection.setRank(5);
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(15), result.getValoration());
+        Assert.assertEquals(new Integer(17), result.getValoration());
     }
 
     /**
@@ -256,26 +253,6 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
         result = service.validateTeam(selection);
 
         Assert.assertEquals(baseRank, result.getBaseRank());
-    }
-
-    /**
-     * Verifies that the current rank is returned.
-     */
-    @Test
-    public final void testAssemble_ReturnsCurrentRank() {
-        final DefaultSponsorTeamValidationSelection selection;
-        final SponsorTeam result;
-        final Integer currentRank;
-
-        selection = new DefaultSponsorTeamValidationSelection();
-
-        currentRank = 10;
-
-        selection.setRank(currentRank);
-
-        result = service.validateTeam(selection);
-
-        Assert.assertEquals(currentRank, result.getCurrentRank());
     }
 
     /**

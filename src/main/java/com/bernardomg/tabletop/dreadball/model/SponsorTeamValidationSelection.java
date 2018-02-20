@@ -57,8 +57,6 @@ public interface SponsorTeamValidationSelection {
      */
     public Integer getNastySurpriseCards();
 
-    public Integer getRank();
-
     /**
      * Returns the number of special move cards.
      * 
