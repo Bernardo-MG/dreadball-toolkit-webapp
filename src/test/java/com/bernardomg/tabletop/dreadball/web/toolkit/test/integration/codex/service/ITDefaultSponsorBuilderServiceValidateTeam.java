@@ -161,7 +161,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(17), result.getValoration());
+        Assert.assertEquals(new Integer(16), result.getValoration());
     }
 
     /**
