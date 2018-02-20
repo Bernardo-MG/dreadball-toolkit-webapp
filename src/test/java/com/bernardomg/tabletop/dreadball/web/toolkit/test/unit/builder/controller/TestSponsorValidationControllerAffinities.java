@@ -33,7 +33,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.bernardomg.tabletop.dreadball.build.controller.SponsorValidationController;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorAffinities;
+import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 import com.google.common.collect.Iterables;
@@ -151,7 +151,7 @@ public final class TestSponsorValidationControllerAffinities {
 
         sponsorBuilderService = Mockito.mock(SponsorBuilderService.class);
 
-        result = new DefaultSponsorAffinities(Collections.emptyList(), 0);
+        result = new ImmutableSponsorAffinities(Collections.emptyList(), 0);
 
         captor = ArgumentCaptor.forClass(Collection.class);
         Mockito.when(sponsorBuilderService

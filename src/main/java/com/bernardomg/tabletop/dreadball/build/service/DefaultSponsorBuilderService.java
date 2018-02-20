@@ -17,7 +17,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorAffinities;
+import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
 import com.bernardomg.tabletop.dreadball.model.Option;
@@ -137,7 +137,7 @@ public final class DefaultSponsorBuilderService
 
         totalRank = getSponsorDefaults().getInitialRank() + rank;
 
-        return new DefaultSponsorAffinities(valid, totalRank);
+        return new ImmutableSponsorAffinities(valid, totalRank);
 
     }
 

@@ -3,13 +3,13 @@ package com.bernardomg.tabletop.dreadball.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-public final class DefaultSponsorAffinities implements SponsorAffinities {
+public final class ImmutableSponsorAffinities implements SponsorAffinities {
 
     private final Iterable<String> affinities;
 
     private final Integer          rank;
 
-    public DefaultSponsorAffinities(final Iterable<String> affinities,
+    public ImmutableSponsorAffinities(final Iterable<String> affinities,
             final Integer rank) {
         super();
 
