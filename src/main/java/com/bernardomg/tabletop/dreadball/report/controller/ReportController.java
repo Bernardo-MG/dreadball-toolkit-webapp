@@ -28,8 +28,6 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
-import java.util.ArrayList;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -39,11 +37,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
-import com.bernardomg.tabletop.dreadball.model.service.SponsorBuilderAssemblerService;
+import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.report.service.DreadballReportBuilder;
 
 /**
@@ -61,35 +58,33 @@ public class ReportController {
     /**
      * Default report file name.
      */
-    private static final String                  FILENAME = "EntityReport";
+    private static final String          FILENAME = "EntityReport";
 
-    private final DreadballReportBuilder         reportBuilder;
+    private final DreadballReportBuilder reportBuilder;
 
-    private final SponsorBuilderAssemblerService teamAssembler;
+    private final SponsorBuilderService  sponsorBuilderService;
 
     @Autowired
     public ReportController(final DreadballReportBuilder builder,
-            final SponsorBuilderAssemblerService assembler) {
+            final SponsorBuilderService builderService) {
         super();
 
         reportBuilder = checkNotNull(builder,
                 "Received a null pointer as report builder");
-        teamAssembler = checkNotNull(assembler,
-                "Received a null pointer as team assembler");
+        sponsorBuilderService = checkNotNull(builderService,
+                "Received a null pointer as sponsor builder service");
+    }
+
+    private final SponsorBuilderService getSponsorBuilderService() {
+        return sponsorBuilderService;
     }
 
     @GetMapping
     public final void getPdfReport(final Model model,
             final HttpServletRequest request,
             final HttpServletResponse response,
-            @RequestParam(name = "affinities",
-                    defaultValue = "") final ArrayList<String> affinities,
-            @RequestParam(name = "units",
-                    defaultValue = "") final ArrayList<String> units,
-            final DefaultSponsorTeamAssets assets,
-            @RequestParam(name = "baseRank",
-                    defaultValue = "0") final Integer baseRank) {
-        final SponsorTeamSelection team;
+            final DefaultSponsorTeamValidationSelection selection) {
+        final SponsorTeam team;
         final OutputStream output;
 
         response.setContentType(MediaType.APPLICATION_PDF_VALUE);
@@ -97,8 +92,8 @@ public class ReportController {
                 String.format("inline; filename=%s.pdf", FILENAME));
 
         // TODO: Merge with the PDF creation
-        team = getSponsorTeamAssembler().assembleSponsorTeamSelection(
-                affinities, units, assets, baseRank);
+        // TODO: Try to receive an object instead of creating one here
+        team = getSponsorBuilderService().validateTeam(selection);
 
         try {
             output = response.getOutputStream();
@@ -111,10 +106,6 @@ public class ReportController {
 
     private final DreadballReportBuilder getReportBuilder() {
         return reportBuilder;
-    }
-
-    private final SponsorBuilderAssemblerService getSponsorTeamAssembler() {
-        return teamAssembler;
     }
 
 }

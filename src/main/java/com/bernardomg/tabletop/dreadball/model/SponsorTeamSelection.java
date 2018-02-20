@@ -1,9 +1,11 @@
 
 package com.bernardomg.tabletop.dreadball.model;
 
+import java.util.Collection;
+
 public interface SponsorTeamSelection {
 
-    public Iterable<String> getAffinities();
+    public Collection<String> getAffinities();
 
     public SponsorTeamAssets getAssets();
 
@@ -13,6 +15,6 @@ public interface SponsorTeamSelection {
 
     public Integer getTeamValue();
 
-    public Iterable<TeamPlayer> getUnits();
+    public Collection<TeamPlayer> getUnits();
 
 }

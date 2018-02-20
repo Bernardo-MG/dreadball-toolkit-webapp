@@ -28,9 +28,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamAssets;
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 
 /**
  * Controller for the affinity groups codex views.
@@ -76,19 +77,26 @@ public class SponsorValidationController {
         return getSponsorBuilderService().validateSponsorAffinities(affinities);
     }
 
+    /**
+     * Validates a Sponsor team.
+     * <p>
+     * This allows the validation of a team at any point.
+     * 
+     * @param selection
+     *            team to validate
+     * @return the valid team
+     */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeamSelection
-            validateTeam(@RequestParam(name = "affinities",
-                    defaultValue = "") final ArrayList<String> affinities,
-                    @RequestParam(name = "units",
-                            defaultValue = "") final ArrayList<String> units,
-                    final DefaultSponsorTeamAssets assets,
-                    @RequestParam(name = "baseRank",
-                            defaultValue = "0") final Integer baseRank) {
-        return getSponsorBuilderService().validateTeam(affinities, units,
-                assets, baseRank);
+    public final SponsorTeam validateTeam(
+            final DefaultSponsorTeamValidationSelection selection) {
+        return getSponsorBuilderService().validateTeam(selection);
     }
 
+    /**
+     * Returns the tested service.
+     * 
+     * @return the tested service
+     */
     private final SponsorBuilderService getSponsorBuilderService() {
         return builderService;
     }

@@ -435,9 +435,9 @@
       <aspectj.version>1.8.10</aspectj.version>
       <classmate.version>1.3.3</classmate.version>
       <dandelion.datatables.version>1.1.0</dandelion.datatables.version>
-      <dreadball.json.version>0.8.0</dreadball.json.version>
-      <dreadball.model.version>0.7.0</dreadball.model.version>
-      <dreadball.persistence.version>0.7.1</dreadball.persistence.version>
+      <dreadball.json.version>0.8.2</dreadball.json.version>
+      <dreadball.model.version>0.7.2</dreadball.model.version>
+      <dreadball.persistence.version>0.7.3</dreadball.persistence.version>
       <guava.version>23.5-jre</guava.version>
       <hamcrest.version>2.0.0.0</hamcrest.version>
       <h2.version>1.4.192</h2.version>

@@ -19,8 +19,8 @@ function* requestValidation(action) {
 
 function* build(action) {
    yield put({ type: types.SET_BASE_RANK, payload: action.payload.baseRank });
-   yield put({ type: types.SET_RANK, payload: action.payload.rank });
-   yield put({ type: types.SET_TEAM_VALUE, payload: action.payload.teamValue });
+   yield put({ type: types.SET_RANK, payload: action.payload.currentRank });
+   yield put({ type: types.SET_TEAM_VALUE, payload: action.payload.valoration });
 }
 
 function* validateTeam() {

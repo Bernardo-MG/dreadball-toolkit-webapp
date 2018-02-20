@@ -3,23 +3,25 @@ package com.bernardomg.tabletop.dreadball.model;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Collection;
+
 public final class ImmutableSponsorTeamSelection
         implements SponsorTeamSelection {
 
-    private final Iterable<String>     affinities;
+    private final Collection<String>     affinities;
 
-    private final SponsorTeamAssets    assets;
+    private final SponsorTeamAssets      assets;
 
-    private final Integer              baseRank;
+    private final Integer                baseRank;
 
-    private final Integer              rank;
+    private final Integer                rank;
 
-    private final Integer              teamValue;
+    private final Integer                teamValue;
 
-    private final Iterable<TeamPlayer> units;
+    private final Collection<TeamPlayer> units;
 
-    public ImmutableSponsorTeamSelection(final Iterable<String> affinities,
-            final Iterable<TeamPlayer> units, final Integer rank,
+    public ImmutableSponsorTeamSelection(final Collection<String> affinities,
+            final Collection<TeamPlayer> units, final Integer rank,
             final Integer baseRank, final Integer teamValue,
             final SponsorTeamAssets assets) {
         super();
@@ -37,7 +39,7 @@ public final class ImmutableSponsorTeamSelection
     }
 
     @Override
-    public final Iterable<String> getAffinities() {
+    public final Collection<String> getAffinities() {
         return affinities;
     }
 
@@ -62,7 +64,7 @@ public final class ImmutableSponsorTeamSelection
     }
 
     @Override
-    public final Iterable<TeamPlayer> getUnits() {
+    public final Collection<TeamPlayer> getUnits() {
         return units;
     }
 

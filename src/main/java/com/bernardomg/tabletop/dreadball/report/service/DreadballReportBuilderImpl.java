@@ -8,6 +8,7 @@ import java.util.stream.Stream;
 import org.springframework.stereotype.Service;
 
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
+import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;
 import com.itextpdf.text.Document;
@@ -29,7 +30,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
     }
 
     @Override
-    public final void createPdf(final SponsorTeamSelection team,
+    public final void createPdf(final SponsorTeam team,
             final OutputStream output) {
         try {
             create(team, output);
@@ -38,25 +39,24 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         }
     }
 
-    private final void addRows(final SponsorTeamSelection team,
-            final PdfPTable table) {
+    private final void addRows(final SponsorTeam team, final PdfPTable table) {
         table.addCell("cheerleaders");
-        table.addCell(String.valueOf(team.getAssets().getCheerleaders()));
+        table.addCell(String.valueOf(team.getCheerleaders()));
 
         table.addCell("coaching_dice");
-        table.addCell(String.valueOf(team.getAssets().getCoachingDice()));
+        table.addCell(String.valueOf(team.getCoachingDice()));
 
         table.addCell("medibots");
-        table.addCell(String.valueOf(team.getAssets().getMediBots()));
+        table.addCell(String.valueOf(team.getMediBots()));
 
         table.addCell("nasty_surprise_cards");
-        table.addCell(String.valueOf(team.getAssets().getNastySurpriseCards()));
+        table.addCell(String.valueOf(team.getNastySurpriseCards()));
 
         table.addCell("special_move_cards");
-        table.addCell(String.valueOf(team.getAssets().getSpecialMoveCards()));
+        table.addCell(String.valueOf(team.getSpecialMoveCards()));
 
         table.addCell("wager");
-        table.addCell(String.valueOf(team.getAssets().getWagers()));
+        table.addCell(String.valueOf(team.getWagers()));
     }
 
     private final void addTableHeader(final PdfPTable table) {
@@ -69,8 +69,8 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         });
     }
 
-    private final void create(final SponsorTeamSelection team,
-            final OutputStream output) throws IOException, DocumentException {
+    private final void create(final SponsorTeam team, final OutputStream output)
+            throws IOException, DocumentException {
         final Document document = new Document();
         PdfWriter.getInstance(document, output);
         document.open();

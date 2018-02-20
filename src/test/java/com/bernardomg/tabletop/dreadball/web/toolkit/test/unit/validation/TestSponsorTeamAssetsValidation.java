@@ -74,7 +74,7 @@ public final class TestSponsorTeamAssetsValidation {
 
         errors = validator.validate(assets);
 
-        Assert.assertEquals(errors.size(), 6);
+        Assert.assertEquals(6, errors.size());
     }
 
     /**
@@ -96,7 +96,7 @@ public final class TestSponsorTeamAssetsValidation {
 
         errors = validator.validate(assets);
 
-        Assert.assertEquals(errors.size(), 6);
+        Assert.assertEquals(6, errors.size());
     }
 
     /**
