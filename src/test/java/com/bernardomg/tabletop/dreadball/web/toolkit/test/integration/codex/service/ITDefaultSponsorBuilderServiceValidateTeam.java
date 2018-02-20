@@ -57,6 +57,117 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
     }
 
     /**
+     * Verifies when there is no data an empty current rank is returned.
+     */
+    @Test
+    public final void testAssemble_Empty_EmptyCurrentRank() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(new Integer(0), result.getCurrentRank());
+    }
+
+    /**
+     * Verifies when there is no data an empty rank is returned.
+     */
+    @Test
+    public final void testAssemble_Empty_EmptyRankCost() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(new Integer(0), result.getRankCost());
+    }
+
+    /**
+     * Verifies when there is no data an empty valoration is returned.
+     */
+    @Test
+    public final void testAssemble_Empty_EmptyValoration() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(new Integer(0), result.getValoration());
+    }
+
+    /**
+     * Verifies when there is data the expected rank is returned.
+     */
+    @Test
+    public final void testAssemble_Filled_ExpectedCurrentRank() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        selection.setBaseRank(10);
+        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setAffinities(Arrays.asList("affinity_1"));
+        selection.setSpecialMoveCards(1);
+        selection.setCheerleaders(1);
+        selection.setRank(5);
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(new Integer(4), result.getCurrentRank());
+    }
+
+    /**
+     * Verifies when there is data the expected rank is returned.
+     */
+    @Test
+    public final void testAssemble_Filled_ExpectedRankCost() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        selection.setBaseRank(10);
+        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setAffinities(Arrays.asList("affinity_1"));
+        selection.setSpecialMoveCards(1);
+        selection.setCheerleaders(1);
+        selection.setRank(5);
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(new Integer(1), result.getRankCost());
+    }
+
+    /**
+     * Verifies when there is data the expected rank is returned.
+     */
+    @Test
+    public final void testAssemble_Filled_ExpectedValoration() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        selection.setBaseRank(10);
+        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setAffinities(Arrays.asList("affinity_1"));
+        selection.setSpecialMoveCards(1);
+        selection.setCheerleaders(1);
+        selection.setRank(5);
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(new Integer(15), result.getValoration());
+    }
+
+    /**
      * Verifies that when there are no affinities then none is returned.
      */
     @Test
@@ -125,6 +236,46 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
         result = service.validateTeam(selection);
 
         Assert.assertEquals(3, result.getPlayers().size());
+    }
+
+    /**
+     * Verifies that the base rank is returned.
+     */
+    @Test
+    public final void testAssemble_ReturnsBaseRank() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+        final Integer baseRank;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        baseRank = 10;
+
+        selection.setBaseRank(baseRank);
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(baseRank, result.getBaseRank());
+    }
+
+    /**
+     * Verifies that the current rank is returned.
+     */
+    @Test
+    public final void testAssemble_ReturnsCurrentRank() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+        final Integer currentRank;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        currentRank = 10;
+
+        selection.setRank(currentRank);
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(currentRank, result.getCurrentRank());
     }
 
     /**
