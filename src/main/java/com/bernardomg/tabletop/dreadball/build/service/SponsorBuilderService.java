@@ -8,7 +8,6 @@ import org.springframework.data.domain.Pageable;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;

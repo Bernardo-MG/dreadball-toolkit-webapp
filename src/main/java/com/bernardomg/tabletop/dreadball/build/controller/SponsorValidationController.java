@@ -30,7 +30,6 @@ import org.springframework.web.bind.annotation.RestController;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 
 /**

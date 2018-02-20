@@ -7,7 +7,6 @@ import java.util.stream.Stream;
 
 import org.springframework.stereotype.Service;
 
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.itextpdf.text.BaseColor;
 import com.itextpdf.text.Chunk;

@@ -3,8 +3,6 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.service;
 
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.junit.Assert;
 import org.junit.Ignore;
@@ -14,20 +12,15 @@ import org.mockito.Mockito;
 import com.bernardomg.tabletop.dreadball.build.service.DefaultSponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
-import com.bernardomg.tabletop.dreadball.model.faction.Sponsor;
 import com.bernardomg.tabletop.dreadball.model.service.SponsorAffinityGroupAvailabilityService;
 import com.bernardomg.tabletop.dreadball.model.service.SponsorUnitsService;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityGroupRepository;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
 import com.bernardomg.tabletop.dreadball.rules.SponsorCosts;
 import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 import com.google.common.collect.Iterables;
-import com.google.common.collect.Maps;
 
 @Ignore
 public final class TestDefaultSponsorBuilderServiceValidateTeam {

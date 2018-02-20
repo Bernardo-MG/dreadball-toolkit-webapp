@@ -28,6 +28,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -37,9 +38,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.report.service.DreadballReportBuilder;
 
@@ -75,10 +76,6 @@ public class ReportController {
                 "Received a null pointer as sponsor builder service");
     }
 
-    private final SponsorBuilderService getSponsorBuilderService() {
-        return sponsorBuilderService;
-    }
-
     @GetMapping
     public final void getPdfReport(final Model model,
             final HttpServletRequest request,
@@ -106,6 +103,10 @@ public class ReportController {
 
     private final DreadballReportBuilder getReportBuilder() {
         return reportBuilder;
+    }
+
+    private final SponsorBuilderService getSponsorBuilderService() {
+        return sponsorBuilderService;
     }
 
 }

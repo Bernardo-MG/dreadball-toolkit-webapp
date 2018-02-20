@@ -31,7 +31,6 @@ import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.TeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.faction.DefaultSponsor;
-import com.bernardomg.tabletop.dreadball.model.faction.Sponsor;
 import com.bernardomg.tabletop.dreadball.model.service.SponsorAffinityGroupAvailabilityService;
 import com.bernardomg.tabletop.dreadball.model.service.SponsorUnitsService;
 import com.bernardomg.tabletop.dreadball.model.team.DefaultSponsorTeam;
@@ -61,15 +60,15 @@ public final class DefaultSponsorBuilderService
 
     private final AffinityUnitRepository                  affinityUnitRepository;
 
-    private final SponsorDefaults                         sponsorDefaults;
-
-    private final SponsorUnitsService                     unitsService;
+    private final DbxRules                                dbxRules;
 
     private final SponsorCosts                            rankCosts;
 
     private final SponsorCosts                            sponsorCosts;
 
-    private final DbxRules                                dbxRules;
+    private final SponsorDefaults                         sponsorDefaults;
+
+    private final SponsorUnitsService                     unitsService;
 
     @Autowired
     public DefaultSponsorBuilderService(
@@ -158,33 +157,6 @@ public final class DefaultSponsorBuilderService
         return team;
     }
 
-    private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
-        return new SponsorTeamValorationCalculator(
-                getSponsorCosts().getDieCost(),
-                getSponsorCosts().getSabotageCost(),
-                getSponsorCosts().getSpecialMoveCost(),
-                getSponsorCosts().getCheerleaderCost(),
-                getSponsorCosts().getWagerCost(),
-                getSponsorCosts().getMediBotCost());
-    }
-
-    private final CostCalculator<SponsorTeam> getRankCostCalculator() {
-        return new DefaultRankCostCalculator(getSponsorRankCosts().getDieCost(),
-                getSponsorRankCosts().getSabotageCost(),
-                getSponsorRankCosts().getSpecialMoveCost(),
-                getSponsorRankCosts().getCheerleaderCost(),
-                getSponsorRankCosts().getWagerCost(),
-                getSponsorRankCosts().getMediBotCost());
-    }
-
-    private final SponsorCosts getSponsorCosts() {
-        return sponsorCosts;
-    }
-
-    private final SponsorCosts getSponsorRankCosts() {
-        return rankCosts;
-    }
-
     private final SponsorTeam assemble(final Iterable<AffinityGroup> affinities,
             final Iterable<AffinityUnit> units, final SponsorTeamAssets assets,
             final Integer rank) {
@@ -212,29 +184,6 @@ public final class DefaultSponsorBuilderService
         sponsorTeam.setWagers(assets.getWagers());
 
         return sponsorTeam;
-    }
-
-    private final void setPlayers(final SponsorTeam sponsorTeam,
-            final Iterable<AffinityGroup> affinities,
-            final Iterable<AffinityUnit> units) {
-        Unit unitSetUp;
-        Integer cost;
-        AffinityLevel affinityLevel; // Affinity level relationship
-
-        for (final AffinityUnit unit : units) {
-            affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
-            cost = getDbxRules().getUnitCost(affinityLevel, unit);
-
-            unitSetUp = new DefaultUnit(unit.getTemplateName(), cost,
-                    unit.getRole(), unit.getAttributes(), unit.getAbilities(),
-                    unit.getMvp(), unit.getGiant());
-
-            sponsorTeam.addPlayer(unitSetUp);
-        }
-    }
-
-    private final DbxRules getDbxRules() {
-        return dbxRules;
     }
 
     private final SponsorTeamSelection assemble(final SponsorTeam team) {
@@ -289,6 +238,10 @@ public final class DefaultSponsorBuilderService
         return affinityUnitRepository;
     }
 
+    private final DbxRules getDbxRules() {
+        return dbxRules;
+    }
+
     private final Collection<String>
             getFilterOutRankOption(final Collection<String> affinities) {
         return affinities.stream()
@@ -307,13 +260,30 @@ public final class DefaultSponsorBuilderService
                 .filter(affinity -> affinity.equals("rank_increase")).count();
     }
 
+    private final CostCalculator<SponsorTeam> getRankCostCalculator() {
+        return new DefaultRankCostCalculator(getSponsorRankCosts().getDieCost(),
+                getSponsorRankCosts().getSabotageCost(),
+                getSponsorRankCosts().getSpecialMoveCost(),
+                getSponsorRankCosts().getCheerleaderCost(),
+                getSponsorRankCosts().getWagerCost(),
+                getSponsorRankCosts().getMediBotCost());
+    }
+
     private final SponsorAffinityGroupAvailabilityService
             getSponsorAffinityGroupAvailabilityService() {
         return affinityGroupAvailabilityService;
     }
 
+    private final SponsorCosts getSponsorCosts() {
+        return sponsorCosts;
+    }
+
     private final SponsorDefaults getSponsorDefaults() {
         return sponsorDefaults;
+    }
+
+    private final SponsorCosts getSponsorRankCosts() {
+        return rankCosts;
     }
 
     private final SponsorUnitsService getSponsorUnitsService() {
@@ -326,6 +296,16 @@ public final class DefaultSponsorBuilderService
                 .map(unit -> new TeamPlayer(unit.getKey(),
                         unit.getValue().getTemplateName()))
                 .collect(Collectors.toList());
+    }
+
+    private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
+        return new SponsorTeamValorationCalculator(
+                getSponsorCosts().getDieCost(),
+                getSponsorCosts().getSabotageCost(),
+                getSponsorCosts().getSpecialMoveCost(),
+                getSponsorCosts().getCheerleaderCost(),
+                getSponsorCosts().getWagerCost(),
+                getSponsorCosts().getMediBotCost());
     }
 
     private final Iterable<AffinityUnit>
@@ -347,6 +327,25 @@ public final class DefaultSponsorBuilderService
                 .map((n) -> readMap.get(n)).collect(Collectors.toList());
 
         return units;
+    }
+
+    private final void setPlayers(final SponsorTeam sponsorTeam,
+            final Iterable<AffinityGroup> affinities,
+            final Iterable<AffinityUnit> units) {
+        Unit unitSetUp;
+        Integer cost;
+        AffinityLevel affinityLevel; // Affinity level relationship
+
+        for (final AffinityUnit unit : units) {
+            affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
+            cost = getDbxRules().getUnitCost(affinityLevel, unit);
+
+            unitSetUp = new DefaultUnit(unit.getTemplateName(), cost,
+                    unit.getRole(), unit.getAttributes(), unit.getAbilities(),
+                    unit.getMvp(), unit.getGiant());
+
+            sponsorTeam.addPlayer(unitSetUp);
+        }
     }
 
     /**
