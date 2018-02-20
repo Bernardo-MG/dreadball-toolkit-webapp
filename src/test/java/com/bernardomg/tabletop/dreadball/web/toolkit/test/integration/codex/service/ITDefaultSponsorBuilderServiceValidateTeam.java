@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
@@ -20,7 +21,8 @@ import com.google.common.collect.Iterables;
  */
 @ContextConfiguration(
         locations = { "classpath:context/test-service-context.xml" })
-public final class ITDefaultSponsorBuilderServiceValidateTeam {
+public final class ITDefaultSponsorBuilderServiceValidateTeam
+        extends AbstractJUnit4SpringContextTests {
 
     /**
      * Tested service.
@@ -117,7 +119,8 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam {
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setUnits(Arrays.asList("unit_1", "unit_2", "unit_1"));
+        selection.setUnits(Arrays.asList("unit_1_affinity", "unit_2_affinity",
+                "unit_1_affinity"));
 
         result = service.validateTeam(selection);
 
@@ -134,7 +137,8 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam {
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setUnits(Arrays.asList("unit_1", "unit_2", "unit_3"));
+        selection.setUnits(Arrays.asList("unit_1_affinity", "unit_2_affinity",
+                "unit_3_affinity"));
 
         result = service.validateTeam(selection);
 
