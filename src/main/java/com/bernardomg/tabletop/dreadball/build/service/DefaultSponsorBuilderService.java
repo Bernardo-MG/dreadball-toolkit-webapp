@@ -38,6 +38,7 @@ import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
 import com.bernardomg.tabletop.dreadball.model.unit.DefaultUnit;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
+import com.bernardomg.tabletop.dreadball.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityGroupRepository;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
@@ -49,26 +50,29 @@ import com.google.common.collect.Lists;
 public final class DefaultSponsorBuilderService
         implements SponsorBuilderService {
 
-    private final SponsorAffinityGroupAvailabilityService affinityGroupAvailabilityService;
+    private final AffinityGroupRepository                    affinityGroupRepository;
 
-    private final AffinityGroupRepository                 affinityGroupRepository;
+    private final AffinityUnitRepository                     affinityUnitRepository;
 
-    private final AffinityUnitRepository                  affinityUnitRepository;
+    private final DbxRules                                   dbxRules;
 
-    private final DbxRules                                dbxRules;
+    private final SponsorCosts                               rankCosts;
 
-    private final SponsorCosts                            rankCosts;
+    /**
+     * Affinity groups repository.
+     */
+    private final SponsorAffinityGroupAvailabilityRepository sponsorAffinityGroupAvailabilityRepository;
 
-    private final SponsorCosts                            sponsorCosts;
+    private final SponsorCosts                               sponsorCosts;
 
-    private final SponsorDefaults                         sponsorDefaults;
+    private final SponsorDefaults                            sponsorDefaults;
 
-    private final SponsorUnitsService                     unitsService;
+    private final SponsorUnitsService                        unitsService;
 
     @Autowired
     public DefaultSponsorBuilderService(
             final SponsorUnitsService sponsorUnitsService,
-            final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService,
+            final SponsorAffinityGroupAvailabilityRepository sponsorAffAvaRepository,
             final SponsorDefaults defaults,
             final AffinityUnitRepository affUnitRepository,
             final AffinityGroupRepository affGroupRepository,
@@ -79,9 +83,9 @@ public final class DefaultSponsorBuilderService
 
         unitsService = checkNotNull(sponsorUnitsService,
                 "Received a null pointer as units service");
-        affinityGroupAvailabilityService = checkNotNull(
-                sponsorAffinityGroupAvailabilityService,
-                "Received a null pointer as affinites availabilities service");
+        sponsorAffinityGroupAvailabilityRepository = checkNotNull(
+                sponsorAffAvaRepository,
+                "Received a null pointer as affinites availabilities repository");
         sponsorDefaults = checkNotNull(defaults,
                 "Received a null pointer as Sponsor defaults service");
         affinityUnitRepository = checkNotNull(affUnitRepository,
@@ -96,14 +100,17 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final Collection<OptionGroup> getAffinityOptions() {
-        final Iterable<SponsorAffinityGroupAvailability> avas;
+        final Collection<SponsorAffinityGroupAvailability> groups;
 
-        // Acquires all the availabilities
-        avas = getSponsorAffinityGroupAvailabilityService()
-                .getAllSponsorAffinityGroupAvailabilities();
+        // TODO: There may be a better way to do this
+        groups = new ArrayList<>();
+        for (final SponsorAffinityGroupAvailability group : getSponsorAffinityGroupAvailabilityRepository()
+                .findAll()) {
+            groups.add(group);
+        }
 
         // The availabilities are transformed into options
-        return toOptionGroups(avas);
+        return toOptionGroups(groups);
     }
 
     @Override
@@ -219,9 +226,9 @@ public final class DefaultSponsorBuilderService
                 getSponsorRankCosts().getMediBotCost());
     }
 
-    private final SponsorAffinityGroupAvailabilityService
-            getSponsorAffinityGroupAvailabilityService() {
-        return affinityGroupAvailabilityService;
+    private final SponsorAffinityGroupAvailabilityRepository
+            getSponsorAffinityGroupAvailabilityRepository() {
+        return sponsorAffinityGroupAvailabilityRepository;
     }
 
     private final SponsorCosts getSponsorCosts() {
