@@ -27,8 +27,8 @@ import org.mockito.Mockito;
 import com.bernardomg.tabletop.dreadball.build.service.DefaultSponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.service.SponsorAffinityGroupAvailabilityService;
 import com.bernardomg.tabletop.dreadball.model.service.SponsorUnitsService;
+import com.bernardomg.tabletop.dreadball.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityGroupRepository;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
@@ -250,7 +250,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     private final SponsorBuilderService getSponsorBuilderService() {
         final SponsorUnitsService sponsorUnitsService;
         final SponsorDefaults defaults;
-        final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
+        final SponsorAffinityGroupAvailabilityRepository sponsorAffinityGroupAvailabilityRepository;
         final AffinityUnitRepository affUnitRepository;
         final AffinityGroupRepository affGroupRepository;
         final SponsorCosts costsRank;
@@ -267,14 +267,13 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
         defaults = Mockito.mock(SponsorDefaults.class);
         Mockito.when(defaults.getInitialRank()).thenReturn(0);
 
-        sponsorAffinityGroupAvailabilityService = Mockito
-                .mock(SponsorAffinityGroupAvailabilityService.class);
-        Mockito.when(sponsorAffinityGroupAvailabilityService
-                .getAllSponsorAffinityGroupAvailabilities())
+        sponsorAffinityGroupAvailabilityRepository = Mockito
+                .mock(SponsorAffinityGroupAvailabilityRepository.class);
+        Mockito.when(sponsorAffinityGroupAvailabilityRepository.findAll())
                 .thenReturn(Collections.emptyList());
 
         return new DefaultSponsorBuilderService(sponsorUnitsService,
-                sponsorAffinityGroupAvailabilityService, defaults,
+                sponsorAffinityGroupAvailabilityRepository, defaults,
                 affUnitRepository, affGroupRepository, costsRank, costs, rules);
     }
 
@@ -288,7 +287,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
     private final SponsorBuilderService getSponsorBuilderServiceBaseRank() {
         final SponsorUnitsService sponsorUnitsService;
         final SponsorDefaults defaults;
-        final SponsorAffinityGroupAvailabilityService sponsorAffinityGroupAvailabilityService;
+        final SponsorAffinityGroupAvailabilityRepository sponsorAffinityGroupAvailabilityRepository;
         final AffinityUnitRepository affUnitRepository;
         final AffinityGroupRepository affGroupRepository;
         final SponsorCosts costsRank;
@@ -305,14 +304,13 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
         defaults = Mockito.mock(SponsorDefaults.class);
         Mockito.when(defaults.getInitialRank()).thenReturn(5);
 
-        sponsorAffinityGroupAvailabilityService = Mockito
-                .mock(SponsorAffinityGroupAvailabilityService.class);
-        Mockito.when(sponsorAffinityGroupAvailabilityService
-                .getAllSponsorAffinityGroupAvailabilities())
+        sponsorAffinityGroupAvailabilityRepository = Mockito
+                .mock(SponsorAffinityGroupAvailabilityRepository.class);
+        Mockito.when(sponsorAffinityGroupAvailabilityRepository.findAll())
                 .thenReturn(Collections.emptyList());
 
         return new DefaultSponsorBuilderService(sponsorUnitsService,
-                sponsorAffinityGroupAvailabilityService, defaults,
+                sponsorAffinityGroupAvailabilityRepository, defaults,
                 affUnitRepository, affGroupRepository, costsRank, costs, rules);
     }
 
