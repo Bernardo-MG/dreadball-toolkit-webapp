@@ -18,6 +18,9 @@ package com.bernardomg.tabletop.dreadball.rules;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
+import java.util.Set;
+import java.util.stream.Collectors;
+
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
@@ -40,14 +43,17 @@ public class DefaultDbxRules implements DbxRules {
     public final AffinityLevel getAffinityLevel(final AffinityUnit unit,
             final Iterable<? extends AffinityGroup> affinities) {
         final AffinityLevel level; // Affinity level
+        final Set<String> affs;    // Unit affinities
         Integer coincidences;      // Affinity coincidences
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(unit, "Received a null pointer as unit");
 
         coincidences = 0;
+        affs = unit.getAffinityGroups().stream().map(AffinityGroup::getName)
+                .collect(Collectors.toSet());
         for (final AffinityGroup affinityGroup : affinities) {
-            if (unit.getAffinityGroups().contains(affinityGroup)) {
+            if (affs.contains(affinityGroup.getName())) {
                 coincidences++;
             }
         }
