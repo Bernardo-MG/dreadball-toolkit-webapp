@@ -6,6 +6,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -14,6 +15,8 @@ import java.util.stream.StreamSupport;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
@@ -26,7 +29,6 @@ import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.faction.DefaultSponsor;
-import com.bernardomg.tabletop.dreadball.model.service.SponsorUnitsService;
 import com.bernardomg.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.CostCalculator;
@@ -66,11 +68,8 @@ public final class DefaultSponsorBuilderService
 
     private final SponsorDefaults                            sponsorDefaults;
 
-    private final SponsorUnitsService                        unitsService;
-
     @Autowired
     public DefaultSponsorBuilderService(
-            final SponsorUnitsService sponsorUnitsService,
             final SponsorAffinityGroupAvailabilityRepository sponsorAffAvaRepository,
             final SponsorDefaults defaults,
             final AffinityUnitRepository affUnitRepository,
@@ -80,8 +79,6 @@ public final class DefaultSponsorBuilderService
             final DbxRules rules) {
         super();
 
-        unitsService = checkNotNull(sponsorUnitsService,
-                "Received a null pointer as units service");
         sponsorAffinityGroupAvailabilityRepository = checkNotNull(
                 sponsorAffAvaRepository,
                 "Received a null pointer as affinites availabilities repository");
@@ -116,8 +113,22 @@ public final class DefaultSponsorBuilderService
     public final Iterable<? extends Unit> getUnitOptions(
             final Collection<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
-        return getSponsorUnitsService().getAllAffinityUnits(affinities,
-                pageReq);
+        final List<Unit> units;          // Available units
+        final Page<? extends AffinityUnit> filtered; // Filtered units
+
+        checkNotNull(affinities, "Received a null pointer as affinities");
+        checkNotNull(pageReq, "Received a null pointer as pagination data");
+
+        // Only units not hating any affinity are acquired
+        filtered = getUnitsNotHatingAffinities(affinities, pageReq);
+
+        // The received units are adapted and configured
+        units = new ArrayList<>();
+        for (final AffinityUnit affUnit : filtered) {
+            units.add(generateUnit(affUnit, affinities));
+        }
+
+        return new PageImpl<>(units, pageReq, filtered.getTotalElements());
     }
 
     @Override
@@ -176,6 +187,21 @@ public final class DefaultSponsorBuilderService
         sponsorTeam.setWagers(assets.getWagers());
 
         return sponsorTeam;
+    }
+
+    private final Unit generateUnit(final AffinityUnit affUnit,
+            final Iterable<? extends AffinityGroup> affinities) {
+        final Integer cost; // Unit cost
+        final DefaultUnit unit;
+
+        cost = getUnitCost(affUnit, affinities);
+
+        unit = new DefaultUnit(affUnit.getTemplateName(), cost,
+                affUnit.getRole(), affUnit.getAttributes(),
+                affUnit.getAbilities(), affUnit.getMvp(), affUnit.getGiant());
+        unit.setName(affUnit.getName());
+
+        return unit;
     }
 
     private final AffinityGroupRepository getAffinityGroupRepository() {
@@ -242,10 +268,6 @@ public final class DefaultSponsorBuilderService
         return rankCosts;
     }
 
-    private final SponsorUnitsService getSponsorUnitsService() {
-        return unitsService;
-    }
-
     private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
         return new SponsorTeamValorationCalculator(
                 getSponsorCosts().getDieCost(),
@@ -254,6 +276,24 @@ public final class DefaultSponsorBuilderService
                 getSponsorCosts().getCheerleaderCost(),
                 getSponsorCosts().getWagerCost(),
                 getSponsorCosts().getMediBotCost());
+    }
+
+    /**
+     * Returns the actual cost for a unit for a sponsor.
+     * 
+     * @param unit
+     *            unit to find the cost for
+     * @param affinities
+     *            sponsor affinities
+     * @return the cost of the unit for the sponsor
+     */
+    private final Integer getUnitCost(final AffinityUnit unit,
+            final Iterable<? extends AffinityGroup> affinities) {
+        final AffinityLevel affinityLevel;  // Affinity level relationship
+
+        affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
+
+        return getDbxRules().getUnitCost(affinityLevel, unit);
     }
 
     private final Iterable<AffinityUnit>
@@ -275,6 +315,31 @@ public final class DefaultSponsorBuilderService
                 .map((n) -> readMap.get(n)).collect(Collectors.toList());
 
         return units;
+    }
+
+    private final Page<? extends AffinityUnit> getUnitsNotHatingAffinities(
+            final Iterable<? extends AffinityGroup> affinities,
+            final Pageable pageReq) {
+        final Page<? extends AffinityUnit> filtered; // Filtered units
+        final Collection<String> affNames;     // Affinity names
+        final Collection<AffinityGroup> affs;     // Affinity names
+
+        // The affinities names are acquired
+        affs = new ArrayList<>();
+        affinities.iterator().forEachRemaining(affs::add);
+        affNames = affs.stream().map(a -> a.getName())
+                .collect(Collectors.toList());
+
+        if (affNames.isEmpty()) {
+            // There are no affinities, there is no need to filter
+            filtered = getAffinityUnitRepository().findAll(pageReq);
+        } else {
+            // Only units not hating any affinity are acquired
+            filtered = getAffinityUnitRepository()
+                    .findAllFilteredByHatedAffinities(affNames, pageReq);
+        }
+
+        return filtered;
     }
 
     private final void setPlayers(final SponsorTeam sponsorTeam,

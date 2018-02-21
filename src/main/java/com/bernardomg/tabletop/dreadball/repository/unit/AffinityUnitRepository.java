@@ -49,6 +49,16 @@ public interface AffinityUnitRepository
             @Param("affinities") final Iterable<String> affinities,
             final Pageable pageReq);
 
+    /**
+     * Returns all the affinity units with their template names contained in the
+     * list.
+     * <p>
+     * This will search for the template name, not the unit name.
+     * 
+     * @param names
+     *            wanted names
+     * @return affinity units with their name in the list
+     */
     public Collection<PersistentAffinityUnit>
             findByTemplateNameIn(final Iterable<String> names);
 

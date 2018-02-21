@@ -30,6 +30,13 @@ import com.bernardomg.tabletop.dreadball.model.persistence.unit.PersistentAffini
 public interface AffinityGroupRepository
         extends PagingAndSortingRepository<PersistentAffinityGroup, Integer> {
 
+    /**
+     * Returns all the affinity groups with their names contained in the list.
+     * 
+     * @param names
+     *            wanted names
+     * @return affinity groups with their name in the list
+     */
     public Collection<PersistentAffinityGroup>
             findByNameIn(final Iterable<String> names);
 
