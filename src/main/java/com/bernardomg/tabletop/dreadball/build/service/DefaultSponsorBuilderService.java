@@ -29,6 +29,8 @@ import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.faction.DefaultSponsor;
+import com.bernardomg.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
+import com.bernardomg.tabletop.dreadball.model.persistence.unit.PersistentAffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.CostCalculator;
@@ -96,17 +98,14 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final Collection<OptionGroup> getAffinityOptions() {
-        final Collection<SponsorAffinityGroupAvailability> groups;
+        final Iterable<PersistentSponsorAffinityGroupAvailability> avas;
 
-        // TODO: There may be a better way to do this
-        groups = new ArrayList<>();
-        for (final SponsorAffinityGroupAvailability group : getSponsorAffinityGroupAvailabilityRepository()
-                .findAll()) {
-            groups.add(group);
-        }
+        // Read all the availabilities
+        avas = getSponsorAffinityGroupAvailabilityRepository().findAll();
 
         // The availabilities are transformed into options
-        return toOptionGroups(groups);
+        return StreamSupport.stream(avas.spliterator(), false)
+                .map(this::toOptionGroup).collect(Collectors.toList());
     }
 
     @Override
@@ -115,6 +114,7 @@ public final class DefaultSponsorBuilderService
             final Pageable pageReq) {
         final List<Unit> units;          // Available units
         final Page<? extends AffinityUnit> filtered; // Filtered units
+        Integer cost; // Unit cost
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(pageReq, "Received a null pointer as pagination data");
@@ -125,7 +125,8 @@ public final class DefaultSponsorBuilderService
         // The received units are adapted and configured
         units = new ArrayList<>();
         for (final AffinityUnit affUnit : filtered) {
-            units.add(generateUnit(affUnit, affinities));
+            cost = getUnitCost(affUnit, affinities);
+            units.add(generateUnit(affUnit, cost));
         }
 
         return new PageImpl<>(units, pageReq, filtered.getTotalElements());
@@ -143,8 +144,18 @@ public final class DefaultSponsorBuilderService
 
         checkNotNull(affinities, "Received a null pointer as affinities");
 
-        rank = getRank(affinities);
-        valid = getFilterOutRankOption(affinities);
+        // TODO: ¿Receive an object which takes care of these operations?
+
+        // TODO: Use a constant
+        // Counts how many times the rank option appears
+        rank = (int) affinities.stream()
+                .filter(affinity -> affinity.equals("rank_increase")).count();
+
+        // TODO: Use a constant
+        // Filters out the rank increase option
+        valid = affinities.stream()
+                .filter(affinity -> !affinity.equals("rank_increase"))
+                .collect(Collectors.toSet());
 
         totalRank = getSponsorDefaults().getInitialRank() + rank;
 
@@ -156,16 +167,18 @@ public final class DefaultSponsorBuilderService
     public final SponsorTeam
             validateTeam(final SponsorTeamValidationSelection selection) {
         final Iterable<AffinityUnit> affUnits;
-        final Iterable<AffinityGroup> affs;
+        final Iterable<PersistentAffinityGroup> affs;
         // TODO: Validate
 
         affUnits = getUnits(selection.getUnits());
-        affs = getAffinityGroups(selection.getAffinities());
+        affs = getAffinityGroupRepository()
+                .findByNameIn(selection.getAffinities());
 
         return assemble(affs, affUnits, selection, selection.getBaseRank());
     }
 
-    private final SponsorTeam assemble(final Iterable<AffinityGroup> affinities,
+    private final SponsorTeam assemble(
+            final Iterable<? extends AffinityGroup> affinities,
             final Iterable<AffinityUnit> units,
             final SponsorTeamValidationSelection assets, final Integer rank) {
         final SponsorTeam sponsorTeam;
@@ -190,12 +203,10 @@ public final class DefaultSponsorBuilderService
     }
 
     private final Unit generateUnit(final AffinityUnit affUnit,
-            final Iterable<? extends AffinityGroup> affinities) {
-        final Integer cost; // Unit cost
+            final Integer cost) {
         final DefaultUnit unit;
 
-        cost = getUnitCost(affUnit, affinities);
-
+        // TODO: Use a new constructor including the name
         unit = new DefaultUnit(affUnit.getTemplateName(), cost,
                 affUnit.getRole(), affUnit.getAttributes(),
                 affUnit.getAbilities(), affUnit.getMvp(), affUnit.getGiant());
@@ -208,38 +219,12 @@ public final class DefaultSponsorBuilderService
         return affinityGroupRepository;
     }
 
-    private final Iterable<AffinityGroup>
-            getAffinityGroups(final Collection<String> affinities) {
-        final Collection<AffinityGroup> result;
-        final Collection<String> affinitiesFiltered;
-
-        affinitiesFiltered = affinities.stream().collect(Collectors.toSet());
-
-        result = new ArrayList<>();
-        result.addAll(
-                getAffinityGroupRepository().findByNameIn(affinitiesFiltered));
-
-        return result;
-    }
-
     private final AffinityUnitRepository getAffinityUnitRepository() {
         return affinityUnitRepository;
     }
 
     private final DbxRules getDbxRules() {
         return dbxRules;
-    }
-
-    private final Collection<String>
-            getFilterOutRankOption(final Collection<String> affinities) {
-        return affinities.stream()
-                .filter(affinity -> !affinity.equals("rank_increase"))
-                .collect(Collectors.toSet());
-    }
-
-    private final Integer getRank(final Collection<String> affinities) {
-        return (int) affinities.stream()
-                .filter(affinity -> affinity.equals("rank_increase")).count();
     }
 
     private final CostCalculator<SponsorTeam> getRankCostCalculator() {
@@ -343,7 +328,7 @@ public final class DefaultSponsorBuilderService
     }
 
     private final void setPlayers(final SponsorTeam sponsorTeam,
-            final Iterable<AffinityGroup> affinities,
+            final Iterable<? extends AffinityGroup> affinities,
             final Iterable<AffinityUnit> units) {
         Unit unitSetUp;
         Integer cost;
@@ -390,9 +375,8 @@ public final class DefaultSponsorBuilderService
         final Collection<Option> options;
 
         // Creates options from the affinities
-        options = StreamSupport
-                .stream(ava.getAffinityGroups().spliterator(), false)
-                .map(this::toOption).collect(Collectors.toList());
+        options = ava.getAffinityGroups().stream().map(this::toOption)
+                .collect(Collectors.toList());
 
         // If the availability allows increasing the rank this is added as an
         // option
@@ -402,23 +386,6 @@ public final class DefaultSponsorBuilderService
         }
 
         return new ImmutableOptionGroup(ava.getName(), options);
-    };
-
-    /**
-     * Returns a collection of {@link OptionGroup} created from the received
-     * collection of {@link SponsorAffinityGroupAvailability}.
-     * <p>
-     * Each {@code SponsorAffinityGroupAvailability} is transformed by using
-     * {@link #toOptionGroup(SponsorAffinityGroupAvailability) toOptionGroup}.
-     * 
-     * @param avas
-     *            availabilities to transform
-     * @return transformed availabilities
-     */
-    private final Collection<OptionGroup> toOptionGroups(
-            final Iterable<SponsorAffinityGroupAvailability> avas) {
-        return StreamSupport.stream(avas.spliterator(), false)
-                .map(this::toOptionGroup).collect(Collectors.toList());
     };
 
 }
