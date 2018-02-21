@@ -40,6 +40,40 @@ public class ITAffinityUnitRepositoryInList
     }
 
     @Test
+    public final void testFindByTemplateNameIn_ExpectedAffinities() {
+        final Collection<String> names;
+        final Collection<PersistentAffinityUnit> result;
+        final PersistentAffinityUnit unit;
+
+        names = new ArrayList<>();
+        names.add("unit_1_affinity");
+
+        result = repository.findByTemplateNameIn(names);
+
+        unit = result.iterator().next();
+
+        Assert.assertEquals(1, unit.getAffinityGroups().size());
+    }
+
+    @Test
+    public final void testFindByTemplateNameIn_ExpectedCostRange() {
+        final Collection<String> names;
+        final Collection<PersistentAffinityUnit> result;
+        final PersistentAffinityUnit unit;
+
+        names = new ArrayList<>();
+        names.add("unit_1_affinity");
+
+        result = repository.findByTemplateNameIn(names);
+
+        unit = result.iterator().next();
+
+        Assert.assertEquals(new Integer(23), unit.getStrangerCost());
+        Assert.assertEquals(new Integer(15), unit.getAllyCost());
+        Assert.assertEquals(new Integer(10), unit.getFriendCost());
+    }
+
+    @Test
     public final void testFindByTemplateNameIn_MultipleNames() {
         final Collection<String> names;
         final Collection<PersistentAffinityUnit> result;
@@ -50,7 +84,7 @@ public class ITAffinityUnitRepositoryInList
 
         result = repository.findByTemplateNameIn(names);
 
-        Assert.assertEquals(result.size(), 2);
+        Assert.assertEquals(2, result.size());
     }
 
     @Test
@@ -62,7 +96,7 @@ public class ITAffinityUnitRepositoryInList
 
         result = repository.findByTemplateNameIn(names);
 
-        Assert.assertEquals(result.size(), 0);
+        Assert.assertEquals(0, result.size());
     }
 
     @Test
@@ -77,7 +111,7 @@ public class ITAffinityUnitRepositoryInList
 
         result = repository.findByTemplateNameIn(names);
 
-        Assert.assertEquals(result.size(), 2);
+        Assert.assertEquals(2, result.size());
     }
 
     @Test
@@ -90,7 +124,7 @@ public class ITAffinityUnitRepositoryInList
 
         result = repository.findByTemplateNameIn(names);
 
-        Assert.assertEquals(result.size(), 1);
+        Assert.assertEquals(1, result.size());
     }
 
 }

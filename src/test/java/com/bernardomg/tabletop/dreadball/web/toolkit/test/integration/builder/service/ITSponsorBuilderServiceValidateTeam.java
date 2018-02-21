@@ -1,5 +1,5 @@
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.codex.service;
+package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.builder.service;
 
 import java.util.Arrays;
 
@@ -21,7 +21,7 @@ import com.google.common.collect.Iterables;
  */
 @ContextConfiguration(
         locations = { "classpath:context/test-service-context.xml" })
-public final class ITDefaultSponsorBuilderServiceValidateTeam
+public final class ITSponsorBuilderServiceValidateTeam
         extends AbstractJUnit4SpringContextTests {
 
     /**
@@ -33,7 +33,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
     /**
      * Default constructor.
      */
-    public ITDefaultSponsorBuilderServiceValidateTeam() {
+    public ITSponsorBuilderServiceValidateTeam() {
         super();
     }
 
@@ -41,7 +41,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies that valid affinities are returned.
      */
     @Test
-    public final void testAssemble_Affinities_ReturnsExpectedAffinities() {
+    public final void testValidate_Affinities_ReturnsExpectedAffinities() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -60,7 +60,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies when there is no data an empty current rank is returned.
      */
     @Test
-    public final void testAssemble_Empty_EmptyCurrentRank() {
+    public final void testValidate_Empty_EmptyCurrentRank() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -75,7 +75,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies when there is no data an empty rank is returned.
      */
     @Test
-    public final void testAssemble_Empty_EmptyRankCost() {
+    public final void testValidate_Empty_EmptyRankCost() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -90,7 +90,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies when there is no data an empty valoration is returned.
      */
     @Test
-    public final void testAssemble_Empty_EmptyValoration() {
+    public final void testValidate_Empty_EmptyValoration() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -105,7 +105,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies when there is data the expected rank is returned.
      */
     @Test
-    public final void testAssemble_Filled_ExpectedCurrentRank() {
+    public final void testValidate_Filled_ExpectedCurrentRank() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -126,7 +126,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies when there is data the expected rank is returned.
      */
     @Test
-    public final void testAssemble_Filled_ExpectedRankCost() {
+    public final void testValidate_Filled_ExpectedRankCost() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -147,7 +147,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies when there is data the expected rank is returned.
      */
     @Test
-    public final void testAssemble_Filled_ExpectedValoration() {
+    public final void testValidate_Filled_ExpectedValoration() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -168,7 +168,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies that when there are no affinities then none is returned.
      */
     @Test
-    public final void testAssemble_NoAffinities_NoReturnedAffinities() {
+    public final void testValidate_NoAffinities_NoReturnedAffinities() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -184,7 +184,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies that when there are no units then none is returned.
      */
     @Test
-    public final void testAssemble_NoUnits_NoReturnedUnits() {
+    public final void testValidate_NoUnits_NoReturnedUnits() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -201,7 +201,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void
-            testAssemble_RepeatedAffinities_ReturnsExpectedAffinities() {
+            testValidate_RepeatedAffinities_ReturnsExpectedAffinities() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -221,7 +221,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * include repeated units.
      */
     @Test
-    public final void testAssemble_RepeatedUnits_ReturnsExpectedUnits() {
+    public final void testValidate_RepeatedUnits_ReturnsExpectedUnits() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -239,7 +239,7 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
      * Verifies that the base rank is returned.
      */
     @Test
-    public final void testAssemble_ReturnsBaseRank() {
+    public final void testValidate_ReturnsBaseRank() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
         final Integer baseRank;
@@ -256,10 +256,49 @@ public final class ITDefaultSponsorBuilderServiceValidateTeam
     }
 
     /**
+     * Verifies that when there are affinities the correct unit cost is
+     * returned.
+     */
+    @Test
+    public final void testValidate_Units_Affinities_ReturnsExpectedCost() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setAffinities(Arrays.asList("affinity_1"));
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(new Integer(15),
+                result.getPlayers().get(1).getCost());
+    }
+
+    /**
+     * Verifies that when there are no affinities the correct unit cost is
+     * returned.
+     */
+    @Test
+    public final void testValidate_Units_NoAffinities_ReturnsExpectedCost() {
+        final DefaultSponsorTeamValidationSelection selection;
+        final SponsorTeam result;
+
+        selection = new DefaultSponsorTeamValidationSelection();
+
+        selection.setUnits(Arrays.asList("unit_1_affinity"));
+
+        result = service.validateTeam(selection);
+
+        Assert.assertEquals(new Integer(23),
+                result.getPlayers().get(1).getCost());
+    }
+
+    /**
      * Verifies that valid units are returned.
      */
     @Test
-    public final void testAssemble_Units_ReturnsExpectedUnits() {
+    public final void testValidate_Units_ReturnsExpectedUnits() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 

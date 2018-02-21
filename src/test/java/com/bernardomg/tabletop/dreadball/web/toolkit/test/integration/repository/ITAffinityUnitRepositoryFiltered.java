@@ -27,6 +27,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
+import com.bernardomg.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
@@ -41,6 +42,46 @@ public class ITAffinityUnitRepositoryFiltered
     }
 
     @Test
+    public final void
+            testFindAll_FilteredByHatedAffinities_ExpectedAffinities() {
+        final Collection<String> affinities;
+        final Pageable pageReq;
+        final Iterable<PersistentAffinityUnit> units;
+        final PersistentAffinityUnit unit;
+
+        affinities = new ArrayList<>();
+
+        pageReq = new PageRequest(0, 10);
+
+        units = repository.findAllFilteredByHatedAffinities(affinities,
+                pageReq);
+        unit = units.iterator().next();
+
+        Assert.assertEquals(1, unit.getAffinityGroups().size());
+    }
+
+    @Test
+    public final void
+            testFindAll_FilteredByHatedAffinities_ExpectedCostRange() {
+        final Collection<String> affinities;
+        final Pageable pageReq;
+        final Iterable<PersistentAffinityUnit> units;
+        final PersistentAffinityUnit unit;
+
+        affinities = new ArrayList<>();
+
+        pageReq = new PageRequest(0, 10);
+
+        units = repository.findAllFilteredByHatedAffinities(affinities,
+                pageReq);
+        unit = units.iterator().next();
+
+        Assert.assertEquals(new Integer(23), unit.getStrangerCost());
+        Assert.assertEquals(new Integer(15), unit.getAllyCost());
+        Assert.assertEquals(new Integer(10), unit.getFriendCost());
+    }
+
+    @Test
     public final void testFindAll_FilteredByHatedAffinities_Hated_Filtered() {
         final Collection<String> affinities;
         final Pageable pageReq;
@@ -50,10 +91,9 @@ public class ITAffinityUnitRepositoryFiltered
 
         pageReq = new PageRequest(0, 10);
 
-        Assert.assertEquals(
+        Assert.assertEquals(3,
                 (repository.findAllFilteredByHatedAffinities(affinities,
-                        pageReq)).getTotalElements(),
-                3);
+                        pageReq)).getTotalElements());
     }
 
     @Test
@@ -81,10 +121,9 @@ public class ITAffinityUnitRepositoryFiltered
 
         pageReq = new PageRequest(0, 10);
 
-        Assert.assertEquals(
+        Assert.assertEquals(4,
                 (repository.findAllFilteredByHatedAffinities(affinities,
-                        pageReq)).getTotalElements(),
-                4);
+                        pageReq)).getTotalElements());
     }
 
 }

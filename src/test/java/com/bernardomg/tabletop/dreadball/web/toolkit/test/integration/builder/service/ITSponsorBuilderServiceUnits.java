@@ -16,7 +16,8 @@
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.builder.service;
 
-import java.util.Collections;
+import java.util.ArrayList;
+import java.util.Collection;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -28,6 +29,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
+import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
+import com.bernardomg.tabletop.dreadball.model.unit.DefaultAffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 import com.google.common.collect.Iterables;
 
@@ -56,15 +59,75 @@ public class ITSponsorBuilderServiceUnits
     }
 
     /**
+     * Verifies that the units have the expected value when there are
+     * affinities.
+     */
+    @Test
+    public final void testGetAffinityUnits_Affinities_ExpectedCost() {
+        final Pageable pageable;
+        final Iterable<? extends Unit> result;
+        final Collection<AffinityGroup> affinities;
+
+        affinities = new ArrayList<>();
+        affinities.add(new DefaultAffinityGroup("affinity_1"));
+
+        pageable = new PageRequest(0, 10);
+        result = service.getUnitOptions(affinities, pageable);
+
+        Assert.assertEquals(new Integer(15),
+                Iterables.getFirst(result, null).getCost());
+    }
+
+    /**
+     * Verifies that units hating the received affinities are not returned.
+     */
+    @Test
+    public final void testGetAffinityUnits_IgnoresHated() {
+        final Pageable pageable;
+        final Iterable<? extends Unit> result;
+        final Collection<AffinityGroup> affinities;
+
+        affinities = new ArrayList<>();
+        affinities.add(new DefaultAffinityGroup("affinity_5"));
+
+        pageable = new PageRequest(0, 10);
+        result = service.getUnitOptions(affinities, pageable);
+
+        Assert.assertEquals(3, Iterables.size(result));
+    }
+
+    /**
+     * Verifies that the units have the expected value when there are no
+     * affinities.
+     */
+    @Test
+    public final void testGetAffinityUnits_NoAffinities_ExpectedCost() {
+        final Pageable pageable;
+        final Iterable<? extends Unit> result;
+        final Collection<AffinityGroup> affinities;
+
+        affinities = new ArrayList<>();
+
+        pageable = new PageRequest(0, 10);
+        result = service.getUnitOptions(affinities, pageable);
+
+        Assert.assertEquals(new Integer(23),
+                Iterables.getFirst(result, null).getCost());
+    }
+
+    /**
      * Verifies that the units can be read.
      */
     @Test
     public final void testGetAffinityUnits_ReturnsExpected() {
         final Pageable pageable;
         final Iterable<? extends Unit> result;
+        final Collection<AffinityGroup> affinities;
+
+        affinities = new ArrayList<>();
 
         pageable = new PageRequest(0, 10);
-        result = service.getUnitOptions(Collections.emptyList(), pageable);
+        result = service.getUnitOptions(affinities, pageable);
 
         Assert.assertEquals(4, Iterables.size(result));
     }
@@ -76,9 +139,12 @@ public class ITSponsorBuilderServiceUnits
     public final void testGetUnits_ReturnsPage() {
         final Pageable pageable;
         final Iterable<? extends Unit> result;
+        final Collection<AffinityGroup> affinities;
+
+        affinities = new ArrayList<>();
 
         pageable = new PageRequest(0, 10);
-        result = service.getUnitOptions(Collections.emptyList(), pageable);
+        result = service.getUnitOptions(affinities, pageable);
 
         Assert.assertTrue(result instanceof Page);
     }
