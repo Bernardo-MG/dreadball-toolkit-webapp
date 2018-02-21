@@ -17,9 +17,9 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
+import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
