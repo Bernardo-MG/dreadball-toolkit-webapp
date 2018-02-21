@@ -62,12 +62,12 @@ public class SponsorQueryController {
     }
 
     /**
-     * Returns all the available affinities for a Sponsor.
+     * Returns all the affinities available to a Sponsor.
      * <p>
      * These will be stored into options, allowing these affinities to be
      * selected by the user through a combo box or similar UI component.
      * 
-     * @return all the available affinities for a Sponsor
+     * @return all the affinities available to a Sponsor
      */
     @GetMapping(path = "/affinity",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
@@ -75,6 +75,21 @@ public class SponsorQueryController {
         return getSponsorBuilderService().getAffinityOptions();
     }
 
+    /**
+     * Returns all the units available to a Sponsor.
+     * 
+     * @param affinities
+     *            sponsor affinities
+     * @param page
+     *            page number
+     * @param size
+     *            page size
+     * @param orderBy
+     *            field to order by
+     * @param direction
+     *            ordering direction
+     * @return all the units available to a Sponsor
+     */
     @GetMapping(path = "/units",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final Iterable<? extends Unit> getDbxUnits(@RequestParam(
