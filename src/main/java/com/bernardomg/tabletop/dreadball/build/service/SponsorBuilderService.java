@@ -15,15 +15,24 @@ import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 public interface SponsorBuilderService {
 
     /**
-     * Returns all the available affinities for a Sponsor.
+     * Returns all the affinities available to a Sponsor.
      * <p>
      * These will be stored into options, allowing these affinities to be
      * selectable.
      * 
-     * @return all the available affinities for a Sponsor
+     * @return all the affinities available to a Sponsor
      */
     public Collection<OptionGroup> getAffinityOptions();
 
+    /**
+     * Returns all the units available to a Sponsor.
+     * 
+     * @param affinities
+     *            sponsor affinities
+     * @param pageable
+     *            pagination data
+     * @return all the units available to a Sponsor
+     */
     public Iterable<? extends Unit> getUnitOptions(
             final Collection<? extends AffinityGroup> affinities,
             final Pageable pageable);
