@@ -50,6 +50,7 @@ public class ITAffinityUnitRepositoryFiltered
         final PersistentAffinityUnit unit;
 
         affinities = new ArrayList<>();
+        affinities.add("affinity_5");
 
         pageReq = new PageRequest(0, 10);
 
@@ -69,6 +70,7 @@ public class ITAffinityUnitRepositoryFiltered
         final PersistentAffinityUnit unit;
 
         affinities = new ArrayList<>();
+        affinities.add("affinity_5");
 
         pageReq = new PageRequest(0, 10);
 
