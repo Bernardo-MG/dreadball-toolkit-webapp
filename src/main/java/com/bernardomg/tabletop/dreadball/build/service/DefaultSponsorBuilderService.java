@@ -134,6 +134,7 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final SponsorAffinities
+
             validateSponsorAffinities(final Collection<String> affinities) {
         final Integer totalRank;
         final Iterable<String> valid;
