@@ -38,7 +38,55 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         }
     }
 
-    private final void addRows(final SponsorTeam team, final PdfPTable table) {
+    private final void create(final SponsorTeam team, final OutputStream output)
+            throws IOException, DocumentException {
+        final Document document = new Document();
+        PdfWriter.getInstance(document, output);
+        document.open();
+        final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16,
+                Font.BOLDITALIC);
+        final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA,
+                12, Font.NORMAL);
+        final Chunk chunk = new Chunk("App title", chapterFont);
+
+        final Paragraph assets;
+        final Paragraph units;
+
+        assets = getAssetsParagraph(team, paragraphFont);
+        units = getUnitsParagraph(team, paragraphFont);
+
+        final Paragraph header = new Paragraph(chunk);
+
+        final Chunk linebreak = new Chunk(new DottedLineSeparator());
+
+        document.add(header);
+        document.add(linebreak);
+        document.add(assets);
+        document.add(units);
+        document.close();
+    }
+
+    private final Paragraph getAssetsParagraph(final SponsorTeam team,
+            final Font paragraphFont) {
+        final Paragraph paragraph;
+        final PdfPTable table;
+
+        paragraph = new Paragraph();
+
+        paragraph.add(new Paragraph("Assets", paragraphFont));
+
+        table = new PdfPTable(2);
+        paragraph.add(table);
+
+        // Adds headers
+        Stream.of("asset", "value").forEach(columnTitle -> {
+            final PdfPCell header = new PdfPCell();
+            header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+            header.setBorderWidth(2);
+            header.setPhrase(new Phrase(columnTitle));
+            table.addCell(header);
+        });
+
         table.addCell("cheerleaders");
         table.addCell(String.valueOf(team.getCheerleaders()));
 
@@ -56,46 +104,38 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         table.addCell("wager");
         table.addCell(String.valueOf(team.getWagers()));
+
+        return paragraph;
     }
 
-    private final void addTableHeader(final PdfPTable table) {
-        Stream.of("asset", "value").forEach(columnTitle -> {
+    private final Paragraph getUnitsParagraph(final SponsorTeam team,
+            final Font paragraphFont) {
+        final Paragraph paragraph;
+        final PdfPTable table;
+
+        paragraph = new Paragraph();
+
+        paragraph.add(new Paragraph("Assets", paragraphFont));
+
+        table = new PdfPTable(3);
+        paragraph.add(table);
+
+        // Adds headers
+        Stream.of("position", "unit", "cost").forEach(columnTitle -> {
             final PdfPCell header = new PdfPCell();
             header.setBackgroundColor(BaseColor.LIGHT_GRAY);
             header.setBorderWidth(2);
             header.setPhrase(new Phrase(columnTitle));
             table.addCell(header);
         });
-    }
 
-    private final void create(final SponsorTeam team, final OutputStream output)
-            throws IOException, DocumentException {
-        final Document document = new Document();
-        PdfWriter.getInstance(document, output);
-        document.open();
-        final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16,
-                Font.BOLDITALIC);
-        final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA,
-                12, Font.NORMAL);
-        final Chunk chunk = new Chunk("App title", chapterFont);
+        team.getPlayers().entrySet().stream().forEach((pair) -> {
+            table.addCell(String.valueOf(pair.getKey()));
+            table.addCell(pair.getValue().getTemplateName());
+            table.addCell(String.valueOf(pair.getValue().getCost()));
+        });
 
-        final Paragraph assets = new Paragraph();
-
-        assets.add(new Paragraph("Assets", paragraphFont));
-
-        final PdfPTable table = new PdfPTable(2);
-        addTableHeader(table);
-        addRows(team, table);
-        assets.add(table);
-
-        final Paragraph header = new Paragraph(chunk);
-
-        final Chunk linebreak = new Chunk(new DottedLineSeparator());
-
-        document.add(header);
-        document.add(linebreak);
-        document.add(assets);
-        document.close();
+        return paragraph;
     }
 
 }
