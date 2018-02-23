@@ -16,17 +16,16 @@
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controller;
 
-import java.util.Collection;
+import java.util.Arrays;
 import java.util.Collections;
 
-import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
-import org.mockito.ArgumentCaptor;
+import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.ResultActions;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
@@ -36,7 +35,6 @@ import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
-import com.google.common.collect.Iterables;
 
 /**
  * Unit tests for {@link SponsorValidationController}, checking the results of
@@ -47,22 +45,6 @@ import com.google.common.collect.Iterables;
 public final class TestSponsorValidationControllerAffinities {
 
     /**
-     * Argument captor for the affinities parameter.
-     */
-    @SuppressWarnings("rawtypes")
-    private ArgumentCaptor<Collection> captor;
-
-    /**
-     * Mocked MVC context.
-     */
-    private MockMvc                    mockMvc;
-
-    /**
-     * Mocked service.
-     */
-    private SponsorBuilderService      service;
-
-    /**
      * Default constructor;
      */
     public TestSponsorValidationControllerAffinities() {
@@ -70,37 +52,33 @@ public final class TestSponsorValidationControllerAffinities {
     }
 
     /**
-     * Sets up the mocked MVC context.
+     * Verifies that when there is no data the controller returns the expected
+     * fields.
      */
-    @Before
-    public final void setUpMockContext() {
-        service = getSponsorBuilderService();
-        mockMvc = MockMvcBuilders.standaloneSetup(getController(service))
-                .alwaysExpect(MockMvcResultMatchers.status().isOk())
-                .alwaysExpect(MockMvcResultMatchers.content()
-                        .contentType(MediaType.APPLICATION_JSON_UTF8))
-                .build();
+    @Test
+    public final void testGet_Empty_ReturnsValues() throws Exception {
+        final ResultActions result;
+
+        result = getMockContextEmpty().perform(getGetRequest());
+
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$.affinities").isEmpty());
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.rank").isNotEmpty());
     }
 
     /**
-     * Verifies that the affinity received as parameter is sent to the service.
+     * Verifies that when there is data the controller returns the expected
+     * fields.
      */
     @Test
-    public final void testGet_AffParam_Affinities() throws Exception {
-        mockMvc.perform(getGetRequest("aff"));
+    public final void testGet_NotEmpty_ReturnsValues() throws Exception {
+        final ResultActions result;
 
-        Assert.assertEquals(1, Iterables.size(captor.getValue()));
-    }
+        result = getMockContextNotEmpty().perform(getGetRequest());
 
-    /**
-     * Verifies that if no affinities are received then an empty collection is
-     * sent to the service.
-     */
-    @Test
-    public final void testGet_NoParams_NoAffinities() throws Exception {
-        mockMvc.perform(getGetRequest());
-
-        Assert.assertEquals(0, Iterables.size(captor.getValue()));
+        result.andExpect(
+                MockMvcResultMatchers.jsonPath("$.affinities").isNotEmpty());
+        result.andExpect(MockMvcResultMatchers.jsonPath("$.rank").isNotEmpty());
     }
 
     /**
@@ -110,8 +88,40 @@ public final class TestSponsorValidationControllerAffinities {
      * 
      * @return a mocked controller
      */
-    private final SponsorValidationController
-            getController(final SponsorBuilderService sponsorBuilderService) {
+    private final SponsorValidationController getController() {
+        final SponsorBuilderService sponsorBuilderService;
+        final SponsorAffinities result;
+
+        sponsorBuilderService = Mockito.mock(SponsorBuilderService.class);
+
+        result = new ImmutableSponsorAffinities(Arrays.asList("aff"), 0);
+
+        Mockito.when(
+                sponsorBuilderService.validateSponsorAffinities(Matchers.any()))
+                .thenReturn(result);
+
+        return new SponsorValidationController(sponsorBuilderService);
+    }
+
+    /**
+     * Returns a mocked controller.
+     * <p>
+     * It has all the dependencies stubbed.
+     * 
+     * @return a mocked controller
+     */
+    private final SponsorValidationController getControllerEmpty() {
+        final SponsorBuilderService sponsorBuilderService;
+        final SponsorAffinities result;
+
+        sponsorBuilderService = Mockito.mock(SponsorBuilderService.class);
+
+        result = new ImmutableSponsorAffinities(Collections.emptyList(), 0);
+
+        Mockito.when(
+                sponsorBuilderService.validateSponsorAffinities(Matchers.any()))
+                .thenReturn(result);
+
         return new SponsorValidationController(sponsorBuilderService);
     }
 
@@ -127,38 +137,25 @@ public final class TestSponsorValidationControllerAffinities {
     }
 
     /**
-     * Returns a request builder prepared for validating the specified affinity.
-     * 
-     * @return a request builder prepared for validating the specified affinity
+     * Creates a mocked MVC context with no data.
      */
-    private final RequestBuilder getGetRequest(final String affinity) {
-        return MockMvcRequestBuilders
-                .get(UrlDbxTeamBuilderConfig.URL_VALIDATE_AFFINITIES
-                        + "?affinities={}", affinity);
+    private final MockMvc getMockContextEmpty() {
+        return MockMvcBuilders.standaloneSetup(getControllerEmpty())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
     }
 
     /**
-     * Returns a mocked service.
-     * <p>
-     * It is prepared for using the pagination data argument captor.
-     * 
-     * @return a mocked service
+     * Creates a mocked MVC context with data.
      */
-    @SuppressWarnings("unchecked")
-    private final SponsorBuilderService getSponsorBuilderService() {
-        final SponsorBuilderService sponsorBuilderService;
-        final SponsorAffinities result;
-
-        sponsorBuilderService = Mockito.mock(SponsorBuilderService.class);
-
-        result = new ImmutableSponsorAffinities(Collections.emptyList(), 0);
-
-        captor = ArgumentCaptor.forClass(Collection.class);
-        Mockito.when(sponsorBuilderService
-                .validateSponsorAffinities(captor.capture()))
-                .thenReturn(result);
-
-        return sponsorBuilderService;
+    private final MockMvc getMockContextNotEmpty() {
+        return MockMvcBuilders.standaloneSetup(getController())
+                .alwaysExpect(MockMvcResultMatchers.status().isOk())
+                .alwaysExpect(MockMvcResultMatchers.content()
+                        .contentType(MediaType.APPLICATION_JSON_UTF8))
+                .build();
     }
 
 }

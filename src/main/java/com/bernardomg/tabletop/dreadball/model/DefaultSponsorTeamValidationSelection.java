@@ -3,6 +3,7 @@ package com.bernardomg.tabletop.dreadball.model;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
@@ -146,7 +147,7 @@ public final class DefaultSponsorTeamValidationSelection
         this.teamValue = teamValue;
     }
 
-    public final void setUnits(final Collection<String> units) {
+    public final void setUnits(final List<String> units) {
         this.units = units;
     }
 
