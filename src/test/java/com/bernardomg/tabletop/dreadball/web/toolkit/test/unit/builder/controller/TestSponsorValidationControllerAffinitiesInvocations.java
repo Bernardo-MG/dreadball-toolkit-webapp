@@ -86,10 +86,31 @@ public final class TestSponsorValidationControllerAffinitiesInvocations {
      * Verifies that the affinity received as parameter is sent to the service.
      */
     @Test
-    public final void testGet_AffParam_Affinities() throws Exception {
+    public final void testGet_AffParam_Affinity() throws Exception {
         mockMvc.perform(getGetRequest("aff"));
 
         Assert.assertEquals(1, Iterables.size(captor.getValue()));
+        Assert.assertEquals("aff", captor.getValue().iterator().next());
+    }
+
+    /**
+     * Verifies that multiple affinities are sent to the service.
+     */
+    @Test
+    public final void testGet_AffParam_Multiple_Affinities() throws Exception {
+        mockMvc.perform(getGetRequest("[aff1,aff2]"));
+
+        Assert.assertEquals(2, Iterables.size(captor.getValue()));
+    }
+
+    /**
+     * Verifies that repeated affinities are sent to the service.
+     */
+    @Test
+    public final void testGet_AffParam_Repeated_Affinities() throws Exception {
+        mockMvc.perform(getGetRequest("[aff,aff]"));
+
+        Assert.assertEquals(2, Iterables.size(captor.getValue()));
     }
 
     /**
@@ -134,7 +155,7 @@ public final class TestSponsorValidationControllerAffinitiesInvocations {
     private final RequestBuilder getGetRequest(final String affinity) {
         return MockMvcRequestBuilders
                 .get(UrlDbxTeamBuilderConfig.URL_VALIDATE_AFFINITIES
-                        + "?affinities={}", affinity);
+                        + "?affinities={aff}", affinity);
     }
 
     /**
