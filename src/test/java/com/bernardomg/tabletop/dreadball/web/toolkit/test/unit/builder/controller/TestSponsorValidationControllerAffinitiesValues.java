@@ -44,7 +44,7 @@ import com.google.common.collect.Iterables;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorValidationControllerAffinitiesInvocations {
+public final class TestSponsorValidationControllerAffinitiesValues {
 
     /**
      * Argument captor for the affinities parameter.
@@ -65,7 +65,7 @@ public final class TestSponsorValidationControllerAffinitiesInvocations {
     /**
      * Default constructor;
      */
-    public TestSponsorValidationControllerAffinitiesInvocations() {
+    public TestSponsorValidationControllerAffinitiesValues() {
         super();
     }
 
@@ -86,7 +86,8 @@ public final class TestSponsorValidationControllerAffinitiesInvocations {
      * Verifies that the affinity received as parameter is sent to the service.
      */
     @Test
-    public final void testGet_AffParam_Affinity() throws Exception {
+    public final void testValidateAffinities_AffParam_Affinity()
+            throws Exception {
         mockMvc.perform(getGetRequest("aff"));
 
         Assert.assertEquals(1, Iterables.size(captor.getValue()));
@@ -97,7 +98,8 @@ public final class TestSponsorValidationControllerAffinitiesInvocations {
      * Verifies that multiple affinities are sent to the service.
      */
     @Test
-    public final void testGet_AffParam_Multiple_Affinities() throws Exception {
+    public final void testValidateAffinities_AffParam_Multiple_Affinities()
+            throws Exception {
         mockMvc.perform(getGetRequest("[aff1,aff2]"));
 
         Assert.assertEquals(2, Iterables.size(captor.getValue()));
@@ -107,7 +109,8 @@ public final class TestSponsorValidationControllerAffinitiesInvocations {
      * Verifies that repeated affinities are sent to the service.
      */
     @Test
-    public final void testGet_AffParam_Repeated_Affinities() throws Exception {
+    public final void testValidateAffinities_AffParam_Repeated_Affinities()
+            throws Exception {
         mockMvc.perform(getGetRequest("[aff,aff]"));
 
         Assert.assertEquals(2, Iterables.size(captor.getValue()));
@@ -118,7 +121,8 @@ public final class TestSponsorValidationControllerAffinitiesInvocations {
      * sent to the service.
      */
     @Test
-    public final void testGet_NoParams_NoAffinities() throws Exception {
+    public final void testValidateAffinities_NoParams_NoAffinities()
+            throws Exception {
         mockMvc.perform(getGetRequest());
 
         Assert.assertEquals(0, Iterables.size(captor.getValue()));

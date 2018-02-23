@@ -39,6 +39,11 @@ public final class UrlDbxTeamBuilderConfig {
     public static final String URL_VALIDATE_AFFINITIES = "/rest/builder/validation/affinities";
 
     /**
+     * Team validation REST URL.
+     */
+    public static final String URL_VALIDATE_TEAM       = "/rest/builder/validation";
+
+    /**
      * Default constructor to avoid initialization.
      */
     private UrlDbxTeamBuilderConfig() {
