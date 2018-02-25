@@ -16,6 +16,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
+import com.itextpdf.text.TabSettings;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -49,9 +50,11 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
                 12, Font.NORMAL);
         final Chunk chunk = new Chunk("App title", chapterFont);
 
+        final Paragraph general;
         final Paragraph assets;
         final Paragraph units;
 
+        general = getGeneralParagraph(team, paragraphFont);
         assets = getAssetsParagraph(team, paragraphFont);
         units = getUnitsParagraph(team, paragraphFont);
 
@@ -61,6 +64,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         document.add(header);
         document.add(linebreak);
+        document.add(general);
         document.add(assets);
         document.add(units);
         document.close();
@@ -73,7 +77,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         paragraph = new Paragraph();
 
-        paragraph.add(new Paragraph("Assets", paragraphFont));
+        paragraph.add(new Paragraph("assets", paragraphFont));
 
         table = new PdfPTable(2);
         paragraph.add(table);
@@ -108,6 +112,35 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         return paragraph;
     }
 
+    private final Paragraph getGeneralParagraph(final SponsorTeam team,
+            final Font paragraphFont) {
+        final Paragraph paragraph;
+        final Paragraph paraRank;
+        final Paragraph paraCost;
+
+        paragraph = new Paragraph();
+
+        paragraph.add(new Paragraph("team", paragraphFont));
+
+        paraRank = new Paragraph();
+        paraRank.add(new Chunk("rank_cost"));
+        paraRank.setTabSettings(new TabSettings(56f));
+        paraRank.add(Chunk.TABBING);
+        paraRank.add(new Chunk(String.valueOf(team.getRankCost())));
+
+        paragraph.add(paraRank);
+
+        paraCost = new Paragraph();
+        paraCost.add(new Chunk("team_value"));
+        paraCost.setTabSettings(new TabSettings(56f));
+        paraCost.add(Chunk.TABBING);
+        paraCost.add(new Chunk(String.valueOf(team.getValoration())));
+
+        paragraph.add(paraCost);
+
+        return paragraph;
+    }
+
     private final Paragraph getUnitsParagraph(final SponsorTeam team,
             final Font paragraphFont) {
         final Paragraph paragraph;
@@ -115,7 +148,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         paragraph = new Paragraph();
 
-        paragraph.add(new Paragraph("Assets", paragraphFont));
+        paragraph.add(new Paragraph("units", paragraphFont));
 
         table = new PdfPTable(3);
         paragraph.add(table);
