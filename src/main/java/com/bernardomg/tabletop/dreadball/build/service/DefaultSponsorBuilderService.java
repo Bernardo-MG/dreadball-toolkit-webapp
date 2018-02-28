@@ -20,6 +20,7 @@ import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import com.bernardomg.tabletop.dreadball.calculator.SponsorTeamValorationCalculator;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
 import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
@@ -35,7 +36,6 @@ import com.bernardomg.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.CostCalculator;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
-import com.bernardomg.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;
 import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
