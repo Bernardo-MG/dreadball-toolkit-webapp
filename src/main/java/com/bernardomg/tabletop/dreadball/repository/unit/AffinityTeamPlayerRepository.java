@@ -44,7 +44,7 @@ public interface AffinityTeamPlayerRepository extends
      *            pagination request
      * @return all the units not hating any of the affinities
      */
-    @Query("SELECT u FROM AffinityTeamPlayer u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
+    @Query("SELECT u FROM AffinityPlayer u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
     public Page<PersistentAffinityTeamPlayer> findAllFilteredByHatedAffinities(
             @Param("affinities") final Iterable<String> affinities,
             final Pageable pageReq);
