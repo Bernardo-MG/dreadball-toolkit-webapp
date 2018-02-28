@@ -24,15 +24,15 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
 
-import com.bernardomg.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
+import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
 
 /**
  * Affinity units repository.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public interface AffinityUnitRepository
-        extends PagingAndSortingRepository<PersistentAffinityUnit, Integer> {
+public interface AffinityTeamPlayerRepository extends
+        PagingAndSortingRepository<PersistentAffinityTeamPlayer, Integer> {
 
     /**
      * Returns all the affinity units which does not hate any of the received
@@ -44,8 +44,8 @@ public interface AffinityUnitRepository
      *            pagination request
      * @return all the units not hating any of the affinities
      */
-    @Query("SELECT u FROM AffinityUnit u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
-    public Page<PersistentAffinityUnit> findAllFilteredByHatedAffinities(
+    @Query("SELECT u FROM AffinityTeamPlayer u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
+    public Page<PersistentAffinityTeamPlayer> findAllFilteredByHatedAffinities(
             @Param("affinities") final Iterable<String> affinities,
             final Pageable pageReq);
 
@@ -59,7 +59,7 @@ public interface AffinityUnitRepository
      *            wanted names
      * @return affinity units with their name in the list
      */
-    public Collection<PersistentAffinityUnit>
+    public Collection<PersistentAffinityTeamPlayer>
             findByTemplateNameIn(final Iterable<String> names);
 
 }

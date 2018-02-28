@@ -32,8 +32,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.DefaultAffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
+import com.bernardomg.tabletop.dreadball.model.player.ImmutableAffinityGroup;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 
 /**
  * Controller for the affinity groups codex views.
@@ -92,9 +92,9 @@ public class SponsorQueryController {
      */
     @GetMapping(path = "/units",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<? extends Unit> getDbxUnits(@RequestParam(
+    public final Iterable<? extends TeamPlayer> getDbxTeamPlayers(@RequestParam(
             name = "affinities", required = false,
-            defaultValue = "") final ArrayList<DefaultAffinityGroup> affinities,
+            defaultValue = "") final ArrayList<ImmutableAffinityGroup> affinities,
             @RequestParam(name = "page", required = false,
                     defaultValue = "0") final Integer page,
             @RequestParam(name = "size", required = false,
@@ -115,7 +115,8 @@ public class SponsorQueryController {
             pageReq = new PageRequest(page, size, direction, orderBy);
         }
 
-        return getSponsorBuilderService().getUnitOptions(affinities, pageReq);
+        return getSponsorBuilderService().getTeamPlayerOptions(affinities,
+                pageReq);
     }
 
     private final SponsorBuilderService getSponsorBuilderService() {

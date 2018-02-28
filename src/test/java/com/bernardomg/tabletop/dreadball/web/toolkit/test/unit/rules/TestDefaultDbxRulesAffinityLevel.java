@@ -23,15 +23,15 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
+import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
 import com.bernardomg.tabletop.dreadball.rules.DefaultDbxRules;
 import com.bernardomg.tabletop.dreadball.rules.SponsorConstraints;
 
 /**
- * Unit tests for {@link SponsorConstraints} testing the
+ * TeamPlayer tests for {@link SponsorConstraints} testing the
  * {@code getAffinityLevel} method.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -55,11 +55,11 @@ public final class TestDefaultDbxRulesAffinityLevel {
      */
     @Test
     public final void testAffinityLevel_NoAffinities_Stranger() {
-        final AffinityUnit unit; // Unit to find the affinity for
+        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
 
         // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityUnit.class);
+        unit = Mockito.mock(AffinityTeamPlayer.class);
 
         aff = dbxTeamBuilderService.getAffinityLevel(unit, new ArrayList<>());
 
@@ -71,12 +71,12 @@ public final class TestDefaultDbxRulesAffinityLevel {
      */
     @Test
     public final void testAffinityLevel_NoSponsorAffinities_Stranger() {
-        final AffinityUnit unit; // Unit to find the affinity for
+        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
         final Collection<AffinityGroup> affs; // Affinities
 
         // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityUnit.class);
+        unit = Mockito.mock(AffinityTeamPlayer.class);
 
         // Mocks unit affinities
         affs = getAffinities();
@@ -91,12 +91,12 @@ public final class TestDefaultDbxRulesAffinityLevel {
      * Tests that when the unit has no affinities the level is 'stranger'.
      */
     @Test
-    public final void testAffinityLevel_NoUnitAffinities_Stranger() {
-        final AffinityUnit unit; // Unit to find the affinity for
+    public final void testAffinityLevel_NoTeamPlayerAffinities_Stranger() {
+        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
 
         // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityUnit.class);
+        unit = Mockito.mock(AffinityTeamPlayer.class);
 
         aff = dbxTeamBuilderService.getAffinityLevel(unit, getAffinities());
 
@@ -108,13 +108,13 @@ public final class TestDefaultDbxRulesAffinityLevel {
      */
     @Test
     public final void testAffinityLevel_OneShared_Ally() {
-        final AffinityUnit unit; // Unit to find the affinity for
+        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
-        final Collection<AffinityGroup> unitAffs; // Unit affinities
+        final Collection<AffinityGroup> unitAffs; // TeamPlayer affinities
         final Collection<AffinityGroup> spnsAffs; // Sponsor affinities
 
         // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityUnit.class);
+        unit = Mockito.mock(AffinityTeamPlayer.class);
 
         // Mocks unit affinities
         unitAffs = getAffinities();
@@ -134,12 +134,12 @@ public final class TestDefaultDbxRulesAffinityLevel {
      */
     @Test
     public final void testAffinityLevel_ThreeAffinities_Friend() {
-        final AffinityUnit unit; // Unit to find the affinity for
+        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
         final Collection<AffinityGroup> affs; // Affinities
 
         // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityUnit.class);
+        unit = Mockito.mock(AffinityTeamPlayer.class);
 
         // Mocks affinities
         affs = getAffinities();

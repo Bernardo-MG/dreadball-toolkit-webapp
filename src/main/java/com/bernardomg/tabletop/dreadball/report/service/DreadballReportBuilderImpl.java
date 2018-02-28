@@ -134,7 +134,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         paraCost.add(new Chunk("team_value"));
         paraCost.setTabSettings(new TabSettings(56f));
         paraCost.add(Chunk.TABBING);
-        paraCost.add(new Chunk(String.valueOf(team.getValoration())));
+        paraCost.add(new Chunk(String.valueOf(team.getTotalCost())));
 
         paragraph.add(paraCost);
 

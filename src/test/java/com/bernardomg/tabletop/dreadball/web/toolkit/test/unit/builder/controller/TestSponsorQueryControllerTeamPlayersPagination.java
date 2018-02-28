@@ -35,19 +35,19 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.bernardomg.tabletop.dreadball.build.controller.SponsorQueryController;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.codex.controller.UnitCodexController;
-import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
+import com.bernardomg.tabletop.dreadball.codex.controller.TeamPlayerCodexController;
+import com.bernardomg.tabletop.dreadball.model.json.player.AffinityTeamPlayerMixIn;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
- * Unit tests for {@link UnitCodexController}, validating the results of REST
- * requests.
+ * TeamPlayer tests for {@link TeamPlayerCodexController}, validating the
+ * results of REST requests.
  * <p>
  * The tested controller gives support only for GET requests.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorQueryControllerUnitsPagination {
+public final class TestSponsorQueryControllerTeamPlayersPagination {
 
     /**
      * Argument captor for pagination data.
@@ -67,7 +67,7 @@ public final class TestSponsorQueryControllerUnitsPagination {
     /**
      * Default constructor;
      */
-    public TestSponsorQueryControllerUnitsPagination() {
+    public TestSponsorQueryControllerTeamPlayersPagination() {
         super();
 
         service = getSponsorBuilderService();
@@ -151,13 +151,14 @@ public final class TestSponsorQueryControllerUnitsPagination {
         service = Mockito.mock(SponsorBuilderService.class);
 
         units = new ArrayList<>();
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
         captor = ArgumentCaptor.forClass(Pageable.class);
 
-        Mockito.when(service.getUnitOptions(Matchers.any(), captor.capture()))
+        Mockito.when(
+                service.getTeamPlayerOptions(Matchers.any(), captor.capture()))
                 .thenReturn(units);
 
         return service;

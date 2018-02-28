@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controller;
+package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.codex.controller;
 
 import java.util.ArrayList;
 import java.util.Collection;
@@ -31,18 +31,21 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.bernardomg.tabletop.dreadball.build.controller.SponsorQueryController;
-import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
-import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
+import com.bernardomg.tabletop.dreadball.codex.controller.TeamPlayerCodexController;
+import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
+import com.bernardomg.tabletop.dreadball.model.json.player.AffinityTeamPlayerMixIn;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlTeamPlayerCodexConfig;
 
 /**
- * Unit tests for {@link SponsorQueryController}, validating the results of REST
- * requests for units.
+ * TeamPlayer tests for {@link TeamPlayerCodexController}, validating the
+ * results of REST requests.
+ * <p>
+ * The tested controller gives support only for GET requests.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestSponsorQueryControllerUnits {
+public final class TestTeamPlayerCodexController {
 
     /**
      * Mocked MVC context.
@@ -52,7 +55,7 @@ public final class TestSponsorQueryControllerUnits {
     /**
      * Default constructor;
      */
-    public TestSponsorQueryControllerUnits() {
+    public TestTeamPlayerCodexController() {
         super();
     }
 
@@ -90,22 +93,22 @@ public final class TestSponsorQueryControllerUnits {
      * 
      * @return a controller with mocked dependencies
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
-    private final SponsorQueryController getController() {
-        final SponsorBuilderService service;  // Mocked service
-        final Collection units; // Returned units
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    private final TeamPlayerCodexController getController() {
+        final CodexService service;   // Mocked service
+        final Collection<TeamPlayer> units; // Returned units
 
-        service = Mockito.mock(SponsorBuilderService.class);
+        service = Mockito.mock(CodexService.class);
 
         units = new ArrayList<>();
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
-        Mockito.when(service.getUnitOptions(org.mockito.Matchers.any(),
-                org.mockito.Matchers.any())).thenReturn(units);
+        Mockito.when(service.getAffinityTeamPlayers(org.mockito.Matchers.any()))
+                .thenReturn((Iterable) units);
 
-        return new SponsorQueryController(service);
+        return new TeamPlayerCodexController(service);
     }
 
     /**
@@ -114,7 +117,7 @@ public final class TestSponsorQueryControllerUnits {
      * @return a request builder prepared for reading units
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlDbxTeamBuilderConfig.URL_UNITS);
+        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_UNITS);
     }
 
 }

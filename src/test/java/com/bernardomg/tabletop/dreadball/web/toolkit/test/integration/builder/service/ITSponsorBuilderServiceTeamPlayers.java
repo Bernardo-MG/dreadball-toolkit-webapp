@@ -29,9 +29,9 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.DefaultAffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
+import com.bernardomg.tabletop.dreadball.model.player.ImmutableAffinityGroup;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
+import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 import com.google.common.collect.Iterables;
 
 /**
@@ -42,7 +42,7 @@ import com.google.common.collect.Iterables;
  */
 @ContextConfiguration(
         locations = { "classpath:context/test-service-context.xml" })
-public class ITSponsorBuilderServiceUnits
+public class ITSponsorBuilderServiceTeamPlayers
         extends AbstractJUnit4SpringContextTests {
 
     /**
@@ -54,7 +54,7 @@ public class ITSponsorBuilderServiceUnits
     /**
      * Default constructor.
      */
-    public ITSponsorBuilderServiceUnits() {
+    public ITSponsorBuilderServiceTeamPlayers() {
         super();
     }
 
@@ -63,16 +63,16 @@ public class ITSponsorBuilderServiceUnits
      * affinities.
      */
     @Test
-    public final void testGetAffinityUnits_Affinities_ExpectedCost() {
+    public final void testGetAffinityTeamPlayers_Affinities_ExpectedCost() {
         final Pageable pageable;
-        final Iterable<? extends Unit> result;
+        final Iterable<? extends TeamPlayer> result;
         final Collection<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
-        affinities.add(new DefaultAffinityGroup("affinity_1"));
+        affinities.add(new ImmutableAffinityGroup("affinity_1"));
 
         pageable = new PageRequest(0, 10);
-        result = service.getUnitOptions(affinities, pageable);
+        result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(new Integer(15),
                 Iterables.getFirst(result, null).getCost());
@@ -82,16 +82,16 @@ public class ITSponsorBuilderServiceUnits
      * Verifies that units hating the received affinities are not returned.
      */
     @Test
-    public final void testGetAffinityUnits_IgnoresHated() {
+    public final void testGetAffinityTeamPlayers_IgnoresHated() {
         final Pageable pageable;
-        final Iterable<? extends Unit> result;
+        final Iterable<? extends TeamPlayer> result;
         final Collection<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
-        affinities.add(new DefaultAffinityGroup("affinity_5"));
+        affinities.add(new ImmutableAffinityGroup("affinity_5"));
 
         pageable = new PageRequest(0, 10);
-        result = service.getUnitOptions(affinities, pageable);
+        result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(3, Iterables.size(result));
     }
@@ -101,15 +101,15 @@ public class ITSponsorBuilderServiceUnits
      * affinities.
      */
     @Test
-    public final void testGetAffinityUnits_NoAffinities_ExpectedCost() {
+    public final void testGetAffinityTeamPlayers_NoAffinities_ExpectedCost() {
         final Pageable pageable;
-        final Iterable<? extends Unit> result;
+        final Iterable<? extends TeamPlayer> result;
         final Collection<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
 
         pageable = new PageRequest(0, 10);
-        result = service.getUnitOptions(affinities, pageable);
+        result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(new Integer(23),
                 Iterables.getFirst(result, null).getCost());
@@ -119,15 +119,15 @@ public class ITSponsorBuilderServiceUnits
      * Verifies that the units can be read.
      */
     @Test
-    public final void testGetAffinityUnits_ReturnsExpected() {
+    public final void testGetAffinityTeamPlayers_ReturnsExpected() {
         final Pageable pageable;
-        final Iterable<? extends Unit> result;
+        final Iterable<? extends TeamPlayer> result;
         final Collection<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
 
         pageable = new PageRequest(0, 10);
-        result = service.getUnitOptions(affinities, pageable);
+        result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(4, Iterables.size(result));
     }
@@ -136,15 +136,15 @@ public class ITSponsorBuilderServiceUnits
      * Verifies that the units are returned inside a page.
      */
     @Test
-    public final void testGetUnits_ReturnsPage() {
+    public final void testGetTeamPlayers_ReturnsPage() {
         final Pageable pageable;
-        final Iterable<? extends Unit> result;
+        final Iterable<? extends TeamPlayer> result;
         final Collection<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
 
         pageable = new PageRequest(0, 10);
-        result = service.getUnitOptions(affinities, pageable);
+        result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertTrue(result instanceof Page);
     }

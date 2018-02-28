@@ -32,21 +32,21 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.bernardomg.tabletop.dreadball.codex.controller.UnitCodexController;
+import com.bernardomg.tabletop.dreadball.codex.controller.TeamPlayerCodexController;
 import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
-import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
-import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlUnitCodexConfig;
+import com.bernardomg.tabletop.dreadball.model.json.player.AffinityTeamPlayerMixIn;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlTeamPlayerCodexConfig;
 
 /**
- * Unit tests for {@link UnitCodexController}, validating the results of REST
- * requests.
+ * TeamPlayer tests for {@link TeamPlayerCodexController}, validating the
+ * results of REST requests.
  * <p>
  * The tested controller gives support only for GET requests.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestUnitCodexControllerPagination {
+public final class TestTeamPlayerCodexControllerPagination {
 
     /**
      * Argument captor for pagination data.
@@ -66,7 +66,7 @@ public final class TestUnitCodexControllerPagination {
     /**
      * Default constructor;
      */
-    public TestUnitCodexControllerPagination() {
+    public TestTeamPlayerCodexControllerPagination() {
         super();
 
         service = getCodexService();
@@ -78,7 +78,7 @@ public final class TestUnitCodexControllerPagination {
     @Before
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders
-                .standaloneSetup(new UnitCodexController(service))
+                .standaloneSetup(new TeamPlayerCodexController(service))
                 .alwaysExpect(MockMvcResultMatchers.status().isOk())
                 .alwaysExpect(MockMvcResultMatchers.content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -126,18 +126,18 @@ public final class TestUnitCodexControllerPagination {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private final CodexService getCodexService() {
         final CodexService service;   // Mocked service
-        final Collection<Unit> units; // Returned units
+        final Collection<TeamPlayer> units; // Returned units
 
         service = Mockito.mock(CodexService.class);
 
         units = new ArrayList<>();
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
-        units.add(Mockito.mock(AffinityUnitMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
         captor = ArgumentCaptor.forClass(Pageable.class);
 
-        Mockito.when(service.getAffinityUnits(captor.capture()))
+        Mockito.when(service.getAffinityTeamPlayers(captor.capture()))
                 .thenReturn((Iterable) units);
 
         return service;
@@ -149,7 +149,7 @@ public final class TestUnitCodexControllerPagination {
      * @return a request builder prepared for reading units
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlUnitCodexConfig.URL_UNITS);
+        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_UNITS);
     }
 
     /**
@@ -159,7 +159,7 @@ public final class TestUnitCodexControllerPagination {
      */
     private final RequestBuilder getGetRequestWithPage() {
         return MockMvcRequestBuilders
-                .get(UrlUnitCodexConfig.URL_UNITS + "?page=10");
+                .get(UrlTeamPlayerCodexConfig.URL_UNITS + "?page=10");
     }
 
 }

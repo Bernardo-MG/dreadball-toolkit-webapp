@@ -26,7 +26,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 import com.google.common.collect.Iterables;
 
 /**
@@ -55,12 +55,12 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
      * Verifies that the units can be read.
      */
     @Test
-    public final void testGetAffinityUnits_ReturnsExpected() {
+    public final void testGetAffinityTeamPlayers_ReturnsExpected() {
         final Pageable pageable;
-        final Iterable<? extends Unit> result;
+        final Iterable<? extends TeamPlayer> result;
 
         pageable = new PageRequest(0, 10);
-        result = service.getAffinityUnits(pageable);
+        result = service.getAffinityTeamPlayers(pageable);
 
         Assert.assertEquals(4, Iterables.size(result));
     }
@@ -69,12 +69,12 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
      * Verifies that the units are returned inside a page.
      */
     @Test
-    public final void testGetAffinityUnits_ReturnsPage() {
+    public final void testGetAffinityTeamPlayers_ReturnsPage() {
         final Pageable pageable;
-        final Iterable<? extends Unit> result;
+        final Iterable<? extends TeamPlayer> result;
 
         pageable = new PageRequest(0, 10);
-        result = service.getAffinityUnits(pageable);
+        result = service.getAffinityTeamPlayers(pageable);
 
         Assert.assertTrue(result instanceof Page);
     }

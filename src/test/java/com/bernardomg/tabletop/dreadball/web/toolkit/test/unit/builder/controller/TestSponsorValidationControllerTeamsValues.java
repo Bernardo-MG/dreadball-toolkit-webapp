@@ -37,8 +37,8 @@ import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTe
 import com.google.common.collect.Iterables;
 
 /**
- * Unit tests for {@link SponsorValidationController}, checking the results of
- * REST requests.
+ * TeamPlayer tests for {@link SponsorValidationController}, checking the
+ * results of REST requests.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -83,10 +83,11 @@ public final class TestSponsorValidationControllerTeamsValues {
      * Verifies that the unit received as parameter is sent to the service.
      */
     @Test
-    public final void testValidateTeam_Multiple_Units() throws Exception {
+    public final void testValidateTeam_Multiple_TeamPlayers() throws Exception {
         mockMvc.perform(getGetRequest("[unit1,unit2]"));
 
-        Assert.assertEquals(2, Iterables.size(captor.getValue().getUnits()));
+        Assert.assertEquals(2,
+                Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
     /**
@@ -94,30 +95,35 @@ public final class TestSponsorValidationControllerTeamsValues {
      * to the service.
      */
     @Test
-    public final void testValidateTeam_NoParams_NoUnits() throws Exception {
+    public final void testValidateTeam_NoParams_NoTeamPlayers()
+            throws Exception {
         mockMvc.perform(getGetRequest());
 
-        Assert.assertEquals(0, Iterables.size(captor.getValue().getUnits()));
+        Assert.assertEquals(0,
+                Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
     /**
      * Verifies that the unit received as parameter is sent to the service.
      */
     @Test
-    public final void testValidateTeam_Repeated_Units() throws Exception {
+    public final void testValidateTeam_Repeated_TeamPlayers() throws Exception {
         mockMvc.perform(getGetRequest("[unit1,unit1]"));
 
-        Assert.assertEquals(2, Iterables.size(captor.getValue().getUnits()));
+        Assert.assertEquals(2,
+                Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
     /**
      * Verifies that the unit received as parameter is sent to the service.
      */
     @Test
-    public final void testValidateTeam_UnitParam_Units() throws Exception {
+    public final void testValidateTeam_TeamPlayerParam_TeamPlayers()
+            throws Exception {
         mockMvc.perform(getGetRequest("unit"));
 
-        Assert.assertEquals(1, Iterables.size(captor.getValue().getUnits()));
+        Assert.assertEquals(1,
+                Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
     /**

@@ -27,17 +27,17 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-import com.bernardomg.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
+import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
+import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
-public class ITAffinityUnitRepositoryFiltered
+public class ITAffinityTeamPlayerRepositoryFiltered
         extends AbstractJUnit4SpringContextTests {
 
     @Autowired
-    private AffinityUnitRepository repository;
+    private AffinityTeamPlayerRepository repository;
 
-    public ITAffinityUnitRepositoryFiltered() {
+    public ITAffinityTeamPlayerRepositoryFiltered() {
         super();
     }
 
@@ -46,8 +46,8 @@ public class ITAffinityUnitRepositoryFiltered
             testFindAll_FilteredByHatedAffinities_ExpectedAffinities() {
         final Collection<String> affinities;
         final Pageable pageReq;
-        final Iterable<PersistentAffinityUnit> units;
-        final PersistentAffinityUnit unit;
+        final Iterable<PersistentAffinityTeamPlayer> units;
+        final PersistentAffinityTeamPlayer unit;
 
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
@@ -66,8 +66,8 @@ public class ITAffinityUnitRepositoryFiltered
             testFindAll_FilteredByHatedAffinities_ExpectedCostRange() {
         final Collection<String> affinities;
         final Pageable pageReq;
-        final Iterable<PersistentAffinityUnit> units;
-        final PersistentAffinityUnit unit;
+        final Iterable<PersistentAffinityTeamPlayer> units;
+        final PersistentAffinityTeamPlayer unit;
 
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
@@ -107,7 +107,7 @@ public class ITAffinityUnitRepositoryFiltered
         // affinities = new ArrayList<>();
         //
         // Assert.assertEquals(
-        // ((Collection<PersistentAffinityUnit>) repository
+        // ((Collection<PersistentAffinityTeamPlayer>) repository
         // .findAllFilteredByHatedAffinities(affinities)).size(),
         // 4);
     }

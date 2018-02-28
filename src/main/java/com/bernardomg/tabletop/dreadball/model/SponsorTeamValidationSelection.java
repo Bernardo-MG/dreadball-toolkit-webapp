@@ -64,9 +64,9 @@ public interface SponsorTeamValidationSelection {
      */
     public Integer getSpecialMoveCards();
 
-    public Integer getTeamValue();
+    public Collection<String> getTeamPlayers();
 
-    public Collection<String> getUnits();
+    public Integer getTeamValue();
 
     /**
      * Returns the number of wagers.

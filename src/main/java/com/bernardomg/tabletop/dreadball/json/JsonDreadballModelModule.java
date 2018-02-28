@@ -18,22 +18,22 @@ package com.bernardomg.tabletop.dreadball.json;
 
 import org.springframework.stereotype.Component;
 
-import com.bernardomg.tabletop.dreadball.model.availability.unit.SponsorAffinityGroupAvailability;
+import com.bernardomg.tabletop.dreadball.model.availability.affinity.SponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.faction.Sponsor;
-import com.bernardomg.tabletop.dreadball.model.json.availability.unit.SponsorAffinityGroupAvailabilityMixIn;
+import com.bernardomg.tabletop.dreadball.model.json.availability.affinity.SponsorAffinityGroupAvailabilityMixIn;
 import com.bernardomg.tabletop.dreadball.model.json.faction.SponsorMixIn;
+import com.bernardomg.tabletop.dreadball.model.json.player.AffinityGroupMixIn;
+import com.bernardomg.tabletop.dreadball.model.json.player.AffinityTeamPlayerMixIn;
+import com.bernardomg.tabletop.dreadball.model.json.player.TeamPlayerMixIn;
+import com.bernardomg.tabletop.dreadball.model.json.player.stats.AbilityMixIn;
+import com.bernardomg.tabletop.dreadball.model.json.player.stats.AttributesMixIn;
 import com.bernardomg.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
-import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityGroupMixIn;
-import com.bernardomg.tabletop.dreadball.model.json.unit.AffinityUnitMixIn;
-import com.bernardomg.tabletop.dreadball.model.json.unit.UnitMixIn;
-import com.bernardomg.tabletop.dreadball.model.json.unit.stats.AbilityMixIn;
-import com.bernardomg.tabletop.dreadball.model.json.unit.stats.AttributesMixIn;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
+import com.bernardomg.tabletop.dreadball.model.player.stats.Ability;
+import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
+import com.bernardomg.tabletop.dreadball.model.player.stats.Attributes;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
-import com.bernardomg.tabletop.dreadball.model.unit.stats.Ability;
-import com.bernardomg.tabletop.dreadball.model.unit.stats.Attributes;
 import com.fasterxml.jackson.databind.module.SimpleModule;
 
 /**
@@ -83,10 +83,10 @@ public final class JsonDreadballModelModule extends SimpleModule {
         // Teams
         context.setMixInAnnotations(SponsorTeam.class, SponsorTeamMixIn.class);
 
-        // Units
-        context.setMixInAnnotations(Unit.class, UnitMixIn.class);
-        context.setMixInAnnotations(AffinityUnit.class,
-                AffinityUnitMixIn.class);
+        // TeamPlayers
+        context.setMixInAnnotations(TeamPlayer.class, TeamPlayerMixIn.class);
+        context.setMixInAnnotations(AffinityTeamPlayer.class,
+                AffinityTeamPlayerMixIn.class);
 
         // Availabilities
         context.setMixInAnnotations(SponsorAffinityGroupAvailability.class,

@@ -101,13 +101,13 @@ public final class DefaultSponsorTeamValidationSelection
     }
 
     @Override
-    public final Integer getTeamValue() {
-        return teamValue;
+    public final Collection<String> getTeamPlayers() {
+        return units;
     }
 
     @Override
-    public final Collection<String> getUnits() {
-        return units;
+    public final Integer getTeamValue() {
+        return teamValue;
     }
 
     @Override
@@ -143,12 +143,12 @@ public final class DefaultSponsorTeamValidationSelection
         specialMoveCards = value;
     }
 
-    public final void setTeamValue(final Integer teamValue) {
-        this.teamValue = teamValue;
+    public final void setTeamPlayers(final List<String> units) {
+        this.units = units;
     }
 
-    public final void setUnits(final List<String> units) {
-        this.units = units;
+    public final void setTeamValue(final Integer teamValue) {
+        this.teamValue = teamValue;
     }
 
     public final void setWagers(final Integer value) {

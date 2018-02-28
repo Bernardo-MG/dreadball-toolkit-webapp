@@ -16,9 +16,9 @@
 
 package com.bernardomg.tabletop.dreadball.rules;
 
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
+import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 
 /**
  * Rules for the DBX team builder.
@@ -39,7 +39,7 @@ public interface DbxRules {
      *            affinities to find out the affinity level
      * @return the affinity level between the Sponsor and the unit
      */
-    public AffinityLevel getAffinityLevel(final AffinityUnit unit,
+    public AffinityLevel getAffinityLevel(final AffinityTeamPlayer unit,
             final Iterable<? extends AffinityGroup> affinities);
 
     /**
@@ -51,7 +51,7 @@ public interface DbxRules {
      *            unit to find out the cost
      * @return the cost of the unit for the affinity level
      */
-    public Integer getUnitCost(final AffinityLevel affinityLevel,
-            final AffinityUnit unit);
+    public Integer getTeamPlayerCost(final AffinityLevel affinityLevel,
+            final AffinityTeamPlayer unit);
 
 }

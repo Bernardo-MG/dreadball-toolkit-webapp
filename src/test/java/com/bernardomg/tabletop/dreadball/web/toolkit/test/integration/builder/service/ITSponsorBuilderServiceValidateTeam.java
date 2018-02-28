@@ -98,7 +98,7 @@ public final class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(0), result.getValoration());
+        Assert.assertEquals(new Integer(0), result.getTotalCost());
     }
 
     /**
@@ -112,7 +112,7 @@ public final class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamValidationSelection();
 
         selection.setBaseRank(10);
-        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
@@ -133,7 +133,7 @@ public final class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamValidationSelection();
 
         selection.setBaseRank(10);
-        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
@@ -154,14 +154,14 @@ public final class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamValidationSelection();
 
         selection.setBaseRank(10);
-        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(16), result.getValoration());
+        Assert.assertEquals(new Integer(16), result.getTotalCost());
     }
 
     /**
@@ -184,7 +184,7 @@ public final class ITSponsorBuilderServiceValidateTeam
      * Verifies that when there are no units then none is returned.
      */
     @Test
-    public final void testValidate_NoUnits_NoReturnedUnits() {
+    public final void testValidate_NoTeamPlayers_NoReturnedTeamPlayers() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
@@ -221,14 +221,15 @@ public final class ITSponsorBuilderServiceValidateTeam
      * include repeated units.
      */
     @Test
-    public final void testValidate_RepeatedUnits_ReturnsExpectedUnits() {
+    public final void
+            testValidate_RepeatedTeamPlayers_ReturnsExpectedTeamPlayers() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setUnits(Arrays.asList("unit_1_affinity", "unit_2_affinity",
-                "unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList("unit_1_affinity",
+                "unit_2_affinity", "unit_1_affinity"));
 
         result = service.validateTeam(selection);
 
@@ -260,13 +261,14 @@ public final class ITSponsorBuilderServiceValidateTeam
      * returned.
      */
     @Test
-    public final void testValidate_Units_Affinities_ReturnsExpectedCost() {
+    public final void
+            testValidate_TeamPlayers_Affinities_ReturnsExpectedCost() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
         selection.setAffinities(Arrays.asList("affinity_1"));
 
         result = service.validateTeam(selection);
@@ -280,13 +282,14 @@ public final class ITSponsorBuilderServiceValidateTeam
      * returned.
      */
     @Test
-    public final void testValidate_Units_NoAffinities_ReturnsExpectedCost() {
+    public final void
+            testValidate_TeamPlayers_NoAffinities_ReturnsExpectedCost() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setUnits(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
 
         result = service.validateTeam(selection);
 
@@ -298,14 +301,14 @@ public final class ITSponsorBuilderServiceValidateTeam
      * Verifies that valid units are returned.
      */
     @Test
-    public final void testValidate_Units_ReturnsExpectedUnits() {
+    public final void testValidate_TeamPlayers_ReturnsExpectedTeamPlayers() {
         final DefaultSponsorTeamValidationSelection selection;
         final SponsorTeam result;
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setUnits(Arrays.asList("unit_1_affinity", "unit_2_affinity",
-                "unit_3_affinity"));
+        selection.setTeamPlayers(Arrays.asList("unit_1_affinity",
+                "unit_2_affinity", "unit_3_affinity"));
 
         result = service.validateTeam(selection);
 

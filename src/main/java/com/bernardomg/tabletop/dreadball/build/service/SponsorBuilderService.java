@@ -8,9 +8,9 @@ import org.springframework.data.domain.Pageable;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamValidationSelection;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
+import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
 
 public interface SponsorBuilderService {
 
@@ -33,7 +33,7 @@ public interface SponsorBuilderService {
      *            pagination data
      * @return all the units available to a Sponsor
      */
-    public Iterable<? extends Unit> getUnitOptions(
+    public Iterable<? extends TeamPlayer> getTeamPlayerOptions(
             final Collection<? extends AffinityGroup> affinities,
             final Pageable pageable);
 

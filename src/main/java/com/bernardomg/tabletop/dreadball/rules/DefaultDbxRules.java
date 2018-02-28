@@ -21,9 +21,9 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Set;
 import java.util.stream.Collectors;
 
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityGroup;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
+import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 
 /**
  * Default implementation of the DBX rules service.
@@ -40,10 +40,10 @@ public class DefaultDbxRules implements DbxRules {
     }
 
     @Override
-    public final AffinityLevel getAffinityLevel(final AffinityUnit unit,
+    public final AffinityLevel getAffinityLevel(final AffinityTeamPlayer unit,
             final Iterable<? extends AffinityGroup> affinities) {
         final AffinityLevel level; // Affinity level
-        final Set<String> affs;    // Unit affinities
+        final Set<String> affs;    // TeamPlayer affinities
         Integer coincidences;      // Affinity coincidences
 
         checkNotNull(affinities, "Received a null pointer as affinities");
@@ -70,9 +70,9 @@ public class DefaultDbxRules implements DbxRules {
     }
 
     @Override
-    public final Integer getUnitCost(final AffinityLevel affinityLevel,
-            final AffinityUnit unit) {
-        final Integer cost;                // Unit cost
+    public final Integer getTeamPlayerCost(final AffinityLevel affinityLevel,
+            final AffinityTeamPlayer unit) {
+        final Integer cost;                // TeamPlayer cost
 
         checkNotNull(affinityLevel,
                 "Received a null pointer as affinity level");

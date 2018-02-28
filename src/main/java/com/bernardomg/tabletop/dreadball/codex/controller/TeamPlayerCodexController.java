@@ -30,7 +30,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 
 /**
  * Controller for the unit codex views.
@@ -39,10 +39,10 @@ import com.bernardomg.tabletop.dreadball.model.unit.Unit;
  */
 @RestController
 @RequestMapping("/rest/units")
-public class UnitCodexController {
+public class TeamPlayerCodexController {
 
     private static final Logger LOGGER = LoggerFactory
-            .getLogger(UnitCodexController.class);
+            .getLogger(TeamPlayerCodexController.class);
 
     /**
      * Codex service.
@@ -57,7 +57,7 @@ public class UnitCodexController {
      * @param codex
      *            unit codex service
      */
-    public UnitCodexController(final CodexService codex) {
+    public TeamPlayerCodexController(final CodexService codex) {
         super();
 
         unitCodexService = checkNotNull(codex,
@@ -78,7 +78,7 @@ public class UnitCodexController {
      * @return a group of units with affinities
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<? extends Unit> getAffinityUnits(
+    public final Iterable<? extends TeamPlayer> getAffinityTeamPlayers(
             @RequestParam(name = "page", defaultValue = "0") final Integer page,
             @RequestParam(name = "size",
                     defaultValue = "10") final Integer size,
@@ -101,8 +101,8 @@ public class UnitCodexController {
             pageReq = new PageRequest(page, size, direction, orderBy);
         }
 
-        final Iterable<? extends Unit> result;
-        result = getUnitCodexService().getAffinityUnits(pageReq);
+        final Iterable<? extends TeamPlayer> result;
+        result = getCodexService().getAffinityTeamPlayers(pageReq);
 
         return result;
     }
@@ -112,7 +112,7 @@ public class UnitCodexController {
      * 
      * @return the unit codex service
      */
-    private final CodexService getUnitCodexService() {
+    private final CodexService getCodexService() {
         return unitCodexService;
     }
 

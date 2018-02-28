@@ -21,17 +21,17 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class UrlUnitCodexConfig {
+public final class UrlTeamPlayerCodexConfig {
 
     /**
-     * Units REST endpoint.
+     * TeamPlayers REST endpoint.
      */
     public static final String URL_UNITS = "/rest/units";
 
     /**
      * Default constructor to avoid initialization.
      */
-    private UrlUnitCodexConfig() {
+    private UrlTeamPlayerCodexConfig() {
         super();
     }
 

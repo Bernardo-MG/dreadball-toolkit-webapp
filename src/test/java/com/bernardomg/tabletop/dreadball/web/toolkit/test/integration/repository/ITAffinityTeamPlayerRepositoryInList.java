@@ -25,25 +25,25 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
-import com.bernardomg.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
+import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
+import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
-public class ITAffinityUnitRepositoryInList
+public class ITAffinityTeamPlayerRepositoryInList
         extends AbstractJUnit4SpringContextTests {
 
     @Autowired
-    private AffinityUnitRepository repository;
+    private AffinityTeamPlayerRepository repository;
 
-    public ITAffinityUnitRepositoryInList() {
+    public ITAffinityTeamPlayerRepositoryInList() {
         super();
     }
 
     @Test
     public final void testFindByTemplateNameIn_ExpectedAffinities() {
         final Collection<String> names;
-        final Collection<PersistentAffinityUnit> result;
-        final PersistentAffinityUnit unit;
+        final Collection<PersistentAffinityTeamPlayer> result;
+        final PersistentAffinityTeamPlayer unit;
 
         names = new ArrayList<>();
         names.add("unit_1_affinity");
@@ -58,8 +58,8 @@ public class ITAffinityUnitRepositoryInList
     @Test
     public final void testFindByTemplateNameIn_ExpectedCostRange() {
         final Collection<String> names;
-        final Collection<PersistentAffinityUnit> result;
-        final PersistentAffinityUnit unit;
+        final Collection<PersistentAffinityTeamPlayer> result;
+        final PersistentAffinityTeamPlayer unit;
 
         names = new ArrayList<>();
         names.add("unit_1_affinity");
@@ -76,7 +76,7 @@ public class ITAffinityUnitRepositoryInList
     @Test
     public final void testFindByTemplateNameIn_MultipleNames() {
         final Collection<String> names;
-        final Collection<PersistentAffinityUnit> result;
+        final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
         names.add("unit_1_affinity");
@@ -90,7 +90,7 @@ public class ITAffinityUnitRepositoryInList
     @Test
     public final void testFindByTemplateNameIn_NoName() {
         final Collection<String> names;
-        final Collection<PersistentAffinityUnit> result;
+        final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
 
@@ -102,7 +102,7 @@ public class ITAffinityUnitRepositoryInList
     @Test
     public final void testFindByTemplateNameIn_RepeatedName() {
         final Collection<String> names;
-        final Collection<PersistentAffinityUnit> result;
+        final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
         names.add("unit_1_affinity");
@@ -117,7 +117,7 @@ public class ITAffinityUnitRepositoryInList
     @Test
     public final void testFindByTemplateNameIn_SingleName() {
         final Collection<String> names;
-        final Collection<PersistentAffinityUnit> result;
+        final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
         names.add("unit_1_affinity");

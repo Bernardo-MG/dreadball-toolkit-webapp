@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dreadball.repository.availability;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.bernardomg.tabletop.dreadball.model.persistence.availability.unit.PersistentSponsorAffinityGroupAvailability;
+import com.bernardomg.tabletop.dreadball.model.persistence.availability.affinity.PersistentSponsorAffinityGroupAvailability;
 
 /**
  * Repository for Sponsor affinity groups.

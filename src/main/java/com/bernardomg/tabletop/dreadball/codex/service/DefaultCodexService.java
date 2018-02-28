@@ -21,8 +21,8 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.bernardomg.tabletop.dreadball.model.persistence.unit.PersistentAffinityUnit;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityUnitRepository;
+import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
+import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
 
 /**
  * Default implementation of the codex service.
@@ -35,7 +35,7 @@ public final class DefaultCodexService implements CodexService {
     /**
      * Affinity units repository.
      */
-    private final AffinityUnitRepository affinityUnitRepository;
+    private final AffinityTeamPlayerRepository affinityTeamPlayerRepository;
 
     /**
      * Constructs a service with the specified arguments.
@@ -43,20 +43,20 @@ public final class DefaultCodexService implements CodexService {
      * @param repository
      *            affinity units repository
      */
-    public DefaultCodexService(final AffinityUnitRepository repository) {
+    public DefaultCodexService(final AffinityTeamPlayerRepository repository) {
         super();
 
-        affinityUnitRepository = checkNotNull(repository,
+        affinityTeamPlayerRepository = checkNotNull(repository,
                 "Received a null pointer as affinity units repository");
     }
 
     @Override
-    public final Iterable<PersistentAffinityUnit>
-            getAffinityUnits(final Pageable pageReq) {
+    public final Iterable<PersistentAffinityTeamPlayer>
+            getAffinityTeamPlayers(final Pageable pageReq) {
 
         checkNotNull(pageReq, "Received a null pointer as pagination data");
 
-        return getAffinityUnitRepository().findAll(pageReq);
+        return getAffinityTeamPlayerRepository().findAll(pageReq);
     }
 
     /**
@@ -64,8 +64,9 @@ public final class DefaultCodexService implements CodexService {
      * 
      * @return the affinity unit repository
      */
-    private final AffinityUnitRepository getAffinityUnitRepository() {
-        return affinityUnitRepository;
+    private final AffinityTeamPlayerRepository
+            getAffinityTeamPlayerRepository() {
+        return affinityTeamPlayerRepository;
     }
 
 }

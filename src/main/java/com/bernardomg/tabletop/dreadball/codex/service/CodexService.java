@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dreadball.codex.service;
 
 import org.springframework.data.domain.Pageable;
 
-import com.bernardomg.tabletop.dreadball.model.unit.Unit;
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 
 /**
  * Service for the codex.
@@ -39,6 +39,7 @@ public interface CodexService {
      *            pagination data
      * @return all the units
      */
-    public Iterable<? extends Unit> getAffinityUnits(final Pageable pageable);
+    public Iterable<? extends TeamPlayer>
+            getAffinityTeamPlayers(final Pageable pageable);
 
 }

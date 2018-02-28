@@ -20,19 +20,19 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.mockito.Mockito;
 
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityLevel;
-import com.bernardomg.tabletop.dreadball.model.unit.AffinityUnit;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
+import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
 import com.bernardomg.tabletop.dreadball.rules.DefaultDbxRules;
 import com.bernardomg.tabletop.dreadball.rules.SponsorConstraints;
 
 /**
- * Unit tests for {@link SponsorConstraints} testing the {@code getUnitCost}
- * method.
+ * TeamPlayer tests for {@link SponsorConstraints} testing the
+ * {@code getTeamPlayerCost} method.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class TestDefaultDbxRulesUnitCost {
+public final class TestDefaultDbxRulesTeamPlayerCost {
 
     /**
      * Service being tested.
@@ -42,7 +42,7 @@ public final class TestDefaultDbxRulesUnitCost {
     /**
      * Default constructor.
      */
-    public TestDefaultDbxRulesUnitCost() {
+    public TestDefaultDbxRulesTeamPlayerCost() {
         super();
     }
 
@@ -50,19 +50,20 @@ public final class TestDefaultDbxRulesUnitCost {
      * Tests that when the affinity is 'ally' then the cost is the ally cost.
      */
     @Test
-    public final void testUnitCost_Ally_AllyCost() {
-        final AffinityUnit unit;
+    public final void testTeamPlayerCost_Ally_AllyCost() {
+        final AffinityTeamPlayer unit;
         final Integer cost;
 
         // Mocks unit
-        unit = Mockito.mock(AffinityUnit.class);
+        unit = Mockito.mock(AffinityTeamPlayer.class);
 
         // Mocks unit costs
         Mockito.when(unit.getAllyCost()).thenReturn(1);
         Mockito.when(unit.getFriendCost()).thenReturn(2);
         Mockito.when(unit.getStrangerCost()).thenReturn(3);
 
-        cost = dbxTeamBuilderService.getUnitCost(AffinityLevel.ALLY, unit);
+        cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.ALLY,
+                unit);
 
         Assert.assertEquals((Integer) 1, cost);
     }
@@ -72,19 +73,20 @@ public final class TestDefaultDbxRulesUnitCost {
      * cost.
      */
     @Test
-    public final void testUnitCost_Friend_FriendCost() {
-        final AffinityUnit unit;
+    public final void testTeamPlayerCost_Friend_FriendCost() {
+        final AffinityTeamPlayer unit;
         final Integer cost;
 
         // Mocks unit
-        unit = Mockito.mock(AffinityUnit.class);
+        unit = Mockito.mock(AffinityTeamPlayer.class);
 
         // Mocks unit costs
         Mockito.when(unit.getAllyCost()).thenReturn(1);
         Mockito.when(unit.getFriendCost()).thenReturn(2);
         Mockito.when(unit.getStrangerCost()).thenReturn(3);
 
-        cost = dbxTeamBuilderService.getUnitCost(AffinityLevel.FRIEND, unit);
+        cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.FRIEND,
+                unit);
 
         Assert.assertEquals((Integer) 2, cost);
     }
@@ -94,19 +96,20 @@ public final class TestDefaultDbxRulesUnitCost {
      * cost.
      */
     @Test
-    public final void testUnitCost_Stranger_StrangerCost() {
-        final AffinityUnit unit;
+    public final void testTeamPlayerCost_Stranger_StrangerCost() {
+        final AffinityTeamPlayer unit;
         final Integer cost;
 
         // Mocks unit
-        unit = Mockito.mock(AffinityUnit.class);
+        unit = Mockito.mock(AffinityTeamPlayer.class);
 
         // Mocks unit costs
         Mockito.when(unit.getAllyCost()).thenReturn(1);
         Mockito.when(unit.getFriendCost()).thenReturn(2);
         Mockito.when(unit.getStrangerCost()).thenReturn(3);
 
-        cost = dbxTeamBuilderService.getUnitCost(AffinityLevel.STRANGER, unit);
+        cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.STRANGER,
+                unit);
 
         Assert.assertEquals((Integer) 3, cost);
     }
