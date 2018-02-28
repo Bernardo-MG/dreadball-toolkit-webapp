@@ -20,7 +20,7 @@ package com.bernardomg.tabletop.dreadball.rules;
  * Costs for the sponsor teams.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
- * @deprecate use SponsorAssetsAvailability
+ * @deprecated use SponsorAssetsAvailability
  */
 @Deprecated
 public interface SponsorCosts {

@@ -52,7 +52,7 @@ public final class DefaultSponsorTeamValidationSelection
 
     private Integer            teamValue          = 0;
 
-    private Collection<String> units              = Collections.emptyList();
+    private Collection<String> players            = Collections.emptyList();
 
     /**
      * Number of wagers.
@@ -102,7 +102,7 @@ public final class DefaultSponsorTeamValidationSelection
 
     @Override
     public final Collection<String> getTeamPlayers() {
-        return units;
+        return players;
     }
 
     @Override
@@ -143,8 +143,8 @@ public final class DefaultSponsorTeamValidationSelection
         specialMoveCards = value;
     }
 
-    public final void setTeamPlayers(final List<String> units) {
-        this.units = units;
+    public final void setTeamPlayers(final List<String> players) {
+        this.players = players;
     }
 
     public final void setTeamValue(final Integer teamValue) {

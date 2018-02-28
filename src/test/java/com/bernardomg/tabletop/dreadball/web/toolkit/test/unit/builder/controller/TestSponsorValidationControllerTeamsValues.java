@@ -156,7 +156,8 @@ public final class TestSponsorValidationControllerTeamsValues {
      */
     private final RequestBuilder getGetRequest(final String unit) {
         return MockMvcRequestBuilders.get(
-                UrlDbxTeamBuilderConfig.URL_VALIDATE_TEAM + "?units={u}", unit);
+                UrlDbxTeamBuilderConfig.URL_VALIDATE_TEAM + "?teamPlayers={u}",
+                unit);
     }
 
     /**
