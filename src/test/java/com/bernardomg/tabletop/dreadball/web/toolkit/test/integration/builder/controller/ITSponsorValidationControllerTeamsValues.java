@@ -161,7 +161,7 @@ public final class ITSponsorValidationControllerTeamsValues
         // TODO: Check why this won't work with an array of strings
         return MockMvcRequestBuilders
                 .get(UrlDbxTeamBuilderConfig.URL_VALIDATE_TEAM
-                        + "?units={u}&units={u}", unit1, unit2);
+                        + "?teamPlayers={u}&teamPlayers={u}", unit1, unit2);
     }
 
 }
