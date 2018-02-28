@@ -32,7 +32,7 @@ CREATE TABLE affinity_groups (
     name                    VARCHAR(30) NOT NULL UNIQUE
 );
 
-CREATE TABLE affinity_unit_components (
+CREATE TABLE affinity_player_components (
     id                      INTEGER PRIMARY KEY,
     name                    VARCHAR(30) NOT NULL UNIQUE,
     location_id             INTEGER NOT NULL DEFAULT 0,
@@ -48,7 +48,7 @@ CREATE TABLE affinity_unit_components (
     FOREIGN KEY (location_id) REFERENCES component_locations (id) ON DELETE CASCADE
 );
 
-CREATE TABLE composite_affinity_units (
+CREATE TABLE composite_affinity_players (
     id                      INTEGER PRIMARY KEY,
     template_name           VARCHAR(30) NOT NULL UNIQUE,
     name                    VARCHAR(30) NOT NULL DEFAULT '',
@@ -65,7 +65,7 @@ CREATE TABLE composite_affinity_units (
     cost_stranger           INTEGER NOT NULL DEFAULT 0
 );
 
-CREATE TABLE affinity_units (
+CREATE TABLE affinity_players (
     id                      INTEGER PRIMARY KEY,
     cost_ally               INTEGER NOT NULL DEFAULT 0,
     cost_friend             INTEGER NOT NULL DEFAULT 0,
@@ -108,18 +108,18 @@ CREATE TABLE sponsor_affinity_avas (
 
 -- Aggregation tables
 
-CREATE TABLE unit_affinities (
-    unit_id                 INTEGER,
+CREATE TABLE player_affinities (
+    player_id               INTEGER,
     affinity_id             INTEGER,
     FOREIGN KEY (affinity_id) REFERENCES affinity_groups (id) ON DELETE CASCADE,
-    FOREIGN KEY (unit_id) REFERENCES affinity_units (id) ON DELETE CASCADE
+    FOREIGN KEY (player_id) REFERENCES affinity_players (id) ON DELETE CASCADE
 );
 
-CREATE TABLE unit_hated_affinities (
-    unit_id                 INTEGER,
+CREATE TABLE player_hated_affinities (
+    player_id               INTEGER,
     affinity_id             INTEGER,
     FOREIGN KEY (affinity_id) REFERENCES affinity_groups (id) ON DELETE CASCADE,
-    FOREIGN KEY (unit_id) REFERENCES affinity_units (id) ON DELETE CASCADE
+    FOREIGN KEY (player_id) REFERENCES affinity_players (id) ON DELETE CASCADE
 );
 
 CREATE TABLE sponsor_affinity_groups (

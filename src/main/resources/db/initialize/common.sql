@@ -35,9 +35,9 @@ CREATE TABLE abilities (
 
 -- Unit tables
 
-CREATE TABLE units (
+CREATE TABLE players (
     id                      INTEGER PRIMARY KEY,
-    unit_type               VARCHAR(30) NOT NULL,
+    player_type             VARCHAR(30) NOT NULL,
     name                    VARCHAR(30) NOT NULL,
     template_name           VARCHAR(30) NOT NULL UNIQUE,
     cost                    INTEGER NOT NULL DEFAULT 0,
@@ -59,7 +59,7 @@ CREATE TABLE component_locations (
     name                    VARCHAR(30) NOT NULL UNIQUE
 );
 
-CREATE TABLE unit_components (
+CREATE TABLE player_components (
     id                      INTEGER PRIMARY KEY,
     name                    VARCHAR(30) NOT NULL UNIQUE,
     location_id             INTEGER NOT NULL DEFAULT 0,
@@ -75,22 +75,22 @@ CREATE TABLE unit_components (
 CREATE TABLE component_positions (
     component_id            INTEGER,
     position                VARCHAR(30) NOT NULL DEFAULT 'JACK',
-    FOREIGN KEY (component_id) REFERENCES unit_components (id) ON DELETE CASCADE
+    FOREIGN KEY (component_id) REFERENCES player_components (id) ON DELETE CASCADE
 );
 
 
 -- Aggregation tables
 
-CREATE TABLE unit_abilities (
-    unit_id                 INTEGER,
+CREATE TABLE player_abilities (
+    player_id               INTEGER,
     ability_id              INTEGER,
     FOREIGN KEY (ability_id) REFERENCES abilities (id) ON DELETE CASCADE,
-    FOREIGN KEY (unit_id) REFERENCES units (id) ON DELETE CASCADE
+    FOREIGN KEY (player_id) REFERENCES players (id) ON DELETE CASCADE
 );
 
 CREATE TABLE component_abilities (
     component_id            INTEGER,
     ability_id              INTEGER,
     FOREIGN KEY (ability_id) REFERENCES abilities (id) ON DELETE CASCADE,
-    FOREIGN KEY (component_id) REFERENCES unit_components (id) ON DELETE CASCADE
+    FOREIGN KEY (component_id) REFERENCES player_components (id) ON DELETE CASCADE
 );

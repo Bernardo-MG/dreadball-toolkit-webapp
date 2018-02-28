@@ -27,7 +27,7 @@
 
 -- Unit tables
 
-CREATE TABLE composite_advancement_units (
+CREATE TABLE composite_advancement_players (
     id                      INTEGER PRIMARY KEY,
     template_name           VARCHAR(30) NOT NULL DEFAULT '',
     name                    VARCHAR(30) NOT NULL DEFAULT '',
@@ -43,10 +43,10 @@ CREATE TABLE composite_advancement_units (
     experience              INTEGER NOT NULL DEFAULT 0,
     rank                    INTEGER NOT NULL DEFAULT 0,
     grafted_implant_id      INTEGER,
-    FOREIGN KEY (grafted_implant_id) REFERENCES unit_components (id) ON DELETE CASCADE
+    FOREIGN KEY (grafted_implant_id) REFERENCES player_components (id) ON DELETE CASCADE
 );
 
-CREATE TABLE advancement_units (
+CREATE TABLE advancement_players (
     id                      INTEGER PRIMARY KEY,
     template_name           VARCHAR(30) NOT NULL DEFAULT '',
     name                    VARCHAR(30) NOT NULL DEFAULT '',
@@ -62,12 +62,12 @@ CREATE TABLE advancement_units (
     experience              INTEGER NOT NULL DEFAULT 0,
     rank                    INTEGER NOT NULL DEFAULT 0,
     grafted_implant_id      INTEGER,
-    FOREIGN KEY (grafted_implant_id) REFERENCES unit_components (id) ON DELETE CASCADE
+    FOREIGN KEY (grafted_implant_id) REFERENCES player_components (id) ON DELETE CASCADE
 );
 
-CREATE TABLE simple_units (
+CREATE TABLE simple_players (
     id                      INTEGER PRIMARY KEY,
-    FOREIGN KEY (id) REFERENCES units(id)
+    FOREIGN KEY (id) REFERENCES players(id)
 );
 
 
@@ -105,14 +105,14 @@ CREATE TABLE team_type_asset_avas (
     FOREIGN KEY (team_type_id) REFERENCES team_types (id) ON DELETE CASCADE
 );
 
-CREATE TABLE team_type_unit_avas (
+CREATE TABLE team_type_player_avas (
     id                      INTEGER PRIMARY KEY,
     team_type_id            INTEGER,
-    unit_id                 INTEGER,
+    player_id               INTEGER,
     initial                 INTEGER NOT NULL DEFAULT 0,
     max                     INTEGER NOT NULL DEFAULT 0,
     FOREIGN KEY (team_type_id) REFERENCES team_types (id) ON DELETE CASCADE,
-    FOREIGN KEY (unit_id) REFERENCES units (id) ON DELETE CASCADE
+    FOREIGN KEY (player_id) REFERENCES players (id) ON DELETE CASCADE
 );
 
 
@@ -125,9 +125,9 @@ CREATE TABLE team_type_rules (
     FOREIGN KEY (team_rule_id) REFERENCES team_rules (id) ON DELETE CASCADE
 );
 
-CREATE TABLE composite_unit_components (
-    unit_id                 INTEGER,
+CREATE TABLE composite_player_components (
+    player_id               INTEGER,
     component_id            INTEGER,
-    FOREIGN KEY (unit_id) REFERENCES units (id) ON DELETE CASCADE,
-    FOREIGN KEY (component_id) REFERENCES unit_components (id) ON DELETE CASCADE
+    FOREIGN KEY (player_id) REFERENCES players (id) ON DELETE CASCADE,
+    FOREIGN KEY (component_id) REFERENCES player_components (id) ON DELETE CASCADE
 );

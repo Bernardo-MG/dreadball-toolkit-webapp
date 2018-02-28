@@ -39,67 +39,67 @@ INSERT INTO affinity_groups (id, name) VALUES (6, 'affinity_6');
 
 
 -- ---------
--- DBX units
+-- DBX players
 -- ---------
 
 -- Test team 1
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (1, 'affinity', 'unit_1', 'unit_1_affinity', 4, 5, 4, 3, 4, 'GUARD', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (2, 'affinity', 'unit_2', 'unit_2_affinity', 5, 5, 4, 3, 4, 'JACK', false);
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
-    VALUES (3, 'affinity', 'unit_3', 'unit_3_affinity', 5, 5, 4, 3, 4, 'STRIKER', false);
+INSERT INTO players (id, player_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (1, 'affinity', 'player_1', 'player_1_affinity', 4, 5, 4, 3, 4, 'GUARD', false);
+INSERT INTO players (id, player_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (2, 'affinity', 'player_2', 'player_2_affinity', 5, 5, 4, 3, 4, 'JACK', false);
+INSERT INTO players (id, player_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+    VALUES (3, 'affinity', 'player_3', 'player_3_affinity', 5, 5, 4, 3, 4, 'STRIKER', false);
 
 -- Giants
-INSERT INTO units (id, unit_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
+INSERT INTO players (id, player_type, name, template_name, armor, movement, skill, speed, strength, position, giant)
     VALUES (51, 'affinity', 'giant_1', 'giant_1_affinity', 5, 5, 4, 3, 4, 'JACK', true);
 
 -- --------------
--- Affinity units
+-- Affinity players
 -- --------------
 
 -- Test team 1
-INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (1, 23, 15, 10);
-INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (2, 18, 12, 8);
-INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (3, 23, 15, 10);
+INSERT INTO affinity_players (id, cost_stranger, cost_ally, cost_friend) VALUES (1, 23, 15, 10);
+INSERT INTO affinity_players (id, cost_stranger, cost_ally, cost_friend) VALUES (2, 18, 12, 8);
+INSERT INTO affinity_players (id, cost_stranger, cost_ally, cost_friend) VALUES (3, 23, 15, 10);
 
 -- Giants
-INSERT INTO affinity_units (id, cost_stranger, cost_ally, cost_friend) VALUES (51, 45, 30, 20);
+INSERT INTO affinity_players (id, cost_stranger, cost_ally, cost_friend) VALUES (51, 45, 30, 20);
 
 -- --------------
 -- Unit abilities
 -- --------------
 
 -- Test team 1
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (1, 1);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (2, 1);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (3, 1);
+INSERT INTO player_abilities (player_id, ability_id) VALUES (1, 1);
+INSERT INTO player_abilities (player_id, ability_id) VALUES (2, 1);
+INSERT INTO player_abilities (player_id, ability_id) VALUES (3, 1);
 
 -- Giant
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (51, 2);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (51, 3);
-INSERT INTO unit_abilities (unit_id, ability_id) VALUES (51, 4);
+INSERT INTO player_abilities (player_id, ability_id) VALUES (51, 2);
+INSERT INTO player_abilities (player_id, ability_id) VALUES (51, 3);
+INSERT INTO player_abilities (player_id, ability_id) VALUES (51, 4);
 
 -- ---------------
 -- Unit affinities
 -- ---------------
 
 -- Test team 1
-INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (1, 1);
-INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (2, 1);
-INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (3, 1);
+INSERT INTO player_affinities (player_id, affinity_id) VALUES (1, 1);
+INSERT INTO player_affinities (player_id, affinity_id) VALUES (2, 1);
+INSERT INTO player_affinities (player_id, affinity_id) VALUES (3, 1);
 
 -- Giant
-INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (51, 2);
-INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (51, 3);
-INSERT INTO unit_affinities (unit_id, affinity_id) VALUES (51, 4);
+INSERT INTO player_affinities (player_id, affinity_id) VALUES (51, 2);
+INSERT INTO player_affinities (player_id, affinity_id) VALUES (51, 3);
+INSERT INTO player_affinities (player_id, affinity_id) VALUES (51, 4);
 
 -- ---------------------
 -- Unit hated affinities
 -- ---------------------
 
 -- Giant
-INSERT INTO unit_hated_affinities (unit_id, affinity_id) VALUES (51, 5);
+INSERT INTO player_hated_affinities (player_id, affinity_id) VALUES (51, 5);
 
 -- -------------------------
 -- Affinities availabilities
