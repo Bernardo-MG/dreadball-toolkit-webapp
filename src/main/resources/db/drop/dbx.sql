@@ -27,8 +27,8 @@
 
 -- Aggregation tables
 
-DROP TABLE IF EXISTS unit_affinities;
-DROP TABLE IF EXISTS unit_hated_affinities;
+DROP TABLE IF EXISTS player_affinities;
+DROP TABLE IF EXISTS player_hated_affinities;
 DROP TABLE IF EXISTS sponsor_affinity_groups;
 DROP TABLE IF EXISTS sponsor_affinity_avas_affinity_groups;
 
@@ -44,9 +44,9 @@ DROP TABLE IF EXISTS sponsor_asset_avas;
 DROP TABLE IF EXISTS sponsors;
 
 
--- Unit tables
+-- player tables
 
-DROP TABLE IF EXISTS affinity_units;
-DROP TABLE IF EXISTS composite_affinity_units;
-DROP TABLE IF EXISTS affinity_unit_components;
+DROP TABLE IF EXISTS affinity_players;
+DROP TABLE IF EXISTS composite_affinity_players;
+DROP TABLE IF EXISTS affinity_player_components;
 DROP TABLE IF EXISTS affinity_groups;
