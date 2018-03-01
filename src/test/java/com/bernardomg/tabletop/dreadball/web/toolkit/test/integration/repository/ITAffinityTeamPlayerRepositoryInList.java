@@ -27,6 +27,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
 public class ITAffinityTeamPlayerRepositoryInList
@@ -46,7 +47,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         final PersistentAffinityTeamPlayer unit;
 
         names = new ArrayList<>();
-        names.add("unit_1_affinity");
+        names.add(TestValues.PLAYER_1);
 
         result = repository.findByTemplateNameIn(names);
 
@@ -62,7 +63,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         final PersistentAffinityTeamPlayer unit;
 
         names = new ArrayList<>();
-        names.add("unit_1_affinity");
+        names.add(TestValues.PLAYER_1);
 
         result = repository.findByTemplateNameIn(names);
 
@@ -79,8 +80,8 @@ public class ITAffinityTeamPlayerRepositoryInList
         final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
-        names.add("unit_1_affinity");
-        names.add("unit_2_affinity");
+        names.add(TestValues.PLAYER_1);
+        names.add(TestValues.PLAYER_2);
 
         result = repository.findByTemplateNameIn(names);
 
@@ -105,9 +106,9 @@ public class ITAffinityTeamPlayerRepositoryInList
         final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
-        names.add("unit_1_affinity");
-        names.add("unit_2_affinity");
-        names.add("unit_1_affinity");
+        names.add(TestValues.PLAYER_1);
+        names.add(TestValues.PLAYER_2);
+        names.add(TestValues.PLAYER_1);
 
         result = repository.findByTemplateNameIn(names);
 
@@ -120,7 +121,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
-        names.add("unit_1_affinity");
+        names.add(TestValues.PLAYER_1);
 
         result = repository.findByTemplateNameIn(names);
 

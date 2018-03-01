@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 import com.google.common.collect.Iterables;
 
 /**
@@ -112,7 +113,7 @@ public final class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamValidationSelection();
 
         selection.setBaseRank(10);
-        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
@@ -133,7 +134,7 @@ public final class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamValidationSelection();
 
         selection.setBaseRank(10);
-        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
@@ -154,7 +155,7 @@ public final class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamValidationSelection();
 
         selection.setBaseRank(10);
-        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
@@ -228,8 +229,8 @@ public final class ITSponsorBuilderServiceValidateTeam
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setTeamPlayers(Arrays.asList("unit_1_affinity",
-                "unit_2_affinity", "unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1,
+                TestValues.PLAYER_2, TestValues.PLAYER_1));
 
         result = service.validateTeam(selection);
 
@@ -268,7 +269,7 @@ public final class ITSponsorBuilderServiceValidateTeam
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
         selection.setAffinities(Arrays.asList("affinity_1"));
 
         result = service.validateTeam(selection);
@@ -289,7 +290,7 @@ public final class ITSponsorBuilderServiceValidateTeam
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setTeamPlayers(Arrays.asList("unit_1_affinity"));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
 
         result = service.validateTeam(selection);
 
@@ -307,8 +308,8 @@ public final class ITSponsorBuilderServiceValidateTeam
 
         selection = new DefaultSponsorTeamValidationSelection();
 
-        selection.setTeamPlayers(Arrays.asList("unit_1_affinity",
-                "unit_2_affinity", "unit_3_affinity"));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1,
+                TestValues.PLAYER_2, TestValues.PLAYER_3));
 
         result = service.validateTeam(selection);
 

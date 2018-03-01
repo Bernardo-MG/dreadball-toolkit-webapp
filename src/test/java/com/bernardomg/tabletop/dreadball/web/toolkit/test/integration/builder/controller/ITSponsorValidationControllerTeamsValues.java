@@ -32,6 +32,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
@@ -120,8 +121,8 @@ public final class ITSponsorValidationControllerTeamsValues
     public final void testValidateTeam_Multiple_Units() throws Exception {
         final ResultActions result;
 
-        result = mockMvc
-                .perform(getGetRequest("unit_1_affinity", "unit_2_affinity"));
+        result = mockMvc.perform(
+                getGetRequest(TestValues.PLAYER_1, TestValues.PLAYER_2));
 
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
                 Matchers.aMapWithSize(2)));
@@ -134,8 +135,8 @@ public final class ITSponsorValidationControllerTeamsValues
     public final void testValidateTeam_Repeated_Units() throws Exception {
         final ResultActions result;
 
-        result = mockMvc
-                .perform(getGetRequest("unit_1_affinity", "unit_1_affinity"));
+        result = mockMvc.perform(
+                getGetRequest(TestValues.PLAYER_1, TestValues.PLAYER_1));
 
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
                 Matchers.aMapWithSize(2)));
