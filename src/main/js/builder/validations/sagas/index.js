@@ -20,16 +20,16 @@ function* requestValidation(action) {
 function* build(action) {
    yield put({ type: types.SET_BASE_RANK, payload: action.payload.baseRank });
    yield put({ type: types.SET_RANK, payload: action.payload.currentRank });
-   yield put({ type: types.SET_TEAM_VALUE, payload: action.payload.valoration });
+   yield put({ type: types.SET_TEAM_VALUE, payload: action.payload.totalCost });
 }
 
 function* validateTeam() {
    const assets = yield select(selectAssets);
    const affinities = yield select(selectChosenAffinities);
-   const units = yield select(selectUnits);
+   const teamPlayers = yield select(selectUnits);
    const baseRank = yield select(selectBaseRank);
 
-   const params = { affinities, units, baseRank, ...assets };
+   const params = { affinities, teamPlayers, baseRank, ...assets };
    yield call(requestValidation, { params });
 }
 
