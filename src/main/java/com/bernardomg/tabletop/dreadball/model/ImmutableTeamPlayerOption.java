@@ -21,7 +21,7 @@ package com.bernardomg.tabletop.dreadball.model;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public class TeamPlayerOption {
+public class ImmutableTeamPlayerOption {
 
     /**
      * Player position in the team.
@@ -36,7 +36,7 @@ public class TeamPlayerOption {
     /**
      * Default constructor.
      */
-    public TeamPlayerOption() {
+    public ImmutableTeamPlayerOption() {
         super();
     }
 
@@ -48,7 +48,7 @@ public class TeamPlayerOption {
      * @param pos
      *            unit position in team
      */
-    public TeamPlayerOption(final Integer pos, final String name) {
+    public ImmutableTeamPlayerOption(final Integer pos, final String name) {
         super();
 
         position = pos;
@@ -61,7 +61,7 @@ public class TeamPlayerOption {
      * @param name
      *            unit name
      */
-    public TeamPlayerOption(final String name) {
+    public ImmutableTeamPlayerOption(final String name) {
         super();
 
         templateName = name;
