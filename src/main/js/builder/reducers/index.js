@@ -7,6 +7,11 @@ const sponsor = (
    state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, teamValue: 0, units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
    action) => {
    const { type, payload } = action;
+
+   if (!payload) {
+      return { ...state };
+   }
+
    switch (type) {
    case ActionTypes.CLEAR_TEAM:
       return {
@@ -21,11 +26,18 @@ const sponsor = (
          ...state,
          units: [...state.units, payload]
       };
-   case ActionTypes.REMOVE_TEAM_UNIT:
+   case ActionTypes.REMOVE_TEAM_UNIT: {
+      const unitsUpdated = state.units;
+      const unitIndex = unitsUpdated.indexOf(payload);
+      if (unitIndex !== -1) {
+         unitsUpdated.splice(unitIndex, 1);
+      }
+
       return {
          ...state,
-         units: state.units.filter((unit) => unit !== payload)
+         units: unitsUpdated
       };
+   }
    case ActionTypes.SET_BASE_RANK:
       return {
          ...state,
