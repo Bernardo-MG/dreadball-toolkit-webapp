@@ -19,13 +19,15 @@ package com.bernardomg.tabletop.dreadball.rules;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsAvailability;
+
 /**
  * Service implementation of the {@code SponsorCosts}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service("SponsorRankCosts")
-public class AutowiredSponsorRankCosts implements SponsorCosts {
+public class AutowiredSponsorRankCosts implements SponsorAssetsAvailability {
 
     @Value("${sponsor.asset.cheerleader.rank}")
     private Integer cheerleaderRank;
@@ -53,12 +55,17 @@ public class AutowiredSponsorRankCosts implements SponsorCosts {
     }
 
     @Override
+    public final Integer getAffinityGroupCost() {
+        return 0;
+    }
+
+    @Override
     public final Integer getCheerleaderCost() {
         return cheerleaderRank;
     }
 
     @Override
-    public final Integer getDieCost() {
+    public final Integer getCoachingDieCost() {
         return dieRank;
     }
 
@@ -68,12 +75,12 @@ public class AutowiredSponsorRankCosts implements SponsorCosts {
     }
 
     @Override
-    public final Integer getSabotageCost() {
+    public final Integer getNastySurpriseCardCost() {
         return sabotageRank;
     }
 
     @Override
-    public final Integer getSpecialMoveCost() {
+    public final Integer getSpecialMoveCardCost() {
         return moveRank;
     }
 

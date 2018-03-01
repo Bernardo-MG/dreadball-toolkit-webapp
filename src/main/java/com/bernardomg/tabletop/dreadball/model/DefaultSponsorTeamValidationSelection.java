@@ -50,9 +50,9 @@ public final class DefaultSponsorTeamValidationSelection
     @Min(0)
     private Integer            specialMoveCards   = 0;
 
-    private Integer            teamValue          = 0;
+    private Collection<String> teamPlayers        = Collections.emptyList();
 
-    private Collection<String> teamPlayers            = Collections.emptyList();
+    private Integer            teamValue          = 0;
 
     /**
      * Number of wagers.
@@ -144,7 +144,7 @@ public final class DefaultSponsorTeamValidationSelection
     }
 
     public final void setTeamPlayers(final List<String> players) {
-        this.teamPlayers = players;
+        teamPlayers = players;
     }
 
     public final void setTeamValue(final Integer teamValue) {

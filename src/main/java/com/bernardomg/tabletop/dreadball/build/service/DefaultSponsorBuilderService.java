@@ -29,6 +29,7 @@ import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamValidationSelection;
 import com.bernardomg.tabletop.dreadball.model.availability.affinity.SponsorAffinityGroupAvailability;
+import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsAvailability;
 import com.bernardomg.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.bernardomg.tabletop.dreadball.model.persistence.availability.affinity.PersistentSponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityGroup;
@@ -45,7 +46,6 @@ import com.bernardomg.tabletop.dreadball.repository.availability.SponsorAffinity
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityGroupRepository;
 import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
-import com.bernardomg.tabletop.dreadball.rules.SponsorCosts;
 import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 import com.google.common.collect.Lists;
 
@@ -59,14 +59,14 @@ public final class DefaultSponsorBuilderService
 
     private final DbxRules                                   dbxRules;
 
-    private final SponsorCosts                               rankCosts;
+    private final SponsorAssetsAvailability                  rankCosts;
 
     /**
      * Affinity groups repository.
      */
     private final SponsorAffinityGroupAvailabilityRepository sponsorAffinityGroupAvailabilityRepository;
 
-    private final SponsorCosts                               sponsorCosts;
+    private final SponsorAssetsAvailability                  sponsorCosts;
 
     private final SponsorDefaults                            sponsorDefaults;
 
@@ -76,8 +76,8 @@ public final class DefaultSponsorBuilderService
             final SponsorDefaults defaults,
             final AffinityTeamPlayerRepository affTeamPlayerRepository,
             final AffinityGroupRepository affGroupRepository,
-            @Qualifier("SponsorRankCosts") final SponsorCosts costsRank,
-            @Qualifier("SponsorCosts") final SponsorCosts costs,
+            @Qualifier("SponsorRankCosts") final SponsorAssetsAvailability costsRank,
+            @Qualifier("SponsorCosts") final SponsorAssetsAvailability costs,
             final DbxRules rules) {
         super();
 
@@ -232,9 +232,10 @@ public final class DefaultSponsorBuilderService
     }
 
     private final CostCalculator<SponsorTeam> getRankCostCalculator() {
-        return new DefaultRankCostCalculator(getSponsorRankCosts().getDieCost(),
-                getSponsorRankCosts().getSabotageCost(),
-                getSponsorRankCosts().getSpecialMoveCost(),
+        return new DefaultRankCostCalculator(
+                getSponsorRankCosts().getCoachingDieCost(),
+                getSponsorRankCosts().getNastySurpriseCardCost(),
+                getSponsorRankCosts().getSpecialMoveCardCost(),
                 getSponsorRankCosts().getCheerleaderCost(),
                 getSponsorRankCosts().getWagerCost(),
                 getSponsorRankCosts().getMediBotCost());
@@ -245,7 +246,7 @@ public final class DefaultSponsorBuilderService
         return sponsorAffinityGroupAvailabilityRepository;
     }
 
-    private final SponsorCosts getSponsorCosts() {
+    private final SponsorAssetsAvailability getSponsorCosts() {
         return sponsorCosts;
     }
 
@@ -253,7 +254,7 @@ public final class DefaultSponsorBuilderService
         return sponsorDefaults;
     }
 
-    private final SponsorCosts getSponsorRankCosts() {
+    private final SponsorAssetsAvailability getSponsorRankCosts() {
         return rankCosts;
     }
 
@@ -326,9 +327,9 @@ public final class DefaultSponsorBuilderService
 
     private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
         return new SponsorTeamValorationCalculator(
-                getSponsorCosts().getDieCost(),
-                getSponsorCosts().getSabotageCost(),
-                getSponsorCosts().getSpecialMoveCost(),
+                getSponsorCosts().getCoachingDieCost(),
+                getSponsorCosts().getNastySurpriseCardCost(),
+                getSponsorCosts().getSpecialMoveCardCost(),
                 getSponsorCosts().getCheerleaderCost(),
                 getSponsorCosts().getWagerCost(),
                 getSponsorCosts().getMediBotCost());
