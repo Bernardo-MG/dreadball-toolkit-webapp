@@ -27,10 +27,10 @@ const sponsor = (
          units: [...state.units, payload]
       };
    case ActionTypes.REMOVE_TEAM_UNIT: {
-      const unitsUpdated = state.units;
+      let unitsUpdated = state.units;
       const unitIndex = unitsUpdated.indexOf(payload);
       if (unitIndex !== -1) {
-         unitsUpdated.splice(unitIndex, 1);
+         unitsUpdated = state.units.filter((x, i) => i !== unitIndex);
       }
 
       return {
