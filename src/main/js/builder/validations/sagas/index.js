@@ -20,7 +20,7 @@ function* requestValidation(action) {
 function* build(action) {
    yield put({ type: types.SET_BASE_RANK, payload: action.payload.baseRank });
    yield put({ type: types.SET_RANK, payload: action.payload.currentRank });
-   yield put({ type: types.SET_TEAM_VALUE, payload: action.payload.totalCost });
+   yield put({ type: types.SET_TOTAL_COST, payload: action.payload.totalCost });
 }
 
 function* validateTeam() {

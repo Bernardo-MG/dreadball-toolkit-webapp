@@ -4,11 +4,11 @@ import assets from 'builder/assets/reducers';
 import affinities from 'builder/affinities/reducers';
 
 const sponsor = (
-   state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, teamValue: 0, units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
+   state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, totalCost: 0, units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
    action) => {
    const { type, payload } = action;
 
-   if (!payload) {
+   if (payload === undefined) {
       return { ...state };
    }
 
@@ -17,7 +17,7 @@ const sponsor = (
       return {
          rank: 0,
          baseRank: 0,
-         teamValue: 0,
+         totalCost: 0,
          units: [],
          sponsorName: 'Sponsor name'
       };
@@ -48,10 +48,10 @@ const sponsor = (
          ...state,
          rank: payload
       };
-   case ActionTypes.SET_TEAM_VALUE:
+   case ActionTypes.SET_TOTAL_COST:
       return {
          ...state,
-         teamValue: payload
+         totalCost: payload
       };
    default:
       return state;

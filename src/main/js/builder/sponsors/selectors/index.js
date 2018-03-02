@@ -5,4 +5,4 @@ export const selectRank = (state) => state.builder.sponsor.rank;
 
 export const selectBaseRank = (state) => state.builder.sponsor.baseRank;
 
-export const selectTeamValue = (state) => state.builder.sponsor.teamValue;
+export const selectTotalCost = (state) => state.builder.sponsor.totalCost;

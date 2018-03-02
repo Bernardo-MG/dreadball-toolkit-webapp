@@ -6,17 +6,17 @@ import { connect } from 'react-redux';
 
 import Value from 'grommet/components/Value';
 
-import { selectTeamValue } from 'builder/sponsors/selectors';
+import { selectTotalCost } from 'builder/sponsors/selectors';
 
-const SponsorTeamValue = (props) => <Value value={props.teamValue} label='teamValue' />;
+const SponsorTotalCost = (props) => <Value value={props.totalCost} label='totalCost' />;
 
-SponsorTeamValue.propTypes = {
-   teamValue: PropTypes.number.isRequired
+SponsorTotalCost.propTypes = {
+   totalCost: PropTypes.number.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      teamValue: selectTeamValue(state)
+      totalCost: selectTotalCost(state)
    };
 };
 
@@ -27,4 +27,4 @@ const mapDispatchToProps = () => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorTeamValue);
+)(SponsorTotalCost);
