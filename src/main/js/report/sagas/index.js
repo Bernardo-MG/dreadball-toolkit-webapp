@@ -14,12 +14,11 @@ export function fetch(params) {
 function* request(action) {
    const assets = yield select(selectAssets);
    const affinities = yield select(selectChosenAffinities);
-   const units = yield select(selectUnits);
+   const teamPlayers = yield select(selectUnits);
    const baseRank = yield select(selectBaseRank);
 
-   const team = { affinities, units, baseRank, ...assets };
-
-   yield call(fetch, { ...action.params, ...team });
+   const params = { ...action.params, affinities, teamPlayers, baseRank, ...assets };
+   yield call(fetch, params);
 }
 
 export const reportSagas = [
