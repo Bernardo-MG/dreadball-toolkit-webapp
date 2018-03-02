@@ -1,39 +1,27 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import Listing from 'components/Listing';
+import Table from 'grommet/components/Table';
+import TableRow from 'grommet/components/TableRow';
 
-import RemovableTeamUnit from 'builder/units/components/RemovableTeamUnit';
+import RemoveUnitButton from 'builder/units/containers/buttons/RemoveUnitButton';
 
 import { connect } from 'react-redux';
 
 import { selectUnits } from 'builder/units/selectors';
 
-function toComponent(name) {
-   return <RemovableTeamUnit unit={name} />;
-}
-
-class SponsorUnitNameList extends Component {
-
-   source;
-
-   constructor(props) {
-      super(props);
-
-      this.source = props.sponsorUnits.map((name) => toComponent(name));
-   }
-
-   componentWillReceiveProps(props) {
-      this.source = props.sponsorUnits.map((name) => toComponent(name));
-   }
-
-   render() {
-      return (
-         <Listing source={this.source} />
-      );
-   }
-}
+const SponsorUnitNameList = (props) =>
+   <Table>
+      <tbody>
+         { props.sponsorUnits.map((unit, i) =>
+            <TableRow key={i}>
+               <td><RemoveUnitButton unit={unit} /></td>
+               <td>{unit}</td>
+            </TableRow>
+         )}
+      </tbody>
+   </Table>;
 
 SponsorUnitNameList.propTypes = {
    sponsorUnits: PropTypes.array.isRequired
