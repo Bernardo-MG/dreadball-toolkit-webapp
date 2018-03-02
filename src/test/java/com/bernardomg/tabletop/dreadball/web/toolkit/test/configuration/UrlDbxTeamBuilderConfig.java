@@ -29,6 +29,11 @@ public final class UrlDbxTeamBuilderConfig {
     public static final String URL_AFFINITIES          = "/rest/builder/affinity";
 
     /**
+     * Team validation REST URL.
+     */
+    public static final String URL_REPORT              = "/rest/builder/report";
+
+    /**
      * Affinity groups REST URL.
      */
     public static final String URL_UNITS               = "/rest/builder/units";
