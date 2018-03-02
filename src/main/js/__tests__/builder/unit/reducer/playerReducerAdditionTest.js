@@ -2,7 +2,7 @@ import team from 'builder/reducers';
 import * as types from 'builder/actions/actionTypes';
 
 describe('Team reducer', () => {
-   it('creates units', () => {
+   it('adds unit when empty', () => {
       expect(
          team({}, {
             type: types.ADD_TEAM_UNIT,
@@ -14,7 +14,7 @@ describe('Team reducer', () => {
             "wagers": 0 }}
       )
    }),
-   it('adds units', () => {
+   it('adds unit', () => {
       expect(
          team({ "sponsor": { units: [ 'unit1', 'unit2', 'unit3' ] } }, {
             type: types.ADD_TEAM_UNIT,
@@ -25,7 +25,7 @@ describe('Team reducer', () => {
             units: [ 'unit1', 'unit2', 'unit3', 'unit4' ] }}
       )
    }),
-   it('adds already existing units', () => {
+   it('adds already existing unit', () => {
       expect(
          team({ "sponsor": {units: [ 'unit1', 'unit2', 'unit3' ] } }, {
             type: types.ADD_TEAM_UNIT,

@@ -25,15 +25,15 @@ describe('Team reducer', () => {
             units: [ 'unit2', 'unit3' ] }}
       )
    }),
-   it('ignores undefined units on removal', () => {
+   it('removes last unit', () => {
       expect(
-         team({ "sponsor": { units: [ 'unit1', 'unit2', 'unit3' ] } }, {
+         team({ "sponsor": { units: [ 'unit1' ] } }, {
             type: types.REMOVE_TEAM_UNIT,
-            payload: undefined
+            payload: 'unit1'
          })
       ).toEqual(
          { "affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {
-            units: [ 'unit1', 'unit2', 'unit3' ] }}
+            units: [] }}
       )
    }),
    it('removes a single instance of a unit', () => {
@@ -45,6 +45,17 @@ describe('Team reducer', () => {
       ).toEqual(
          { "affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {
             units: [ 'unit2', 'unit3', 'unit1' ] }}
+      )
+   }),
+   it('ignores undefined units on removal', () => {
+      expect(
+         team({ "sponsor": { units: [ 'unit1', 'unit2', 'unit3' ] } }, {
+            type: types.REMOVE_TEAM_UNIT,
+            payload: undefined
+         })
+      ).toEqual(
+         { "affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {
+            units: [ 'unit1', 'unit2', 'unit3' ] }}
       )
    })
 });
