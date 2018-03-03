@@ -6,10 +6,12 @@ import { injectIntl } from 'react-intl';
 
 import Box from 'grommet/components/Box';
 import Columns from 'grommet/components/Columns';
+import Heading from 'grommet/components/Heading';
 import Value from 'grommet/components/Value';
 
 import abilityMessages from 'i18n/ability';
 import unitMessages from 'i18n/unit';
+import unitNameMessages from 'i18n/unitName';
 import unitRoleMessages from 'i18n/role';
 
 class UnitPanel extends Component {
@@ -63,6 +65,7 @@ class UnitPanel extends Component {
 
       return (
          <Box>
+            <Heading tag='h1'>{this.props.intl.formatMessage(unitNameMessages[this.props.source.name])}</Heading>
             <Box>{this.props.intl.formatMessage(unitMessages.role)}: {this.props.intl.formatMessage(unitRoleMessages[this.props.source.role])}</Box>
             <Box>{this.props.intl.formatMessage(unitMessages.abilities)}: {this.props.source.abilities.map((a) => this.props.intl.formatMessage(abilityMessages[a])).join(', ')}</Box>
             <Box>
