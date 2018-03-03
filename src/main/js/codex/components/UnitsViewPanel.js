@@ -15,6 +15,8 @@ import TableRow from 'grommet/components/TableRow';
 
 import UnitPanel from 'codex/components/UnitPanel';
 
+import labelMessages from 'i18n/label';
+import unitMessages from 'i18n/unit';
 import unitNameMessages from 'i18n/unitName';
 import unitRoleMessages from 'i18n/role';
 
@@ -52,11 +54,16 @@ class UnitsViewPanel extends Component {
          detailsLayer = undefined;
       }
 
+      const headers = [];
+      headers.push(this.props.intl.formatMessage(unitMessages.name));
+      headers.push(this.props.intl.formatMessage(unitMessages.role));
+      headers.push(this.props.intl.formatMessage(labelMessages.info));
+
       return (
          <Box pad='medium' full={true}>
             {detailsLayer}
             <Table onMore={this.props.onMore}>
-               <TableHeader labels={['player', 'role', 'info']} />
+               <TableHeader labels={headers} />
                <tbody>
                   { this.props.source.map((unit, i) =>
                      <TableRow key={i}>

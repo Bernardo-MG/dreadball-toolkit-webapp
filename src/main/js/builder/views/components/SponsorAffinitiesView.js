@@ -11,7 +11,7 @@ import Heading from 'grommet/components/Heading';
 
 import SponsorAffinityAvailabilitySelectionPanel from 'builder/views/containers/SponsorAffinityAvailabilitySelectionPanel';
 
-import buttonMessages from 'i18n/button';
+import labelMessages from 'i18n/label';
 import teamBuilderMessages from 'i18n/teamBuilder';
 
 const SponsorAffinitiesView = (props) =>
@@ -19,7 +19,7 @@ const SponsorAffinitiesView = (props) =>
       <Heading>{props.intl.formatMessage(teamBuilderMessages.choose_affinities)}</Heading>
       <SponsorAffinityAvailabilitySelectionPanel />
       <Box justify='center' align='center' margin='small'>
-         <Button onClick={ props.onClick } label={props.intl.formatMessage(buttonMessages.accept)} />
+         <Button onClick={ props.onClick } label={props.intl.formatMessage(labelMessages.accept)} />
       </Box>
    </Form>;
 
