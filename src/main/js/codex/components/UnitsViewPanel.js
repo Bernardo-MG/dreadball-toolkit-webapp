@@ -6,8 +6,11 @@ import { injectIntl } from 'react-intl';
 
 import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
+import Button from 'grommet/components/Button';
+import CircleInformationIcon from 'grommet/components/icons/base/CircleInformation';
 import Layer from 'grommet/components/Layer';
 import Table from 'grommet/components/Table';
+import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
 import UnitPanel from 'codex/components/UnitPanel';
@@ -52,12 +55,14 @@ class UnitsViewPanel extends Component {
       return (
          <Box pad='medium' full={true}>
             {detailsLayer}
-            <Table selectable={true} onMore={this.props.onMore}>
+            <Table onMore={this.props.onMore}>
+               <TableHeader labels={['player', 'role', 'info']} />
                <tbody>
                   { this.props.source.map((unit, i) =>
-                     <TableRow onClick={() => select(unit)} key={i}>
+                     <TableRow key={i}>
                         <td>{this.props.intl.formatMessage(unitNameMessages[unit.name])}</td>
                         <td>{this.props.intl.formatMessage(unitRoleMessages[unit.role])}</td>
+                        <td><Button onClick={() => select(unit)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
                </tbody>

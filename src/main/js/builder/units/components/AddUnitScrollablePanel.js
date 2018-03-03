@@ -10,6 +10,7 @@ import Button from 'grommet/components/Button';
 import CircleInformationIcon from 'grommet/components/icons/base/CircleInformation';
 import Layer from 'grommet/components/Layer';
 import Table from 'grommet/components/Table';
+import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
 import AddUnitButton from 'builder/units/containers/buttons/AddUnitButton';
@@ -55,15 +56,16 @@ class AddUnitScrollablePanel extends Component {
       return (
          <Box>
             {detailsLayer}
-            <Table selectable={true} onMore={this.props.onMore}>
+            <Table onMore={this.props.onMore}>
+               <TableHeader labels={['add', 'player', 'role', 'cost', 'info']} />
                <tbody>
                   { this.props.source.map((unit, i) =>
                      <TableRow key={i}>
                         <td><AddUnitButton unit={unit.templateName} /></td>
-                        <td><Button onClick={() => select(unit)} icon={<CircleInformationIcon/>} /></td>
                         <td>{this.props.intl.formatMessage(unitNameMessages[unit.name])}</td>
                         <td>{this.props.intl.formatMessage(unitRoleMessages[unit.role])}</td>
                         <td>{unit.cost}</td>
+                        <td><Button onClick={() => select(unit)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
                </tbody>
