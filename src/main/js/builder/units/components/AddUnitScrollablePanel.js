@@ -13,7 +13,6 @@ import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
-import AddUnitButton from 'builder/units/containers/buttons/AddUnitButton';
 import UnitPanel from 'codex/components/UnitPanel';
 
 import labelMessages from 'i18n/label';
@@ -70,7 +69,7 @@ class AddUnitScrollablePanel extends Component {
                <tbody>
                   { this.props.source.map((unit, i) =>
                      <TableRow key={i}>
-                        <td><AddUnitButton unit={unit.templateName} /></td>
+                        <td><Button onClick={() => this.props.buttonAction(unit.templateName)} icon={this.props.buttonIcon} /></td>
                         <td>{this.props.intl.formatMessage(unitNameMessages[unit.name])}</td>
                         <td>{this.props.intl.formatMessage(unitRoleMessages[unit.role])}</td>
                         <td>{unit.cost}</td>
@@ -87,6 +86,8 @@ class AddUnitScrollablePanel extends Component {
 AddUnitScrollablePanel.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func.isRequired,
+   buttonAction: PropTypes.func.isRequired,
+   buttonIcon: PropTypes.object.isRequired,
    intl: PropTypes.object.isRequired
 };
 
