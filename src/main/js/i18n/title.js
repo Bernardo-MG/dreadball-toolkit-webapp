@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-const unitMessages = defineMessages({
+const titleMessages = defineMessages({
    dbxPlayers: {
       id: 'title.header.dbx.list',
       defaultMessage: 'DBX Players'
@@ -11,4 +11,4 @@ const unitMessages = defineMessages({
    }
 });
 
-export default unitMessages;
+export default titleMessages;

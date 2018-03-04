@@ -16,6 +16,8 @@ import TableRow from 'grommet/components/TableRow';
 import AddUnitButton from 'builder/units/containers/buttons/AddUnitButton';
 import UnitPanel from 'codex/components/UnitPanel';
 
+import labelMessages from 'i18n/label';
+import unitMessages from 'i18n/unit';
 import unitNameMessages from 'i18n/unitName';
 import unitRoleMessages from 'i18n/role';
 
@@ -53,11 +55,18 @@ class AddUnitScrollablePanel extends Component {
          detailsLayer = undefined;
       }
 
+      const headers = [];
+      headers.push(this.props.intl.formatMessage(labelMessages.add));
+      headers.push(this.props.intl.formatMessage(unitMessages.name));
+      headers.push(this.props.intl.formatMessage(unitMessages.role));
+      headers.push(this.props.intl.formatMessage(unitMessages.cost));
+      headers.push(this.props.intl.formatMessage(labelMessages.info));
+
       return (
          <Box>
             {detailsLayer}
             <Table onMore={this.props.onMore}>
-               <TableHeader labels={['add', 'player', 'role', 'cost', 'info']} />
+               <TableHeader labels={headers} />
                <tbody>
                   { this.props.source.map((unit, i) =>
                      <TableRow key={i}>

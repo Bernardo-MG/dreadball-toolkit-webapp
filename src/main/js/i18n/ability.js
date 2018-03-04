@@ -1,6 +1,6 @@
 import { defineMessages } from 'react-intl';
 
-const unitMessages = defineMessages({
+const abilityMessages = defineMessages({
    adaptable: {
       id: 'ability.adaptable',
       defaultMessage: 'Adaptable'
@@ -319,4 +319,4 @@ const unitMessages = defineMessages({
    }
 });
 
-export default unitMessages;
+export default abilityMessages;
