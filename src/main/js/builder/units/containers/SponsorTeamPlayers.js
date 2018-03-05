@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { injectIntl } from 'react-intl';
 
-import AddUnitScrollablePanel from 'builder/units/components/AddUnitScrollablePanel';
+import UnitScrollablePanel from 'builder/units/components/UnitScrollablePanel';
 
 import { removeTeamUnit } from 'builder/units/actions';
 
@@ -15,11 +15,11 @@ import { selectSponsorRatedUnits } from 'builder/units/selectors';
 
 import SubtractIcon from 'grommet/components/icons/base/SubtractCircle';
 
-const SponsorUnitNameList = (props) =>
-   <AddUnitScrollablePanel source={props.source}
+const SponsorTeamPlayers = (props) =>
+   <UnitScrollablePanel source={props.source}
       buttonAction={props.buttonAction} buttonIcon={<SubtractIcon />} />;
 
-SponsorUnitNameList.propTypes = {
+SponsorTeamPlayers.propTypes = {
    source: PropTypes.array.isRequired,
    buttonAction: PropTypes.func.isRequired,
    intl: PropTypes.object.isRequired
@@ -40,4 +40,4 @@ const mapDispatchToProps = (dispatch) => {
 export default injectIntl(connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorUnitNameList));
+)(SponsorTeamPlayers));

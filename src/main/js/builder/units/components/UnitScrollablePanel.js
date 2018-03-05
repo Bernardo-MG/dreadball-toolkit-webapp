@@ -20,7 +20,7 @@ import unitMessages from 'i18n/unit';
 import unitNameMessages from 'i18n/unitName';
 import unitRoleMessages from 'i18n/role';
 
-class AddUnitScrollablePanel extends Component {
+class UnitScrollablePanel extends Component {
 
    constructor(props) {
       super(props);
@@ -83,7 +83,7 @@ class AddUnitScrollablePanel extends Component {
    }
 }
 
-AddUnitScrollablePanel.propTypes = {
+UnitScrollablePanel.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func.isRequired,
    buttonAction: PropTypes.func.isRequired,
@@ -91,4 +91,4 @@ AddUnitScrollablePanel.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(AddUnitScrollablePanel);
+export default injectIntl(UnitScrollablePanel);

@@ -7,7 +7,7 @@ import Heading from 'grommet/components/Heading';
 import Split from 'grommet/components/Split';
 
 import SponsorAffinitiesList from 'builder/affinities/containers/SponsorAffinitiesList';
-import SponsorUnitNameList from 'builder/units/containers/SponsorUnitNameList';
+import SponsorTeamPlayers from 'builder/units/containers/SponsorTeamPlayers';
 
 import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
@@ -48,7 +48,7 @@ class SponsorTeamView extends Component {
          view =
             <Box>
                <Heading tag='h2'>players</Heading>
-               <SponsorUnitNameList />
+               <SponsorTeamPlayers />
             </Box>;
       } else if (this.state.view === 'assets') {
          view =
