@@ -55,7 +55,7 @@ class PlayerScrollablePanel extends Component {
       }
 
       const headers = [];
-      headers.push(this.props.intl.formatMessage(labelMessages.add));
+      headers.push('');
       headers.push(this.props.intl.formatMessage(playerMessages.name));
       headers.push(this.props.intl.formatMessage(playerMessages.role));
       headers.push(this.props.intl.formatMessage(playerMessages.cost));
