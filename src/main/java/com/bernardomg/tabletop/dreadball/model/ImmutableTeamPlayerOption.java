@@ -44,9 +44,9 @@ public class ImmutableTeamPlayerOption {
      * Default constructor.
      * 
      * @param name
-     *            unit name
+     *            player name
      * @param pos
-     *            unit position in team
+     *            player position in team
      */
     public ImmutableTeamPlayerOption(final Integer pos, final String name) {
         super();
@@ -59,7 +59,7 @@ public class ImmutableTeamPlayerOption {
      * Default constructor.
      * 
      * @param name
-     *            unit name
+     *            player name
      */
     public ImmutableTeamPlayerOption(final String name) {
         super();

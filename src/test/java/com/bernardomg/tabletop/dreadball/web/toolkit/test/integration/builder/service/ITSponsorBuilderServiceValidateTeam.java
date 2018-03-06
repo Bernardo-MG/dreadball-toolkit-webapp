@@ -182,7 +182,7 @@ public final class ITSponsorBuilderServiceValidateTeam
     }
 
     /**
-     * Verifies that when there are no units then none is returned.
+     * Verifies that when there are no players then none is returned.
      */
     @Test
     public final void testValidate_NoTeamPlayers_NoReturnedTeamPlayers() {
@@ -218,8 +218,8 @@ public final class ITSponsorBuilderServiceValidateTeam
     }
 
     /**
-     * Verifies that when there are repeated units the returned ones do not
-     * include repeated units.
+     * Verifies that when there are repeated players the returned ones do not
+     * include repeated players.
      */
     @Test
     public final void
@@ -258,7 +258,7 @@ public final class ITSponsorBuilderServiceValidateTeam
     }
 
     /**
-     * Verifies that when there are affinities the correct unit cost is
+     * Verifies that when there are affinities the correct player cost is
      * returned.
      */
     @Test
@@ -279,7 +279,7 @@ public final class ITSponsorBuilderServiceValidateTeam
     }
 
     /**
-     * Verifies that when there are no affinities the correct unit cost is
+     * Verifies that when there are no affinities the correct player cost is
      * returned.
      */
     @Test
@@ -299,7 +299,7 @@ public final class ITSponsorBuilderServiceValidateTeam
     }
 
     /**
-     * Verifies that valid units are returned.
+     * Verifies that valid players are returned.
      */
     @Test
     public final void testValidate_TeamPlayers_ReturnsExpectedTeamPlayers() {

@@ -126,40 +126,40 @@ public final class TestTeamPlayerCodexControllerPagination {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private final CodexService getCodexService() {
         final CodexService service;   // Mocked service
-        final Collection<TeamPlayer> units; // Returned units
+        final Collection<TeamPlayer> players; // Returned players
 
         service = Mockito.mock(CodexService.class);
 
-        units = new ArrayList<>();
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players = new ArrayList<>();
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
         captor = ArgumentCaptor.forClass(Pageable.class);
 
         Mockito.when(service.getAffinityTeamPlayers(captor.capture()))
-                .thenReturn((Iterable) units);
+                .thenReturn((Iterable) players);
 
         return service;
     }
 
     /**
-     * Returns a request builder prepared for reading units.
+     * Returns a request builder prepared for reading players.
      * 
-     * @return a request builder prepared for reading units
+     * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_UNITS);
+        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_PLAYERS);
     }
 
     /**
-     * Returns a request builder prepared for reading units and a page set.
+     * Returns a request builder prepared for reading players and a page set.
      * 
-     * @return a request builder prepared for reading units
+     * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequestWithPage() {
         return MockMvcRequestBuilders
-                .get(UrlTeamPlayerCodexConfig.URL_UNITS + "?page=10");
+                .get(UrlTeamPlayerCodexConfig.URL_PLAYERS + "?page=10");
     }
 
 }

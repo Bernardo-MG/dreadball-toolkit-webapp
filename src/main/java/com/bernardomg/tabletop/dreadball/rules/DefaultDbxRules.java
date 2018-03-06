@@ -40,17 +40,17 @@ public class DefaultDbxRules implements DbxRules {
     }
 
     @Override
-    public final AffinityLevel getAffinityLevel(final AffinityTeamPlayer unit,
+    public final AffinityLevel getAffinityLevel(final AffinityTeamPlayer player,
             final Iterable<? extends AffinityGroup> affinities) {
         final AffinityLevel level; // Affinity level
         final Set<String> affs;    // TeamPlayer affinities
         Integer coincidences;      // Affinity coincidences
 
         checkNotNull(affinities, "Received a null pointer as affinities");
-        checkNotNull(unit, "Received a null pointer as unit");
+        checkNotNull(player, "Received a null pointer as player");
 
         coincidences = 0;
-        affs = unit.getAffinityGroups().stream().map(AffinityGroup::getName)
+        affs = player.getAffinityGroups().stream().map(AffinityGroup::getName)
                 .collect(Collectors.toSet());
         for (final AffinityGroup affinityGroup : affinities) {
             if (affs.contains(affinityGroup.getName())) {
@@ -71,22 +71,22 @@ public class DefaultDbxRules implements DbxRules {
 
     @Override
     public final Integer getTeamPlayerCost(final AffinityLevel affinityLevel,
-            final AffinityTeamPlayer unit) {
+            final AffinityTeamPlayer player) {
         final Integer cost;                // TeamPlayer cost
 
         checkNotNull(affinityLevel,
                 "Received a null pointer as affinity level");
-        checkNotNull(unit, "Received a null pointer as unit");
+        checkNotNull(player, "Received a null pointer as player");
 
         switch (affinityLevel) {
             case FRIEND:
-                cost = unit.getFriendCost();
+                cost = player.getFriendCost();
                 break;
             case ALLY:
-                cost = unit.getAllyCost();
+                cost = player.getAllyCost();
                 break;
             default:
-                cost = unit.getStrangerCost();
+                cost = player.getStrangerCost();
                 break;
         }
 

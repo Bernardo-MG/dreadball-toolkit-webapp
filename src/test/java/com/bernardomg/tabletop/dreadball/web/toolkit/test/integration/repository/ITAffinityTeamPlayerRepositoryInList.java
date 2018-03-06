@@ -26,7 +26,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
+import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
@@ -44,34 +44,34 @@ public class ITAffinityTeamPlayerRepositoryInList
     public final void testFindByTemplateNameIn_ExpectedAffinities() {
         final Collection<String> names;
         final Collection<PersistentAffinityTeamPlayer> result;
-        final PersistentAffinityTeamPlayer unit;
+        final PersistentAffinityTeamPlayer player;
 
         names = new ArrayList<>();
         names.add(TestValues.PLAYER_1);
 
         result = repository.findByTemplateNameIn(names);
 
-        unit = result.iterator().next();
+        player = result.iterator().next();
 
-        Assert.assertEquals(1, unit.getAffinityGroups().size());
+        Assert.assertEquals(1, player.getAffinityGroups().size());
     }
 
     @Test
     public final void testFindByTemplateNameIn_ExpectedCostRange() {
         final Collection<String> names;
         final Collection<PersistentAffinityTeamPlayer> result;
-        final PersistentAffinityTeamPlayer unit;
+        final PersistentAffinityTeamPlayer player;
 
         names = new ArrayList<>();
         names.add(TestValues.PLAYER_1);
 
         result = repository.findByTemplateNameIn(names);
 
-        unit = result.iterator().next();
+        player = result.iterator().next();
 
-        Assert.assertEquals(new Integer(23), unit.getStrangerCost());
-        Assert.assertEquals(new Integer(15), unit.getAllyCost());
-        Assert.assertEquals(new Integer(10), unit.getFriendCost());
+        Assert.assertEquals(new Integer(23), player.getStrangerCost());
+        Assert.assertEquals(new Integer(15), player.getAllyCost());
+        Assert.assertEquals(new Integer(10), player.getFriendCost());
     }
 
     @Test

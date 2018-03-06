@@ -115,9 +115,9 @@ public final class TestSponsorQueryControllerAffinities {
     }
 
     /**
-     * Returns a request builder prepared for reading units.
+     * Returns a request builder prepared for reading players.
      * 
-     * @return a request builder prepared for reading units
+     * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequest() {
         return MockMvcRequestBuilders

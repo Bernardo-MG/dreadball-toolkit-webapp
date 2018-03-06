@@ -32,8 +32,8 @@ import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsA
 import com.bernardomg.tabletop.dreadball.model.persistence.availability.affinity.PersistentSponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityGroup;
 import com.bernardomg.tabletop.dreadball.repository.availability.SponsorAffinityGroupAvailabilityRepository;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityGroupRepository;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
+import com.bernardomg.tabletop.dreadball.repository.player.AffinityGroupRepository;
+import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
 import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 import com.google.common.collect.Iterables;

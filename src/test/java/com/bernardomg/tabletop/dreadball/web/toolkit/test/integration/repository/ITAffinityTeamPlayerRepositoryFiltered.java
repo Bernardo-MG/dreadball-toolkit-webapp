@@ -28,7 +28,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
+import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
 public class ITAffinityTeamPlayerRepositoryFiltered
@@ -46,19 +46,19 @@ public class ITAffinityTeamPlayerRepositoryFiltered
             testFindAll_FilteredByHatedAffinities_ExpectedAffinities() {
         final Collection<String> affinities;
         final Pageable pageReq;
-        final Iterable<PersistentAffinityTeamPlayer> units;
-        final PersistentAffinityTeamPlayer unit;
+        final Iterable<PersistentAffinityTeamPlayer> players;
+        final PersistentAffinityTeamPlayer player;
 
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
 
         pageReq = new PageRequest(0, 10);
 
-        units = repository.findAllFilteredByHatedAffinities(affinities,
+        players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
-        unit = units.iterator().next();
+        player = players.iterator().next();
 
-        Assert.assertEquals(1, unit.getAffinityGroups().size());
+        Assert.assertEquals(1, player.getAffinityGroups().size());
     }
 
     @Test
@@ -66,21 +66,21 @@ public class ITAffinityTeamPlayerRepositoryFiltered
             testFindAll_FilteredByHatedAffinities_ExpectedCostRange() {
         final Collection<String> affinities;
         final Pageable pageReq;
-        final Iterable<PersistentAffinityTeamPlayer> units;
-        final PersistentAffinityTeamPlayer unit;
+        final Iterable<PersistentAffinityTeamPlayer> players;
+        final PersistentAffinityTeamPlayer player;
 
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
 
         pageReq = new PageRequest(0, 10);
 
-        units = repository.findAllFilteredByHatedAffinities(affinities,
+        players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
-        unit = units.iterator().next();
+        player = players.iterator().next();
 
-        Assert.assertEquals(new Integer(23), unit.getStrangerCost());
-        Assert.assertEquals(new Integer(15), unit.getAllyCost());
-        Assert.assertEquals(new Integer(10), unit.getFriendCost());
+        Assert.assertEquals(new Integer(23), player.getStrangerCost());
+        Assert.assertEquals(new Integer(15), player.getAllyCost());
+        Assert.assertEquals(new Integer(10), player.getFriendCost());
     }
 
     @Test

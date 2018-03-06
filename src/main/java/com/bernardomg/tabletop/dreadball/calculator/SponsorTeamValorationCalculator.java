@@ -120,8 +120,8 @@ public final class SponsorTeamValorationCalculator
         checkNotNull(team, "Received a null pointer as the team");
 
         valoration = 0;
-        for (final TeamPlayer unit : team.getPlayers().values()) {
-            valoration += unit.getCost();
+        for (final TeamPlayer player : team.getPlayers().values()) {
+            valoration += player.getCost();
         }
 
         valoration += team.getCoachingDice() * getDieCost();

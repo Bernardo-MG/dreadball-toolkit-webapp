@@ -31,9 +31,9 @@ import org.springframework.stereotype.Component;
 public final class AutowiredSponsorConstraints implements SponsorConstraints {
 
     /**
-     * Maximum number of units a Sponsor may have.
+     * Maximum number of players a Sponsor may have.
      */
-    private final Integer maxTeamUnits;
+    private final Integer maxTeamPlayers;
 
     /**
      * Maximum recommended team valoration.
@@ -41,9 +41,9 @@ public final class AutowiredSponsorConstraints implements SponsorConstraints {
     private final Integer maxTeamValoration;
 
     /**
-     * Minimum number of units a Sponsor may have.
+     * Minimum number of players a Sponsor may have.
      */
-    private final Integer minTeamUnits;
+    private final Integer minTeamPlayers;
 
     /**
      * Minimum team valoration.
@@ -54,10 +54,10 @@ public final class AutowiredSponsorConstraints implements SponsorConstraints {
      * Creates a DBX team builder with the specified dependencies.
      * 
      * 
-     * @param minUnits
-     *            minimum allowed units
-     * @param maxUnits
-     *            maximum allowed units
+     * @param minPlayers
+     *            minimum allowed players
+     * @param maxPlayers
+     *            maximum allowed players
      * @param minValoration
      *            minimum allowed valoration
      * @param maxValoration
@@ -65,16 +65,16 @@ public final class AutowiredSponsorConstraints implements SponsorConstraints {
      */
     @Autowired
     public AutowiredSponsorConstraints(
-            @Value("${sponsor.players.min}") final Integer minUnits,
-            @Value("${sponsor.players.max}") final Integer maxUnits,
+            @Value("${sponsor.players.min}") final Integer minPlayers,
+            @Value("${sponsor.players.max}") final Integer maxPlayers,
             @Value("${sponsor.team.valoration.min}") final Integer minValoration,
             @Value("${sponsor.team.valoration.max}") final Integer maxValoration) {
         super();
 
-        minTeamUnits = checkNotNull(minUnits,
-                "Received a null pointer as team units minimum");
-        maxTeamUnits = checkNotNull(maxUnits,
-                "Received a null pointer as team units maximum");
+        minTeamPlayers = checkNotNull(minPlayers,
+                "Received a null pointer as team players minimum");
+        maxTeamPlayers = checkNotNull(maxPlayers,
+                "Received a null pointer as team players maximum");
 
         minTeamValoration = checkNotNull(minValoration,
                 "Received a null pointer as maximum valoration");
@@ -83,8 +83,8 @@ public final class AutowiredSponsorConstraints implements SponsorConstraints {
     }
 
     @Override
-    public final Integer getMaxTeamUnits() {
-        return maxTeamUnits;
+    public final Integer getMaxTeamPlayers() {
+        return maxTeamPlayers;
     }
 
     @Override
@@ -93,8 +93,8 @@ public final class AutowiredSponsorConstraints implements SponsorConstraints {
     }
 
     @Override
-    public final Integer getMinTeamUnits() {
-        return minTeamUnits;
+    public final Integer getMinTeamPlayers() {
+        return minTeamPlayers;
     }
 
     @Override

@@ -118,22 +118,22 @@ public final class TestSponsorQueryControllerTeamPlayersPagination {
     }
 
     /**
-     * Returns a request builder prepared for reading units.
+     * Returns a request builder prepared for reading players.
      * 
-     * @return a request builder prepared for reading units
+     * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlDbxTeamBuilderConfig.URL_UNITS);
+        return MockMvcRequestBuilders.get(UrlDbxTeamBuilderConfig.URL_PLAYERS);
     }
 
     /**
-     * Returns a request builder prepared for reading units and a page set.
+     * Returns a request builder prepared for reading players and a page set.
      * 
-     * @return a request builder prepared for reading units
+     * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequestWithPage() {
         return MockMvcRequestBuilders
-                .get(UrlDbxTeamBuilderConfig.URL_UNITS + "?page=10");
+                .get(UrlDbxTeamBuilderConfig.URL_PLAYERS + "?page=10");
     }
 
     /**
@@ -146,20 +146,20 @@ public final class TestSponsorQueryControllerTeamPlayersPagination {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private final SponsorBuilderService getSponsorBuilderService() {
         final SponsorBuilderService service;   // Mocked service
-        final Collection units; // Returned units
+        final Collection players; // Returned players
 
         service = Mockito.mock(SponsorBuilderService.class);
 
-        units = new ArrayList<>();
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players = new ArrayList<>();
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
         captor = ArgumentCaptor.forClass(Pageable.class);
 
         Mockito.when(
                 service.getTeamPlayerOptions(Matchers.any(), captor.capture()))
-                .thenReturn(units);
+                .thenReturn(players);
 
         return service;
     }

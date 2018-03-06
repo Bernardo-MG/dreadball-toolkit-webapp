@@ -55,13 +55,13 @@ public final class TestDefaultDbxRulesAffinityLevel {
      */
     @Test
     public final void testAffinityLevel_NoAffinities_Stranger() {
-        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
+        final AffinityTeamPlayer player; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
 
-        // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityTeamPlayer.class);
+        // Mocks sponsor and player
+        player = Mockito.mock(AffinityTeamPlayer.class);
 
-        aff = dbxTeamBuilderService.getAffinityLevel(unit, new ArrayList<>());
+        aff = dbxTeamBuilderService.getAffinityLevel(player, new ArrayList<>());
 
         Assert.assertEquals(AffinityLevel.STRANGER, aff);
     }
@@ -71,34 +71,34 @@ public final class TestDefaultDbxRulesAffinityLevel {
      */
     @Test
     public final void testAffinityLevel_NoSponsorAffinities_Stranger() {
-        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
+        final AffinityTeamPlayer player; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
         final Collection<AffinityGroup> affs; // Affinities
 
-        // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityTeamPlayer.class);
+        // Mocks sponsor and player
+        player = Mockito.mock(AffinityTeamPlayer.class);
 
-        // Mocks unit affinities
+        // Mocks player affinities
         affs = getAffinities();
-        Mockito.when(unit.getAffinityGroups()).thenReturn(affs);
+        Mockito.when(player.getAffinityGroups()).thenReturn(affs);
 
-        aff = dbxTeamBuilderService.getAffinityLevel(unit, new ArrayList<>());
+        aff = dbxTeamBuilderService.getAffinityLevel(player, new ArrayList<>());
 
         Assert.assertEquals(AffinityLevel.STRANGER, aff);
     }
 
     /**
-     * Tests that when the unit has no affinities the level is 'stranger'.
+     * Tests that when the player has no affinities the level is 'stranger'.
      */
     @Test
     public final void testAffinityLevel_NoTeamPlayerAffinities_Stranger() {
-        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
+        final AffinityTeamPlayer player; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
 
-        // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityTeamPlayer.class);
+        // Mocks sponsor and player
+        player = Mockito.mock(AffinityTeamPlayer.class);
 
-        aff = dbxTeamBuilderService.getAffinityLevel(unit, getAffinities());
+        aff = dbxTeamBuilderService.getAffinityLevel(player, getAffinities());
 
         Assert.assertEquals(AffinityLevel.STRANGER, aff);
     }
@@ -108,23 +108,23 @@ public final class TestDefaultDbxRulesAffinityLevel {
      */
     @Test
     public final void testAffinityLevel_OneShared_Ally() {
-        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
+        final AffinityTeamPlayer player; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
-        final Collection<AffinityGroup> unitAffs; // TeamPlayer affinities
+        final Collection<AffinityGroup> playerAffs; // TeamPlayer affinities
         final Collection<AffinityGroup> spnsAffs; // Sponsor affinities
 
-        // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityTeamPlayer.class);
+        // Mocks sponsor and player
+        player = Mockito.mock(AffinityTeamPlayer.class);
 
-        // Mocks unit affinities
-        unitAffs = getAffinities();
-        Mockito.when(unit.getAffinityGroups()).thenReturn(unitAffs);
+        // Mocks player affinities
+        playerAffs = getAffinities();
+        Mockito.when(player.getAffinityGroups()).thenReturn(playerAffs);
 
         // Mocks sponsor affinities
         spnsAffs = new ArrayList<>();
-        spnsAffs.add(unitAffs.iterator().next());
+        spnsAffs.add(playerAffs.iterator().next());
 
-        aff = dbxTeamBuilderService.getAffinityLevel(unit, spnsAffs);
+        aff = dbxTeamBuilderService.getAffinityLevel(player, spnsAffs);
 
         Assert.assertEquals(AffinityLevel.ALLY, aff);
     }
@@ -134,18 +134,18 @@ public final class TestDefaultDbxRulesAffinityLevel {
      */
     @Test
     public final void testAffinityLevel_ThreeAffinities_Friend() {
-        final AffinityTeamPlayer unit; // TeamPlayer to find the affinity for
+        final AffinityTeamPlayer player; // TeamPlayer to find the affinity for
         final AffinityLevel aff; // Affinity level
         final Collection<AffinityGroup> affs; // Affinities
 
-        // Mocks sponsor and unit
-        unit = Mockito.mock(AffinityTeamPlayer.class);
+        // Mocks sponsor and player
+        player = Mockito.mock(AffinityTeamPlayer.class);
 
         // Mocks affinities
         affs = getAffinities();
-        Mockito.when(unit.getAffinityGroups()).thenReturn(affs);
+        Mockito.when(player.getAffinityGroups()).thenReturn(affs);
 
-        aff = dbxTeamBuilderService.getAffinityLevel(unit, affs);
+        aff = dbxTeamBuilderService.getAffinityLevel(player, affs);
 
         Assert.assertEquals(AffinityLevel.FRIEND, aff);
     }

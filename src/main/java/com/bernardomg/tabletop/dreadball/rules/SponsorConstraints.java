@@ -24,11 +24,11 @@ package com.bernardomg.tabletop.dreadball.rules;
 public interface SponsorConstraints {
 
     /**
-     * Returns the maximum number of units a Sponsor may have.
+     * Returns the maximum number of players a Sponsor may have.
      * 
-     * @return the Sponsors maximum number of units
+     * @return the Sponsors maximum number of players
      */
-    public Integer getMaxTeamUnits();
+    public Integer getMaxTeamPlayers();
 
     /**
      * Returns the maximum recommended valoration for a team.
@@ -38,11 +38,11 @@ public interface SponsorConstraints {
     public Integer getMaxTeamValoration();
 
     /**
-     * Returns the minimum number of units a Sponsor should have.
+     * Returns the minimum number of players a Sponsor should have.
      * 
-     * @return the Sponsors minimum number of units
+     * @return the Sponsors minimum number of players
      */
-    public Integer getMinTeamUnits();
+    public Integer getMinTeamPlayers();
 
     /**
      * Returns the minimum valoration a should have team.

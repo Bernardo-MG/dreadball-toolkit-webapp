@@ -52,7 +52,7 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * Verifies that the units can be read.
+     * Verifies that the players can be read.
      */
     @Test
     public final void testGetAffinityTeamPlayers_ReturnsExpected() {
@@ -66,7 +66,7 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * Verifies that the units are returned inside a page.
+     * Verifies that the players are returned inside a page.
      */
     @Test
     public final void testGetAffinityTeamPlayers_ReturnsPage() {

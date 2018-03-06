@@ -38,7 +38,7 @@ import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTe
 
 /**
  * TeamPlayer tests for {@link SponsorQueryController}, validating the results
- * of REST requests for units.
+ * of REST requests for players.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -93,28 +93,28 @@ public final class TestSponsorQueryControllerTeamPlayers {
     @SuppressWarnings({ "unchecked", "rawtypes" })
     private final SponsorQueryController getController() {
         final SponsorBuilderService service;  // Mocked service
-        final Collection units; // Returned units
+        final Collection players; // Returned players
 
         service = Mockito.mock(SponsorBuilderService.class);
 
-        units = new ArrayList<>();
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players = new ArrayList<>();
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
         Mockito.when(service.getTeamPlayerOptions(org.mockito.Matchers.any(),
-                org.mockito.Matchers.any())).thenReturn(units);
+                org.mockito.Matchers.any())).thenReturn(players);
 
         return new SponsorQueryController(service);
     }
 
     /**
-     * Returns a request builder prepared for reading units.
+     * Returns a request builder prepared for reading players.
      * 
-     * @return a request builder prepared for reading units
+     * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlDbxTeamBuilderConfig.URL_UNITS);
+        return MockMvcRequestBuilders.get(UrlDbxTeamBuilderConfig.URL_PLAYERS);
     }
 
 }

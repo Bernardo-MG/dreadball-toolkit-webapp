@@ -54,12 +54,12 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         final Paragraph general;
         final Paragraph assets;
-        final Paragraph units;
+        final Paragraph players;
         final Paragraph affinities;
 
         general = getGeneralParagraph(team, paragraphFont);
         assets = getAssetsParagraph(team, paragraphFont);
-        units = getUnitsParagraph(team, paragraphFont);
+        players = getPlayersParagraph(team, paragraphFont);
         affinities = getAffinitiesParagraph(team, paragraphFont);
 
         final Paragraph header = new Paragraph(chunk);
@@ -71,7 +71,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         document.add(general);
         document.add(assets);
         document.add(affinities);
-        document.add(units);
+        document.add(players);
         document.close();
     }
 
@@ -205,20 +205,20 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         return paragraph;
     }
 
-    private final Paragraph getUnitsParagraph(final SponsorTeam team,
+    private final Paragraph getPlayersParagraph(final SponsorTeam team,
             final Font paragraphFont) {
         final Paragraph paragraph;
         final PdfPTable table;
 
         paragraph = new Paragraph();
 
-        paragraph.add(new Paragraph("units", paragraphFont));
+        paragraph.add(new Paragraph("players", paragraphFont));
 
         table = new PdfPTable(3);
         paragraph.add(table);
 
         // Adds headers
-        Stream.of("position", "unit", "cost").forEach(columnTitle -> {
+        Stream.of("position", "player", "cost").forEach(columnTitle -> {
             final PdfPCell header = new PdfPCell();
             header.setBackgroundColor(BaseColor.LIGHT_GRAY);
             header.setBorderWidth(2);

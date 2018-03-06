@@ -59,7 +59,7 @@ public class ITSponsorBuilderServiceTeamPlayers
     }
 
     /**
-     * Verifies that the units have the expected value when there are
+     * Verifies that the players have the expected value when there are
      * affinities.
      */
     @Test
@@ -79,7 +79,7 @@ public class ITSponsorBuilderServiceTeamPlayers
     }
 
     /**
-     * Verifies that units hating the received affinities are not returned.
+     * Verifies that players hating the received affinities are not returned.
      */
     @Test
     public final void testGetAffinityTeamPlayers_IgnoresHated() {
@@ -97,7 +97,7 @@ public class ITSponsorBuilderServiceTeamPlayers
     }
 
     /**
-     * Verifies that the units have the expected value when there are no
+     * Verifies that the players have the expected value when there are no
      * affinities.
      */
     @Test
@@ -116,7 +116,7 @@ public class ITSponsorBuilderServiceTeamPlayers
     }
 
     /**
-     * Verifies that the units can be read.
+     * Verifies that the players can be read.
      */
     @Test
     public final void testGetAffinityTeamPlayers_ReturnsExpected() {
@@ -133,7 +133,7 @@ public class ITSponsorBuilderServiceTeamPlayers
     }
 
     /**
-     * Verifies that the units are returned inside a page.
+     * Verifies that the players are returned inside a page.
      */
     @Test
     public final void testGetTeamPlayers_ReturnsPage() {

@@ -28,30 +28,31 @@ import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 public interface DbxRules {
 
     /**
-     * Returns the affinity level for a unit and a specific group of affinities.
+     * Returns the affinity level for a player and a specific group of
+     * affinities.
      * <p>
-     * The number of affinities from the list owned by the unit will mark the
+     * The number of affinities from the list owned by the player will mark the
      * affinity level.
      * 
-     * @param unit
-     *            unit to find out the affinity level
+     * @param player
+     *            player to find out the affinity level
      * @param affinities
      *            affinities to find out the affinity level
-     * @return the affinity level between the Sponsor and the unit
+     * @return the affinity level between the Sponsor and the player
      */
-    public AffinityLevel getAffinityLevel(final AffinityTeamPlayer unit,
+    public AffinityLevel getAffinityLevel(final AffinityTeamPlayer player,
             final Iterable<? extends AffinityGroup> affinities);
 
     /**
-     * Returns the unit cost.
+     * Returns the player cost.
      * 
      * @param affinityLevel
      *            affinity level to search the cost for
-     * @param unit
-     *            unit to find out the cost
-     * @return the cost of the unit for the affinity level
+     * @param player
+     *            player to find out the cost
+     * @return the cost of the player for the affinity level
      */
     public Integer getTeamPlayerCost(final AffinityLevel affinityLevel,
-            final AffinityTeamPlayer unit);
+            final AffinityTeamPlayer player);
 
 }

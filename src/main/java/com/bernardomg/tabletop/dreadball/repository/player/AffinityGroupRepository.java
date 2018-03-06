@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.repository.unit;
+package com.bernardomg.tabletop.dreadball.repository.player;
 
 import java.util.Collection;
 

@@ -33,7 +33,7 @@ import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
 import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 
 /**
- * Controller for the unit codex views.
+ * Controller for the player codex views.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -49,23 +49,23 @@ public class TeamPlayerCodexController {
      * <p>
      * This allows querying for the data to be shown.
      */
-    private final CodexService  unitCodexService;
+    private final CodexService  playerCodexService;
 
     /**
      * Constructs a controller with the specified dependencies.
      * 
      * @param codex
-     *            unit codex service
+     *            player codex service
      */
     public TeamPlayerCodexController(final CodexService codex) {
         super();
 
-        unitCodexService = checkNotNull(codex,
-                "Received a null pointer as unit codex service");
+        playerCodexService = checkNotNull(codex,
+                "Received a null pointer as player codex service");
     }
 
     /**
-     * Returns a group of units with affinities.
+     * Returns a group of players with affinities.
      * 
      * @param page
      *            page number
@@ -75,7 +75,7 @@ public class TeamPlayerCodexController {
      *            field to order by
      * @param direction
      *            ordering direction
-     * @return a group of units with affinities
+     * @return a group of players with affinities
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final Iterable<? extends TeamPlayer> getAffinityTeamPlayers(
@@ -108,12 +108,12 @@ public class TeamPlayerCodexController {
     }
 
     /**
-     * Returns the unit codex service.
+     * Returns the player codex service.
      * 
-     * @return the unit codex service
+     * @return the player codex service
      */
     private final CodexService getCodexService() {
-        return unitCodexService;
+        return playerCodexService;
     }
 
 }

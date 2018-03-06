@@ -23,21 +23,21 @@ import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 /**
  * Service for the codex.
  * <p>
- * It takes care of queries for game data, such as units info.
+ * It takes care of queries for game data, such as players info.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public interface CodexService {
 
     /**
-     * Returns a group of units with affinities.
+     * Returns a group of players with affinities.
      * <p>
      * These have a group of affinities which will mark the final cost of the
-     * unit.
+     * player.
      * 
      * @param pageable
      *            pagination data
-     * @return all the units
+     * @return all the players
      */
     public Iterable<? extends TeamPlayer>
             getAffinityTeamPlayers(final Pageable pageable);

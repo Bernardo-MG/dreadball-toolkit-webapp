@@ -26,7 +26,7 @@ public final class UrlTeamPlayerCodexConfig {
     /**
      * TeamPlayers REST endpoint.
      */
-    public static final String URL_UNITS = "/rest/players";
+    public static final String URL_PLAYERS = "/rest/players";
 
     /**
      * Default constructor to avoid initialization.

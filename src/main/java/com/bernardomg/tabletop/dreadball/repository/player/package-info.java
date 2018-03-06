@@ -14,7 +14,7 @@
  * the License.
  */
 /**
- * Units repositories.
+ * Players repositories.
  */
 
-package com.bernardomg.tabletop.dreadball.repository.unit;
+package com.bernardomg.tabletop.dreadball.repository.player;

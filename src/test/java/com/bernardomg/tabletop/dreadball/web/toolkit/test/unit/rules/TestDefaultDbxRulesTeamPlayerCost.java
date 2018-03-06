@@ -51,19 +51,19 @@ public final class TestDefaultDbxRulesTeamPlayerCost {
      */
     @Test
     public final void testTeamPlayerCost_Ally_AllyCost() {
-        final AffinityTeamPlayer unit;
+        final AffinityTeamPlayer player;
         final Integer cost;
 
-        // Mocks unit
-        unit = Mockito.mock(AffinityTeamPlayer.class);
+        // Mocks player
+        player = Mockito.mock(AffinityTeamPlayer.class);
 
-        // Mocks unit costs
-        Mockito.when(unit.getAllyCost()).thenReturn(1);
-        Mockito.when(unit.getFriendCost()).thenReturn(2);
-        Mockito.when(unit.getStrangerCost()).thenReturn(3);
+        // Mocks player costs
+        Mockito.when(player.getAllyCost()).thenReturn(1);
+        Mockito.when(player.getFriendCost()).thenReturn(2);
+        Mockito.when(player.getStrangerCost()).thenReturn(3);
 
         cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.ALLY,
-                unit);
+                player);
 
         Assert.assertEquals((Integer) 1, cost);
     }
@@ -74,19 +74,19 @@ public final class TestDefaultDbxRulesTeamPlayerCost {
      */
     @Test
     public final void testTeamPlayerCost_Friend_FriendCost() {
-        final AffinityTeamPlayer unit;
+        final AffinityTeamPlayer player;
         final Integer cost;
 
-        // Mocks unit
-        unit = Mockito.mock(AffinityTeamPlayer.class);
+        // Mocks player
+        player = Mockito.mock(AffinityTeamPlayer.class);
 
-        // Mocks unit costs
-        Mockito.when(unit.getAllyCost()).thenReturn(1);
-        Mockito.when(unit.getFriendCost()).thenReturn(2);
-        Mockito.when(unit.getStrangerCost()).thenReturn(3);
+        // Mocks player costs
+        Mockito.when(player.getAllyCost()).thenReturn(1);
+        Mockito.when(player.getFriendCost()).thenReturn(2);
+        Mockito.when(player.getStrangerCost()).thenReturn(3);
 
         cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.FRIEND,
-                unit);
+                player);
 
         Assert.assertEquals((Integer) 2, cost);
     }
@@ -97,19 +97,19 @@ public final class TestDefaultDbxRulesTeamPlayerCost {
      */
     @Test
     public final void testTeamPlayerCost_Stranger_StrangerCost() {
-        final AffinityTeamPlayer unit;
+        final AffinityTeamPlayer player;
         final Integer cost;
 
-        // Mocks unit
-        unit = Mockito.mock(AffinityTeamPlayer.class);
+        // Mocks player
+        player = Mockito.mock(AffinityTeamPlayer.class);
 
-        // Mocks unit costs
-        Mockito.when(unit.getAllyCost()).thenReturn(1);
-        Mockito.when(unit.getFriendCost()).thenReturn(2);
-        Mockito.when(unit.getStrangerCost()).thenReturn(3);
+        // Mocks player costs
+        Mockito.when(player.getAllyCost()).thenReturn(1);
+        Mockito.when(player.getFriendCost()).thenReturn(2);
+        Mockito.when(player.getStrangerCost()).thenReturn(3);
 
         cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.STRANGER,
-                unit);
+                player);
 
         Assert.assertEquals((Integer) 3, cost);
     }

@@ -14,7 +14,7 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.repository.unit;
+package com.bernardomg.tabletop.dreadball.repository.player;
 
 import java.util.Collection;
 
@@ -27,7 +27,7 @@ import org.springframework.data.repository.query.Param;
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
 
 /**
- * Affinity units repository.
+ * Affinity players repository.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -35,14 +35,14 @@ public interface AffinityTeamPlayerRepository extends
         PagingAndSortingRepository<PersistentAffinityTeamPlayer, Integer> {
 
     /**
-     * Returns all the affinity units which does not hate any of the received
+     * Returns all the affinity players which does not hate any of the received
      * affinities.
      * 
      * @param affinities
-     *            affinities the units should not hate
+     *            affinities the players should not hate
      * @param pageReq
      *            pagination request
-     * @return all the units not hating any of the affinities
+     * @return all the players not hating any of the affinities
      */
     @Query("SELECT u FROM AffinityPlayer u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
     public Page<PersistentAffinityTeamPlayer> findAllFilteredByHatedAffinities(
@@ -50,14 +50,14 @@ public interface AffinityTeamPlayerRepository extends
             final Pageable pageReq);
 
     /**
-     * Returns all the affinity units with their template names contained in the
-     * list.
+     * Returns all the affinity players with their template names contained in
+     * the list.
      * <p>
-     * This will search for the template name, not the unit name.
+     * This will search for the template name, not the player name.
      * 
      * @param names
      *            wanted names
-     * @return affinity units with their name in the list
+     * @return affinity players with their name in the list
      */
     public Collection<PersistentAffinityTeamPlayer>
             findByTemplateNameIn(final Iterable<String> names);

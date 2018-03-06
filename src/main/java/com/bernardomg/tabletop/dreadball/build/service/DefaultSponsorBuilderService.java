@@ -43,8 +43,8 @@ import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.CostCalculator;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
 import com.bernardomg.tabletop.dreadball.repository.availability.SponsorAffinityGroupAvailabilityRepository;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityGroupRepository;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
+import com.bernardomg.tabletop.dreadball.repository.player.AffinityGroupRepository;
+import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
 import com.bernardomg.tabletop.dreadball.rules.DbxRules;
 import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 import com.google.common.collect.Lists;
@@ -87,9 +87,9 @@ public final class DefaultSponsorBuilderService
         sponsorDefaults = checkNotNull(defaults,
                 "Received a null pointer as Sponsor defaults service");
         affinityTeamPlayerRepository = checkNotNull(affTeamPlayerRepository,
-                "Received a null pointer as affinity units repository");
+                "Received a null pointer as affinity players repository");
         affinityGroupRepository = checkNotNull(affGroupRepository,
-                "Received a null pointer as affinity units repository");
+                "Received a null pointer as affinity players repository");
         rankCosts = checkNotNull(costsRank,
                 "Received a null pointer as rank costs");
         sponsorCosts = checkNotNull(costs, "Received a null pointer as costs");
@@ -112,24 +112,24 @@ public final class DefaultSponsorBuilderService
     public final Iterable<? extends TeamPlayer> getTeamPlayerOptions(
             final Collection<? extends AffinityGroup> affinities,
             final Pageable pageReq) {
-        final List<TeamPlayer> units;          // Available units
-        final Page<? extends AffinityTeamPlayer> filtered; // Filtered units
+        final List<TeamPlayer> players;          // Available players
+        final Page<? extends AffinityTeamPlayer> filtered; // Filtered players
         Integer cost; // TeamPlayer cost
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(pageReq, "Received a null pointer as pagination data");
 
-        // Only units not hating any affinity are acquired
+        // Only players not hating any affinity are acquired
         filtered = getTeamPlayersNotHatingAffinities(affinities, pageReq);
 
-        // The received units are adapted and configured
-        units = new ArrayList<>();
+        // The received players are adapted and configured
+        players = new ArrayList<>();
         for (final AffinityTeamPlayer affTeamPlayer : filtered) {
             cost = getTeamPlayerCost(affTeamPlayer, affinities);
-            units.add(generateTeamPlayer(affTeamPlayer, cost));
+            players.add(generateTeamPlayer(affTeamPlayer, cost));
         }
 
-        return new PageImpl<>(units, pageReq, filtered.getTotalElements());
+        return new PageImpl<>(players, pageReq, filtered.getTotalElements());
     }
 
     @Override
@@ -181,7 +181,7 @@ public final class DefaultSponsorBuilderService
 
     private final SponsorTeam assemble(
             final Iterable<? extends AffinityGroup> affinities,
-            final Iterable<AffinityTeamPlayer> units,
+            final Iterable<AffinityTeamPlayer> players,
             final SponsorTeamValidationSelection assets, final Integer rank) {
         final SponsorTeam sponsorTeam;
 
@@ -192,7 +192,7 @@ public final class DefaultSponsorBuilderService
         sponsorTeam.getSponsor()
                 .setAffinityGroups(Lists.newArrayList(affinities));
 
-        setPlayers(sponsorTeam, affinities, units);
+        setPlayers(sponsorTeam, affinities, players);
 
         sponsorTeam.setCheerleaders(assets.getCheerleaders());
         sponsorTeam.setCoachingDice(assets.getCoachingDice());
@@ -206,16 +206,16 @@ public final class DefaultSponsorBuilderService
 
     private final TeamPlayer generateTeamPlayer(
             final AffinityTeamPlayer affTeamPlayer, final Integer cost) {
-        final DefaultTeamPlayer unit;
+        final DefaultTeamPlayer player;
 
         // TODO: Use a new constructor including the name
-        unit = new DefaultTeamPlayer(affTeamPlayer.getTemplateName(), cost,
+        player = new DefaultTeamPlayer(affTeamPlayer.getTemplateName(), cost,
                 affTeamPlayer.getRole(), affTeamPlayer.getAttributes(),
                 affTeamPlayer.getAbilities(), affTeamPlayer.getMvp(),
                 affTeamPlayer.getGiant());
-        unit.setName(affTeamPlayer.getName());
+        player.setName(affTeamPlayer.getName());
 
-        return unit;
+        return player;
     }
 
     private final AffinityGroupRepository getAffinityGroupRepository() {
@@ -259,51 +259,51 @@ public final class DefaultSponsorBuilderService
     }
 
     /**
-     * Returns the actual cost for a unit for a sponsor.
+     * Returns the actual cost for a player for a sponsor.
      * 
-     * @param unit
-     *            unit to find the cost for
+     * @param player
+     *            player to find the cost for
      * @param affinities
      *            sponsor affinities
-     * @return the cost of the unit for the sponsor
+     * @return the cost of the player for the sponsor
      */
-    private final Integer getTeamPlayerCost(final AffinityTeamPlayer unit,
+    private final Integer getTeamPlayerCost(final AffinityTeamPlayer player,
             final Iterable<? extends AffinityGroup> affinities) {
         final AffinityLevel affinityLevel;  // Affinity level relationship
 
-        affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
+        affinityLevel = getDbxRules().getAffinityLevel(player, affinities);
 
-        return getDbxRules().getTeamPlayerCost(affinityLevel, unit);
+        return getDbxRules().getTeamPlayerCost(affinityLevel, player);
     }
 
     private final Iterable<AffinityTeamPlayer>
-            getTeamPlayers(final Collection<String> unitNames) {
+            getTeamPlayers(final Collection<String> playerNames) {
         final Collection<? extends AffinityTeamPlayer> read;
-        final Collection<AffinityTeamPlayer> units;
+        final Collection<AffinityTeamPlayer> players;
         final Map<String, ? extends AffinityTeamPlayer> readMap;
 
-        if (unitNames.isEmpty()) {
+        if (playerNames.isEmpty()) {
             read = Collections.emptyList();
         } else {
             read = getAffinityTeamPlayerRepository()
-                    .findByTemplateNameIn(unitNames);
+                    .findByTemplateNameIn(playerNames);
         }
 
         readMap = read.stream().filter(Objects::nonNull)
                 .collect(Collectors.toMap(AffinityTeamPlayer::getTemplateName,
                         Function.identity()));
 
-        units = unitNames.stream().filter((n) -> readMap.containsKey(n))
+        players = playerNames.stream().filter((n) -> readMap.containsKey(n))
                 .map((n) -> readMap.get(n)).collect(Collectors.toList());
 
-        return units;
+        return players;
     }
 
     private final Page<? extends AffinityTeamPlayer>
             getTeamPlayersNotHatingAffinities(
                     final Iterable<? extends AffinityGroup> affinities,
                     final Pageable pageReq) {
-        final Page<? extends AffinityTeamPlayer> filtered; // Filtered units
+        final Page<? extends AffinityTeamPlayer> filtered; // Filtered players
         final Collection<String> affNames;     // Affinity names
         final Collection<AffinityGroup> affs;     // Affinity names
 
@@ -317,7 +317,7 @@ public final class DefaultSponsorBuilderService
             // There are no affinities, there is no need to filter
             filtered = getAffinityTeamPlayerRepository().findAll(pageReq);
         } else {
-            // Only units not hating any affinity are acquired
+            // Only players not hating any affinity are acquired
             filtered = getAffinityTeamPlayerRepository()
                     .findAllFilteredByHatedAffinities(affNames, pageReq);
         }
@@ -337,20 +337,20 @@ public final class DefaultSponsorBuilderService
 
     private final void setPlayers(final SponsorTeam sponsorTeam,
             final Iterable<? extends AffinityGroup> affinities,
-            final Iterable<AffinityTeamPlayer> units) {
-        TeamPlayer unitSetUp;
+            final Iterable<AffinityTeamPlayer> players) {
+        TeamPlayer playerSetUp;
         Integer cost;
         AffinityLevel affinityLevel; // Affinity level relationship
 
-        for (final AffinityTeamPlayer unit : units) {
-            affinityLevel = getDbxRules().getAffinityLevel(unit, affinities);
-            cost = getDbxRules().getTeamPlayerCost(affinityLevel, unit);
+        for (final AffinityTeamPlayer player : players) {
+            affinityLevel = getDbxRules().getAffinityLevel(player, affinities);
+            cost = getDbxRules().getTeamPlayerCost(affinityLevel, player);
 
-            unitSetUp = new DefaultTeamPlayer(unit.getTemplateName(), cost,
-                    unit.getRole(), unit.getAttributes(), unit.getAbilities(),
-                    unit.getMvp(), unit.getGiant());
+            playerSetUp = new DefaultTeamPlayer(player.getTemplateName(), cost,
+                    player.getRole(), player.getAttributes(),
+                    player.getAbilities(), player.getMvp(), player.getGiant());
 
-            sponsorTeam.addPlayer(unitSetUp);
+            sponsorTeam.addPlayer(playerSetUp);
         }
     }
 

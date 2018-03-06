@@ -116,10 +116,10 @@ public final class ITSponsorValidationControllerTeamsValues
     }
 
     /**
-     * Verifies that the unit received as parameter is sent to the service.
+     * Verifies that the player received as parameter is sent to the service.
      */
     @Test
-    public final void testValidateTeam_Multiple_Units() throws Exception {
+    public final void testValidateTeam_Multiple_Players() throws Exception {
         final ResultActions result;
 
         result = mockMvc.perform(
@@ -130,10 +130,10 @@ public final class ITSponsorValidationControllerTeamsValues
     }
 
     /**
-     * Verifies that the unit received as parameter is sent to the service.
+     * Verifies that the player received as parameter is sent to the service.
      */
     @Test
-    public final void testValidateTeam_Repeated_Units() throws Exception {
+    public final void testValidateTeam_Repeated_Players() throws Exception {
         final ResultActions result;
 
         result = mockMvc.perform(
@@ -154,16 +154,16 @@ public final class ITSponsorValidationControllerTeamsValues
     }
 
     /**
-     * Returns a request builder prepared for validating the specified unit.
+     * Returns a request builder prepared for validating the specified player.
      * 
-     * @return a request builder prepared for validating the specified unit
+     * @return a request builder prepared for validating the specified player
      */
-    private final RequestBuilder getGetRequest(final String unit1,
-            final String unit2) {
+    private final RequestBuilder getGetRequest(final String player1,
+            final String player2) {
         // TODO: Check why this won't work with an array of strings
         return MockMvcRequestBuilders
                 .get(UrlDbxTeamBuilderConfig.URL_VALIDATE_TEAM
-                        + "?teamPlayers={u}&teamPlayers={u}", unit1, unit2);
+                        + "?teamPlayers={u}&teamPlayers={u}", player1, player2);
     }
 
 }

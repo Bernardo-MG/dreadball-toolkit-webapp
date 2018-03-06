@@ -96,28 +96,28 @@ public final class TestTeamPlayerCodexController {
     @SuppressWarnings({ "rawtypes", "unchecked" })
     private final TeamPlayerCodexController getController() {
         final CodexService service;   // Mocked service
-        final Collection<TeamPlayer> units; // Returned units
+        final Collection<TeamPlayer> players; // Returned players
 
         service = Mockito.mock(CodexService.class);
 
-        units = new ArrayList<>();
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
-        units.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players = new ArrayList<>();
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
+        players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
         Mockito.when(service.getAffinityTeamPlayers(org.mockito.Matchers.any()))
-                .thenReturn((Iterable) units);
+                .thenReturn((Iterable) players);
 
         return new TeamPlayerCodexController(service);
     }
 
     /**
-     * Returns a request builder prepared for reading units.
+     * Returns a request builder prepared for reading players.
      * 
-     * @return a request builder prepared for reading units
+     * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_UNITS);
+        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_PLAYERS);
     }
 
 }

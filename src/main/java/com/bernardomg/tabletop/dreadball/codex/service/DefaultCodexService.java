@@ -22,18 +22,18 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
-import com.bernardomg.tabletop.dreadball.repository.unit.AffinityTeamPlayerRepository;
+import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
 
 /**
  * Default implementation of the codex service.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service("unitService")
+@Service("playerService")
 public final class DefaultCodexService implements CodexService {
 
     /**
-     * Affinity units repository.
+     * Affinity players repository.
      */
     private final AffinityTeamPlayerRepository affinityTeamPlayerRepository;
 
@@ -41,13 +41,13 @@ public final class DefaultCodexService implements CodexService {
      * Constructs a service with the specified arguments.
      * 
      * @param repository
-     *            affinity units repository
+     *            affinity players repository
      */
     public DefaultCodexService(final AffinityTeamPlayerRepository repository) {
         super();
 
         affinityTeamPlayerRepository = checkNotNull(repository,
-                "Received a null pointer as affinity units repository");
+                "Received a null pointer as affinity players repository");
     }
 
     @Override
@@ -60,9 +60,9 @@ public final class DefaultCodexService implements CodexService {
     }
 
     /**
-     * Returns the affinity unit repository.
+     * Returns the affinity player repository.
      * 
-     * @return the affinity unit repository
+     * @return the affinity player repository
      */
     private final AffinityTeamPlayerRepository
             getAffinityTeamPlayerRepository() {

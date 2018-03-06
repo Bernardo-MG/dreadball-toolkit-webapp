@@ -50,7 +50,7 @@ public class SponsorQueryController {
      * Constructs a controller with the specified dependencies.
      * 
      * @param sponsorBuilderService
-     *            sponsor units service
+     *            sponsor builder service
      */
     @Autowired
     public SponsorQueryController(
@@ -76,7 +76,7 @@ public class SponsorQueryController {
     }
 
     /**
-     * Returns all the units available to a Sponsor.
+     * Returns all the players available to a Sponsor.
      * 
      * @param affinities
      *            sponsor affinities
@@ -88,7 +88,7 @@ public class SponsorQueryController {
      *            field to order by
      * @param direction
      *            ordering direction
-     * @return all the units available to a Sponsor
+     * @return all the players available to a Sponsor
      */
     @GetMapping(path = "/players",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)

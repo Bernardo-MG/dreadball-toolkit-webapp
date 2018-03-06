@@ -25,13 +25,13 @@ public interface SponsorBuilderService {
     public Collection<OptionGroup> getAffinityOptions();
 
     /**
-     * Returns all the units available to a Sponsor.
+     * Returns all the players available to a Sponsor.
      * 
      * @param affinities
      *            sponsor affinities
      * @param pageable
      *            pagination data
-     * @return all the units available to a Sponsor
+     * @return all the players available to a Sponsor
      */
     public Iterable<? extends TeamPlayer> getTeamPlayerOptions(
             final Collection<? extends AffinityGroup> affinities,

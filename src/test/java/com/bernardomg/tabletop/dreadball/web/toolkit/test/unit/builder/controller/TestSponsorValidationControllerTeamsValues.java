@@ -80,18 +80,18 @@ public final class TestSponsorValidationControllerTeamsValues {
     }
 
     /**
-     * Verifies that the unit received as parameter is sent to the service.
+     * Verifies that the player received as parameter is sent to the service.
      */
     @Test
     public final void testValidateTeam_Multiple_TeamPlayers() throws Exception {
-        mockMvc.perform(getGetRequest("[unit1,unit2]"));
+        mockMvc.perform(getGetRequest("[player1,player2]"));
 
         Assert.assertEquals(2,
                 Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
     /**
-     * Verifies that if no units are received then an empty collection is sent
+     * Verifies that if no players are received then an empty collection is sent
      * to the service.
      */
     @Test
@@ -104,23 +104,23 @@ public final class TestSponsorValidationControllerTeamsValues {
     }
 
     /**
-     * Verifies that the unit received as parameter is sent to the service.
+     * Verifies that the player received as parameter is sent to the service.
      */
     @Test
     public final void testValidateTeam_Repeated_TeamPlayers() throws Exception {
-        mockMvc.perform(getGetRequest("[unit1,unit1]"));
+        mockMvc.perform(getGetRequest("[player1,player1]"));
 
         Assert.assertEquals(2,
                 Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
     /**
-     * Verifies that the unit received as parameter is sent to the service.
+     * Verifies that the player received as parameter is sent to the service.
      */
     @Test
     public final void testValidateTeam_TeamPlayerParam_TeamPlayers()
             throws Exception {
-        mockMvc.perform(getGetRequest("unit"));
+        mockMvc.perform(getGetRequest("player"));
 
         Assert.assertEquals(1,
                 Iterables.size(captor.getValue().getTeamPlayers()));
@@ -150,14 +150,14 @@ public final class TestSponsorValidationControllerTeamsValues {
     }
 
     /**
-     * Returns a request builder prepared for validating the specified unit.
+     * Returns a request builder prepared for validating the specified player.
      * 
-     * @return a request builder prepared for validating the specified unit
+     * @return a request builder prepared for validating the specified player
      */
-    private final RequestBuilder getGetRequest(final String unit) {
+    private final RequestBuilder getGetRequest(final String player) {
         return MockMvcRequestBuilders.get(
                 UrlDbxTeamBuilderConfig.URL_VALIDATE_TEAM + "?teamPlayers={u}",
-                unit);
+                player);
     }
 
     /**
