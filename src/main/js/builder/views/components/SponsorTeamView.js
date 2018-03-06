@@ -11,8 +11,9 @@ import SponsorTeamPlayers from 'builder/players/containers/SponsorTeamPlayers';
 
 import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
+import ButtonsSidebar from 'components/ButtonsSidebar';
+
 import SponsorAssetsForm from 'builder/views/components/SponsorAssetsForm';
-import SponsorTeamViewSidebar from 'builder/views/components/SponsorTeamViewSidebar';
 import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
 
 import AddPlayerPanel from 'builder/views/containers/AddPlayerPanel';
@@ -65,6 +66,11 @@ class SponsorTeamView extends Component {
             </Box>;
       }
 
+      const options = [];
+      options.push({ label: 'assets', action: this.showAssets });
+      options.push({ label: 'add_players', action: this.showAddPlayers });
+      options.push({ label: 'players', action: this.showPlayers });
+
       return (
          <Split flex="left" separator={true}>
             <Article>
@@ -76,7 +82,7 @@ class SponsorTeamView extends Component {
                </Header>
                { view }
             </Article>
-            <SponsorTeamViewSidebar onSelectAssets={this.showAssets} onSelectAddPlayers={this.showAddPlayers} onSelectPlayers={this.showPlayers} />
+            <ButtonsSidebar options={options} />
          </Split>
       );
    }
