@@ -2,49 +2,60 @@ import team from 'builder/reducers';
 import * as types from 'builder/actions/actionTypes';
 
 describe('Team reducer', () => {
-   it('adds unit when empty', () => {
+   it('does nothing when removing without players', () => {
       expect(
          team({}, {
-            type: types.ADD_TEAM_UNIT,
-            payload: 'unit1'
+            type: types.REMOVE_TEAM_PLAYER,
+            payload: 'player1'
          })
       ).toEqual(
          { "affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {"baseRank": 0, "cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "rank": 0, "specialMoveCards": 0, "sponsorName": "Sponsor name", "totalCost": 0,
-            units: [ 'unit1' ],
+            players: [],
             "wagers": 0 }}
       )
    }),
-   it('adds unit', () => {
+   it('removes players', () => {
       expect(
-         team({ "sponsor": { units: [ 'unit1', 'unit2', 'unit3' ] } }, {
-            type: types.ADD_TEAM_UNIT,
-            payload: 'unit4'
+         team({ "sponsor": { players: [ 'player1', 'player2', 'player3' ] } }, {
+            type: types.REMOVE_TEAM_PLAYER,
+            payload: 'player1'
          })
       ).toEqual(
          { "affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {
-            units: [ 'unit1', 'unit2', 'unit3', 'unit4' ] }}
+            players: [ 'player2', 'player3' ] }}
       )
    }),
-   it('adds already existing unit', () => {
+   it('removes last player', () => {
       expect(
-         team({ "sponsor": {units: [ 'unit1', 'unit2', 'unit3' ] } }, {
-            type: types.ADD_TEAM_UNIT,
-            payload: 'unit1'
+         team({ "sponsor": { players: [ 'player1' ] } }, {
+            type: types.REMOVE_TEAM_PLAYER,
+            payload: 'player1'
          })
       ).toEqual(
          { "affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {
-            units: [ 'unit1', 'unit2', 'unit3', 'unit1' ] }}
+            players: [] }}
       )
    }),
-   it('ignores undefined units on addition', () => {
+   it('removes a single instance of a player', () => {
       expect(
-         team({ "sponsor": {units: [ 'unit1', 'unit2', 'unit3' ] } }, {
-            type: types.ADD_TEAM_UNIT,
+         team({ "sponsor": { players: [ 'player1', 'player2', 'player3', 'player1' ] } }, {
+            type: types.REMOVE_TEAM_PLAYER,
+            payload: 'player1'
+         })
+      ).toEqual(
+         { "affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {
+            players: [ 'player2', 'player3', 'player1' ] }}
+      )
+   }),
+   it('ignores undefined players on removal', () => {
+      expect(
+         team({ "sponsor": { players: [ 'player1', 'player2', 'player3' ] } }, {
+            type: types.REMOVE_TEAM_PLAYER,
             payload: undefined
          })
       ).toEqual(
          { "affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {
-            units: [ 'unit1', 'unit2', 'unit3' ] }}
+            players: [ 'player1', 'player2', 'player3' ] }}
       )
    })
 });

@@ -5,18 +5,18 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import UnitScrollablePanel from 'builder/units/components/UnitScrollablePanel';
+import PlayerScrollablePanel from 'builder/players/components/PlayerScrollablePanel';
 
-import { selectRatedUnits as selectUnits } from 'models/selectors';
-import { selectLastRatedUnitPage as selectLastPage } from 'models/selectors/page';
+import { selectRatedPlayers as selectPlayers } from 'models/selectors';
+import { selectLastRatedPlayerPage as selectLastPage } from 'models/selectors/page';
 
 import AddIcon from 'grommet/components/icons/base/AddCircle';
 
-import { moveNextPage } from 'models/actions/sponsorUnit';
-import { addTeamUnit } from 'builder/units/actions';
+import { moveNextPage } from 'models/actions/sponsorPlayer';
+import { addTeamPlayer } from 'builder/players/actions';
 
 const SponsorPlayerOptions = (props) =>
-   <UnitScrollablePanel source={props.source} onMore={!props.lastPage ? () => props.nextPage() : null}
+   <PlayerScrollablePanel source={props.source} onMore={!props.lastPage ? () => props.nextPage() : null}
       buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
 
 SponsorPlayerOptions.propTypes = {
@@ -28,7 +28,7 @@ SponsorPlayerOptions.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      source: selectUnits(state),
+      source: selectPlayers(state),
       lastPage: selectLastPage(state)
    };
 };
@@ -36,7 +36,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
    return {
       nextPage: bindActionCreators(moveNextPage, dispatch),
-      buttonAction: bindActionCreators(addTeamUnit, dispatch)
+      buttonAction: bindActionCreators(addTeamPlayer, dispatch)
    };
 };
 

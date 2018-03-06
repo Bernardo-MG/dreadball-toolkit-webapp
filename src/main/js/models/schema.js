@@ -8,7 +8,7 @@ export const affinity = new schema.Entity('affinities', {}, {
    idAttribute: 'name'
 });
 
-export const unit = new schema.Entity('units', {
+export const player = new schema.Entity('players', {
    abilities: [ability],
    affinityGroups: [affinity],
    hatedAffinityGroups: [affinity]

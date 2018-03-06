@@ -1,11 +1,11 @@
 import { createSelector } from 'reselect';
 import { filterByKeys, selectAllValues } from 'models/selectors/utils';
 
-export const selectUnits = (state) => selectAllValues(state.model.units);
+export const selectPlayers = (state) => selectAllValues(state.model.players);
 
-export const selectRatedUnits = createSelector(
-   (state) => state.model.ratedUnits,
-   (state) => state.pagination.ratedUnits.ids,
+export const selectRatedPlayers = createSelector(
+   (state) => state.model.ratedPlayers,
+   (state) => state.pagination.ratedPlayers.ids,
    (data, ids) => filterByKeys(data, ids)
 );
 

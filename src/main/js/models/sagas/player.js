@@ -1,9 +1,9 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
-import { fetcherUnit as fetcher } from 'models/requests/fetchers';
-import { selectCurrentUnitPage as currentPageSelector, selectLastUnitPage as lastPageSelector } from 'models/selectors/page';
-import { selectUnitIsFetching as fetchingSelector } from 'models/selectors/request';
-import { requestSuccess } from 'models/actions/unit';
+import { fetcherPlayer as fetcher } from 'models/requests/fetchers';
+import { selectCurrentPlayerPage as currentPageSelector, selectLastPlayerPage as lastPageSelector } from 'models/selectors/page';
+import { selectPlayerIsFetching as fetchingSelector } from 'models/selectors/request';
+import { requestSuccess } from 'models/actions/player';
 
 export function fetch(params) {
    return fetcher.fetch(params);
@@ -13,7 +13,7 @@ function* request(action, pageStep) {
    const fetching = yield select(fetchingSelector);
    const lastPage = yield select(lastPageSelector);
    if (!fetching && !lastPage) {
-      yield put({ type: types.FETCHING_UNITS });
+      yield put({ type: types.FETCHING_PLAYERS });
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;
       const params = { ...action.params, page };
@@ -33,11 +33,11 @@ function* requestNext(action) {
 function* build(action) {
    yield put({ type: types.CREATE_ABILITIES, payload: action.payload.entities.abilities });
    yield put({ type: types.CREATE_AFFINITIES, payload: action.payload.entities.affinities });
-   yield put({ type: types.CREATE_UNITS, payload: action.payload.entities.units });
+   yield put({ type: types.CREATE_PLAYERS, payload: action.payload.entities.players });
 }
 
-export const unitSagas = [
-   takeLatest(types.REQUEST_UNITS, requestCurrent),
-   takeLatest(types.REQUEST_SUCCESS_UNITS, build),
-   takeLatest(types.CHANGE_PAGE_NEXT_UNITS, requestNext)
+export const playerSagas = [
+   takeLatest(types.REQUEST_PLAYERS, requestCurrent),
+   takeLatest(types.REQUEST_SUCCESS_PLAYERS, build),
+   takeLatest(types.CHANGE_PAGE_NEXT_PLAYERS, requestNext)
 ];

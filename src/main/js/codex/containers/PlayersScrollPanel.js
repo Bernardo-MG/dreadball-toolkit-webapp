@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetch, moveNextPage } from 'models/actions/unit';
-import { selectUnits } from 'models/selectors';
-import { selectLastUnitPage as selectLastPage } from 'models/selectors/page';
+import { fetch, moveNextPage } from 'models/actions/player';
+import { selectPlayers } from 'models/selectors';
+import { selectLastPlayerPage as selectLastPage } from 'models/selectors/page';
 
-import UnitsViewPanel from 'codex/components/UnitsViewPanel';
+import PlayersViewPanel from 'codex/components/PlayersViewPanel';
 
-class UnitsScrollPanel extends Component {
+class PlayersScrollPanel extends Component {
 
    componentDidMount() {
       this.props.load();
@@ -19,21 +19,21 @@ class UnitsScrollPanel extends Component {
 
    render() {
       return (
-         <UnitsViewPanel source={this.props.units} onMore={!this.props.lastPage ? () => this.props.nextPage() : null} />
+         <PlayersViewPanel source={this.props.players} onMore={!this.props.lastPage ? () => this.props.nextPage() : null} />
       );
    }
 }
 
-UnitsScrollPanel.propTypes = {
+PlayersScrollPanel.propTypes = {
    load: PropTypes.func.isRequired,
    lastPage: PropTypes.bool.isRequired,
    nextPage: PropTypes.func.isRequired,
-   units: PropTypes.array.isRequired
+   players: PropTypes.array.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      units: selectUnits(state),
+      players: selectPlayers(state),
       lastPage: selectLastPage(state)
    };
 };
@@ -48,4 +48,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(UnitsScrollPanel);
+)(PlayersScrollPanel);

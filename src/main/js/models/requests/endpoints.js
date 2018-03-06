@@ -1,9 +1,9 @@
 import { appendBase } from 'api/utils';
 
-const UNITS_REST_ENDPOINT = '/rest/units';
+const PLAYERS_REST_ENDPOINT = '/rest/players';
 
-const TEAM_UNITS_REST_ENDPOINT = '/rest/builder/units';
+const TEAM_PLAYERS_REST_ENDPOINT = '/rest/builder/players';
 
-export const sponsorUnitEndpoint = appendBase(TEAM_UNITS_REST_ENDPOINT);
+export const sponsorPlayerEndpoint = appendBase(TEAM_PLAYERS_REST_ENDPOINT);
 
-export const unitEndpoint = appendBase(UNITS_REST_ENDPOINT);
+export const playerEndpoint = appendBase(PLAYERS_REST_ENDPOINT);

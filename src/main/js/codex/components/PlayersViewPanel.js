@@ -13,14 +13,14 @@ import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
-import UnitPanel from 'codex/components/UnitPanel';
+import PlayerPanel from 'codex/components/PlayerPanel';
 
 import labelMessages from 'i18n/label';
-import unitMessages from 'i18n/unit';
-import unitNameMessages from 'i18n/unitName';
-import unitRoleMessages from 'i18n/role';
+import playerMessages from 'i18n/player';
+import playerNameMessages from 'i18n/playerName';
+import playerRoleMessages from 'i18n/role';
 
-class UnitsViewPanel extends Component {
+class PlayersViewPanel extends Component {
 
    constructor(props) {
       super(props);
@@ -46,7 +46,7 @@ class UnitsViewPanel extends Component {
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
                <Article size='large'>
-                  <UnitPanel source={selection} />
+                  <PlayerPanel source={selection} />
                </Article>
             </Layer>
          );
@@ -55,8 +55,8 @@ class UnitsViewPanel extends Component {
       }
 
       const headers = [];
-      headers.push(this.props.intl.formatMessage(unitMessages.name));
-      headers.push(this.props.intl.formatMessage(unitMessages.role));
+      headers.push(this.props.intl.formatMessage(playerMessages.name));
+      headers.push(this.props.intl.formatMessage(playerMessages.role));
       headers.push(this.props.intl.formatMessage(labelMessages.info));
 
       return (
@@ -65,11 +65,11 @@ class UnitsViewPanel extends Component {
             <Table onMore={this.props.onMore}>
                <TableHeader labels={headers} />
                <tbody>
-                  { this.props.source.map((unit, i) =>
+                  { this.props.source.map((player, i) =>
                      <TableRow key={i}>
-                        <td>{this.props.intl.formatMessage(unitNameMessages[unit.name])}</td>
-                        <td>{this.props.intl.formatMessage(unitRoleMessages[unit.role])}</td>
-                        <td><Button onClick={() => select(unit)} icon={<CircleInformationIcon/>} /></td>
+                        <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
+                        <td>{this.props.intl.formatMessage(playerRoleMessages[player.role])}</td>
+                        <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
                </tbody>
@@ -79,10 +79,10 @@ class UnitsViewPanel extends Component {
    }
 }
 
-UnitsViewPanel.propTypes = {
+PlayersViewPanel.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func.isRequired,
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(UnitsViewPanel);
+export default injectIntl(PlayersViewPanel);

@@ -5,11 +5,11 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import SponsorPlayersOptions from 'builder/units/containers/SponsorPlayersOptions';
+import SponsorPlayersOptions from 'builder/players/containers/SponsorPlayersOptions';
 
-import { fetch } from 'models/actions/sponsorUnit';
+import { fetch } from 'models/actions/sponsorPlayer';
 
-class AddUnitPanel extends Component {
+class AddPlayerPanel extends Component {
 
    componentDidMount() {
       this.props.load();
@@ -22,7 +22,7 @@ class AddUnitPanel extends Component {
    }
 }
 
-AddUnitPanel.propTypes = {
+AddPlayerPanel.propTypes = {
    load: PropTypes.func.isRequired
 };
 
@@ -39,4 +39,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(AddUnitPanel);
+)(AddPlayerPanel);

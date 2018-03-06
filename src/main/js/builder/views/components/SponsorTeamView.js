@@ -7,7 +7,7 @@ import Heading from 'grommet/components/Heading';
 import Split from 'grommet/components/Split';
 
 import SponsorAffinitiesList from 'builder/affinities/containers/SponsorAffinitiesList';
-import SponsorTeamPlayers from 'builder/units/containers/SponsorTeamPlayers';
+import SponsorTeamPlayers from 'builder/players/containers/SponsorTeamPlayers';
 
 import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
@@ -15,7 +15,7 @@ import SponsorAssetsForm from 'builder/views/components/SponsorAssetsForm';
 import SponsorTeamViewSidebar from 'builder/views/components/SponsorTeamViewSidebar';
 import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
 
-import AddUnitPanel from 'builder/views/containers/AddUnitPanel';
+import AddPlayerPanel from 'builder/views/containers/AddPlayerPanel';
 
 import TeamReportButton from 'builder/views/containers/TeamReportButton';
 
@@ -23,12 +23,12 @@ class SponsorTeamView extends Component {
 
    state = { view: 'assets', showSidebar: true };
 
-   showUnits = () => {
-      this.setState({ view: 'units' });
+   showPlayers = () => {
+      this.setState({ view: 'players' });
    }
 
-   showAddUnits = () => {
-      this.setState({ view: 'addUnits' });
+   showAddPlayers = () => {
+      this.setState({ view: 'addPlayers' });
    }
 
    showAssets = () => {
@@ -42,9 +42,9 @@ class SponsorTeamView extends Component {
    render() {
       let view = null;
 
-      if (this.state.view === 'addUnits') {
-         view = <AddUnitPanel />;
-      } else if (this.state.view === 'units') {
+      if (this.state.view === 'addPlayers') {
+         view = <AddPlayerPanel />;
+      } else if (this.state.view === 'players') {
          view =
             <Box>
                <Heading tag='h2'>players</Heading>
@@ -76,7 +76,7 @@ class SponsorTeamView extends Component {
                </Header>
                { view }
             </Article>
-            <SponsorTeamViewSidebar onSelectAssets={this.showAssets} onSelectAddUnits={this.showAddUnits} onSelectUnits={this.showUnits} />
+            <SponsorTeamViewSidebar onSelectAssets={this.showAssets} onSelectAddPlayers={this.showAddPlayers} onSelectPlayers={this.showPlayers} />
          </Split>
       );
    }

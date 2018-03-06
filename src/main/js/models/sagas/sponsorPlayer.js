@@ -1,9 +1,9 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
-import { fetcherSponsorUnit as fetcher } from 'models/requests/fetchers';
-import { selectCurrentRatedUnitPage as currentPageSelector, selectLastRatedUnitPage as lastPageSelector } from 'models/selectors/page';
-import { selectRatedUnitIsFetching as fetchingSelector } from 'models/selectors/request';
-import { requestSuccess } from 'models/actions/sponsorUnit';
+import { fetcherSponsorPlayer as fetcher } from 'models/requests/fetchers';
+import { selectCurrentRatedPlayerPage as currentPageSelector, selectLastRatedPlayerPage as lastPageSelector } from 'models/selectors/page';
+import { selectRatedPlayerIsFetching as fetchingSelector } from 'models/selectors/request';
+import { requestSuccess } from 'models/actions/sponsorPlayer';
 import { selectSponsorAffinities } from 'models/selectors';
 
 export function fetch(params) {
@@ -14,7 +14,7 @@ function* request(action, pageStep) {
    const fetching = yield select(fetchingSelector);
    const lastPage = yield select(lastPageSelector);
    if (!fetching && !lastPage) {
-      yield put({ type: types.FETCHING_TEAM_UNITS });
+      yield put({ type: types.FETCHING_TEAM_PLAYERS });
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;
       const affinities = yield select(selectSponsorAffinities);
@@ -34,11 +34,11 @@ function* requestNext(action) {
 
 function* build(action) {
    yield put({ type: types.CREATE_ABILITIES, payload: action.payload.entities.abilities });
-   yield put({ type: types.CREATE_RATED_UNITS, payload: action.payload.entities.units });
+   yield put({ type: types.CREATE_RATED_PLAYERS, payload: action.payload.entities.players });
 }
 
-export const sponsorUnitSagas = [
-   takeLatest(types.REQUEST_TEAM_UNITS, requestCurrent),
-   takeLatest(types.REQUEST_SUCCESS_TEAM_UNITS, build),
-   takeLatest(types.CHANGE_PAGE_NEXT_TEAM_UNITS, requestNext)
+export const sponsorPlayerSagas = [
+   takeLatest(types.REQUEST_TEAM_PLAYERS, requestCurrent),
+   takeLatest(types.REQUEST_SUCCESS_TEAM_PLAYERS, build),
+   takeLatest(types.CHANGE_PAGE_NEXT_TEAM_PLAYERS, requestNext)
 ];

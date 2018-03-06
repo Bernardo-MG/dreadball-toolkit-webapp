@@ -11,7 +11,7 @@ describe('Team reducer', () => {
       ).toEqual(
             {"affinities": {"chosen": [], "options": []}, "assets": {"cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "specialMoveCards": 0, "wagers": 0}, "sponsor": {"baseRank": 0, "cheerleaders": 0, "coachingDice": 0, "mediBots": 0, "nastySurpriseCards": 0, "rank": 0, "specialMoveCards": 0, "sponsorName": "Sponsor name",
                "totalCost": 1,
-               "units": [], "wagers": 0}}
+               "players": [], "wagers": 0}}
       )
    }),
    it('sets total cost to zero', () => {

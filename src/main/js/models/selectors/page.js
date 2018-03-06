@@ -1,12 +1,12 @@
 
-export const selectCurrentRatedUnitPage = (state) => state.pagination.ratedUnits.page;
+export const selectCurrentRatedPlayerPage = (state) => state.pagination.ratedPlayers.page;
 
-export const selectCurrentUnitPage = (state) => state.pagination.units.page;
+export const selectCurrentPlayerPage = (state) => state.pagination.players.page;
 
-export const selectLastUnitPage = (state) => state.pagination.units.last;
+export const selectLastPlayerPage = (state) => state.pagination.players.last;
 
-export const selectLastRatedUnitPage = (state) => state.pagination.ratedUnits.last;
+export const selectLastRatedPlayerPage = (state) => state.pagination.ratedPlayers.last;
 
-export const selectCurrentUnitPageVisual = (state) => state.pagination.units.page + 1;
+export const selectCurrentPlayerPageVisual = (state) => state.pagination.players.page + 1;
 
-export const selectTotalUnitPages = (state) => state.pagination.units.totalPages;
+export const selectTotalPlayerPages = (state) => state.pagination.players.totalPages;

@@ -38,7 +38,7 @@ import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/units")
+@RequestMapping("/rest/players")
 public class TeamPlayerCodexController {
 
     private static final Logger LOGGER = LoggerFactory

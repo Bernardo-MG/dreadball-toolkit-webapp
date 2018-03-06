@@ -2,34 +2,34 @@ import model from 'models/reducers';
 import * as types from 'models/actions/actionTypes';
 
 describe('Model reducer', () => {
-   it('creates units', () => {
+   it('creates players', () => {
       expect(
          model({}, {
-            type: types.CREATE_UNITS,
-            payload: { unit1 : 'values', unit2 : 'values', unit3 : 'values' }
+            type: types.CREATE_PLAYERS,
+            payload: { player1 : 'values', player2 : 'values', player3 : 'values' }
          })
       ).toEqual(
-         { units: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }
+         { players: { player1 : 'values', player2 : 'values', player3 : 'values' } }
       )
    }),
-   it('adds units', () => {
+   it('adds players', () => {
       expect(
-         model({ units: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }, {
-            type: types.CREATE_UNITS,
-            payload: { unit3 : 'values', unit4 : 'values', unit5 : 'values' }
+         model({ players: { player1 : 'values', player2 : 'values', player3 : 'values' } }, {
+            type: types.CREATE_PLAYERS,
+            payload: { player3 : 'values', player4 : 'values', player5 : 'values' }
          })
       ).toEqual(
-         { units: { unit1 : 'values', unit2 : 'values', unit3 : 'values', unit4 : 'values', unit5 : 'values' } }
+         { players: { player1 : 'values', player2 : 'values', player3 : 'values', player4 : 'values', player5 : 'values' } }
       )
    }),
-   it('ignores undefined units', () => {
+   it('ignores undefined players', () => {
       expect(
-         model({ units: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }, {
-            type: types.CREATE_UNITS,
+         model({ players: { player1 : 'values', player2 : 'values', player3 : 'values' } }, {
+            type: types.CREATE_PLAYERS,
             payload: undefined
          })
       ).toEqual(
-         { units: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }
+         { players: { player1 : 'values', player2 : 'values', player3 : 'values' } }
       )
    }),
    it('creates abilities', () => {
@@ -92,34 +92,34 @@ describe('Model reducer', () => {
          { affinities: { affinity1 : 'values', affinity2 : 'values', affinity3 : 'values' } }
       )
    }),
-   it('creates rated units', () => {
+   it('creates rated players', () => {
       expect(
          model({}, {
-            type: types.CREATE_RATED_UNITS,
-            payload: { unit1 : 'values', unit2 : 'values', unit3 : 'values' }
+            type: types.CREATE_RATED_PLAYERS,
+            payload: { player1 : 'values', player2 : 'values', player3 : 'values' }
          })
       ).toEqual(
-         { ratedUnits: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }
+         { ratedPlayers: { player1 : 'values', player2 : 'values', player3 : 'values' } }
       )
    }),
-   it('adds rated units', () => {
+   it('adds rated players', () => {
       expect(
-         model({ ratedUnits: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }, {
-            type: types.CREATE_RATED_UNITS,
-            payload: { unit3 : 'values', unit4 : 'values', unit5 : 'values' }
+         model({ ratedPlayers: { player1 : 'values', player2 : 'values', player3 : 'values' } }, {
+            type: types.CREATE_RATED_PLAYERS,
+            payload: { player3 : 'values', player4 : 'values', player5 : 'values' }
          })
       ).toEqual(
-         { ratedUnits: { unit1 : 'values', unit2 : 'values', unit3 : 'values', unit4 : 'values', unit5 : 'values' } }
+         { ratedPlayers: { player1 : 'values', player2 : 'values', player3 : 'values', player4 : 'values', player5 : 'values' } }
       )
    }),
-   it('ignores undefined units', () => {
+   it('ignores undefined players', () => {
       expect(
-         model({ ratedUnits: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }, {
-            type: types.CREATE_RATED_UNITS,
+         model({ ratedPlayers: { player1 : 'values', player2 : 'values', player3 : 'values' } }, {
+            type: types.CREATE_RATED_PLAYERS,
             payload: undefined
          })
       ).toEqual(
-         { ratedUnits: { unit1 : 'values', unit2 : 'values', unit3 : 'values' } }
+         { ratedPlayers: { player1 : 'values', player2 : 'values', player3 : 'values' } }
       )
    })
 });

@@ -5,13 +5,13 @@ import model from 'models/reducers';
 import paginate from 'api/pagination/reducers';
 
 const pagination = combineReducers({
-   units: paginate({
-      idsMapping: (payload) => Object.keys(payload.entities.units),
-      store: 'UNITS'
+   players: paginate({
+      idsMapping: (payload) => Object.keys(payload.entities.players),
+      store: 'PLAYERS'
    }),
-   ratedUnits: paginate({
-      idsMapping: (payload) => Object.keys(payload.entities.units),
-      store: 'TEAM_UNITS'
+   ratedPlayers: paginate({
+      idsMapping: (payload) => Object.keys(payload.entities.players),
+      store: 'TEAM_PLAYERS'
    })
 });
 

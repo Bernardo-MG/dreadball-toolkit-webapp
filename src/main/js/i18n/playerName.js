@@ -1,478 +1,478 @@
 import { defineMessages } from 'react-intl';
 
-const unitNameMessages = defineMessages({
+const playerNameMessages = defineMessages({
    ada_lorana_guard: {
-      id: 'unit.adaLorana.guard',
+      id: 'player.adaLorana.guard',
       defaultMessage: 'Ada-Lorana guard'
    },
    ada_lorana_jack: {
-      id: 'unit.adaLorana.jack',
+      id: 'player.adaLorana.jack',
       defaultMessage: 'Ada-Lorana jack'
    },
    ada_lorana_striker: {
-      id: 'unit.adaLorana.striker',
+      id: 'player.adaLorana.striker',
       defaultMessage: 'Ada-Lorana striker'
    },
    alpha_simian: {
-      id: 'unit.alphaSimian',
+      id: 'player.alphaSimian',
       defaultMessage: 'Alpha Simian'
    },
    anne_marie_helder: {
-      id: 'unit.anneMarieHelder',
+      id: 'player.anneMarieHelder',
       defaultMessage: 'Anne-Marie Helder'
    },
    asterian_guard: {
-      id: 'unit.asterian.guard',
+      id: 'player.asterian.guard',
       defaultMessage: 'Asterian guard'
    },
    asterian_jack: {
-      id: 'unit.asterian.jack',
+      id: 'player.asterian.jack',
       defaultMessage: 'Asterian jack'
    },
    asterian_striker: {
-      id: 'unit.asterian.striker',
+      id: 'player.asterian.striker',
       defaultMessage: 'Asterian striker'
    },
    asylum: {
-      id: 'unit.asylum',
+      id: 'player.asylum',
       defaultMessage: 'Asylum'
    },
    ateo_adysi: {
-      id: 'unit.ateoAdysi',
+      id: 'player.ateoAdysi',
       defaultMessage: 'A\'Teo Adysi'
    },
    avaran_treebeast: {
-      id: 'unit.avaranTreebeast',
+      id: 'player.avaranTreebeast',
       defaultMessage: 'Avaran Treebeast'
    },
    barricade: {
-      id: 'unit.barricade',
+      id: 'player.barricade',
       defaultMessage: 'Barricade'
    },
    big_mech: {
-      id: 'unit.bigMech',
+      id: 'player.bigMech',
       defaultMessage: 'Big mech'
    },
    brickbat_vognar: {
-      id: 'unit.brickbatVognar',
+      id: 'player.brickbatVognar',
       defaultMessage: '\'Brickbat\' Vognar'
    },
    brokr_jack: {
-      id: 'unit.brokr.jack',
+      id: 'player.brokr.jack',
       defaultMessage: 'Brokr jack'
    },
    brokr_striker: {
-      id: 'unit.brokr.striker',
+      id: 'player.brokr.striker',
       defaultMessage: 'Brokr striker'
    },
    brokr_guard: {
-      id: 'unit.brokr.guard',
+      id: 'player.brokr.guard',
       defaultMessage: 'Brokr guard'
    },
    brute_force: {
-      id: 'unit.bruteForce',
+      id: 'player.bruteForce',
       defaultMessage: 'Brute Force'
    },
    buzzcut: {
-      id: 'unit.buzzcut',
+      id: 'player.buzzcut',
       defaultMessage: 'Buzzcut'
    },
    chovar: {
-      id: 'unit.chovar',
+      id: 'player.chovar',
       defaultMessage: 'Chovar'
    },
    convict_guard: {
-      id: 'unit.convict.guard',
+      id: 'player.convict.guard',
       defaultMessage: 'Convict guard'
    },
    convict_jack: {
-      id: 'unit.convict.jack',
+      id: 'player.convict.jack',
       defaultMessage: 'Convict jack'
    },
    convict_striker: {
-      id: 'unit.convict.striker',
+      id: 'player.convict.striker',
       defaultMessage: 'Convict striker'
    },
    crypt: {
-      id: 'unit.crypt',
+      id: 'player.crypt',
       defaultMessage: 'Crypt'
    },
    crystallan_guard: {
-      id: 'unit.crystallan.guard',
+      id: 'player.crystallan.guard',
       defaultMessage: 'Crystallan guard'
    },
    crystallan_jack: {
-      id: 'unit.crystallan.jack',
+      id: 'player.crystallan.jack',
       defaultMessage: 'Crystallan jack'
    },
    dead_man_davitz: {
-      id: 'unit.deadManDavitz',
+      id: 'player.deadManDavitz',
       defaultMessage: 'Dead Man Davitz'
    },
    dozer: {
-      id: 'unit.dozer',
+      id: 'player.dozer',
       defaultMessage: 'Dozer'
    },
    drake: {
-      id: 'unit.drake',
+      id: 'player.drake',
       defaultMessage: 'Drake'
    },
    firewall: {
-      id: 'unit.firewall',
+      id: 'player.firewall',
       defaultMessage: 'Firewall'
    },
    forge_father_guard: {
-      id: 'unit.forgeFather.guard',
+      id: 'player.forgeFather.guard',
       defaultMessage: 'Forge Father guard'
    },
    forge_father_jack: {
-      id: 'unit.forgeFather.jack',
+      id: 'player.forgeFather.jack',
       defaultMessage: 'Forge Father jack'
    },
    forge_father_striker: {
-      id: 'unit.forgeFather.striker',
+      id: 'player.forgeFather.striker',
       defaultMessage: 'Forge Father striker'
    },
    gaelian_jack: {
-      id: 'unit.gaelian.jack',
+      id: 'player.gaelian.jack',
       defaultMessage: 'Gaelian jack'
    },
    galdo: {
-      id: 'unit.galdo',
+      id: 'player.galdo',
       defaultMessage: 'Galdo'
    },
    gorim_ironstone: {
-      id: 'unit.gorimIronstone',
+      id: 'player.gorimIronstone',
       defaultMessage: 'Gorim Ironstone'
    },
    grak: {
-      id: 'unit.grak',
+      id: 'player.grak',
       defaultMessage: 'Grak'
    },
    hector_weiss: {
-      id: 'unit.hectorWeiss',
+      id: 'player.hectorWeiss',
       defaultMessage: 'Hector Weiss'
    },
    hobgoblin_jack: {
-      id: 'unit.hobgoblin.jack',
+      id: 'player.hobgoblin.jack',
       defaultMessage: 'Hobgoblin jack'
    },
    hobgoblin_striker: {
-      id: 'unit.hobgoblin.striker',
+      id: 'player.hobgoblin.striker',
       defaultMessage: 'Hobgoblin striker'
    },
    hulk_guard: {
-      id: 'unit.hulk.guard',
+      id: 'player.hulk.guard',
       defaultMessage: 'Hulk guard'
    },
    human_male_guard: {
-      id: 'unit.human.male.guard',
+      id: 'player.human.male.guard',
       defaultMessage: 'Human (male) guard'
    },
    human_male_jack: {
-      id: 'unit.human.male.jack',
+      id: 'player.human.male.jack',
       defaultMessage: 'Human (male) jack'
    },
    human_male_striker: {
-      id: 'unit.human.male.striker',
+      id: 'player.human.male.striker',
       defaultMessage: 'Human (male) striker'
    },
    human_female_guard: {
-      id: 'unit.human.female.guard',
+      id: 'player.human.female.guard',
       defaultMessage: 'Human (female) guard'
    },
    human_female_jack: {
-      id: 'unit.human.female.jack',
+      id: 'player.human.female.jack',
       defaultMessage: 'Human (female) jack'
    },
    human_female_striker: {
-      id: 'unit.human.female.striker',
+      id: 'player.human.female.striker',
       defaultMessage: 'Human (female) striker'
    },
    iron_ancestor: {
-      id: 'unit.ironAncestor',
+      id: 'player.ironAncestor',
       defaultMessage: 'Iron Ancestor'
    },
    irsala: {
-      id: 'unit.irsala',
+      id: 'player.irsala',
       defaultMessage: 'Irsala'
    },
    jetari_brawler: {
-      id: 'unit.jetari.brawler',
+      id: 'player.jetari.brawler',
       defaultMessage: 'Jetari GL14 "Brawler"'
    },
    jetari_thrower: {
-      id: 'unit.jetari.thrower',
+      id: 'player.jetari.thrower',
       defaultMessage: 'Jetari SL22 "Thrower"'
    },
    john_doe: {
-      id: 'unit.johnDoe',
+      id: 'player.johnDoe',
       defaultMessage: 'John Doe'
    },
    jonathan_gabe_gabriel: {
-      id: 'unit.gabe',
+      id: 'player.gabe',
       defaultMessage: 'Jonathan \'Gabe\' Gabriel'
    },
    judwan_striker: {
-      id: 'unit.judwan.striker',
+      id: 'player.judwan.striker',
       defaultMessage: 'Judwan striker'
    },
    kailasa: {
-      id: 'unit.kailasa',
+      id: 'player.kailasa',
       defaultMessage: 'Kailasa'
    },
    kalyshi_jack: {
-      id: 'unit.kalyshi.jack',
+      id: 'player.kalyshi.jack',
       defaultMessage: 'Kalyshi jack'
    },
    kalyshi_striker: {
-      id: 'unit.kalyshi.striker',
+      id: 'player.kalyshi.striker',
       defaultMessage: 'Kalyshi striker'
    },
    koris_guard: {
-      id: 'unit.koris.guard',
+      id: 'player.koris.guard',
       defaultMessage: 'Koris guard'
    },
    koris_jack: {
-      id: 'unit.koris.jack',
+      id: 'player.koris.jack',
       defaultMessage: 'Koris jack'
    },
    koris_striker: {
-      id: 'unit.koris.striker',
+      id: 'player.koris.striker',
       defaultMessage: 'Koris striker'
    },
    krastavor: {
-      id: 'unit.krastavor',
+      id: 'player.krastavor',
       defaultMessage: 'Krastavor'
    },
    kryphos: {
-      id: 'unit.kryphos',
+      id: 'player.kryphos',
       defaultMessage: 'Kryphos'
    },
    lucky_logan: {
-      id: 'unit.luckyLogan',
+      id: 'player.luckyLogan',
       defaultMessage: '\'Lucky\' Logan'
    },
    ludwig: {
-      id: 'unit.ludwig',
+      id: 'player.ludwig',
       defaultMessage: 'Ludwig'
    },
    lyra_the_fixer: {
-      id: 'unit.lyraTheFixer',
+      id: 'player.lyraTheFixer',
       defaultMessage: 'Lyra the Fixer'
    },
    marauder_guard: {
-      id: 'unit.marauder.guard',
+      id: 'player.marauder.guard',
       defaultMessage: 'Marauder guard'
    },
    marauder_jack: {
-      id: 'unit.marauder.jack',
+      id: 'player.marauder.jack',
       defaultMessage: 'Marauder jack'
    },
    martian_guard: {
-      id: 'unit.martian.guard',
+      id: 'player.martian.guard',
       defaultMessage: 'Martian guard'
    },
    martian_jack: {
-      id: 'unit.martian.jack',
+      id: 'player.martian.jack',
       defaultMessage: 'Martian jack'
    },
    martian_striker: {
-      id: 'unit.martian.striker',
+      id: 'player.martian.striker',
       defaultMessage: 'Martian striker'
    },
    mee_kel_judwan: {
-      id: 'unit.meelKelJudwan',
+      id: 'player.meelKelJudwan',
       defaultMessage: 'Mee-Kel Judwan'
    },
    mellisandra: {
-      id: 'unit.mellisandra',
+      id: 'player.mellisandra',
       defaultMessage: 'Mellisandra'
    },
    mzei_kein: {
-      id: 'unit.mzeiKein',
+      id: 'player.mzeiKein',
       defaultMessage: 'M\'zei Kein'
    },
    nameless_bloodsucker: {
-      id: 'unit.nameless.bloodsucker',
+      id: 'player.nameless.bloodsucker',
       defaultMessage: 'Nameless Bloodsucker'
    },
    nameless_guard_sticky: {
-      id: 'unit.nameless.guard.sticky',
+      id: 'player.nameless.guard.sticky',
       defaultMessage: 'Nameless sticky guard'
    },
    nameless_guard_hard: {
-      id: 'unit.nameless.guard.hard',
+      id: 'player.nameless.guard.hard',
       defaultMessage: 'Nameless hard guard'
    },
    nameless_spawn: {
-      id: 'unit.nameless.spawn',
+      id: 'player.nameless.spawn',
       defaultMessage: 'Nameless spawn'
    },
    nameless_striker: {
-      id: 'unit.nameless.striker',
+      id: 'player.nameless.striker',
       defaultMessage: 'Nameless striker'
    },
    nightshade: {
-      id: 'unit.nightshade',
+      id: 'player.nightshade',
       defaultMessage: 'Nightshade'
    },
    number_88: {
-      id: 'unit.number88',
+      id: 'player.number88',
       defaultMessage: 'Number 88'
    },
    phantasm: {
-      id: 'unit.phantasm',
+      id: 'player.phantasm',
       defaultMessage: 'Phantasm'
    },
    pusk_rampager: {
-      id: 'unit.puskRampager',
+      id: 'player.puskRampager',
       defaultMessage: 'Pusk Rampager'
    },
    sann_gar: {
-      id: 'unit.sannGar',
+      id: 'player.sannGar',
       defaultMessage: 'Sann-gar'
    },
    ralarat_striker: {
-      id: 'unit.ralarat.striker',
+      id: 'player.ralarat.striker',
       defaultMessage: 'Ralarat striker'
    },
    reek_rolat: {
-      id: 'unit.reekRolat',
+      id: 'player.reekRolat',
       defaultMessage: 'Reek Rolat'
    },
    rico_van_dien: {
-      id: 'unit.ricoVanDien',
+      id: 'player.ricoVanDien',
       defaultMessage: 'Rico Van Dien'
    },
    riller: {
-      id: 'unit.riller',
+      id: 'player.riller',
       defaultMessage: 'Riller'
    },
    rin_guard: {
-      id: 'unit.rin.guard',
+      id: 'player.rin.guard',
       defaultMessage: 'Rin guard'
    },
    robot_guard: {
-      id: 'unit.robot.guard',
+      id: 'player.robot.guard',
       defaultMessage: 'Robot guard'
    },
    robot_jack: {
-      id: 'unit.robot.jack',
+      id: 'player.robot.jack',
       defaultMessage: 'Robot jack'
    },
    robot_striker: {
-      id: 'unit.robot.striker',
+      id: 'player.robot.striker',
       defaultMessage: 'Robot striker'
    },
    schnorkel: {
-      id: 'unit.schnorkel',
+      id: 'player.schnorkel',
       defaultMessage: 'Schnorkel'
    },
    slippery_joe: {
-      id: 'unit.slipperyJoe',
+      id: 'player.slipperyJoe',
       defaultMessage: 'Slippery Joe'
    },
    sorak_jack: {
-      id: 'unit.sorak.jack',
+      id: 'player.sorak.jack',
       defaultMessage: 'Sorak jack'
    },
    sphyr_guard: {
-      id: 'unit.sphyr.guard',
+      id: 'player.sphyr.guard',
       defaultMessage: 'Sphyr guard'
    },
    sphyr_jack: {
-      id: 'unit.sphyr.jack',
+      id: 'player.sphyr.jack',
       defaultMessage: 'Sphyr jack'
    },
    sphyr_striker: {
-      id: 'unit.sphyr.striker',
+      id: 'player.sphyr.striker',
       defaultMessage: 'Sphyr striker'
    },
    teraton_guard: {
-      id: 'unit.teraton.guard',
+      id: 'player.teraton.guard',
       defaultMessage: 'Teraton guard'
    },
    teraton_jack: {
-      id: 'unit.teraton.jack',
+      id: 'player.teraton.jack',
       defaultMessage: 'Teraton jack'
    },
    the_enforcer: {
-      id: 'unit.theEnforcer',
+      id: 'player.theEnforcer',
       defaultMessage: 'The Enforcer'
    },
    the_excavator: {
-      id: 'unit.theExcavator',
+      id: 'player.theExcavator',
       defaultMessage: 'The Excavator'
    },
    the_praetorian: {
-      id: 'unit.thePraetorian',
+      id: 'player.thePraetorian',
       defaultMessage: 'The Praetorian'
    },
    the_veteran: {
-      id: 'unit.theVeteran',
+      id: 'player.theVeteran',
       defaultMessage: 'The Veteran'
    },
    thunder_chris: {
-      id: 'unit.thunderChris',
+      id: 'player.thunderChris',
       defaultMessage: 'Thunder Chris'
    },
    tsudochan_jack: {
-      id: 'unit.tsudochan.jack',
+      id: 'player.tsudochan.jack',
       defaultMessage: 'Tsudochan jack'
    },
    tycho_brahe: {
-      id: 'unit.tychoBrahe',
+      id: 'player.tychoBrahe',
       defaultMessage: 'Tycho Brahe'
    },
    veer_myn_guard: {
-      id: 'unit.veerMyn.guard',
+      id: 'player.veerMyn.guard',
       defaultMessage: 'Veer-myn guard'
    },
    veer_myn_striker: {
-      id: 'unit.veerMyn.striker',
+      id: 'player.veerMyn.striker',
       defaultMessage: 'Veer-myn striker'
    },
    vlorox_spinpede: {
-      id: 'unit.vloroxSpinpede',
+      id: 'player.vloroxSpinpede',
       defaultMessage: 'Vlorox Spinpede'
    },
    wildcard: {
-      id: 'unit.wildcard',
+      id: 'player.wildcard',
       defaultMessage: 'Wildcard'
    },
    wyn_grethzki: {
-      id: 'unit.wynGrethzki',
+      id: 'player.wynGrethzki',
       defaultMessage: 'Win Greth\'zki'
    },
    yurik_yurikson: {
-      id: 'unit.yurikYurikson',
+      id: 'player.yurikYurikson',
       defaultMessage: 'Yurik Yurikson'
    },
    yndij_reaver: {
-      id: 'unit.yndijReaver',
+      id: 'player.yndijReaver',
       defaultMessage: 'Yndij Reaver'
    },
    zee_buccaneer: {
-      id: 'unit.zee.buccaneer',
+      id: 'player.zee.buccaneer',
       defaultMessage: 'Zee Buccaneer'
    },
    zee_jack: {
-      id: 'unit.zee.jack',
+      id: 'player.zee.jack',
       defaultMessage: 'Zee jack'
    },
    zzor_guard: {
-      id: 'unit.zzor.guard',
+      id: 'player.zzor.guard',
       defaultMessage: 'Z\'zor guard'
    },
    zzor_jack: {
-      id: 'unit.zzor.jack',
+      id: 'player.zzor.jack',
       defaultMessage: 'Z\'zor jack'
    },
    zzor_striker: {
-      id: 'unit.zzor.striker',
+      id: 'player.zzor.striker',
       defaultMessage: 'Z\'zor striker'
    }
 });
 
-export default unitNameMessages;
+export default playerNameMessages;

@@ -90,7 +90,7 @@ public class SponsorQueryController {
      *            ordering direction
      * @return all the units available to a Sponsor
      */
-    @GetMapping(path = "/units",
+    @GetMapping(path = "/players",
             produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final Iterable<? extends TeamPlayer> getDbxTeamPlayers(@RequestParam(
             name = "affinities", required = false,

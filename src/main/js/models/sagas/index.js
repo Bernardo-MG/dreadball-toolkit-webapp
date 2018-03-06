@@ -1,7 +1,7 @@
-import { unitSagas } from 'models/sagas/unit';
-import { sponsorUnitSagas } from 'models/sagas/sponsorUnit';
+import { playerSagas } from 'models/sagas/player';
+import { sponsorPlayerSagas } from 'models/sagas/sponsorPlayer';
 
 export const modelSagas = [
-   ...unitSagas,
-   ...sponsorUnitSagas
+   ...playerSagas,
+   ...sponsorPlayerSagas
 ];

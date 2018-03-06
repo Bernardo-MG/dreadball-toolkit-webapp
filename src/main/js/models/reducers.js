@@ -1,6 +1,6 @@
-import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_UNITS, CREATE_RATED_UNITS } from 'models/actions/actionTypes';
+import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_PLAYERS, CREATE_RATED_PLAYERS } from 'models/actions/actionTypes';
 
-const model = (state = { abilities: {}, affinities: {}, units: {}, ratedUnits: {} }, action) => {
+const model = (state = { abilities: {}, affinities: {}, players: {}, ratedPlayers: {} }, action) => {
    const { type, payload } = action;
 
    switch (type) {
@@ -16,16 +16,16 @@ const model = (state = { abilities: {}, affinities: {}, units: {}, ratedUnits: {
          affinities: { ...state.affinities, ...payload }
       };
    }
-   case CREATE_UNITS: {
+   case CREATE_PLAYERS: {
       return {
          ...state,
-         units: { ...state.units, ...payload }
+         players: { ...state.players, ...payload }
       };
    }
-   case CREATE_RATED_UNITS: {
+   case CREATE_RATED_PLAYERS: {
       return {
          ...state,
-         ratedUnits: { ...state.ratedUnits, ...payload }
+         ratedPlayers: { ...state.ratedPlayers, ...payload }
       };
    }
    default:

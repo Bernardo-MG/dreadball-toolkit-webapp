@@ -7,16 +7,16 @@ import { connect } from 'react-redux';
 
 import { injectIntl } from 'react-intl';
 
-import UnitScrollablePanel from 'builder/units/components/UnitScrollablePanel';
+import PlayerScrollablePanel from 'builder/players/components/PlayerScrollablePanel';
 
-import { removeTeamUnit } from 'builder/units/actions';
+import { removeTeamPlayer } from 'builder/players/actions';
 
-import { selectSponsorRatedUnits } from 'builder/units/selectors';
+import { selectSponsorRatedPlayers } from 'builder/players/selectors';
 
 import SubtractIcon from 'grommet/components/icons/base/SubtractCircle';
 
 const SponsorTeamPlayers = (props) =>
-   <UnitScrollablePanel source={props.source}
+   <PlayerScrollablePanel source={props.source}
       buttonAction={props.buttonAction} buttonIcon={<SubtractIcon />} />;
 
 SponsorTeamPlayers.propTypes = {
@@ -27,13 +27,13 @@ SponsorTeamPlayers.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      source: selectSponsorRatedUnits(state)
+      source: selectSponsorRatedPlayers(state)
    };
 };
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      buttonAction: bindActionCreators(removeTeamUnit, dispatch)
+      buttonAction: bindActionCreators(removeTeamPlayer, dispatch)
    };
 };
 

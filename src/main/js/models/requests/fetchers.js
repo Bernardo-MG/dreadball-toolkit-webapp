@@ -1,8 +1,8 @@
 import { normalize } from 'normalizr';
 import { Fetcher } from 'api/fetch';
-import { unit } from 'models/schema';
-import { sponsorUnitEndpoint, unitEndpoint } from 'models/requests/endpoints';
+import { player } from 'models/schema';
+import { sponsorPlayerEndpoint, playerEndpoint } from 'models/requests/endpoints';
 
-export const fetcherSponsorUnit = new Fetcher(sponsorUnitEndpoint, (json) => normalize(json, [unit]));
+export const fetcherSponsorPlayer = new Fetcher(sponsorPlayerEndpoint, (json) => normalize(json, [player]));
 
-export const fetcherUnit = new Fetcher(unitEndpoint, (json) => normalize(json, [unit]));
+export const fetcherPlayer = new Fetcher(playerEndpoint, (json) => normalize(json, [player]));

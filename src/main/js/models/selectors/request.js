@@ -1,4 +1,4 @@
 
-export const selectUnitIsFetching = (state) => state.pagination.units.isFetching;
+export const selectPlayerIsFetching = (state) => state.pagination.players.isFetching;
 
-export const selectRatedUnitIsFetching = (state) => state.pagination.ratedUnits.isFetching;
+export const selectRatedPlayerIsFetching = (state) => state.pagination.ratedPlayers.isFetching;

@@ -1,5 +1,5 @@
 import { appendBase } from 'api/utils';
 
-const TEAM_UNITS_REPORT_REST_ENDPOINT = '/rest/builder/report';
+const TEAM_PLAYERS_REPORT_REST_ENDPOINT = '/rest/builder/report';
 
-export const teamReportEndpoint = appendBase(TEAM_UNITS_REPORT_REST_ENDPOINT);
+export const teamReportEndpoint = appendBase(TEAM_PLAYERS_REPORT_REST_ENDPOINT);

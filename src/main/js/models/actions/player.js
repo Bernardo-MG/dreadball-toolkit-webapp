@@ -1,29 +1,29 @@
-import { REQUEST_UNITS, CHANGE_PAGE_PREV_UNITS, CHANGE_PAGE_NEXT_UNITS, REQUEST_SUCCESS_UNITS } from 'models/actions/actionTypes';
+import { REQUEST_PLAYERS, CHANGE_PAGE_PREV_PLAYERS, CHANGE_PAGE_NEXT_PLAYERS, REQUEST_SUCCESS_PLAYERS } from 'models/actions/actionTypes';
 
 export const fetch = () => {
    return {
-      type: REQUEST_UNITS,
+      type: REQUEST_PLAYERS,
       params: { orderBy: 'templateName' }
    };
 };
 
 export const movePrevPage = () => {
    return {
-      type: CHANGE_PAGE_PREV_UNITS,
+      type: CHANGE_PAGE_PREV_PLAYERS,
       params: { orderBy: 'templateName' }
    };
 };
 
 export const moveNextPage = () => {
    return {
-      type: CHANGE_PAGE_NEXT_UNITS,
+      type: CHANGE_PAGE_NEXT_PLAYERS,
       params: { orderBy: 'templateName' }
    };
 };
 
 export const requestSuccess = (payload, pagination) => {
    return {
-      type: REQUEST_SUCCESS_UNITS,
+      type: REQUEST_SUCCESS_PLAYERS,
       payload,
       pagination
    };

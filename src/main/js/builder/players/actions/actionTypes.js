@@ -1,0 +1,2 @@
+export const ADD_TEAM_PLAYER = 'ADD_TEAM_PLAYER';
+export const REMOVE_TEAM_PLAYER = 'REMOVE_TEAM_PLAYER';

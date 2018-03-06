@@ -5,7 +5,7 @@ import { fetcherReport as fetcher } from 'report/requests/fetchers';
 import { selectAssets } from 'builder/assets/selectors';
 import { selectChosenAffinities } from 'builder/affinities/selectors';
 import { selectBaseRank } from 'builder/sponsors/selectors';
-import { selectUnits } from 'builder/units/selectors';
+import { selectPlayers } from 'builder/players/selectors';
 
 export function fetch(params) {
    return fetcher.fetch(params);
@@ -14,7 +14,7 @@ export function fetch(params) {
 function* request(action) {
    const assets = yield select(selectAssets);
    const affinities = yield select(selectChosenAffinities);
-   const teamPlayers = yield select(selectUnits);
+   const teamPlayers = yield select(selectPlayers);
    const baseRank = yield select(selectBaseRank);
 
    const params = { ...action.params, affinities, teamPlayers, baseRank, ...assets };

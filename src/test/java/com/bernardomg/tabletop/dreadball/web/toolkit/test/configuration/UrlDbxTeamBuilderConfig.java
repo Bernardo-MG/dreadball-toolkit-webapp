@@ -36,7 +36,7 @@ public final class UrlDbxTeamBuilderConfig {
     /**
      * Affinity groups REST URL.
      */
-    public static final String URL_UNITS               = "/rest/builder/units";
+    public static final String URL_UNITS               = "/rest/builder/players";
 
     /**
      * Affinities validation REST URL.

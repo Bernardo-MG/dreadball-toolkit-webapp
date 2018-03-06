@@ -4,7 +4,7 @@ import assets from 'builder/assets/reducers';
 import affinities from 'builder/affinities/reducers';
 
 const sponsor = (
-   state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, totalCost: 0, units: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
+   state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, totalCost: 0, players: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
    action) => {
    const { type, payload } = action;
 
@@ -18,24 +18,24 @@ const sponsor = (
          rank: 0,
          baseRank: 0,
          totalCost: 0,
-         units: [],
+         players: [],
          sponsorName: 'Sponsor name'
       };
-   case ActionTypes.ADD_TEAM_UNIT:
+   case ActionTypes.ADD_TEAM_PLAYER:
       return {
          ...state,
-         units: [...state.units, payload]
+         players: [...state.players, payload]
       };
-   case ActionTypes.REMOVE_TEAM_UNIT: {
-      let unitsUpdated = state.units;
-      const unitIndex = unitsUpdated.indexOf(payload);
-      if (unitIndex !== -1) {
-         unitsUpdated = state.units.filter((x, i) => i !== unitIndex);
+   case ActionTypes.REMOVE_TEAM_PLAYER: {
+      let playersUpdated = state.players;
+      const playerIndex = playersUpdated.indexOf(payload);
+      if (playerIndex !== -1) {
+         playersUpdated = state.players.filter((x, i) => i !== playerIndex);
       }
 
       return {
          ...state,
-         units: unitsUpdated
+         players: playersUpdated
       };
    }
    case ActionTypes.SET_BASE_RANK:

@@ -1,62 +1,62 @@
 import { defineMessages } from 'react-intl';
 
-const unitMessages = defineMessages({
+const playerMessages = defineMessages({
    abilities: {
-      id: 'unit.abilities',
+      id: 'player.abilities',
       defaultMessage: 'Abilities'
    },
    ally_cost: {
-      id: 'unit.cost.ally',
+      id: 'player.cost.ally',
       defaultMessage: 'Ally cost'
    },
    armor: {
-      id: 'unit.armor',
+      id: 'player.armor',
       defaultMessage: 'Armor'
    },
    attributes: {
-      id: 'unit.attributes',
+      id: 'player.attributes',
       defaultMessage: 'Attributes'
    },
    cost: {
-      id: 'unit.cost',
+      id: 'player.cost',
       defaultMessage: 'Cost'
    },
    friend_cost: {
-      id: 'unit.cost.friend',
+      id: 'player.cost.friend',
       defaultMessage: 'Friend cost'
    },
    move: {
-      id: 'unit.move',
+      id: 'player.move',
       defaultMessage: 'Move'
    },
    name: {
-      id: 'unit.name',
+      id: 'player.name',
       defaultMessage: 'Name'
    },
    position: {
-      id: 'unit.position',
+      id: 'player.position',
       defaultMessage: 'Position'
    },
    role: {
-      id: 'unit.role',
+      id: 'player.role',
       defaultMessage: 'Role'
    },
    skill: {
-      id: 'unit.skill',
+      id: 'player.skill',
       defaultMessage: 'Skill'
    },
    speed: {
-      id: 'unit.speed',
+      id: 'player.speed',
       defaultMessage: 'Speed'
    },
    stranger_cost: {
-      id: 'unit.cost.stranger',
+      id: 'player.cost.stranger',
       defaultMessage: 'Stranger cost'
    },
    strength: {
-      id: 'unit.strength',
+      id: 'player.strength',
       defaultMessage: 'Strength'
    }
 });
 
-export default unitMessages;
+export default playerMessages;
