@@ -12,7 +12,11 @@ const Listing = (props) =>
          let item;
 
          if (element) {
-            item = <ListItem key={i} alignContent='center' full={ false } separator='horizontal'>{element}</ListItem>;
+            if (i === 0) {
+               item = <ListItem key={i} separator='horizontal'>{element}</ListItem>;
+            } else {
+               item = <ListItem key={i}>{element}</ListItem>;
+            }
          } else {
             item = null;
          }

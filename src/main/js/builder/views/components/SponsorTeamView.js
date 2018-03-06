@@ -1,5 +1,9 @@
 import React, { Component } from 'react';
 
+import PropTypes from 'prop-types';
+
+import { injectIntl } from 'react-intl';
+
 import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
 import Header from 'grommet/components/Header';
@@ -20,6 +24,8 @@ import AddPlayerPanel from 'builder/views/containers/AddPlayerPanel';
 
 import TeamReportButton from 'builder/views/containers/TeamReportButton';
 
+import teamBuilderMessages from 'i18n/teamBuilder';
+
 class SponsorTeamView extends Component {
 
    state = { view: 'assets', showSidebar: true };
@@ -34,6 +40,10 @@ class SponsorTeamView extends Component {
 
    showAssets = () => {
       this.setState({ view: 'assets' });
+   }
+
+   showAffinities = () => {
+      this.setState({ view: 'affinities' });
    }
 
    toggleSideBar = () => {
@@ -59,10 +69,12 @@ class SponsorTeamView extends Component {
                </Box>
                <Heading tag='h2'>assets</Heading>
                <SponsorAssetsForm />
-               <Box>
-                  <Heading tag='h2'>affinities</Heading>
-                  <SponsorAffinitiesList />
-               </Box>
+            </Box>;
+      } else if (this.state.view === 'affinities') {
+         view =
+            <Box justify='center' align='center' pad='medium'>
+               <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.affinities)}</Heading>
+               <SponsorAffinitiesList />
             </Box>;
       }
 
@@ -70,6 +82,7 @@ class SponsorTeamView extends Component {
       options.push({ label: 'assets', action: this.showAssets });
       options.push({ label: 'add_players', action: this.showAddPlayers });
       options.push({ label: 'players', action: this.showPlayers });
+      options.push({ label: this.props.intl.formatMessage(teamBuilderMessages.affinities), action: this.showAffinities });
 
       return (
          <Split flex="left" separator={true}>
@@ -88,4 +101,8 @@ class SponsorTeamView extends Component {
    }
 }
 
-export default SponsorTeamView;
+SponsorTeamView.propTypes = {
+   intl: PropTypes.object.isRequired
+};
+
+export default injectIntl(SponsorTeamView);
