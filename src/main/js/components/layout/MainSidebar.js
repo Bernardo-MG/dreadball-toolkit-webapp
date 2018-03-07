@@ -16,7 +16,7 @@ import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
 import titleMessages from 'i18n/title';
 import appMessages from 'i18n/app';
 
-const AppHeader = (props) =>
+const MainSidebar = (props) =>
    <Sidebar size="small" colorIndex="light-2">
       <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
          {props.intl.formatMessage(appMessages.name)}
@@ -30,8 +30,8 @@ const AppHeader = (props) =>
       </Footer>
    </Sidebar>;
 
-AppHeader.propTypes = {
+MainSidebar.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(AppHeader);
+export default injectIntl(MainSidebar);
