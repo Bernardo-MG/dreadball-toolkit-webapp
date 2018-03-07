@@ -2,8 +2,6 @@ import React from 'react';
 
 import PropTypes from 'prop-types';
 
-import { injectIntl } from 'react-intl';
-
 import Anchor from 'grommet/components/Anchor';
 import Button from 'grommet/components/Button';
 import Header from 'grommet/components/Header';
@@ -13,17 +11,15 @@ import Footer from 'grommet/components/Footer';
 
 import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
 
-import titleMessages from 'i18n/title';
-import appMessages from 'i18n/app';
-
 const MainSidebar = (props) =>
    <Sidebar size="small" colorIndex="light-2">
       <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
-         {props.intl.formatMessage(appMessages.name)}
+         {props.title}
       </Header>
       <Menu fill={true} primary={true}>
-         <Anchor path='/dbx' label={props.intl.formatMessage(titleMessages.dbxTeamBuilder)} />
-         <Anchor path='/players' label={props.intl.formatMessage(titleMessages.dbxPlayers)} />
+         { props.links.map((option, i) =>
+            <Anchor key={i} path={option.path} label={option.label} />
+         )}
       </Menu>
       <Footer pad={ { horizontal: 'medium', vertical: 'small' } }>
          <p>{APP_VERSION}</p> <Button href={REPO_URL} icon={<SocialGithubIcon/>} />
@@ -31,7 +27,11 @@ const MainSidebar = (props) =>
    </Sidebar>;
 
 MainSidebar.propTypes = {
-   intl: PropTypes.object.isRequired
+   title: PropTypes.string,
+   links: PropTypes.arrayOf(PropTypes.shape({
+      label: PropTypes.string,
+      path: PropTypes.string
+   }))
 };
 
-export default injectIntl(MainSidebar);
+export default MainSidebar;
