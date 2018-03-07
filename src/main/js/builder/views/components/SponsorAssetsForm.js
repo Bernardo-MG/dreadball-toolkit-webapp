@@ -1,5 +1,9 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
+import { injectIntl } from 'react-intl';
+
 import Box from 'grommet/components/Box';
 import Form from 'grommet/components/Form';
 import FormField from 'grommet/components/FormField';
@@ -11,32 +15,38 @@ import NastySurpriseCardInput from 'builder/assets/containers/NastySurpriseCardI
 import SpecialMoveCardInput from 'builder/assets/containers/SpecialMoveCardInput';
 import WagerInput from 'builder/assets/containers/WagerInput';
 
-const SponsorAssetsForm = () =>
+import teamBuilderMessages from 'i18n/teamBuilder';
+
+const SponsorAssetsForm = (props) =>
    <Form>
       <Box direction='row'>
-         <FormField label='coaching_dice'>
+         <FormField label={props.intl.formatMessage(teamBuilderMessages.coaching_dice)}>
             <CoachingDiceInput id='coaching_dice' name='coaching_dice' min={0} max={100}/>
          </FormField>
-         <FormField label='special_move_card'>
-            <SpecialMoveCardInput id='special_move_card' name='special_move_card' min={0} max={100}/>
+         <FormField label={props.intl.formatMessage(teamBuilderMessages.special_move_cards)}>
+            <SpecialMoveCardInput id='special_move_cards' name='special_move_cards' min={0} max={100}/>
          </FormField>
       </Box>
       <Box direction='row'>
-         <FormField label='nasty_surprise_card'>
-            <NastySurpriseCardInput id='nasty_surprise_card' name='nasty_surprise_card' min={0} max={100}/>
+         <FormField label={props.intl.formatMessage(teamBuilderMessages.nasty_surprise_cards)}>
+            <NastySurpriseCardInput id='nasty_surprise_cards' name='nasty_surprise_cards' min={0} max={100}/>
          </FormField>
-         <FormField label='wager'>
-            <WagerInput id='wager' name='wager' min={0} max={100}/>
+         <FormField label={props.intl.formatMessage(teamBuilderMessages.wagers)}>
+            <WagerInput id='wagers' name='wagers' min={0} max={100}/>
          </FormField>
       </Box>
       <Box direction='row'>
-         <FormField label='medibot'>
-            <MediBotInput id='medibot' name='medibot' min={0} max={100}/>
+         <FormField label={props.intl.formatMessage(teamBuilderMessages.medibots)}>
+            <MediBotInput id='medibots' name='medibots' min={0} max={100}/>
          </FormField>
-         <FormField label='cheerleaders'>
+         <FormField label={props.intl.formatMessage(teamBuilderMessages.cheerleaders)}>
             <CheerleadersInput id='cheerleaders' name='cheerleaders' min={0} max={100}/>
          </FormField>
       </Box>
    </Form>;
 
-export default SponsorAssetsForm;
+SponsorAssetsForm.propTypes = {
+   intl: PropTypes.object.isRequired
+};
+
+export default injectIntl(SponsorAssetsForm);

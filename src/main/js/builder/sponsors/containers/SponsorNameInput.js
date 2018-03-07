@@ -12,12 +12,13 @@ import { setSponsorName } from 'builder/actions';
 import { selectSponsorName } from 'builder/sponsors/selectors';
 
 const SponsorNameInput = (props) =>
-   <FormField label='sponsor_name'>
+   <FormField label={props.label}>
       <input id='sponsor_name' name='sponsor_name' type='text' value={props.sponsorName} onChange={(event) => props.action(event.target.value)}/>
    </FormField>;
 
 SponsorNameInput.propTypes = {
    action: PropTypes.func.isRequired,
+   label: PropTypes.string.isRequired,
    sponsorName: PropTypes.string.isRequired
 };
 
