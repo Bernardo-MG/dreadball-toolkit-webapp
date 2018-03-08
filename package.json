@@ -58,6 +58,7 @@
       "sass-loader": "~6.0.5",
       "style-loader": "~0.17.0",
       "superagent": "~3.6.0",
+      "uglifyjs-webpack-plugin": "~1.0.0",
       "webpack": "~3.11.0"
    },
    "devDependencies": {

@@ -53,28 +53,27 @@ plugins = [
 
 var devtool = null;
 if (env === 'production') {
+   // Use the default plugin after moving to Webpack 4
+   const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
    // Production specific configuration
    devtool = false,
    plugins = plugins.concat([
-      new webpack.optimize.UglifyJsPlugin({
-         compress: {
-            warnings: false,
-            screw_ie8: true,
-            conditionals: true,
-            unused: true,
-            comparisons: true,
-            sequences: true,
-            dead_code: true,
-            evaluate: true,
-            if_return: true,
-            join_vars: true,
-         },
-         mangle: {
-            screw_ie8: true
-         },
-         output: {
-            comments: false,
-            screw_ie8: true
+      new UglifyJsPlugin({
+         uglifyOptions: {
+            compress: {
+               warnings: false,
+               conditionals: true,
+               unused: true,
+               comparisons: true,
+               sequences: true,
+               dead_code: true,
+               evaluate: true,
+               if_return: true,
+               join_vars: true,
+            },
+            output: {
+               comments: false
+            }
          }
       })
    ]);
