@@ -20,34 +20,29 @@ const paginatedContent = (content) => {
    return result;
 };
 
-const setUpContent = (content) => {
-   let result;
+const handleResponse = (status, message, parse) => {
+   if (!status) {
+      return Promise.reject(message);
+   }
 
-   if (content.number === null || content.number === undefined) {
+   let content;
+   if (message.number === null || message.number === undefined) {
       // Pagination info is missing
-      // The contents is returned without pagination details
-      result = { payload: content };
+      // The payload is the message itself
+      content = { payload: message };
    } else {
-      result = paginatedContent(content);
+      content = paginatedContent(message);
    }
 
-   return result;
-};
-
-const handleResponse = (response, json, parse) => {
-   if (!response.ok) {
-      return Promise.reject(json);
-   }
-
-   const content = setUpContent(json);
+   // The payload is parsed
    content.payload = parse(content.payload);
 
    return content;
 };
 
-const fetchPaginated = (url, params, parse) =>
+const fetchJsonPaginated = (url, params, parse) =>
    request.get(url).query(params).set('Accept', 'application/json').then((response) =>
-      handleResponse(response, response.body, parse)
+      handleResponse(response.ok, response.body, parse)
    );
 
 export const Fetcher = class {
@@ -58,12 +53,13 @@ export const Fetcher = class {
       if (processor) {
          this.processor = processor;
       } else {
-         this.processor = (json) => json;
+         // By default the message is not parsed
+         this.processor = (message) => message;
       }
    }
 
    fetch(params) {
-      return fetchPaginated(this.url, params, this.processor).then(
+      return fetchJsonPaginated(this.url, params, this.processor).then(
          (response) => response,
          (error) => error.message || 'Request failed'
       );
