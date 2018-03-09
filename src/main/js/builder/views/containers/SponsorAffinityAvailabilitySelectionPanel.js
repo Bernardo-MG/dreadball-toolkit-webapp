@@ -2,24 +2,54 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
+import { injectIntl } from 'react-intl';
+
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
+import Box from 'grommet/components/Box';
+
 import { fetchAffinityOptions as fetch } from 'builder/affinities/actions';
+import { chooseSponsorAffinity } from 'builder/actions';
 
 import { selectAffinityOptions } from 'builder/affinities/selectors';
 
-import SponsorAffinityAvailabilitySelectField from 'builder/affinities/components/SponsorAffinityAvailabilitySelectField';
+import AffinityAvailabilitySelect from 'builder/affinities/components/AffinityAvailabilitySelect';
+
+import affinitiesMessages from 'i18n/affinity';
+
+function internationalizeOption(option, intl) {
+   return { value: option.value, label: intl.formatMessage(affinitiesMessages[option.label]) };
+}
+
+function internationalizeOptions(options, intl) {
+   const result = [];
+   options.forEach((option) => result.push(internationalizeOption(option, intl)));
+   return result;
+}
 
 class SponsorAffinityAvailabilitySelectionPanel extends Component {
 
+   constructor(props) {
+      super(props);
+
+      this.values = [];
+   }
+
    componentDidMount() {
-      this.props.action();
+      this.props.load();
+   }
+
+   componentWillReceiveProps(props) {
+      this.values = [];
+      props.source.forEach((set) => this.values.push({ name: set.name, options: internationalizeOptions(set.options, props.intl) }));
    }
 
    render() {
       return (
-         <SponsorAffinityAvailabilitySelectField source={this.props.source} />
+         <Box>
+            {this.values.map((element, i) => <AffinityAvailabilitySelect index={i} key={i} source={element.options} onChange={this.props.action} />)}
+         </Box>
       );
    }
 
@@ -27,7 +57,9 @@ class SponsorAffinityAvailabilitySelectionPanel extends Component {
 
 SponsorAffinityAvailabilitySelectionPanel.propTypes = {
    action: PropTypes.func.isRequired,
-   source: PropTypes.array.isRequired
+   load: PropTypes.func.isRequired,
+   source: PropTypes.array.isRequired,
+   intl: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -38,11 +70,12 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(fetch, dispatch)
+      load: bindActionCreators(fetch, dispatch),
+      action: bindActionCreators(chooseSponsorAffinity, dispatch)
    };
 };
 
-export default connect(
+export default injectIntl(connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorAffinityAvailabilitySelectionPanel);
+)(SponsorAffinityAvailabilitySelectionPanel));
