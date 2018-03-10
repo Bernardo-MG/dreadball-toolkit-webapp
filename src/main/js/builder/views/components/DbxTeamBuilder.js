@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Box from 'grommet/components/Box';
 
 import SponsorAffinitiesView from 'builder/views/components/SponsorAffinitiesView';
-import SponsorTeamView from 'builder/views/components/SponsorTeamView';
+import SponsorTeamView from 'builder/views/containers/SponsorTeamView';
 
 class DbxTeamBuilder extends Component {
 

@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
+
 import { injectIntl } from 'react-intl';
 
 import Article from 'grommet/components/Article';
@@ -20,15 +23,21 @@ import ButtonsSidebar from 'components/ButtonsSidebar';
 import SponsorAssetsForm from 'builder/views/components/SponsorAssetsForm';
 import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
 
-import AddPlayerPanel from 'builder/views/containers/AddPlayerPanel';
+import SponsorPlayersOptions from 'builder/players/containers/SponsorPlayersOptions';
 
 import TeamReportButton from 'builder/views/containers/TeamReportButton';
+
+import { fetch as fetchPlayers } from 'models/actions/sponsorPlayer';
 
 import teamBuilderMessages from 'i18n/teamBuilder';
 
 class SponsorTeamView extends Component {
 
    state = { view: 'assets', showSidebar: true };
+
+   componentDidMount() {
+      this.props.loadPlayers();
+   }
 
    showPlayers = () => {
       this.setState({ view: 'players' });
@@ -54,7 +63,7 @@ class SponsorTeamView extends Component {
       let view = null;
 
       if (this.state.view === 'addPlayers') {
-         view = <AddPlayerPanel />;
+         view = <SponsorPlayersOptions />;
       } else if (this.state.view === 'players') {
          view =
             <Box>
@@ -102,7 +111,21 @@ class SponsorTeamView extends Component {
 }
 
 SponsorTeamView.propTypes = {
+   loadPlayers: PropTypes.func.isRequired,
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(SponsorTeamView);
+const mapStateToProps = () => {
+   return {};
+};
+
+const mapDispatchToProps = (dispatch) => {
+   return {
+      loadPlayers: bindActionCreators(fetchPlayers, dispatch)
+   };
+};
+
+export default injectIntl(connect(
+   mapStateToProps,
+   mapDispatchToProps
+)(SponsorTeamView));
