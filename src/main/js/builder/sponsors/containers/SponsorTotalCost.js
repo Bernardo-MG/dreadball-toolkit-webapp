@@ -12,16 +12,16 @@ import { selectTotalCost } from 'builder/sponsors/selectors';
 
 import teamMessages from 'i18n/team';
 
-const SponsorTotalCost = (props) => <Value value={props.totalCost} label={props.intl.formatMessage(teamMessages.totalCost)} />;
+const SponsorTotalCost = (props) => <Value value={props.value} label={props.intl.formatMessage(teamMessages.totalCost)} />;
 
 SponsorTotalCost.propTypes = {
-   totalCost: PropTypes.number.isRequired,
+   value: PropTypes.number.isRequired,
    intl: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      totalCost: selectTotalCost(state)
+      value: selectTotalCost(state)
    };
 };
 

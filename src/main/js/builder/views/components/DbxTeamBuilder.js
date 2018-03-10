@@ -10,17 +10,17 @@ import SponsorTeamView from 'builder/views/components/SponsorTeamView';
 class DbxTeamBuilder extends Component {
 
    state = { affinitiesChosen: false };
-   handleFinishedAffinities;
+   onFinishAffinities;
 
-   finishedAffinities = () => {
+   onAcceptAffinities = () => {
       this.setState({ affinitiesChosen: true });
-      this.handleFinishedAffinities();
+      this.onFinishAffinities();
    };
 
    constructor(props) {
       super(props);
 
-      this.handleFinishedAffinities = props.handleFinishedAffinities;
+      this.onFinishAffinities = props.onFinishAffinities;
    }
 
    render() {
@@ -31,7 +31,7 @@ class DbxTeamBuilder extends Component {
       } else {
          view =
             <Box justify='center' align='center' pad='medium'>
-               <SponsorAffinitiesView onClick={ this.finishedAffinities } />
+               <SponsorAffinitiesView onClick={ this.onAcceptAffinities } />
             </Box>;
       }
 
@@ -43,7 +43,7 @@ class DbxTeamBuilder extends Component {
 }
 
 DbxTeamBuilder.propTypes = {
-   handleFinishedAffinities: PropTypes.func.isRequired
+   onFinishAffinities: PropTypes.func.isRequired
 };
 
 export default DbxTeamBuilder;

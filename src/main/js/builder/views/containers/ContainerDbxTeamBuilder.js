@@ -28,7 +28,7 @@ class ContainerDbxTeamBuilder extends Component {
 
    render() {
       return (
-         <DbxTeamBuilder handleFinishedAffinities={this.onFinishAffinities.bind(this)}/>
+         <DbxTeamBuilder onFinishAffinities={this.onFinishAffinities.bind(this)}/>
       );
    }
 }

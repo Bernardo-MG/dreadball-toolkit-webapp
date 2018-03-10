@@ -12,16 +12,16 @@ import { selectRank } from 'builder/sponsors/selectors';
 
 import teamMessages from 'i18n/team';
 
-const SponsorRankValue = (props) => <Value value={props.rank} label={props.intl.formatMessage(teamMessages.rank)} />;
+const SponsorRankValue = (props) => <Value value={props.value} label={props.intl.formatMessage(teamMessages.rank)} />;
 
 SponsorRankValue.propTypes = {
-   rank: PropTypes.number.isRequired,
+   value: PropTypes.number.isRequired,
    intl: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      rank: selectRank(state)
+      value: selectRank(state)
    };
 };
 

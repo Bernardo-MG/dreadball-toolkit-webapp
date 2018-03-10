@@ -13,18 +13,18 @@ import { selectSponsorName } from 'builder/sponsors/selectors';
 
 const SponsorNameInput = (props) =>
    <FormField label={props.label}>
-      <input id='sponsor_name' name='sponsor_name' type='text' value={props.sponsorName} onChange={(event) => props.action(event.target.value)}/>
+      <input id='sponsor_name' name='sponsor_name' type='text' value={props.value} onChange={(event) => props.action(event.target.value)}/>
    </FormField>;
 
 SponsorNameInput.propTypes = {
    action: PropTypes.func.isRequired,
    label: PropTypes.string.isRequired,
-   sponsorName: PropTypes.string.isRequired
+   value: PropTypes.string.isRequired
 };
 
 const mapStateToProps = (state) => {
    return {
-      sponsorName: selectSponsorName(state)
+      value: selectSponsorName(state)
    };
 };
 
