@@ -133,7 +133,7 @@ module.exports = {
                }
             },
             {
-               test : /\.css$/,
+               test : /\.(css|scss)$/,
                exclude: /node_modules/,
                loader : ExtractTextPlugin
                      .extract({
@@ -146,30 +146,6 @@ module.exports = {
                                  loader: 'sass-loader',
                                  options: {
                                     includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH), path.resolve(__dirname, './node_modules/grommet/node_modules') ]
-                                 }
-                              }
-                           ]
-                     })
-            },
-            {
-               test : /\.scss$/,
-               exclude: /node_modules/,
-               loader : ExtractTextPlugin
-                     .extract({
-                           fallback: 'style-loader',
-                           use: [
-                              {
-                                 loader: 'css-loader',
-                                 query: {
-                                    modules: true,
-                                    sourceMap: true,
-                                    importLoaders: 2
-                                 }
-                              },
-                              {
-                                 loader: 'sass-loader',
-                                 options: {
-                                    includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH) ]
                                  }
                               }
                            ]
