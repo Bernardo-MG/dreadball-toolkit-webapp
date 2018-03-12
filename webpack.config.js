@@ -140,7 +140,7 @@ module.exports = {
                   {
                      loader: 'sass-loader',
                      options: {
-                        includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH), path.resolve(__dirname, './node_modules/grommet/node_modules') ]
+                        includePaths : [ path.resolve(__dirname, MODULE_PATH) ]
                      }
                   }
                ]
