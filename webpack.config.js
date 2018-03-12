@@ -1,6 +1,5 @@
 var path = require('path');
 const webpack = require('webpack');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 // Environment profile
 const env = process.env.NODE_ENV || 'development';
@@ -30,10 +29,6 @@ const MODULE_PATH = process.env.MODULE_PATH;
 
 // Plugins
 plugins = [
-   new ExtractTextPlugin({
-      filename: OUTPUT_FILE_CSS,
-      allChunks : true
-   }),
    new webpack.optimize.OccurrenceOrderPlugin(),
    new webpack.optimize.CommonsChunkPlugin({
       name : 'vendor',
@@ -135,21 +130,20 @@ module.exports = {
             {
                test : /\.(css|scss)$/,
                exclude: /node_modules/,
-               loader : ExtractTextPlugin
-                     .extract({
-                           fallback: 'style-loader',
-                           use: [
-                              {
-                                 loader: 'css-loader'
-                              },
-                              {
-                                 loader: 'sass-loader',
-                                 options: {
-                                    includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH), path.resolve(__dirname, './node_modules/grommet/node_modules') ]
-                                 }
-                              }
-                           ]
-                     })
+               use: [
+                  {
+                     loader: 'file-loader',
+                     options: {
+                        name: OUTPUT_FILE_CSS
+                     }
+                  },
+                  {
+                     loader: 'sass-loader',
+                     options: {
+                        includePaths : [ path.resolve(__dirname, INPUT_PATH), path.resolve(__dirname, MODULE_PATH), path.resolve(__dirname, './node_modules/grommet/node_modules') ]
+                     }
+                  }
+               ]
             } ]
    },
    plugins
