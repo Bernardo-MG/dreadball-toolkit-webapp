@@ -117,14 +117,7 @@ module.exports = {
                test : /(\.js)$/,
                exclude: /node_modules/,
                use: {
-                  loader : 'babel-loader',
-                  options : {
-                     presets : [ 
-                        ["env", {
-                           "targets": { node: "6" },
-                        }],
-                        'stage-0', 'react' ]
-                  }
+                  loader : 'babel-loader'
                }
             },
             {
