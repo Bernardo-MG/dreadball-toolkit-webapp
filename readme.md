@@ -75,6 +75,14 @@ To run them with Tomcat:
 $ mvn verify -P h2,tomcat7
 ```
 
+Maven will run both the frontend and backend tests.
+
+To run only the frontend tests:
+
+```
+$ npm run test
+```
+
 ### Packaging the WAR
 
 When creating the WAR file the database connection credentials should be set manually:
