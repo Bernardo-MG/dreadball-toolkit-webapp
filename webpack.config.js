@@ -28,7 +28,7 @@ const OUTPUT_PATH_BUNDLE = OUTPUT_PATH + 'bundle.js';
 const MODULE_PATH = process.env.MODULE_PATH;
 
 // Plugins
-plugins = [
+let plugins = [
    new webpack.optimize.OccurrenceOrderPlugin(),
    new webpack.optimize.CommonsChunkPlugin({
       name : 'vendor',
