@@ -18,7 +18,6 @@ const INPUT_PATH = process.env.INPUT_PATH;
 const INPUT_PATH_ENTRY = INPUT_PATH + 'index.js';
 
 // Output directory
-const OUTPUT_FILE_CSS = 'style.css';
 const OUTPUT_FILE_VENDOR = 'vendor.bundle.js';
 
 const OUTPUT_PATH = process.env.OUTPUT_PATH;
@@ -127,7 +126,7 @@ module.exports = {
                   {
                      loader: 'file-loader',
                      options: {
-                        name: OUTPUT_FILE_CSS
+                        name: '[name].css'
                      }
                   },
                   {
