@@ -15,6 +15,7 @@ const MainSidebar = (props) =>
    <Sidebar size="small" colorIndex="light-2">
       <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
          {props.title}
+         {props.menuButton}
       </Header>
       <Menu fill={true} primary={true}>
          { props.links.map((option, i) =>
@@ -27,6 +28,7 @@ const MainSidebar = (props) =>
    </Sidebar>;
 
 MainSidebar.propTypes = {
+   menuButton: PropTypes.object.isRequired,
    title: PropTypes.string,
    links: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string,
