@@ -6,9 +6,12 @@ import { injectIntl } from 'react-intl';
 
 import Article from 'grommet/components/Article';
 import Box from 'grommet/components/Box';
+import Button from 'grommet/components/Button';
 import Header from 'grommet/components/Header';
 import Heading from 'grommet/components/Heading';
 import Split from 'grommet/components/Split';
+
+import MoreIcon from 'grommet/components/icons/base/More';
 
 import SponsorAffinitiesList from 'builder/affinities/containers/SponsorAffinitiesList';
 import SponsorTeamPlayers from 'builder/players/containers/SponsorTeamPlayers';
@@ -28,30 +31,62 @@ import teamBuilderMessages from 'i18n/teamBuilder';
 
 class SponsorTeamView extends Component {
 
-   state = { view: 'assets', showSidebar: true };
+   constructor(props) {
+      super(props);
+
+      this.state = { view: 'assets', sidebarVisible: true, smallScreen: false };
+   }
 
    componentDidMount() {
       this.props.onLoadPlayers();
    }
 
    showPlayers = () => {
-      this.setState({ view: 'players' });
+      this.setState({
+         ...this.state,
+         view: 'players'
+      });
    }
 
    showAddPlayers = () => {
-      this.setState({ view: 'addPlayers' });
+      this.setState({
+         ...this.state,
+         view: 'addPlayers'
+      });
    }
 
    showAssets = () => {
-      this.setState({ view: 'assets' });
+      this.setState({
+         ...this.state,
+         view: 'assets'
+      });
    }
 
    showAffinities = () => {
-      this.setState({ view: 'affinities' });
+      this.setState({
+         ...this.state,
+         view: 'affinities'
+      });
    }
 
-   toggleSideBar = () => {
-      this.setState({ showSidebar: !this.state.showSidebar });
+   _onToggleSideBar() {
+      const visible = this.state.sidebarVisible;
+
+      this.setState({
+         ...this.state,
+         sidebarVisible: !visible
+      });
+   }
+
+   _onResponsiveToggleSideBar(columns) {
+      const small = columns === 'single';
+      const visible = !small;
+
+      this.setState({
+         ...this.state,
+         sidebarVisible: visible,
+         smallScreen: small
+      });
    }
 
    render() {
@@ -88,18 +123,34 @@ class SponsorTeamView extends Component {
       options.push({ label: this.props.intl.formatMessage(teamBuilderMessages.team_players), action: this.showPlayers });
       options.push({ label: this.props.intl.formatMessage(teamBuilderMessages.affinities), action: this.showAffinities });
 
+      let side;
+      if (this.state.sidebarVisible) {
+         side = <ButtonsSidebar options={options} />;
+      }
+
+      const toggle = this._onToggleSideBar.bind(this);
+      const toggleResponsive = this._onResponsiveToggleSideBar.bind(this);
+
+      let toggleSideButton;
+      if (!this.state.sidebarVisible && this.state.smallScreen) {
+         toggleSideButton = <Button onClick={() => toggle()} icon={<MoreIcon/>} />;
+      }
+
+      const priority = (this.state.sidebarVisible && this.state.smallScreen ? 'right' : 'left');
+
       return (
-         <Split flex="left" separator={true}>
+         <Split priority={priority} flex="left" separator={true} onResponsive={toggleResponsive}>
             <Article>
                <Header>
                   <Box direction='row'>
                      <SponsorTeamCost />
                      <TeamReportButton />
+                     {toggleSideButton}
                   </Box>
                </Header>
                { view }
             </Article>
-            <ButtonsSidebar options={options} />
+            {side}
          </Split>
       );
    }

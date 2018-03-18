@@ -62,9 +62,9 @@ class BaseLayout extends Component {
       const toggleResponsive = this._onResponsiveToggleNav.bind(this);
       const hideNav = this._onHideIfResponsiveNav.bind(this);
 
-      let headButton;
+      let toggleNavButton;
       if (!this.state.navbarVisible) {
-         headButton = <Button onClick={() => toggle()} icon={<MenuIcon/>} />;
+         toggleNavButton = <Button onClick={() => toggle()} icon={<MenuIcon/>} />;
       }
 
       const title = this.props.intl.formatMessage(appMessages.name);
@@ -81,7 +81,7 @@ class BaseLayout extends Component {
             <Split priority={priority} flex="right" separator={true} onResponsive={toggleResponsive}>
                {nav}
                <Box direction='column'>
-                  {headButton}
+                  {toggleNavButton}
                   {this.props.children}
                </Box>
             </Split>
