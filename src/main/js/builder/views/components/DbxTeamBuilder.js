@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import Box from 'grommet/components/Box';
 
 import SponsorAffinitiesView from 'builder/views/components/SponsorAffinitiesView';
-import SponsorTeamView from 'builder/views/containers/SponsorTeamView';
+import SponsorTeamView from 'builder/views/components/SponsorTeamView';
 
 class DbxTeamBuilder extends Component {
 
@@ -27,7 +27,7 @@ class DbxTeamBuilder extends Component {
       let view = null;
 
       if (this.state.affinitiesChosen) {
-         view = <SponsorTeamView />;
+         view = <SponsorTeamView onLoadPlayers={this.props.onLoadPlayers} />;
       } else {
          view =
             <Box justify='center' align='center' pad='medium'>
@@ -43,6 +43,7 @@ class DbxTeamBuilder extends Component {
 }
 
 DbxTeamBuilder.propTypes = {
+   onLoadPlayers: PropTypes.func.isRequired,
    onFinishAffinities: PropTypes.func.isRequired
 };
 

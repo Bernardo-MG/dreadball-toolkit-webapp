@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import { bindActionCreators } from 'redux';
-import { connect } from 'react-redux';
-
 import { injectIntl } from 'react-intl';
 
 import Article from 'grommet/components/Article';
@@ -27,8 +24,6 @@ import SponsorPlayersOptions from 'builder/players/containers/SponsorPlayersOpti
 
 import TeamReportButton from 'builder/views/containers/TeamReportButton';
 
-import { fetch as fetchPlayers } from 'models/actions/sponsorPlayer';
-
 import teamBuilderMessages from 'i18n/teamBuilder';
 
 class SponsorTeamView extends Component {
@@ -36,7 +31,7 @@ class SponsorTeamView extends Component {
    state = { view: 'assets', showSidebar: true };
 
    componentDidMount() {
-      this.props.loadPlayers();
+      this.props.onLoadPlayers();
    }
 
    showPlayers = () => {
@@ -111,21 +106,8 @@ class SponsorTeamView extends Component {
 }
 
 SponsorTeamView.propTypes = {
-   loadPlayers: PropTypes.func.isRequired,
+   onLoadPlayers: PropTypes.func.isRequired,
    intl: PropTypes.object.isRequired
 };
 
-const mapStateToProps = () => {
-   return {};
-};
-
-const mapDispatchToProps = (dispatch) => {
-   return {
-      loadPlayers: bindActionCreators(fetchPlayers, dispatch)
-   };
-};
-
-export default injectIntl(connect(
-   mapStateToProps,
-   mapDispatchToProps
-)(SponsorTeamView));
+export default injectIntl(SponsorTeamView);
