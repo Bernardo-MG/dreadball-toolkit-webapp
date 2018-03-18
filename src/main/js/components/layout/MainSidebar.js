@@ -9,13 +9,15 @@ import Menu from 'grommet/components/Menu';
 import Sidebar from 'grommet/components/Sidebar';
 import Footer from 'grommet/components/Footer';
 
+import CloseIcon from 'grommet/components/icons/base/Close';
+
 import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
 
 const MainSidebar = (props) =>
    <Sidebar size="small" colorIndex="light-2">
       <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
          {props.title}
-         {props.menuButton}
+         {<Button onClick={() => props.onToggleMenu()} icon={<CloseIcon/>} />}
       </Header>
       <Menu fill={true} primary={true}>
          { props.links.map((option, i) =>
@@ -28,7 +30,7 @@ const MainSidebar = (props) =>
    </Sidebar>;
 
 MainSidebar.propTypes = {
-   menuButton: PropTypes.object.isRequired,
+   onToggleMenu: PropTypes.func.isRequired,
    onClickLink: PropTypes.func.isRequired,
    title: PropTypes.string,
    links: PropTypes.arrayOf(PropTypes.shape({

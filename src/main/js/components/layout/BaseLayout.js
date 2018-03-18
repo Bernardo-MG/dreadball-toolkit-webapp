@@ -9,7 +9,6 @@ import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Split from 'grommet/components/Split';
 
-import CloseIcon from 'grommet/components/icons/base/Close';
 import MenuIcon from 'grommet/components/icons/base/Menu';
 
 import MainSidebar from 'components/layout/MainSidebar';
@@ -60,21 +59,20 @@ class BaseLayout extends Component {
       links.push({ path: '/players', label: this.props.intl.formatMessage(titleMessages.dbxPlayers) });
 
       const toggle = this._onToggleNav.bind(this);
+      const toggleResponsive = this._onResponsiveToggleNav.bind(this);
+      const hideNav = this._onHideIfResponsiveNav.bind(this);
+
       let headButton;
       if (!this.state.navbarVisible) {
          headButton = <Button onClick={() => toggle()} icon={<MenuIcon/>} />;
       }
-      const menuButton = <Button onClick={() => toggle()} icon={<CloseIcon/>} />;
 
       const title = this.props.intl.formatMessage(appMessages.name);
 
       let nav;
-      const hideNav = this._onHideIfResponsiveNav.bind(this);
       if (this.state.navbarVisible) {
-         nav = <MainSidebar title={title} links={links} menuButton={menuButton} onClickLink={hideNav} />;
+         nav = <MainSidebar title={title} links={links} onToggleMenu={toggle} onClickLink={hideNav} />;
       }
-
-      const toggleResponsive = this._onResponsiveToggleNav.bind(this);
 
       const priority = (this.state.navbarVisible && this.state.smallScreen ? 'left' : 'right');
 
