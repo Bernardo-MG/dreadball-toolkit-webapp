@@ -32,6 +32,14 @@ class BaseLayout extends Component {
       });
    }
 
+   _onResponsiveToggleNav(columns) {
+      const visible = columns === 'multiple';
+
+      this.setState({
+         navbarVisible: visible
+      });
+   }
+
    render() {
       const links = [];
       links.push({ path: '/dbx', label: this.props.intl.formatMessage(titleMessages.dbxTeamBuilder) });
@@ -52,9 +60,10 @@ class BaseLayout extends Component {
          nav = <MainSidebar title={title} links={links} menuButton={menuButton} />;
       }
 
+      const toggleResponsive = this._onResponsiveToggleNav.bind(this);
       return (
          <App centered={false}>
-            <Split flex="right" separator={true} >
+            <Split flex="right" separator={true} onResponsive={toggleResponsive}>
                {nav}
                <Box direction='column'>
                   {headButton}
