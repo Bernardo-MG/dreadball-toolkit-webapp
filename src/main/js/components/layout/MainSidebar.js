@@ -19,7 +19,7 @@ const MainSidebar = (props) =>
       </Header>
       <Menu fill={true} primary={true}>
          { props.links.map((option, i) =>
-            <Anchor key={i} path={option.path} label={option.label} />
+            <Anchor key={i} path={option.path} label={option.label} onClick={props.onClickLink} />
          )}
       </Menu>
       <Footer pad={ { horizontal: 'medium', vertical: 'small' } }>
@@ -29,6 +29,7 @@ const MainSidebar = (props) =>
 
 MainSidebar.propTypes = {
    menuButton: PropTypes.object.isRequired,
+   onClickLink: PropTypes.func.isRequired,
    title: PropTypes.string,
    links: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string,

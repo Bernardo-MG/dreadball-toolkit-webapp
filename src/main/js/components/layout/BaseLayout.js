@@ -9,6 +9,7 @@ import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Split from 'grommet/components/Split';
 
+import CloseIcon from 'grommet/components/icons/base/Close';
 import MenuIcon from 'grommet/components/icons/base/Menu';
 
 import MainSidebar from 'components/layout/MainSidebar';
@@ -24,6 +25,15 @@ class BaseLayout extends Component {
       this.state = { navbarVisible: true, smallScreen: false };
    }
 
+   _onHideIfResponsiveNav() {
+      const small = this.state.smallScreen;
+
+      this.setState({
+         ...this.state,
+         navbarVisible: !small
+      });
+   }
+
    _onToggleNav() {
       const visible = this.state.navbarVisible;
 
@@ -34,13 +44,13 @@ class BaseLayout extends Component {
    }
 
    _onResponsiveToggleNav(columns) {
-      const visible = columns === 'multiple';
-      const small = this.state.smallScreen;
+      const small = columns === 'single';
+      const visible = !small;
 
       this.setState({
          ...this.state,
          navbarVisible: visible,
-         smallScreen: !small
+         smallScreen: small
       });
    }
 
@@ -50,18 +60,18 @@ class BaseLayout extends Component {
       links.push({ path: '/players', label: this.props.intl.formatMessage(titleMessages.dbxPlayers) });
 
       const toggle = this._onToggleNav.bind(this);
-      const toggleButton = <Button onClick={() => toggle()} icon={<MenuIcon/>} />;
       let headButton;
       if (!this.state.navbarVisible) {
-         headButton = toggleButton;
+         headButton = <Button onClick={() => toggle()} icon={<MenuIcon/>} />;
       }
-      const menuButton = toggleButton;
+      const menuButton = <Button onClick={() => toggle()} icon={<CloseIcon/>} />;
 
       const title = this.props.intl.formatMessage(appMessages.name);
 
       let nav;
+      const hideNav = this._onHideIfResponsiveNav.bind(this);
       if (this.state.navbarVisible) {
-         nav = <MainSidebar title={title} links={links} menuButton={menuButton} />;
+         nav = <MainSidebar title={title} links={links} menuButton={menuButton} onClickLink={hideNav} />;
       }
 
       const toggleResponsive = this._onResponsiveToggleNav.bind(this);
