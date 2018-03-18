@@ -21,22 +21,26 @@ class BaseLayout extends Component {
    constructor(props) {
       super(props);
 
-      this.state = { navbarVisible: true };
+      this.state = { navbarVisible: true, smallScreen: false };
    }
 
    _onToggleNav() {
       const visible = this.state.navbarVisible;
 
       this.setState({
+         ...this.state,
          navbarVisible: !visible
       });
    }
 
    _onResponsiveToggleNav(columns) {
       const visible = columns === 'multiple';
+      const small = this.state.smallScreen;
 
       this.setState({
-         navbarVisible: visible
+         ...this.state,
+         navbarVisible: visible,
+         smallScreen: !small
       });
    }
 
@@ -61,9 +65,12 @@ class BaseLayout extends Component {
       }
 
       const toggleResponsive = this._onResponsiveToggleNav.bind(this);
+
+      const priority = (this.state.navbarVisible && this.state.smallScreen ? 'left' : 'right');
+
       return (
          <App centered={false}>
-            <Split flex="right" separator={true} onResponsive={toggleResponsive}>
+            <Split priority={priority} flex="right" separator={true} onResponsive={toggleResponsive}>
                {nav}
                <Box direction='column'>
                   {headButton}
