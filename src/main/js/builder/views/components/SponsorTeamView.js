@@ -69,6 +69,15 @@ class SponsorTeamView extends Component {
       });
    }
 
+   _onHideIfResponsiveSide() {
+      const small = this.state.smallScreen;
+
+      this.setState({
+         ...this.state,
+         sidebarVisible: !small
+      });
+   }
+
    _onToggleSideBar() {
       const visible = this.state.sidebarVisible;
 
@@ -123,13 +132,14 @@ class SponsorTeamView extends Component {
       options.push({ label: this.props.intl.formatMessage(teamBuilderMessages.team_players), action: this.showPlayers });
       options.push({ label: this.props.intl.formatMessage(teamBuilderMessages.affinities), action: this.showAffinities });
 
-      let side;
-      if (this.state.sidebarVisible) {
-         side = <ButtonsSidebar options={options} />;
-      }
-
       const toggle = this._onToggleSideBar.bind(this);
       const toggleResponsive = this._onResponsiveToggleSideBar.bind(this);
+      const hideIfResponsiveSide = this._onHideIfResponsiveSide.bind(this);
+
+      let side;
+      if (this.state.sidebarVisible) {
+         side = <ButtonsSidebar options={options} onClose={hideIfResponsiveSide} />;
+      }
 
       let toggleSideButton;
       if (!this.state.sidebarVisible && this.state.smallScreen) {
@@ -139,7 +149,7 @@ class SponsorTeamView extends Component {
       const priority = (this.state.sidebarVisible && this.state.smallScreen ? 'right' : 'left');
 
       return (
-         <Split priority={priority} flex="left" separator={true} onResponsive={toggleResponsive}>
+         <Split priority={priority} flex="left" separator={true} onResponsive={toggleResponsive} >
             <Article>
                <Header>
                   <Box direction='row'>
