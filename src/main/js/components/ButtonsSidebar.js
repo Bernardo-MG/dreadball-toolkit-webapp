@@ -14,7 +14,7 @@ const ButtonsSidebar = (props) =>
    <Sidebar size="small" colorIndex="light-3">
       <Box pad="medium">
          <Menu>
-            <Button align="start" onClick={props.onClose} icon={<CloseIcon/>} />
+            { (props.onClose != null) ? <Button align="start" onClick={props.onClose} icon={<CloseIcon/>} /> : null }
             { props.options.map((option, i) =>
                <Button key={i} align="start" plain={true} label={option.label} onClick={option.action} />
             )}

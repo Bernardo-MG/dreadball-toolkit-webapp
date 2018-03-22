@@ -134,7 +134,11 @@ class SponsorTeamView extends Component {
 
       const toggle = this._onToggleSideBar.bind(this);
       const toggleResponsive = this._onResponsiveToggleSideBar.bind(this);
-      const hideIfResponsiveSide = this._onHideIfResponsiveSide.bind(this);
+      let hideIfResponsiveSide;
+
+      if (this.state.smallScreen) {
+         hideIfResponsiveSide = this._onHideIfResponsiveSide.bind(this);
+      }
 
       let side;
       if (this.state.sidebarVisible) {
