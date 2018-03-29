@@ -2,7 +2,7 @@ import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 import PlayersScrollPanel from 'codex/containers/PlayersScrollPanel';
 import ContainerDbxTeamBuilder from 'builder/views/containers/ContainerDbxTeamBuilder';
-import BaseLayout from 'components/layout/BaseLayout';
+import BaseLayout from 'views/containers/BaseLayout';
 
 export default <Route path="/" component={BaseLayout}>
    <IndexRoute component={ContainerDbxTeamBuilder}/>
