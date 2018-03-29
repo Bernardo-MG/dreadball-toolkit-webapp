@@ -5,13 +5,13 @@ import PropTypes from 'prop-types';
 import { injectIntl } from 'react-intl';
 
 import App from 'grommet/components/App';
-import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Split from 'grommet/components/Split';
 
 import MenuIcon from 'grommet/components/icons/base/Menu';
 
 import MainSidebar from 'components/layout/MainSidebar';
+import SimpleView from 'components/layout/SimpleView';
 
 import titleMessages from 'i18n/title';
 import appMessages from 'i18n/app';
@@ -80,10 +80,9 @@ class BaseLayout extends Component {
          <App centered={false}>
             <Split priority={priority} flex="right" separator={true} onResponsive={toggleResponsive}>
                {nav}
-               <Box direction='column'>
-                  {toggleNavButton}
+               <SimpleView navButton={toggleNavButton}>
                   {this.props.children}
-               </Box>
+               </SimpleView>
             </Split>
          </App>
       );
