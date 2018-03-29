@@ -5,8 +5,6 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { injectIntl } from 'react-intl';
-
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Header from 'grommet/components/Header';
@@ -45,8 +43,7 @@ const SimpleView = (props) => {
 SimpleView.propTypes = {
    navbarVisible: PropTypes.bool.isRequired,
    onToggleNavBar: PropTypes.func.isRequired,
-   children: PropTypes.object.isRequired,
-   intl: PropTypes.object.isRequired
+   children: PropTypes.object.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -61,7 +58,7 @@ const mapDispatchToProps = (dispatch) => {
    };
 };
 
-export default injectIntl(connect(
+export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SimpleView));
+)(SimpleView);

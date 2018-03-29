@@ -1,4 +1,10 @@
-import { TOGGLE_NAV_BAR, HIDE_NAV_ON_SMALL_SCREEN, SET_NAV_BAR_VISIBLE_STATUS, SET_SMALL_SCREEN_STATUS } from 'views/actions/actionTypes';
+import { TOGGLE_SIDE_BAR, TOGGLE_NAV_BAR, HIDE_SIDE_ON_SMALL_SCREEN, HIDE_NAV_ON_SMALL_SCREEN, SET_SMALL_SCREEN_STATUS } from 'views/actions/actionTypes';
+
+export const toggleSideBar = () => {
+   return {
+      type: TOGGLE_SIDE_BAR
+   };
+};
 
 export const toggleNavBar = () => {
    return {
@@ -6,16 +12,15 @@ export const toggleNavBar = () => {
    };
 };
 
-export const hideNavBarOnSmallScreen = () => {
+export const hideSideBarOnSmallScreen = () => {
    return {
-      type: HIDE_NAV_ON_SMALL_SCREEN
+      type: HIDE_SIDE_ON_SMALL_SCREEN
    };
 };
 
-export const setNavBarVisibleStatus = (visible) => {
+export const hideNavBarOnSmallScreen = () => {
    return {
-      type: SET_NAV_BAR_VISIBLE_STATUS,
-      payload: visible
+      type: HIDE_NAV_ON_SMALL_SCREEN
    };
 };
 

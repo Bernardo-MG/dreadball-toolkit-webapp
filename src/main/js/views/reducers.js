@@ -1,4 +1,4 @@
-import { TOGGLE_NAV_BAR, SET_NAV_BAR_VISIBLE_STATUS, SET_SMALL_SCREEN_STATUS, HIDE_NAV_ON_SMALL_SCREEN } from 'views/actions/actionTypes';
+import { TOGGLE_SIDE_BAR, TOGGLE_NAV_BAR, SET_SMALL_SCREEN_STATUS, HIDE_NAV_ON_SMALL_SCREEN, HIDE_SIDE_ON_SMALL_SCREEN } from 'views/actions/actionTypes';
 
 const views = (state = { navbarVisible: true, smallScreen: false }, action) => {
    const { type, payload } = action;
@@ -10,16 +10,24 @@ const views = (state = { navbarVisible: true, smallScreen: false }, action) => {
          navbarVisible: !state.navbarVisible
       };
    }
-   case SET_NAV_BAR_VISIBLE_STATUS: {
+   case TOGGLE_SIDE_BAR: {
       return {
          ...state,
-         navbarVisible: payload
+         sidebarVisible: !state.navbarVisible
       };
    }
    case SET_SMALL_SCREEN_STATUS: {
       return {
          ...state,
-         smallScreen: payload
+         smallScreen: payload,
+         sidebarVisible: !payload,
+         navbarVisible: !payload
+      };
+   }
+   case HIDE_SIDE_ON_SMALL_SCREEN: {
+      return {
+         ...state,
+         sidebarVisible: !state.smallScreen
       };
    }
    case HIDE_NAV_ON_SMALL_SCREEN: {

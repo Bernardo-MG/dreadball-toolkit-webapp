@@ -16,7 +16,7 @@ import SimpleView from 'views/containers/SimpleView';
 import titleMessages from 'i18n/title';
 import appMessages from 'i18n/app';
 
-import { setNavBarVisibleStatus, setSmallScreenStatus } from 'views/actions';
+import { setSmallScreenStatus } from 'views/actions';
 
 import { selectNavbarVisible, selectSmallScreen } from 'views/selectors';
 
@@ -24,9 +24,7 @@ class BaseLayout extends Component {
 
    _onResponsiveToggleNav(columns) {
       const small = columns === 'single';
-      const visible = !small;
 
-      this.props.onSetNavBarVisible(visible);
       this.props.onSetSmallScreen(small);
    }
 
@@ -61,7 +59,6 @@ class BaseLayout extends Component {
 BaseLayout.propTypes = {
    navbarVisible: PropTypes.bool.isRequired,
    smallScreen: PropTypes.bool.isRequired,
-   onSetNavBarVisible: PropTypes.func.isRequired,
    onSetSmallScreen: PropTypes.func.isRequired,
    children: PropTypes.object.isRequired,
    intl: PropTypes.object.isRequired
@@ -76,7 +73,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      onSetNavBarVisible: bindActionCreators(setNavBarVisibleStatus, dispatch),
       onSetSmallScreen: bindActionCreators(setSmallScreenStatus, dispatch)
    };
 };
