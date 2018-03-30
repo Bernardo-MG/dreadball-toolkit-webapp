@@ -530,6 +530,6 @@ public final class DefaultSponsorBuilderService
         }
 
         return new ImmutableOptionGroup(ava.getName(), options);
-    };
+    }
 
 }

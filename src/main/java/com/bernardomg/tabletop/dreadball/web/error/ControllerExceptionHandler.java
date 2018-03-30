@@ -70,13 +70,13 @@ public final class ControllerExceptionHandler {
     /**
      * Constructs an exception handler.
      * 
-     * @param messageSource
+     * @param msgSource
      *            the message source
      */
-    public ControllerExceptionHandler(final MessageSource messageSource) {
+    public ControllerExceptionHandler(final MessageSource msgSource) {
         super();
 
-        this.messageSource = checkNotNull(messageSource,
+        messageSource = checkNotNull(msgSource,
                 "Received a null pointer as message source");
     }
 

@@ -36,14 +36,13 @@ public final class DefaultErrorResponse implements ErrorResponse {
     /**
      * Constructs a response.
      * 
-     * @param message
+     * @param msg
      *            error message
      */
-    public DefaultErrorResponse(final String message) {
+    public DefaultErrorResponse(final String msg) {
         super();
 
-        this.message = checkNotNull(message,
-                "Received a null pointer as message");
+        message = checkNotNull(msg, "Received a null pointer as message");
     }
 
     @Override
@@ -54,11 +53,11 @@ public final class DefaultErrorResponse implements ErrorResponse {
     /**
      * Sets the error message.
      * 
-     * @param message
+     * @param msg
      *            the error message
      */
-    public final void setMessage(final String message) {
-        this.message = message;
+    public final void setMessage(final String msg) {
+        message = msg;
     }
 
 }
