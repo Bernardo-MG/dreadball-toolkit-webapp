@@ -17,13 +17,15 @@ import teamBuilderMessages from 'i18n/teamBuilder';
 
 const SponsorAffinitiesView = (props) =>
    <SimpleView>
-      <Form>
-         <Heading>{props.intl.formatMessage(teamBuilderMessages.choose_affinities)}</Heading>
-         <SponsorAffinityAvailabilitySelectionPanel />
-         <Box justify='center' align='center' margin='small'>
-            <Button onClick={ props.onClick } label={props.intl.formatMessage(labelMessages.accept)} />
-         </Box>
-      </Form>
+      <Box justify='center' align='center' pad='medium'>
+         <Form>
+            <Heading>{props.intl.formatMessage(teamBuilderMessages.choose_affinities)}</Heading>
+            <SponsorAffinityAvailabilitySelectionPanel />
+            <Box justify='center' align='center' margin='small'>
+               <Button onClick={ props.onClick } label={props.intl.formatMessage(labelMessages.accept)} />
+            </Box>
+         </Form>
+      </Box>
    </SimpleView>;
 
 SponsorAffinitiesView.propTypes = {
