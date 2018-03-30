@@ -11,7 +11,6 @@ import App from 'grommet/components/App';
 import Split from 'grommet/components/Split';
 
 import MainSidebar from 'views/containers/MainSidebar';
-import SimpleView from 'views/containers/SimpleView';
 
 import titleMessages from 'i18n/title';
 import appMessages from 'i18n/app';
@@ -47,9 +46,7 @@ class BaseLayout extends Component {
          <App centered={false}>
             <Split priority={priority} flex="right" separator={true} onResponsive={toggleResponsive}>
                {nav}
-               <SimpleView>
-                  {this.props.children}
-               </SimpleView>
+               {this.props.children}
             </Split>
          </App>
       );

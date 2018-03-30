@@ -10,18 +10,21 @@ import Form from 'grommet/components/Form';
 import Heading from 'grommet/components/Heading';
 
 import SponsorAffinityAvailabilitySelectionPanel from 'builder/views/containers/SponsorAffinityAvailabilitySelectionPanel';
+import SimpleView from 'views/containers/SimpleView';
 
 import labelMessages from 'i18n/label';
 import teamBuilderMessages from 'i18n/teamBuilder';
 
 const SponsorAffinitiesView = (props) =>
-   <Form>
-      <Heading>{props.intl.formatMessage(teamBuilderMessages.choose_affinities)}</Heading>
-      <SponsorAffinityAvailabilitySelectionPanel />
-      <Box justify='center' align='center' margin='small'>
-         <Button onClick={ props.onClick } label={props.intl.formatMessage(labelMessages.accept)} />
-      </Box>
-   </Form>;
+   <SimpleView>
+      <Form>
+         <Heading>{props.intl.formatMessage(teamBuilderMessages.choose_affinities)}</Heading>
+         <SponsorAffinityAvailabilitySelectionPanel />
+         <Box justify='center' align='center' margin='small'>
+            <Button onClick={ props.onClick } label={props.intl.formatMessage(labelMessages.accept)} />
+         </Box>
+      </Form>
+   </SimpleView>;
 
 SponsorAffinitiesView.propTypes = {
    onClick: PropTypes.func.isRequired,
