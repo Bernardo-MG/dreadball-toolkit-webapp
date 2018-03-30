@@ -28,7 +28,7 @@ const ButtonsSidebar = (props) => {
             <Menu>
                { closeButton }
                { props.options.map((option, i) =>
-                  <Button key={i} align="start" plain={true} label={option.label} onClick={option.action} />
+                  <Button key={i} align="start" plain={true} label={option.label} onClick={() => { option.action(); props.onClose(); } } />
                )}
             </Menu>
          </Box>
