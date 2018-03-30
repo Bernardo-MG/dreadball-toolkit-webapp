@@ -29,14 +29,14 @@ public final class UrlDbxTeamBuilderConfig {
     public static final String URL_AFFINITIES          = "/rest/builder/affinity";
 
     /**
+     * Affinity groups REST URL.
+     */
+    public static final String URL_PLAYERS             = "/rest/builder/players";
+
+    /**
      * Team validation REST URL.
      */
     public static final String URL_REPORT              = "/rest/builder/report";
-
-    /**
-     * Affinity groups REST URL.
-     */
-    public static final String URL_PLAYERS               = "/rest/builder/players";
 
     /**
      * Affinities validation REST URL.

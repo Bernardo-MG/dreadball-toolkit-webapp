@@ -52,12 +52,12 @@ public final class TestSponsorValidationControllerTeamsValues {
     /**
      * Mocked MVC context.
      */
-    private MockMvc                                        mockMvc;
+    private MockMvc                              mockMvc;
 
     /**
      * Mocked service.
      */
-    private SponsorBuilderService                          service;
+    private SponsorBuilderService                service;
 
     /**
      * Default constructor;
