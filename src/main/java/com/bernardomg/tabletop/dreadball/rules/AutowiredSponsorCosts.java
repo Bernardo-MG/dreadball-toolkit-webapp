@@ -22,33 +22,52 @@ import org.springframework.stereotype.Component;
 import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsAvailability;
 
 /**
- * Service implementation of the {@code SponsorCosts}.
+ * Autowired implementation of the {@code SponsorCosts}. It loads all the data
+ * from the Spring context.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Component("SponsorCosts")
 public final class AutowiredSponsorCosts implements SponsorAssetsAvailability {
 
+    /**
+     * Cheerleader cost.
+     */
     @Value("${sponsor.asset.cheerleader.cost}")
     private Integer cheerleaderCost;
 
+    /**
+     * Coaching die cost.
+     */
     @Value("${sponsor.asset.die.cost}")
     private Integer dieCost;
 
+    /**
+     * Medi-Bot cost.
+     */
     @Value("${sponsor.asset.medibot.cost}")
     private Integer medibotCost;
 
+    /**
+     * Special move card cost.
+     */
     @Value("${sponsor.asset.move.cost}")
     private Integer moveCost;
 
-    @Value("${sponsor.asset.sabotage.cost}")
-    private Integer sabotageCost;
+    /**
+     * Nasty surprise cost.
+     */
+    @Value("${sponsor.asset.surprise.cost}")
+    private Integer nastySurpriseCost;
 
+    /**
+     * Wager cost.
+     */
     @Value("${sponsor.asset.wager.cost}")
     private Integer wagerCost;
 
     /**
-     * Constructs a builder with the specified dependencies.
+     * Constructs the sponsor costs.
      */
     public AutowiredSponsorCosts() {
         super();
@@ -76,7 +95,7 @@ public final class AutowiredSponsorCosts implements SponsorAssetsAvailability {
 
     @Override
     public final Integer getNastySurpriseCardCost() {
-        return sabotageCost;
+        return nastySurpriseCost;
     }
 
     @Override

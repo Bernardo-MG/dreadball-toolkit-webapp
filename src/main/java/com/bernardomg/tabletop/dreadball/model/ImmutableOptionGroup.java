@@ -24,17 +24,17 @@ public final class ImmutableOptionGroup implements OptionGroup {
     /**
      * Constructs an option group.
      * 
-     * @param name
+     * @param groupName
      *            option group's name
-     * @param options
+     * @param groupOptions
      *            option group's options
      */
-    public ImmutableOptionGroup(final String name,
-            final Collection<Option> options) {
+    public ImmutableOptionGroup(final String groupName,
+            final Collection<Option> groupOptions) {
         super();
 
-        this.name = name;
-        this.options = options;
+        name = groupName;
+        options = groupOptions;
     }
 
     @Override

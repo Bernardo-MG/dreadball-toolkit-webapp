@@ -29,13 +29,11 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.io.IOException;
 import java.io.OutputStream;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -46,8 +44,6 @@ import com.bernardomg.tabletop.dreadball.report.service.DreadballReportBuilder;
 
 /**
  * Controller for generating reports.
- * <p>
- * This serves as an adapter between the UI and the services layer.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  *
@@ -61,10 +57,24 @@ public class ReportController {
      */
     private static final String          FILENAME = "EntityReport";
 
+    /**
+     * Report builder.
+     */
     private final DreadballReportBuilder reportBuilder;
 
+    /**
+     * Sponsor builder service.
+     */
     private final SponsorBuilderService  sponsorBuilderService;
 
+    /**
+     * Constructs a controller.
+     * 
+     * @param builder
+     *            report builder
+     * @param builderService
+     *            Sponsor builder service
+     */
     @Autowired
     public ReportController(final DreadballReportBuilder builder,
             final SponsorBuilderService builderService) {
@@ -76,10 +86,16 @@ public class ReportController {
                 "Received a null pointer as sponsor builder service");
     }
 
+    /**
+     * Adds a PDF report to the response.
+     * 
+     * @param response
+     *            response where the report will be added
+     * @param selection
+     *            team selection for the report
+     */
     @GetMapping
-    public final void getPdfReport(final Model model,
-            final HttpServletRequest request,
-            final HttpServletResponse response,
+    public final void getPdfReport(final HttpServletResponse response,
             final DefaultSponsorTeamSelection selection) {
         final SponsorTeam team;
         final OutputStream output;
@@ -101,10 +117,20 @@ public class ReportController {
         getReportBuilder().createPdf(team, output);
     }
 
+    /**
+     * Returns the report builder.
+     * 
+     * @return the report builder
+     */
     private final DreadballReportBuilder getReportBuilder() {
         return reportBuilder;
     }
 
+    /**
+     * Returns the Sponsor builder service.
+     * 
+     * @return the Sponsor builder service
+     */
     private final SponsorBuilderService getSponsorBuilderService() {
         return sponsorBuilderService;
     }

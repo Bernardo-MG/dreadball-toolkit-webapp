@@ -20,7 +20,8 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 /**
- * Service implementation of the {@code SponsorCosts}.
+ * Autowired implementation of the {@code SponsorDefaults}. It loads all the
+ * data from the Spring context.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -34,7 +35,7 @@ public final class AutowiredSponsorDefaults implements SponsorDefaults {
     private Integer initialRank;
 
     /**
-     * Constructs a builder with the specified dependencies.
+     * Constructs the sponsor defaults.
      */
     public AutowiredSponsorDefaults() {
         super();

@@ -22,33 +22,52 @@ import org.springframework.stereotype.Service;
 import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsAvailability;
 
 /**
- * Service implementation of the {@code SponsorCosts}.
+ * Autowired implementation of the {@code SponsorCosts} for rank costs. It loads
+ * all the data from the Spring context.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service("SponsorRankCosts")
 public class AutowiredSponsorRankCosts implements SponsorAssetsAvailability {
 
+    /**
+     * Cheerleader cost.
+     */
     @Value("${sponsor.asset.cheerleader.rank}")
     private Integer cheerleaderRank;
 
+    /**
+     * Coaching die cost.
+     */
     @Value("${sponsor.asset.die.rank}")
     private Integer dieRank;
 
+    /**
+     * Medi-Bot cost.
+     */
     @Value("${sponsor.asset.medibot.rank}")
     private Integer medibotRank;
 
+    /**
+     * Special move card cost.
+     */
     @Value("${sponsor.asset.move.rank}")
     private Integer moveRank;
 
-    @Value("${sponsor.asset.sabotage.rank}")
+    /**
+     * Nasty surprise cost.
+     */
+    @Value("${sponsor.asset.surprise.rank}")
     private Integer sabotageRank;
 
+    /**
+     * Wager cost.
+     */
     @Value("${sponsor.asset.wager.rank}")
     private Integer wagerRank;
 
     /**
-     * Constructs a builder with the specified dependencies.
+     * Constructs the sponsor rank costs.
      */
     public AutowiredSponsorRankCosts() {
         super();

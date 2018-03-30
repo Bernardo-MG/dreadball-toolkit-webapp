@@ -24,18 +24,18 @@ public final class ImmutableSponsorAffinities implements SponsorAffinities {
     /**
      * Constructs a sponsor affinities set.
      * 
-     * @param affinities
+     * @param affs
      *            affinities
-     * @param rank
+     * @param affsRank
      *            rank
      */
-    public ImmutableSponsorAffinities(final Iterable<String> affinities,
-            final Integer rank) {
+    public ImmutableSponsorAffinities(final Iterable<String> affs,
+            final Integer affsRank) {
         super();
 
-        this.affinities = checkNotNull(affinities,
+        affinities = checkNotNull(affs,
                 "Received a null pointer as affinities");
-        this.rank = checkNotNull(rank, "Received a null pointer as rank");
+        rank = checkNotNull(affsRank, "Received a null pointer as rank");
     }
 
     @Override

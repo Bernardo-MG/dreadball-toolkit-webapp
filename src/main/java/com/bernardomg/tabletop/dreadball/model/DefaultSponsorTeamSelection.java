@@ -135,8 +135,8 @@ public final class DefaultSponsorTeamSelection implements SponsorTeamSelection {
     }
 
     @Override
-    public final void setAffinities(final Collection<String> affinities) {
-        this.affinities = affinities;
+    public final void setAffinities(final Collection<String> affs) {
+        affinities = affs;
     }
 
     @Override

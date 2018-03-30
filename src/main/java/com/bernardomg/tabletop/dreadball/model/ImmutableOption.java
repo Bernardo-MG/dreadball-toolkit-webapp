@@ -22,15 +22,16 @@ public final class ImmutableOption implements Option {
     /**
      * Constructs an option.
      * 
-     * @param label
+     * @param optionLabel
      *            option's label
-     * @param value
+     * @param optionValue
      *            option's value
      */
-    public ImmutableOption(final String label, final String value) {
+    public ImmutableOption(final String optionLabel, final String optionValue) {
         super();
-        this.label = label;
-        this.value = value;
+
+        label = optionLabel;
+        value = optionValue;
     }
 
     @Override

@@ -24,9 +24,18 @@ import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 
+/**
+ * Default implementation of the report builder.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Service("dreadballReportBuilder")
 public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
+    /**
+     * Constructs a report builder.
+     */
     public DreadballReportBuilderImpl() {
         super();
     }
