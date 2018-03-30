@@ -85,7 +85,7 @@ class PlayerScrollablePanel extends Component {
 
 PlayerScrollablePanel.propTypes = {
    source: PropTypes.array.isRequired,
-   onMore: PropTypes.func.isRequired,
+   onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
    buttonIcon: PropTypes.object.isRequired,
    intl: PropTypes.object.isRequired
