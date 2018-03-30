@@ -56,13 +56,19 @@ import com.bernardomg.tabletop.dreadball.web.error.bean.ErrorResponse;
 @ControllerAdvice
 public final class ControllerExceptionHandler {
 
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(ControllerExceptionHandler.class);
 
+    /**
+     * Message source.
+     */
     private final MessageSource messageSource;
 
     /**
-     * Default constructor.
+     * Constructs an exception handler.
      * 
      * @param messageSource
      *            the message source
@@ -74,6 +80,13 @@ public final class ControllerExceptionHandler {
                 "Received a null pointer as message source");
     }
 
+    /**
+     * Processes an illegal argument exception.
+     * 
+     * @param ex
+     *            exception to process
+     * @return error response
+     */
     @ExceptionHandler(IllegalArgumentException.class)
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ResponseBody
@@ -85,10 +98,22 @@ public final class ControllerExceptionHandler {
                 resolveLocalizedErrorMessage(ex.getMessage()));
     }
 
+    /**
+     * Returns the message source.
+     * 
+     * @return the message source
+     */
     private final MessageSource getMessageSource() {
         return messageSource;
     }
 
+    /**
+     * Localizes an error message.
+     * 
+     * @param error
+     *            message to localize
+     * @return the localized message
+     */
     private final String resolveLocalizedErrorMessage(final String error) {
         final Locale currentLocale;
         String localizedErrorMessage;

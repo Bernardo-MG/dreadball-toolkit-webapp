@@ -8,17 +8,37 @@ import javax.xml.bind.annotation.XmlAccessorType;
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
 
+/**
+ * Default implementation of {@link ErrorResponse}.
+ * <p>
+ * FIXME: Isn't this annotated to generate a SOAP message? Change to JSON
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @XmlRootElement(name = "error")
 @XmlAccessorType(XmlAccessType.FIELD)
 public final class DefaultErrorResponse implements ErrorResponse {
 
+    /**
+     * Error message.
+     */
     @XmlElement(name = "message")
     private String message;
 
+    /**
+     * Constructs a response.
+     */
     public DefaultErrorResponse() {
         super();
     }
 
+    /**
+     * Constructs a response.
+     * 
+     * @param message
+     *            error message
+     */
     public DefaultErrorResponse(final String message) {
         super();
 
@@ -31,6 +51,12 @@ public final class DefaultErrorResponse implements ErrorResponse {
         return message;
     }
 
+    /**
+     * Sets the error message.
+     * 
+     * @param message
+     *            the error message
+     */
     public final void setMessage(final String message) {
         this.message = message;
     }
