@@ -91,8 +91,8 @@ public class SponsorValidationController {
      * @return the valid team
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeam validateTeam(
-            final DefaultSponsorTeamSelection selection) {
+    public final SponsorTeam
+            validateTeam(final DefaultSponsorTeamSelection selection) {
         return getSponsorBuilderService().validateTeam(selection);
     }
 

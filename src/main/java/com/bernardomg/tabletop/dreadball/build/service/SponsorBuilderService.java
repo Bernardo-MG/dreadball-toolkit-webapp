@@ -67,7 +67,6 @@ public interface SponsorBuilderService {
      *            the team values
      * @return a valid team
      */
-    public SponsorTeam
-            validateTeam(final SponsorTeamSelection selection);
+    public SponsorTeam validateTeam(final SponsorTeamSelection selection);
 
 }
