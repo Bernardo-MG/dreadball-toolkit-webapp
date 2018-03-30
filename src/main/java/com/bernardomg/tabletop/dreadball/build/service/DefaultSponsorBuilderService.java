@@ -49,27 +49,69 @@ import com.bernardomg.tabletop.dreadball.rules.DbxRules;
 import com.bernardomg.tabletop.dreadball.rules.SponsorDefaults;
 import com.google.common.collect.Lists;
 
+/**
+ * Default implementation of the Sponsor builder service.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 @Service
 public final class DefaultSponsorBuilderService
         implements SponsorBuilderService {
 
-    private final AffinityGroupRepository                    affinityGroupRepository;
-
-    private final AffinityTeamPlayerRepository               affinityTeamPlayerRepository;
-
-    private final DbxRules                                   dbxRules;
-
-    private final SponsorAssetsAvailability                  rankCosts;
-
     /**
      * Affinity groups repository.
      */
+    private final AffinityGroupRepository                    affinityGroupRepository;
+
+    /**
+     * Affinity team players repository.
+     */
+    private final AffinityTeamPlayerRepository               affinityTeamPlayerRepository;
+
+    /**
+     * DBX ruleset.
+     */
+    private final DbxRules                                   dbxRules;
+
+    /**
+     * Assets rank costs.
+     */
+    private final SponsorAssetsAvailability                  rankCosts;
+
+    /**
+     * Affinity groups availabilities repository.
+     */
     private final SponsorAffinityGroupAvailabilityRepository sponsorAffinityGroupAvailabilityRepository;
 
+    /**
+     * Assets costs.
+     */
     private final SponsorAssetsAvailability                  sponsorCosts;
 
+    /**
+     * Sponsor default values.
+     */
     private final SponsorDefaults                            sponsorDefaults;
 
+    /**
+     * Constructs a service.
+     * 
+     * @param sponsorAffAvaRepository
+     *            affinity availabilities repository
+     * @param defaults
+     *            Sponsor default values
+     * @param affTeamPlayerRepository
+     *            affinity team players repository
+     * @param affGroupRepository
+     *            affinity groups repository
+     * @param costsRank
+     *            assets rank costs
+     * @param costs
+     *            assets costs
+     * @param rules
+     *            DBX ruleset
+     */
     @Autowired
     public DefaultSponsorBuilderService(
             final SponsorAffinityGroupAvailabilityRepository sponsorAffAvaRepository,
@@ -120,13 +162,13 @@ public final class DefaultSponsorBuilderService
         checkNotNull(pageReq, "Received a null pointer as pagination data");
 
         // Only players not hating any affinity are acquired
-        filtered = getTeamPlayersNotHatingAffinities(affinities, pageReq);
+        filtered = readTeamPlayersNotHatingAffinities(affinities, pageReq);
 
         // The received players are adapted and configured
         players = new ArrayList<>();
         for (final AffinityTeamPlayer affTeamPlayer : filtered) {
-            cost = getTeamPlayerCost(affTeamPlayer, affinities);
-            players.add(generateTeamPlayer(affTeamPlayer, cost));
+            cost = calculateTeamPlayerCost(affTeamPlayer, affinities);
+            players.add(assembleTeamPlayer(affTeamPlayer, cost));
         }
 
         return new PageImpl<>(players, pageReq, filtered.getTotalElements());
@@ -171,22 +213,35 @@ public final class DefaultSponsorBuilderService
         final Iterable<PersistentAffinityGroup> affs;
         // TODO: Validate
 
-        affTeamPlayers = getTeamPlayers(selection.getTeamPlayers());
+        affTeamPlayers = assembleTeamPlayers(selection.getTeamPlayers());
         affs = getAffinityGroupRepository()
                 .findByNameIn(selection.getAffinities());
 
-        return assemble(affs, affTeamPlayers, selection,
+        return assembleSponsorTeam(affs, affTeamPlayers, selection,
                 selection.getBaseRank());
     }
 
-    private final SponsorTeam assemble(
+    /**
+     * Creates a {@link SponsorTeam} from the received arguments.
+     * 
+     * @param affinities
+     *            Sponsor affinity groups
+     * @param players
+     *            team players
+     * @param assets
+     *            team assets
+     * @param rank
+     *            Sponsor rank
+     * @return a {@code SponsorTeam} created from the arguments
+     */
+    private final SponsorTeam assembleSponsorTeam(
             final Iterable<? extends AffinityGroup> affinities,
             final Iterable<AffinityTeamPlayer> players,
             final SponsorTeamValidationSelection assets, final Integer rank) {
         final SponsorTeam sponsorTeam;
 
         sponsorTeam = new DefaultSponsorTeam(new DefaultSponsor(),
-                getTeamValorationCalculator(), getRankCostCalculator());
+                createTeamValorationCalculator(), createRankCostCalculator());
 
         sponsorTeam.getSponsor().setRank(rank);
         sponsorTeam.getSponsor()
@@ -204,7 +259,16 @@ public final class DefaultSponsorBuilderService
         return sponsorTeam;
     }
 
-    private final TeamPlayer generateTeamPlayer(
+    /**
+     * Creates a {@link TeamPlayer} from the received arguments.
+     * 
+     * @param affTeamPlayer
+     *            player entity
+     * @param cost
+     *            player cost
+     * @return a {@code TeamPlayer} created from the received arguments
+     */
+    private final TeamPlayer assembleTeamPlayer(
             final AffinityTeamPlayer affTeamPlayer, final Integer cost) {
         final DefaultTeamPlayer player;
 
@@ -218,66 +282,15 @@ public final class DefaultSponsorBuilderService
         return player;
     }
 
-    private final AffinityGroupRepository getAffinityGroupRepository() {
-        return affinityGroupRepository;
-    }
-
-    private final AffinityTeamPlayerRepository
-            getAffinityTeamPlayerRepository() {
-        return affinityTeamPlayerRepository;
-    }
-
-    private final DbxRules getDbxRules() {
-        return dbxRules;
-    }
-
-    private final CostCalculator<SponsorTeam> getRankCostCalculator() {
-        return new DefaultRankCostCalculator(
-                getSponsorRankCosts().getCoachingDieCost(),
-                getSponsorRankCosts().getNastySurpriseCardCost(),
-                getSponsorRankCosts().getSpecialMoveCardCost(),
-                getSponsorRankCosts().getCheerleaderCost(),
-                getSponsorRankCosts().getWagerCost(),
-                getSponsorRankCosts().getMediBotCost());
-    }
-
-    private final SponsorAffinityGroupAvailabilityRepository
-            getSponsorAffinityGroupAvailabilityRepository() {
-        return sponsorAffinityGroupAvailabilityRepository;
-    }
-
-    private final SponsorAssetsAvailability getSponsorCosts() {
-        return sponsorCosts;
-    }
-
-    private final SponsorDefaults getSponsorDefaults() {
-        return sponsorDefaults;
-    }
-
-    private final SponsorAssetsAvailability getSponsorRankCosts() {
-        return rankCosts;
-    }
-
     /**
-     * Returns the actual cost for a player for a sponsor.
+     * Returns the players for the received names.
      * 
-     * @param player
-     *            player to find the cost for
-     * @param affinities
-     *            sponsor affinities
-     * @return the cost of the player for the sponsor
+     * @param playerNames
+     *            names of the players to find
+     * @return the players for the received names
      */
-    private final Integer getTeamPlayerCost(final AffinityTeamPlayer player,
-            final Iterable<? extends AffinityGroup> affinities) {
-        final AffinityLevel affinityLevel;  // Affinity level relationship
-
-        affinityLevel = getDbxRules().getAffinityLevel(player, affinities);
-
-        return getDbxRules().getTeamPlayerCost(affinityLevel, player);
-    }
-
     private final Iterable<AffinityTeamPlayer>
-            getTeamPlayers(final Collection<String> playerNames) {
+            assembleTeamPlayers(final Collection<String> playerNames) {
         final Collection<? extends AffinityTeamPlayer> read;
         final Collection<AffinityTeamPlayer> players;
         final Map<String, ? extends AffinityTeamPlayer> readMap;
@@ -299,8 +312,131 @@ public final class DefaultSponsorBuilderService
         return players;
     }
 
+    /**
+     * Returns the actual cost for Sponsor's player.
+     * 
+     * @param player
+     *            player to find the cost for
+     * @param affinities
+     *            sponsor affinities
+     * @return the cost of the player for the sponsor
+     */
+    private final Integer calculateTeamPlayerCost(
+            final AffinityTeamPlayer player,
+            final Iterable<? extends AffinityGroup> affinities) {
+        final AffinityLevel affinityLevel;  // Affinity level relationship
+
+        affinityLevel = getDbxRules().getAffinityLevel(player, affinities);
+
+        return getDbxRules().getTeamPlayerCost(affinityLevel, player);
+    }
+
+    /**
+     * Returns a new {@link CostCalculator} for calculating asset rank costs.
+     * 
+     * @return a new {@code CostCalculator} for asset rank costs
+     */
+    private final CostCalculator<SponsorTeam> createRankCostCalculator() {
+        return new DefaultRankCostCalculator(
+                getSponsorRankCosts().getCoachingDieCost(),
+                getSponsorRankCosts().getNastySurpriseCardCost(),
+                getSponsorRankCosts().getSpecialMoveCardCost(),
+                getSponsorRankCosts().getCheerleaderCost(),
+                getSponsorRankCosts().getWagerCost(),
+                getSponsorRankCosts().getMediBotCost());
+    }
+
+    /**
+     * Returns a new {@link CostCalculator} for calculating asset costs.
+     * 
+     * @return a new {@code CostCalculator} for asset costs
+     */
+    private final CostCalculator<SponsorTeam> createTeamValorationCalculator() {
+        return new SponsorTeamValorationCalculator(
+                getSponsorCosts().getCoachingDieCost(),
+                getSponsorCosts().getNastySurpriseCardCost(),
+                getSponsorCosts().getSpecialMoveCardCost(),
+                getSponsorCosts().getCheerleaderCost(),
+                getSponsorCosts().getWagerCost(),
+                getSponsorCosts().getMediBotCost());
+    }
+
+    /**
+     * Returns the affinity groups repository.
+     * 
+     * @return the affinity groups repository
+     */
+    private final AffinityGroupRepository getAffinityGroupRepository() {
+        return affinityGroupRepository;
+    }
+
+    /**
+     * Returns the affinity players repository.
+     * 
+     * @return the affinity players repository
+     */
+    private final AffinityTeamPlayerRepository
+            getAffinityTeamPlayerRepository() {
+        return affinityTeamPlayerRepository;
+    }
+
+    /**
+     * Returns the DBX ruleset.
+     * 
+     * @return the DBX ruleset
+     */
+    private final DbxRules getDbxRules() {
+        return dbxRules;
+    }
+
+    /**
+     * Returns the affinity groups availabilities repository.
+     * 
+     * @return the affinity groups availabilities repository
+     */
+    private final SponsorAffinityGroupAvailabilityRepository
+            getSponsorAffinityGroupAvailabilityRepository() {
+        return sponsorAffinityGroupAvailabilityRepository;
+    }
+
+    /**
+     * Returns the assets costs.
+     * 
+     * @return the assets costs
+     */
+    private final SponsorAssetsAvailability getSponsorCosts() {
+        return sponsorCosts;
+    }
+
+    /**
+     * Returns the Sponsor default values.
+     * 
+     * @return the Sponsor default values
+     */
+    private final SponsorDefaults getSponsorDefaults() {
+        return sponsorDefaults;
+    }
+
+    /**
+     * Returns the assets rank costs.
+     * 
+     * @return the assets rank costs
+     */
+    private final SponsorAssetsAvailability getSponsorRankCosts() {
+        return rankCosts;
+    }
+
+    /**
+     * Returns all the players which don't hate the received affinities.
+     * 
+     * @param affinities
+     *            required affinities
+     * @param pageReq
+     *            pagination data
+     * @return all the players which don't hate the received affinities
+     */
     private final Page<? extends AffinityTeamPlayer>
-            getTeamPlayersNotHatingAffinities(
+            readTeamPlayersNotHatingAffinities(
                     final Iterable<? extends AffinityGroup> affinities,
                     final Pageable pageReq) {
         final Page<? extends AffinityTeamPlayer> filtered; // Filtered players
@@ -325,16 +461,16 @@ public final class DefaultSponsorBuilderService
         return filtered;
     }
 
-    private final CostCalculator<SponsorTeam> getTeamValorationCalculator() {
-        return new SponsorTeamValorationCalculator(
-                getSponsorCosts().getCoachingDieCost(),
-                getSponsorCosts().getNastySurpriseCardCost(),
-                getSponsorCosts().getSpecialMoveCardCost(),
-                getSponsorCosts().getCheerleaderCost(),
-                getSponsorCosts().getWagerCost(),
-                getSponsorCosts().getMediBotCost());
-    }
-
+    /**
+     * Sets the received players into the received team.
+     * 
+     * @param sponsorTeam
+     *            team into which to add the players
+     * @param affinities
+     *            Sponsor affinities
+     * @param players
+     *            players to add
+     */
     private final void setPlayers(final SponsorTeam sponsorTeam,
             final Iterable<? extends AffinityGroup> affinities,
             final Iterable<AffinityTeamPlayer> players) {

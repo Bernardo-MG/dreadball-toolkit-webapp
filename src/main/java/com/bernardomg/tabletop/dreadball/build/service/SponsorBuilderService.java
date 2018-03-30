@@ -12,6 +12,12 @@ import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 
+/**
+ * Service for building Sponsor teams.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ *
+ */
 public interface SponsorBuilderService {
 
     /**
