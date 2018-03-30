@@ -8,11 +8,21 @@ import java.util.List;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 
-public final class DefaultSponsorTeamValidationSelection
-        implements SponsorTeamValidationSelection {
+/**
+ * Default implementation of the Sponsor team selection data.
+ * 
+ * @author Bernardo Mart&iacute;nez Garrido
+ */
+public final class DefaultSponsorTeamSelection implements SponsorTeamSelection {
 
+    /**
+     * Team affinities.
+     */
     private Collection<String> affinities         = Collections.emptyList();
 
+    /**
+     * Sponsor base rank.
+     */
     private Integer            baseRank           = 0;
 
     /**
@@ -50,8 +60,14 @@ public final class DefaultSponsorTeamValidationSelection
     @Min(0)
     private Integer            specialMoveCards   = 0;
 
+    /**
+     * Team players.
+     */
     private Collection<String> teamPlayers        = Collections.emptyList();
 
+    /**
+     * Team value.
+     */
     private Integer            teamValue          = 0;
 
     /**
@@ -61,7 +77,10 @@ public final class DefaultSponsorTeamValidationSelection
     @Min(0)
     private Integer            wagers             = 0;
 
-    public DefaultSponsorTeamValidationSelection() {
+    /**
+     * Constructs a team selection.
+     */
+    public DefaultSponsorTeamSelection() {
         super();
     }
 
@@ -115,42 +134,52 @@ public final class DefaultSponsorTeamValidationSelection
         return wagers;
     }
 
+    @Override
     public final void setAffinities(final Collection<String> affinities) {
         this.affinities = affinities;
     }
 
-    public final void setBaseRank(final Integer baseRank) {
-        this.baseRank = baseRank;
+    @Override
+    public final void setBaseRank(final Integer value) {
+        baseRank = value;
     }
 
+    @Override
     public final void setCheerleaders(final Integer value) {
         cheerleaders = value;
     }
 
+    @Override
     public final void setCoachingDice(final Integer value) {
         coachingDice = value;
     }
 
+    @Override
     public final void setMediBots(final Integer value) {
         mediBots = value;
     }
 
+    @Override
     public final void setNastySurpriseCards(final Integer value) {
         nastySurpriseCards = value;
     }
 
+    @Override
     public final void setSpecialMoveCards(final Integer value) {
         specialMoveCards = value;
     }
 
+    @Override
     public final void setTeamPlayers(final List<String> players) {
         teamPlayers = players;
     }
 
-    public final void setTeamValue(final Integer teamValue) {
-        this.teamValue = teamValue;
+    @Override
+    public final void setTeamValue(final Integer value) {
+        teamValue = value;
     }
 
+    @Override
     public final void setWagers(final Integer value) {
         wagers = value;
     }

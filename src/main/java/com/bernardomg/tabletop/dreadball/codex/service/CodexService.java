@@ -21,7 +21,7 @@ import org.springframework.data.domain.Pageable;
 import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 
 /**
- * Service for the codex.
+ * Codex service.
  * <p>
  * It takes care of queries for game data, such as players info.
  * 

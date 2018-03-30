@@ -7,7 +7,7 @@ import org.springframework.data.domain.Pageable;
 
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamValidationSelection;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
@@ -68,6 +68,6 @@ public interface SponsorBuilderService {
      * @return a valid team
      */
     public SponsorTeam
-            validateTeam(final SponsorTeamValidationSelection selection);
+            validateTeam(final SponsorTeamSelection selection);
 
 }

@@ -26,10 +26,10 @@ import org.junit.Before;
 import org.junit.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamSelection;
 
 /**
- * Unit tests for {@link DefaultSponsorTeamValidationSelection} bean validation.
+ * Unit tests for {@link DefaultSponsorTeamSelection} bean validation.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -60,10 +60,10 @@ public final class TestDefaultSponsorTeamValidationSelectionValidation {
      */
     @Test
     public final void testValidation_NegativeAssets_Error() {
-        final DefaultSponsorTeamValidationSelection selection; // Tested assets
-        final Set<ConstraintViolation<DefaultSponsorTeamValidationSelection>> errors;
+        final DefaultSponsorTeamSelection selection; // Tested assets
+        final Set<ConstraintViolation<DefaultSponsorTeamSelection>> errors;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setCheerleaders(-1);
         selection.setCoachingDice(-1);
@@ -82,10 +82,10 @@ public final class TestDefaultSponsorTeamValidationSelectionValidation {
      */
     @Test
     public final void testValidation_NullAssets_Error() {
-        final DefaultSponsorTeamValidationSelection selection; // Tested assets
-        final Set<ConstraintViolation<DefaultSponsorTeamValidationSelection>> errors;
+        final DefaultSponsorTeamSelection selection; // Tested assets
+        final Set<ConstraintViolation<DefaultSponsorTeamSelection>> errors;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setCheerleaders(null);
         selection.setCoachingDice(null);

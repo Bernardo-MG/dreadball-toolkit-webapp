@@ -30,7 +30,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.bernardomg.tabletop.dreadball.build.controller.SponsorValidationController;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamValidationSelection;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
@@ -47,7 +47,7 @@ public final class TestSponsorValidationControllerTeamsValues {
     /**
      * Argument captor for the team parameter.
      */
-    private ArgumentCaptor<SponsorTeamValidationSelection> captor;
+    private ArgumentCaptor<SponsorTeamSelection> captor;
 
     /**
      * Mocked MVC context.
@@ -175,7 +175,7 @@ public final class TestSponsorValidationControllerTeamsValues {
 
         result = Mockito.mock(SponsorTeamMixIn.class);
 
-        captor = ArgumentCaptor.forClass(SponsorTeamValidationSelection.class);
+        captor = ArgumentCaptor.forClass(SponsorTeamSelection.class);
         Mockito.when(sponsorBuilderService.validateTeam(captor.capture()))
                 .thenReturn(result);
 

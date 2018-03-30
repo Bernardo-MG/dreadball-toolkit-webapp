@@ -28,7 +28,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 
@@ -92,7 +92,7 @@ public class SponsorValidationController {
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final SponsorTeam validateTeam(
-            final DefaultSponsorTeamValidationSelection selection) {
+            final DefaultSponsorTeamSelection selection) {
         return getSponsorBuilderService().validateTeam(selection);
     }
 

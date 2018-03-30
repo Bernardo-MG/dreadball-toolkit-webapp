@@ -33,7 +33,7 @@ import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
 import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 
 /**
- * Controller for the player codex views.
+ * Controller for querying players.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
@@ -41,6 +41,9 @@ import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 @RequestMapping("/rest/players")
 public class TeamPlayerCodexController {
 
+    /**
+     * Logger.
+     */
     private static final Logger LOGGER = LoggerFactory
             .getLogger(TeamPlayerCodexController.class);
 
@@ -52,10 +55,10 @@ public class TeamPlayerCodexController {
     private final CodexService  playerCodexService;
 
     /**
-     * Constructs a controller with the specified dependencies.
+     * Constructs a controller.
      * 
      * @param codex
-     *            player codex service
+     *            codex service
      */
     public TeamPlayerCodexController(final CodexService codex) {
         super();
@@ -108,9 +111,9 @@ public class TeamPlayerCodexController {
     }
 
     /**
-     * Returns the player codex service.
+     * Returns the codex service.
      * 
-     * @return the player codex service
+     * @return the codex service
      */
     private final CodexService getCodexService() {
         return playerCodexService;

@@ -10,7 +10,7 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 import com.google.common.collect.Iterables;
@@ -43,10 +43,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_Affinities_ReturnsExpectedAffinities() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setAffinities(
                 Arrays.asList("affinity_1", "affinity_2", "affinity_3"));
@@ -62,10 +62,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_Empty_EmptyCurrentRank() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         result = service.validateTeam(selection);
 
@@ -77,10 +77,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_Empty_EmptyRankCost() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         result = service.validateTeam(selection);
 
@@ -92,10 +92,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_Empty_EmptyValoration() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         result = service.validateTeam(selection);
 
@@ -107,10 +107,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_Filled_ExpectedCurrentRank() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setBaseRank(10);
         selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
@@ -128,10 +128,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_Filled_ExpectedRankCost() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setBaseRank(10);
         selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
@@ -149,10 +149,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_Filled_ExpectedValoration() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setBaseRank(10);
         selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
@@ -170,10 +170,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_NoAffinities_NoReturnedAffinities() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         result = service.validateTeam(selection);
 
@@ -186,10 +186,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_NoTeamPlayers_NoReturnedTeamPlayers() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         result = service.validateTeam(selection);
 
@@ -203,10 +203,10 @@ public final class ITSponsorBuilderServiceValidateTeam
     @Test
     public final void
             testValidate_RepeatedAffinities_ReturnsExpectedAffinities() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setAffinities(
                 Arrays.asList("affinity_1", "affinity_2", "affinity_1"));
@@ -224,10 +224,10 @@ public final class ITSponsorBuilderServiceValidateTeam
     @Test
     public final void
             testValidate_RepeatedTeamPlayers_ReturnsExpectedTeamPlayers() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1,
                 TestValues.PLAYER_2, TestValues.PLAYER_1));
@@ -242,11 +242,11 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_ReturnsBaseRank() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
         final Integer baseRank;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         baseRank = 10;
 
@@ -264,10 +264,10 @@ public final class ITSponsorBuilderServiceValidateTeam
     @Test
     public final void
             testValidate_TeamPlayers_Affinities_ReturnsExpectedCost() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
         selection.setAffinities(Arrays.asList("affinity_1"));
@@ -285,10 +285,10 @@ public final class ITSponsorBuilderServiceValidateTeam
     @Test
     public final void
             testValidate_TeamPlayers_NoAffinities_ReturnsExpectedCost() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
 
@@ -303,10 +303,10 @@ public final class ITSponsorBuilderServiceValidateTeam
      */
     @Test
     public final void testValidate_TeamPlayers_ReturnsExpectedTeamPlayers() {
-        final DefaultSponsorTeamValidationSelection selection;
+        final DefaultSponsorTeamSelection selection;
         final SponsorTeam result;
 
-        selection = new DefaultSponsorTeamValidationSelection();
+        selection = new DefaultSponsorTeamSelection();
 
         selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1,
                 TestValues.PLAYER_2, TestValues.PLAYER_3));

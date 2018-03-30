@@ -27,7 +27,7 @@ import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.SponsorTeamValidationSelection;
+import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.availability.affinity.SponsorAffinityGroupAvailability;
 import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsAvailability;
 import com.bernardomg.tabletop.dreadball.model.faction.DefaultSponsor;
@@ -208,7 +208,7 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final SponsorTeam
-            validateTeam(final SponsorTeamValidationSelection selection) {
+            validateTeam(final SponsorTeamSelection selection) {
         final Iterable<AffinityTeamPlayer> affTeamPlayers;
         final Iterable<PersistentAffinityGroup> affs;
         // TODO: Validate
@@ -237,7 +237,7 @@ public final class DefaultSponsorBuilderService
     private final SponsorTeam assembleSponsorTeam(
             final Iterable<? extends AffinityGroup> affinities,
             final Iterable<AffinityTeamPlayer> players,
-            final SponsorTeamValidationSelection assets, final Integer rank) {
+            final SponsorTeamSelection assets, final Integer rank) {
         final SponsorTeam sponsorTeam;
 
         sponsorTeam = new DefaultSponsorTeam(new DefaultSponsor(),

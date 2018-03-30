@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
+import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.report.service.DreadballReportBuilder;
 
@@ -80,7 +80,7 @@ public class ReportController {
     public final void getPdfReport(final Model model,
             final HttpServletRequest request,
             final HttpServletResponse response,
-            final DefaultSponsorTeamValidationSelection selection) {
+            final DefaultSponsorTeamSelection selection) {
         final SponsorTeam team;
         final OutputStream output;
 
