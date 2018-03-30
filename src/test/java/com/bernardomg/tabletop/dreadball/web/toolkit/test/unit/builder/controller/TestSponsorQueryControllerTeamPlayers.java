@@ -31,13 +31,13 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.bernardomg.tabletop.dreadball.build.controller.SponsorQueryController;
+import com.bernardomg.tabletop.dreadball.build.controller.SponsorPlayersController;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.json.player.AffinityTeamPlayerMixIn;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
- * TeamPlayer tests for {@link SponsorQueryController}, validating the results
+ * TeamPlayer tests for {@link SponsorPlayersController}, validating the results
  * of REST requests for players.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -91,7 +91,7 @@ public final class TestSponsorQueryControllerTeamPlayers {
      * @return a controller with mocked dependencies
      */
     @SuppressWarnings({ "unchecked", "rawtypes" })
-    private final SponsorQueryController getController() {
+    private final SponsorPlayersController getController() {
         final SponsorBuilderService service;  // Mocked service
         final Collection players; // Returned players
 
@@ -105,7 +105,7 @@ public final class TestSponsorQueryControllerTeamPlayers {
         Mockito.when(service.getTeamPlayerOptions(org.mockito.Matchers.any(),
                 org.mockito.Matchers.any())).thenReturn(players);
 
-        return new SponsorQueryController(service);
+        return new SponsorPlayersController(service);
     }
 
     /**

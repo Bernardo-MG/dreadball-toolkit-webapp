@@ -32,14 +32,14 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.bernardomg.tabletop.dreadball.build.controller.SponsorQueryController;
+import com.bernardomg.tabletop.dreadball.build.controller.SponsorPlayersController;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
 /**
- * Unit tests for {@link SponsorQueryController}, validating the results of REST
+ * Unit tests for {@link SponsorPlayersController}, validating the results of REST
  * requests for affinity groups.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
@@ -92,7 +92,7 @@ public final class TestSponsorQueryControllerAffinities {
      * 
      * @return a controller with mocked dependencies
      */
-    private final SponsorQueryController getController() {
+    private final SponsorPlayersController getController() {
         final SponsorBuilderService service;  // Mocked service
         final Collection<OptionGroup> groups; // Returned option groups
         final OptionGroup group;              // Returned option group
@@ -111,7 +111,7 @@ public final class TestSponsorQueryControllerAffinities {
 
         Mockito.when(service.getAffinityOptions()).thenReturn(groups);
 
-        return new SponsorQueryController(service);
+        return new SponsorPlayersController(service);
     }
 
     /**

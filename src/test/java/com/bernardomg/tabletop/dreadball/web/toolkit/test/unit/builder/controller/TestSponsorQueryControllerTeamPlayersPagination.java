@@ -33,7 +33,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-import com.bernardomg.tabletop.dreadball.build.controller.SponsorQueryController;
+import com.bernardomg.tabletop.dreadball.build.controller.SponsorPlayersController;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.codex.controller.TeamPlayerCodexController;
 import com.bernardomg.tabletop.dreadball.model.json.player.AffinityTeamPlayerMixIn;
@@ -79,7 +79,7 @@ public final class TestSponsorQueryControllerTeamPlayersPagination {
     @Before
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders
-                .standaloneSetup(new SponsorQueryController(service))
+                .standaloneSetup(new SponsorPlayersController(service))
                 .alwaysExpect(MockMvcResultMatchers.status().isOk())
                 .alwaysExpect(MockMvcResultMatchers.content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8))

@@ -31,29 +31,33 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.player.ImmutableAffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 
 /**
- * Controller for the affinity groups codex views.
+ * Controller for the Sponsor players.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/builder")
-public class SponsorQueryController {
+@RequestMapping("/rest/builder/players")
+public class SponsorPlayersController {
 
+    /**
+     * Sponsor builder service.
+     * <p>
+     * Takes care of all the business logic.
+     */
     private final SponsorBuilderService builderService;
 
     /**
-     * Constructs a controller with the specified dependencies.
+     * Constructs a controller.
      * 
      * @param sponsorBuilderService
      *            sponsor builder service
      */
     @Autowired
-    public SponsorQueryController(
+    public SponsorPlayersController(
             final SponsorBuilderService sponsorBuilderService) {
         super();
 
@@ -62,21 +66,9 @@ public class SponsorQueryController {
     }
 
     /**
-     * Returns all the affinities available to a Sponsor.
-     * <p>
-     * These will be stored into options, allowing these affinities to be
-     * selected by the user through a combo box or similar UI component.
-     * 
-     * @return all the affinities available to a Sponsor
-     */
-    @GetMapping(path = "/affinity",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<OptionGroup> getAffinityOptions() {
-        return getSponsorBuilderService().getAffinityOptions();
-    }
-
-    /**
      * Returns all the players available to a Sponsor.
+     * <p>
+     * It expects a set of affinities, as these will affect the players' prices.
      * 
      * @param affinities
      *            sponsor affinities
@@ -90,8 +82,7 @@ public class SponsorQueryController {
      *            ordering direction
      * @return all the players available to a Sponsor
      */
-    @GetMapping(path = "/players",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final Iterable<? extends TeamPlayer> getDbxTeamPlayers(@RequestParam(
             name = "affinities", required = false,
             defaultValue = "") final ArrayList<ImmutableAffinityGroup> affinities,
@@ -119,6 +110,13 @@ public class SponsorQueryController {
                 pageReq);
     }
 
+    /**
+     * Returns the sponsor builder service.
+     * <p>
+     * Takes care of all the business logic.
+     * 
+     * @return the sponsor builder service
+     */
     private final SponsorBuilderService getSponsorBuilderService() {
         return builderService;
     }

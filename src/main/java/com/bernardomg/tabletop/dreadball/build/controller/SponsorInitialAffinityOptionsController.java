@@ -18,28 +18,25 @@ package com.bernardomg.tabletop.dreadball.build.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import java.util.ArrayList;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamValidationSelection;
-import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
+import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 
 /**
- * Controller for validating the team.
+ * Controller for the initial affinities options.
+ * <p>
+ * These are used when creating a Sponsor, to choose the initial affinities.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @RestController
-@RequestMapping("/rest/builder/validation")
-public class SponsorValidationController {
+@RequestMapping("/rest/builder/affinity")
+public class SponsorInitialAffinityOptionsController {
 
     /**
      * Sponsor builder service.
@@ -55,45 +52,25 @@ public class SponsorValidationController {
      *            sponsor builder service
      */
     @Autowired
-    public SponsorValidationController(
+    public SponsorInitialAffinityOptionsController(
             final SponsorBuilderService sponsorBuilderService) {
         super();
 
         builderService = checkNotNull(sponsorBuilderService,
-                "Received a null pointer as sponsor builder service");
+                "Received a null pointer as builder service");
     }
 
     /**
-     * Validates a set of Sponsor affinities.
+     * Returns the initial affinities available for any Sponsor.
      * <p>
-     * This is meant to be used for validating the initial affinities selected
-     * when creating a Sponsor.
+     * These come stored into option groups, so they can be selected through a
+     * combo box or similar UI component.
      * 
-     * @param affinities
-     *            sponsor affinities
-     * @return the valid affinities
-     */
-    @GetMapping(path = "/affinities",
-            produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorAffinities
-            validateSponsorAffinities(@RequestParam(name = "affinities",
-                    defaultValue = "") final ArrayList<String> affinities) {
-        return getSponsorBuilderService().validateSponsorAffinities(affinities);
-    }
-
-    /**
-     * Validates a Sponsor team.
-     * <p>
-     * This allows the validation of a team at any point.
-     * 
-     * @param selection
-     *            team to validate
-     * @return the valid team
+     * @return the initial affinities available to a Sponsor
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final SponsorTeam validateTeam(
-            final DefaultSponsorTeamValidationSelection selection) {
-        return getSponsorBuilderService().validateTeam(selection);
+    public final Iterable<OptionGroup> getAffinityOptions() {
+        return getSponsorBuilderService().getAffinityOptions();
     }
 
     /**
