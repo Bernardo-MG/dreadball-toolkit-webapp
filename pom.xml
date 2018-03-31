@@ -448,8 +448,6 @@
       <jackson.version>2.9.5</jackson.version>
       <javaee.api.version>2.2</javaee.api.version>
       <jsonpath.version>2.4.0</jsonpath.version>
-      <jsp.version>2.3.1</jsp.version>
-      <jstl.version>1.2.1</jstl.version>
       <junit.version>4.12</junit.version>
       <log4j.version>2.11.0</log4j.version>
       <mockito.version>1.10.19</mockito.version>
@@ -458,7 +456,6 @@
       <slf4j.version>1.8.0-beta2</slf4j.version>
       <spring.data.version>2.0.5.RELEASE</spring.data.version>
       <spring.version>5.0.4.RELEASE</spring.version>
-      <taglibs.version>1.2.5</taglibs.version>
       <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
@@ -608,31 +605,6 @@
          <artifactId>javax.servlet-api</artifactId>
          <version>${servlet.version}</version>
          <scope>provided</scope>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================== JSP ======================= -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- JSP API -->
-         <groupId>javax.servlet.jsp</groupId>
-         <artifactId>javax.servlet.jsp-api</artifactId>
-         <version>${jsp.version}</version>
-         <scope>provided</scope>
-      </dependency>
-      <!-- ============================================== -->
-      <!-- ================== JSTL ====================== -->
-      <!-- ============================================== -->
-      <dependency>
-         <!-- JSTL API -->
-         <groupId>javax.servlet.jsp.jstl</groupId>
-         <artifactId>javax.servlet.jsp.jstl-api</artifactId>
-         <version>${jstl.version}</version>
-      </dependency>
-      <dependency>
-         <!-- Standard JSTL EL -->
-         <groupId>org.apache.taglibs</groupId>
-         <artifactId>taglibs-standard-jstlel</artifactId>
-         <version>${taglibs.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ================= ASPECTJ ==================== -->
