@@ -9,18 +9,16 @@
 
    <!-- Properties -->
    <context:property-placeholder
-      location="classpath:config/persistence-@spring.profile.database@.properties, 
+      location="classpath:config/persistence.properties,
+                   classpath:config/persistence-@spring.profile.database@.properties, 
                    classpath:config/persistence-access.properties" />
 
    <!-- Imports -->
    <import resource="classpath:context/persistence.xml" />
+   <import resource="classpath:context/persistence-versioning.xml" />
 
    <!-- Database initializer -->
    <jdbc:initialize-database data-source="dataSource">
-      <jdbc:script location="${jdbc.script.drop.dbx}" />
-      <jdbc:script location="${jdbc.script.drop.common}" />
-      <jdbc:script location="${jdbc.script.init.common}" />
-      <jdbc:script location="${jdbc.script.init.dbx}" />
       <jdbc:script location="${jdbc.script.load.common}" />
       <jdbc:script location="${jdbc.script.load.dbx}" />
    </jdbc:initialize-database>

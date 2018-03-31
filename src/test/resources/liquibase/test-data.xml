@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+   xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+   <changeSet author="Bernardo" id="test_abilities">
+      <insert tableName="ABILITIES">
+         <column name="id">1</column>
+         <column name="name">ability_1</column>
+      </insert>
+      <insert tableName="ABILITIES">
+         <column name="id">2</column>
+         <column name="name">ability_2</column>
+      </insert>
+      <insert tableName="ABILITIES">
+         <column name="id">3</column>
+         <column name="name">ability_3</column>
+      </insert>
+      <insert tableName="ABILITIES">
+         <column name="id">4</column>
+         <column name="name">ability_4</column>
+      </insert>
+      <insert tableName="ABILITIES">
+         <column name="id">5</column>
+         <column name="name">ability_5</column>
+      </insert>
+   </changeSet>
+
+   <changeSet author="Bernardo" id="test_affinities">
+      <insert tableName="AFFINITY_GROUPS">
+         <column name="id">1</column>
+         <column name="name">affinity_1</column>
+      </insert>
+      <insert tableName="AFFINITY_GROUPS">
+         <column name="id">2</column>
+         <column name="name">affinity_2</column>
+      </insert>
+      <insert tableName="AFFINITY_GROUPS">
+         <column name="id">3</column>
+         <column name="name">affinity_3</column>
+      </insert>
+      <insert tableName="AFFINITY_GROUPS">
+         <column name="id">4</column>
+         <column name="name">affinity_4</column>
+      </insert>
+      <insert tableName="AFFINITY_GROUPS">
+         <column name="id">5</column>
+         <column name="name">affinity_5</column>
+      </insert>
+      <insert tableName="AFFINITY_GROUPS">
+         <column name="id">6</column>
+         <column name="name">affinity_6</column>
+      </insert>
+   </changeSet>
+
+   <changeSet author="Bernardo" id="test_players">
+      <insert tableName="PLAYERS">
+         <column name="id">1</column>
+         <column name="player_type">affinity</column>
+         <column name="name">player_1</column>
+         <column name="template_name">player_1_affinity</column>
+         <column name="armor">4</column>
+         <column name="movement">5</column>
+         <column name="skill">4</column>
+         <column name="speed">3</column>
+         <column name="strength">4</column>
+         <column name="position">GUARD</column>
+         <column name="giant">false</column>
+      </insert>
+      <insert tableName="PLAYERS">
+         <column name="id">2</column>
+         <column name="player_type">affinity</column>
+         <column name="name">player_2</column>
+         <column name="template_name">player_2_affinity</column>
+         <column name="armor">5</column>
+         <column name="movement">5</column>
+         <column name="skill">4</column>
+         <column name="speed">3</column>
+         <column name="strength">4</column>
+         <column name="position">JACK</column>
+         <column name="giant">false</column>
+      </insert>
+      <insert tableName="PLAYERS">
+         <column name="id">3</column>
+         <column name="player_type">affinity</column>
+         <column name="name">player_3</column>
+         <column name="template_name">player_3_affinity</column>
+         <column name="armor">5</column>
+         <column name="movement">5</column>
+         <column name="skill">4</column>
+         <column name="speed">3</column>
+         <column name="strength">4</column>
+         <column name="position">STRIKER</column>
+         <column name="giant">false</column>
+      </insert>
+      <insert tableName="PLAYERS">
+         <column name="id">51</column>
+         <column name="player_type">affinity</column>
+         <column name="name">giant_1</column>
+         <column name="template_name">giant_1_affinity</column>
+         <column name="armor">5</column>
+         <column name="movement">5</column>
+         <column name="skill">4</column>
+         <column name="speed">3</column>
+         <column name="strength">4</column>
+         <column name="position">JACK</column>
+         <column name="giant">true</column>
+      </insert>
+      <insert tableName="AFFINITY_PLAYERS">
+         <column name="id">1</column>
+         <column name="cost_stranger">23</column>
+         <column name="cost_ally">15</column>
+         <column name="cost_friend">10</column>
+      </insert>
+      <insert tableName="AFFINITY_PLAYERS">
+         <column name="id">2</column>
+         <column name="cost_stranger">18</column>
+         <column name="cost_ally">12</column>
+         <column name="cost_friend">8</column>
+      </insert>
+      <insert tableName="AFFINITY_PLAYERS">
+         <column name="id">3</column>
+         <column name="cost_stranger">23</column>
+         <column name="cost_ally">15</column>
+         <column name="cost_friend">10</column>
+      </insert>
+      <insert tableName="AFFINITY_PLAYERS">
+         <column name="id">51</column>
+         <column name="cost_stranger">45</column>
+         <column name="cost_ally">30</column>
+         <column name="cost_friend">20</column>
+      </insert>
+      <!-- Player abilities -->
+      <insert tableName="PLAYER_ABILITIES">
+         <column name="player_id">1</column>
+         <column name="ability_id">1</column>
+      </insert>
+      <insert tableName="PLAYER_ABILITIES">
+         <column name="player_id">2</column>
+         <column name="ability_id">1</column>
+      </insert>
+      <insert tableName="PLAYER_ABILITIES">
+         <column name="player_id">3</column>
+         <column name="ability_id">1</column>
+      </insert>
+      <insert tableName="PLAYER_ABILITIES">
+         <column name="player_id">51</column>
+         <column name="ability_id">2</column>
+      </insert>
+      <insert tableName="PLAYER_ABILITIES">
+         <column name="player_id">51</column>
+         <column name="ability_id">3</column>
+      </insert>
+      <insert tableName="PLAYER_ABILITIES">
+         <column name="player_id">51</column>
+         <column name="ability_id">4</column>
+      </insert>
+      <!-- Player affinities -->
+      <insert tableName="PLAYER_AFFINITIES">
+         <column name="player_id">1</column>
+         <column name="affinity_id">1</column>
+      </insert>
+      <insert tableName="PLAYER_AFFINITIES">
+         <column name="player_id">2</column>
+         <column name="affinity_id">1</column>
+      </insert>
+      <insert tableName="PLAYER_AFFINITIES">
+         <column name="player_id">3</column>
+         <column name="affinity_id">1</column>
+      </insert>
+      <insert tableName="PLAYER_AFFINITIES">
+         <column name="player_id">51</column>
+         <column name="affinity_id">2</column>
+      </insert>
+      <insert tableName="PLAYER_AFFINITIES">
+         <column name="player_id">51</column>
+         <column name="affinity_id">3</column>
+      </insert>
+      <insert tableName="PLAYER_AFFINITIES">
+         <column name="player_id">51</column>
+         <column name="affinity_id">4</column>
+      </insert>
+      <!-- Player hated affinities -->
+      <insert tableName="PLAYER_HATED_AFFINITIES">
+         <column name="player_id">51</column>
+         <column name="affinity_id">5</column>
+      </insert>
+   </changeSet>
+
+   <changeSet author="Bernardo" id="test_affinity_groups">
+      <insert tableName="SPONSOR_AFFINITY_AVAS">
+         <column name="id">1</column>
+         <column name="name">A</column>
+         <column name="rank_increase">TRUE</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS">
+         <column name="id">2</column>
+         <column name="name">B</column>
+         <column name="rank_increase">TRUE</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS">
+         <column name="id">3</column>
+         <column name="name">C</column>
+         <column name="rank_increase">FALSE</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS">
+         <column name="id">4</column>
+         <column name="name">D</column>
+         <column name="rank_increase">TRUE</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS">
+         <column name="id">5</column>
+         <column name="name">E</column>
+         <column name="rank_increase">FALSE</column>
+      </insert>
+      <!-- Affinity groups -->
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">1</column>
+         <column name="affinity_id">1</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">1</column>
+         <column name="affinity_id">2</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">1</column>
+         <column name="affinity_id">3</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">1</column>
+         <column name="affinity_id">4</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">1</column>
+         <column name="affinity_id">5</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">2</column>
+         <column name="affinity_id">1</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">2</column>
+         <column name="affinity_id">2</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">2</column>
+         <column name="affinity_id">3</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">2</column>
+         <column name="affinity_id">4</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">2</column>
+         <column name="affinity_id">5</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">3</column>
+         <column name="affinity_id">1</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">3</column>
+         <column name="affinity_id">2</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">3</column>
+         <column name="affinity_id">3</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">3</column>
+         <column name="affinity_id">4</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">3</column>
+         <column name="affinity_id">5</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">3</column>
+         <column name="affinity_id">6</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">4</column>
+         <column name="affinity_id">1</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">4</column>
+         <column name="affinity_id">2</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">4</column>
+         <column name="affinity_id">3</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">4</column>
+         <column name="affinity_id">4</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">4</column>
+         <column name="affinity_id">5</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">5</column>
+         <column name="affinity_id">1</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">5</column>
+         <column name="affinity_id">2</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">5</column>
+         <column name="affinity_id">3</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">5</column>
+         <column name="affinity_id">4</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">5</column>
+         <column name="affinity_id">5</column>
+      </insert>
+      <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
+         <column name="sponsor_affinity_ava_id">5</column>
+         <column name="affinity_id">6</column>
+      </insert>
+   </changeSet>
+
+</databaseChangeLog>

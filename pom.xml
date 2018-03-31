@@ -449,6 +449,7 @@
       <javaee.api.version>2.2</javaee.api.version>
       <jsonpath.version>2.4.0</jsonpath.version>
       <junit.version>4.12</junit.version>
+      <liquibase.version>3.5.5</liquibase.version>
       <log4j.version>2.11.0</log4j.version>
       <mockito.version>1.10.19</mockito.version>
       <mysql.version>5.1.39</mysql.version>
@@ -597,6 +598,15 @@
          <version>${hikari.version}</version>
       </dependency>
       <!-- ============================================== -->
+      <!-- ================ LIQUIBASE =================== -->
+      <!-- ============================================== -->
+      <dependency>
+         <!-- Liquibase -->
+         <groupId>org.liquibase</groupId>
+         <artifactId>liquibase-core</artifactId>
+         <version>${liquibase.version}</version>
+      </dependency>
+      <!-- ============================================== -->
       <!-- ================ SERVLET ===================== -->
       <!-- ============================================== -->
       <dependency>
@@ -636,7 +646,7 @@
          <version>${thymeleaf.version}</version>
       </dependency>
       <!-- ============================================== -->
-      <!-- ===============)=== ITEXT ==================== -->
+      <!-- =================== ITEXT ==================== -->
       <!-- ============================================== -->
       <dependency>
          <groupId>com.itextpdf</groupId>

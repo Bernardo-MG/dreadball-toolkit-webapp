@@ -2,10 +2,13 @@
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
    xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+   xmlns:jdbc="http://www.springframework.org/schema/jdbc"
    xsi:schemaLocation="http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans
         http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/jdbc
+        http://www.springframework.org/schema/jdbc/spring-jdbc.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd
         http://www.springframework.org/schema/util
@@ -13,17 +16,29 @@
 
    <!-- Imports -->
    <import resource="classpath:context/view.xml" />
-   <import resource="classpath:context/test/persistence.xml" />
+   <import resource="classpath:context/persistence.xml" />
+   <import resource="classpath:context/persistence-versioning.xml" />
    <import resource="classpath:context/test/service.xml" />
 
    <!-- Properties -->
    <context:property-placeholder
-      location="classpath:config/view.properties,
+      location="classpath:config/persistence.properties,
+                   classpath:config/test/persistence.properties,
+                   classpath:config/view.properties,
                    classpath:config/persistence-@spring.profile.database@.properties, 
                    classpath:config/persistence-access.properties,
                    classpath:config/builder-team-dbx.properties,
                    classpath:config/service-dreadball.properties,
                    classpath:config/servlet-dreadball.properties" />
+
+   <!-- ======================= LIQUIBASE DB VERSIONING ========================= -->
+
+   <bean id="liquibaseTest" class="${liquibase.integration.class}">
+      <property name="dataSource" ref="dataSource" />
+      <property name="changeLog" value="${liquibase.changelog.test.path}" />
+   </bean>
+
+   <!-- =============================== SERVLET ================================= -->
 
    <!-- Scans for beans -->
    <context:component-scan base-package="com.bernardomg.tabletop.dreadball" />
