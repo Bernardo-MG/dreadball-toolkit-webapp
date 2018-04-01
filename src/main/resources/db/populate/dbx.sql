@@ -1472,11 +1472,11 @@ INSERT INTO SPONSOR_AFFINITY_AVAS (id, name, rank_increase) VALUES (4, 'D', true
 INSERT INTO SPONSOR_AFFINITY_AVAS (id, name, rank_increase) VALUES (5, 'E', false);
 
 -- Group A affinities: alien, cunning, plant, reluctant, striker
-INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUP (sponsor_affinity_ava_id, affinity_id) VALUES (1, 1);
-INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUP (sponsor_affinity_ava_id, affinity_id) VALUES (1, 5);
-INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUP (sponsor_affinity_ava_id, affinity_id) VALUES (1, 17);
-INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUP (sponsor_affinity_ava_id, affinity_id) VALUES (1, 21);
-INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUP (sponsor_affinity_ava_id, affinity_id) VALUES (1, 22);
+INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 1);
+INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 5);
+INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 17);
+INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 21);
+INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 22);
 
 -- Group B affinities: dreadball, big picture, psycho, rebel, worker
 INSERT INTO SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS (sponsor_affinity_ava_id, affinity_id) VALUES (2, 6);
