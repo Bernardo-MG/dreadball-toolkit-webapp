@@ -66,7 +66,7 @@
          <column name="speed">3</column>
          <column name="strength">4</column>
          <column name="position">GUARD</column>
-         <column name="giant">FALSE</column>
+         <column name="giant">F</column>
       </insert>
       <insert tableName="PLAYERS">
          <column name="id">2</column>
@@ -79,7 +79,7 @@
          <column name="speed">3</column>
          <column name="strength">4</column>
          <column name="position">JACK</column>
-         <column name="giant">FALSE</column>
+         <column name="giant">F</column>
       </insert>
       <insert tableName="PLAYERS">
          <column name="id">3</column>
@@ -92,7 +92,7 @@
          <column name="speed">3</column>
          <column name="strength">4</column>
          <column name="position">STRIKER</column>
-         <column name="giant">FALSE</column>
+         <column name="giant">F</column>
       </insert>
       <insert tableName="PLAYERS">
          <column name="id">51</column>
@@ -105,7 +105,7 @@
          <column name="speed">3</column>
          <column name="strength">4</column>
          <column name="position">JACK</column>
-         <column name="giant">TRUE</column>
+         <column name="giant">T</column>
       </insert>
       <insert tableName="AFFINITY_PLAYERS">
          <column name="id">1</column>
@@ -192,27 +192,27 @@
       <insert tableName="SPONSOR_AFFINITY_AVAS">
          <column name="id">1</column>
          <column name="name">A</column>
-         <column name="rank_increase">TRUE</column>
+         <column name="rank_increase">T</column>
       </insert>
       <insert tableName="SPONSOR_AFFINITY_AVAS">
          <column name="id">2</column>
          <column name="name">B</column>
-         <column name="rank_increase">TRUE</column>
+         <column name="rank_increase">T</column>
       </insert>
       <insert tableName="SPONSOR_AFFINITY_AVAS">
          <column name="id">3</column>
          <column name="name">C</column>
-         <column name="rank_increase">FALSE</column>
+         <column name="rank_increase">F</column>
       </insert>
       <insert tableName="SPONSOR_AFFINITY_AVAS">
          <column name="id">4</column>
          <column name="name">D</column>
-         <column name="rank_increase">TRUE</column>
+         <column name="rank_increase">T</column>
       </insert>
       <insert tableName="SPONSOR_AFFINITY_AVAS">
          <column name="id">5</column>
          <column name="name">E</column>
-         <column name="rank_increase">FALSE</column>
+         <column name="rank_increase">F</column>
       </insert>
       <!-- Affinity groups -->
       <insert tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
