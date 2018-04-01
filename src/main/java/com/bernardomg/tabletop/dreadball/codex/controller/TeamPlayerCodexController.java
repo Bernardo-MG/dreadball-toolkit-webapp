@@ -18,15 +18,10 @@ package com.bernardomg.tabletop.dreadball.codex.controller;
 
 import static com.google.common.base.Preconditions.checkNotNull;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
@@ -42,17 +37,11 @@ import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 public class TeamPlayerCodexController {
 
     /**
-     * Logger.
-     */
-    private static final Logger LOGGER = LoggerFactory
-            .getLogger(TeamPlayerCodexController.class);
-
-    /**
      * Codex service.
      * <p>
      * This allows querying for the data to be shown.
      */
-    private final CodexService  playerCodexService;
+    private final CodexService playerCodexService;
 
     /**
      * Constructs a controller.
@@ -71,43 +60,13 @@ public class TeamPlayerCodexController {
      * Returns a group of players with affinities.
      * 
      * @param page
-     *            page number
-     * @param size
-     *            page size
-     * @param orderBy
-     *            field to order by
-     * @param direction
-     *            ordering direction
+     *            pagination data
      * @return a group of players with affinities
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public final Iterable<? extends TeamPlayer> getAffinityTeamPlayers(
-            @RequestParam(name = "page", defaultValue = "0") final Integer page,
-            @RequestParam(name = "size",
-                    defaultValue = "10") final Integer size,
-            @RequestParam(name = "orderBy",
-                    defaultValue = "") final String orderBy,
-            @RequestParam(name = "direction",
-                    defaultValue = "ASC") final Direction direction) {
-        final Pageable pageReq;
-
-        LOGGER.debug("orderBy: {}", orderBy);
-        LOGGER.debug("direction: {}", direction);
-
-        // TODO: Page and size may be stored automatically into a pageable
-        // Check:
-        // https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-seven-pagination/
-        // http://www.baeldung.com/rest-api-pagination-in-spring
-        if (orderBy.isEmpty()) {
-            pageReq = new PageRequest(page, size);
-        } else {
-            pageReq = new PageRequest(page, size, direction, orderBy);
-        }
-
-        final Iterable<? extends TeamPlayer> result;
-        result = getCodexService().getAffinityTeamPlayers(pageReq);
-
-        return result;
+    public final Iterable<? extends TeamPlayer>
+            getAffinityTeamPlayers(final Pageable page) {
+        return getCodexService().getAffinityTeamPlayers(page);
     }
 
     /**

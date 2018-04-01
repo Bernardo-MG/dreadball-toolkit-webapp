@@ -59,7 +59,7 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
         final Pageable pageable;
         final Iterable<? extends TeamPlayer> result;
 
-        pageable = new PageRequest(0, 10);
+        pageable = PageRequest.of(0, 10);
         result = service.getAffinityTeamPlayers(pageable);
 
         Assert.assertEquals(4, Iterables.size(result));
@@ -73,7 +73,7 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
         final Pageable pageable;
         final Iterable<? extends TeamPlayer> result;
 
-        pageable = new PageRequest(0, 10);
+        pageable = PageRequest.of(0, 10);
         result = service.getAffinityTeamPlayers(pageable);
 
         Assert.assertTrue(result instanceof Page);

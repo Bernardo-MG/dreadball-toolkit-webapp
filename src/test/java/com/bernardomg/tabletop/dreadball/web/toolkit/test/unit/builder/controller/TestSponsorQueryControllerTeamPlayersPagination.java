@@ -26,6 +26,7 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Matchers;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -80,6 +81,8 @@ public final class TestSponsorQueryControllerTeamPlayersPagination {
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders
                 .standaloneSetup(new SponsorPlayersController(service))
+                .setCustomArgumentResolvers(
+                        new PageableHandlerMethodArgumentResolver())
                 .alwaysExpect(MockMvcResultMatchers.status().isOk())
                 .alwaysExpect(MockMvcResultMatchers.content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8))
@@ -113,7 +116,7 @@ public final class TestSponsorQueryControllerTeamPlayersPagination {
 
         pageable = captor.getValue();
 
-        Assert.assertEquals(10, pageable.getPageSize());
+        Assert.assertEquals(20, pageable.getPageSize());
         Assert.assertEquals(0, pageable.getPageNumber());
     }
 

@@ -71,7 +71,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         affinities = new ArrayList<>();
         affinities.add(new ImmutableAffinityGroup("affinity_1"));
 
-        pageable = new PageRequest(0, 10);
+        pageable = PageRequest.of(0, 10);
         result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(new Integer(15),
@@ -90,7 +90,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         affinities = new ArrayList<>();
         affinities.add(new ImmutableAffinityGroup("affinity_5"));
 
-        pageable = new PageRequest(0, 10);
+        pageable = PageRequest.of(0, 10);
         result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(3, Iterables.size(result));
@@ -108,7 +108,7 @@ public class ITSponsorBuilderServiceTeamPlayers
 
         affinities = new ArrayList<>();
 
-        pageable = new PageRequest(0, 10);
+        pageable = PageRequest.of(0, 10);
         result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(new Integer(23),
@@ -126,7 +126,7 @@ public class ITSponsorBuilderServiceTeamPlayers
 
         affinities = new ArrayList<>();
 
-        pageable = new PageRequest(0, 10);
+        pageable = PageRequest.of(0, 10);
         result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(4, Iterables.size(result));
@@ -143,7 +143,7 @@ public class ITSponsorBuilderServiceTeamPlayers
 
         affinities = new ArrayList<>();
 
-        pageable = new PageRequest(0, 10);
+        pageable = PageRequest.of(0, 10);
         result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertTrue(result instanceof Page);

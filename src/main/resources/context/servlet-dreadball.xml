@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-   xmlns:context="http://www.springframework.org/schema/context" xmlns:mvc="http://www.springframework.org/schema/mvc"
-   xmlns="http://www.springframework.org/schema/beans" xmlns:util="http://www.springframework.org/schema/util"
+   xmlns:context="http://www.springframework.org/schema/context"
+   xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns="http://www.springframework.org/schema/beans"
+   xmlns:util="http://www.springframework.org/schema/util"
    xsi:schemaLocation="http://www.springframework.org/schema/mvc
         http://www.springframework.org/schema/mvc/spring-mvc.xsd
         http://www.springframework.org/schema/beans
@@ -31,7 +32,16 @@
       <mvc:message-converters>
          <ref bean="jsonMessageConverter" />
       </mvc:message-converters>
+      <mvc:argument-resolvers>
+         <ref bean="sortResolver" />
+         <ref bean="pagingResolver" />
+      </mvc:argument-resolvers>
    </mvc:annotation-driven>
+
+   <bean class="${resolver.sort.class}" id="sortResolver" />
+   <bean class="${resolver.pageable.class}" id="pagingResolver">
+      <constructor-arg ref="sortResolver" />
+   </bean>
 
    <bean id="jsonMessageConverter" class="${converter.json.class}">
       <property name="objectMapper" ref="dreadballObjectMapper" />
@@ -44,7 +54,7 @@
 
    <mvc:default-servlet-handler />
 
-   <bean id="conversionService" class="${conversion.service.class}"/>
+   <bean id="conversionService" class="${conversion.service.class}" />
 
    <bean id="validator" class="${validator.factory.class}">
       <property name="validationMessageSource" ref="messageSource" />

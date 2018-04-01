@@ -23,6 +23,7 @@ import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
+import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -62,6 +63,8 @@ public final class TestSponsorQueryControllerTeamPlayers {
     @Before
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
+                .setCustomArgumentResolvers(
+                        new PageableHandlerMethodArgumentResolver())
                 .alwaysExpect(MockMvcResultMatchers.status().isOk())
                 .alwaysExpect(MockMvcResultMatchers.content()
                         .contentType(MediaType.APPLICATION_JSON_UTF8))

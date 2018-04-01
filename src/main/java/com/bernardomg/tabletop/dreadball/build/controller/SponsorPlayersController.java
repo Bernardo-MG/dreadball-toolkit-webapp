@@ -21,9 +21,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.ArrayList;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort.Direction;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -73,41 +71,16 @@ public class SponsorPlayersController {
      * @param affinities
      *            sponsor affinities
      * @param page
-     *            page number
-     * @param size
-     *            page size
-     * @param orderBy
-     *            field to order by
-     * @param direction
-     *            ordering direction
+     *            pagination data
      * @return all the players available to a Sponsor
      */
     @GetMapping(produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
     public final Iterable<? extends TeamPlayer> getDbxTeamPlayers(@RequestParam(
             name = "affinities", required = false,
             defaultValue = "") final ArrayList<ImmutableAffinityGroup> affinities,
-            @RequestParam(name = "page", required = false,
-                    defaultValue = "0") final Integer page,
-            @RequestParam(name = "size", required = false,
-                    defaultValue = "10") final Integer size,
-            @RequestParam(name = "orderBy", required = false,
-                    defaultValue = "") final String orderBy,
-            @RequestParam(name = "direction", required = false,
-                    defaultValue = "ASC") final Direction direction) {
-        final Pageable pageReq;
-
-        // TODO: Page and size may be stored automatically into a pageable
-        // Check:
-        // https://www.petrikainulainen.net/programming/spring-framework/spring-data-jpa-tutorial-part-seven-pagination/
-        // http://www.baeldung.com/rest-api-pagination-in-spring
-        if (orderBy.isEmpty()) {
-            pageReq = new PageRequest(page, size);
-        } else {
-            pageReq = new PageRequest(page, size, direction, orderBy);
-        }
-
+            final Pageable page) {
         return getSponsorBuilderService().getTeamPlayerOptions(affinities,
-                pageReq);
+                page);
     }
 
     /**
