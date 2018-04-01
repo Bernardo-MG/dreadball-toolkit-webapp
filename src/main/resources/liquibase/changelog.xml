@@ -57,11 +57,11 @@
       <createTable tableName="PLAYER_ABILITIES">
          <column name="player_id" type="BIGINT">
             <constraints nullable="false" foreignKeyName="fk_player_abilities_player"
-               references="players(id)" />
+               references="PLAYERS(id)" />
          </column>
          <column name="ability_id" type="BIGINT">
             <constraints nullable="false" foreignKeyName="fk_player_abilities_ability"
-               references="abilities(id)" />
+               references="ABILITIES(id)" />
          </column>
       </createTable>
    </changeSet>
@@ -103,31 +103,31 @@
       <createTable tableName="PLAYER_AFFINITIES">
          <column name="player_id" type="BIGINT">
             <constraints nullable="false" foreignKeyName="fk_player_affinities_player"
-               references="players(id)" />
+               references="PLAYERS(id)" />
          </column>
          <column name="affinity_id" type="BIGINT">
             <constraints nullable="false" foreignKeyName="fk_player_affinities_affinity"
-               references="affinity_groups(id)" />
+               references="AFFINITY_GROUPS(id)" />
          </column>
       </createTable>
       <createTable tableName="PLAYER_HATED_AFFINITIES">
          <column name="player_id" type="BIGINT">
             <constraints nullable="false" foreignKeyName="fk_player_hated_affinities_player"
-               references="players(id)" />
+               references="PLAYERS(id)" />
          </column>
          <column name="affinity_id" type="BIGINT">
             <constraints nullable="false" foreignKeyName="fk_player_hated_affinities_affinity"
-               references="affinity_groups(id)" />
+               references="AFFINITY_GROUPS(id)" />
          </column>
       </createTable>
       <createTable tableName="SPONSOR_AFFINITY_AVAS_AFFINITY_GROUPS">
          <column name="sponsor_affinity_ava_id" type="BIGINT">
             <constraints nullable="false" foreignKeyName="fk_sponsor_affinity_avas_ava"
-               references="sponsor_affinity_avas(id)" />
+               references="SPONSOR_AFFINITY_AVAS(id)" />
          </column>
          <column name="affinity_id" type="BIGINT">
             <constraints nullable="false" foreignKeyName="fk_sponsor_affinity_avas_affinity"
-               references="affinity_groups(id)" />
+               references="AFFINITY_GROUPS(id)" />
          </column>
       </createTable>
    </changeSet>
