@@ -60,7 +60,7 @@ class PlayersViewPanel extends Component {
       headers.push(this.props.intl.formatMessage(labelMessages.info));
 
       return (
-         <Box pad='medium' full={true}>
+         <Box>
             {detailsLayer}
             <Table onMore={this.props.onMore}>
                <TableHeader labels={headers} />
