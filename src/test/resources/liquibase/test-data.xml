@@ -66,7 +66,7 @@
          <column name="speed">3</column>
          <column name="strength">4</column>
          <column name="position">GUARD</column>
-         <column name="giant">false</column>
+         <column name="giant">FALSE</column>
       </insert>
       <insert tableName="PLAYERS">
          <column name="id">2</column>
@@ -79,7 +79,7 @@
          <column name="speed">3</column>
          <column name="strength">4</column>
          <column name="position">JACK</column>
-         <column name="giant">false</column>
+         <column name="giant">FALSE</column>
       </insert>
       <insert tableName="PLAYERS">
          <column name="id">3</column>
@@ -92,7 +92,7 @@
          <column name="speed">3</column>
          <column name="strength">4</column>
          <column name="position">STRIKER</column>
-         <column name="giant">false</column>
+         <column name="giant">FALSE</column>
       </insert>
       <insert tableName="PLAYERS">
          <column name="id">51</column>
@@ -105,7 +105,7 @@
          <column name="speed">3</column>
          <column name="strength">4</column>
          <column name="position">JACK</column>
-         <column name="giant">true</column>
+         <column name="giant">TRUE</column>
       </insert>
       <insert tableName="AFFINITY_PLAYERS">
          <column name="id">1</column>
