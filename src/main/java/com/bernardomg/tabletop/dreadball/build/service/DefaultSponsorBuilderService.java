@@ -29,10 +29,10 @@ import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.availability.affinity.SponsorAffinityGroupAvailability;
-import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsAvailability;
+import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsCosts;
 import com.bernardomg.tabletop.dreadball.model.faction.DefaultSponsor;
 import com.bernardomg.tabletop.dreadball.model.persistence.availability.affinity.PersistentSponsorAffinityGroupAvailability;
-import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityGroup;
+import com.bernardomg.tabletop.dreadball.model.persistence.player.stats.PersistentAffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
 import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.player.DefaultTeamPlayer;
@@ -77,7 +77,7 @@ public final class DefaultSponsorBuilderService
     /**
      * Assets rank costs.
      */
-    private final SponsorAssetsAvailability                  rankCosts;
+    private final SponsorAssetsCosts                         rankCosts;
 
     /**
      * Affinity groups availabilities repository.
@@ -87,7 +87,7 @@ public final class DefaultSponsorBuilderService
     /**
      * Assets costs.
      */
-    private final SponsorAssetsAvailability                  sponsorCosts;
+    private final SponsorAssetsCosts                         sponsorCosts;
 
     /**
      * Sponsor default values.
@@ -118,8 +118,8 @@ public final class DefaultSponsorBuilderService
             final SponsorDefaults defaults,
             final AffinityTeamPlayerRepository affTeamPlayerRepository,
             final AffinityGroupRepository affGroupRepository,
-            @Qualifier("SponsorRankCosts") final SponsorAssetsAvailability costsRank,
-            @Qualifier("SponsorCosts") final SponsorAssetsAvailability costs,
+            @Qualifier("SponsorRankCosts") final SponsorAssetsCosts costsRank,
+            @Qualifier("SponsorCosts") final SponsorAssetsCosts costs,
             final DbxRules rules) {
         super();
 
@@ -404,7 +404,7 @@ public final class DefaultSponsorBuilderService
      * 
      * @return the assets costs
      */
-    private final SponsorAssetsAvailability getSponsorCosts() {
+    private final SponsorAssetsCosts getSponsorCosts() {
         return sponsorCosts;
     }
 
@@ -422,7 +422,7 @@ public final class DefaultSponsorBuilderService
      * 
      * @return the assets rank costs
      */
-    private final SponsorAssetsAvailability getSponsorRankCosts() {
+    private final SponsorAssetsCosts getSponsorRankCosts() {
         return rankCosts;
     }
 

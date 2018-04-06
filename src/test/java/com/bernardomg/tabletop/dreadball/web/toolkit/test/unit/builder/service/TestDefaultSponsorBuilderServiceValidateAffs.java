@@ -27,7 +27,7 @@ import org.mockito.Mockito;
 import com.bernardomg.tabletop.dreadball.build.service.DefaultSponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsAvailability;
+import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsCosts;
 import com.bernardomg.tabletop.dreadball.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityGroupRepository;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
@@ -251,15 +251,15 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
         final SponsorAffinityGroupAvailabilityRepository sponsorAffinityGroupAvailabilityRepository;
         final AffinityTeamPlayerRepository affTeamPlayerRepository;
         final AffinityGroupRepository affGroupRepository;
-        final SponsorAssetsAvailability costsRank;
-        final SponsorAssetsAvailability costs;
+        final SponsorAssetsCosts costsRank;
+        final SponsorAssetsCosts costs;
         final DbxRules rules;
 
         affTeamPlayerRepository = Mockito
                 .mock(AffinityTeamPlayerRepository.class);
         affGroupRepository = Mockito.mock(AffinityGroupRepository.class);
-        costsRank = Mockito.mock(SponsorAssetsAvailability.class);
-        costs = Mockito.mock(SponsorAssetsAvailability.class);
+        costsRank = Mockito.mock(SponsorAssetsCosts.class);
+        costs = Mockito.mock(SponsorAssetsCosts.class);
         rules = Mockito.mock(DbxRules.class);
 
         defaults = Mockito.mock(SponsorDefaults.class);
@@ -288,15 +288,15 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
         final SponsorAffinityGroupAvailabilityRepository sponsorAffinityGroupAvailabilityRepository;
         final AffinityTeamPlayerRepository affTeamPlayerRepository;
         final AffinityGroupRepository affGroupRepository;
-        final SponsorAssetsAvailability costsRank;
-        final SponsorAssetsAvailability costs;
+        final SponsorAssetsCosts costsRank;
+        final SponsorAssetsCosts costs;
         final DbxRules rules;
 
         affTeamPlayerRepository = Mockito
                 .mock(AffinityTeamPlayerRepository.class);
         affGroupRepository = Mockito.mock(AffinityGroupRepository.class);
-        costsRank = Mockito.mock(SponsorAssetsAvailability.class);
-        costs = Mockito.mock(SponsorAssetsAvailability.class);
+        costsRank = Mockito.mock(SponsorAssetsCosts.class);
+        costs = Mockito.mock(SponsorAssetsCosts.class);
         rules = Mockito.mock(DbxRules.class);
 
         defaults = Mockito.mock(SponsorDefaults.class);

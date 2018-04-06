@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dreadball.rules;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
-import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsAvailability;
+import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsCosts;
 
 /**
  * Autowired implementation of the {@code SponsorCosts} for rank costs. It loads
@@ -28,7 +28,7 @@ import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsA
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service("SponsorRankCosts")
-public class AutowiredSponsorRankCosts implements SponsorAssetsAvailability {
+public class AutowiredSponsorRankCosts implements SponsorAssetsCosts {
 
     /**
      * Cheerleader cost.

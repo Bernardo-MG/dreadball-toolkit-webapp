@@ -20,7 +20,7 @@ import java.util.Collection;
 
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityGroup;
+import com.bernardomg.tabletop.dreadball.model.persistence.player.stats.PersistentAffinityGroup;
 
 /**
  * Affinity groups repository.

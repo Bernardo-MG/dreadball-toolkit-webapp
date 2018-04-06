@@ -22,10 +22,10 @@ import com.bernardomg.tabletop.dreadball.model.availability.affinity.SponsorAffi
 import com.bernardomg.tabletop.dreadball.model.faction.Sponsor;
 import com.bernardomg.tabletop.dreadball.model.json.availability.affinity.SponsorAffinityGroupAvailabilityMixIn;
 import com.bernardomg.tabletop.dreadball.model.json.faction.SponsorMixIn;
-import com.bernardomg.tabletop.dreadball.model.json.player.AffinityGroupMixIn;
 import com.bernardomg.tabletop.dreadball.model.json.player.AffinityTeamPlayerMixIn;
 import com.bernardomg.tabletop.dreadball.model.json.player.TeamPlayerMixIn;
 import com.bernardomg.tabletop.dreadball.model.json.player.stats.AbilityMixIn;
+import com.bernardomg.tabletop.dreadball.model.json.player.stats.AffinityGroupMixIn;
 import com.bernardomg.tabletop.dreadball.model.json.player.stats.AttributesMixIn;
 import com.bernardomg.tabletop.dreadball.model.json.team.SponsorTeamMixIn;
 import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
