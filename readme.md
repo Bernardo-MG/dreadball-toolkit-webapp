@@ -23,7 +23,7 @@ Documentation is also generated from the latest snapshot, taken from the 'develo
 The documentation site sources come along the source code (as it is a Maven site), so it is always possible to generate them using the following Maven command:
 
 ```
-$ mvn verify site -P h2,jetty
+mvn verify site -P h2,jetty
 ```
 
 The verify phase is required, as otherwise some of the reports won't be created.
@@ -48,13 +48,13 @@ The project can be installed by creating the war file and deploying it into a se
 To run the project locally in an embedded server just use the following Maven command for Jetty:
 
 ```
-$ mvn jetty:run-war -P h2,jetty
+mvn jetty:run-war -P h2,jetty
 ```
 
 Or this one for Tomcat:
 
 ```
-$ mvn tomcat7:run-war -P h2,tomcat7
+mvn tomcat7:run-war -P h2,tomcat7
 ```
 
 After this the project will be accessible at [http://localhost:8080/dreadball/].
@@ -66,13 +66,13 @@ The integration tests require a database and a running server, and the easiest w
 To run the tests with Jetty:
 
 ```
-$ mvn verify -P h2,jetty
+mvn verify -P h2,jetty
 ```
 
 To run them with Tomcat:
 
 ```
-$ mvn verify -P h2,tomcat7
+mvn verify -P h2,tomcat7
 ```
 
 Maven will run both the frontend and backend tests.
@@ -80,7 +80,7 @@ Maven will run both the frontend and backend tests.
 To run only the frontend tests:
 
 ```
-$ npm run test
+npm run test
 ```
 
 ### Packaging the WAR
@@ -88,7 +88,7 @@ $ npm run test
 When creating the WAR file the database connection credentials should be set manually:
 
 ```
-$ mvn package -P production,mysql -Ddatabase.username=[username] -Ddatabase.password=[password] -Ddatabase.url=[DB url]
+mvn package -P production,mysql -Ddatabase.username=[username] -Ddatabase.password=[password] -Ddatabase.url=[DB url]
 ```
 
 Otherwise the project will try to use the default testing values.
