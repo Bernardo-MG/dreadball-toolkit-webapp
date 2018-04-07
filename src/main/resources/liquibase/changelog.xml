@@ -6,7 +6,7 @@
 
    <changeSet author="Bernardo" id="common_tables">
       <createTable tableName="ABILITIES">
-         <column name="id" type="BIGINT">
+         <column autoIncrement="false" name="id" type="BIGINT">
             <constraints primaryKey="true" />
          </column>
          <column name="name" type="VARCHAR(50)">
@@ -14,7 +14,7 @@
          </column>
       </createTable>
       <createTable tableName="PLAYERS">
-         <column name="id" type="BIGINT">
+         <column autoIncrement="false" name="id" type="BIGINT">
             <constraints primaryKey="true" />
          </column>
          <column name="player_type" type="VARCHAR(50)">
@@ -68,7 +68,7 @@
 
    <changeSet author="Bernardo" id="dbx_tables">
       <createTable tableName="AFFINITY_GROUPS">
-         <column name="id" type="BIGINT">
+         <column autoIncrement="false" name="id" type="BIGINT">
             <constraints primaryKey="true" />
          </column>
          <column name="name" type="VARCHAR(50)">
@@ -76,7 +76,7 @@
          </column>
       </createTable>
       <createTable tableName="AFFINITY_PLAYERS">
-         <column name="id" type="BIGINT">
+         <column autoIncrement="false" name="id" type="BIGINT">
             <constraints primaryKey="true" />
          </column>
          <column name="ally_cost" type="INTEGER" defaultValue="0">
@@ -90,7 +90,7 @@
          </column>
       </createTable>
       <createTable tableName="AFFINITY_SETS">
-         <column name="id" type="BIGINT">
+         <column autoIncrement="false" name="id" type="BIGINT">
             <constraints primaryKey="true" />
          </column>
          <column name="name" type="VARCHAR(50)" defaultValue="">
