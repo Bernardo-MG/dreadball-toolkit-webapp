@@ -174,7 +174,7 @@
             <database.username>sa</database.username>
             <database.password></database.password>
             <!-- Spring context -->
-            <spring.profile.database>h2</spring.profile.database>
+            <database.tag>h2</database.tag>
          </properties>
          <dependencies>
             <dependency>
@@ -197,7 +197,7 @@
             <database.username>root</database.username>
             <database.password></database.password>
             <!-- Spring context -->
-            <spring.profile.database>mysql</spring.profile.database>
+            <database.tag>mysql</database.tag>
          </properties>
          <dependencies>
             <dependency>
@@ -824,6 +824,26 @@
       </pluginManagement>
       <plugins>
          <plugin>
+            <!-- Build helper -->
+            <!-- Adds the generated files to the Maven classpath -->
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>add-source</id>
+                  <goals>
+                     <goal>add-source</goal>
+                  </goals>
+                  <configuration>
+                     <sources>
+                        <!-- JS sources -->
+                        <source>${project.basedir}/src/main/js</source>
+                     </sources>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
             <!-- Changes -->
             <!-- Takes care of the changes log -->
             <!-- It is set to also validate the changes log file -->
@@ -851,75 +871,41 @@
             </executions>
          </plugin>
          <plugin>
-            <!-- Site -->
-            <!-- Generates the Maven Site -->
+            <!-- Enforcer -->
+            <!-- Stops the project from being built if it does not comply 
+               with a set of rules. -->
             <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-site-plugin</artifactId>
-            <dependencies>
-               <dependency>
-                  <!-- Docs Maven Skin -->
-                  <groupId>com.bernardomg.maven.skins</groupId>
-                  <artifactId>docs-maven-skin</artifactId>
-                  <version>${site.skin.version}</version>
-               </dependency>
-            </dependencies>
-         </plugin>
-         <plugin>
-            <!-- WAR -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-war-plugin</artifactId>
-            <configuration>
-               <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
-               <webResources>
-                  <resource>
-                     <!-- Persistence access data is filtered -->
-                     <filtering>true</filtering>
-                     <directory>${project.basedir}/src/main/resources/config</directory>
-                     <targetPath>WEB-INF/classes/config</targetPath>
-                     <includes>
-                        <include>persistence-access.properties</include>
-                     </includes>
-                  </resource>
-                  <resource>
-                     <!-- The UI template is filtered -->
-                     <filtering>true</filtering>
-                     <directory>${project.basedir}/src/main/webapp/WEB-INF/templates</directory>
-                     <targetPath>WEB-INF/templates</targetPath>
-                     <includes>
-                        <include>index.html</include>
-                     </includes>
-                  </resource>
-                  <resource>
-                     <!-- Generated files -->
-                     <directory>${project.build.directory}/generated-ui</directory>
-                     <targetPath>resources/</targetPath>
-                  </resource>
-               </webResources>
-               <!-- Variables to to override will be delimited with a @. -->
-               <!-- This avoids collisions with Spring variables. -->
-               <!-- So instead of replacing ${project.name} Maven will replace 
-                  @project.name@. -->
-               <useDefaultDelimiters>false</useDefaultDelimiters>
-               <delimiters>
-                  <delimiter>@</delimiter>
-               </delimiters>
-            </configuration>
-         </plugin>
-         <plugin>
-            <!-- Resources -->
-            <!-- Handles the project resources. -->
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-resources-plugin</artifactId>
-            <configuration>
-               <!-- Variables to to override will be delimited with a @. -->
-               <!-- This avoids collisions with Spring variables. -->
-               <!-- So instead of replacing ${project.name} Maven will replace 
-                  @project.name@. -->
-               <useDefaultDelimiters>false</useDefaultDelimiters>
-               <delimiters>
-                  <delimiter>@</delimiter>
-               </delimiters>
-            </configuration>
+            <artifactId>maven-enforcer-plugin</artifactId>
+            <executions>
+               <!-- The enforce goal is bound to the validate phase -->
+               <execution>
+                  <id>enforce-database</id>
+                  <goals>
+                     <goal>enforce</goal>
+                  </goals>
+                  <configuration>
+                     <rules>
+                        <!-- Database data should be set. -->
+                        <requireProperty>
+                           <property>database.tag</property>
+                           <message><![CDATA[Give a Spring database profile.]]></message>
+                        </requireProperty>
+                        <requireProperty>
+                           <property>database.url</property>
+                           <message><![CDATA[Give a URL for the database.]]></message>
+                        </requireProperty>
+                        <requireProperty>
+                           <property>database.username</property>
+                           <message><![CDATA[Give a username for the database.]]></message>
+                        </requireProperty>
+                        <requireProperty>
+                           <property>database.password</property>
+                           <message><![CDATA[Give a password for the database.]]></message>
+                        </requireProperty>
+                     </rules>
+                  </configuration>
+               </execution>
+            </executions>
          </plugin>
          <plugin>
             <!-- Frontend Plugin -->
@@ -978,24 +964,75 @@
             </executions>
          </plugin>
          <plugin>
-            <!-- Build helper -->
-            <!-- Adds the generated files to the Maven classpath -->
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-               <execution>
-                  <id>add-source</id>
-                  <goals>
-                     <goal>add-source</goal>
-                  </goals>
-                  <configuration>
-                     <sources>
-                        <!-- JS sources -->
-                        <source>${project.basedir}/src/main/js</source>
-                     </sources>
-                  </configuration>
-               </execution>
-            </executions>
+            <!-- Resources -->
+            <!-- Handles the project resources. -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-resources-plugin</artifactId>
+            <configuration>
+               <!-- Variables to to override will be delimited with a @. -->
+               <!-- This avoids collisions with Spring variables. -->
+               <!-- So instead of replacing ${project.name} Maven will replace 
+                  @project.name@. -->
+               <useDefaultDelimiters>false</useDefaultDelimiters>
+               <delimiters>
+                  <delimiter>@</delimiter>
+               </delimiters>
+            </configuration>
+         </plugin>
+         <plugin>
+            <!-- Site -->
+            <!-- Generates the Maven Site -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-site-plugin</artifactId>
+            <dependencies>
+               <dependency>
+                  <!-- Docs Maven Skin -->
+                  <groupId>com.bernardomg.maven.skins</groupId>
+                  <artifactId>docs-maven-skin</artifactId>
+                  <version>${site.skin.version}</version>
+               </dependency>
+            </dependencies>
+         </plugin>
+         <plugin>
+            <!-- WAR -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+               <filteringDeploymentDescriptors>true</filteringDeploymentDescriptors>
+               <webResources>
+                  <resource>
+                     <!-- Persistence access data is filtered -->
+                     <filtering>true</filtering>
+                     <directory>${project.basedir}/src/main/resources/config</directory>
+                     <targetPath>WEB-INF/classes/config</targetPath>
+                     <includes>
+                        <include>persistence-access.properties</include>
+                     </includes>
+                  </resource>
+                  <resource>
+                     <!-- The UI template is filtered -->
+                     <filtering>true</filtering>
+                     <directory>${project.basedir}/src/main/webapp/WEB-INF/templates</directory>
+                     <targetPath>WEB-INF/templates</targetPath>
+                     <includes>
+                        <include>index.html</include>
+                     </includes>
+                  </resource>
+                  <resource>
+                     <!-- Generated files -->
+                     <directory>${project.build.directory}/generated-ui</directory>
+                     <targetPath>resources/</targetPath>
+                  </resource>
+               </webResources>
+               <!-- Variables to to override will be delimited with a @. -->
+               <!-- This avoids collisions with Spring variables. -->
+               <!-- So instead of replacing ${project.name} Maven will replace 
+                  @project.name@. -->
+               <useDefaultDelimiters>false</useDefaultDelimiters>
+               <delimiters>
+                  <delimiter>@</delimiter>
+               </delimiters>
+            </configuration>
          </plugin>
       </plugins>
    </build>
