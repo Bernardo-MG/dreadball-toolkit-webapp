@@ -13,7 +13,7 @@ const views = (state = { navbarVisible: true, smallScreen: false }, action) => {
    case TOGGLE_SIDE_BAR: {
       return {
          ...state,
-         sidebarVisible: !state.navbarVisible
+         sidebarVisible: !state.sidebarVisible
       };
    }
    case SET_SMALL_SCREEN_STATUS: {
@@ -24,16 +24,16 @@ const views = (state = { navbarVisible: true, smallScreen: false }, action) => {
          navbarVisible: !payload
       };
    }
-   case HIDE_SIDE_ON_SMALL_SCREEN: {
-      return {
-         ...state,
-         sidebarVisible: !state.smallScreen
-      };
-   }
    case HIDE_NAV_ON_SMALL_SCREEN: {
       return {
          ...state,
          navbarVisible: !state.smallScreen
+      };
+   }
+   case HIDE_SIDE_ON_SMALL_SCREEN: {
+      return {
+         ...state,
+         sidebarVisible: !state.smallScreen
       };
    }
    default:
