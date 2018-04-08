@@ -1,4 +1,4 @@
-import paginate from '../../api/pagination/reducers';
+import paginate from '../../../api/pagination/reducers';
 
 const reducer = paginate({
    idsMapping: (payload) => Object.keys(payload),
