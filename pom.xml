@@ -166,6 +166,10 @@
          <!-- H2 database profile -->
          <!-- Prepares the project to make use of an H2 in-memory database -->
          <id>h2</id>
+         <activation>
+            <!-- Active by default so the repository appears in the reports -->
+            <activeByDefault>true</activeByDefault>
+         </activation>
          <properties>
             <!-- Access data -->
             <!-- Default values for testing and development -->
