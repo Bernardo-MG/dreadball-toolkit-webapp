@@ -1,4 +1,4 @@
-import paginate from '../../../api/pagination/reducers';
+import paginate from 'api/pagination/reducers';
 
 const reducer = paginate({
    idsMapping: (payload) => Object.keys(payload),
@@ -19,7 +19,7 @@ describe('Paginated reducer', () => {
             "totalPages": 0
          }
       )
-   })
+   }),
 
    it('should start fetching on fetching', () => {
       expect(
@@ -30,7 +30,7 @@ describe('Paginated reducer', () => {
             "isFetching": true
          }
       )
-   })
+   }),
 
    it('should finish fetching on failure', () => {
       expect(
@@ -41,7 +41,7 @@ describe('Paginated reducer', () => {
             "isFetching": false
          }
       )
-   })
+   }),
 
    it('should finish fetching on success', () => {
       expect(
@@ -54,7 +54,7 @@ describe('Paginated reducer', () => {
             "isFetching": false
          }
       )
-   })
+   }),
 
    it('should load ids on success', () => {
       expect(
@@ -67,7 +67,7 @@ describe('Paginated reducer', () => {
             "isFetching": false
          }
       )
-   })
+   }),
 
    it('should merge ids on success', () => {
       expect(
