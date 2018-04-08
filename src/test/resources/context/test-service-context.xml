@@ -22,11 +22,9 @@
    <import resource="classpath:context/persistence-versioning.xml" />
    <import resource="classpath:context/test/service.xml" />
 
-   <!-- ======================= LIQUIBASE DB VERSIONING ========================= -->
-
-   <bean id="liquibaseTest" class="${liquibase.integration.class}">
-      <property name="dataSource" ref="dataSource" />
-      <property name="changeLog" value="${liquibase.changelog.test.path}" />
-   </bean>
+   <!-- Test database initializer -->
+   <jdbc:initialize-database data-source="dataSource">
+      <jdbc:script location="${jdbc.script.load.test}" />
+   </jdbc:initialize-database>
 
 </beans>

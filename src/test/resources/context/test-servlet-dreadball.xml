@@ -14,12 +14,6 @@
         http://www.springframework.org/schema/util
         http://www.springframework.org/schema/util/spring-util.xsd">
 
-   <!-- Imports -->
-   <import resource="classpath:context/view.xml" />
-   <import resource="classpath:context/persistence.xml" />
-   <import resource="classpath:context/persistence-versioning.xml" />
-   <import resource="classpath:context/test/service.xml" />
-
    <!-- Properties -->
    <context:property-placeholder
       location="classpath:config/persistence.properties,
@@ -31,12 +25,16 @@
                    classpath:config/service-dreadball.properties,
                    classpath:config/servlet-dreadball.properties" />
 
-   <!-- ======================= LIQUIBASE DB VERSIONING ========================= -->
+   <!-- Imports -->
+   <import resource="classpath:context/view.xml" />
+   <import resource="classpath:context/persistence.xml" />
+   <import resource="classpath:context/persistence-versioning.xml" />
+   <import resource="classpath:context/test/service.xml" />
 
-   <bean id="liquibaseTest" class="${liquibase.integration.class}">
-      <property name="dataSource" ref="dataSource" />
-      <property name="changeLog" value="${liquibase.changelog.test.path}" />
-   </bean>
+   <!-- Test database initializer -->
+   <jdbc:initialize-database data-source="dataSource">
+      <jdbc:script location="${jdbc.script.load.test}" />
+   </jdbc:initialize-database>
 
    <!-- =============================== SERVLET ================================= -->
 
