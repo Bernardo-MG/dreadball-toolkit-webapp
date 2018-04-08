@@ -65,11 +65,13 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         final Paragraph assets;
         final Paragraph players;
         final Paragraph affinities;
+        final Paragraph copyright;
 
         general = getGeneralParagraph(team, paragraphFont);
         assets = getAssetsParagraph(team, paragraphFont);
         players = getPlayersParagraph(team, paragraphFont);
         affinities = getAffinitiesParagraph(team, paragraphFont);
+        copyright = getCopyright(paragraphFont);
 
         final Paragraph header = new Paragraph(chunk);
 
@@ -81,7 +83,18 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         document.add(assets);
         document.add(affinities);
         document.add(players);
+        document.add(copyright);
         document.close();
+    }
+
+    private final Paragraph getCopyright(final Font paragraphFont) {
+        final Paragraph paragraph;
+
+        paragraph = new Paragraph();
+
+        paragraph.add(new Paragraph("Dreadball © Mantic", paragraphFont));
+
+        return paragraph;
     }
 
     private final Paragraph getAffinitiesParagraph(final SponsorTeam team,
