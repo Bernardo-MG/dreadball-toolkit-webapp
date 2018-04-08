@@ -21,6 +21,8 @@ import SidebarView from 'views/containers/SidebarView';
 
 import teamBuilderMessages from 'i18n/teamBuilder';
 
+import titleMessages from 'i18n/title';
+
 class SponsorTeamView extends Component {
 
    constructor(props) {
@@ -101,7 +103,7 @@ class SponsorTeamView extends Component {
       }
 
       return (
-         <SidebarView sideBar={side}>
+         <SidebarView sideBar={side} title={this.props.intl.formatMessage(titleMessages.teamBuilder)}>
             {view}
          </SidebarView>
       );

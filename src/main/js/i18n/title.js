@@ -2,12 +2,24 @@ import { defineMessages } from 'react-intl';
 
 const titleMessages = defineMessages({
    dbxPlayers: {
-      id: 'title.header.dbx.list',
+      id: 'title.link.dbx.list',
       defaultMessage: 'DBX Players'
    },
    dbxTeamBuilder: {
-      id: 'title.header.dbx.build',
+      id: 'title.link.dbx.build',
       defaultMessage: 'DBX Team Builder'
+   },
+   playersCodex: {
+      id: 'title.header.codex.players',
+      defaultMessage: 'Players List'
+   },
+   sponsorAffinities: {
+      id: 'title.header.dbx.builder.affinities',
+      defaultMessage: 'Choose Sponsor Affinities'
+   },
+   teamBuilder: {
+      id: 'title.header.builder',
+      defaultMessage: 'Team Builder'
    }
 });
 

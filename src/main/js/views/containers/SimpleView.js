@@ -18,8 +18,6 @@ import { toggleNavBar } from 'views/actions';
 import { selectNavbarVisible } from 'views/selectors';
 
 const SimpleView = (props) => {
-   const heading = 'title';
-
    let toggleNavButton;
    if (!props.navbarVisible) {
       toggleNavButton = <Button onClick={() => props.onToggleNavBar()} icon={<MenuIcon/>} />;
@@ -31,7 +29,7 @@ const SimpleView = (props) => {
             <Header>
                <Title size="large" justify="between" responsive={false}>
                   {toggleNavButton}
-                  <Heading>{heading}</Heading>
+                  <Heading>{props.title}</Heading>
                </Title>
             </Header>
          </Box>
@@ -43,6 +41,7 @@ const SimpleView = (props) => {
 SimpleView.propTypes = {
    navbarVisible: PropTypes.bool.isRequired,
    onToggleNavBar: PropTypes.func.isRequired,
+   title: PropTypes.string.isRequired,
    children: PropTypes.object.isRequired
 };
 

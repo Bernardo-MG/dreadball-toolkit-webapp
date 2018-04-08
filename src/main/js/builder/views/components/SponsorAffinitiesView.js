@@ -14,9 +14,10 @@ import SimpleView from 'views/containers/SimpleView';
 
 import labelMessages from 'i18n/label';
 import teamBuilderMessages from 'i18n/teamBuilder';
+import titleMessages from 'i18n/title';
 
 const SponsorAffinitiesView = (props) =>
-   <SimpleView>
+   <SimpleView title={props.intl.formatMessage(titleMessages.sponsorAffinities)}>
       <Box justify='center' align='center' pad='medium'>
          <Form>
             <Heading>{props.intl.formatMessage(teamBuilderMessages.choose_affinities)}</Heading>

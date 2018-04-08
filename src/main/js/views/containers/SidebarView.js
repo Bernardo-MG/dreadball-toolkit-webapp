@@ -20,8 +20,6 @@ import { toggleNavBar, toggleSideBar } from 'views/actions';
 import { selectNavbarVisible, selectSidebarVisible, selectSmallScreen } from 'views/selectors';
 
 const SidebarView = (props) => {
-   const heading = 'title';
-
    let toggleNavButton;
    if (!props.navbarVisible) {
       toggleNavButton = <Button onClick={() => props.onToggleNavBar()} icon={<MenuIcon/>} />;
@@ -41,7 +39,7 @@ const SidebarView = (props) => {
                <Header>
                   <Title size="large" justify="between" responsive={false}>
                      {toggleNavButton}
-                     <Heading>{heading}</Heading>
+                     <Heading>{props.title}</Heading>
                      {toggleSideButton}
                   </Title>
                </Header>
@@ -56,6 +54,7 @@ const SidebarView = (props) => {
 SidebarView.propTypes = {
    sidebarVisible: PropTypes.bool.isRequired,
    navbarVisible: PropTypes.bool.isRequired,
+   title: PropTypes.string.isRequired,
    smallScreen: PropTypes.bool.isRequired,
    children: PropTypes.object.isRequired,
    sideBar: PropTypes.element.isRequired,
