@@ -26,7 +26,7 @@ const SimpleView = (props) => {
    return (
       <Box direction='column'>
          <Box direction='row'>
-            <Header>
+            <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
                <Title size="large" justify="between" responsive={false}>
                   {toggleNavButton}
                   <Heading>{props.title}</Heading>
