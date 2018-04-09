@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
@@ -16,25 +16,30 @@ import { hideSideBarOnSmallScreen } from 'views/actions';
 
 import { selectSidebarVisible, selectSmallScreen } from 'views/selectors';
 
-const ButtonsSidebar = (props) => {
-   let closeButton;
-   if (props.smallScreen) {
-      closeButton = <Button align="start" onClick={() => props.onClose()} icon={<CloseIcon/>} />;
+class ButtonsSidebar extends Component {
+
+   _renderButton(option, index, onClose) {
+      return <Button key={index} align="start" plain={true} label={option.label} onClick={() => { option.action(); onClose(); } } />;
    }
 
-   return (
-      <Sidebar size="small" colorIndex="light-3">
-         <Box pad="medium">
-            <Menu>
-               { closeButton }
-               { props.options.map((option, i) =>
-                  <Button key={i} align="start" plain={true} label={option.label} onClick={() => { option.action(); props.onClose(); } } />
-               )}
-            </Menu>
-         </Box>
-      </Sidebar>
-   );
-};
+   render() {
+      let closeButton;
+      if (this.props.smallScreen) {
+         closeButton = <Button align="start" onClick={() => this.props.onClose()} icon={<CloseIcon/>} />;
+      }
+
+      return (
+         <Sidebar size="small" colorIndex="light-3">
+            <Box pad="medium">
+               <Menu>
+                  { closeButton }
+                  { this.props.options.map((option, i) => this._renderButton(option, i, this.props.onClose)) }
+               </Menu>
+            </Box>
+         </Sidebar>
+      );
+   }
+}
 
 ButtonsSidebar.propTypes = {
    sidebarVisible: PropTypes.bool.isRequired,
