@@ -7,6 +7,8 @@ import { injectIntl } from 'react-intl';
 import Box from 'grommet/components/Box';
 import Heading from 'grommet/components/Heading';
 
+import DocumentPdfIcon from 'grommet/components/icons/base/DocumentPdf';
+
 import SponsorAffinitiesList from 'builder/affinities/containers/SponsorAffinitiesList';
 import SponsorTeamPlayers from 'builder/players/containers/SponsorTeamPlayers';
 
@@ -96,6 +98,7 @@ class SponsorTeamView extends Component {
       options.push({ label: this.props.intl.formatMessage(teamBuilderMessages.add_players), action: this.showAddPlayers });
       options.push({ label: this.props.intl.formatMessage(teamBuilderMessages.team_players), action: this.showPlayers });
       options.push({ label: this.props.intl.formatMessage(teamBuilderMessages.affinities), action: this.showAffinities });
+      options.push({ label: '', action: () => { this.props.onGenerateTeamReport(); }, icon: <DocumentPdfIcon/> });
 
       let side;
       if (this.state.sidebarVisible) {
@@ -112,6 +115,7 @@ class SponsorTeamView extends Component {
 
 SponsorTeamView.propTypes = {
    onLoadPlayers: PropTypes.func.isRequired,
+   onGenerateTeamReport: PropTypes.func.isRequired,
    intl: PropTypes.object.isRequired
 };
 

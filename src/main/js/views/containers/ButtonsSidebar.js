@@ -19,7 +19,8 @@ import { selectSidebarVisible, selectSmallScreen } from 'views/selectors';
 class ButtonsSidebar extends Component {
 
    _renderButton(option, index, onClose) {
-      return <Button key={index} align="start" plain={true} label={option.label} onClick={() => { option.action(); onClose(); } } />;
+      return <Button key={index} align="start" plain={true} label={option.label}
+         onClick={() => { option.action(); onClose(); } } icon={ option.icon } />;
    }
 
    render() {

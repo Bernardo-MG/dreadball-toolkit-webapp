@@ -25,7 +25,7 @@ class DbxTeamBuilder extends Component {
       let view = null;
 
       if (this.state.affinitiesChosen) {
-         view = <SponsorTeamView onLoadPlayers={this.props.onLoadPlayers} />;
+         view = <SponsorTeamView onLoadPlayers={ this.props.onLoadPlayers } onGenerateTeamReport={ this.props.onGenerateTeamReport } />;
       } else {
          view = <SponsorAffinitiesView onClick={ this.onAcceptAffinities } />;
       }
@@ -38,6 +38,7 @@ class DbxTeamBuilder extends Component {
 }
 
 DbxTeamBuilder.propTypes = {
+   onGenerateTeamReport: PropTypes.func.isRequired,
    onLoadPlayers: PropTypes.func.isRequired,
    onFinishAffinities: PropTypes.func.isRequired
 };

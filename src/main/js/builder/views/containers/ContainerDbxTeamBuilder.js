@@ -7,6 +7,7 @@ import { bindActionCreators } from 'redux';
 
 import { clearTeam, validateSponsorAffinities } from 'builder/actions';
 import { fetch as fetchPlayers } from 'models/actions/sponsorPlayer';
+import { requestTeamReport } from 'report/actions';
 
 import DbxTeamBuilder from 'builder/views/components/DbxTeamBuilder';
 
@@ -22,7 +23,7 @@ class ContainerDbxTeamBuilder extends Component {
 
       this.validate = props.actionValidate;
 
-      this.props.actionBegin();
+      this.props.initialize();
    }
 
    onFinishAffinities() {
@@ -31,7 +32,8 @@ class ContainerDbxTeamBuilder extends Component {
 
    render() {
       return (
-         <DbxTeamBuilder onFinishAffinities={this.onFinishAffinities.bind(this)} onLoadPlayers={this.props.loadPlayers}/>
+         <DbxTeamBuilder onFinishAffinities={ this.onFinishAffinities.bind(this) } onLoadPlayers={ this.props.loadPlayers }
+            onGenerateTeamReport= { this.props.generateReport }/>
       );
    }
 }
@@ -39,7 +41,8 @@ class ContainerDbxTeamBuilder extends Component {
 ContainerDbxTeamBuilder.propTypes = {
    loadPlayers: PropTypes.func.isRequired,
    actionValidate: PropTypes.func.isRequired,
-   actionBegin: PropTypes.func.isRequired
+   initialize: PropTypes.func.isRequired,
+   generateReport: PropTypes.func.isRequired
 };
 
 const mapStateToProps = () => {
@@ -49,9 +52,10 @@ const mapStateToProps = () => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
+      generateReport: bindActionCreators(requestTeamReport, dispatch),
       loadPlayers: bindActionCreators(fetchPlayers, dispatch),
       actionValidate: bindActionCreators(validateSponsorAffinities, dispatch),
-      actionBegin: bindActionCreators(clearTeam, dispatch)
+      initialize: bindActionCreators(clearTeam, dispatch)
    };
 };
 
