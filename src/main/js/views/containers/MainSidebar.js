@@ -23,7 +23,7 @@ import { toggleNavBar, hideNavBarOnSmallScreen } from 'views/actions';
 import { selectNavbarVisible } from 'views/selectors';
 
 const MainSidebar = (props) =>
-   <Sidebar size="small" colorIndex="light-2">
+   <Sidebar colorIndex="light-2">
       <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
          <Title truncate={false}>{props.title}</Title>
          {<Button onClick={() => props.toggleNavBar()} icon={<CloseIcon/>} />}
