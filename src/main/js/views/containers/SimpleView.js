@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Header from 'grommet/components/Header';
-import Heading from 'grommet/components/Heading';
 import Title from 'grommet/components/Title';
 
 import MenuIcon from 'grommet/components/icons/base/Menu';
@@ -27,10 +26,8 @@ const SimpleView = (props) => {
       <Box direction='column'>
          <Box direction='row'>
             <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
-               <Title size="large" justify="between" responsive={false}>
-                  {toggleNavButton}
-                  <Heading>{props.title}</Heading>
-               </Title>
+               {toggleNavButton}
+               <Title truncate={false}>{props.title}</Title>
             </Header>
          </Box>
          {props.children}

@@ -8,7 +8,6 @@ import { connect } from 'react-redux';
 import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Header from 'grommet/components/Header';
-import Heading from 'grommet/components/Heading';
 import Split from 'grommet/components/Split';
 import Title from 'grommet/components/Title';
 
@@ -37,11 +36,9 @@ const SidebarView = (props) => {
          <Box direction='column'>
             <Box direction='row'>
                <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
-                  <Title size="large" justify="between" responsive={false}>
-                     {toggleNavButton}
-                     <Heading>{props.title}</Heading>
-                     {toggleSideButton}
-                  </Title>
+                  {toggleNavButton}
+                  <Title truncate={false}>{props.title}</Title>
+                  {toggleSideButton}
                </Header>
             </Box>
             {props.children}

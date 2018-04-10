@@ -17,10 +17,6 @@ const teamBuilderMessages = defineMessages({
       id: 'builder.text.cheerleaders',
       defaultMessage: 'Cheerleaders'
    },
-   choose_affinities: {
-      id: 'builder.text.chooseAffinities',
-      defaultMessage: 'Choose affinities'
-   },
    coaching_dice: {
       id: 'builder.text.coachingDice',
       defaultMessage: 'Coaching dice'

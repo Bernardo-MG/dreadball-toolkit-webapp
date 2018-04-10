@@ -12,6 +12,7 @@ import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
 import Paragraph from 'grommet/components/Paragraph';
 import Sidebar from 'grommet/components/Sidebar';
+import Title from 'grommet/components/Title';
 
 import CloseIcon from 'grommet/components/icons/base/Close';
 
@@ -24,7 +25,7 @@ import { selectNavbarVisible } from 'views/selectors';
 const MainSidebar = (props) =>
    <Sidebar size="small" colorIndex="light-2">
       <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
-         {props.title}
+         <Title truncate={false}>{props.title}</Title>
          {<Button onClick={() => props.toggleNavBar()} icon={<CloseIcon/>} />}
       </Header>
       <Menu fill={true} primary={true}>
