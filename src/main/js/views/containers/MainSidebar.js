@@ -6,11 +6,11 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
 import Anchor from 'grommet/components/Anchor';
+import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import Footer from 'grommet/components/Footer';
 import Header from 'grommet/components/Header';
 import Menu from 'grommet/components/Menu';
-import Paragraph from 'grommet/components/Paragraph';
 import Sidebar from 'grommet/components/Sidebar';
 import Title from 'grommet/components/Title';
 
@@ -34,10 +34,10 @@ const MainSidebar = (props) =>
          )}
       </Menu>
       <Footer pad={ { horizontal: 'medium', vertical: 'small' } }>
-         <Paragraph>Dreadball © Mantic</Paragraph>
-      </Footer>
-      <Footer pad={ { horizontal: 'medium', vertical: 'small' } }>
-         <Paragraph>{APP_VERSION}</Paragraph> <Button href={REPO_URL} icon={<SocialGithubIcon/>} />
+         <Box>
+            <Box>Dreadball © Mantic</Box>
+            <Box direction="row" align="center">{APP_VERSION} <Button href={REPO_URL} icon={<SocialGithubIcon/>} /></Box>
+         </Box>
       </Footer>
    </Sidebar>;
 
