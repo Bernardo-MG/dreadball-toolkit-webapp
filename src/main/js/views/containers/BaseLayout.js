@@ -33,6 +33,7 @@ class BaseLayout extends Component {
          const links = [];
          links.push({ path: '/dbx', label: this.props.intl.formatMessage(titleMessages.dbxTeamBuilder) });
          links.push({ path: '/players', label: this.props.intl.formatMessage(titleMessages.dbxPlayers) });
+         links.push({ path: '/about', label: this.props.intl.formatMessage(titleMessages.about) });
 
          const title = this.props.intl.formatMessage(appMessages.name);
 

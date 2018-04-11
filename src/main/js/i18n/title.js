@@ -1,6 +1,10 @@
 import { defineMessages } from 'react-intl';
 
 const titleMessages = defineMessages({
+   about: {
+      id: 'title.link.about',
+      defaultMessage: 'About'
+   },
    dbxPlayers: {
       id: 'title.link.dbx.list',
       defaultMessage: 'DBX Players'
