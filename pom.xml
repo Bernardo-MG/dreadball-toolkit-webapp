@@ -222,7 +222,7 @@
             <database.username>postgres</database.username>
             <database.password></database.password>
             <!-- Spring context -->
-            <spring.profile.database>postgres</spring.profile.database>
+            <database.tag>postgres</database.tag>
          </properties>
          <dependencies>
             <dependency>
