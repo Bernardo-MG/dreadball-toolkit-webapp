@@ -3,6 +3,9 @@
 
 # Using Java for the project
 language: java
+services:
+  - mysql
+  - postgresql
 jdk:
 # JDK 8 is set to deploy the docs and artifacts
   - oraclejdk8
@@ -10,6 +13,7 @@ env:
   - SERVER=jetty DATABASE=h2 DEPLOY_DOCS=true ENV=development
   - SERVER=jetty DATABASE=h2 ENV=production
   - SERVER=jetty DATABASE=mysql ENV=development
+  - SERVER=jetty DATABASE=postgres ENV=development
   - SERVER=tomcat7 DATABASE=h2 ENV=development
 dist: precise
 
