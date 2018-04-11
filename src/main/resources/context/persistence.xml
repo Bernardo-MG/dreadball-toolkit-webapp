@@ -33,11 +33,6 @@
       <property name="showSql" value="${jpa.showSql}" />
    </bean>
 
-   <!-- Entity manager -->
-   <bean id="entityManager" class="${jpa.entityManager.class}">
-      <property name="entityManagerFactory" ref="entityManagerFactory" />
-   </bean>
-
    <!-- JPA Properties -->
    <util:map id="jpaProperties">
       <entry key="hibernate.dialect" value="${hibernate.dialect}" />
@@ -49,6 +44,11 @@
       <entry key="hibernate.cache.use_query_cache" value="${hibernate.cache.use_query_cache}" />
       <entry key="hibernate.cache.region.factory_class" value="${hibernate.cache.region.factory_class}" />
    </util:map>
+
+   <!-- Entity manager -->
+   <bean id="entityManager" class="${jpa.entityManager.class}">
+      <property name="entityManagerFactory" ref="entityManagerFactory" />
+   </bean>
 
    <!-- Transaction manager -->
    <bean id="transactionManager" class="${jpa.transactionManager.class}">
