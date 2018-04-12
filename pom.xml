@@ -465,19 +465,19 @@
       <glassfish.el>2.2</glassfish.el>
       <guava.version>24.1-jre</guava.version>
       <hamcrest.version>2.0.0.0</hamcrest.version>
-      <h2.version>1.4.192</h2.version>
+      <h2.version>1.4.197</h2.version>
       <hibernate.validator.version>5.2.4.Final</hibernate.validator.version>
-      <hibernate.version>5.1.0.Final</hibernate.version>
+      <hibernate.version>5.2.16.Final</hibernate.version>
       <hikari.version>2.7.8</hikari.version>
       <itext.version>5.5.13</itext.version>
       <jackson.version>2.9.5</jackson.version>
       <javaee.api.version>2.2</javaee.api.version>
       <jsonpath.version>2.4.0</jsonpath.version>
       <junit.version>4.12</junit.version>
-      <liquibase.version>3.5.5</liquibase.version>
+      <liquibase.version>3.6.1</liquibase.version>
       <log4j.version>2.11.0</log4j.version>
       <mockito.version>1.10.19</mockito.version>
-      <mysql.version>5.1.39</mysql.version>
+      <mysql.version>6.0.6</mysql.version>
       <postgresql.version>42.2.2</postgresql.version>
       <servlet.version>4.0.0</servlet.version>
       <slf4j.version>1.8.0-beta2</slf4j.version>
