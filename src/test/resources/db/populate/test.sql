@@ -138,38 +138,38 @@ INSERT INTO AFFINITY_SETS(id, name, rank_increase) VALUES (4, 'D', true);
 INSERT INTO AFFINITY_SETS(id, name, rank_increase) VALUES (5, 'E', false);
 
 -- Group A affinities
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (1, 1);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (1, 2);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (1, 3);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (1, 4);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (1, 5);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (1, 1);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (1, 2);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (1, 3);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (1, 4);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (1, 5);
 
 -- Group B affinities
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (2, 1);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (2, 2);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (2, 3);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (2, 4);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (2, 5);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (2, 1);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (2, 2);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (2, 3);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (2, 4);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (2, 5);
 
 -- Group C affinities
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (3, 1);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (3, 2);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (3, 3);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (3, 4);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (3, 5);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (5, 6);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (3, 1);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (3, 2);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (3, 3);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (3, 4);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (3, 5);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (5, 6);
 
 -- Group D affinities
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (4, 1);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (4, 2);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (4, 3);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (4, 4);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (4, 5);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (4, 1);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (4, 2);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (4, 3);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (4, 4);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (4, 5);
 
 -- Group E affinities
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (5, 1);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (5, 2);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (5, 3);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (5, 4);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (5, 5);
-INSERT INTO AFFINITY_OPTIONS(sponsor_affinity_ava_id, affinity_id) VALUES (5, 6);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (5, 1);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (5, 2);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (5, 3);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (5, 4);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (5, 5);
+INSERT INTO AFFINITY_OPTIONS(affinity_set_id, affinity_id) VALUES (5, 6);

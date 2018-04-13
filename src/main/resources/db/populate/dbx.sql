@@ -1472,38 +1472,38 @@ INSERT INTO AFFINITY_SETS (id, name, rank_increase) VALUES (4, 'D', true);
 INSERT INTO AFFINITY_SETS (id, name, rank_increase) VALUES (5, 'E', false);
 
 -- Group A affinities: alien, cunning, plant, reluctant, striker
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 1);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 5);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 17);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 21);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (1, 22);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (1, 1);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (1, 5);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (1, 17);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (1, 21);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (1, 22);
 
 -- Group B affinities: dreadball, big picture, psycho, rebel, worker
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (2, 6);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (2, 3);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (2, 19);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (2, 20);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (2, 27);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (2, 6);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (2, 3);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (2, 19);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (2, 20);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (2, 27);
 
 -- Group C affinities: asterian, convict, forge father, guard, tech guys, vat brothers
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (3, 2);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (3, 4);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (3, 7);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (3, 9);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (3, 23);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (3, 24);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (3, 2);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (3, 4);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (3, 7);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (3, 9);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (3, 23);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (3, 24);
 
 -- Group D affinities: insectoid, jack, mr roboto, proud, vicious
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (4, 11);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (4, 12);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (4, 14);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (4, 18);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (4, 25);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (4, 11);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (4, 12);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (4, 14);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (4, 18);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (4, 25);
 
 -- Group E affinities: greedy, hunter, machine mind, outcast, pirate, weird science
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (5, 8);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (5, 10);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (5, 13);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (5, 15);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (5, 16);
-INSERT INTO AFFINITY_OPTIONS (sponsor_affinity_ava_id, affinity_id) VALUES (5, 26);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (5, 8);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (5, 10);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (5, 13);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (5, 15);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (5, 16);
+INSERT INTO AFFINITY_OPTIONS (affinity_set_id, affinity_id) VALUES (5, 26);
