@@ -66,17 +66,19 @@ public class ITSponsorBuilderServiceTeamPlayers
     @Test
     public final void testGetAffinityTeamPlayers_Affinities_ExpectedCost() {
         final Pageable pageable;
-        final Iterable<? extends TeamPlayer> result;
+        final Iterable<? extends TeamPlayer> players;
         final Collection<AffinityGroup> affinities;
+        final TeamPlayer player;
 
         affinities = new ArrayList<>();
         affinities.add(new ImmutableAffinityGroup("affinity_1"));
 
         pageable = PageRequest.of(0, 10, Direction.ASC, "templateName");
-        result = service.getTeamPlayerOptions(affinities, pageable);
+        players = service.getTeamPlayerOptions(affinities, pageable);
 
-        Assert.assertEquals(new Integer(15),
-                Iterables.getFirst(result, null).getCost());
+        player = Iterables.get(players, 0);
+        Assert.assertEquals("player_1", player.getName());
+        Assert.assertEquals(new Integer(15), player.getCost());
     }
 
     /**
@@ -85,16 +87,16 @@ public class ITSponsorBuilderServiceTeamPlayers
     @Test
     public final void testGetAffinityTeamPlayers_IgnoresHated() {
         final Pageable pageable;
-        final Iterable<? extends TeamPlayer> result;
+        final Iterable<? extends TeamPlayer> players;
         final Collection<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
         affinities.add(new ImmutableAffinityGroup("affinity_5"));
 
         pageable = PageRequest.of(0, 10);
-        result = service.getTeamPlayerOptions(affinities, pageable);
+        players = service.getTeamPlayerOptions(affinities, pageable);
 
-        Assert.assertEquals(3, Iterables.size(result));
+        Assert.assertEquals(3, Iterables.size(players));
     }
 
     /**
@@ -104,16 +106,18 @@ public class ITSponsorBuilderServiceTeamPlayers
     @Test
     public final void testGetAffinityTeamPlayers_NoAffinities_ExpectedCost() {
         final Pageable pageable;
-        final Iterable<? extends TeamPlayer> result;
+        final Iterable<? extends TeamPlayer> players;
         final Collection<AffinityGroup> affinities;
+        final TeamPlayer player;
 
         affinities = new ArrayList<>();
 
         pageable = PageRequest.of(0, 10, Direction.ASC, "templateName");
-        result = service.getTeamPlayerOptions(affinities, pageable);
+        players = service.getTeamPlayerOptions(affinities, pageable);
 
-        Assert.assertEquals(new Integer(23),
-                Iterables.getFirst(result, null).getCost());
+        player = Iterables.get(players, 0);
+        Assert.assertEquals("player_1", player.getName());
+        Assert.assertEquals(new Integer(23), player.getCost());
     }
 
     /**
@@ -122,15 +126,15 @@ public class ITSponsorBuilderServiceTeamPlayers
     @Test
     public final void testGetAffinityTeamPlayers_ReturnsExpected() {
         final Pageable pageable;
-        final Iterable<? extends TeamPlayer> result;
+        final Iterable<? extends TeamPlayer> players;
         final Collection<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
 
         pageable = PageRequest.of(0, 10);
-        result = service.getTeamPlayerOptions(affinities, pageable);
+        players = service.getTeamPlayerOptions(affinities, pageable);
 
-        Assert.assertEquals(4, Iterables.size(result));
+        Assert.assertEquals(4, Iterables.size(players));
     }
 
     /**
@@ -139,15 +143,15 @@ public class ITSponsorBuilderServiceTeamPlayers
     @Test
     public final void testGetTeamPlayers_ReturnsPage() {
         final Pageable pageable;
-        final Iterable<? extends TeamPlayer> result;
+        final Iterable<? extends TeamPlayer> players;
         final Collection<AffinityGroup> affinities;
 
         affinities = new ArrayList<>();
 
         pageable = PageRequest.of(0, 10);
-        result = service.getTeamPlayerOptions(affinities, pageable);
+        players = service.getTeamPlayerOptions(affinities, pageable);
 
-        Assert.assertTrue(result instanceof Page);
+        Assert.assertTrue(players instanceof Page);
     }
 
 }

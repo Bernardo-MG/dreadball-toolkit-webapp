@@ -22,6 +22,7 @@ import java.util.Collection;
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
@@ -30,6 +31,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
+import com.google.common.collect.Iterables;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
 public class ITAffinityTeamPlayerRepositoryFiltered
@@ -57,8 +59,9 @@ public class ITAffinityTeamPlayerRepositoryFiltered
 
         players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
-        player = players.iterator().next();
 
+        player = Iterables.get(players, 0);
+        Assert.assertEquals("player_1", player.getName());
         Assert.assertEquals(1, player.getAffinityGroups().size());
     }
 
@@ -77,8 +80,9 @@ public class ITAffinityTeamPlayerRepositoryFiltered
 
         players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
-        player = players.iterator().next();
 
+        player = Iterables.get(players, 0);
+        Assert.assertEquals("player_1", player.getName());
         Assert.assertEquals(new Integer(23), player.getStrangerCost());
         Assert.assertEquals(new Integer(15), player.getAllyCost());
         Assert.assertEquals(new Integer(10), player.getFriendCost());
@@ -88,15 +92,16 @@ public class ITAffinityTeamPlayerRepositoryFiltered
     public final void testFindAll_FilteredByHatedAffinities_Hated_Filtered() {
         final Collection<String> affinities;
         final Pageable pageReq;
+        final Page<PersistentAffinityTeamPlayer> players;
 
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
 
         pageReq = PageRequest.of(0, 10);
+        players = repository.findAllFilteredByHatedAffinities(affinities,
+                pageReq);
 
-        Assert.assertEquals(3,
-                (repository.findAllFilteredByHatedAffinities(affinities,
-                        pageReq)).getTotalElements());
+        Assert.assertEquals(3, players.getTotalElements());
     }
 
     @Test
@@ -118,15 +123,16 @@ public class ITAffinityTeamPlayerRepositoryFiltered
             testFindAll_FilteredByHatedAffinities_NotHated_NotFiltered() {
         final Collection<String> affinities;
         final Pageable pageReq;
+        final Page<PersistentAffinityTeamPlayer> players;
 
         affinities = new ArrayList<>();
         affinities.add("affinity_1");
 
         pageReq = PageRequest.of(0, 10);
+        players = repository.findAllFilteredByHatedAffinities(affinities,
+                pageReq);
 
-        Assert.assertEquals(4,
-                (repository.findAllFilteredByHatedAffinities(affinities,
-                        pageReq)).getTotalElements());
+        Assert.assertEquals(4, players.getTotalElements());
     }
 
 }

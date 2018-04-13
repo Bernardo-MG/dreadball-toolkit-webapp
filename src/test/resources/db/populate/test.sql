@@ -66,7 +66,7 @@ INSERT INTO PLAYERS (id, player_type, name, template_name, armor, movement, skil
 
 -- Giants
 INSERT INTO PLAYERS (id, player_type, name, template_name, armor, movement, skill, speed, strength, role, giant)
-    VALUES (51, 'affinity', 'giant_1', 'giant_1_affinity', 5, 5, 4, 3, 4, 'JACK', true);
+    VALUES (51, 'affinity', 'giant_1', 'player_giant_1_affinity', 5, 5, 4, 3, 4, 'JACK', true);
 
 -- ----------------
 -- Affinity players
