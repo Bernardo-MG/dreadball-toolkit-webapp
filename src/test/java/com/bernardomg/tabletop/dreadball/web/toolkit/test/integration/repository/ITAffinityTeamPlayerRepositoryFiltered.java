@@ -92,7 +92,7 @@ public class ITAffinityTeamPlayerRepositoryFiltered
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
 
-        pageReq = PageRequest.of(0, 10, Direction.ASC, "templateName");
+        pageReq = PageRequest.of(0, 10);
 
         Assert.assertEquals(3,
                 (repository.findAllFilteredByHatedAffinities(affinities,
@@ -122,7 +122,7 @@ public class ITAffinityTeamPlayerRepositoryFiltered
         affinities = new ArrayList<>();
         affinities.add("affinity_1");
 
-        pageReq = PageRequest.of(0, 10, Direction.ASC, "templateName");
+        pageReq = PageRequest.of(0, 10);
 
         Assert.assertEquals(4,
                 (repository.findAllFilteredByHatedAffinities(affinities,

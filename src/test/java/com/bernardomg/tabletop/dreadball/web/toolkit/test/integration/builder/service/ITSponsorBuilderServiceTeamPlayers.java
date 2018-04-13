@@ -25,6 +25,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
@@ -71,7 +72,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         affinities = new ArrayList<>();
         affinities.add(new ImmutableAffinityGroup("affinity_1"));
 
-        pageable = PageRequest.of(0, 10);
+        pageable = PageRequest.of(0, 10, Direction.ASC, "templateName");
         result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(new Integer(15),
@@ -108,7 +109,7 @@ public class ITSponsorBuilderServiceTeamPlayers
 
         affinities = new ArrayList<>();
 
-        pageable = PageRequest.of(0, 10);
+        pageable = PageRequest.of(0, 10, Direction.ASC, "templateName");
         result = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(new Integer(23),
