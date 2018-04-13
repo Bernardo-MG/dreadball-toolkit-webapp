@@ -48,7 +48,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         names = new ArrayList<>();
         names.add(TestValues.PLAYER_1);
 
-        result = repository.findByTemplateNameIn(names);
+        result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
         player = result.iterator().next();
 
@@ -64,7 +64,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         names = new ArrayList<>();
         names.add(TestValues.PLAYER_1);
 
-        result = repository.findByTemplateNameIn(names);
+        result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
         player = result.iterator().next();
 
@@ -82,7 +82,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         names.add(TestValues.PLAYER_1);
         names.add(TestValues.PLAYER_2);
 
-        result = repository.findByTemplateNameIn(names);
+        result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
         Assert.assertEquals(2, result.size());
     }
@@ -94,7 +94,7 @@ public class ITAffinityTeamPlayerRepositoryInList
 
         names = new ArrayList<>();
 
-        result = repository.findByTemplateNameIn(names);
+        result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
         Assert.assertEquals(0, result.size());
     }
@@ -109,7 +109,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         names.add(TestValues.PLAYER_2);
         names.add(TestValues.PLAYER_1);
 
-        result = repository.findByTemplateNameIn(names);
+        result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
         Assert.assertEquals(2, result.size());
     }
@@ -122,7 +122,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         names = new ArrayList<>();
         names.add(TestValues.PLAYER_1);
 
-        result = repository.findByTemplateNameIn(names);
+        result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
         Assert.assertEquals(1, result.size());
     }

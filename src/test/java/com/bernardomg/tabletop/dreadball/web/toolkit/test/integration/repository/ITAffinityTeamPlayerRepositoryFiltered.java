@@ -24,6 +24,7 @@ import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
@@ -52,7 +53,7 @@ public class ITAffinityTeamPlayerRepositoryFiltered
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
 
-        pageReq = PageRequest.of(0, 10);
+        pageReq = PageRequest.of(0, 10, Direction.ASC, "templateName");
 
         players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
@@ -72,7 +73,7 @@ public class ITAffinityTeamPlayerRepositoryFiltered
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
 
-        pageReq = PageRequest.of(0, 10);
+        pageReq = PageRequest.of(0, 10, Direction.ASC, "templateName");
 
         players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
@@ -91,7 +92,7 @@ public class ITAffinityTeamPlayerRepositoryFiltered
         affinities = new ArrayList<>();
         affinities.add("affinity_5");
 
-        pageReq = PageRequest.of(0, 10);
+        pageReq = PageRequest.of(0, 10, Direction.ASC, "templateName");
 
         Assert.assertEquals(3,
                 (repository.findAllFilteredByHatedAffinities(affinities,
@@ -121,7 +122,7 @@ public class ITAffinityTeamPlayerRepositoryFiltered
         affinities = new ArrayList<>();
         affinities.add("affinity_1");
 
-        pageReq = PageRequest.of(0, 10);
+        pageReq = PageRequest.of(0, 10, Direction.ASC, "templateName");
 
         Assert.assertEquals(4,
                 (repository.findAllFilteredByHatedAffinities(affinities,

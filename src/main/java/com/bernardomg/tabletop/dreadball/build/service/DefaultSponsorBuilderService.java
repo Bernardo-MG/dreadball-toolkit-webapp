@@ -301,7 +301,7 @@ public final class DefaultSponsorBuilderService
             read = Collections.emptyList();
         } else {
             read = getAffinityTeamPlayerRepository()
-                    .findByTemplateNameIn(playerNames);
+                    .findByTemplateNameInOrderByTemplateNameAsc(playerNames);
         }
 
         readMap = read.stream().filter(Objects::nonNull)

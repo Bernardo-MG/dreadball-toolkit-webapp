@@ -60,6 +60,6 @@ public interface AffinityTeamPlayerRepository extends
      * @return affinity players with their name in the list
      */
     public Collection<PersistentAffinityTeamPlayer>
-            findByTemplateNameIn(final Iterable<String> names);
+            findByTemplateNameInOrderByTemplateNameAsc(final Iterable<String> names);
 
 }
