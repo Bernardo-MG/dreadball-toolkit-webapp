@@ -23,15 +23,14 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
-
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
 public class ITAffinityTeamPlayerRepositoryInList
-        extends AbstractJUnit4SpringContextTests {
+        extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
     private AffinityTeamPlayerRepository repository;

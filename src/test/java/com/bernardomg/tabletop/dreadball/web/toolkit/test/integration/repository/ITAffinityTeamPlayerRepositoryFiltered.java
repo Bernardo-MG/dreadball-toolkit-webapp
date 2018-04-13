@@ -25,14 +25,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
 public class ITAffinityTeamPlayerRepositoryFiltered
-        extends AbstractJUnit4SpringContextTests {
+        extends AbstractTransactionalJUnit4SpringContextTests {
 
     @Autowired
     private AffinityTeamPlayerRepository repository;

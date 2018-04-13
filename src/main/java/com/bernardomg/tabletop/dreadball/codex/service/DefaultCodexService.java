@@ -20,6 +20,7 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
@@ -30,6 +31,7 @@ import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRep
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Service("playerService")
+@Transactional
 public final class DefaultCodexService implements CodexService {
 
     /**
