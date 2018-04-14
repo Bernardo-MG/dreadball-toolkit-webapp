@@ -56,8 +56,8 @@ import com.google.common.collect.Lists;
  * @author Bernardo Mart&iacute;nez Garrido
  *
  */
-@Service
-@Transactional
+@Service("sponsorBuilderService")
+@Transactional(readOnly = true)
 public final class DefaultSponsorBuilderService
         implements SponsorBuilderService {
 

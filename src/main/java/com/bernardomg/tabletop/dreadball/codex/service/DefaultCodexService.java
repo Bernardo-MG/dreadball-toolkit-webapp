@@ -30,8 +30,8 @@ import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRep
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-@Service("playerService")
-@Transactional
+@Service("codexService")
+@Transactional(readOnly = true)
 public final class DefaultCodexService implements CodexService {
 
     /**

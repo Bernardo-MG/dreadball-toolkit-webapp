@@ -11,11 +11,14 @@
    <context:property-placeholder
       location="classpath:config/persistence.properties,
                    classpath:config/persistence-@database.tag@.properties, 
-                   classpath:config/persistence-access.properties" />
+                   classpath:config/persistence-access.properties,
+                   classpath:config/service-dreadball.properties,
+                   classpath:config/builder-team-dbx.properties" />
 
    <!-- Imports -->
    <import resource="classpath:context/persistence.xml" />
    <import resource="classpath:context/persistence-versioning.xml" />
+   <import resource="classpath:context/service-dreadball.xml" />
 
    <!-- Database initializer -->
    <jdbc:initialize-database data-source="dataSource">
