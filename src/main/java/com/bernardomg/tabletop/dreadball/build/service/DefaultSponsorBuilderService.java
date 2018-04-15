@@ -465,7 +465,7 @@ public final class DefaultSponsorBuilderService
         if (affNames.isEmpty()) {
             // There are no affinities, there is no need to filter
             LOGGER.debug("No affinities received");
-            filtered = getAffinityTeamPlayerRepository().findAll(pageReq);
+            filtered = getAffinityTeamPlayerRepository().findAllFull(pageReq);
         } else {
             // Only players not hating any affinity are acquired
             LOGGER.debug("Affinities received: {}", affinities);

@@ -58,7 +58,8 @@ public final class DefaultCodexService implements CodexService {
 
         checkNotNull(pageReq, "Received a null pointer as pagination data");
 
-        return getAffinityTeamPlayerRepository().findAll(pageReq);
+        // TODO: Avoid returning persistence entities
+        return getAffinityTeamPlayerRepository().findAllFull(pageReq);
     }
 
     /**

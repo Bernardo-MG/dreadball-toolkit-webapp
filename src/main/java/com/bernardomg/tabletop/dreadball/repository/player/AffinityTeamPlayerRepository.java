@@ -20,6 +20,8 @@ import java.util.Collection;
 
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.EntityGraph;
+import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.data.repository.query.Param;
@@ -44,10 +46,22 @@ public interface AffinityTeamPlayerRepository extends
      *            pagination request
      * @return all the players not hating any of the affinities
      */
-    @Query("SELECT u FROM AffinityTeamPlayer u LEFT OUTER JOIN u.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
+    @Query("SELECT p FROM AffinityTeamPlayer p LEFT OUTER JOIN p.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
     public Page<PersistentAffinityTeamPlayer> findAllFilteredByHatedAffinities(
             @Param("affinities") final Iterable<String> affinities,
             final Pageable pageReq);
+
+    /**
+     * Returns all the affinity players along their joined entities.
+     * 
+     * @param pageReq
+     *            pagination data
+     * @return all the affinity players along their joined entities
+     */
+    @Query("SELECT p FROM AffinityTeamPlayer p")
+    @EntityGraph(value = "fullAffinityTeamPlayer", type = EntityGraphType.FETCH)
+    public Page<PersistentAffinityTeamPlayer>
+            findAllFull(final Pageable pageReq);
 
     /**
      * Returns all the affinity players with their template names contained in
@@ -60,6 +74,7 @@ public interface AffinityTeamPlayerRepository extends
      * @return affinity players with their name in the list
      */
     public Collection<PersistentAffinityTeamPlayer>
-            findByTemplateNameInOrderByTemplateNameAsc(final Iterable<String> names);
+            findByTemplateNameInOrderByTemplateNameAsc(
+                    final Iterable<String> names);
 
 }
