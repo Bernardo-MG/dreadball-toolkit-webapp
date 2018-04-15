@@ -159,6 +159,29 @@
             </pluginManagement>
          </build>
       </profile>
+      <profile>
+         <!-- Heroku profiles -->
+         <!-- Sets up the project to be built by heroku -->
+         <id>heroku</id>
+         <activation>
+            <property>
+               <name>env.DYNO</name>
+            </property>
+         </activation>
+         <properties>
+            <!-- Spring context -->
+            <database.tag>postgres</database.tag>
+            <database.auth.source>env</database.auth.source>
+         </properties>
+         <dependencies>
+            <dependency>
+               <!-- Postgres connector -->
+               <groupId>org.postgresql</groupId>
+               <artifactId>postgresql</artifactId>
+               <version>${postgresql.version}</version>
+            </dependency>
+         </dependencies>
+      </profile>
       <!-- ============================================== -->
       <!-- ============= DATABASE PROFILES ============== -->
       <!-- ============================================== -->
@@ -179,6 +202,7 @@
             <database.password></database.password>
             <!-- Spring context -->
             <database.tag>h2</database.tag>
+            <database.auth.source>properties</database.auth.source>
          </properties>
          <dependencies>
             <dependency>
@@ -202,6 +226,7 @@
             <database.password></database.password>
             <!-- Spring context -->
             <database.tag>mysql</database.tag>
+            <database.auth.source>properties</database.auth.source>
          </properties>
          <dependencies>
             <dependency>
@@ -223,6 +248,7 @@
             <database.password></database.password>
             <!-- Spring context -->
             <database.tag>postgres</database.tag>
+            <database.auth.source>properties</database.auth.source>
          </properties>
          <dependencies>
             <dependency>
@@ -269,7 +295,7 @@
                            <daemon>true</daemon>
                            <useTestScope>true</useTestScope>
                            <webApp>
-                              <overrideDescriptor>${project.build.directory}/${project.artifactId}-${project.version}/WEB-INF/web.xml</overrideDescriptor>
+                              <overrideDescriptor>${project.build.directory}/${project.build.finalName}/WEB-INF/web.xml</overrideDescriptor>
                            </webApp>
                         </configuration>
                      </execution>
@@ -311,7 +337,7 @@
                         <configuration>
                            <fork>true</fork>
                            <useTestClasspath>true</useTestClasspath>
-                           <warSourceDirectory>${project.build.directory}/${project.artifactId}-${project.version}/</warSourceDirectory>
+                           <warSourceDirectory>${project.build.directory}/${project.build.finalName}/</warSourceDirectory>
                         </configuration>
                      </execution>
                      <execution>
@@ -809,8 +835,8 @@
    <!-- ********************************************** -->
 
    <build>
-      <finalName>${project.artifactId}</finalName>
       <defaultGoal>clean package</defaultGoal>
+      <finalName>${project.artifactId}</finalName>
       <resources>
          <resource>
             <directory>src/main/resources/</directory>
