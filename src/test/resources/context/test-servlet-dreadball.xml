@@ -27,6 +27,7 @@
 
    <!-- Imports -->
    <import resource="classpath:context/view.xml" />
+   <import resource="classpath:context/datasource-@database.auth.source@.xml" />
    <import resource="classpath:context/persistence.xml" />
    <import resource="classpath:context/persistence-versioning.xml" />
    <import resource="classpath:context/test/service.xml" />
