@@ -87,16 +87,6 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         document.close();
     }
 
-    private final Paragraph getCopyright(final Font paragraphFont) {
-        final Paragraph paragraph;
-
-        paragraph = new Paragraph();
-
-        paragraph.add(new Paragraph("Dreadball © Mantic", paragraphFont));
-
-        return paragraph;
-    }
-
     private final Paragraph getAffinitiesParagraph(final SponsorTeam team,
             final Font paragraphFont) {
         final Paragraph paragraph;
@@ -185,6 +175,16 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         table.addCell("wager");
         table.addCell(String.valueOf(team.getWagers()));
+
+        return paragraph;
+    }
+
+    private final Paragraph getCopyright(final Font paragraphFont) {
+        final Paragraph paragraph;
+
+        paragraph = new Paragraph();
+
+        paragraph.add(new Paragraph("Dreadball © Mantic", paragraphFont));
 
         return paragraph;
     }
