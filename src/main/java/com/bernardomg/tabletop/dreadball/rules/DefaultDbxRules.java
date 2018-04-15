@@ -24,7 +24,6 @@ import java.util.stream.Collectors;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.bernardomg.tabletop.dreadball.build.service.DefaultSponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
 import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
