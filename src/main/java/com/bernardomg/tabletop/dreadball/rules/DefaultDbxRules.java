@@ -21,6 +21,10 @@ import static com.google.common.base.Preconditions.checkNotNull;
 import java.util.Set;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import com.bernardomg.tabletop.dreadball.build.service.DefaultSponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
 import com.bernardomg.tabletop.dreadball.model.player.AffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
@@ -31,6 +35,12 @@ import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 public class DefaultDbxRules implements DbxRules {
+
+    /**
+     * Logger.
+     */
+    private static final Logger LOGGER = LoggerFactory
+            .getLogger(DefaultDbxRules.class);
 
     /**
      * Default constructor.
@@ -44,27 +54,33 @@ public class DefaultDbxRules implements DbxRules {
             final Iterable<? extends AffinityGroup> affinities) {
         final AffinityLevel level; // Affinity level
         final Set<String> affs;    // TeamPlayer affinities
-        Integer coincidences;      // Affinity coincidences
+        Integer matches;      // Affinity coincidences
 
         checkNotNull(affinities, "Received a null pointer as affinities");
         checkNotNull(player, "Received a null pointer as player");
 
-        coincidences = 0;
+        LOGGER.debug("Calculating affinity level for {}",
+                player.getTemplateName());
+
+        matches = 0;
         affs = player.getAffinityGroups().stream().map(AffinityGroup::getName)
                 .collect(Collectors.toSet());
         for (final AffinityGroup affinityGroup : affinities) {
             if (affs.contains(affinityGroup.getName())) {
-                coincidences++;
+                matches++;
             }
         }
 
-        if (coincidences >= 2) {
+        if (matches >= 2) {
             level = AffinityLevel.FRIEND;
-        } else if (coincidences == 1) {
+        } else if (matches == 1) {
             level = AffinityLevel.ALLY;
         } else {
             level = AffinityLevel.STRANGER;
         }
+
+        LOGGER.debug("Affinity matches: {}", matches);
+        LOGGER.debug("Affinity level: {}", level);
 
         return level;
     }
@@ -78,6 +94,9 @@ public class DefaultDbxRules implements DbxRules {
                 "Received a null pointer as affinity level");
         checkNotNull(player, "Received a null pointer as player");
 
+        LOGGER.debug("Calculating cost for {}", player.getTemplateName());
+        LOGGER.debug("Affinity level: {}", affinityLevel);
+
         switch (affinityLevel) {
             case FRIEND:
                 cost = player.getFriendCost();
@@ -89,6 +108,8 @@ public class DefaultDbxRules implements DbxRules {
                 cost = player.getStrangerCost();
                 break;
         }
+
+        LOGGER.debug("Cost: {}", cost);
 
         return cost;
     }

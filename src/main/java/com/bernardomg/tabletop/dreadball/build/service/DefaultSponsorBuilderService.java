@@ -13,6 +13,8 @@ import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.StreamSupport;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.data.domain.Page;
@@ -60,6 +62,12 @@ import com.google.common.collect.Lists;
 @Transactional(readOnly = true)
 public final class DefaultSponsorBuilderService
         implements SponsorBuilderService {
+
+    /**
+     * Logger.
+     */
+    private static final Logger                              LOGGER = LoggerFactory
+            .getLogger(DefaultSponsorBuilderService.class);
 
     /**
      * Affinity groups repository.
@@ -178,7 +186,6 @@ public final class DefaultSponsorBuilderService
 
     @Override
     public final SponsorAffinities
-
             validateSponsorAffinities(final Collection<String> affinities) {
         final Integer totalRank;
         final Iterable<String> valid;
@@ -201,8 +208,11 @@ public final class DefaultSponsorBuilderService
         valid = affinities.stream()
                 .filter(affinity -> !affinity.equals("rank_increase"))
                 .collect(Collectors.toSet());
+        LOGGER.debug("Valid affinities: {}", valid);
 
         totalRank = getSponsorDefaults().getInitialRank() + rank;
+        LOGGER.debug("Rank increase chosen {} times", rank);
+        LOGGER.debug("Total rank: {}", totalRank);
 
         return new ImmutableSponsorAffinities(valid, totalRank);
 
@@ -298,6 +308,7 @@ public final class DefaultSponsorBuilderService
         final Map<String, ? extends AffinityTeamPlayer> readMap;
 
         if (playerNames.isEmpty()) {
+            LOGGER.debug("Didn't receive player names");
             read = Collections.emptyList();
         } else {
             read = getAffinityTeamPlayerRepository()
@@ -453,9 +464,11 @@ public final class DefaultSponsorBuilderService
 
         if (affNames.isEmpty()) {
             // There are no affinities, there is no need to filter
+            LOGGER.debug("No affinities received");
             filtered = getAffinityTeamPlayerRepository().findAll(pageReq);
         } else {
             // Only players not hating any affinity are acquired
+            LOGGER.debug("Affinities received: {}", affinities);
             filtered = getAffinityTeamPlayerRepository()
                     .findAllFilteredByHatedAffinities(affNames, pageReq);
         }
