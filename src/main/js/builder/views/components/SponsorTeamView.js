@@ -16,6 +16,7 @@ import ButtonsSidebar from 'views/containers/ButtonsSidebar';
 
 import SponsorAssetsForm from 'builder/views/components/SponsorAssetsForm';
 import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
+import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
 import SponsorPlayersOptions from 'builder/players/containers/SponsorPlayersOptions';
 
@@ -107,6 +108,9 @@ class SponsorTeamView extends Component {
 
       return (
          <SidebarView sideBar={side} title={this.props.intl.formatMessage(titleMessages.teamBuilder)}>
+            <Box justify='center' align='center' pad='medium' direction='row'>
+               <SponsorTeamCost/>
+            </Box>
             {view}
          </SidebarView>
       );
