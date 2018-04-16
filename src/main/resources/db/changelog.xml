@@ -56,12 +56,14 @@
       </createTable>
       <createTable tableName="PLAYER_ABILITIES">
          <column name="player_id" type="BIGINT">
-            <constraints nullable="false" foreignKeyName="fk_player_abilities_player" deleteCascade="true"
-               references="PLAYERS(id)" />
+            <constraints nullable="false"
+               foreignKeyName="fk_player_abilities_player"
+               deleteCascade="true" references="PLAYERS(id)" />
          </column>
          <column name="ability_id" type="BIGINT">
-            <constraints nullable="false" foreignKeyName="fk_player_abilities_ability" deleteCascade="true"
-               references="ABILITIES(id)" />
+            <constraints nullable="false"
+               foreignKeyName="fk_player_abilities_ability"
+               deleteCascade="true" references="ABILITIES(id)" />
          </column>
       </createTable>
    </changeSet>
@@ -85,7 +87,8 @@
          <column name="friend_cost" type="INTEGER" defaultValue="0">
             <constraints nullable="false" />
          </column>
-         <column name="stranger_cost" type="INTEGER" defaultValue="0">
+         <column name="stranger_cost" type="INTEGER"
+            defaultValue="0">
             <constraints nullable="false" />
          </column>
       </createTable>
@@ -96,40 +99,58 @@
          <column name="name" type="VARCHAR(50)" defaultValue="">
             <constraints nullable="false" />
          </column>
-         <column name="rank_increase" type="BOOLEAN" defaultValue="FALSE">
+         <column name="rank_increase" type="BOOLEAN"
+            defaultValue="FALSE">
             <constraints nullable="false" />
          </column>
       </createTable>
       <createTable tableName="PLAYER_AFFINITIES">
          <column name="player_id" type="BIGINT">
-            <constraints nullable="false" foreignKeyName="fk_player_affinities_player" deleteCascade="true"
-               references="PLAYERS(id)" />
+            <constraints nullable="false"
+               foreignKeyName="fk_player_affinities_player"
+               deleteCascade="true" references="PLAYERS(id)" />
          </column>
          <column name="affinity_id" type="BIGINT">
-            <constraints nullable="false" foreignKeyName="fk_player_affinities_affinity" deleteCascade="true"
-               references="AFFINITY_GROUPS(id)" />
+            <constraints nullable="false"
+               foreignKeyName="fk_player_affinities_affinity"
+               deleteCascade="true" references="AFFINITY_GROUPS(id)" />
          </column>
       </createTable>
       <createTable tableName="PLAYER_HATED_AFFINITIES">
          <column name="player_id" type="BIGINT">
-            <constraints nullable="false" foreignKeyName="fk_player_hated_affinities_player" deleteCascade="true"
-               references="PLAYERS(id)" />
+            <constraints nullable="false"
+               foreignKeyName="fk_player_hated_affinities_player"
+               deleteCascade="true" references="PLAYERS(id)" />
          </column>
          <column name="affinity_id" type="BIGINT">
-            <constraints nullable="false" foreignKeyName="fk_player_hated_affinities_affinity" deleteCascade="true"
-               references="AFFINITY_GROUPS(id)" />
+            <constraints nullable="false"
+               foreignKeyName="fk_player_hated_affinities_affinity"
+               deleteCascade="true" references="AFFINITY_GROUPS(id)" />
          </column>
       </createTable>
       <createTable tableName="AFFINITY_OPTIONS">
          <column name="affinity_set_id" type="BIGINT">
-            <constraints nullable="false" foreignKeyName="fk_affinity_option_set" deleteCascade="true"
-               references="AFFINITY_SETS(id)" />
+            <constraints nullable="false" foreignKeyName="fk_affinity_option_set"
+               deleteCascade="true" references="AFFINITY_SETS(id)" />
          </column>
          <column name="affinity_id" type="BIGINT">
-            <constraints nullable="false" foreignKeyName="fk_affinity_option_affinity" deleteCascade="true"
-               references="AFFINITY_GROUPS(id)" />
+            <constraints nullable="false"
+               foreignKeyName="fk_affinity_option_affinity"
+               deleteCascade="true" references="AFFINITY_GROUPS(id)" />
          </column>
       </createTable>
+   </changeSet>
+
+   <changeSet author="Bernardo" id="initial_common_data">
+      <sqlFile dbms="h2, oracle" encoding="utf8" endDelimiter="\nGO"
+         path="populate/common.sql" relativeToChangelogFile="true"
+         splitStatements="true" stripComments="true" />
+   </changeSet>
+
+   <changeSet author="Bernardo" id="initial_dbx_data">
+      <sqlFile dbms="h2, oracle" encoding="utf8" endDelimiter="\nGO"
+         path="populate/dbx.sql" relativeToChangelogFile="true"
+         splitStatements="true" stripComments="true" />
    </changeSet>
 
 </databaseChangeLog>

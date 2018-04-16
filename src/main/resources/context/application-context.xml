@@ -21,10 +21,4 @@
    <import resource="classpath:context/persistence-versioning.xml" />
    <import resource="classpath:context/service-dreadball.xml" />
 
-   <!-- Database initializer -->
-   <jdbc:initialize-database data-source="dataSource">
-      <jdbc:script location="${jdbc.script.load.common}" />
-      <jdbc:script location="${jdbc.script.load.dbx}" />
-   </jdbc:initialize-database>
-
 </beans>
