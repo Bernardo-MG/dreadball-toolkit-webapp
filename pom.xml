@@ -979,18 +979,6 @@
                            <property>database.tag</property>
                            <message><![CDATA[Give a Spring database profile.]]></message>
                         </requireProperty>
-                        <requireProperty>
-                           <property>database.url</property>
-                           <message><![CDATA[Give a URL for the database.]]></message>
-                        </requireProperty>
-                        <requireProperty>
-                           <property>database.username</property>
-                           <message><![CDATA[Give a username for the database.]]></message>
-                        </requireProperty>
-                        <requireProperty>
-                           <property>database.password</property>
-                           <message><![CDATA[Give a password for the database.]]></message>
-                        </requireProperty>
                      </rules>
                   </configuration>
                </execution>
