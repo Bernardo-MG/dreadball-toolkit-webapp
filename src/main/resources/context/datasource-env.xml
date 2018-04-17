@@ -16,7 +16,7 @@
    <!-- Data source -->
    <bean id="dataSource" class="${jdbc.datasource.class}">
       <property name="driverClassName" value="${jdbc.driver}" />
-      <property name="url"
+      <property name="jdbcUrl"
          value="#{ 'jdbc:postgresql://' + @dbUrl.getHost() + ':' + @dbUrl.getPort() + @dbUrl.getPath() }" />
       <property name="username" value="#{ @dbUrl.getUserInfo().split(':')[0] }" />
       <property name="password" value="#{ @dbUrl.getUserInfo().split(':')[1] }" />
