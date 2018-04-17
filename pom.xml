@@ -23,13 +23,13 @@
    <!-- ********************************************** -->
 
    <groupId>com.bernardomg.tabletop.dreadball</groupId>
-   <artifactId>dreadball-toolkit-webpage</artifactId>
+   <artifactId>dreadball-toolkit-webapp</artifactId>
    <version>0.1.0-SNAPSHOT</version>
    <packaging>war</packaging>
 
    <name>Dreadball Toolkit</name>
    <description>A team builder and utilities page for Dreadball</description>
-   <url>https://github.com/bernardo-mg/dreadball-toolkit-webpage</url>
+   <url>https://github.com/bernardo-mg/dreadball-toolkit-webapp</url>
    <inceptionYear>2016</inceptionYear>
 
    <licenses>
@@ -45,20 +45,20 @@
    <!-- ********************************************** -->
 
    <scm>
-      <connection>scm:git:https://github.com/bernardo-mg/dreadball-toolkit-webpage.git</connection>
-      <developerConnection>scm:git:https://github.com/bernardo-mg/dreadball-toolkit-webpage.git</developerConnection>
+      <connection>scm:git:https://github.com/bernardo-mg/dreadball-toolkit-webapp.git</connection>
+      <developerConnection>scm:git:https://github.com/bernardo-mg/dreadball-toolkit-webapp.git</developerConnection>
       <tag>head</tag>
-      <url>https://www.github.com/bernardo-mg/dreadball-toolkit-webpage</url>
+      <url>https://www.github.com/bernardo-mg/dreadball-toolkit-webapp</url>
    </scm>
 
    <issueManagement>
       <system>GitHub</system>
-      <url>https://www.github.com/bernardo-mg/dreadball-toolkit-webpage/issues</url>
+      <url>https://www.github.com/bernardo-mg/dreadball-toolkit-webapp/issues</url>
    </issueManagement>
 
    <ciManagement>
       <system>Travis CI</system>
-      <url>https://travis-ci.org/Bernardo-MG/dreadball-toolkit-webpage</url>
+      <url>https://travis-ci.org/Bernardo-MG/dreadball-toolkit-webapp</url>
       <notifiers />
    </ciManagement>
 
@@ -67,7 +67,7 @@
          <uniqueVersion>false</uniqueVersion>
          <id>releases</id>
          <name>Releases Repository</name>
-         <url>https://api.bintray.com/maven/bernardo-mg/maven/dreadball-toolkit-webpage</url>
+         <url>https://api.bintray.com/maven/bernardo-mg/maven/dreadball-toolkit-webapp</url>
       </repository>
       <snapshotRepository>
          <uniqueVersion>false</uniqueVersion>
@@ -496,7 +496,7 @@
       <!-- ============================================== -->
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
-      <manifest.name>com/bernardomg/tabletop/dreadball/dreadball_toolkit_webpage</manifest.name>
+      <manifest.name>com/bernardomg/tabletop/dreadball/dreadball_toolkit_webapp</manifest.name>
       <!-- ============================================== -->
       <!-- =================== ROUTES =================== -->
       <!-- ============================================== -->
