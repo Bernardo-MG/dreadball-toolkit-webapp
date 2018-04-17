@@ -8,7 +8,7 @@ import views from 'views/reducers';
 const getPlayerIds = (payload) => {
    let result;
 
-   if (payload.entities.players) {
+   if ((payload) && (payload.entities) && (payload.entities.players)) {
       result = Object.keys(payload.entities.players);
    } else {
       result = [];
