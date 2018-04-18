@@ -4,6 +4,11 @@ const affinities = (
    state = { options: [], chosen: [] }, action) => {
    const { type, payload } = action;
    const affs = state.chosen.slice();
+
+   if (payload === undefined) {
+      return { ...state };
+   }
+
    switch (type) {
    case ActionTypes.CLEAR_TEAM:
       return {

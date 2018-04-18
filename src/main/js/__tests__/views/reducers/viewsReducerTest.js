@@ -68,7 +68,7 @@ describe('Views reducer', () => {
          }
       )
    }),
-   it('should not hide navbar whe not on small screen', () => {
+   it('should not hide navbar when not on small screen', () => {
       expect(
          views({ "smallScreen": false }, {
             type: types.HIDE_NAV_ON_SMALL_SCREEN
@@ -92,7 +92,7 @@ describe('Views reducer', () => {
          }
       )
    }),
-   it('should not hide side bar whe not on small screen', () => {
+   it('should not hide side bar when not on small screen', () => {
       expect(
          views({ "smallScreen": false }, {
             type: types.HIDE_SIDE_ON_SMALL_SCREEN

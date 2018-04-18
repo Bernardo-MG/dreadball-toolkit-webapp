@@ -3,6 +3,10 @@ import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_PLAYERS, CREATE_RATED_PLAYE
 const model = (state = { abilities: {}, affinities: {}, players: {}, ratedPlayers: {} }, action) => {
    const { type, payload } = action;
 
+   if (payload === undefined) {
+      return { ...state };
+   }
+
    switch (type) {
    case CREATE_ABILITIES: {
       return {
