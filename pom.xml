@@ -170,7 +170,7 @@
          </activation>
          <properties>
             <!-- Production Node environment flag -->
-            <node.env>production</node.env>
+            <node.env>development</node.env>
             <!-- Spring context -->
             <database.tag>postgres</database.tag>
             <database.auth.source>env</database.auth.source>

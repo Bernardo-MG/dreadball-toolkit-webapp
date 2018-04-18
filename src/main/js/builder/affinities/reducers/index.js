@@ -2,11 +2,12 @@ import * as ActionTypes from 'builder/affinities/actions/actionTypes';
 
 const affinities = (
    state = { options: [], chosen: [] }, action) => {
-   const { type, payload } = action;
+   const { type } = action;
    const affs = state.chosen.slice();
+   let { payload } = action;
 
    if (payload === undefined) {
-      return { ...state };
+      payload = [];
    }
 
    switch (type) {
