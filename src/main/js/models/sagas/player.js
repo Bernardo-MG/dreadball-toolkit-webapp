@@ -31,9 +31,18 @@ function* requestNext(action) {
 }
 
 function* build(action) {
-   yield put({ type: types.CREATE_ABILITIES, payload: action.payload.entities.abilities });
-   yield put({ type: types.CREATE_AFFINITIES, payload: action.payload.entities.affinities });
-   yield put({ type: types.CREATE_PLAYERS, payload: action.payload.entities.players });
+   if (action.payload) {
+      const entities = action.payload.entities;
+
+      yield put({ type: types.CREATE_ABILITIES, payload: entities.abilities });
+      yield put({ type: types.CREATE_AFFINITIES, payload: entities.affinities });
+      yield put({ type: types.CREATE_PLAYERS, payload: entities.players });
+   } else {
+      console.error('Missing response payload');
+      yield put({ type: types.CREATE_ABILITIES, payload: [] });
+      yield put({ type: types.CREATE_AFFINITIES, payload: [] });
+      yield put({ type: types.CREATE_PLAYERS, payload: [] });
+   }
 }
 
 export const playerSagas = [

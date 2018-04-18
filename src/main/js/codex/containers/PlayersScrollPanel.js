@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { fetch, moveNextPage } from 'models/actions/player';
 import { selectPlayers } from 'models/selectors';
-import { selectLastPlayerPage as selectLastPage } from 'models/selectors/page';
+import { selectCanLoadPlayer as selectCanLoad } from 'models/selectors/page';
 
 import PlayersViewPanel from 'codex/components/PlayersViewPanel';
 
@@ -19,14 +19,14 @@ class PlayersScrollPanel extends Component {
 
    render() {
       return (
-         <PlayersViewPanel source={this.props.players} onMore={!this.props.lastPage ? () => this.props.nextPage() : null} />
+         <PlayersViewPanel source={this.props.players} onMore={this.props.canLoad ? () => this.props.nextPage() : null} />
       );
    }
 }
 
 PlayersScrollPanel.propTypes = {
    load: PropTypes.func.isRequired,
-   lastPage: PropTypes.bool.isRequired,
+   canLoad: PropTypes.bool.isRequired,
    nextPage: PropTypes.func.isRequired,
    players: PropTypes.array.isRequired
 };
@@ -34,7 +34,7 @@ PlayersScrollPanel.propTypes = {
 const mapStateToProps = (state) => {
    return {
       players: selectPlayers(state),
-      lastPage: selectLastPage(state)
+      canLoad: selectCanLoad(state)
    };
 };
 

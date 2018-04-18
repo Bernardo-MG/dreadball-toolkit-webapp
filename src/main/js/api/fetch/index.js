@@ -37,6 +37,10 @@ const handleResponse = (status, message, parse) => {
    // The payload is parsed
    content.payload = parse(content.payload);
 
+   if ((content.payload === undefined) || (content.payload === null)) {
+      console.warn('Missing response payload');
+   }
+
    return content;
 };
 
