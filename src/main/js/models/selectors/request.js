@@ -2,7 +2,7 @@ import { selectLastPlayerPage, selectLastRatedPlayerPage } from 'models/selector
 
 export const selectPlayerIsFetching = (state) => state.pagination.players.isFetching;
 
-export const selectCanLoadPlayer = (state) => !selectLastPlayerPage(state) && !selectIsFetchingPlayer(state);
+export const selectCanLoadPlayer = (state) => !selectLastPlayerPage(state) && !selectPlayerIsFetching(state);
 
 export const selectRatedPlayerIsFetching = (state) => state.pagination.ratedPlayers.isFetching;
 
