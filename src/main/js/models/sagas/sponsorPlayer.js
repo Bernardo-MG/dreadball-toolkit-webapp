@@ -1,7 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
 import { fetcherSponsorPlayer as fetcher } from 'models/requests/fetchers';
-import { selectCurrentRatedPlayerPage as currentPageSelector, selectLastRatedPlayerPage as lastPageSelector } from 'models/selectors/page';
+import { selectCanLoadRatedPlayer as canLoadSelector } from 'models/selectors/request';
 import { selectRatedPlayerIsFetching as fetchingSelector } from 'models/selectors/request';
 import { requestSuccess } from 'models/actions/sponsorPlayer';
 import { selectSponsorAffinities } from 'models/selectors';
@@ -11,9 +11,8 @@ export function fetch(params) {
 }
 
 function* request(action, pageStep) {
-   const fetching = yield select(fetchingSelector);
-   const lastPage = yield select(lastPageSelector);
-   if (!fetching && !lastPage) {
+   const canLoad = yield select(canLoadSelector);
+   if (canLoad) {
       yield put({ type: types.FETCHING_TEAM_PLAYERS });
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;

@@ -1,7 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
 import { fetcherPlayer as fetcher } from 'models/requests/fetchers';
-import { selectCurrentPlayerPage as currentPageSelector, selectLastPlayerPage as lastPageSelector } from 'models/selectors/page';
+import { selectCanLoadPlayer as canLoadSelector } from 'models/selectors/request';
 import { selectPlayerIsFetching as fetchingSelector } from 'models/selectors/request';
 import { requestSuccess } from 'models/actions/player';
 
@@ -10,9 +10,8 @@ export function fetch(params) {
 }
 
 function* request(action, pageStep) {
-   const fetching = yield select(fetchingSelector);
-   const lastPage = yield select(lastPageSelector);
-   if (!fetching && !lastPage) {
+   const canLoad = yield select(canLoadSelector);
+   if (canLoad) {
       yield put({ type: types.FETCHING_PLAYERS });
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;
