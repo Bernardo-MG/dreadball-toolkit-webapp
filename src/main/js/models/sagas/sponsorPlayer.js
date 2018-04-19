@@ -3,10 +3,10 @@ import * as types from 'models/actions/actionTypes';
 import { fetcherSponsorPlayer as fetcher } from 'models/requests/fetchers';
 import { selectCanLoadRatedPlayer as canLoadSelector } from 'models/selectors/request';
 import { selectCurrentRatedPlayerPage as currentPageSelector } from 'models/selectors/page';
-import { requestSuccess } from 'models/actions/sponsorPlayer';
+import { requestSuccess, requestFailure } from 'models/actions/sponsorPlayer';
 import { selectSponsorAffinities } from 'models/selectors';
 
-export function fetch(params) {
+function fetch(params) {
    return fetcher.fetch(params);
 }
 
@@ -18,8 +18,13 @@ function* request(action, pageStep) {
       const page = currentPage + pageStep;
       const affinities = yield select(selectSponsorAffinities);
       const params = { ...action.params, affinities, page };
-      const response = yield call(fetch, params);
-      yield put(requestSuccess(response.payload, response.pagination));
+      let response;
+      try {
+         response = yield call(fetch, params);
+         yield put(requestSuccess(response.payload, response.pagination));
+      } catch (err) {
+         yield put(requestFailure(err));
+      }
    }
 }
 

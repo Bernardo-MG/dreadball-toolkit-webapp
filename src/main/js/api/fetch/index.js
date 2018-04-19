@@ -62,10 +62,15 @@ export const Fetcher = class {
       }
    }
 
+   _onError(error) {
+      const message = error.message || 'Request failed';
+      throw message;
+   }
+
    fetch(params) {
       return fetchJsonPaginated(this.url, params, this.processor).then(
          (response) => response,
-         (error) => error.message || 'Request failed'
+         (error) => this._onError(error)
       );
    }
 

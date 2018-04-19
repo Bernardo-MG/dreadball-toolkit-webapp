@@ -3,9 +3,9 @@ import * as types from 'models/actions/actionTypes';
 import { fetcherPlayer as fetcher } from 'models/requests/fetchers';
 import { selectCanLoadPlayer as canLoadSelector } from 'models/selectors/request';
 import { selectCurrentPlayerPage as currentPageSelector } from 'models/selectors/page';
-import { requestSuccess } from 'models/actions/player';
+import { requestSuccess, requestFailure } from 'models/actions/player';
 
-export function fetch(params) {
+function fetch(params) {
    return fetcher.fetch(params);
 }
 
@@ -16,8 +16,13 @@ function* request(action, pageStep) {
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;
       const params = { ...action.params, page };
-      const response = yield call(fetch, params);
-      yield put(requestSuccess(response.payload, response.pagination));
+      let response;
+      try {
+         response = yield call(fetch, params);
+         yield put(requestSuccess(response.payload, response.pagination));
+      } catch (err) {
+         yield put(requestFailure(err));
+      }
    }
 }
 
