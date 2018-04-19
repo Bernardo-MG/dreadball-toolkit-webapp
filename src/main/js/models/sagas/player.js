@@ -2,7 +2,7 @@ import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
 import { fetcherPlayer as fetcher } from 'models/requests/fetchers';
 import { selectCanLoadPlayer as canLoadSelector } from 'models/selectors/request';
-import { selectPlayerIsFetching as fetchingSelector } from 'models/selectors/request';
+import { selectCurrentPlayerPage as currentPageSelector } from 'models/selectors/page';
 import { requestSuccess } from 'models/actions/player';
 
 export function fetch(params) {

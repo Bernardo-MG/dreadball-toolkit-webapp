@@ -2,7 +2,7 @@ import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
 import { fetcherSponsorPlayer as fetcher } from 'models/requests/fetchers';
 import { selectCanLoadRatedPlayer as canLoadSelector } from 'models/selectors/request';
-import { selectRatedPlayerIsFetching as fetchingSelector } from 'models/selectors/request';
+import { selectCurrentRatedPlayerPage as currentPageSelector } from 'models/selectors/page';
 import { requestSuccess } from 'models/actions/sponsorPlayer';
 import { selectSponsorAffinities } from 'models/selectors';
 
