@@ -6,3 +6,10 @@ export const validateTeamSuccess = (payload) => {
       payload
    };
 };
+
+export const validateTeamFailure = (payload) => {
+   return {
+      type: types.REQUEST_FAILURE_TEAM_VALIDATION,
+      payload
+   };
+};

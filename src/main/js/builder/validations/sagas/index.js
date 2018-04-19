@@ -1,7 +1,7 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/actionTypes';
 import { teamValidationFetcher as fetcher } from 'builder/validations/requests/fetchers';
-import { validateTeamSuccess } from 'builder/validations/actions';
+import { validateTeamSuccess, validateTeamFailure } from 'builder/validations/actions';
 
 import { selectAssets } from 'builder/assets/selectors';
 import { selectChosenAffinities } from 'builder/affinities/selectors';
@@ -13,8 +13,14 @@ function fetch(params) {
 }
 
 function* requestValidation(action) {
-   const response = yield call(fetch, action.params);
-   yield put(validateTeamSuccess(response.payload));
+   const params = { ...action.params };
+   let response;
+   try {
+      response = yield call(fetch, params);
+      yield put(validateTeamSuccess(response.payload));
+   } catch (err) {
+      yield put(validateTeamFailure(err));
+   }
 }
 
 function* build(action) {
