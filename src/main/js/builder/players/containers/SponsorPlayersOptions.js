@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PlayerScrollablePanel from 'builder/players/components/PlayerScrollablePanel';
 
 import { selectRatedPlayers as selectPlayers } from 'models/selectors';
-import { selectCanLoadRatedPlayer as selectCanLoad } from 'models/selectors/page';
+import { selectCanLoadRatedPlayer as selectCanLoad } from 'models/selectors/request';
 
 import AddIcon from 'grommet/components/icons/base/AddCircle';
 

@@ -24,7 +24,7 @@ function* request(action, pageStep) {
    }
 }
 
-function* requestCurrent(action) {
+function* requestCurrentPage(action) {
    yield call(request, action, 0);
 }
 
@@ -44,7 +44,7 @@ function* build(action) {
 }
 
 export const sponsorPlayerSagas = [
-   takeLatest(types.REQUEST_TEAM_PLAYERS, requestCurrent),
+   takeLatest(types.REQUEST_TEAM_PLAYERS, requestCurrentPage),
    takeLatest(types.REQUEST_SUCCESS_TEAM_PLAYERS, build),
    takeLatest(types.CHANGE_PAGE_NEXT_TEAM_PLAYERS, requestNext)
 ];

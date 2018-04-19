@@ -22,7 +22,7 @@ function* request(action, pageStep) {
    }
 }
 
-function* requestCurrent(action) {
+function* requestCurrentPage(action) {
    yield call(request, action, 0);
 }
 
@@ -43,7 +43,7 @@ function* build(action) {
 }
 
 export const playerSagas = [
-   takeLatest(types.REQUEST_PLAYERS, requestCurrent),
+   takeLatest(types.REQUEST_PLAYERS, requestCurrentPage),
    takeLatest(types.REQUEST_SUCCESS_PLAYERS, build),
    takeLatest(types.CHANGE_PAGE_NEXT_PLAYERS, requestNext)
 ];

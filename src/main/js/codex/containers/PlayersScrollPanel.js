@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { fetch, moveNextPage } from 'models/actions/player';
 import { selectPlayers } from 'models/selectors';
-import { selectCanLoadPlayer as selectCanLoad } from 'models/selectors/page';
+import { selectCanLoadPlayer as selectCanLoad } from 'models/selectors/request';
 
 import PlayersViewPanel from 'codex/components/PlayersViewPanel';
 
