@@ -23,9 +23,4 @@
    <import resource="classpath:context/persistence-versioning.xml" />
    <import resource="classpath:context/test/service.xml" />
 
-   <!-- Test database initializer -->
-   <jdbc:initialize-database data-source="dataSource">
-      <jdbc:script location="${jdbc.script.load.test}" />
-   </jdbc:initialize-database>
-
 </beans>
