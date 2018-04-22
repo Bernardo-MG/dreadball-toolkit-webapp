@@ -39,7 +39,11 @@
       </Logger>
 
       <!-- Liquibase -->
-      <Logger name="liquibase" level="debug" additivity="false">
+      <Logger name="liquibase" level="warn" additivity="false">
+         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
+      </Logger>
+      <Logger name="liquibase.executor" level="debug" additivity="false">
          <AppenderRef ref="file" />
          <AppenderRef ref="console" />
       </Logger>
