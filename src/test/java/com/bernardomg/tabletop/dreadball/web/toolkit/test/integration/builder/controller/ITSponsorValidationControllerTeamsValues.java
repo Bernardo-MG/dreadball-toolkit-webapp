@@ -45,7 +45,7 @@ import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTe
 @ContextConfiguration(
         locations = { "classpath:context/test-servlet-dreadball.xml" })
 @WebAppConfiguration
-public final class ITSponsorValidationControllerTeamsValues
+public class ITSponsorValidationControllerTeamsValues
         extends AbstractJUnit4SpringContextTests {
 
     /**

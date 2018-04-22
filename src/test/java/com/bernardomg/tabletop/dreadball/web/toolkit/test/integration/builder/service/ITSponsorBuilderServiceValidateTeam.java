@@ -22,7 +22,7 @@ import com.google.common.collect.Iterables;
  */
 @ContextConfiguration(
         locations = { "classpath:context/test-service-context.xml" })
-public final class ITSponsorBuilderServiceValidateTeam
+public class ITSponsorBuilderServiceValidateTeam
         extends AbstractJUnit4SpringContextTests {
 
     /**
