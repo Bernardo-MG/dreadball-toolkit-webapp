@@ -544,7 +544,7 @@
       <servlet.version>4.0.0</servlet.version>
       <slf4j.version>1.8.0-beta2</slf4j.version>
       <spring.data.version>2.0.5.RELEASE</spring.data.version>
-      <spring.version>5.0.4.RELEASE</spring.version>
+      <spring.version>5.0.5.RELEASE</spring.version>
       <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
@@ -563,6 +563,27 @@
    <!-- ********************************************** -->
    <!-- *************** DEPENDENCIES ***************** -->
    <!-- ********************************************** -->
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <!-- Spring Framework BOM -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>${spring.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <dependency>
+            <!-- Jackson BOM -->
+            <groupId>com.fasterxml.jackson</groupId>
+            <artifactId>jackson-bom</artifactId>
+            <version>${jackson.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
 
    <dependencies>
       <!-- ============================================== -->
@@ -593,25 +614,21 @@
          <!-- Spring beans -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-beans</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring context -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-context</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring context support -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-context-support</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Core -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-core</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Data JPA -->
@@ -623,31 +640,26 @@
          <!-- Spring JDBC -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-jdbc</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring OXM -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-oxm</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring transactions -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-tx</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Web MVC -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-webmvc</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring ORM -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-orm</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ============== JPA DEPENDENCIES ============== -->
@@ -781,19 +793,16 @@
          <!-- Jackson -->
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-core</artifactId>
-         <version>${jackson.version}</version>
       </dependency>
       <dependency>
          <!-- Jackson databinding -->
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-databind</artifactId>
-         <version>${jackson.version}</version>
       </dependency>
       <dependency>
          <!-- Jackson annotations -->
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-annotations</artifactId>
-         <version>${jackson.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ============ OTHER DEPENDENCIES ============== -->
@@ -861,7 +870,6 @@
          <!-- Spring Test -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-test</artifactId>
-         <version>${spring.version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
