@@ -4,18 +4,18 @@
    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
 
-   <include file="db/changelog-tables.xml"/>
+   <include file="db/changelog-tables.xml" />
 
    <changeSet author="Bernardo" id="initial_common_data">
-      <sqlFile dbms="h2, oracle" encoding="utf8" endDelimiter="\nGO"
+      <sqlFile encoding="utf8" endDelimiter="\nGO"
          path="populate/common.sql" relativeToChangelogFile="true"
          splitStatements="true" stripComments="true" />
    </changeSet>
 
    <changeSet author="Bernardo" id="initial_dbx_data">
-      <sqlFile dbms="h2, oracle" encoding="utf8" endDelimiter="\nGO"
-         path="populate/dbx.sql" relativeToChangelogFile="true"
-         splitStatements="true" stripComments="true" />
+      <sqlFile encoding="utf8" endDelimiter="\nGO" path="populate/dbx.sql"
+         relativeToChangelogFile="true" splitStatements="true"
+         stripComments="true" />
    </changeSet>
 
 </databaseChangeLog>
