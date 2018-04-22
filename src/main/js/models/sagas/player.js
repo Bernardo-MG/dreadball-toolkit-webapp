@@ -19,7 +19,11 @@ function* request(action, pageStep) {
       let response;
       try {
          response = yield call(fetch, params);
-         yield put(requestSuccess(response.payload, response.pagination));
+         if (response) {
+            yield put(requestSuccess(response.payload, response.pagination));
+         } else {
+            yield put(requestFailure('Undefined response'));
+         }
       } catch (err) {
          yield put(requestFailure(err));
       }

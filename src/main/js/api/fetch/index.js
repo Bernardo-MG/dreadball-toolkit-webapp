@@ -20,25 +20,29 @@ const paginatedContent = (content) => {
    return result;
 };
 
-const handleResponse = (status, message, parse) => {
+const handleResponse = (status, response, parse) => {
    if (!status) {
-      return Promise.reject(message);
+      return Promise.reject(response);
    }
 
    let content;
-   if (message.number === null || message.number === undefined) {
-      // Pagination info is missing
-      // The payload is the message itself
-      content = { payload: message };
+   if (response) {
+      if (response.number === null || response.number === undefined) {
+         // Pagination info is missing
+         // The payload is the response itself
+         content = { payload: response };
+      } else {
+         content = paginatedContent(response);
+      }
+
+      // The payload is parsed
+      content.payload = parse(content.payload);
+
+      if ((content.payload === undefined) || (content.payload === null)) {
+         console.warn('Missing response payload');
+      }
    } else {
-      content = paginatedContent(message);
-   }
-
-   // The payload is parsed
-   content.payload = parse(content.payload);
-
-   if ((content.payload === undefined) || (content.payload === null)) {
-      console.warn('Missing response payload');
+      console.warn('Missing response');
    }
 
    return content;
@@ -57,8 +61,8 @@ export const Fetcher = class {
       if (processor) {
          this.processor = processor;
       } else {
-         // By default the message is not parsed
-         this.processor = (message) => message;
+         // By default the response is not parsed
+         this.processor = (response) => response;
       }
    }
 
