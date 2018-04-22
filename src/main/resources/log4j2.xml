@@ -38,6 +38,12 @@
          <AppenderRef ref="console" />
       </Logger>
 
+      <!-- Liquibase -->
+      <Logger name="liquibase" level="warn" additivity="false">
+         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
+      </Logger>
+
       <!-- Jackson -->
       <logger name="com.fasterxml.jackson" level="warn" additivity="false">
          <AppenderRef ref="file" />
