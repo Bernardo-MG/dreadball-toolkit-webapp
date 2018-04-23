@@ -24,8 +24,6 @@
 --                ABILITIES
 -- ****************************************
 
-DELETE FROM ABILITIES;
-
 INSERT INTO ABILITIES (id, name) VALUES (1, 'ability_1');
 INSERT INTO ABILITIES (id, name) VALUES (2, 'ability_2');
 INSERT INTO ABILITIES (id, name) VALUES (3, 'ability_3');
@@ -35,8 +33,6 @@ INSERT INTO ABILITIES (id, name) VALUES (5, 'ability_5');
 -- ****************************************
 --               AFFINITIES
 -- ****************************************
-
-DELETE FROM AFFINITY_GROUPS;
 
 INSERT INTO AFFINITY_GROUPS (id, name) VALUES (1, 'affinity_1');
 INSERT INTO AFFINITY_GROUPS (id, name) VALUES (2, 'affinity_2');
@@ -54,8 +50,6 @@ INSERT INTO AFFINITY_GROUPS (id, name) VALUES (6, 'affinity_6');
 -- DBX players
 -- -----------
 
-DELETE FROM PLAYERS;
-
 -- Test team 1
 INSERT INTO PLAYERS (id, player_type, name, template_name, armor, movement, skill, speed, strength, role, giant)
     VALUES (1, 'affinity', 'player_1', 'player_1_affinity', 4, 5, 4, 3, 4, 'GUARD', false);
@@ -72,8 +66,6 @@ INSERT INTO PLAYERS (id, player_type, name, template_name, armor, movement, skil
 -- Affinity players
 -- ----------------
 
-DELETE FROM AFFINITY_PLAYERS;
-
 -- Test team 1
 INSERT INTO AFFINITY_PLAYERS (id, stranger_cost, ally_cost, friend_cost) VALUES (1, 23, 15, 10);
 INSERT INTO AFFINITY_PLAYERS (id, stranger_cost, ally_cost, friend_cost) VALUES (2, 18, 12, 8);
@@ -85,8 +77,6 @@ INSERT INTO AFFINITY_PLAYERS (id, stranger_cost, ally_cost, friend_cost) VALUES 
 -- ----------------
 -- Player abilities
 -- ----------------
-
-DELETE FROM PLAYER_ABILITIES;
 
 -- Test team 1
 INSERT INTO PLAYER_ABILITIES (player_id, ability_id) VALUES (1, 1);
@@ -102,8 +92,6 @@ INSERT INTO PLAYER_ABILITIES (player_id, ability_id) VALUES (51, 4);
 -- Player affinities
 -- -----------------
 
-DELETE FROM PLAYER_AFFINITIES;
-
 -- Test team 1
 INSERT INTO PLAYER_AFFINITIES (player_id, affinity_id) VALUES (1, 1);
 INSERT INTO PLAYER_AFFINITIES (player_id, affinity_id) VALUES (2, 1);
@@ -118,17 +106,12 @@ INSERT INTO PLAYER_AFFINITIES (player_id, affinity_id) VALUES (51, 4);
 -- Player hated affinities
 -- -----------------------
 
-DELETE FROM PLAYER_HATED_AFFINITIES;
-
 -- Giant
 INSERT INTO PLAYER_HATED_AFFINITIES (player_id, affinity_id) VALUES (51, 5);
 
 -- -------------------------
 -- Affinities availabilities
 -- -------------------------
-
-DELETE FROM AFFINITY_SETS;
-DELETE FROM AFFINITY_OPTIONS;
 
 -- Sponsor affinities groups
 INSERT INTO AFFINITY_SETS(id, name, rank_increase) VALUES (1, 'A', true);
