@@ -17,7 +17,6 @@
    <!-- Properties -->
    <context:property-placeholder
       location="classpath:config/persistence.properties,
-                   classpath:config/test/persistence.properties,
                    classpath:config/view.properties,
                    classpath:config/persistence-@database.tag@.properties, 
                    classpath:config/persistence-access.properties,
