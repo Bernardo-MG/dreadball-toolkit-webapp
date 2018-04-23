@@ -53,13 +53,13 @@ INSERT INTO AFFINITY_GROUPS (id, name) VALUES
 -- -----------
 
 -- Test team 1
-INSERT INTO PLAYERS (id, player_type, name, template_name, armor, movement, skill, speed, strength, role, giant) VALUES
-   (1, 'affinity', 'player_1', 'player_1_affinity', 4, 5, 4, 3, 4, 'GUARD', false),
-   (2, 'affinity', 'player_2', 'player_2_affinity', 5, 5, 4, 3, 4, 'JACK', false),
-   (3, 'affinity', 'player_3', 'player_3_affinity', 5, 5, 4, 3, 4, 'STRIKER', false),
+INSERT INTO PLAYERS (id, player_type, name, template_name, armor, movement, skill, speed, strength, role, giant, mvp) VALUES
+   (1, 'affinity', 'player_1', 'player_1_affinity', 4, 5, 4, 3, 4, 'GUARD', false, false),
+   (2, 'affinity', 'player_2', 'player_2_affinity', 5, 5, 4, 3, 4, 'JACK', false, false),
+   (3, 'affinity', 'player_3', 'player_3_affinity', 5, 5, 4, 3, 4, 'STRIKER', false, false),
 
 -- Giants
-   (51, 'affinity', 'giant_1', 'player_giant_1_affinity', 5, 5, 4, 3, 4, 'JACK', true);
+   (51, 'affinity', 'giant_1', 'player_giant_1_affinity', 5, 5, 4, 3, 4, 'JACK', true, false);
 
 -- ----------------
 -- Affinity players
