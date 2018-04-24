@@ -7,12 +7,8 @@
    <include file="db/changelog-tables.xml" />
 
    <changeSet author="Bernardo" id="initial_dbx_data">
-      <sqlFile dbms="h2, postgresql" encoding="utf8" endDelimiter="\nGO" path="populate/test.sql"
-         relativeToChangelogFile="true" splitStatements="true"
-         stripComments="true" />
-      <sqlFile dbms="mysql" encoding="utf8" endDelimiter="\nGO" path="populate/test-mysql.sql"
-         relativeToChangelogFile="true" splitStatements="true"
-         stripComments="true" />
+      <sqlFile encoding="utf8" path="populate/test.sql"
+         relativeToChangelogFile="true" stripComments="true" />
    </changeSet>
 
 </databaseChangeLog>
