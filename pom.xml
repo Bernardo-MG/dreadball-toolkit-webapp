@@ -202,7 +202,7 @@
                               <artifactItem>
                                  <groupId>com.github.jsimone</groupId>
                                  <artifactId>webapp-runner</artifactId>
-                                 <version>8.5.27.0</version>
+                                 <version>${webappRunner.version}</version>
                                  <destFileName>webapp-runner.jar</destFileName>
                               </artifactItem>
                            </artifactItems>
@@ -213,7 +213,7 @@
                <plugin>
                   <groupId>com.heroku.sdk</groupId>
                   <artifactId>heroku-maven-plugin</artifactId>
-                  <version>2.0.4</version>
+                  <version>${plugin.heroku.version}</version>
                </plugin>
             </plugins>
          </build>
@@ -546,12 +546,14 @@
       <spring.data.version>2.0.5.RELEASE</spring.data.version>
       <spring.version>5.0.5.RELEASE</spring.version>
       <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+      <webappRunner.version>8.5.30.0</webappRunner.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
       <plugin.frontend.node.version>v6.11.3</plugin.frontend.node.version>
       <plugin.frontend.npm.version>5.4.2</plugin.frontend.npm.version>
       <plugin.frontend.version>1.6</plugin.frontend.version>
+      <plugin.heroku.version>2.0.4</plugin.heroku.version>
       <plugin.jetty.version>9.4.8.v20171121</plugin.jetty.version>
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
       <!-- ============================================== -->
