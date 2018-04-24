@@ -8,7 +8,7 @@ const env = process.env.NODE_ENV || 'development';
 const PROJECT_VERSION = process.env.APP_VERSION || '';
 
 // Base route
-const APP_ROUTE = process.env.APP_ROUTE || '/app';
+const APP_ROUTE = process.env.APP_ROUTE || '';
 
 // Project URL
 const PROJECT_REPO_URL = process.env.REPO_URL;

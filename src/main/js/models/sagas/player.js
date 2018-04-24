@@ -1,28 +1,36 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
 import { fetcherPlayer as fetcher } from 'models/requests/fetchers';
-import { selectCurrentPlayerPage as currentPageSelector, selectLastPlayerPage as lastPageSelector } from 'models/selectors/page';
-import { selectPlayerIsFetching as fetchingSelector } from 'models/selectors/request';
-import { requestSuccess } from 'models/actions/player';
+import { selectCanLoadPlayer as canLoadSelector } from 'models/selectors/request';
+import { selectCurrentPlayerPage as currentPageSelector } from 'models/selectors/page';
+import { requestSuccess, requestFailure } from 'models/actions/player';
 
-export function fetch(params) {
+function fetch(params) {
    return fetcher.fetch(params);
 }
 
 function* request(action, pageStep) {
-   const fetching = yield select(fetchingSelector);
-   const lastPage = yield select(lastPageSelector);
-   if (!fetching && !lastPage) {
+   const canLoad = yield select(canLoadSelector);
+   if (canLoad) {
       yield put({ type: types.FETCHING_PLAYERS });
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;
       const params = { ...action.params, page };
-      const response = yield call(fetch, params);
-      yield put(requestSuccess(response.payload, response.pagination));
+      let response;
+      try {
+         response = yield call(fetch, params);
+         if (response) {
+            yield put(requestSuccess(response.payload, response.pagination));
+         } else {
+            yield put(requestFailure('Undefined response'));
+         }
+      } catch (err) {
+         yield put(requestFailure(err));
+      }
    }
 }
 
-function* requestCurrent(action) {
+function* requestCurrentPage(action) {
    yield call(request, action, 0);
 }
 
@@ -31,13 +39,19 @@ function* requestNext(action) {
 }
 
 function* build(action) {
-   yield put({ type: types.CREATE_ABILITIES, payload: action.payload.entities.abilities });
-   yield put({ type: types.CREATE_AFFINITIES, payload: action.payload.entities.affinities });
-   yield put({ type: types.CREATE_PLAYERS, payload: action.payload.entities.players });
+   if (action.payload) {
+      const entities = action.payload.entities;
+
+      yield put({ type: types.CREATE_ABILITIES, payload: entities.abilities });
+      yield put({ type: types.CREATE_AFFINITIES, payload: entities.affinities });
+      yield put({ type: types.CREATE_PLAYERS, payload: entities.players });
+   } else {
+      console.error('Missing payload');
+   }
 }
 
 export const playerSagas = [
-   takeLatest(types.REQUEST_PLAYERS, requestCurrent),
+   takeLatest(types.REQUEST_PLAYERS, requestCurrentPage),
    takeLatest(types.REQUEST_SUCCESS_PLAYERS, build),
    takeLatest(types.CHANGE_PAGE_NEXT_PLAYERS, requestNext)
 ];

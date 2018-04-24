@@ -81,8 +81,8 @@ class PlayersViewPanel extends Component {
 
 PlayersViewPanel.propTypes = {
    source: PropTypes.array.isRequired,
-   onMore: PropTypes.func.isRequired,
-   intl: PropTypes.object.isRequired
+   intl: PropTypes.object.isRequired,
+   onMore: PropTypes.func
 };
 
 export default injectIntl(PlayersViewPanel);

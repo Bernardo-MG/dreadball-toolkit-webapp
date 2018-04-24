@@ -13,6 +13,13 @@ export const optionsRequestSuccess = (payload) => {
    };
 };
 
+export const optionsRequestFailure = (payload) => {
+   return {
+      type: types.REQUEST_FAILURE_SPONSOR_AFFINITY_GROUP_OPTIONS,
+      payload
+   };
+};
+
 export const chooseSponsorAffinity = (affinity, index) => {
    return {
       type: types.CHOOSE_SPONSOR_AFFINITY,
@@ -31,6 +38,13 @@ export const validateSponsorAffinities = (affinities = []) => {
 export const validationSuccess = (payload) => {
    return {
       type: types.REQUEST_SUCCESS_TEAM_VALIDATION_AFFINITIES,
+      payload
+   };
+};
+
+export const validationFailure = (payload) => {
+   return {
+      type: types.REQUEST_FAILURE_TEAM_VALIDATION_AFFINITIES,
       payload
    };
 };

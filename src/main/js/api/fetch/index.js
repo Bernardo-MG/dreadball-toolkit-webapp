@@ -20,22 +20,30 @@ const paginatedContent = (content) => {
    return result;
 };
 
-const handleResponse = (status, message, parse) => {
+const handleResponse = (status, response, parse) => {
    if (!status) {
-      return Promise.reject(message);
+      return Promise.reject(response);
    }
 
    let content;
-   if (message.number === null || message.number === undefined) {
-      // Pagination info is missing
-      // The payload is the message itself
-      content = { payload: message };
-   } else {
-      content = paginatedContent(message);
-   }
+   if (response) {
+      if (response.number === null || response.number === undefined) {
+         // Pagination info is missing
+         // The payload is the response itself
+         content = { payload: response };
+      } else {
+         content = paginatedContent(response);
+      }
 
-   // The payload is parsed
-   content.payload = parse(content.payload);
+      // The payload is parsed
+      content.payload = parse(content.payload);
+
+      if ((content.payload === undefined) || (content.payload === null)) {
+         console.warn('Missing response payload');
+      }
+   } else {
+      console.warn('Missing response');
+   }
 
    return content;
 };
@@ -53,15 +61,20 @@ export const Fetcher = class {
       if (processor) {
          this.processor = processor;
       } else {
-         // By default the message is not parsed
-         this.processor = (message) => message;
+         // By default the response is not parsed
+         this.processor = (response) => response;
       }
+   }
+
+   _onError(error) {
+      const message = error.message || 'Request failed';
+      throw message;
    }
 
    fetch(params) {
       return fetchJsonPaginated(this.url, params, this.processor).then(
          (response) => response,
-         (error) => error.message || 'Request failed'
+         (error) => this._onError(error)
       );
    }
 

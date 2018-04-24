@@ -23,13 +23,13 @@
    <!-- ********************************************** -->
 
    <groupId>com.bernardomg.tabletop.dreadball</groupId>
-   <artifactId>dreadball-toolkit-webpage</artifactId>
+   <artifactId>dreadball-toolkit-webapp</artifactId>
    <version>0.1.0-SNAPSHOT</version>
    <packaging>war</packaging>
 
    <name>Dreadball Toolkit</name>
    <description>A team builder and utilities page for Dreadball</description>
-   <url>https://github.com/bernardo-mg/dreadball-toolkit-webpage</url>
+   <url>https://github.com/bernardo-mg/dreadball-toolkit-webapp</url>
    <inceptionYear>2016</inceptionYear>
 
    <licenses>
@@ -45,20 +45,20 @@
    <!-- ********************************************** -->
 
    <scm>
-      <connection>scm:git:https://github.com/bernardo-mg/dreadball-toolkit-webpage.git</connection>
-      <developerConnection>scm:git:https://github.com/bernardo-mg/dreadball-toolkit-webpage.git</developerConnection>
+      <connection>scm:git:https://github.com/bernardo-mg/dreadball-toolkit-webapp.git</connection>
+      <developerConnection>scm:git:https://github.com/bernardo-mg/dreadball-toolkit-webapp.git</developerConnection>
       <tag>head</tag>
-      <url>https://www.github.com/bernardo-mg/dreadball-toolkit-webpage</url>
+      <url>https://www.github.com/bernardo-mg/dreadball-toolkit-webapp</url>
    </scm>
 
    <issueManagement>
       <system>GitHub</system>
-      <url>https://www.github.com/bernardo-mg/dreadball-toolkit-webpage/issues</url>
+      <url>https://www.github.com/bernardo-mg/dreadball-toolkit-webapp/issues</url>
    </issueManagement>
 
    <ciManagement>
       <system>Travis CI</system>
-      <url>https://travis-ci.org/Bernardo-MG/dreadball-toolkit-webpage</url>
+      <url>https://travis-ci.org/Bernardo-MG/dreadball-toolkit-webapp</url>
       <notifiers />
    </ciManagement>
 
@@ -67,7 +67,7 @@
          <uniqueVersion>false</uniqueVersion>
          <id>releases</id>
          <name>Releases Repository</name>
-         <url>https://api.bintray.com/maven/bernardo-mg/maven/dreadball-toolkit-webpage</url>
+         <url>https://api.bintray.com/maven/bernardo-mg/maven/dreadball-toolkit-webapp</url>
       </repository>
       <snapshotRepository>
          <uniqueVersion>false</uniqueVersion>
@@ -171,6 +171,8 @@
          <properties>
             <!-- Production Node environment flag -->
             <node.env>production</node.env>
+            <!-- App root prefix -->
+            <node.env.rootRoute></node.env.rootRoute>
             <!-- Spring context -->
             <database.tag>postgres</database.tag>
             <database.auth.source>env</database.auth.source>
@@ -183,6 +185,38 @@
                <version>${postgresql.version}</version>
             </dependency>
          </dependencies>
+         <build>
+            <plugins>
+               <plugin>
+                  <groupId>org.apache.maven.plugins</groupId>
+                  <artifactId>maven-dependency-plugin</artifactId>
+                  <executions>
+                     <execution>
+                        <id>copy-webapp-runner</id>
+                        <phase>package</phase>
+                        <goals>
+                           <goal>copy</goal>
+                        </goals>
+                        <configuration>
+                           <artifactItems>
+                              <artifactItem>
+                                 <groupId>com.github.jsimone</groupId>
+                                 <artifactId>webapp-runner</artifactId>
+                                 <version>${webappRunner.version}</version>
+                                 <destFileName>webapp-runner.jar</destFileName>
+                              </artifactItem>
+                           </artifactItems>
+                        </configuration>
+                     </execution>
+                  </executions>
+               </plugin>
+               <plugin>
+                  <groupId>com.heroku.sdk</groupId>
+                  <artifactId>heroku-maven-plugin</artifactId>
+                  <version>${plugin.heroku.version}</version>
+               </plugin>
+            </plugins>
+         </build>
       </profile>
       <!-- ============================================== -->
       <!-- ============= DATABASE PROFILES ============== -->
@@ -464,7 +498,7 @@
       <!-- ============================================== -->
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
-      <manifest.name>com/bernardomg/tabletop/dreadball/dreadball_toolkit_webpage</manifest.name>
+      <manifest.name>com/bernardomg/tabletop/dreadball/dreadball_toolkit_webapp</manifest.name>
       <!-- ============================================== -->
       <!-- =================== ROUTES =================== -->
       <!-- ============================================== -->
@@ -510,14 +544,16 @@
       <servlet.version>4.0.0</servlet.version>
       <slf4j.version>1.8.0-beta2</slf4j.version>
       <spring.data.version>2.0.5.RELEASE</spring.data.version>
-      <spring.version>5.0.4.RELEASE</spring.version>
+      <spring.version>5.0.5.RELEASE</spring.version>
       <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
+      <webappRunner.version>8.5.30.0</webappRunner.version>
       <!-- ============================================== -->
       <!-- ============== PLUGINS VERSIONS ============== -->
       <!-- ============================================== -->
       <plugin.frontend.node.version>v6.11.3</plugin.frontend.node.version>
       <plugin.frontend.npm.version>5.4.2</plugin.frontend.npm.version>
       <plugin.frontend.version>1.6</plugin.frontend.version>
+      <plugin.heroku.version>2.0.4</plugin.heroku.version>
       <plugin.jetty.version>9.4.8.v20171121</plugin.jetty.version>
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
       <!-- ============================================== -->
@@ -529,6 +565,27 @@
    <!-- ********************************************** -->
    <!-- *************** DEPENDENCIES ***************** -->
    <!-- ********************************************** -->
+
+   <dependencyManagement>
+      <dependencies>
+         <dependency>
+            <!-- Spring Framework BOM -->
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-framework-bom</artifactId>
+            <version>${spring.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+         <dependency>
+            <!-- Jackson BOM -->
+            <groupId>com.fasterxml.jackson</groupId>
+            <artifactId>jackson-bom</artifactId>
+            <version>${jackson.version}</version>
+            <type>pom</type>
+            <scope>import</scope>
+         </dependency>
+      </dependencies>
+   </dependencyManagement>
 
    <dependencies>
       <!-- ============================================== -->
@@ -559,25 +616,21 @@
          <!-- Spring beans -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-beans</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring context -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-context</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring context support -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-context-support</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Core -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-core</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Data JPA -->
@@ -589,31 +642,26 @@
          <!-- Spring JDBC -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-jdbc</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring OXM -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-oxm</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring transactions -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-tx</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring Web MVC -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-webmvc</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <dependency>
          <!-- Spring ORM -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-orm</artifactId>
-         <version>${spring.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ============== JPA DEPENDENCIES ============== -->
@@ -747,19 +795,16 @@
          <!-- Jackson -->
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-core</artifactId>
-         <version>${jackson.version}</version>
       </dependency>
       <dependency>
          <!-- Jackson databinding -->
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-databind</artifactId>
-         <version>${jackson.version}</version>
       </dependency>
       <dependency>
          <!-- Jackson annotations -->
          <groupId>com.fasterxml.jackson.core</groupId>
          <artifactId>jackson-annotations</artifactId>
-         <version>${jackson.version}</version>
       </dependency>
       <!-- ============================================== -->
       <!-- ============ OTHER DEPENDENCIES ============== -->
@@ -827,7 +872,6 @@
          <!-- Spring Test -->
          <groupId>org.springframework</groupId>
          <artifactId>spring-test</artifactId>
-         <version>${spring.version}</version>
          <scope>test</scope>
       </dependency>
    </dependencies>
@@ -944,18 +988,6 @@
                         <requireProperty>
                            <property>database.tag</property>
                            <message><![CDATA[Give a Spring database profile.]]></message>
-                        </requireProperty>
-                        <requireProperty>
-                           <property>database.url</property>
-                           <message><![CDATA[Give a URL for the database.]]></message>
-                        </requireProperty>
-                        <requireProperty>
-                           <property>database.username</property>
-                           <message><![CDATA[Give a username for the database.]]></message>
-                        </requireProperty>
-                        <requireProperty>
-                           <property>database.password</property>
-                           <message><![CDATA[Give a password for the database.]]></message>
                         </requireProperty>
                      </rules>
                   </configuration>

@@ -17,7 +17,6 @@
    <!-- Properties -->
    <context:property-placeholder
       location="classpath:config/persistence.properties,
-                   classpath:config/test/persistence.properties,
                    classpath:config/view.properties,
                    classpath:config/persistence-@database.tag@.properties, 
                    classpath:config/persistence-access.properties,
@@ -31,11 +30,6 @@
    <import resource="classpath:context/persistence.xml" />
    <import resource="classpath:context/persistence-versioning.xml" />
    <import resource="classpath:context/test/service.xml" />
-
-   <!-- Test database initializer -->
-   <jdbc:initialize-database data-source="dataSource">
-      <jdbc:script location="${jdbc.script.load.test}" />
-   </jdbc:initialize-database>
 
    <!-- =============================== SERVLET ================================= -->
 

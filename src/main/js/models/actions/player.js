@@ -1,4 +1,4 @@
-import { REQUEST_PLAYERS, CHANGE_PAGE_PREV_PLAYERS, CHANGE_PAGE_NEXT_PLAYERS, REQUEST_SUCCESS_PLAYERS } from 'models/actions/actionTypes';
+import { REQUEST_PLAYERS, CHANGE_PAGE_PREV_PLAYERS, CHANGE_PAGE_NEXT_PLAYERS, REQUEST_SUCCESS_PLAYERS, REQUEST_FAILURE_PLAYERS } from 'models/actions/actionTypes';
 
 export const fetch = () => {
    return {
@@ -26,5 +26,12 @@ export const requestSuccess = (payload, pagination) => {
       type: REQUEST_SUCCESS_PLAYERS,
       payload,
       pagination
+   };
+};
+
+export const requestFailure = (payload) => {
+   return {
+      type: REQUEST_FAILURE_PLAYERS,
+      payload
    };
 };

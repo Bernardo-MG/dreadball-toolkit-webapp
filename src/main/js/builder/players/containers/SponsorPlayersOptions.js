@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import PlayerScrollablePanel from 'builder/players/components/PlayerScrollablePanel';
 
 import { selectRatedPlayers as selectPlayers } from 'models/selectors';
-import { selectLastRatedPlayerPage as selectLastPage } from 'models/selectors/page';
+import { selectCanLoadRatedPlayer as selectCanLoad } from 'models/selectors/request';
 
 import AddIcon from 'grommet/components/icons/base/AddCircle';
 
@@ -16,11 +16,11 @@ import { moveNextPage } from 'models/actions/sponsorPlayer';
 import { addTeamPlayer } from 'builder/players/actions';
 
 const SponsorPlayerOptions = (props) =>
-   <PlayerScrollablePanel source={props.source} onMore={!props.lastPage ? () => props.nextPage() : null}
+   <PlayerScrollablePanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null}
       buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
 
 SponsorPlayerOptions.propTypes = {
-   lastPage: PropTypes.bool.isRequired,
+   canLoad: PropTypes.bool.isRequired,
    nextPage: PropTypes.func.isRequired,
    buttonAction: PropTypes.func.isRequired,
    source: PropTypes.array.isRequired
@@ -29,7 +29,7 @@ SponsorPlayerOptions.propTypes = {
 const mapStateToProps = (state) => {
    return {
       source: selectPlayers(state),
-      lastPage: selectLastPage(state)
+      canLoad: selectCanLoad(state)
    };
 };
 

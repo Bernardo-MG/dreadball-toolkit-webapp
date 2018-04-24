@@ -6,7 +6,7 @@
    version="3.0" metadata-complete="true">
 
    <display-name>Dreadball Toolkit</display-name>
-   <description>Utilities webpage for Dreadball</description>
+   <description>Utilities webapp for Dreadball</description>
 
    <context-param>
       <param-name>contextClass</param-name>

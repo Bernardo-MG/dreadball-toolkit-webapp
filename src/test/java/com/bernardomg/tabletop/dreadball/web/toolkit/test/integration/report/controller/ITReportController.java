@@ -44,7 +44,7 @@ import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTe
 @ContextConfiguration(
         locations = { "classpath:context/test-servlet-dreadball.xml" })
 @WebAppConfiguration
-public final class ITReportController extends AbstractJUnit4SpringContextTests {
+public class ITReportController extends AbstractJUnit4SpringContextTests {
 
     /**
      * Application context.

@@ -17,28 +17,56 @@
     </Appenders>
 
    <Loggers>
-      <Logger name="com.bernardomg" level="debug" additivity="false">
+      <Logger name="com.bernardomg" level="warn" additivity="false">
          <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
       </Logger>
 
-      <logger name="org.eclipse.jetty" level="trace" additivity="false">
+      <!-- Spring Framework -->
+      <Logger name="org.springframework" level="warn" additivity="false">
          <AppenderRef ref="file" />
-      </logger>
-
-      <Logger name="org.springframework" level="debug" additivity="false">
-         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
       </Logger>
 
-      <!-- Queries logs -->
-
-      <logger name="org.hibernate.SQL" level="trace" additivity="false">
+      <!-- Hibernate -->
+      <Logger name="org.hibernate" level="warn" additivity="false">
          <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
+      </Logger>
+      <Logger name="org.hibernate.SQL" level="warn" additivity="false">
+         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
+      </Logger>
+
+      <!-- Liquibase -->
+      <Logger name="liquibase" level="warn" additivity="false">
+         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
+      </Logger>
+      <Logger name="liquibase.changelog" level="debug" additivity="false">
+         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
+      </Logger>
+      <Logger name="liquibase.executor" level="debug" additivity="false">
+         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
+      </Logger>
+
+      <!-- Jackson -->
+      <logger name="com.fasterxml.jackson" level="warn" additivity="false">
+         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
       </logger>
 
-      <!-- Root -->
+      <!-- Jetty -->
+      <logger name="org.eclipse.jetty" level="warn" additivity="false">
+         <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
+      </logger>
 
       <Root level="error">
          <AppenderRef ref="file" />
+         <AppenderRef ref="console" />
       </Root>
    </Loggers>
 
