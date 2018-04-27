@@ -57,7 +57,7 @@ Or this one for Tomcat:
 mvn tomcat7:run-war -P h2,tomcat7
 ```
 
-After this the project will be accessible at [http://localhost:8080/dreadball/].
+After this the project will be accessible at [http://localhost:8080/].
 
 ### Running tests
 

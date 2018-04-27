@@ -315,9 +315,6 @@
                      <stopKey>STOP</stopKey>
                      <stopPort>9999</stopPort>
                      <stopWait>5</stopWait>
-                     <webApp>
-                        <contextPath>${server.test.rootPath}</contextPath>
-                     </webApp>
                   </configuration>
                   <executions>
                      <execution>
@@ -360,9 +357,6 @@
                   <groupId>org.apache.tomcat.maven</groupId>
                   <artifactId>tomcat7-maven-plugin</artifactId>
                   <version>${plugin.tomcat7.version}</version>
-                  <configuration>
-                     <path>${server.test.rootPath}</path>
-                  </configuration>
                   <executions>
                      <execution>
                         <id>start-tomcat-it</id>
@@ -502,16 +496,10 @@
       <!-- ============================================== -->
       <!-- =================== ROUTES =================== -->
       <!-- ============================================== -->
-      <server.rootPath>/dreadball</server.rootPath>
-      <!-- ============================================== -->
-      <!-- =============== TESTING SERVER =============== -->
-      <!-- ============================================== -->
-      <server.test.rootPath>${server.rootPath}</server.test.rootPath>
       <!-- ============================================== -->
       <!-- ============= NODE ENVIRONMENT =============== -->
       <!-- ============================================== -->
       <node.env.appVersion>v${project.version}</node.env.appVersion>
-      <node.env.rootRoute>${server.rootPath}</node.env.rootRoute>
       <node.env.repoUrl>${project.scm.url}</node.env.repoUrl>
       <node.env.inputPath>./src/main/js/</node.env.inputPath>
       <node.env.outputPath>./target/generated-ui/</node.env.outputPath>
@@ -1030,7 +1018,6 @@
                      <environmentVariables>
                         <NODE_ENV>${node.env}</NODE_ENV>
                         <APP_VERSION>${node.env.appVersion}</APP_VERSION>
-                        <APP_ROUTE>${node.env.rootRoute}</APP_ROUTE>
                         <REPO_URL>${node.env.repoUrl}</REPO_URL>
                         <INPUT_PATH>${node.env.inputPath}</INPUT_PATH>
                         <OUTPUT_PATH>${node.env.outputPath}</OUTPUT_PATH>

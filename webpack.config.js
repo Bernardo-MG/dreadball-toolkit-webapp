@@ -7,9 +7,6 @@ const env = process.env.NODE_ENV || 'development';
 // Project version
 const PROJECT_VERSION = process.env.APP_VERSION || '';
 
-// Base route
-const APP_ROUTE = process.env.APP_ROUTE || '';
-
 // Project URL
 const PROJECT_REPO_URL = process.env.REPO_URL;
 
@@ -40,7 +37,6 @@ let plugins = [
          NODE_ENV: JSON.stringify(env)
       },
       APP_VERSION : JSON.stringify(PROJECT_VERSION),
-      ROUTE_BASE : JSON.stringify(APP_ROUTE),
       REPO_URL : JSON.stringify(PROJECT_REPO_URL)
    }) 
 ]
