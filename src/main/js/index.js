@@ -11,9 +11,7 @@ import 'theme/style.scss';
 
 const store = configureStore();
 
-const browserHistory = useRouterHistory(createHistory)({
-   basename: ROUTE_BASE
-});
+const browserHistory = useRouterHistory(createHistory)();
 
 const history = syncHistoryWithStore(browserHistory, store);
 

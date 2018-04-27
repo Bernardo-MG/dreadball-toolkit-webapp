@@ -17,7 +17,6 @@
    },
    "globals": {
       "APP_VERSION": false,
-      "ROUTE_BASE": false,
       "REPO_URL": false,,
       "Blob": false,
       "document": false,
