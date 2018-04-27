@@ -1,9 +1,10 @@
 
 export const appendBase = (url) => {
    let result;
+   const base = ROUTE_BASE || '';
 
-   if (url.indexOf(ROUTE_BASE) === -1) {
-      result = ROUTE_BASE + url;
+   if (url.indexOf(base) === -1) {
+      result = base + url;
    } else {
       result = url;
    }
