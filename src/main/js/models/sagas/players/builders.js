@@ -1,6 +1,5 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { put } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
-import { requestCurrentPage, requestNextPage } from 'models/sagas/players/requests';
 
 export function* build(action) {
    if (action.payload) {
