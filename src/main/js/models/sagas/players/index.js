@@ -1,4 +1,4 @@
-import { put, takeLatest } from 'redux-saga/effects';
+import { takeLatest } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
 import { requestCurrentPage, requestNextPage } from 'models/sagas/players/requests';
 import { build } from 'models/sagas/players/builders';
