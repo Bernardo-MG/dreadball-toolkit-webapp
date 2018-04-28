@@ -1,6 +1,6 @@
 import { put, call, select } from 'redux-saga/effects';
 import * as types from 'models/actions/actionTypes';
-import { fetcheraffinityPlayer as fetcher } from 'models/requests/fetchers';
+import { fetcherAffinityPlayer as fetcher } from 'models/requests/fetchers';
 import { selectCanLoadRatedPlayer as canLoadSelector } from 'models/selectors/request';
 import { selectCurrentRatedPlayerPage as currentPageSelector } from 'models/selectors/page';
 import { requestSuccess, requestFailure } from 'models/actions/affinityPlayers';
