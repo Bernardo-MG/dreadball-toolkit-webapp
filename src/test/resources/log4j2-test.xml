@@ -43,11 +43,11 @@
          <AppenderRef ref="file" />
          <AppenderRef ref="console" />
       </Logger>
-      <Logger name="liquibase.changelog" level="debug" additivity="false">
+      <Logger name="liquibase.changelog" level="warn" additivity="false">
          <AppenderRef ref="file" />
          <AppenderRef ref="console" />
       </Logger>
-      <Logger name="liquibase.executor" level="debug" additivity="false">
+      <Logger name="liquibase.executor" level="warn" additivity="false">
          <AppenderRef ref="file" />
          <AppenderRef ref="console" />
       </Logger>
