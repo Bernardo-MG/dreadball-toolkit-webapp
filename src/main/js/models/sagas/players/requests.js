@@ -3,7 +3,7 @@ import * as types from 'models/actions/actionTypes';
 import { fetcherPlayer as fetcher } from 'models/requests/fetchers';
 import { selectCanLoadPlayer as canLoadSelector } from 'models/selectors/request';
 import { selectCurrentPlayerPage as currentPageSelector } from 'models/selectors/page';
-import { requestSuccess, requestFailure } from 'models/actions/player';
+import { requestSuccess, requestFailure } from 'models/actions/players';
 
 export function fetch(params) {
    return fetcher.fetch(params);
