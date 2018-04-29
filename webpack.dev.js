@@ -11,6 +11,7 @@ module.exports = merge(common, {
       new webpack.HotModuleReplacementPlugin(),
       new webpack.LoaderOptionsPlugin({
          debug: true
-      })
+      }),
+      new BundleAnalyzerPlugin()
    ]
 });
