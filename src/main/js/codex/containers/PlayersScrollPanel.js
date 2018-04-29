@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetch, moveNextPage } from 'models/actions/player';
+import { fetch, moveNextPage } from 'models/actions/players';
 import { selectPlayers } from 'models/selectors';
 import { selectCanLoadPlayer as selectCanLoad } from 'models/selectors/request';
 

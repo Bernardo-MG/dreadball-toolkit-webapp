@@ -18,7 +18,7 @@ import SponsorAssetsForm from 'builder/views/components/SponsorAssetsForm';
 import SponsorNameInput from 'builder/sponsors/containers/SponsorNameInput';
 import SponsorTeamCost from 'builder/views/components/SponsorTeamCost';
 
-import SponsorPlayersOptions from 'builder/players/containers/SponsorPlayersOptions';
+import AffinityPlayersOptions from 'builder/players/containers/AffinityPlayersOptions';
 
 import SidebarView from 'views/containers/SidebarView';
 
@@ -70,7 +70,7 @@ class SponsorTeamView extends Component {
       let view = null;
 
       if (this.state.view === 'addPlayers') {
-         view = <SponsorPlayersOptions />;
+         view = <AffinityPlayersOptions />;
       } else if (this.state.view === 'players') {
          view =
             <Box>

@@ -12,14 +12,14 @@ import { selectCanLoadRatedPlayer as selectCanLoad } from 'models/selectors/requ
 
 import AddIcon from 'grommet/components/icons/base/AddCircle';
 
-import { moveNextPage } from 'models/actions/sponsorPlayer';
+import { moveNextPage } from 'models/actions/affinityPlayers';
 import { addTeamPlayer } from 'builder/players/actions';
 
-const SponsorPlayerOptions = (props) =>
+const affinityPlayerOptions = (props) =>
    <PlayerScrollablePanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null}
       buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
 
-SponsorPlayerOptions.propTypes = {
+affinityPlayerOptions.propTypes = {
    canLoad: PropTypes.bool.isRequired,
    nextPage: PropTypes.func.isRequired,
    buttonAction: PropTypes.func.isRequired,
@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorPlayerOptions);
+)(affinityPlayerOptions);
