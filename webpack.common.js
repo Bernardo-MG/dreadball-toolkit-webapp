@@ -33,59 +33,16 @@ let plugins = [
    }),
    new webpack.NoEmitOnErrorsPlugin(),
    new webpack.DefinePlugin({
-      'process.env': {
-         NODE_ENV: JSON.stringify(env)
-      },
       APP_VERSION : JSON.stringify(PROJECT_VERSION),
       REPO_URL : JSON.stringify(PROJECT_REPO_URL)
    }) 
 ]
-
-var devtool = null;
-if (env === 'production') {
-   // Use the default plugin after moving to Webpack 4
-   const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
-   // Production specific configuration
-   devtool = false,
-   plugins = plugins.concat([
-      new UglifyJsPlugin({
-         uglifyOptions: {
-            compress: {
-               warnings: false,
-               conditionals: true,
-               unused: true,
-               comparisons: true,
-               sequences: true,
-               dead_code: true,
-               evaluate: true,
-               if_return: true,
-               join_vars: true,
-            },
-            output: {
-               comments: false
-            }
-         }
-      })
-   ]);
-} else {
-   // Development specific configuration
-   process.traceDeprecation = true;
-   devtool = 'inline-source-map',
-   plugins = plugins.concat([
-      new webpack.NamedModulesPlugin(),
-      new webpack.HotModuleReplacementPlugin(),
-      new webpack.LoaderOptionsPlugin({
-         debug: true
-      })
-   ]);
-}
 
 module.exports = {
    context : __dirname,
    entry: {
       app: INPUT_PATH_ENTRY,
    },
-   devtool,
    cache : true,
    output : {
       path : path.resolve(__dirname, OUTPUT_PATH),
