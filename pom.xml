@@ -991,7 +991,9 @@
             </configuration>
             <executions>
                <execution>
-                  <id>node-npm-install</id>
+                  <!-- Installs the frontend frameworks -->
+                  <!-- Installs Node and npm -->
+                  <id>frontend-framework</id>
                   <goals>
                      <goal>install-node-and-npm</goal>
                   </goals>
@@ -1001,7 +1003,9 @@
                   </configuration>
                </execution>
                <execution>
-                  <id>npm-install</id>
+                  <!-- Installs the frontend dependencies -->
+                  <!-- Installs npm dependencies -->
+                  <id>frontend-dependencies</id>
                   <goals>
                      <goal>npm</goal>
                   </goals>
@@ -1010,7 +1014,8 @@
                   </configuration>
                </execution>
                <execution>
-                  <id>webpack</id>
+                  <!-- Builds the frontend -->
+                  <id>frontend-build</id>
                   <goals>
                      <goal>webpack</goal>
                   </goals>
@@ -1026,7 +1031,8 @@
                   </configuration>
                </execution>
                <execution>
-                  <id>npm-test</id>
+                  <!-- Runs the frontend tests -->
+                  <id>frontend-test</id>
                   <goals>
                      <goal>npm</goal>
                   </goals>
