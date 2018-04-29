@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import PlayerScrollablePanel from 'builder/players/components/PlayerScrollablePanel';
+import TeamPlayerScrollPanel from 'builder/players/components/TeamPlayerScrollPanel';
 
 import { selectRatedPlayers as selectPlayers } from 'models/selectors';
 import { selectCanLoadRatedPlayer as selectCanLoad } from 'models/selectors/request';
@@ -16,7 +16,7 @@ import { moveNextPage } from 'models/actions/affinityPlayers';
 import { addTeamPlayer } from 'builder/players/actions';
 
 const affinityPlayerOptions = (props) =>
-   <PlayerScrollablePanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null}
+   <TeamPlayerScrollPanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null}
       buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
 
 affinityPlayerOptions.propTypes = {

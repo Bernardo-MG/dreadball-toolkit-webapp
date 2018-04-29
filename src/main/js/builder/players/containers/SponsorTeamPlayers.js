@@ -7,7 +7,7 @@ import { connect } from 'react-redux';
 
 import { injectIntl } from 'react-intl';
 
-import PlayerScrollablePanel from 'builder/players/components/PlayerScrollablePanel';
+import TeamPlayerScrollPanel from 'builder/players/components/TeamPlayerScrollPanel';
 
 import { removeTeamPlayer } from 'builder/players/actions';
 
@@ -16,7 +16,7 @@ import { selectSponsorRatedPlayers } from 'builder/players/selectors';
 import SubtractIcon from 'grommet/components/icons/base/SubtractCircle';
 
 const SponsorTeamPlayers = (props) =>
-   <PlayerScrollablePanel source={props.source}
+   <TeamPlayerScrollPanel source={props.source}
       buttonAction={props.buttonAction} buttonIcon={<SubtractIcon />} />;
 
 SponsorTeamPlayers.propTypes = {

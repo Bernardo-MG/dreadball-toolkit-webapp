@@ -20,7 +20,7 @@ import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 import playerRoleMessages from 'i18n/role';
 
-class PlayerScrollablePanel extends Component {
+class TeamPlayerScrollPanel extends Component {
 
    constructor(props) {
       super(props);
@@ -83,7 +83,7 @@ class PlayerScrollablePanel extends Component {
    }
 }
 
-PlayerScrollablePanel.propTypes = {
+TeamPlayerScrollPanel.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -91,4 +91,4 @@ PlayerScrollablePanel.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(PlayerScrollablePanel);
+export default injectIntl(TeamPlayerScrollPanel);
