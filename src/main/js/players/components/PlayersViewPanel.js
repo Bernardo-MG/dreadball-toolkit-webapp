@@ -13,7 +13,7 @@ import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
-import PlayerPanel from 'codex/components/PlayerPanel';
+import PlayerPanel from 'players/components/PlayerPanel';
 
 import labelMessages from 'i18n/label';
 import playerMessages from 'i18n/player';

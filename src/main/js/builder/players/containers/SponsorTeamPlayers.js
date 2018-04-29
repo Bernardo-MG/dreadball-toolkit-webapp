@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { injectIntl } from 'react-intl';
-
-import TeamPlayerScrollPanel from 'builder/players/components/TeamPlayerScrollPanel';
+import TeamPlayerViewPanel from 'players/components/TeamPlayerViewPanel';
 
 import { removeTeamPlayer } from 'builder/players/actions';
 
@@ -16,7 +14,7 @@ import { selectSponsorRatedPlayers } from 'builder/players/selectors';
 import SubtractIcon from 'grommet/components/icons/base/SubtractCircle';
 
 const SponsorTeamPlayers = (props) =>
-   <TeamPlayerScrollPanel source={props.source}
+   <TeamPlayerViewPanel source={props.source}
       buttonAction={props.buttonAction} buttonIcon={<SubtractIcon />} />;
 
 SponsorTeamPlayers.propTypes = {
@@ -37,7 +35,7 @@ const mapDispatchToProps = (dispatch) => {
    };
 };
 
-export default injectIntl(connect(
+export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorTeamPlayers));
+)(SponsorTeamPlayers);

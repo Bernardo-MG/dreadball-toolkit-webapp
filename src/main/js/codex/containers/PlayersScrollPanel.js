@@ -9,7 +9,7 @@ import { fetch, moveNextPage } from 'players/actions/players';
 import { selectPlayers } from 'players/selectors';
 import { selectCanLoadPlayer as selectCanLoad } from 'players/selectors/request';
 
-import PlayersViewPanel from 'codex/components/PlayersViewPanel';
+import PlayersViewPanel from 'players/components/PlayersViewPanel';
 
 class PlayersScrollPanel extends Component {
 

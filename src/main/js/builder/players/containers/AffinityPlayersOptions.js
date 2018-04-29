@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import TeamPlayerScrollPanel from 'builder/players/components/TeamPlayerScrollPanel';
+import TeamPlayerViewPanel from 'players/components/TeamPlayerViewPanel';
 
 import { selectRatedPlayers as selectPlayers } from 'players/selectors';
 import { selectCanLoadRatedPlayer as selectCanLoad } from 'players/selectors/request';
@@ -15,11 +15,11 @@ import AddIcon from 'grommet/components/icons/base/AddCircle';
 import { moveNextPage } from 'players/actions/affinityPlayers';
 import { addTeamPlayer } from 'builder/players/actions';
 
-const affinityPlayerOptions = (props) =>
-   <TeamPlayerScrollPanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null}
+const AffinityPlayersOptions = (props) =>
+   <TeamPlayerViewPanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null}
       buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
 
-affinityPlayerOptions.propTypes = {
+AffinityPlayersOptions.propTypes = {
    canLoad: PropTypes.bool.isRequired,
    nextPage: PropTypes.func.isRequired,
    buttonAction: PropTypes.func.isRequired,
@@ -43,4 +43,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(affinityPlayerOptions);
+)(AffinityPlayersOptions);

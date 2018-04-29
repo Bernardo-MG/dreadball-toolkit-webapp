@@ -13,14 +13,14 @@ import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
-import PlayerPanel from 'codex/components/PlayerPanel';
+import PlayerPanel from 'players/components/PlayerPanel';
 
 import labelMessages from 'i18n/label';
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 import playerRoleMessages from 'i18n/role';
 
-class TeamPlayerScrollPanel extends Component {
+class TeamPlayerViewPanel extends Component {
 
    constructor(props) {
       super(props);
@@ -83,7 +83,7 @@ class TeamPlayerScrollPanel extends Component {
    }
 }
 
-TeamPlayerScrollPanel.propTypes = {
+TeamPlayerViewPanel.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -91,4 +91,4 @@ TeamPlayerScrollPanel.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(TeamPlayerScrollPanel);
+export default injectIntl(TeamPlayerViewPanel);
