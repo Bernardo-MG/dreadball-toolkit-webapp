@@ -33,9 +33,6 @@ let plugins = [
    }),
    new webpack.NoEmitOnErrorsPlugin(),
    new webpack.DefinePlugin({
-      'process.env': {
-         NODE_ENV: JSON.stringify(env)
-      },
       APP_VERSION : JSON.stringify(PROJECT_VERSION),
       REPO_URL : JSON.stringify(PROJECT_REPO_URL)
    }) 

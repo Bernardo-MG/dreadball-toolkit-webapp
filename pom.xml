@@ -169,10 +169,6 @@
             </property>
          </activation>
          <properties>
-            <!-- Production Node environment flag -->
-            <node.env>production</node.env>
-            <!-- App root prefix -->
-            <node.env.rootRoute></node.env.rootRoute>
             <!-- Spring context -->
             <database.tag>postgres</database.tag>
             <database.auth.source>env</database.auth.source>
@@ -229,7 +225,6 @@
                         <configuration>
                            <arguments>run build</arguments>
                            <environmentVariables>
-                              <NODE_ENV>${node.env}</NODE_ENV>
                               <APP_VERSION>${node.env.appVersion}</APP_VERSION>
                               <REPO_URL>${node.env.repoUrl}</REPO_URL>
                               <INPUT_PATH>${node.env.inputPath}</INPUT_PATH>
@@ -456,10 +451,6 @@
          <!-- Production profile -->
          <!-- Sets ups the environment for production -->
          <id>production</id>
-         <properties>
-            <!-- Production Node environment flag -->
-            <node.env>production</node.env>
-         </properties>
          <build>
             <plugins>
                <plugin>
@@ -476,7 +467,6 @@
                         <configuration>
                            <arguments>run build</arguments>
                            <environmentVariables>
-                              <NODE_ENV>${node.env}</NODE_ENV>
                               <APP_VERSION>${node.env.appVersion}</APP_VERSION>
                               <REPO_URL>${node.env.repoUrl}</REPO_URL>
                               <INPUT_PATH>${node.env.inputPath}</INPUT_PATH>
@@ -498,10 +488,6 @@
             <!-- Active by default to ease development -->
             <activeByDefault>true</activeByDefault>
          </activation>
-         <properties>
-            <!-- development Node environment flag -->
-            <node.env>development</node.env>
-         </properties>
          <build>
             <plugins>
                <plugin>
@@ -518,7 +504,6 @@
                         <configuration>
                            <arguments>run development</arguments>
                            <environmentVariables>
-                              <NODE_ENV>${node.env}</NODE_ENV>
                               <APP_VERSION>${node.env.appVersion}</APP_VERSION>
                               <REPO_URL>${node.env.repoUrl}</REPO_URL>
                               <INPUT_PATH>${node.env.inputPath}</INPUT_PATH>
@@ -1056,21 +1041,6 @@
                         <requireProperty>
                            <property>database.tag</property>
                            <message><![CDATA[Give a Spring database profile.]]></message>
-                        </requireProperty>
-                     </rules>
-                  </configuration>
-               </execution>
-               <execution>
-                  <id>enforce-frontend-values</id>
-                  <goals>
-                     <goal>enforce</goal>
-                  </goals>
-                  <configuration>
-                     <rules>
-                        <!-- Node environment should be set. -->
-                        <requireProperty>
-                           <property>node.env</property>
-                           <message><![CDATA[Give a Node environment value.]]></message>
                         </requireProperty>
                      </rules>
                   </configuration>
