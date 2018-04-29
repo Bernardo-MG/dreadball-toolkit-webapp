@@ -4,9 +4,10 @@ const common = require('./webpack.common.js');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 module.exports = merge(common, {
-   devtool: false,
+   devtool: 'source-map',
    plugins: [
       new UglifyJsPlugin({
+         sourceMap: true,
          uglifyOptions: {
             compress: {
                warnings: false,
