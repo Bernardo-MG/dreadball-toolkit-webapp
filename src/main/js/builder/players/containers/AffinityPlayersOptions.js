@@ -7,12 +7,12 @@ import { connect } from 'react-redux';
 
 import TeamPlayerScrollPanel from 'builder/players/components/TeamPlayerScrollPanel';
 
-import { selectRatedPlayers as selectPlayers } from 'models/selectors';
-import { selectCanLoadRatedPlayer as selectCanLoad } from 'models/selectors/request';
+import { selectRatedPlayers as selectPlayers } from 'players/selectors';
+import { selectCanLoadRatedPlayer as selectCanLoad } from 'players/selectors/request';
 
 import AddIcon from 'grommet/components/icons/base/AddCircle';
 
-import { moveNextPage } from 'models/actions/affinityPlayers';
+import { moveNextPage } from 'players/actions/affinityPlayers';
 import { addTeamPlayer } from 'builder/players/actions';
 
 const affinityPlayerOptions = (props) =>

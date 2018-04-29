@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
 import { routerReducer as routing } from 'react-router-redux';
 import builder from 'builder/reducers';
-import model from 'models/reducers';
+import model from 'players/reducers';
 import paginate from 'api/pagination/reducers';
 import views from 'views/reducers';
 

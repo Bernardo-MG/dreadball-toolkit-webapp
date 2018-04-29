@@ -1,4 +1,4 @@
-import { filterByKeys } from 'models/selectors/utils';
+import { filterByKeys } from 'players/selectors/utils';
 
 const data = {
    1: "A",

@@ -1,4 +1,4 @@
-import { selectLastPlayerPage, selectLastRatedPlayerPage } from 'models/selectors/page';
+import { selectLastPlayerPage, selectLastRatedPlayerPage } from 'players/selectors/page';
 
 export const selectPlayerIsFetching = (state) => state.pagination.players.isFetching;
 

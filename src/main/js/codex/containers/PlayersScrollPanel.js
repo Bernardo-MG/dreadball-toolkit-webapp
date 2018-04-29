@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetch, moveNextPage } from 'models/actions/players';
-import { selectPlayers } from 'models/selectors';
-import { selectCanLoadPlayer as selectCanLoad } from 'models/selectors/request';
+import { fetch, moveNextPage } from 'players/actions/players';
+import { selectPlayers } from 'players/selectors';
+import { selectCanLoadPlayer as selectCanLoad } from 'players/selectors/request';
 
 import PlayersViewPanel from 'codex/components/PlayersViewPanel';
 

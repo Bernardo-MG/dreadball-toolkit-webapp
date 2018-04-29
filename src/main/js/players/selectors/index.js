@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { filterByKeys, selectAllValues } from 'models/selectors/utils';
+import { filterByKeys, selectAllValues } from 'players/selectors/utils';
 
 export const selectPlayers = (state) => selectAllValues(state.model.players);
 

@@ -1,23 +1,21 @@
 import { put, call, select } from 'redux-saga/effects';
-import * as types from 'models/actions/actionTypes';
-import { fetcherAffinityPlayer as fetcher } from 'models/requests/fetchers';
-import { selectCanLoadRatedPlayer as canLoadSelector } from 'models/selectors/request';
-import { selectCurrentRatedPlayerPage as currentPageSelector } from 'models/selectors/page';
-import { requestSuccess, requestFailure } from 'models/actions/affinityPlayers';
-import { selectSponsorAffinities } from 'models/selectors';
+import * as types from 'players/actions/actionTypes';
+import { fetcherPlayer as fetcher } from 'players/requests/fetchers';
+import { selectCanLoadPlayer as canLoadSelector } from 'players/selectors/request';
+import { selectCurrentPlayerPage as currentPageSelector } from 'players/selectors/page';
+import { requestSuccess, requestFailure } from 'players/actions/players';
 
-function fetch(params) {
+export function fetch(params) {
    return fetcher.fetch(params);
 }
 
 export function* request(action, pageStep) {
    const canLoad = yield select(canLoadSelector);
    if (canLoad) {
-      yield put({ type: types.FETCHING_TEAM_PLAYERS });
+      yield put({ type: types.FETCHING_PLAYERS });
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;
-      const affinities = yield select(selectSponsorAffinities);
-      const params = { ...action.params, affinities, page };
+      const params = { ...action.params, page };
       let response;
       try {
          response = yield call(fetch, params);
