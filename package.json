@@ -17,6 +17,8 @@
       "url": "https://www.github.com/bernardo-mg/dreadball-toolkit-webapp/issues"
    },
    "scripts": {
+      "development": "webpack --config webpack.dev.js",
+      "build": "webpack --config webpack.prod.js",
       "test": "jest"
    },
    "jest": {
@@ -57,8 +59,9 @@
       "reselect": "~3.0.1",
       "sass-loader": "~6.0.5",
       "superagent": "~3.6.0",
-      "uglifyjs-webpack-plugin": "~1.0.0",
-      "webpack": "~3.11.0"
+      "uglifyjs-webpack-plugin": "~1.2.5",
+      "webpack": "~3.11.0",
+      "webpack-merge": "~4.1.2"
    },
    "devDependencies": {
       "babel-core": "~6.26.0",
