@@ -176,6 +176,8 @@
             <!-- Spring context -->
             <database.tag>postgres</database.tag>
             <database.auth.source>env</database.auth.source>
+            <!-- Production arguments -->
+            <webpack.arguments>-p</webpack.arguments>
          </properties>
          <dependencies>
             <dependency>
@@ -434,6 +436,8 @@
          <properties>
             <!-- Production Node environment flag -->
             <node.env>production</node.env>
+            <!-- Production arguments -->
+            <webpack.arguments>-p</webpack.arguments>
          </properties>
       </profile>
       <profile>
@@ -494,9 +498,6 @@
       <!-- ============================================== -->
       <manifest.name>com/bernardomg/tabletop/dreadball/dreadball_toolkit_webapp</manifest.name>
       <!-- ============================================== -->
-      <!-- =================== ROUTES =================== -->
-      <!-- ============================================== -->
-      <!-- ============================================== -->
       <!-- ============= NODE ENVIRONMENT =============== -->
       <!-- ============================================== -->
       <node.env.appVersion>v${project.version}</node.env.appVersion>
@@ -504,6 +505,10 @@
       <node.env.inputPath>./src/main/js/</node.env.inputPath>
       <node.env.outputPath>./target/generated-ui/</node.env.outputPath>
       <node.env.modules>./node_modules</node.env.modules>
+      <!-- ============================================== -->
+      <!-- ================== WEBPACK =================== -->
+      <!-- ============================================== -->
+      <webpack.arguments></webpack.arguments>
       <!-- ============================================== -->
       <!-- =========== DEPENDENCIES VERSIONS ============ -->
       <!-- ============================================== -->
@@ -980,6 +985,21 @@
                      </rules>
                   </configuration>
                </execution>
+               <execution>
+                  <id>enforce-frontend-values</id>
+                  <goals>
+                     <goal>enforce</goal>
+                  </goals>
+                  <configuration>
+                     <rules>
+                        <!-- Node environment should be set. -->
+                        <requireProperty>
+                           <property>node.env</property>
+                           <message><![CDATA[Give a Node environment value.]]></message>
+                        </requireProperty>
+                     </rules>
+                  </configuration>
+               </execution>
             </executions>
          </plugin>
          <plugin>
@@ -1021,6 +1041,7 @@
                   </goals>
                   <configuration>
                      <environmentVariables>
+                        <arguments>${webpack.arguments}</arguments>
                         <NODE_ENV>${node.env}</NODE_ENV>
                         <APP_VERSION>${node.env.appVersion}</APP_VERSION>
                         <REPO_URL>${node.env.repoUrl}</REPO_URL>
