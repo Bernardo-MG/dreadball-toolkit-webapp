@@ -3,6 +3,7 @@ const merge = require('webpack-merge');
 const common = require('./webpack.common.js');
 
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 
 module.exports = merge(common, {
    devtool: 'source-map',
@@ -28,6 +29,7 @@ module.exports = merge(common, {
       }),
       new webpack.DefinePlugin({
          'process.env.NODE_ENV': JSON.stringify('production')
-      })
+      }),
+      new OptimizeCssAssetsPlugin()
    ]
 });
