@@ -6,7 +6,7 @@ import SponsorRankValue from 'builder/sponsors/containers/SponsorRankValue';
 import SponsorTotalCost from 'builder/sponsors/containers/SponsorTotalCost';
 
 const SponsorTeamCost = () =>
-   <Box direction='row'>
+   <Box direction='row' responsive={false}>
       <Box pad='small'>
          <SponsorRankValue />
       </Box>
