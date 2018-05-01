@@ -15,10 +15,8 @@ import TableRow from 'grommet/components/TableRow';
 
 import PlayerPanel from 'players/components/PlayerPanel';
 
-import labelMessages from 'i18n/label';
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
-import playerRoleMessages from 'i18n/role';
 
 class TeamPlayerViewPanel extends Component {
 
@@ -57,9 +55,8 @@ class TeamPlayerViewPanel extends Component {
       const headers = [];
       headers.push('');
       headers.push(this.props.intl.formatMessage(playerMessages.name));
-      headers.push(this.props.intl.formatMessage(playerMessages.role));
       headers.push(this.props.intl.formatMessage(playerMessages.cost));
-      headers.push(this.props.intl.formatMessage(labelMessages.info));
+      headers.push('');
 
       return (
          <Box>
@@ -71,7 +68,6 @@ class TeamPlayerViewPanel extends Component {
                      <TableRow key={i}>
                         <td><Button onClick={() => this.props.buttonAction(player.templateName)} icon={this.props.buttonIcon} /></td>
                         <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
-                        <td>{this.props.intl.formatMessage(playerRoleMessages[player.role])}</td>
                         <td>{player.cost}</td>
                         <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
