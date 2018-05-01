@@ -1,5 +1,5 @@
-import model from 'models/reducers';
-import * as types from 'models/actions/actionTypes';
+import model from 'players/reducers';
+import * as types from 'players/actions/actionTypes';
 
 describe('Model reducer', () => {
    it('creates players', () => {

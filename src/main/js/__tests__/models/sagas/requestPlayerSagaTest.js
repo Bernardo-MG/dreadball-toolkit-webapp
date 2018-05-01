@@ -1,10 +1,10 @@
-import { request, fetch } from 'models/sagas/players/requests';
+import { request, fetch } from 'players/sagas/players/requests';
 import { select, put, call } from 'redux-saga/effects';
-import { selectCanLoadPlayer as canLoadSelector } from 'models/selectors/request';
-import { selectCurrentPlayerPage as currentPageSelector } from 'models/selectors/page';
-import { requestSuccess, requestFailure } from 'models/actions/players';
+import { selectCanLoadPlayer as canLoadSelector } from 'players/selectors/request';
+import { selectCurrentPlayerPage as currentPageSelector } from 'players/selectors/page';
+import { requestSuccess, requestFailure } from 'players/actions/players';
 import { cloneableGenerator } from 'redux-saga/utils';
-import * as types from 'models/actions/actionTypes';
+import * as types from 'players/actions/actionTypes';
 
 const generator = cloneableGenerator(request)({}, 0);
 

@@ -1,4 +1,4 @@
-import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_PLAYERS, CREATE_RATED_PLAYERS } from 'models/actions/actionTypes';
+import { CREATE_ABILITIES, CREATE_AFFINITIES, CREATE_PLAYERS, CREATE_RATED_PLAYERS } from 'players/actions/actionTypes';
 
 const model = (state = { abilities: {}, affinities: {}, players: {}, ratedPlayers: {} }, action) => {
    const { type, payload } = action;

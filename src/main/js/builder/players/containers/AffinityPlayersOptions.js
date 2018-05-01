@@ -5,23 +5,24 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import PlayerScrollablePanel from 'builder/players/components/PlayerScrollablePanel';
+import AutosizeTeamPlayerViewPanel from 'players/containers/AutosizeTeamPlayerViewPanel';
 
-import { selectRatedPlayers as selectPlayers } from 'models/selectors';
-import { selectCanLoadRatedPlayer as selectCanLoad } from 'models/selectors/request';
+import { selectRatedPlayers as selectPlayers } from 'players/selectors';
+import { selectCanLoadRatedPlayer as selectCanLoad } from 'players/selectors/request';
+import { selectSmallScreen } from 'views/selectors';
 
 import AddIcon from 'grommet/components/icons/base/AddCircle';
 
-import { moveNextPage } from 'models/actions/affinityPlayers';
+import { moveNextPage } from 'players/actions/affinityPlayers';
 import { addTeamPlayer } from 'builder/players/actions';
 
-const affinityPlayerOptions = (props) =>
-   <PlayerScrollablePanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null}
-      buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
+const AffinityPlayersOptions = (props) =>
+   <AutosizeTeamPlayerViewPanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null} buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
 
-affinityPlayerOptions.propTypes = {
+AffinityPlayersOptions.propTypes = {
    canLoad: PropTypes.bool.isRequired,
    nextPage: PropTypes.func.isRequired,
+   smallView: PropTypes.bool.isRequired,
    buttonAction: PropTypes.func.isRequired,
    source: PropTypes.array.isRequired
 };
@@ -29,7 +30,8 @@ affinityPlayerOptions.propTypes = {
 const mapStateToProps = (state) => {
    return {
       source: selectPlayers(state),
-      canLoad: selectCanLoad(state)
+      canLoad: selectCanLoad(state),
+      smallView: selectSmallScreen(state)
    };
 };
 
@@ -43,4 +45,4 @@ const mapDispatchToProps = (dispatch) => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(affinityPlayerOptions);
+)(AffinityPlayersOptions);

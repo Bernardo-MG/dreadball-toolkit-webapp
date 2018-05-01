@@ -13,14 +13,12 @@ import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
-import PlayerPanel from 'codex/components/PlayerPanel';
+import PlayerPanel from 'players/components/PlayerPanel';
 
-import labelMessages from 'i18n/label';
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
-import playerRoleMessages from 'i18n/role';
 
-class PlayersViewPanel extends Component {
+class TeamPlayerViewPanelSmall extends Component {
 
    constructor(props) {
       super(props);
@@ -55,9 +53,9 @@ class PlayersViewPanel extends Component {
       }
 
       const headers = [];
+      headers.push('');
       headers.push(this.props.intl.formatMessage(playerMessages.name));
-      headers.push(this.props.intl.formatMessage(playerMessages.role));
-      headers.push(this.props.intl.formatMessage(labelMessages.info));
+      headers.push('');
 
       return (
          <Box>
@@ -67,8 +65,8 @@ class PlayersViewPanel extends Component {
                <tbody>
                   { this.props.source.map((player, i) =>
                      <TableRow key={i}>
+                        <td><Button onClick={() => this.props.buttonAction(player.templateName)} icon={this.props.buttonIcon} /></td>
                         <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
-                        <td>{this.props.intl.formatMessage(playerRoleMessages[player.role])}</td>
                         <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
@@ -79,10 +77,12 @@ class PlayersViewPanel extends Component {
    }
 }
 
-PlayersViewPanel.propTypes = {
+TeamPlayerViewPanelSmall.propTypes = {
    source: PropTypes.array.isRequired,
-   intl: PropTypes.object.isRequired,
-   onMore: PropTypes.func
+   onMore: PropTypes.func,
+   buttonAction: PropTypes.func.isRequired,
+   buttonIcon: PropTypes.object.isRequired,
+   intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(PlayersViewPanel);
+export default injectIntl(TeamPlayerViewPanelSmall);

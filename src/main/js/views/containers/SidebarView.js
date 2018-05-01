@@ -33,14 +33,12 @@ const SidebarView = (props) => {
 
    return (
       <Split priority={priority} flex="left" separator={true} >
-         <Box direction='column'>
-            <Box direction='row'>
-               <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
-                  {toggleNavButton}
-                  <Title truncate={false}>{props.title}</Title>
-                  {toggleSideButton}
-               </Header>
-            </Box>
+         <Box>
+            <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
+               {toggleNavButton}
+               <Title truncate={false}>{props.title}</Title>
+               {toggleSideButton}
+            </Header>
             {props.children}
          </Box>
          {props.sideBar}

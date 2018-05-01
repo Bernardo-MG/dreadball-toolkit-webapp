@@ -1,5 +1,5 @@
 import { createSelector } from 'reselect';
-import { filterByKeys } from 'models/selectors/utils';
+import { filterByKeys } from 'players/selectors/utils';
 
 export const selectPlayers = (state) => state.builder.sponsor.players;
 

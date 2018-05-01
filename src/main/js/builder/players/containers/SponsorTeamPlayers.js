@@ -5,9 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { injectIntl } from 'react-intl';
-
-import PlayerScrollablePanel from 'builder/players/components/PlayerScrollablePanel';
+import AutosizeTeamPlayerViewPanel from 'players/containers/AutosizeTeamPlayerViewPanel';
 
 import { removeTeamPlayer } from 'builder/players/actions';
 
@@ -16,8 +14,7 @@ import { selectSponsorRatedPlayers } from 'builder/players/selectors';
 import SubtractIcon from 'grommet/components/icons/base/SubtractCircle';
 
 const SponsorTeamPlayers = (props) =>
-   <PlayerScrollablePanel source={props.source}
-      buttonAction={props.buttonAction} buttonIcon={<SubtractIcon />} />;
+   <AutosizeTeamPlayerViewPanel source={props.source} buttonAction={props.buttonAction} buttonIcon={<SubtractIcon />} />;
 
 SponsorTeamPlayers.propTypes = {
    source: PropTypes.array.isRequired,
@@ -37,7 +34,7 @@ const mapDispatchToProps = (dispatch) => {
    };
 };
 
-export default injectIntl(connect(
+export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(SponsorTeamPlayers));
+)(SponsorTeamPlayers);

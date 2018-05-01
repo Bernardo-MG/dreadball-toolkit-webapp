@@ -1,4 +1,4 @@
-import { modelSagas } from 'models/sagas';
+import { modelSagas } from 'players/sagas';
 import { builderSagas } from 'builder/sagas';
 import { reportSagas } from 'report/sagas';
 import { all } from 'redux-saga/effects';

@@ -4,10 +4,6 @@ const labelMessages = defineMessages({
    accept: {
       id: 'label.accept',
       defaultMessage: 'Accept'
-   },
-   info: {
-      id: 'label.info',
-      defaultMessage: 'Info'
    }
 });
 
