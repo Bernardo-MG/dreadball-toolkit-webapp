@@ -7,6 +7,7 @@ import { injectIntl } from 'react-intl';
 import Box from 'grommet/components/Box';
 import Columns from 'grommet/components/Columns';
 import Heading from 'grommet/components/Heading';
+import Label from 'grommet/components/Label';
 import Value from 'grommet/components/Value';
 
 import abilityMessages from 'i18n/ability';
@@ -85,7 +86,7 @@ class PlayerPanel extends Component {
       return (
          <Box>
             <Heading tag='h1'>{this.props.intl.formatMessage(playerNameMessages[this.props.source.name])}</Heading>
-            <Box>{this.props.intl.formatMessage(playerMessages.role)}: {this.props.intl.formatMessage(playerRoleMessages[this.props.source.role])}</Box>
+            <Label align='center'>{this.props.intl.formatMessage(playerRoleMessages[this.props.source.role])}</Label>
             <Box>{this.props.intl.formatMessage(playerMessages.abilities)}: {this.props.source.abilities.map((a) => this.props.intl.formatMessage(abilityMessages[a])).join(', ')}</Box>
             <Box separator='horizontal'>{attributes}</Box>
             <Box>{costs}</Box>
