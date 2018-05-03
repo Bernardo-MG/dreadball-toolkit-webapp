@@ -87,7 +87,7 @@ class PlayerPanel extends Component {
          <Box>
             <Heading tag='h1'>{this.props.intl.formatMessage(playerNameMessages[this.props.source.name])}</Heading>
             <Label align='center'>{this.props.intl.formatMessage(playerRoleMessages[this.props.source.role])}</Label>
-            <Box>{this.props.intl.formatMessage(playerMessages.abilities)}: {this.props.source.abilities.map((a) => this.props.intl.formatMessage(abilityMessages[a])).join(', ')}</Box>
+            <Box direction='row' justify='center' align='center' full='horizontal'>{this.props.source.abilities.map((a, i) => <Box key={i} pad='small'><Label key={i}>{this.props.intl.formatMessage(abilityMessages[a])}</Label></Box>)}</Box>
             <Box separator='horizontal'>{attributes}</Box>
             <Box>{costs}</Box>
          </Box>
