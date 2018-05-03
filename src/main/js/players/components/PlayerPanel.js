@@ -63,31 +63,32 @@ class PlayerPanel extends Component {
             {cost}
          </Columns>;
 
+      const attributes =
+         <Columns size='small'>
+            <Box pad='small'>
+               <Value value={this.props.source.movement} label={this.props.intl.formatMessage(playerMessages.move)} size='small' />
+            </Box>
+            <Box pad='small'>
+               <Value value={this.props.source.strength} label={this.props.intl.formatMessage(playerMessages.strength)} size='small' />
+            </Box>
+            <Box pad='small'>
+               <Value value={this.props.source.speed} label={this.props.intl.formatMessage(playerMessages.speed)} size='small' />
+            </Box>
+            <Box pad='small'>
+               <Value value={this.props.source.skill} label={this.props.intl.formatMessage(playerMessages.skill)} size='small' />
+            </Box>
+            <Box pad='small'>
+               <Value value={this.props.source.armor} label={this.props.intl.formatMessage(playerMessages.armor)} size='small' />
+            </Box>
+         </Columns>;
+
       return (
          <Box>
             <Heading tag='h1'>{this.props.intl.formatMessage(playerNameMessages[this.props.source.name])}</Heading>
             <Box>{this.props.intl.formatMessage(playerMessages.role)}: {this.props.intl.formatMessage(playerRoleMessages[this.props.source.role])}</Box>
             <Box>{this.props.intl.formatMessage(playerMessages.abilities)}: {this.props.source.abilities.map((a) => this.props.intl.formatMessage(abilityMessages[a])).join(', ')}</Box>
-            <Box>
-               <Columns size='small'>
-                  <Box pad='small'>
-                     <Value value={this.props.source.movement} label={this.props.intl.formatMessage(playerMessages.move)} size='small' />
-                  </Box>
-                  <Box pad='small'>
-                     <Value value={this.props.source.strength} label={this.props.intl.formatMessage(playerMessages.strength)} size='small' />
-                  </Box>
-                  <Box pad='small'>
-                     <Value value={this.props.source.speed} label={this.props.intl.formatMessage(playerMessages.speed)} size='small' />
-                  </Box>
-                  <Box pad='small'>
-                     <Value value={this.props.source.skill} label={this.props.intl.formatMessage(playerMessages.skill)} size='small' />
-                  </Box>
-                  <Box pad='small'>
-                     <Value value={this.props.source.armor} label={this.props.intl.formatMessage(playerMessages.armor)} size='small' />
-                  </Box>
-               </Columns>
-            </Box>
-            {costs}
+            <Box separator='horizontal'>{attributes}</Box>
+            <Box>{costs}</Box>
          </Box>
       );
    }
