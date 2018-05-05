@@ -25,7 +25,7 @@ class PlayerPanel extends Component {
 
       if (this.props.source.friendCost) {
          friendCost =
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.friendCost} label={this.props.intl.formatMessage(playerMessages.friend_cost)} size='small' />
             </Box>;
       } else {
@@ -33,7 +33,7 @@ class PlayerPanel extends Component {
       }
       if (this.props.source.allyCost) {
          allyCost =
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.allyCost} label={this.props.intl.formatMessage(playerMessages.ally_cost)} size='small' />
             </Box>;
       } else {
@@ -41,7 +41,7 @@ class PlayerPanel extends Component {
       }
       if (this.props.source.strangerCost) {
          strangerCost =
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.strangerCost} label={this.props.intl.formatMessage(playerMessages.stranger_cost)} size='small' />
             </Box>;
       } else {
@@ -49,7 +49,7 @@ class PlayerPanel extends Component {
       }
       if (this.props.source.cost) {
          cost =
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.cost} label={this.props.intl.formatMessage(playerMessages.cost)} size='small' />
             </Box>;
       } else {
@@ -66,28 +66,34 @@ class PlayerPanel extends Component {
 
       const attributes =
          <Columns size='small'>
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.movement} label={this.props.intl.formatMessage(playerMessages.move)} size='small' />
             </Box>
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.strength} label={this.props.intl.formatMessage(playerMessages.strength)} size='small' />
             </Box>
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.speed} label={this.props.intl.formatMessage(playerMessages.speed)} size='small' />
             </Box>
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.skill} label={this.props.intl.formatMessage(playerMessages.skill)} size='small' />
             </Box>
-            <Box pad='small'>
+            <Box margin='small'>
                <Value value={this.props.source.armor} label={this.props.intl.formatMessage(playerMessages.armor)} size='small' />
             </Box>
          </Columns>;
+
+      const abilities =
+         <Box direction='row' justify='center' align='center' full='horizontal'>
+            {this.props.source.abilities.map((a, i) =>
+               <Box key={i} margin='small'><Label key={i}>{this.props.intl.formatMessage(abilityMessages[a])}</Label></Box>)}
+         </Box>;
 
       return (
          <Box>
             <Heading tag='h1'>{this.props.intl.formatMessage(playerNameMessages[this.props.source.name])}</Heading>
             <Label align='center'>{this.props.intl.formatMessage(playerRoleMessages[this.props.source.role])}</Label>
-            <Box direction='row' justify='center' align='center' full='horizontal'>{this.props.source.abilities.map((a, i) => <Box key={i} pad='small'><Label key={i}>{this.props.intl.formatMessage(abilityMessages[a])}</Label></Box>)}</Box>
+            {abilities}
             <Box separator='horizontal'>{attributes}</Box>
             <Box>{costs}</Box>
          </Box>

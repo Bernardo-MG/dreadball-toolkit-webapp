@@ -24,7 +24,7 @@ import { selectNavbarVisible } from 'views/selectors';
 
 const MainSidebar = (props) =>
    <Sidebar colorIndex="light-2">
-      <Header size="large" justify="between" pad={ { horizontal: 'medium' } }>
+      <Header size="large" justify="between" margin={ { horizontal: 'medium' } }>
          <Title truncate={false}>{props.title}</Title>
          {<Button onClick={() => props.toggleNavBar()} icon={<CloseIcon/>} />}
       </Header>
@@ -33,7 +33,7 @@ const MainSidebar = (props) =>
             <Anchor key={i} path={option.path} label={option.label} onClick={props.onClickLink} />
          )}
       </Menu>
-      <Footer pad={ { horizontal: 'medium', vertical: 'small' } }>
+      <Footer margin={ { horizontal: 'medium', vertical: 'small' } }>
          <Box>
             <Box>Dreadball © Mantic</Box>
             <Box direction="row" align="center">{APP_VERSION} <Button href={REPO_URL} icon={<SocialGithubIcon/>} /></Box>
