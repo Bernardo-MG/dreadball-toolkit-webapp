@@ -84,9 +84,9 @@ class PlayerPanel extends Component {
          </Columns>;
 
       const abilities =
-         <Box direction='row' justify='center' align='center' full='horizontal'>
+         <Box direction='row' justify='center' align='center' full='horizontal' separator='top'>
             {this.props.source.abilities.map((a, i) =>
-               <Box key={i} margin='small'><Label key={i}>{this.props.intl.formatMessage(abilityMessages[a])}</Label></Box>)}
+               <Box key={i} margin='small'><Label key={i} margin='medium'>{this.props.intl.formatMessage(abilityMessages[a])}</Label></Box>)}
          </Box>;
 
       return (
