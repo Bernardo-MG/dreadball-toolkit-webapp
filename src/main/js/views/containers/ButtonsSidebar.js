@@ -31,7 +31,7 @@ class ButtonsSidebar extends Component {
 
       return (
          <Sidebar size="small" colorIndex="light-3">
-            <Box pad="medium">
+            <Box margin="medium">
                <Menu>
                   { closeButton }
                   { this.props.options.map((option, i) => this._renderButton(option, i, this.props.onClose)) }

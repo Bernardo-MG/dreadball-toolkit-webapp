@@ -79,7 +79,7 @@ class SponsorTeamView extends Component {
             </Box>;
       } else if (this.state.view === 'assets') {
          view =
-            <Box justify='center' align='center' pad='medium'>
+            <Box justify='center' align='center' margin='medium'>
                <Box>
                   <SponsorNameInput label={this.props.intl.formatMessage(teamBuilderMessages.sponsor_name)} />
                </Box>
@@ -88,7 +88,7 @@ class SponsorTeamView extends Component {
             </Box>;
       } else if (this.state.view === 'affinities') {
          view =
-            <Box justify='center' align='center' pad='medium'>
+            <Box justify='center' align='center' margin='medium'>
                <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.affinities)}</Heading>
                <SponsorAffinitiesList />
             </Box>;
@@ -108,7 +108,7 @@ class SponsorTeamView extends Component {
 
       return (
          <SidebarView sideBar={side} title={this.props.intl.formatMessage(titleMessages.teamBuilder)}>
-            <Box justify='center' align='center' pad='medium' direction='row'>
+            <Box justify='center' align='center' margin='medium' direction='row'>
                <SponsorTeamCost/>
             </Box>
             {view}

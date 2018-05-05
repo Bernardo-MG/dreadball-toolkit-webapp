@@ -16,7 +16,7 @@ import titleMessages from 'i18n/title';
 
 const SponsorAffinitiesView = (props) =>
    <SimpleView title={props.intl.formatMessage(titleMessages.sponsorAffinities)}>
-      <Box justify='center' align='center' pad='medium'>
+      <Box justify='center' align='center' margin='medium'>
          <Form>
             <SponsorAffinityAvailabilitySelectionPanel />
             <Box justify='center' align='center' margin='small'>
