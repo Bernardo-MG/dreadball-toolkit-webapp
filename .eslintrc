@@ -31,6 +31,7 @@
        }
     },
    "rules": {
+      "quotes": ["error", "single"],
       "react/prop-types": [2],
       "max-len": [1, 220, 2, {"ignoreComments": true}],
       "indent": ["error", 3],
