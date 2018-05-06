@@ -8,7 +8,7 @@ describe('Team reducer', () => {
             type: types.CLEAR_TEAM
          })
       ).toEqual(
-         { "chosen": [], "options": [] }
+         { 'chosen': [], 'options': [] }
       )
    }),
    it('sets affinities', () => {
@@ -18,7 +18,7 @@ describe('Team reducer', () => {
             payload: ['c']
          })
       ).toEqual(
-         { "chosen": [], "options": ['c'] }
+         { 'chosen': [], 'options': ['c'] }
       )
    }),
    it('sets chosen affinities', () => {
@@ -28,7 +28,7 @@ describe('Team reducer', () => {
             payload: ['c']
          })
       ).toEqual(
-         { "chosen": ['c'] }
+         { 'chosen': ['c'] }
       )
    }),
    it('when choosing overrides chosen', () => {
@@ -39,7 +39,7 @@ describe('Team reducer', () => {
             index: 0
          })
       ).toEqual(
-         { "chosen": ['c', 'b'] }
+         { 'chosen': ['c', 'b'] }
       )
    }),
    it('when choosing overrides adds chosen', () => {
@@ -50,7 +50,7 @@ describe('Team reducer', () => {
             index: 2
          })
       ).toEqual(
-         { "chosen": ['a', 'b', 'c'] }
+         { 'chosen': ['a', 'b', 'c'] }
       )
    })
 });

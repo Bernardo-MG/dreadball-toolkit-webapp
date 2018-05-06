@@ -32,9 +32,9 @@ const SidebarView = (props) => {
    const priority = (props.sidebarVisible && props.smallScreen ? 'right' : 'left');
 
    return (
-      <Split priority={priority} flex="left" separator={true} >
+      <Split priority={priority} flex='left' separator={true} >
          <Box>
-            <Header size="large" justify="between" margin={ { horizontal: 'medium' } }>
+            <Header size='large' justify='between' margin={ { horizontal: 'medium' } }>
                {toggleNavButton}
                <Title truncate={false}>{props.title}</Title>
                {toggleSideButton}
