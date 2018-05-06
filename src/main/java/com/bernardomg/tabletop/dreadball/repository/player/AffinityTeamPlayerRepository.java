@@ -58,7 +58,7 @@ public interface AffinityTeamPlayerRepository extends
      *            pagination data
      * @return all the affinity players along their joined entities
      */
-    @Query("SELECT p FROM AffinityTeamPlayer p")
+    @Query("SELECT p FROM AffinityTeamPlayer p ORDER BY p.templateName ASC")
     @EntityGraph(value = "fullAffinityTeamPlayer", type = EntityGraphType.FETCH)
     public Page<PersistentAffinityTeamPlayer>
             findAllFull(final Pageable pageReq);

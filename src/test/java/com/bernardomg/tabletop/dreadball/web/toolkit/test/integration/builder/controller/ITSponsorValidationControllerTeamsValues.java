@@ -123,7 +123,7 @@ public class ITSponsorValidationControllerTeamsValues
         final ResultActions result;
 
         result = mockMvc.perform(
-                getGetRequest(TestValues.PLAYER_1, TestValues.PLAYER_2));
+                getGetRequest(TestValues.PLAYER_A, TestValues.PLAYER_C));
 
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
                 Matchers.aMapWithSize(2)));
@@ -137,7 +137,7 @@ public class ITSponsorValidationControllerTeamsValues
         final ResultActions result;
 
         result = mockMvc.perform(
-                getGetRequest(TestValues.PLAYER_1, TestValues.PLAYER_1));
+                getGetRequest(TestValues.PLAYER_A, TestValues.PLAYER_A));
 
         result.andExpect(MockMvcResultMatchers.jsonPath("$.players",
                 Matchers.aMapWithSize(2)));

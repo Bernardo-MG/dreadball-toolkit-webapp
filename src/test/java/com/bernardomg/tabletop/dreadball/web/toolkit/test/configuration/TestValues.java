@@ -26,17 +26,17 @@ public final class TestValues {
     /**
      * Player for testing.
      */
-    public static final String PLAYER_1 = "player_1_affinity";
+    public static final String PLAYER_A = "player_A_affinity";
 
     /**
      * Player for testing.
      */
-    public static final String PLAYER_2 = "player_2_affinity";
+    public static final String PLAYER_B = "player_B_affinity";
 
     /**
      * Player for testing.
      */
-    public static final String PLAYER_3 = "player_3_affinity";
+    public static final String PLAYER_C = "player_C_affinity";
 
     /**
      * Default constructor to avoid initialization.

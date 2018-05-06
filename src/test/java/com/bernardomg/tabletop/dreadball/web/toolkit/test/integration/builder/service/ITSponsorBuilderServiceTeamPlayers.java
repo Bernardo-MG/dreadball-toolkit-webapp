@@ -33,6 +33,7 @@ import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.player.ImmutableAffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 import com.google.common.collect.Iterables;
 
 /**
@@ -77,7 +78,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         players = service.getTeamPlayerOptions(affinities, pageable);
 
         player = Iterables.get(players, 0);
-        Assert.assertEquals("player_1", player.getName());
+        Assert.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
         Assert.assertEquals(new Integer(15), player.getCost());
     }
 
@@ -116,7 +117,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         players = service.getTeamPlayerOptions(affinities, pageable);
 
         player = Iterables.get(players, 0);
-        Assert.assertEquals("player_1", player.getName());
+        Assert.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
         Assert.assertEquals(new Integer(23), player.getCost());
     }
 

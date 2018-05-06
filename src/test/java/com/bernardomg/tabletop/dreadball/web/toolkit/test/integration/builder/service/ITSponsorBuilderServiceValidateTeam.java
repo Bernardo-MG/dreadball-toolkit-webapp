@@ -113,7 +113,7 @@ public class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamSelection();
 
         selection.setBaseRank(10);
-        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_A));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
@@ -134,7 +134,7 @@ public class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamSelection();
 
         selection.setBaseRank(10);
-        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_A));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
@@ -155,7 +155,7 @@ public class ITSponsorBuilderServiceValidateTeam
         selection = new DefaultSponsorTeamSelection();
 
         selection.setBaseRank(10);
-        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_A));
         selection.setAffinities(Arrays.asList("affinity_1"));
         selection.setSpecialMoveCards(1);
         selection.setCheerleaders(1);
@@ -229,8 +229,8 @@ public class ITSponsorBuilderServiceValidateTeam
 
         selection = new DefaultSponsorTeamSelection();
 
-        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1,
-                TestValues.PLAYER_2, TestValues.PLAYER_1));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_A,
+                TestValues.PLAYER_C, TestValues.PLAYER_A));
 
         result = service.validateTeam(selection);
 
@@ -269,7 +269,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         selection = new DefaultSponsorTeamSelection();
 
-        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_A));
         selection.setAffinities(Arrays.asList("affinity_1"));
 
         result = service.validateTeam(selection);
@@ -290,7 +290,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         selection = new DefaultSponsorTeamSelection();
 
-        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_A));
 
         result = service.validateTeam(selection);
 
@@ -308,8 +308,8 @@ public class ITSponsorBuilderServiceValidateTeam
 
         selection = new DefaultSponsorTeamSelection();
 
-        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_1,
-                TestValues.PLAYER_2, TestValues.PLAYER_3));
+        selection.setTeamPlayers(Arrays.asList(TestValues.PLAYER_A,
+                TestValues.PLAYER_C, TestValues.PLAYER_B));
 
         result = service.validateTeam(selection);
 

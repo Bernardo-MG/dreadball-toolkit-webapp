@@ -16,6 +16,8 @@
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.codex.service;
 
+import java.util.Iterator;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,7 @@ import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
 import com.bernardomg.tabletop.dreadball.codex.service.CodexService;
 import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 import com.google.common.collect.Iterables;
 
 /**
@@ -63,6 +66,24 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
         result = service.getAffinityTeamPlayers(pageable);
 
         Assert.assertEquals(4, Iterables.size(result));
+    }
+
+    /**
+     * Verifies that the players are ordered
+     */
+    @Test
+    public final void testGetAffinityTeamPlayers_ReturnsOrdered() {
+        final Pageable pageable;
+        final Iterable<? extends TeamPlayer> result;
+        final Iterator<? extends TeamPlayer> itr;
+
+        pageable = PageRequest.of(0, 10);
+        result = service.getAffinityTeamPlayers(pageable);
+        itr = result.iterator();
+
+        Assert.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
+        Assert.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
+        Assert.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
     }
 
     /**
