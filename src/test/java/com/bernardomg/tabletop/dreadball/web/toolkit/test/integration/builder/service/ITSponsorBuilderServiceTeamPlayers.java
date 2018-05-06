@@ -18,6 +18,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.builder.s
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -136,6 +137,51 @@ public class ITSponsorBuilderServiceTeamPlayers
         players = service.getTeamPlayerOptions(affinities, pageable);
 
         Assert.assertEquals(4, Iterables.size(players));
+    }
+
+    /**
+     * Verifies that the players are ordered.
+     */
+    @Test
+    public final void testGetTeamPlayers_Affinities_ReturnsOrdered() {
+        final Pageable pageable;
+        final Iterable<? extends TeamPlayer> players;
+        final Collection<AffinityGroup> affinities;
+        final Iterator<? extends TeamPlayer> itr;
+
+        affinities = new ArrayList<>();
+        affinities.add(new ImmutableAffinityGroup("affinity_1"));
+
+        pageable = PageRequest.of(0, 10);
+        players = service.getTeamPlayerOptions(affinities, pageable);
+
+        itr = players.iterator();
+
+        Assert.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
+        Assert.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
+        Assert.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
+    }
+
+    /**
+     * Verifies that the players are ordered.
+     */
+    @Test
+    public final void testGetTeamPlayers_NoAffinities_ReturnsOrdered() {
+        final Pageable pageable;
+        final Iterable<? extends TeamPlayer> players;
+        final Collection<AffinityGroup> affinities;
+        final Iterator<? extends TeamPlayer> itr;
+
+        affinities = new ArrayList<>();
+
+        pageable = PageRequest.of(0, 10);
+        players = service.getTeamPlayerOptions(affinities, pageable);
+
+        itr = players.iterator();
+
+        Assert.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
+        Assert.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
+        Assert.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
     }
 
     /**

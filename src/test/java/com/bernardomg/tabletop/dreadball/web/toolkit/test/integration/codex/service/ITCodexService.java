@@ -69,7 +69,7 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
     }
 
     /**
-     * Verifies that the players are ordered
+     * Verifies that the players are ordered.
      */
     @Test
     public final void testGetAffinityTeamPlayers_ReturnsOrdered() {
