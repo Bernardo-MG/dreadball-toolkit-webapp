@@ -26,7 +26,8 @@ const SidebarView = (props) => {
 
    let toggleSideButton;
    if (!props.sidebarVisible && props.smallScreen) {
-      toggleSideButton = <Button onClick={() => props.onToggleSideBar()} icon={<MoreIcon/>} />;
+      const sideButton = <Button onClick={() => props.onToggleSideBar()} icon={<MoreIcon/>} />;
+      toggleSideButton = <Box flex={true} justify='end' direction='row' responsive={false}>{sideButton}</Box>;
    }
 
    const priority = (props.sidebarVisible && props.smallScreen ? 'right' : 'left');
@@ -34,7 +35,7 @@ const SidebarView = (props) => {
    return (
       <Split priority={priority} flex='left' separator={true} >
          <Box>
-            <Header size='large' justify='between' margin={ { horizontal: 'medium' } }>
+            <Header size='large' pad='small'>
                {toggleNavButton}
                <Title truncate={false}>{props.title}</Title>
                {toggleSideButton}
