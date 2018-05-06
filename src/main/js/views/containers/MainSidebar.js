@@ -23,21 +23,21 @@ import { toggleNavBar, hideNavBarOnSmallScreen } from 'views/actions';
 import { selectNavbarVisible } from 'views/selectors';
 
 const MainSidebar = (props) =>
-   <Sidebar colorIndex="light-2">
-      <Header size="large" justify="between" margin={ { horizontal: 'medium' } }>
+   <Sidebar colorIndex='light-2'>
+      <Header size='large' pad='small'>
          <Title truncate={false}>{props.title}</Title>
-         {<Button onClick={() => props.toggleNavBar()} icon={<CloseIcon/>} />}
+         <Box flex={true} justify='end' direction='row' responsive={false}>
+            <Button onClick={() => props.toggleNavBar()} icon={<CloseIcon/>} />
+         </Box>
       </Header>
       <Menu fill={true} primary={true}>
          { props.links.map((option, i) =>
             <Anchor key={i} path={option.path} label={option.label} onClick={props.onClickLink} />
          )}
       </Menu>
-      <Footer margin={ { horizontal: 'medium', vertical: 'small' } }>
-         <Box>
-            <Box>Dreadball © Mantic</Box>
-            <Box direction="row" align="center">{APP_VERSION} <Button href={REPO_URL} icon={<SocialGithubIcon/>} /></Box>
-         </Box>
+      <Footer pad='small' direction='column'>
+         <Box>Dreadball © Mantic</Box>
+         <Box direction='row' align='center'>{APP_VERSION} <Button href={REPO_URL} icon={<SocialGithubIcon/>} /></Box>
       </Footer>
    </Sidebar>;
 

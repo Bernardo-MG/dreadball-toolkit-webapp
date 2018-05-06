@@ -19,19 +19,19 @@ import { selectSidebarVisible, selectSmallScreen } from 'views/selectors';
 class ButtonsSidebar extends Component {
 
    _renderButton(option, index, onClose) {
-      return <Button key={index} align="start" plain={true} label={option.label}
+      return <Button key={index} align='start' plain={true} label={option.label}
          onClick={() => { option.action(); onClose(); } } icon={ option.icon } />;
    }
 
    render() {
       let closeButton;
       if (this.props.smallScreen) {
-         closeButton = <Button align="start" onClick={() => this.props.onClose()} icon={<CloseIcon/>} />;
+         closeButton = <Button align='start' onClick={() => this.props.onClose()} icon={<CloseIcon/>} />;
       }
 
       return (
-         <Sidebar size="small" colorIndex="light-3">
-            <Box margin="medium">
+         <Sidebar size='small' colorIndex='light-3'>
+            <Box margin='medium'>
                <Menu>
                   { closeButton }
                   { this.props.options.map((option, i) => this._renderButton(option, i, this.props.onClose)) }

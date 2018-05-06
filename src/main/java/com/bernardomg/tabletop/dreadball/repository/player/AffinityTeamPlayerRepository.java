@@ -46,7 +46,7 @@ public interface AffinityTeamPlayerRepository extends
      *            pagination request
      * @return all the players not hating any of the affinities
      */
-    @Query("SELECT p FROM AffinityTeamPlayer p LEFT OUTER JOIN p.hated h WHERE h IS NULL OR h.name NOT IN :affinities")
+    @Query("SELECT p FROM AffinityTeamPlayer p LEFT OUTER JOIN p.hated h WHERE h IS NULL OR h.name NOT IN :affinities ORDER BY p.templateName ASC")
     public Page<PersistentAffinityTeamPlayer> findAllFilteredByHatedAffinities(
             @Param("affinities") final Iterable<String> affinities,
             final Pageable pageReq);
@@ -58,7 +58,7 @@ public interface AffinityTeamPlayerRepository extends
      *            pagination data
      * @return all the affinity players along their joined entities
      */
-    @Query("SELECT p FROM AffinityTeamPlayer p")
+    @Query("SELECT p FROM AffinityTeamPlayer p ORDER BY p.templateName ASC")
     @EntityGraph(value = "fullAffinityTeamPlayer", type = EntityGraphType.FETCH)
     public Page<PersistentAffinityTeamPlayer>
             findAllFull(final Pageable pageReq);

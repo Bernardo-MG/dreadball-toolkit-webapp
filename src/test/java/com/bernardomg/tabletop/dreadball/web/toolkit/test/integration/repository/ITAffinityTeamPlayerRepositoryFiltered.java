@@ -31,6 +31,7 @@ import org.springframework.test.context.junit4.AbstractTransactionalJUnit4Spring
 
 import com.bernardomg.tabletop.dreadball.model.persistence.player.PersistentAffinityTeamPlayer;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
+import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.TestValues;
 import com.google.common.collect.Iterables;
 
 @ContextConfiguration(locations = { "classpath:context/test-db-context.xml" })
@@ -61,7 +62,7 @@ public class ITAffinityTeamPlayerRepositoryFiltered
                 pageReq);
 
         player = Iterables.get(players, 0);
-        Assert.assertEquals("player_1", player.getName());
+        Assert.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
         Assert.assertEquals(1, player.getAffinityGroups().size());
     }
 
@@ -82,7 +83,7 @@ public class ITAffinityTeamPlayerRepositoryFiltered
                 pageReq);
 
         player = Iterables.get(players, 0);
-        Assert.assertEquals("player_1", player.getName());
+        Assert.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
         Assert.assertEquals(new Integer(23), player.getStrangerCost());
         Assert.assertEquals(new Integer(15), player.getAllyCost());
         Assert.assertEquals(new Integer(10), player.getFriendCost());

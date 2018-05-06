@@ -9,17 +9,17 @@ describe('Team reducer', () => {
             payload: 1
          })
       ).toEqual(
-            { "totalCost": 1 }
+            { 'totalCost': 1 }
       )
    }),
    it('sets total cost to zero', () => {
       expect(
-         team({"totalCost": 1 }, {
+         team({'totalCost': 1 }, {
             type: types.SET_TOTAL_COST,
             payload: 0
          })
       ).toEqual(
-            { "totalCost": 0 }
+            { 'totalCost': 0 }
       )
    })
 });

@@ -47,7 +47,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         final PersistentAffinityTeamPlayer player;
 
         names = new ArrayList<>();
-        names.add(TestValues.PLAYER_1);
+        names.add(TestValues.PLAYER_A);
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
@@ -63,7 +63,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         final PersistentAffinityTeamPlayer player;
 
         names = new ArrayList<>();
-        names.add(TestValues.PLAYER_1);
+        names.add(TestValues.PLAYER_A);
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
@@ -80,8 +80,8 @@ public class ITAffinityTeamPlayerRepositoryInList
         final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
-        names.add(TestValues.PLAYER_1);
-        names.add(TestValues.PLAYER_2);
+        names.add(TestValues.PLAYER_A);
+        names.add(TestValues.PLAYER_C);
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
@@ -106,9 +106,9 @@ public class ITAffinityTeamPlayerRepositoryInList
         final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
-        names.add(TestValues.PLAYER_1);
-        names.add(TestValues.PLAYER_2);
-        names.add(TestValues.PLAYER_1);
+        names.add(TestValues.PLAYER_A);
+        names.add(TestValues.PLAYER_C);
+        names.add(TestValues.PLAYER_A);
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
@@ -121,7 +121,7 @@ public class ITAffinityTeamPlayerRepositoryInList
         final Collection<PersistentAffinityTeamPlayer> result;
 
         names = new ArrayList<>();
-        names.add(TestValues.PLAYER_1);
+        names.add(TestValues.PLAYER_A);
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 

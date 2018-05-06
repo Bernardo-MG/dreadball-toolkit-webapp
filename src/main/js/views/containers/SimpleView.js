@@ -23,13 +23,11 @@ const SimpleView = (props) => {
    }
 
    return (
-      <Box direction='column'>
-         <Box direction='row'>
-            <Header size="large" justify="between" margin={ { horizontal: 'medium' } }>
-               {toggleNavButton}
-               <Title truncate={false}>{props.title}</Title>
-            </Header>
-         </Box>
+      <Box>
+         <Header size='large' pad='small'>
+            {toggleNavButton}
+            <Title truncate={false}>{props.title}</Title>
+         </Header>
          {props.children}
       </Box>
    );

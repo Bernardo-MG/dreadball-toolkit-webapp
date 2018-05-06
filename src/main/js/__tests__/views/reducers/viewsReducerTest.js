@@ -7,100 +7,100 @@ describe('Views reducer', () => {
             views(undefined, {})
          ).toEqual(
          {
-            "navbarVisible": true,
-            "smallScreen": false
+            'navbarVisible': true,
+            'smallScreen': false
          }
       )
    }),
    it('should toggle navbar from visible to not visible', () => {
       expect(
-         views({ "navbarVisible": true }, {
+         views({ 'navbarVisible': true }, {
             type: types.TOGGLE_NAV_BAR
          })
       ).toEqual(
          {
-            "navbarVisible": false
+            'navbarVisible': false
          }
       )
    }),
    it('should toggle navbar from not visible to visible', () => {
       expect(
-         views({ "navbarVisible": false }, {
+         views({ 'navbarVisible': false }, {
             type: types.TOGGLE_NAV_BAR
          })
       ).toEqual(
          {
-            "navbarVisible": true
+            'navbarVisible': true
          }
       )
    }),
    it('should toggle side bar from visible to not visible', () => {
       expect(
-         views({ "sidebarVisible": true }, {
+         views({ 'sidebarVisible': true }, {
             type: types.TOGGLE_SIDE_BAR
          })
       ).toEqual(
          {
-            "sidebarVisible": false
+            'sidebarVisible': false
          }
       )
    }),
    it('should toggle side bar from not visible to visible', () => {
       expect(
-         views({ "sidebarVisible": false }, {
+         views({ 'sidebarVisible': false }, {
             type: types.TOGGLE_SIDE_BAR
          })
       ).toEqual(
          {
-            "sidebarVisible": true
+            'sidebarVisible': true
          }
       )
    }),
    it('should hide navbar on small screen', () => {
       expect(
-         views({ "smallScreen": true }, {
+         views({ 'smallScreen': true }, {
             type: types.HIDE_NAV_ON_SMALL_SCREEN
          })
       ).toEqual(
          {
-            "navbarVisible": false,
-            "smallScreen": true
+            'navbarVisible': false,
+            'smallScreen': true
          }
       )
    }),
    it('should not hide navbar when not on small screen', () => {
       expect(
-         views({ "smallScreen": false }, {
+         views({ 'smallScreen': false }, {
             type: types.HIDE_NAV_ON_SMALL_SCREEN
          })
       ).toEqual(
          {
-            "navbarVisible": true,
-            "smallScreen": false
+            'navbarVisible': true,
+            'smallScreen': false
          }
       )
    }),
    it('should hide side bar on small screen', () => {
       expect(
-         views({ "smallScreen": true }, {
+         views({ 'smallScreen': true }, {
             type: types.HIDE_SIDE_ON_SMALL_SCREEN
          })
       ).toEqual(
          {
-            "sidebarVisible": false,
-            "smallScreen": true
+            'sidebarVisible': false,
+            'smallScreen': true
          }
       )
    }),
    it('should not hide side bar when not on small screen', () => {
       expect(
-         views({ "smallScreen": false }, {
+         views({ 'smallScreen': false }, {
             type: types.HIDE_SIDE_ON_SMALL_SCREEN
          })
       ).toEqual(
          {
-            "sidebarVisible": true,
-            "smallScreen": false
+            'sidebarVisible': true,
+            'smallScreen': false
          }
       )
    })

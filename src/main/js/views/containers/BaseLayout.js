@@ -45,7 +45,7 @@ class BaseLayout extends Component {
 
       return (
          <App centered={false}>
-            <Split priority={priority} flex="right" separator={true} onResponsive={toggleResponsive}>
+            <Split priority={priority} flex='right' separator={true} onResponsive={toggleResponsive}>
                {nav}
                {this.props.children}
             </Split>

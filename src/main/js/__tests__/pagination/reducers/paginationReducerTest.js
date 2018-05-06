@@ -9,14 +9,14 @@ describe('Paginated reducer', () => {
    it('should return the initial state', () => {
       expect(reducer(undefined, {})).toEqual(
          {
-            "first": true,
-            "ids": [],
-            "isFetching": false,
-            "last": false,
-            "numberOfElements": 0,
-            "page": 0,
-            "totalElements": 0,
-            "totalPages": 0
+            'first': true,
+            'ids': [],
+            'isFetching': false,
+            'last': false,
+            'numberOfElements': 0,
+            'page': 0,
+            'totalElements': 0,
+            'totalPages': 0
          }
       )
    }),
@@ -27,7 +27,7 @@ describe('Paginated reducer', () => {
             type: 'FETCHING_TEST'
          })).toEqual(
          {
-            "isFetching": true
+            'isFetching': true
          }
       )
    }),
@@ -38,7 +38,7 @@ describe('Paginated reducer', () => {
             type: 'REQUEST_FAILURE_TEST'
          })).toEqual(
          {
-            "isFetching": false
+            'isFetching': false
          }
       )
    }),
@@ -50,8 +50,8 @@ describe('Paginated reducer', () => {
             payload: []
          })).toEqual(
          {
-            "ids": [],
-            "isFetching": false
+            'ids': [],
+            'isFetching': false
          }
       )
    }),
@@ -60,11 +60,11 @@ describe('Paginated reducer', () => {
       expect(
          reducer({}, {
             type: 'REQUEST_SUCCESS_TEST',
-            payload: ["0", "1", "2"]
+            payload: ['0', '1', '2']
          })).toEqual(
          {
-            "ids": ["0", "1", "2"],
-            "isFetching": false
+            'ids': ['0', '1', '2'],
+            'isFetching': false
          }
       )
    }),
@@ -73,14 +73,14 @@ describe('Paginated reducer', () => {
       expect(
          reducer(
          {
-            "ids": ["0", "2", "5"]
+            'ids': ['0', '2', '5']
          }, {
             type: 'REQUEST_SUCCESS_TEST',
-            payload: ["0", "1", "2"]
+            payload: ['0', '1', '2']
          })).toEqual(
          {
-            "ids": ["0", "2", "5", "1"],
-            "isFetching": false
+            'ids': ['0', '2', '5', '1'],
+            'isFetching': false
          }
       )
    })

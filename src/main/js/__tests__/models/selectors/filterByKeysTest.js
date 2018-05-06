@@ -1,11 +1,11 @@
 import { filterByKeys } from 'players/selectors/utils';
 
 const data = {
-   1: "A",
-   2: "C",
-   3: "B",
-   4: "Z",
-   5: "M"
+   1: 'A',
+   2: 'C',
+   3: 'B',
+   4: 'Z',
+   5: 'M'
 };
 
 describe('Filter by keys', () => {
@@ -13,7 +13,7 @@ describe('Filter by keys', () => {
       expect(
          filterByKeys(data, [1, 2, 4])
          ).toEqual(
-         [ "A", "C", "Z" ]
+         [ 'A', 'C', 'Z' ]
       )
    })
 
