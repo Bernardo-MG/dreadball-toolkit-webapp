@@ -213,11 +213,6 @@
                   <groupId>com.heroku.sdk</groupId>
                   <artifactId>heroku-maven-plugin</artifactId>
                   <version>${plugin.heroku.version}</version>
-                  <configuration>
-                     <processTypes>
-                        <web>java -jar target/dependency/webapp-runner.jar --port $PORT target/*.war</web>
-                     </processTypes>
-                  </configuration>
                </plugin>
                <plugin>
                   <!-- Frontend Plugin -->
