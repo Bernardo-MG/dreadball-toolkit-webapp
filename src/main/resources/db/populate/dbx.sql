@@ -198,7 +198,7 @@ INSERT INTO PLAYERS (id, player_type, name, template_name, armor, movement, skil
    (171, 'affinity', 'iron_ancestor',           'iron_ancestor_affinity',           5, 6, 4, 5, 5, 'KEEPER',   true, false),
    (172, 'affinity', 'krastavor',               'krastavor_affinity',               4, 6, 4, 3, 4, 'JACK',     true, false),
    (173, 'affinity', 'nameless_spawn',          'nameless_spawn_affinity',          4, 5, 5, 3, 4, 'GUARD',    true, false),
-   (174, 'affinity', 'sann_gar', '              sann_gar_affinity',                 4, 5, 5, 4, 3, 'KEEPER',   true, false),
+   (174, 'affinity', 'sann_gar',                'sann_gar_affinity',                4, 5, 5, 4, 3, 'KEEPER',   true, false),
 
 -- MVPs
    (175, 'affinity', 'anne_marie_helder',       'anne_marie_helder_affinity',       4, 5, 5, 4, 3, 'GUARD',    false, true),
