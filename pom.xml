@@ -170,17 +170,8 @@
          </activation>
          <properties>
             <!-- Spring context -->
-            <database.tag>postgres</database.tag>
             <database.auth.source>env</database.auth.source>
          </properties>
-         <dependencies>
-            <dependency>
-               <!-- Postgres connector -->
-               <groupId>org.postgresql</groupId>
-               <artifactId>postgresql</artifactId>
-               <version>${postgresql.version}</version>
-            </dependency>
-         </dependencies>
          <build>
             <plugins>
                <plugin>
@@ -204,30 +195,6 @@
                                  <destFileName>webapp-runner.jar</destFileName>
                               </artifactItem>
                            </artifactItems>
-                        </configuration>
-                     </execution>
-                  </executions>
-               </plugin>
-               <plugin>
-                  <!-- Frontend Plugin -->
-                  <groupId>com.github.eirslett</groupId>
-                  <artifactId>frontend-maven-plugin</artifactId>
-                  <executions>
-                     <execution>
-                        <!-- Builds the frontend -->
-                        <id>frontend-build</id>
-                        <goals>
-                           <goal>npm</goal>
-                        </goals>
-                        <configuration>
-                           <arguments>run build</arguments>
-                           <environmentVariables>
-                              <APP_VERSION>${node.env.appVersion}</APP_VERSION>
-                              <REPO_URL>${node.env.repoUrl}</REPO_URL>
-                              <INPUT_PATH>${node.env.inputPath}</INPUT_PATH>
-                              <OUTPUT_PATH>${node.env.outputPath}</OUTPUT_PATH>
-                              <MODULE_PATH>${node.env.modules}</MODULE_PATH>
-                           </environmentVariables>
                         </configuration>
                      </execution>
                   </executions>
@@ -273,6 +240,19 @@
       <profile>
          <!-- H2 database profile -->
          <!-- Prepares the project to make use of an H2 in-memory database -->
+         <id>db-properties</id>
+         <activation>
+            <!-- Active by default so the repository appears in the reports -->
+            <activeByDefault>true</activeByDefault>
+         </activation>
+         <properties>
+            <!-- Spring context -->
+            <database.auth.source>properties</database.auth.source>
+         </properties>
+      </profile>
+      <profile>
+         <!-- H2 database profile -->
+         <!-- Prepares the project to make use of an H2 in-memory database -->
          <id>h2</id>
          <activation>
             <!-- Active by default so the repository appears in the reports -->
@@ -287,7 +267,6 @@
             <database.password></database.password>
             <!-- Spring context -->
             <database.tag>h2</database.tag>
-            <database.auth.source>properties</database.auth.source>
          </properties>
          <dependencies>
             <dependency>
@@ -302,6 +281,12 @@
          <!-- MySQL database profile -->
          <!-- Prepares the project to make use of an H2 in-memory database -->
          <id>mysql</id>
+         <activation>
+            <property>
+               <name>env.DATABASE_SYSTEM</name>
+               <value>mysql</value>
+            </property>
+         </activation>
          <properties>
             <!-- Access data -->
             <!-- Default values for testing and development -->
@@ -311,7 +296,6 @@
             <database.password></database.password>
             <!-- Spring context -->
             <database.tag>mysql</database.tag>
-            <database.auth.source>properties</database.auth.source>
          </properties>
          <dependencies>
             <dependency>
@@ -326,6 +310,12 @@
          <!-- Postgres database profile -->
          <!-- Prepares the project to make use of a Postgres database -->
          <id>postgres</id>
+         <activation>
+            <property>
+               <name>env.DATABASE_SYSTEM</name>
+               <value>postgres</value>
+            </property>
+         </activation>
          <properties>
             <!-- Access data -->
             <database.url>jdbc:postgresql://localhost:5432/dreadball_toolkit</database.url>
@@ -333,7 +323,6 @@
             <database.password></database.password>
             <!-- Spring context -->
             <database.tag>postgres</database.tag>
-            <database.auth.source>properties</database.auth.source>
          </properties>
          <dependencies>
             <dependency>
@@ -480,6 +469,12 @@
          <!-- Production profile -->
          <!-- Sets ups the environment for production -->
          <id>production</id>
+         <activation>
+            <property>
+               <name>env.ENVIRONMENT_MODE</name>
+               <value>production</value>
+            </property>
+         </activation>
          <build>
             <plugins>
                <plugin>
