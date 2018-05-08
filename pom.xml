@@ -242,7 +242,7 @@
          <!-- Prepares the project to make use of an H2 in-memory database -->
          <id>db-properties</id>
          <activation>
-            <!-- Active by default so the repository appears in the reports -->
+            <!-- Active by default -->
             <activeByDefault>true</activeByDefault>
          </activation>
          <properties>
@@ -255,7 +255,7 @@
          <!-- Prepares the project to make use of an H2 in-memory database -->
          <id>h2</id>
          <activation>
-            <!-- Active by default so the repository appears in the reports -->
+            <!-- Active by default -->
             <activeByDefault>true</activeByDefault>
          </activation>
          <properties>
