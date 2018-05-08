@@ -209,17 +209,6 @@
                   </executions>
                </plugin>
                <plugin>
-                  <!-- Heroku Maven plugin -->
-                  <groupId>com.heroku.sdk</groupId>
-                  <artifactId>heroku-maven-plugin</artifactId>
-                  <version>${plugin.heroku.version}</version>
-                  <configuration>
-                     <processTypes>
-                        <web>java -jar target/dependency/webapp-runner.jar --port $PORT target/*.war</web>
-                     </processTypes>
-                  </configuration>
-               </plugin>
-               <plugin>
                   <!-- Frontend Plugin -->
                   <groupId>com.github.eirslett</groupId>
                   <artifactId>frontend-maven-plugin</artifactId>
@@ -646,7 +635,6 @@
       <plugin.frontend.node.version>v6.11.3</plugin.frontend.node.version>
       <plugin.frontend.npm.version>5.4.2</plugin.frontend.npm.version>
       <plugin.frontend.version>1.6</plugin.frontend.version>
-      <plugin.heroku.version>2.0.4</plugin.heroku.version>
       <plugin.jetty.version>9.4.8.v20171121</plugin.jetty.version>
       <plugin.tomcat7.version>2.2</plugin.tomcat7.version>
       <!-- ============================================== -->
