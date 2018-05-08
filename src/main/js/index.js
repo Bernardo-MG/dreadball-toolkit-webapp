@@ -18,5 +18,3 @@ const history = syncHistoryWithStore(browserHistory, store);
 const rootElement = document.getElementById('root');
 
 render(<Root store={store} history={history} />, rootElement);
-
-document.body.classList.remove('loader');
