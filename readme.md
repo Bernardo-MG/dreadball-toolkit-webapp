@@ -48,13 +48,13 @@ The project can be installed by creating the war file and deploying it into a se
 To run the project locally in an embedded server just use the following Maven command for Jetty:
 
 ```
-mvn jetty:run-war -P h2,jetty
+mvn jetty:run-war -P h2,jetty,db-properties,development
 ```
 
 Or this one for Tomcat:
 
 ```
-mvn tomcat7:run-war -P h2,tomcat7
+mvn tomcat7:run-war -P h2,tomcat7,db-properties,development
 ```
 
 After this the project will be accessible at [http://localhost:8080/].
@@ -66,13 +66,13 @@ The integration tests require a database and a running server, and the easiest w
 To run the tests with Jetty:
 
 ```
-mvn verify -P h2,jetty
+mvn verify -P h2,jetty,db-properties,development
 ```
 
 To run them with Tomcat:
 
 ```
-mvn verify -P h2,tomcat7
+mvn verify -P h2,tomcat7,db-properties,development
 ```
 
 Maven will run both the frontend and backend tests.

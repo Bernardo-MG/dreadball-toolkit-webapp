@@ -35,4 +35,4 @@ script:
   - mvn clean verify -P $DATABASE,$SERVER,$ENV,db-properties
 after_success:
   # Documentation deployment script
-  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS development,deployment,$SERVER
+  - ~/.scripts/java/maven/deploy-site.sh $DO_DEPLOY_DOCS $DATABASE,$SERVER,$ENV,db-properties,deployment
