@@ -1,7 +1,7 @@
 import team from 'builder/sponsors/reducers';
 import * as types from 'builder/actions/actionTypes';
 
-describe('Team reducer', () => {
+describe('Sponsor reducer', () => {
    it('sets total cost', () => {
       expect(
          team({}, {

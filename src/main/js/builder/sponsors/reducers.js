@@ -50,6 +50,11 @@ const sponsor = (
          ...state,
          totalCost: payload
       };
+   case ActionTypes.SET_SPONSOR_NAME:
+      return {
+         ...state,
+         sponsorName: payload
+      };
    default:
       return state;
    }
