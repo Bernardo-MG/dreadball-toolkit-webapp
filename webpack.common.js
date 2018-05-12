@@ -29,7 +29,7 @@ let plugins = [
    new webpack.optimize.CommonsChunkPlugin({
       name : 'vendor',
       filename : OUTPUT_FILE_VENDOR,
-      minChunks : Infinity
+      minChunks : 2
    }),
    new webpack.NoEmitOnErrorsPlugin(),
    new webpack.DefinePlugin({
