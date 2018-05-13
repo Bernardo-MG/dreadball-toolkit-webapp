@@ -8,9 +8,11 @@ import Box from 'grommet/components/Box';
 import Columns from 'grommet/components/Columns';
 import Heading from 'grommet/components/Heading';
 import Label from 'grommet/components/Label';
+import Title from 'grommet/components/Title';
 import Value from 'grommet/components/Value';
 
 import abilityMessages from 'i18n/ability';
+import affinityMessages from 'i18n/affinity';
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 import playerRoleMessages from 'i18n/role';
@@ -84,16 +86,55 @@ class PlayerPanel extends Component {
          </Columns>;
 
       const abilities =
-         <Box direction='row' justify='center' align='center' full='horizontal' separator='top'>
-            {this.props.source.abilities.map((a, i) =>
-               <Box key={i} margin='small'><Label key={i} margin='medium'>{this.props.intl.formatMessage(abilityMessages[a])}</Label></Box>)}
+         <Box full='horizontal' separator='top'>
+            <Box justify='center' align='center'>
+               <Title>{this.props.intl.formatMessage(playerMessages.abilities)}</Title>
+            </Box>
+            <Box direction='row' justify='center' align='center'>
+               {this.props.source.abilities.map((a, i) =>
+                  <Box key={i} margin='small'><Label key={i} margin='medium'>{this.props.intl.formatMessage(abilityMessages[a])}</Label></Box>)}
+            </Box>
          </Box>;
+
+      let affinities;
+      if ((this.props.source.affinityGroups) && (this.props.source.affinityGroups.length > 0)) {
+         affinities =
+            <Box full='horizontal' separator='top'>
+               <Box justify='center' align='center'>
+                  <Title>{this.props.intl.formatMessage(playerMessages.affinities)}</Title>
+               </Box>
+               <Box direction='row' justify='center' align='center'>
+                  {this.props.source.affinityGroups.map((a, i) =>
+                     <Box key={i} margin='small'><Label key={i} margin='medium'>{this.props.intl.formatMessage(affinityMessages[a])}</Label></Box>)}
+               </Box>
+            </Box>;
+      } else {
+         affinities = null;
+      }
+
+      let hated;
+      if ((this.props.source.hatedAffinityGroups) && (this.props.source.hatedAffinityGroups.length > 0)) {
+         hated =
+            <Box full='horizontal' separator='top'>
+               <Box justify='center' align='center'>
+                  <Title>{this.props.intl.formatMessage(playerMessages.hated_affinities)}</Title>
+               </Box>
+               <Box direction='row' justify='center' align='center'>
+                  {this.props.source.hatedAffinityGroups.map((a, i) =>
+                     <Box key={i} margin='small'><Label key={i} margin='medium'>{this.props.intl.formatMessage(affinityMessages[a])}</Label></Box>)}
+               </Box>
+            </Box>;
+      } else {
+         hated = null;
+      }
 
       return (
          <Box>
             <Heading tag='h1'>{this.props.intl.formatMessage(playerNameMessages[this.props.source.name])}</Heading>
             <Label align='center'>{this.props.intl.formatMessage(playerRoleMessages[this.props.source.role])}</Label>
             {abilities}
+            {affinities}
+            {hated}
             <Box separator='horizontal'>{attributes}</Box>
             <Box>{costs}</Box>
          </Box>

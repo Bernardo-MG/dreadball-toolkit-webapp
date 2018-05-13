@@ -5,6 +5,10 @@ const playerMessages = defineMessages({
       id: 'player.abilities',
       defaultMessage: 'Abilities'
    },
+   affinities: {
+      id: 'player.affinities',
+      defaultMessage: 'Affinity Groups'
+   },
    ally_cost: {
       id: 'player.cost.ally',
       defaultMessage: 'Ally cost'
@@ -24,6 +28,10 @@ const playerMessages = defineMessages({
    friend_cost: {
       id: 'player.cost.friend',
       defaultMessage: 'Friend cost'
+   },
+   hated_affinities: {
+      id: 'player.hated',
+      defaultMessage: 'Hated Affinity Groups'
    },
    move: {
       id: 'player.move',

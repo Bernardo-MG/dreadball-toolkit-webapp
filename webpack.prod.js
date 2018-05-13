@@ -6,7 +6,7 @@ const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 
 module.exports = merge(common, {
-   devtool: 'source-map',
+   devtool: 'cheap-module-source-map',
    plugins: [
       new UglifyJsPlugin({
          sourceMap: true,
