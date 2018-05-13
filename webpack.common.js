@@ -35,7 +35,7 @@ let plugins = [
    new webpack.DefinePlugin({
       APP_VERSION : JSON.stringify(PROJECT_VERSION),
       REPO_URL : JSON.stringify(PROJECT_REPO_URL)
-   }) 
+   })
 ]
 
 module.exports = {
