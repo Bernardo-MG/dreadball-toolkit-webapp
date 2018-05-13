@@ -19,7 +19,7 @@ import com.itextpdf.text.Font;
 import com.itextpdf.text.FontFactory;
 import com.itextpdf.text.Paragraph;
 import com.itextpdf.text.Phrase;
-import com.itextpdf.text.TabSettings;
+import com.itextpdf.text.Rectangle;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
@@ -207,7 +207,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         paragraph = new Paragraph();
 
         table = new PdfPTable(2);
-        table.getDefaultCell().setBorder(PdfPCell.NO_BORDER);
+        table.getDefaultCell().setBorder(Rectangle.NO_BORDER);
         paragraph.add(table);
 
         table.addCell(messages.getString("report.rank"));

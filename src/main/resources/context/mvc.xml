@@ -34,7 +34,7 @@
 
    <!-- Static resources -->
    <mvc:resources mapping="/resources/**" location="/resources/">
-      <mvc:cache-control cache-public="true" max-age="2592000" />
+      <mvc:cache-control cache-public="true" max-age="1296000" />
    </mvc:resources>
 
    <mvc:default-servlet-handler />

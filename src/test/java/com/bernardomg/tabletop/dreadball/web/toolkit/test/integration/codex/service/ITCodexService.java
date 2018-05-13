@@ -24,6 +24,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
 
@@ -77,7 +78,7 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
         final Iterable<? extends TeamPlayer> result;
         final Iterator<? extends TeamPlayer> itr;
 
-        pageable = PageRequest.of(0, 10);
+        pageable = PageRequest.of(0, 10, Direction.ASC, "templateName");
         result = service.getAffinityTeamPlayers(pageable);
         itr = result.iterator();
 

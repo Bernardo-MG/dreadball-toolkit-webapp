@@ -152,7 +152,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         affinities = new ArrayList<>();
         affinities.add(new ImmutableAffinityGroup("affinity_1"));
 
-        pageable = PageRequest.of(0, 10);
+        pageable = PageRequest.of(0, 10, Direction.ASC, "templateName");
         players = service.getTeamPlayerOptions(affinities, pageable);
 
         itr = players.iterator();
@@ -174,7 +174,7 @@ public class ITSponsorBuilderServiceTeamPlayers
 
         affinities = new ArrayList<>();
 
-        pageable = PageRequest.of(0, 10);
+        pageable = PageRequest.of(0, 10, Direction.ASC, "templateName");
         players = service.getTeamPlayerOptions(affinities, pageable);
 
         itr = players.iterator();
