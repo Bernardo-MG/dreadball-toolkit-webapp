@@ -3,21 +3,21 @@ import { REQUEST_PLAYERS, CHANGE_PAGE_PREV_PLAYERS, CHANGE_PAGE_NEXT_PLAYERS, RE
 export const fetch = () => {
    return {
       type: REQUEST_PLAYERS,
-      params: { orderBy: 'templateName' }
+      params: { sort: 'templateName' }
    };
 };
 
 export const movePrevPage = () => {
    return {
       type: CHANGE_PAGE_PREV_PLAYERS,
-      params: { orderBy: 'templateName' }
+      params: { sort: 'templateName' }
    };
 };
 
 export const moveNextPage = () => {
    return {
       type: CHANGE_PAGE_NEXT_PLAYERS,
-      params: { orderBy: 'templateName' }
+      params: { sort: 'templateName' }
    };
 };
 

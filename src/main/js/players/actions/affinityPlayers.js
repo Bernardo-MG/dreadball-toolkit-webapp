@@ -3,21 +3,21 @@ import { REQUEST_TEAM_PLAYERS, CHANGE_PAGE_PREV_TEAM_PLAYERS, CHANGE_PAGE_NEXT_T
 export const fetch = () => {
    return {
       type: REQUEST_TEAM_PLAYERS,
-      params: { orderBy: 'templateName' }
+      params: { sort: 'templateName' }
    };
 };
 
 export const movePrevPage = () => {
    return {
       type: CHANGE_PAGE_PREV_TEAM_PLAYERS,
-      params: { orderBy: 'templateName' }
+      params: { sort: 'templateName' }
    };
 };
 
 export const moveNextPage = () => {
    return {
       type: CHANGE_PAGE_NEXT_TEAM_PLAYERS,
-      params: { orderBy: 'templateName' }
+      params: { sort: 'templateName' }
    };
 };
 
