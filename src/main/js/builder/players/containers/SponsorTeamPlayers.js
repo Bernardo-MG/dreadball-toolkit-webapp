@@ -18,8 +18,7 @@ const SponsorTeamPlayers = (props) =>
 
 SponsorTeamPlayers.propTypes = {
    source: PropTypes.array.isRequired,
-   buttonAction: PropTypes.func.isRequired,
-   intl: PropTypes.object.isRequired
+   buttonAction: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
