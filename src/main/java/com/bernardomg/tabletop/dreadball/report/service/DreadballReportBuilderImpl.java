@@ -33,11 +33,20 @@ import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 @Service("dreadballReportBuilder")
 public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
+    private final Font chapterFont;
+
+    private final Font paragraphFont;
+
     /**
      * Constructs a report builder.
      */
     public DreadballReportBuilderImpl() {
         super();
+
+        chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16,
+                Font.BOLDITALIC);
+        paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12,
+                Font.NORMAL);
     }
 
     @Override
@@ -52,30 +61,28 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
     private final void create(final SponsorTeam team, final OutputStream output)
             throws IOException, DocumentException {
-        final Document document = new Document();
-        PdfWriter.getInstance(document, output);
-        document.open();
-        final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16,
-                Font.BOLDITALIC);
-        final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA,
-                12, Font.NORMAL);
-        final Chunk chunk = new Chunk("App title", chapterFont);
-
+        final Document document;
         final Paragraph general;
         final Paragraph assets;
         final Paragraph players;
         final Paragraph affinities;
         final Paragraph copyright;
+        final Paragraph header;
+        final Chunk linebreak;
 
-        general = getGeneralParagraph(team, paragraphFont);
-        assets = getAssetsParagraph(team, paragraphFont);
-        players = getPlayersParagraph(team, paragraphFont);
-        affinities = getAffinitiesParagraph(team, paragraphFont);
-        copyright = getCopyright(paragraphFont);
+        document = new Document();
+        PdfWriter.getInstance(document, output);
+        document.open();
 
-        final Paragraph header = new Paragraph(chunk);
+        general = getGeneralParagraph(team);
+        assets = getAssetsParagraph(team);
+        players = getPlayersParagraph(team);
+        affinities = getAffinitiesParagraph(team);
+        copyright = getCopyright();
 
-        final Chunk linebreak = new Chunk(new DottedLineSeparator());
+        header = getHeader();
+
+        linebreak = new Chunk(new DottedLineSeparator());
 
         document.add(header);
         document.add(linebreak);
@@ -87,8 +94,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         document.close();
     }
 
-    private final Paragraph getAffinitiesParagraph(final SponsorTeam team,
-            final Font paragraphFont) {
+    private final Paragraph getAffinitiesParagraph(final SponsorTeam team) {
         final Paragraph paragraph;
         final PdfPTable table;
         final PdfPTable tableAdditional;
@@ -137,8 +143,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         return paragraph;
     }
 
-    private final Paragraph getAssetsParagraph(final SponsorTeam team,
-            final Font paragraphFont) {
+    private final Paragraph getAssetsParagraph(final SponsorTeam team) {
         final Paragraph paragraph;
         final PdfPTable table;
 
@@ -179,7 +184,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         return paragraph;
     }
 
-    private final Paragraph getCopyright(final Font paragraphFont) {
+    private final Paragraph getCopyright() {
         final Paragraph paragraph;
 
         paragraph = new Paragraph();
@@ -189,8 +194,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         return paragraph;
     }
 
-    private final Paragraph getGeneralParagraph(final SponsorTeam team,
-            final Font paragraphFont) {
+    private final Paragraph getGeneralParagraph(final SponsorTeam team) {
         final Paragraph paragraph;
         final Paragraph paraRankCost;
         final Paragraph paraRank;
@@ -227,8 +231,15 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         return paragraph;
     }
 
-    private final Paragraph getPlayersParagraph(final SponsorTeam team,
-            final Font paragraphFont) {
+    private final Paragraph getHeader() {
+        final Chunk chunk;
+
+        chunk = new Chunk("App title", chapterFont);
+
+        return new Paragraph(chunk);
+    }
+
+    private final Paragraph getPlayersParagraph(final SponsorTeam team) {
         final Paragraph paragraph;
         final PdfPTable table;
 
