@@ -21,14 +21,7 @@
    </bean>
 
    <util:list id="baseNames">
-      <value>classpath:/messages/application</value>
-      <value>classpath:/messages/dreadball</value>
-      <value>classpath:/messages/affinity-groups</value>
-      <value>classpath:/messages/validation</value>
-      <value>classpath:/messages/role</value>
-      <value>classpath:/messages/ability</value>
-      <value>classpath:/messages/ability-description</value>
-      <value>classpath:/messages/unit</value>
+      <value>classpath:/messages/report</value>
    </util:list>
 
 </beans>

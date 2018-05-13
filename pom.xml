@@ -970,6 +970,8 @@
                <include>context/application-context.xml</include>
                <!-- Filter the persistence access properties -->
                <include>config/persistence-access.properties</include>
+               <!-- Filter the message bundles -->
+               <include>messages/report.properties</include>
             </includes>
             <filtering>true</filtering>
          </resource>

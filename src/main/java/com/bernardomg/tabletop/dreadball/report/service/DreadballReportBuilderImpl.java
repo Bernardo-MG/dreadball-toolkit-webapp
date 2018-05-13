@@ -3,6 +3,7 @@ package com.bernardomg.tabletop.dreadball.report.service;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.ResourceBundle;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
@@ -33,11 +34,24 @@ import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 @Service("dreadballReportBuilder")
 public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
+    private final Font           chapterFont;
+
+    private final ResourceBundle messages;
+
+    private final Font           paragraphFont;
+
     /**
      * Constructs a report builder.
      */
     public DreadballReportBuilderImpl() {
         super();
+
+        chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16,
+                Font.BOLDITALIC);
+        paragraphFont = FontFactory.getFont(FontFactory.HELVETICA, 12,
+                Font.NORMAL);
+
+        messages = ResourceBundle.getBundle("messages/report");
     }
 
     @Override
@@ -52,30 +66,27 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
     private final void create(final SponsorTeam team, final OutputStream output)
             throws IOException, DocumentException {
-        final Document document = new Document();
-        PdfWriter.getInstance(document, output);
-        document.open();
-        final Font chapterFont = FontFactory.getFont(FontFactory.HELVETICA, 16,
-                Font.BOLDITALIC);
-        final Font paragraphFont = FontFactory.getFont(FontFactory.HELVETICA,
-                12, Font.NORMAL);
-        final Chunk chunk = new Chunk("App title", chapterFont);
-
+        final Document document;
         final Paragraph general;
         final Paragraph assets;
         final Paragraph players;
         final Paragraph affinities;
         final Paragraph copyright;
+        final Paragraph header;
+        final Chunk linebreak;
 
-        general = getGeneralParagraph(team, paragraphFont);
-        assets = getAssetsParagraph(team, paragraphFont);
-        players = getPlayersParagraph(team, paragraphFont);
-        affinities = getAffinitiesParagraph(team, paragraphFont);
-        copyright = getCopyright(paragraphFont);
+        document = new Document();
+        PdfWriter.getInstance(document, output);
+        document.open();
 
-        final Paragraph header = new Paragraph(chunk);
+        header = getHeader();
+        general = getGeneralParagraph(team);
+        assets = getAssetsParagraph(team);
+        players = getPlayersParagraph(team);
+        affinities = getAffinitiesParagraph(team);
+        copyright = getCopyright();
 
-        final Chunk linebreak = new Chunk(new DottedLineSeparator());
+        linebreak = new Chunk(new DottedLineSeparator());
 
         document.add(header);
         document.add(linebreak);
@@ -87,27 +98,27 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         document.close();
     }
 
-    private final Paragraph getAffinitiesParagraph(final SponsorTeam team,
-            final Font paragraphFont) {
+    private final Paragraph getAffinitiesParagraph(final SponsorTeam team) {
         final Paragraph paragraph;
         final PdfPTable table;
         final PdfPTable tableAdditional;
 
         paragraph = new Paragraph();
 
-        paragraph.add(new Paragraph("affinities", paragraphFont));
+        paragraph.add(new Paragraph(" ", paragraphFont));
 
         table = new PdfPTable(1);
         paragraph.add(table);
 
         // Adds headers
-        Stream.of("affinity").forEach(columnTitle -> {
-            final PdfPCell header = new PdfPCell();
-            header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            header.setBorderWidth(2);
-            header.setPhrase(new Phrase(columnTitle));
-            table.addCell(header);
-        });
+        Stream.of(messages.getString("report.affinity"))
+                .forEach(columnTitle -> {
+                    final PdfPCell header = new PdfPCell();
+                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                    header.setBorderWidth(2);
+                    header.setPhrase(new Phrase(columnTitle));
+                    table.addCell(header);
+                });
 
         team.getSponsor().getAffinityGroups().stream().forEach((affinity) -> {
             table.addCell(affinity.getName());
@@ -137,49 +148,49 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         return paragraph;
     }
 
-    private final Paragraph getAssetsParagraph(final SponsorTeam team,
-            final Font paragraphFont) {
+    private final Paragraph getAssetsParagraph(final SponsorTeam team) {
         final Paragraph paragraph;
         final PdfPTable table;
 
         paragraph = new Paragraph();
 
-        paragraph.add(new Paragraph("assets", paragraphFont));
+        paragraph.add(new Paragraph(" ", paragraphFont));
 
         table = new PdfPTable(2);
         paragraph.add(table);
 
         // Adds headers
-        Stream.of("asset", "value").forEach(columnTitle -> {
-            final PdfPCell header = new PdfPCell();
-            header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            header.setBorderWidth(2);
-            header.setPhrase(new Phrase(columnTitle));
-            table.addCell(header);
-        });
+        Stream.of(messages.getString("report.asset"),
+                messages.getString("report.value")).forEach(columnTitle -> {
+                    final PdfPCell header = new PdfPCell();
+                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                    header.setBorderWidth(2);
+                    header.setPhrase(new Phrase(columnTitle));
+                    table.addCell(header);
+                });
 
-        table.addCell("cheerleaders");
+        table.addCell(messages.getString("report.cheerleaders"));
         table.addCell(String.valueOf(team.getCheerleaders()));
 
-        table.addCell("coaching_dice");
+        table.addCell(messages.getString("report.coachingDice"));
         table.addCell(String.valueOf(team.getCoachingDice()));
 
-        table.addCell("medibots");
+        table.addCell(messages.getString("report.medibots"));
         table.addCell(String.valueOf(team.getMediBots()));
 
-        table.addCell("nasty_surprise_cards");
+        table.addCell(messages.getString("report.nastySupriseCards"));
         table.addCell(String.valueOf(team.getNastySurpriseCards()));
 
-        table.addCell("special_move_cards");
+        table.addCell(messages.getString("report.specialMoveCards"));
         table.addCell(String.valueOf(team.getSpecialMoveCards()));
 
-        table.addCell("wager");
+        table.addCell(messages.getString("report.wagers"));
         table.addCell(String.valueOf(team.getWagers()));
 
         return paragraph;
     }
 
-    private final Paragraph getCopyright(final Font paragraphFont) {
+    private final Paragraph getCopyright() {
         final Paragraph paragraph;
 
         paragraph = new Paragraph();
@@ -189,64 +200,57 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
         return paragraph;
     }
 
-    private final Paragraph getGeneralParagraph(final SponsorTeam team,
-            final Font paragraphFont) {
+    private final Paragraph getGeneralParagraph(final SponsorTeam team) {
+        final PdfPTable table;
         final Paragraph paragraph;
-        final Paragraph paraRankCost;
-        final Paragraph paraRank;
-        final Paragraph paraCost;
 
         paragraph = new Paragraph();
 
-        paragraph.add(new Paragraph("team", paragraphFont));
+        table = new PdfPTable(2);
+        table.getDefaultCell().setBorder(PdfPCell.NO_BORDER);
+        paragraph.add(table);
 
-        paraRank = new Paragraph();
-        paraRank.add(new Chunk("rank"));
-        paraRank.setTabSettings(new TabSettings(56f));
-        paraRank.add(Chunk.TABBING);
-        paraRank.add(new Chunk(String.valueOf(team.getBaseRank())));
+        table.addCell(messages.getString("report.rank"));
+        table.addCell(String.valueOf(team.getBaseRank()));
 
-        paragraph.add(paraRank);
+        table.addCell(messages.getString("report.rankCost"));
+        table.addCell(String.valueOf(team.getRankCost()));
 
-        paraRankCost = new Paragraph();
-        paraRankCost.add(new Chunk("rank_cost"));
-        paraRankCost.setTabSettings(new TabSettings(56f));
-        paraRankCost.add(Chunk.TABBING);
-        paraRankCost.add(new Chunk(String.valueOf(team.getRankCost())));
-
-        paragraph.add(paraRankCost);
-
-        paraCost = new Paragraph();
-        paraCost.add(new Chunk("total_cost"));
-        paraCost.setTabSettings(new TabSettings(56f));
-        paraCost.add(Chunk.TABBING);
-        paraCost.add(new Chunk(String.valueOf(team.getTotalCost())));
-
-        paragraph.add(paraCost);
+        table.addCell(messages.getString("report.totalCost"));
+        table.addCell(String.valueOf(team.getTotalCost()));
 
         return paragraph;
     }
 
-    private final Paragraph getPlayersParagraph(final SponsorTeam team,
-            final Font paragraphFont) {
+    private final Paragraph getHeader() {
+        final Chunk chunk;
+
+        chunk = new Chunk(messages.getString("report.appName"), chapterFont);
+
+        return new Paragraph(chunk);
+    }
+
+    private final Paragraph getPlayersParagraph(final SponsorTeam team) {
         final Paragraph paragraph;
         final PdfPTable table;
 
         paragraph = new Paragraph();
 
-        paragraph.add(new Paragraph("players", paragraphFont));
+        paragraph.add(new Paragraph(" ", paragraphFont));
 
         table = new PdfPTable(3);
         paragraph.add(table);
 
         // Adds headers
-        Stream.of("position", "player", "cost").forEach(columnTitle -> {
-            final PdfPCell header = new PdfPCell();
-            header.setBackgroundColor(BaseColor.LIGHT_GRAY);
-            header.setBorderWidth(2);
-            header.setPhrase(new Phrase(columnTitle));
-            table.addCell(header);
-        });
+        Stream.of(messages.getString("report.position"),
+                messages.getString("report.player"),
+                messages.getString("report.cost")).forEach(columnTitle -> {
+                    final PdfPCell header = new PdfPCell();
+                    header.setBackgroundColor(BaseColor.LIGHT_GRAY);
+                    header.setBorderWidth(2);
+                    header.setPhrase(new Phrase(columnTitle));
+                    table.addCell(header);
+                });
 
         team.getPlayers().entrySet().stream().forEach((pair) -> {
             table.addCell(String.valueOf(pair.getKey()));
