@@ -201,36 +201,23 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
     }
 
     private final Paragraph getGeneralParagraph(final SponsorTeam team) {
+        final PdfPTable table;
         final Paragraph paragraph;
-        final Paragraph paraRankCost;
-        final Paragraph paraRank;
-        final Paragraph paraCost;
 
         paragraph = new Paragraph();
 
-        paraRank = new Paragraph();
-        paraRank.add(new Chunk(messages.getString("report.rank")));
-        paraRank.setTabSettings(new TabSettings(56f));
-        paraRank.add(Chunk.TABBING);
-        paraRank.add(new Chunk(String.valueOf(team.getBaseRank())));
+        table = new PdfPTable(2);
+        table.getDefaultCell().setBorder(PdfPCell.NO_BORDER);
+        paragraph.add(table);
 
-        paragraph.add(paraRank);
+        table.addCell(messages.getString("report.rank"));
+        table.addCell(String.valueOf(team.getBaseRank()));
 
-        paraRankCost = new Paragraph();
-        paraRankCost.add(new Chunk(messages.getString("report.rankCost")));
-        paraRankCost.setTabSettings(new TabSettings(56f));
-        paraRankCost.add(Chunk.TABBING);
-        paraRankCost.add(new Chunk(String.valueOf(team.getRankCost())));
+        table.addCell(messages.getString("report.rankCost"));
+        table.addCell(String.valueOf(team.getRankCost()));
 
-        paragraph.add(paraRankCost);
-
-        paraCost = new Paragraph();
-        paraCost.add(new Chunk(messages.getString("report.totalCost")));
-        paraCost.setTabSettings(new TabSettings(56f));
-        paraCost.add(Chunk.TABBING);
-        paraCost.add(new Chunk(String.valueOf(team.getTotalCost())));
-
-        paragraph.add(paraCost);
+        table.addCell(messages.getString("report.totalCost"));
+        table.addCell(String.valueOf(team.getTotalCost()));
 
         return paragraph;
     }
