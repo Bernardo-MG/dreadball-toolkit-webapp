@@ -38,6 +38,8 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
     private final ResourceBundle messages;
 
+    private final ResourceBundle affinitiesMessages;
+
     private final Font           paragraphFont;
 
     /**
@@ -52,6 +54,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
                 Font.NORMAL);
 
         messages = ResourceBundle.getBundle("messages/report");
+        affinitiesMessages = ResourceBundle.getBundle("messages/affinities");
     }
 
     @Override
@@ -121,7 +124,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
                 });
 
         team.getSponsor().getAffinityGroups().stream().forEach((affinity) -> {
-            table.addCell(affinity.getName());
+            table.addCell(affinitiesMessages.getString(affinity.getName()));
         });
 
         if (!Iterables.isEmpty(team.getAdditionalAffinityGroups())) {
@@ -141,7 +144,8 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
                     .stream(team.getAdditionalAffinityGroups().spliterator(),
                             false)
                     .forEach((affinity) -> {
-                        tableAdditional.addCell(affinity.getName());
+                        tableAdditional.addCell(affinitiesMessages
+                                .getString(affinity.getName()));
                     });
         }
 
