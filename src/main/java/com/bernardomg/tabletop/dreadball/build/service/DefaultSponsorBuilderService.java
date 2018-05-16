@@ -181,6 +181,7 @@ public final class DefaultSponsorBuilderService
             players.add(assembleTeamPlayer(affTeamPlayer, cost));
         }
 
+        // A page is created for the adapted data
         return new PageImpl<>(players, pageReq, filtered.getTotalElements());
     }
 
@@ -497,9 +498,10 @@ public final class DefaultSponsorBuilderService
             affinityLevel = getDbxRules().getAffinityLevel(player, affinities);
             cost = getDbxRules().getTeamPlayerCost(affinityLevel, player);
 
-            playerSetUp = new DefaultTeamPlayer(player.getTemplateName(), cost,
-                    player.getRole(), player.getAttributes(),
-                    player.getAbilities(), player.getMvp(), player.getGiant());
+            playerSetUp = new DefaultTeamPlayer(player.getName(),
+                    player.getTemplateName(), cost, player.getRole(),
+                    player.getAttributes(), player.getAbilities(),
+                    player.getMvp(), player.getGiant());
 
             sponsorTeam.addPlayer(playerSetUp);
         }

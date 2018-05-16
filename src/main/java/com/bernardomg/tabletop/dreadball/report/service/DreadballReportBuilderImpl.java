@@ -40,6 +40,8 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
     private final ResourceBundle affinitiesMessages;
 
+    private final ResourceBundle playersMessages;
+
     private final Font           paragraphFont;
 
     /**
@@ -55,6 +57,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         messages = ResourceBundle.getBundle("messages/report");
         affinitiesMessages = ResourceBundle.getBundle("messages/affinities");
+        playersMessages = ResourceBundle.getBundle("messages/playerNames");
     }
 
     @Override
@@ -258,7 +261,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         team.getPlayers().entrySet().stream().forEach((pair) -> {
             table.addCell(String.valueOf(pair.getKey()));
-            table.addCell(pair.getValue().getTemplateName());
+            table.addCell(playersMessages.getString(pair.getValue().getName()));
             table.addCell(String.valueOf(pair.getValue().getCost()));
         });
 
