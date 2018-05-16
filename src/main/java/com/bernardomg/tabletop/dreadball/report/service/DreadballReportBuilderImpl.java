@@ -38,6 +38,10 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
     private final ResourceBundle messages;
 
+    private final ResourceBundle affinitiesMessages;
+
+    private final ResourceBundle playersMessages;
+
     private final Font           paragraphFont;
 
     /**
@@ -52,6 +56,8 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
                 Font.NORMAL);
 
         messages = ResourceBundle.getBundle("messages/report");
+        affinitiesMessages = ResourceBundle.getBundle("messages/affinities");
+        playersMessages = ResourceBundle.getBundle("messages/playerNames");
     }
 
     @Override
@@ -121,7 +127,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
                 });
 
         team.getSponsor().getAffinityGroups().stream().forEach((affinity) -> {
-            table.addCell(affinity.getName());
+            table.addCell(affinitiesMessages.getString(affinity.getName()));
         });
 
         if (!Iterables.isEmpty(team.getAdditionalAffinityGroups())) {
@@ -141,7 +147,8 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
                     .stream(team.getAdditionalAffinityGroups().spliterator(),
                             false)
                     .forEach((affinity) -> {
-                        tableAdditional.addCell(affinity.getName());
+                        tableAdditional.addCell(affinitiesMessages
+                                .getString(affinity.getName()));
                     });
         }
 
@@ -254,7 +261,7 @@ public class DreadballReportBuilderImpl implements DreadballReportBuilder {
 
         team.getPlayers().entrySet().stream().forEach((pair) -> {
             table.addCell(String.valueOf(pair.getKey()));
-            table.addCell(pair.getValue().getTemplateName());
+            table.addCell(playersMessages.getString(pair.getValue().getName()));
             table.addCell(String.valueOf(pair.getValue().getCost()));
         });
 
