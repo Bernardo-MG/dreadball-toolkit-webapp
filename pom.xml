@@ -28,7 +28,7 @@
    <packaging>war</packaging>
 
    <name>Dreadball Toolkit</name>
-   <description>A team builder and utilities page for Dreadball</description>
+   <description>Team builder for Dreadball</description>
    <url>https://github.com/bernardo-mg/dreadball-toolkit-webapp</url>
    <inceptionYear>2016</inceptionYear>
 
@@ -585,6 +585,12 @@
       <!-- =============== MANIFEST DATA ================ -->
       <!-- ============================================== -->
       <manifest.name>com/bernardomg/tabletop/dreadball/dreadball_toolkit_webapp</manifest.name>
+      <!-- ============================================== -->
+      <!-- =============== TEMPLATE INFO ================ -->
+      <!-- ============================================== -->
+      <view.keywords>Dreadball, team builder</view.keywords>
+      <site.url>http://dreadball.bernardomg.com/</site.url>
+      <social.twitter>@BernardoMartG</social.twitter>
       <!-- ============================================== -->
       <!-- ============= NODE ENVIRONMENT =============== -->
       <!-- ============================================== -->
