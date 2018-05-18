@@ -9,12 +9,15 @@ import configureStore from 'store/configureStore';
 
 import 'theme/style.scss';
 
+// Data store
 const store = configureStore();
 
+// History for the routes
 const browserHistory = useRouterHistory(createHistory)();
-
 const history = syncHistoryWithStore(browserHistory, store);
 
+// Root element, where the application will be loaded
 const rootElement = document.getElementById('root');
 
+// Render application into the root element
 render(<Root store={store} history={history} />, rootElement);

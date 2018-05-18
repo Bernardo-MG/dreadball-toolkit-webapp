@@ -1,5 +1,8 @@
 import { defineMessages } from 'react-intl';
 
+/**
+ * Player roles internationalized names.
+ */
 const roleMessages = defineMessages({
    guard: {
       id: 'role.guard',

@@ -22,12 +22,17 @@ import { toggleNavBar, hideNavBarOnSmallScreen } from 'views/actions';
 
 import { selectNavbarVisible } from 'views/selectors';
 
+/**
+ * Main application sidebar.
+ * 
+ * It contains the main navigation links, along the title and a footer.
+ */
 const MainSidebar = (props) =>
    <Sidebar colorIndex='light-2'>
       <Header size='large' pad='small'>
          <Title truncate={false}>{props.title}</Title>
          <Box flex={true} justify='end' direction='row' responsive={false}>
-            <Button onClick={() => props.toggleNavBar()} icon={<CloseIcon/>} />
+            <Button onClick={() => props.onClose()} icon={<CloseIcon/>} />
          </Box>
       </Header>
       <Menu fill={true} primary={true}>
@@ -42,9 +47,13 @@ const MainSidebar = (props) =>
    </Sidebar>;
 
 MainSidebar.propTypes = {
-   toggleNavBar: PropTypes.func.isRequired,
+   /** Callback function for closing the side bar */
+   onClose: PropTypes.func.isRequired,
+   /** Callback function for clicking a link */
    onClickLink: PropTypes.func.isRequired,
+   /** Application title */
    title: PropTypes.string,
+   /** Navigation links */
    links: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string,
       path: PropTypes.string
@@ -59,7 +68,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      toggleNavBar: bindActionCreators(toggleNavBar, dispatch),
+      onClose: bindActionCreators(toggleNavBar, dispatch),
       onClickLink: bindActionCreators(hideNavBarOnSmallScreen, dispatch)
    };
 };

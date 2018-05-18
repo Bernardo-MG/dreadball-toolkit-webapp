@@ -1,5 +1,8 @@
 import { defineMessages } from 'react-intl';
 
+/**
+ * Players internationalized names.
+ */
 const playerNameMessages = defineMessages({
    ada_lorana_guard: {
       id: 'player.adaLorana.guard',

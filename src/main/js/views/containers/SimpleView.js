@@ -16,7 +16,15 @@ import { toggleNavBar } from 'views/actions';
 
 import { selectNavbarVisible } from 'views/selectors';
 
+/**
+ * A simple view.
+ * 
+ * It includes a title and the main view.
+ * 
+ * A button will be included along the title, to toggle the nav bar.
+ */
 const SimpleView = (props) => {
+   // The button to show the nav bar is shown only if the nav bar is hidden
    let toggleNavButton;
    if (!props.navbarVisible) {
       toggleNavButton = <Button onClick={() => props.onToggleNavBar()} icon={<MenuIcon/>} />;
@@ -34,9 +42,13 @@ const SimpleView = (props) => {
 };
 
 SimpleView.propTypes = {
+   /** Flag marking if the navigation bar is visible */
    navbarVisible: PropTypes.bool.isRequired,
+   /** Callback function for toggling the nav bar */
    onToggleNavBar: PropTypes.func.isRequired,
+   /** View title */
    title: PropTypes.string.isRequired,
+   /** Children elements, the view contents */
    children: PropTypes.object.isRequired
 };
 

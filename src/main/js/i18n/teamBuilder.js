@@ -1,5 +1,8 @@
 import { defineMessages } from 'react-intl';
 
+/**
+ * Team builder internationalized labels.
+ */
 const teamBuilderMessages = defineMessages({
    add_players: {
       id: 'builder.text.addPlayers',

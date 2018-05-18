@@ -1,5 +1,8 @@
 import { defineMessages } from 'react-intl';
 
+/**
+ * Players internationalized labels.
+ */
 const playerMessages = defineMessages({
    abilities: {
       id: 'player.abilities',
