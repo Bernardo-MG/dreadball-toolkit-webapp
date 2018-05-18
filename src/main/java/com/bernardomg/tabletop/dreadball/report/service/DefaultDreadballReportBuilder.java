@@ -20,10 +20,14 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.util.Map.Entry;
 import java.util.ResourceBundle;
+import java.util.Set;
 import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
+import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
+import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.google.common.collect.Iterables;
 import com.itextpdf.text.BaseColor;
@@ -49,14 +53,29 @@ import com.itextpdf.text.pdf.draw.DottedLineSeparator;
 public final class DefaultDreadballReportBuilder
         implements DreadballReportBuilder {
 
+    /**
+     * Affinites i18n messages.
+     */
     private final ResourceBundle affinitiesMessages;
 
+    /**
+     * Chapter font.
+     */
     private final Font           chapterFont;
 
+    /**
+     * Report i18n messages.
+     */
     private final ResourceBundle messages;
 
+    /**
+     * Paragraph font.
+     */
     private final Font           paragraphFont;
 
+    /**
+     * Player names i18n messages.
+     */
     private final ResourceBundle playersMessages;
 
     /**
@@ -87,7 +106,7 @@ public final class DefaultDreadballReportBuilder
     public final void createPdf(final SponsorTeam team,
             final OutputStream output) throws IOException, DocumentException {
         final Document document;
-        final Paragraph general;
+        final Paragraph costs;
         final Paragraph assets;
         final Paragraph players;
         final Paragraph affinities;
@@ -100,17 +119,19 @@ public final class DefaultDreadballReportBuilder
         document.open();
 
         header = getHeader();
-        general = getGeneralParagraph(team);
+        costs = getCostsParagraph(team);
         assets = getAssetsParagraph(team);
-        players = getPlayersParagraph(team);
-        affinities = getAffinitiesParagraph(team);
+        players = getPlayersParagraph(team.getPlayers().entrySet());
+        affinities = getAffinitiesParagraph(
+                team.getSponsor().getAffinityGroups(),
+                team.getAdditionalAffinityGroups());
         copyright = getCopyright();
 
         linebreak = new Chunk(new DottedLineSeparator());
 
         document.add(header);
         document.add(linebreak);
-        document.add(general);
+        document.add(costs);
         document.add(assets);
         document.add(affinities);
         document.add(players);
@@ -118,7 +139,18 @@ public final class DefaultDreadballReportBuilder
         document.close();
     }
 
-    private final Paragraph getAffinitiesParagraph(final SponsorTeam team) {
+    /**
+     * Builds the affinities paragraph.
+     * 
+     * @param affinities
+     *            sponsor affinities
+     * @param additional
+     *            additional affinities
+     * @return the affinities paragraph
+     */
+    private final Paragraph getAffinitiesParagraph(
+            final Iterable<AffinityGroup> affinities,
+            final Iterable<AffinityGroup> additional) {
         final Paragraph paragraph;
         final PdfPTable table;
         final PdfPTable tableAdditional;
@@ -140,11 +172,13 @@ public final class DefaultDreadballReportBuilder
                     table.addCell(header);
                 });
 
-        team.getSponsor().getAffinityGroups().stream().forEach((affinity) -> {
-            table.addCell(affinitiesMessages.getString(affinity.getName()));
-        });
+        StreamSupport.stream(affinities.spliterator(), false)
+                .forEach((affinity) -> {
+                    table.addCell(
+                            affinitiesMessages.getString(affinity.getName()));
+                });
 
-        if (!Iterables.isEmpty(team.getAdditionalAffinityGroups())) {
+        if (!Iterables.isEmpty(additional)) {
             tableAdditional = new PdfPTable(1);
             paragraph.add(tableAdditional);
 
@@ -157,9 +191,7 @@ public final class DefaultDreadballReportBuilder
                 tableAdditional.addCell(header);
             });
 
-            StreamSupport
-                    .stream(team.getAdditionalAffinityGroups().spliterator(),
-                            false)
+            StreamSupport.stream(additional.spliterator(), false)
                     .forEach((affinity) -> {
                         tableAdditional.addCell(affinitiesMessages
                                 .getString(affinity.getName()));
@@ -169,6 +201,13 @@ public final class DefaultDreadballReportBuilder
         return paragraph;
     }
 
+    /**
+     * Builds the assets paragraph.
+     * 
+     * @param team
+     *            sponsor team
+     * @return the assets paragraph
+     */
     private final Paragraph getAssetsParagraph(final SponsorTeam team) {
         final Paragraph paragraph;
         final PdfPTable table;
@@ -211,6 +250,11 @@ public final class DefaultDreadballReportBuilder
         return paragraph;
     }
 
+    /**
+     * Builds the copyright paragraph.
+     * 
+     * @return the copyright paragraph
+     */
     private final Paragraph getCopyright() {
         final Paragraph paragraph;
 
@@ -221,7 +265,14 @@ public final class DefaultDreadballReportBuilder
         return paragraph;
     }
 
-    private final Paragraph getGeneralParagraph(final SponsorTeam team) {
+    /**
+     * Builds the costs paragraph.
+     * 
+     * @param team
+     *            sponsor team
+     * @return the costs paragraph
+     */
+    private final Paragraph getCostsParagraph(final SponsorTeam team) {
         final PdfPTable table;
         final Paragraph paragraph;
 
@@ -243,6 +294,11 @@ public final class DefaultDreadballReportBuilder
         return paragraph;
     }
 
+    /**
+     * Builds the header paragraph.
+     * 
+     * @return the header paragraph
+     */
     private final Paragraph getHeader() {
         final Chunk chunk;
 
@@ -251,7 +307,15 @@ public final class DefaultDreadballReportBuilder
         return new Paragraph(chunk);
     }
 
-    private final Paragraph getPlayersParagraph(final SponsorTeam team) {
+    /**
+     * Returns the players paragraph.
+     * 
+     * @param players
+     *            team players
+     * @return the players paragraph
+     */
+    private final Paragraph
+            getPlayersParagraph(final Set<Entry<Integer, TeamPlayer>> players) {
         final Paragraph paragraph;
         final PdfPTable table;
 
@@ -273,7 +337,7 @@ public final class DefaultDreadballReportBuilder
                     table.addCell(header);
                 });
 
-        team.getPlayers().entrySet().stream().forEach((pair) -> {
+        StreamSupport.stream(players.spliterator(), false).forEach((pair) -> {
             table.addCell(String.valueOf(pair.getKey()));
             table.addCell(playersMessages.getString(pair.getValue().getName()));
             table.addCell(String.valueOf(pair.getValue().getCost()));
