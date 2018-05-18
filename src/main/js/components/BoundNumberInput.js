@@ -14,24 +14,26 @@ class BoundNumberInput extends Component {
       this.handleChange = props.handleChange;
    }
 
-   updateValue = (event) => {
+   _onUpdateValue(event) {
       if (event.target.value) {
          this.handleChange(Number.parseInt(event.target.value, 10));
       } else {
          this.handleChange(0);
       }
-   };
+   }
 
    render() {
-      const { handleChange, ...rest } = this.props;
+      const { handleChange, action, ...rest } = this.props;
+      const updateValue = this._onUpdateValue.bind(this);
       return (
-         <NumberInput {...rest} onChange={this.updateValue} />
+         <NumberInput {...rest} onChange={updateValue} />
       );
    }
 }
 
 BoundNumberInput.propTypes = {
-   handleChange: PropTypes.func.isRequired
+   handleChange: PropTypes.func.isRequired,
+   action: PropTypes.func.isRequired
 };
 
 export default BoundNumberInput;
