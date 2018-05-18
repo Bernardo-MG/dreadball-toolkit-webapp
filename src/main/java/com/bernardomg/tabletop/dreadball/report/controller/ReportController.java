@@ -40,7 +40,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamSelection;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
-import com.bernardomg.tabletop.dreadball.report.service.DreadballReportBuilder;
+import com.bernardomg.tabletop.dreadball.report.service.DreadballReportService;
 
 /**
  * Controller for generating reports.
@@ -58,9 +58,9 @@ public class ReportController {
     private static final String          FILENAME = "EntityReport";
 
     /**
-     * Report builder.
+     * Report service.
      */
-    private final DreadballReportBuilder reportBuilder;
+    private final DreadballReportService dreadballReportService;
 
     /**
      * Sponsor builder service.
@@ -70,18 +70,18 @@ public class ReportController {
     /**
      * Constructs a controller.
      * 
-     * @param builder
-     *            report builder
+     * @param reportService
+     *            report service
      * @param builderService
      *            Sponsor builder service
      */
     @Autowired
-    public ReportController(final DreadballReportBuilder builder,
+    public ReportController(final DreadballReportService reportService,
             final SponsorBuilderService builderService) {
         super();
 
-        reportBuilder = checkNotNull(builder,
-                "Received a null pointer as report builder");
+        dreadballReportService = checkNotNull(reportService,
+                "Received a null pointer as service builder");
         sponsorBuilderService = checkNotNull(builderService,
                 "Received a null pointer as sponsor builder service");
     }
@@ -114,16 +114,16 @@ public class ReportController {
             throw new RuntimeException(e);
         }
 
-        getReportBuilder().createPdf(team, output);
+        getDreadballReportService().createPdf(team, output);
     }
 
     /**
-     * Returns the report builder.
+     * Returns the report service.
      * 
-     * @return the report builder
+     * @return the report service
      */
-    private final DreadballReportBuilder getReportBuilder() {
-        return reportBuilder;
+    private final DreadballReportService getDreadballReportService() {
+        return dreadballReportService;
     }
 
     /**
