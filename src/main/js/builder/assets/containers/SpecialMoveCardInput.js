@@ -12,11 +12,10 @@ import BoundNumberInput from 'components/BoundNumberInput';
 import { selectSpecialMoveCards } from 'builder/assets/selectors';
 
 const SpecialMoveCardInput = (props) =>
-   <BoundNumberInput {...props}
-      handleChange={props.action} />;
+   <BoundNumberInput {...props} />;
 
 SpecialMoveCardInput.propTypes = {
-   action: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -27,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(setSpecialMoveCard, dispatch)
+      onChange: bindActionCreators(setSpecialMoveCard, dispatch)
    };
 };
 

@@ -12,11 +12,10 @@ import BoundNumberInput from 'components/BoundNumberInput';
 import { selectNastySurpriseCards } from 'builder/assets/selectors';
 
 const NastySurpriseCardInput = (props) =>
-   <BoundNumberInput {...props}
-      handleChange={props.action} />;
+   <BoundNumberInput {...props} />;
 
 NastySurpriseCardInput.propTypes = {
-   action: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -27,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(setNastySurpriseCard, dispatch)
+      onChange: bindActionCreators(setNastySurpriseCard, dispatch)
    };
 };
 
