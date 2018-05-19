@@ -69,7 +69,10 @@ SidebarView.propTypes = {
    /** Flag marking if the UI is on a small screen */
    smallScreen: PropTypes.bool.isRequired,
    /** Children elements, the view contents */
-   children: PropTypes.object.isRequired,
+   children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+   ]),
    /** Side bar to show */
    sideBar: PropTypes.element.isRequired,
    /** Callback function for toggling the nav bar */

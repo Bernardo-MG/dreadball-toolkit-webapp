@@ -49,7 +49,10 @@ SimpleView.propTypes = {
    /** View title */
    title: PropTypes.string.isRequired,
    /** Children elements, the view contents */
-   children: PropTypes.object.isRequired
+   children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+   ])
 };
 
 const mapStateToProps = (state) => {

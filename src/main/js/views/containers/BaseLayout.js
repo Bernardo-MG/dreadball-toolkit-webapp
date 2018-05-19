@@ -80,7 +80,10 @@ BaseLayout.propTypes = {
    /** Callback function for changing to a small screen */
    onSetSmallScreen: PropTypes.func.isRequired,
    /** Children elements, the view contents */
-   children: PropTypes.object.isRequired,
+   children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+   ]),
    /** I18n object */
    intl: PropTypes.object.isRequired
 };
