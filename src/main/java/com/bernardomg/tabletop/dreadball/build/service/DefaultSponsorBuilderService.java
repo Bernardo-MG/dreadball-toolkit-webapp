@@ -38,7 +38,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bernardomg.tabletop.dreadball.calculator.SponsorTeamValorationCalculator;
+import com.bernardomg.tabletop.dreadball.calculator.SponsorTeamRankCostCalculator;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
 import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
@@ -59,7 +59,7 @@ import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.CostCalculator;
-import com.bernardomg.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
+import com.bernardomg.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.bernardomg.tabletop.dreadball.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityGroupRepository;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
@@ -366,7 +366,7 @@ public final class DefaultSponsorBuilderService
      * @return a new {@code CostCalculator} for asset rank costs
      */
     private final CostCalculator<SponsorTeam> createRankCostCalculator() {
-        return new DefaultRankCostCalculator(
+        return new SponsorTeamRankCostCalculator(
                 getSponsorRankCosts().getCoachingDieCost(),
                 getSponsorRankCosts().getNastySurpriseCardCost(),
                 getSponsorRankCosts().getSpecialMoveCardCost(),
