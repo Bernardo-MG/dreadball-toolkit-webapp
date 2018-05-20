@@ -12,11 +12,10 @@ import BoundNumberInput from 'components/BoundNumberInput';
 import { selectCheerleaders } from 'builder/assets/selectors';
 
 const CheerleadersInput = (props) =>
-   <BoundNumberInput {...props}
-      handleChange={props.action} />;
+   <BoundNumberInput {...props} />;
 
 CheerleadersInput.propTypes = {
-   action: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -27,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(setCheerleaders, dispatch)
+      onChange: bindActionCreators(setCheerleaders, dispatch)
    };
 };
 

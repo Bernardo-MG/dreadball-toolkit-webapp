@@ -1,3 +1,18 @@
+/**
+ * Copyright 2018 the original author or authors
+ * <p>
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not
+ * use this file except in compliance with the License. You may obtain a copy of
+ * the License at
+ * <p>
+ * http://www.apache.org/licenses/LICENSE-2.0
+ * <p>
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS, WITHOUT
+ * WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+ * License for the specific language governing permissions and limitations under
+ * the License.
+ */
 
 package com.bernardomg.tabletop.dreadball.build.service;
 
@@ -23,7 +38,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bernardomg.tabletop.dreadball.calculator.SponsorTeamValorationCalculator;
+import com.bernardomg.tabletop.dreadball.calculator.SponsorTeamRankCostCalculator;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
 import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
@@ -44,7 +59,7 @@ import com.bernardomg.tabletop.dreadball.model.player.stats.AffinityGroup;
 import com.bernardomg.tabletop.dreadball.model.team.DefaultSponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.CostCalculator;
-import com.bernardomg.tabletop.dreadball.model.team.calculator.DefaultRankCostCalculator;
+import com.bernardomg.tabletop.dreadball.model.team.calculator.SponsorTeamValorationCalculator;
 import com.bernardomg.tabletop.dreadball.repository.availability.SponsorAffinityGroupAvailabilityRepository;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityGroupRepository;
 import com.bernardomg.tabletop.dreadball.repository.player.AffinityTeamPlayerRepository;
@@ -351,7 +366,7 @@ public final class DefaultSponsorBuilderService
      * @return a new {@code CostCalculator} for asset rank costs
      */
     private final CostCalculator<SponsorTeam> createRankCostCalculator() {
-        return new DefaultRankCostCalculator(
+        return new SponsorTeamRankCostCalculator(
                 getSponsorRankCosts().getCoachingDieCost(),
                 getSponsorRankCosts().getNastySurpriseCardCost(),
                 getSponsorRankCosts().getSpecialMoveCardCost(),

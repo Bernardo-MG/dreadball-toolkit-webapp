@@ -10,6 +10,9 @@ import Cookie from 'js-cookie';
 
 const locale = Cookie.get('locale') || 'en';
 
+/**
+ * Production root application.
+ */
 const Root = ({ store, history }) => (
    <IntlProvider locale={locale}>
       <Provider store={store}>
@@ -19,7 +22,9 @@ const Root = ({ store, history }) => (
 );
 
 Root.propTypes = {
+   /** Application store */
    store: PropTypes.object.isRequired,
+   /** Application routes history */
    history: PropTypes.object.isRequired
 };
 

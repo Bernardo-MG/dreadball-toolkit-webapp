@@ -14,25 +14,30 @@
  * the License.
  */
 
-package com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration;
+package com.bernardomg.tabletop.dreadball.report.service;
+
+import java.io.OutputStream;
+
+import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 
 /**
- * Contains configuration information for the codex controller URLs.
+ * Report service.
+ * <p>
+ * Takes care of setting up and creating reports.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
+ *
  */
-public final class UrlTeamPlayerCodexConfig {
+public interface DreadballReportService {
 
     /**
-     * TeamPlayers REST endpoint.
+     * Creates a PDF report and stores it in the output.
+     * 
+     * @param team
+     *            team for the report
+     * @param output
+     *            output where the report will be stored
      */
-    public static final String URL_PLAYERS = "/rest/players";
-
-    /**
-     * Default constructor to avoid initialization.
-     */
-    private UrlTeamPlayerCodexConfig() {
-        super();
-    }
+    public void createPdf(final SponsorTeam team, final OutputStream output);
 
 }

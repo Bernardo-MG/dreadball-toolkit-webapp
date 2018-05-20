@@ -1,5 +1,8 @@
 import { defineMessages } from 'react-intl';
 
+/**
+ * Team internationalized labels.
+ */
 const teamMessages = defineMessages({
    rank: {
       id: 'team.rank',

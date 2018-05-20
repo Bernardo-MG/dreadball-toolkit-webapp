@@ -19,8 +19,21 @@ import { setSmallScreenStatus } from 'views/actions';
 
 import { selectNavbarVisible, selectSmallScreen } from 'views/selectors';
 
+/**
+ * Base layout for the application. This will frame all the views.
+ * 
+ * It contains a navigation bar on the left side, and the view on the rest of the screen.
+ */
 class BaseLayout extends Component {
 
+   /**
+    * Toggle navigation bar on response to view size changes.
+    * 
+    * It will signal the callback function, telling it the view is small if it goes
+    * to a single column.
+    * 
+    * @param columns indicates the number of columns
+    */
    _onResponsiveToggleNav(columns) {
       const small = columns === 'single';
 
@@ -28,6 +41,7 @@ class BaseLayout extends Component {
    }
 
    render() {
+      // The navigation bar is rendered only if it is visible.
       let nav;
       if (this.props.navbarVisible) {
          const links = [];
@@ -40,7 +54,11 @@ class BaseLayout extends Component {
          nav = <MainSidebar title={title} links={links} />;
       }
 
+      // Which side has priority
+      // On a small screen, if the navigation bar is visible it takes priority (left side)
+      // By default the view takes priority (right side)
       const priority = (this.props.navbarVisible && this.props.smallScreen ? 'left' : 'right');
+
       const toggleResponsive = this._onResponsiveToggleNav.bind(this);
 
       return (
@@ -55,10 +73,18 @@ class BaseLayout extends Component {
 }
 
 BaseLayout.propTypes = {
+   /** Flag marking if the navigation bar is visible */
    navbarVisible: PropTypes.bool.isRequired,
+   /** Flag marking if the UI is on a small screen */
    smallScreen: PropTypes.bool.isRequired,
+   /** Callback function for changing to a small screen */
    onSetSmallScreen: PropTypes.func.isRequired,
-   children: PropTypes.object.isRequired,
+   /** Children elements, the view contents */
+   children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+   ]),
+   /** I18n object */
    intl: PropTypes.object.isRequired
 };
 

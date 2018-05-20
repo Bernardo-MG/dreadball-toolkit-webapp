@@ -1,5 +1,8 @@
 import { defineMessages } from 'react-intl';
 
+/**
+ * Abilities internationalized names.
+ */
 const abilityMessages = defineMessages({
    adaptable: {
       id: 'ability.adaptable',

@@ -11,6 +11,11 @@ import DevTools from 'components/DevTools';
 
 const locale = Cookie.get('locale') || 'en';
 
+/**
+ * Development root application.
+ * 
+ * It will include the dev tools.
+ */
 const Root = ({ store, history }) => (
    <IntlProvider locale={locale}>
       <Provider store={store}>
@@ -23,7 +28,9 @@ const Root = ({ store, history }) => (
 );
 
 Root.propTypes = {
+   /** Application store */
    store: PropTypes.object.isRequired,
+   /** Application routes history */
    history: PropTypes.object.isRequired
 };
 

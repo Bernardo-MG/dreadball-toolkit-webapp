@@ -12,11 +12,10 @@ import BoundNumberInput from 'components/BoundNumberInput';
 import { selectMediBots } from 'builder/assets/selectors';
 
 const MediBotInput = (props) =>
-   <BoundNumberInput {...props}
-      handleChange={props.action} />;
+   <BoundNumberInput {...props} />;
 
 MediBotInput.propTypes = {
-   action: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -27,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(setMediBot, dispatch)
+      onChange: bindActionCreators(setMediBot, dispatch)
    };
 };
 

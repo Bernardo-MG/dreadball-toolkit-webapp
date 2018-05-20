@@ -7,12 +7,22 @@ import rootSaga from 'sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
+/**
+ * Development application middleware.
+ * 
+ * It will include a logger.
+ */
 const middleware = [
    sagaMiddleware,
    // Redux logger is included
    createLogger()
 ];
 
+/**
+ * Development enhacers.
+ * 
+ * It will add the dev tools to the middleware.
+ */
 const enhancer = compose(
    applyMiddleware(...middleware),
    // Dev tools are included

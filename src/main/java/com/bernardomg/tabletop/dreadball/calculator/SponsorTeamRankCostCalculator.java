@@ -1,5 +1,5 @@
 /**
- * Copyright 2015-2016 the original author or authors
+ * Copyright 2016 the original author or authors
  * <p>
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not
  * use this file except in compliance with the License. You may obtain a copy of
@@ -20,22 +20,21 @@ import static com.google.common.base.Preconditions.checkNotNull;
 
 import java.io.Serializable;
 
-import com.bernardomg.tabletop.dreadball.model.player.TeamPlayer;
 import com.bernardomg.tabletop.dreadball.model.team.SponsorTeam;
 import com.bernardomg.tabletop.dreadball.model.team.calculator.CostCalculator;
 
 /**
- * Team valoration calculator for an {@code SponsorTeam}.
+ * Calculates the rank cost of a {@link SponsorTeam}.
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
-public final class SponsorTeamValorationCalculator
-        implements CostCalculator<SponsorTeam>, Serializable {
+public final class SponsorTeamRankCostCalculator
+        implements Serializable, CostCalculator<SponsorTeam> {
 
     /**
      * Serialization id.
      */
-    private static final long serialVersionUID = -7111948173180755774L;
+    private static final long serialVersionUID = -4287711889234159746L;
 
     /**
      * Cost of a Cheerleader.
@@ -55,7 +54,7 @@ public final class SponsorTeamValorationCalculator
     /**
      * Cost of a Sabotage Card.
      */
-    private final Integer     costSabotage;
+    private final Integer     costNastySurprise;
 
     /**
      * Cost of a Special Move Card.
@@ -68,50 +67,51 @@ public final class SponsorTeamValorationCalculator
     private final Integer     costWager;
 
     /**
-     * Constructs a team valoration calculator using the specified cost.
+     * Constructs a rank cost calculator using the specified cost.
      * <p>
      * These costs will be applied to the team assets to find out the final
      * cost.
      * 
      * @param dieCost
-     *            cost of a Coaching Die
-     * @param sabotageCost
-     *            cost of a Sabotage Card
+     *            rank cost of a die
+     * @param nastySurpriseCardCost
+     *            rank cost of a nasty surprise card
      * @param specialMoveCost
-     *            cost of a Special Move Card
+     *            rank cost of a special move card
      * @param cheerleaderCost
-     *            cost of a Cheerleader
+     *            rank cost of a cheerleader
      * @param wagerCost
-     *            cost of a Wager
-     * @param medibotCost
-     *            cost of a Medibot
+     *            rank cost of a wager
+     * @param mediBotCost
+     *            rank cost of a medibot
      */
-    public SponsorTeamValorationCalculator(final Integer dieCost,
-            final Integer sabotageCost, final Integer specialMoveCost,
+    public SponsorTeamRankCostCalculator(final Integer dieCost,
+            final Integer nastySurpriseCardCost, final Integer specialMoveCost,
             final Integer cheerleaderCost, final Integer wagerCost,
-            final Integer medibotCost) {
+            final Integer mediBotCost) {
         super();
 
         costDie = checkNotNull(dieCost,
                 "Received a null pointer as the dice cost");
-        costSabotage = checkNotNull(sabotageCost,
-                "Received a null pointer as the sabotage card cost");
+        costNastySurprise = checkNotNull(nastySurpriseCardCost,
+                "Received a null pointer as the nasty surprise card cost");
         costSpecialMove = checkNotNull(specialMoveCost,
                 "Received a null pointer as the special move card cost");
         costCheerleader = checkNotNull(cheerleaderCost,
                 "Received a null pointer as the cheerleader cost");
         costWager = checkNotNull(wagerCost,
                 "Received a null pointer as the wager cost");
-        costMediBot = checkNotNull(medibotCost,
+        costMediBot = checkNotNull(mediBotCost,
                 "Received a null pointer as the wager cost");
     }
 
     /**
-     * Returns a team's valoration.
+     * Returns a {@code SponsorTeam}'s rank cost.
      * 
      * @param team
-     *            the team of which the valoration will be calculated
-     * @return the valoration of the team
+     *            the {@code SponsorTeam} of which the rank cost will be
+     *            calculated
+     * @return the rank cost of the {@code SponsorTeam}
      */
     @Override
     public final Integer getCost(final SponsorTeam team) {
@@ -120,12 +120,9 @@ public final class SponsorTeamValorationCalculator
         checkNotNull(team, "Received a null pointer as the team");
 
         valoration = 0;
-        for (final TeamPlayer player : team.getPlayers().values()) {
-            valoration += player.getCost();
-        }
 
         valoration += team.getCoachingDice() * getDieCost();
-        valoration += team.getNastySurpriseCards() * getSabotageCost();
+        valoration += team.getNastySurpriseCards() * getNastySurpriseCardCost();
         valoration += team.getSpecialMoveCards() * getSpecialMoveCost();
         valoration += team.getWagers() * getWagerCost();
         valoration += team.getMediBots() * getMediBotCost();
@@ -166,12 +163,12 @@ public final class SponsorTeamValorationCalculator
     }
 
     /**
-     * Returns the cost of a sabotage card.
+     * Returns the cost of a nasty surprise card.
      * 
-     * @return the cost of a sabotage card
+     * @return the cost of a nasty surprise card
      */
-    private final Integer getSabotageCost() {
-        return costSabotage;
+    private final Integer getNastySurpriseCardCost() {
+        return costNastySurprise;
     }
 
     /**

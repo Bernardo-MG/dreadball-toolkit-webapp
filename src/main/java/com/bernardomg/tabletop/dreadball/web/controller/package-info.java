@@ -13,26 +13,8 @@
  * License for the specific language governing permissions and limitations under
  * the License.
  */
-
-package com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration;
-
 /**
- * Contains configuration information for the codex controller URLs.
- * 
- * @author Bernardo Mart&iacute;nez Garrido
+ * Main entry controller.
  */
-public final class UrlTeamPlayerCodexConfig {
 
-    /**
-     * TeamPlayers REST endpoint.
-     */
-    public static final String URL_PLAYERS = "/rest/players";
-
-    /**
-     * Default constructor to avoid initialization.
-     */
-    private UrlTeamPlayerCodexConfig() {
-        super();
-    }
-
-}
+package com.bernardomg.tabletop.dreadball.web.controller;

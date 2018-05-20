@@ -18,18 +18,30 @@ import { toggleNavBar, toggleSideBar } from 'views/actions';
 
 import { selectNavbarVisible, selectSidebarVisible, selectSmallScreen } from 'views/selectors';
 
+/**
+ * View with a side bar.
+ * 
+ * It includes a title, a sidebar and the main view.
+ * 
+ * Two buttons will be included along the title, to toggle the nav bar and the side bar.
+ */
 const SidebarView = (props) => {
+   // The button to show the nav bar is shown only if the nav bar is hidden
    let toggleNavButton;
    if (!props.navbarVisible) {
       toggleNavButton = <Button onClick={() => props.onToggleNavBar()} icon={<MenuIcon/>} />;
    }
 
+   // The button to show the side bar is shown only if the side bar is hidden and the UI is on a small screen
    let toggleSideButton;
    if (!props.sidebarVisible && props.smallScreen) {
       const sideButton = <Button onClick={() => props.onToggleSideBar()} icon={<MoreIcon/>} />;
       toggleSideButton = <Box flex={true} justify='end' direction='row' responsive={false}>{sideButton}</Box>;
    }
 
+   // Which side has priority
+   // On a small screen, if the side bar is visible it takes priority (right side)
+   // By default the view takes priority (left side)
    const priority = (props.sidebarVisible && props.smallScreen ? 'right' : 'left');
 
    return (
@@ -48,13 +60,24 @@ const SidebarView = (props) => {
 };
 
 SidebarView.propTypes = {
+   /** Flag marking if the side bar is visible */
    sidebarVisible: PropTypes.bool.isRequired,
+   /** Flag marking if the navigation bar is visible */
    navbarVisible: PropTypes.bool.isRequired,
+   /** View title */
    title: PropTypes.string.isRequired,
+   /** Flag marking if the UI is on a small screen */
    smallScreen: PropTypes.bool.isRequired,
-   children: PropTypes.object.isRequired,
+   /** Children elements, the view contents */
+   children: PropTypes.oneOfType([
+      PropTypes.array,
+      PropTypes.object
+   ]),
+   /** Side bar to show */
    sideBar: PropTypes.element.isRequired,
+   /** Callback function for toggling the nav bar */
    onToggleNavBar: PropTypes.func.isRequired,
+   /** Callback function for toggling the side bar */
    onToggleSideBar: PropTypes.func.isRequired
 };
 

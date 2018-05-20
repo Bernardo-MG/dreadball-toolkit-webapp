@@ -12,11 +12,10 @@ import BoundNumberInput from 'components/BoundNumberInput';
 import { selectCoachingDice } from 'builder/assets/selectors';
 
 const CoachingDiceInput = (props) =>
-   <BoundNumberInput {...props}
-      handleChange={props.action} />;
+   <BoundNumberInput {...props} />;
 
 CoachingDiceInput.propTypes = {
-   action: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired
 };
 
 const mapStateToProps = (state) => {
@@ -27,7 +26,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      action: bindActionCreators(setCoachingDice, dispatch)
+      onChange: bindActionCreators(setCoachingDice, dispatch)
    };
 };
 

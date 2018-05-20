@@ -1,5 +1,8 @@
 import { defineMessages } from 'react-intl';
 
+/**
+ * Affinity groups internationalized names.
+ */
 const affinityMessages = defineMessages({
    rank_increase: {
       id: 'affinity.rank',

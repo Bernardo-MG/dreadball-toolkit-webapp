@@ -14,16 +14,31 @@ import CloseIcon from 'grommet/components/icons/base/Close';
 
 import { hideSideBarOnSmallScreen } from 'views/actions';
 
-import { selectSidebarVisible, selectSmallScreen } from 'views/selectors';
+import { selectSmallScreen } from 'views/selectors';
 
+/**
+ * Side bar containing a list of buttons.
+ * 
+ * It renders a close button on smaller screen, to support responsive views.
+ */
 class ButtonsSidebar extends Component {
 
-   _renderButton(option, index, onClose) {
-      return <Button key={index} align='start' plain={true} label={option.label}
-         onClick={() => { option.action(); onClose(); } } icon={ option.icon } />;
+   /**
+    * Renders a button with the specified options.
+    * 
+    * @param label button text
+    * @param action button action
+    * @param icon button icon
+    * @param index index of the generated component
+    * @param afterClick callback function for clicking the button
+    */
+   _renderButton(label, action, icon, index, afterClick) {
+      return <Button key={index} align='start' plain={true} label={label}
+         onClick={() => { action(); afterClick(); } } icon={icon} />;
    }
 
    render() {
+      // The close button is rendered only on small screens
       let closeButton;
       if (this.props.smallScreen) {
          closeButton = <Button align='start' onClick={() => this.props.onClose()} icon={<CloseIcon/>} />;
@@ -34,7 +49,7 @@ class ButtonsSidebar extends Component {
             <Box margin='medium'>
                <Menu>
                   { closeButton }
-                  { this.props.options.map((option, i) => this._renderButton(option, i, this.props.onClose)) }
+                  { this.props.options.map((option, i) => this._renderButton(option.label, option.action, option.icon, i, this.props.onClose)) }
                </Menu>
             </Box>
          </Sidebar>
@@ -43,9 +58,11 @@ class ButtonsSidebar extends Component {
 }
 
 ButtonsSidebar.propTypes = {
-   sidebarVisible: PropTypes.bool.isRequired,
+   /** Flag marking if the UI is on a small screen */
    smallScreen: PropTypes.bool.isRequired,
+   /** Callback function for closing the side bar */
    onClose: PropTypes.func,
+   /** Options for generating the buttons */
    options: PropTypes.arrayOf(PropTypes.shape({
       label: PropTypes.string,
       action: PropTypes.func
@@ -54,7 +71,6 @@ ButtonsSidebar.propTypes = {
 
 const mapStateToProps = (state) => {
    return {
-      sidebarVisible: selectSidebarVisible(state),
       smallScreen: selectSmallScreen(state)
    };
 };
