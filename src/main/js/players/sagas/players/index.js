@@ -1,7 +1,7 @@
 import { takeLatest } from 'redux-saga/effects';
 import * as types from 'players/actions/actionTypes';
 import { requestCurrentPage, requestNextPage } from 'players/sagas/players/requests';
-import { build } from 'players/sagas/players/builders';
+import { build } from 'players/sagas/players/creators';
 
 export const playerSagas = [
    takeLatest(types.REQUEST_PLAYERS, requestCurrentPage),
