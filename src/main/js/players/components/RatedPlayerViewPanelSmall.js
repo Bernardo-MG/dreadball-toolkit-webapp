@@ -18,7 +18,7 @@ import PlayerPanel from 'players/components/PlayerPanel';
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 
-class TeamPlayerViewPanel extends Component {
+class RatedPlayerViewPanelSmall extends Component {
 
    constructor(props) {
       super(props);
@@ -55,7 +55,6 @@ class TeamPlayerViewPanel extends Component {
       const headers = [];
       headers.push('');
       headers.push(this.props.intl.formatMessage(playerMessages.name));
-      headers.push(this.props.intl.formatMessage(playerMessages.cost));
       headers.push('');
 
       return (
@@ -68,7 +67,6 @@ class TeamPlayerViewPanel extends Component {
                      <TableRow key={i}>
                         <td><Button onClick={() => this.props.buttonAction(player.templateName)} icon={this.props.buttonIcon} /></td>
                         <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
-                        <td>{player.cost}</td>
                         <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
@@ -79,7 +77,7 @@ class TeamPlayerViewPanel extends Component {
    }
 }
 
-TeamPlayerViewPanel.propTypes = {
+RatedPlayerViewPanelSmall.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -87,4 +85,4 @@ TeamPlayerViewPanel.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(TeamPlayerViewPanel);
+export default injectIntl(RatedPlayerViewPanelSmall);

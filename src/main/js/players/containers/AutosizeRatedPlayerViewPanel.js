@@ -4,24 +4,24 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import TeamPlayerViewPanel from 'players/components/TeamPlayerViewPanel';
-import TeamPlayerViewPanelSmall from 'players/components/TeamPlayerViewPanelSmall';
+import RatedPlayerViewPanel from 'players/components/RatedPlayerViewPanel';
+import RatedPlayerViewPanelSmall from 'players/components/RatedPlayerViewPanelSmall';
 
 import { selectSmallScreen } from 'views/selectors';
 
-const AutosizeTeamPlayerViewPanel = (props) => {
+const AutosizeRatedPlayerViewPanel = (props) => {
    let view;
 
    if (props.smallView) {
-      view = <TeamPlayerViewPanelSmall source={props.source} onMore={props.onMore} buttonAction={props.buttonAction} buttonIcon={props.buttonIcon} />;
+      view = <RatedPlayerViewPanelSmall source={props.source} onMore={props.onMore} buttonAction={props.buttonAction} buttonIcon={props.buttonIcon} />;
    } else {
-      view = <TeamPlayerViewPanel source={props.source} onMore={props.onMore} buttonAction={props.buttonAction} buttonIcon={props.buttonIcon} />;
+      view = <RatedPlayerViewPanel source={props.source} onMore={props.onMore} buttonAction={props.buttonAction} buttonIcon={props.buttonIcon} />;
    }
 
    return view;
 };
 
-AutosizeTeamPlayerViewPanel.propTypes = {
+AutosizeRatedPlayerViewPanel.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -42,4 +42,4 @@ const mapDispatchToProps = () => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(AutosizeTeamPlayerViewPanel);
+)(AutosizeRatedPlayerViewPanel);

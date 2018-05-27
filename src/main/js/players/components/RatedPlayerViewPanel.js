@@ -18,7 +18,7 @@ import PlayerPanel from 'players/components/PlayerPanel';
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 
-class TeamPlayerViewPanelSmall extends Component {
+class RatedPlayerViewPanel extends Component {
 
    constructor(props) {
       super(props);
@@ -38,9 +38,9 @@ class TeamPlayerViewPanelSmall extends Component {
       let detailsLayer;
 
       const select = this._onSelect.bind(this);
-      const deselect = this._onDeselect.bind(this);
 
       if (selection) {
+         const deselect = this._onDeselect.bind(this);
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
                <Article size='large'>
@@ -55,6 +55,7 @@ class TeamPlayerViewPanelSmall extends Component {
       const headers = [];
       headers.push('');
       headers.push(this.props.intl.formatMessage(playerMessages.name));
+      headers.push(this.props.intl.formatMessage(playerMessages.cost));
       headers.push('');
 
       return (
@@ -67,6 +68,7 @@ class TeamPlayerViewPanelSmall extends Component {
                      <TableRow key={i}>
                         <td><Button onClick={() => this.props.buttonAction(player.templateName)} icon={this.props.buttonIcon} /></td>
                         <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
+                        <td>{player.cost}</td>
                         <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
@@ -77,7 +79,7 @@ class TeamPlayerViewPanelSmall extends Component {
    }
 }
 
-TeamPlayerViewPanelSmall.propTypes = {
+RatedPlayerViewPanel.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -85,4 +87,4 @@ TeamPlayerViewPanelSmall.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(TeamPlayerViewPanelSmall);
+export default injectIntl(RatedPlayerViewPanel);

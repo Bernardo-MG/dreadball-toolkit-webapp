@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import AutosizeTeamPlayerViewPanel from 'players/containers/AutosizeTeamPlayerViewPanel';
+import AutosizeRatedPlayerViewPanel from 'players/containers/AutosizeRatedPlayerViewPanel';
 
 import { removeTeamPlayer } from 'builder/players/actions';
 
@@ -14,7 +14,7 @@ import { selectSponsorRatedPlayers } from 'builder/players/selectors';
 import SubtractIcon from 'grommet/components/icons/base/SubtractCircle';
 
 const SponsorTeamPlayers = (props) =>
-   <AutosizeTeamPlayerViewPanel source={props.source} buttonAction={props.buttonAction} buttonIcon={<SubtractIcon />} />;
+   <AutosizeRatedPlayerViewPanel source={props.source} buttonAction={props.buttonAction} buttonIcon={<SubtractIcon />} />;
 
 SponsorTeamPlayers.propTypes = {
    source: PropTypes.array.isRequired,

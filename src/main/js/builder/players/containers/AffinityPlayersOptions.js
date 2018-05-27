@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import AutosizeTeamPlayerViewPanel from 'players/containers/AutosizeTeamPlayerViewPanel';
+import AutosizeRatedPlayerViewPanel from 'players/containers/AutosizeRatedPlayerViewPanel';
 
 import { selectRatedPlayers as selectPlayers } from 'players/selectors';
 import { selectCanLoadRatedPlayer as selectCanLoad } from 'players/selectors/request';
@@ -17,7 +17,7 @@ import { moveNextPage } from 'players/actions/ratedPlayers';
 import { addTeamPlayer } from 'builder/players/actions';
 
 const AffinityPlayersOptions = (props) =>
-   <AutosizeTeamPlayerViewPanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null} buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
+   <AutosizeRatedPlayerViewPanel source={props.source} onMore={props.canLoad ? () => props.nextPage() : null} buttonAction={props.buttonAction} buttonIcon={<AddIcon />} />;
 
 AffinityPlayersOptions.propTypes = {
    canLoad: PropTypes.bool.isRequired,

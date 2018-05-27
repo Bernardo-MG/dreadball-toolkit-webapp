@@ -35,12 +35,12 @@ class PlayersViewPanel extends Component {
 
    render() {
       const { selection } = this.state;
-      let detailsLayer;
 
       const select = this._onSelect.bind(this);
-      const deselect = this._onDeselect.bind(this);
 
+      let detailsLayer;
       if (selection) {
+         const deselect = this._onDeselect.bind(this);
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
                <Article size='large'>
