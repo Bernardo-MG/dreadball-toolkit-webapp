@@ -13,7 +13,7 @@ import { selectSmallScreen } from 'views/selectors';
 
 import AddIcon from 'grommet/components/icons/base/AddCircle';
 
-import { moveNextPage } from 'players/actions/affinityPlayers';
+import { moveNextPage } from 'players/actions/ratedPlayers';
 import { addTeamPlayer } from 'builder/players/actions';
 
 const AffinityPlayersOptions = (props) =>

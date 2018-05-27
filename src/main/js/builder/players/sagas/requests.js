@@ -3,7 +3,7 @@ import * as types from 'players/actions/actionTypes';
 import { fetcherAffinityPlayer as fetcher } from 'builder/players/requests/fetchers';
 import { selectCanLoadRatedPlayer as canLoadSelector } from 'players/selectors/request';
 import { selectCurrentRatedPlayerPage as currentPageSelector } from 'players/selectors/page';
-import { requestSuccess, requestFailure } from 'players/actions/affinityPlayers';
+import { requestSuccess, requestFailure } from 'players/actions/ratedPlayers';
 import { selectSponsorAffinities } from 'builder/players/selectors';
 
 function fetch(params) {
