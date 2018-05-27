@@ -9,13 +9,13 @@ import { moveNextPage } from 'players/actions/players';
 import { selectPlayers } from 'players/selectors';
 import { selectCanLoadPlayer as selectCanLoad } from 'players/selectors/request';
 
-import PlayersViewPanel from 'players/components/PlayersViewPanel';
+import PlayersDataList from 'players/components/PlayersDataList';
 
 /**
  * Scroll panel showing all the players.
  */
 const PlayersScrollPanel = (props) =>
-   <PlayersViewPanel source={props.players} onMore={props.canLoad ? () => props.nextPage() : null} />;
+   <PlayersDataList source={props.players} onMore={props.canLoad ? () => props.nextPage() : null} />;
 
 PlayersScrollPanel.propTypes = {
    canLoad: PropTypes.bool.isRequired,

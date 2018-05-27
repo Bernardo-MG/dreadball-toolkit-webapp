@@ -17,7 +17,12 @@ import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 import playerRoleMessages from 'i18n/role';
 
-class PlayerPanel extends Component {
+/**
+ * Panel showing all the data for a player.
+ * 
+ * It adapts to the data available, as there are several possible configurations for players.
+ */
+class PlayerDataPanel extends Component {
 
    render() {
       let friendCost;
@@ -25,6 +30,17 @@ class PlayerPanel extends Component {
       let strangerCost;
       let cost;
 
+      // Costs.
+      // Affinity players have three costs: stranger, friend and ally.
+      // By default players have a single cost value, but in some cases it may not exist.
+      if (this.props.source.strangerCost) {
+         strangerCost =
+            <Box margin='small'>
+               <Value value={this.props.source.strangerCost} label={this.props.intl.formatMessage(playerMessages.stranger_cost)} size='small' />
+            </Box>;
+      } else {
+         strangerCost = null;
+      }
       if (this.props.source.friendCost) {
          friendCost =
             <Box margin='small'>
@@ -40,14 +56,6 @@ class PlayerPanel extends Component {
             </Box>;
       } else {
          allyCost = null;
-      }
-      if (this.props.source.strangerCost) {
-         strangerCost =
-            <Box margin='small'>
-               <Value value={this.props.source.strangerCost} label={this.props.intl.formatMessage(playerMessages.stranger_cost)} size='small' />
-            </Box>;
-      } else {
-         strangerCost = null;
       }
       if (this.props.source.cost) {
          cost =
@@ -66,6 +74,7 @@ class PlayerPanel extends Component {
             {cost}
          </Columns>;
 
+      // Attributes
       const attributes =
          <Columns size='small'>
             <Box margin='small'>
@@ -85,6 +94,7 @@ class PlayerPanel extends Component {
             </Box>
          </Columns>;
 
+      // Abilities
       const abilities =
          <Box full='horizontal' separator='top'>
             <Box justify='center' align='center'>
@@ -96,6 +106,7 @@ class PlayerPanel extends Component {
             </Box>
          </Box>;
 
+      // Affinities
       let affinities;
       if ((this.props.source.affinityGroups) && (this.props.source.affinityGroups.length > 0)) {
          affinities =
@@ -112,6 +123,7 @@ class PlayerPanel extends Component {
          affinities = null;
       }
 
+      // Hated affinities
       let hated;
       if ((this.props.source.hatedAffinityGroups) && (this.props.source.hatedAffinityGroups.length > 0)) {
          hated =
@@ -142,9 +154,9 @@ class PlayerPanel extends Component {
    }
 }
 
-PlayerPanel.propTypes = {
+PlayerDataPanel.propTypes = {
    source: PropTypes.object.isRequired,
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(PlayerPanel);
+export default injectIntl(PlayerDataPanel);

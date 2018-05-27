@@ -13,7 +13,7 @@ import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
-import PlayerPanel from 'players/components/PlayerPanel';
+import PlayerDataPanel from 'players/components/PlayerDataPanel';
 
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
@@ -44,7 +44,7 @@ class RatedPlayerViewPanel extends Component {
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
                <Article size='large'>
-                  <PlayerPanel source={selection} />
+                  <PlayerDataPanel source={selection} />
                </Article>
             </Layer>
          );
