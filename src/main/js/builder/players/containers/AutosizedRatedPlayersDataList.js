@@ -4,24 +4,24 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import RatedPlayerViewPanel from 'builder/players/components/RatedPlayerViewPanel';
-import RatedPlayerViewPanelSmall from 'builder/players/components/RatedPlayerViewPanelSmall';
+import RatedPlayersDataList from 'builder/players/components/RatedPlayersDataList';
+import RatedPlayersDataSmallList from 'builder/players/components/RatedPlayersDataSmallList';
 
 import { selectSmallScreen } from 'views/selectors';
 
-const AutosizeRatedPlayerViewPanel = (props) => {
+const AutosizedRatedPlayersDataList = (props) => {
    let view;
 
    if (props.smallView) {
-      view = <RatedPlayerViewPanelSmall source={props.source} onMore={props.onMore} buttonAction={props.buttonAction} buttonIcon={props.buttonIcon} />;
+      view = <RatedPlayersDataSmallList source={props.source} onMore={props.onMore} buttonAction={props.buttonAction} buttonIcon={props.buttonIcon} />;
    } else {
-      view = <RatedPlayerViewPanel source={props.source} onMore={props.onMore} buttonAction={props.buttonAction} buttonIcon={props.buttonIcon} />;
+      view = <RatedPlayersDataList source={props.source} onMore={props.onMore} buttonAction={props.buttonAction} buttonIcon={props.buttonIcon} />;
    }
 
    return view;
 };
 
-AutosizeRatedPlayerViewPanel.propTypes = {
+AutosizedRatedPlayersDataList.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -42,4 +42,4 @@ const mapDispatchToProps = () => {
 export default connect(
    mapStateToProps,
    mapDispatchToProps
-)(AutosizeRatedPlayerViewPanel);
+)(AutosizedRatedPlayersDataList);

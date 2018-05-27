@@ -18,7 +18,7 @@ import PlayerDataPanel from 'players/components/PlayerDataPanel';
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 
-class RatedPlayerViewPanelSmall extends Component {
+class RatedPlayersDataSmallList extends Component {
 
    constructor(props) {
       super(props);
@@ -77,7 +77,7 @@ class RatedPlayerViewPanelSmall extends Component {
    }
 }
 
-RatedPlayerViewPanelSmall.propTypes = {
+RatedPlayersDataSmallList.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -85,4 +85,4 @@ RatedPlayerViewPanelSmall.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(RatedPlayerViewPanelSmall);
+export default injectIntl(RatedPlayersDataSmallList);
