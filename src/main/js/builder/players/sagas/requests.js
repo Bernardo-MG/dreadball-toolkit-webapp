@@ -13,7 +13,7 @@ function fetch(params) {
 export function* request(action, pageStep) {
    const canLoad = yield select(canLoadSelector);
    if (canLoad) {
-      yield put({ type: types.FETCHING_TEAM_PLAYERS });
+      yield put({ type: types.FETCHING_RATED_PLAYERS });
       const currentPage = yield select(currentPageSelector);
       const page = currentPage + pageStep;
       const affinities = yield select(selectSponsorAffinities);

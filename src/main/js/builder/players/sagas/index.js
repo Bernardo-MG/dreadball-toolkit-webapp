@@ -4,7 +4,7 @@ import { requestCurrentPage, requestNextPage } from 'builder/players/sagas/reque
 import { build } from 'builder/players/sagas/creators';
 
 export const ratedPlayerSagas = [
-   takeLatest(types.REQUEST_TEAM_PLAYERS, requestCurrentPage),
-   takeLatest(types.REQUEST_SUCCESS_TEAM_PLAYERS, build),
-   takeLatest(types.CHANGE_PAGE_NEXT_TEAM_PLAYERS, requestNextPage)
+   takeLatest(types.REQUEST_RATED_PLAYERS, requestCurrentPage),
+   takeLatest(types.REQUEST_SUCCESS_RATED_PLAYERS, build),
+   takeLatest(types.CHANGE_PAGE_NEXT_RATED_PLAYERS, requestNextPage)
 ];
