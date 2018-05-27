@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 
 import { connect } from 'react-redux';
 
-import RatedPlayerViewPanel from 'players/components/RatedPlayerViewPanel';
-import RatedPlayerViewPanelSmall from 'players/components/RatedPlayerViewPanelSmall';
+import RatedPlayerViewPanel from 'builder/players/components/RatedPlayerViewPanel';
+import RatedPlayerViewPanelSmall from 'builder/players/components/RatedPlayerViewPanelSmall';
 
 import { selectSmallScreen } from 'views/selectors';
 

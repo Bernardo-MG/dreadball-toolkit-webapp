@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import AutosizeRatedPlayerViewPanel from 'players/containers/AutosizeRatedPlayerViewPanel';
+import AutosizeRatedPlayerViewPanel from 'builder/players/containers/AutosizeRatedPlayerViewPanel';
 
 import { selectRatedPlayers as selectPlayers } from 'players/selectors';
 import { selectCanLoadRatedPlayer as selectCanLoad } from 'players/selectors/request';

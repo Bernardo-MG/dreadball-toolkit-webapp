@@ -18,7 +18,7 @@ import PlayerDataPanel from 'players/components/PlayerDataPanel';
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 
-class RatedPlayerViewPanel extends Component {
+class RatedPlayerViewPanelSmall extends Component {
 
    constructor(props) {
       super(props);
@@ -35,12 +35,12 @@ class RatedPlayerViewPanel extends Component {
 
    render() {
       const { selection } = this.state;
-      let detailsLayer;
 
       const select = this._onSelect.bind(this);
+      const deselect = this._onDeselect.bind(this);
 
+      let detailsLayer;
       if (selection) {
-         const deselect = this._onDeselect.bind(this);
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
                <Article size='large'>
@@ -55,7 +55,6 @@ class RatedPlayerViewPanel extends Component {
       const headers = [];
       headers.push('');
       headers.push(this.props.intl.formatMessage(playerMessages.name));
-      headers.push(this.props.intl.formatMessage(playerMessages.cost));
       headers.push('');
 
       return (
@@ -68,7 +67,6 @@ class RatedPlayerViewPanel extends Component {
                      <TableRow key={i}>
                         <td><Button onClick={() => this.props.buttonAction(player.templateName)} icon={this.props.buttonIcon} /></td>
                         <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
-                        <td>{player.cost}</td>
                         <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
@@ -79,7 +77,7 @@ class RatedPlayerViewPanel extends Component {
    }
 }
 
-RatedPlayerViewPanel.propTypes = {
+RatedPlayerViewPanelSmall.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -87,4 +85,4 @@ RatedPlayerViewPanel.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(RatedPlayerViewPanel);
+export default injectIntl(RatedPlayerViewPanelSmall);

@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import AutosizeRatedPlayerViewPanel from 'players/containers/AutosizeRatedPlayerViewPanel';
+import AutosizeRatedPlayerViewPanel from 'builder/players/containers/AutosizeRatedPlayerViewPanel';
 
 import { removeTeamPlayer } from 'builder/players/actions';
 
