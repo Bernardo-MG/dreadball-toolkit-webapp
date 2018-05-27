@@ -8,3 +8,5 @@ export const selectSponsorRatedPlayers = createSelector(
    (state) => state.builder.sponsor.players,
    (data, ids) => filterByKeys(data, ids)
 );
+
+export const selectSponsorAffinities = (state) => state.builder.affinities.chosen;
