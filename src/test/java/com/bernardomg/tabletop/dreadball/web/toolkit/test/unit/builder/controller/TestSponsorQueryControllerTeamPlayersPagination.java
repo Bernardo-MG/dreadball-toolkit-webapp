@@ -23,7 +23,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.ArgumentCaptor;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -160,9 +160,8 @@ public final class TestSponsorQueryControllerTeamPlayersPagination {
 
         captor = ArgumentCaptor.forClass(Pageable.class);
 
-        Mockito.when(
-                service.getTeamPlayerOptions(Matchers.any(), captor.capture()))
-                .thenReturn(players);
+        Mockito.when(service.getTeamPlayerOptions(ArgumentMatchers.any(),
+                captor.capture())).thenReturn(players);
 
         return service;
     }
