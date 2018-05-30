@@ -758,15 +758,15 @@
       <!-- ================ HIBERNATE =================== -->
       <!-- ============================================== -->
       <dependency>
-         <!-- Hibernate Ehcache -->
+         <!-- Hibernate Core -->
          <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-ehcache</artifactId>
+         <artifactId>hibernate-core</artifactId>
          <version>${hibernate.version}</version>
       </dependency>
       <dependency>
-         <!-- Hibernate Entity Manager -->
+         <!-- Hibernate Ehcache -->
          <groupId>org.hibernate</groupId>
-         <artifactId>hibernate-core</artifactId>
+         <artifactId>hibernate-ehcache</artifactId>
          <version>${hibernate.version}</version>
       </dependency>
       <dependency>
