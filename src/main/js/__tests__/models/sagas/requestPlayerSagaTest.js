@@ -1,4 +1,4 @@
-import { request, fetch } from 'players/sagas/players/requests';
+import { request, fetch } from 'players/sagas/requests';
 import { select, put, call } from 'redux-saga/effects';
 import { selectCanLoadPlayer as canLoadSelector } from 'players/selectors/request';
 import { selectCurrentPlayerPage as currentPageSelector } from 'players/selectors/page';

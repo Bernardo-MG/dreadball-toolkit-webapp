@@ -1,31 +1,23 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import PropTypes from 'prop-types';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 
-import { fetch, moveNextPage } from 'players/actions/players';
+import { moveNextPage } from 'players/actions/players';
 import { selectPlayers } from 'players/selectors';
 import { selectCanLoadPlayer as selectCanLoad } from 'players/selectors/request';
 
-import PlayersViewPanel from 'players/components/PlayersViewPanel';
+import PlayersDataList from 'players/components/PlayersDataList';
 
-class PlayersScrollPanel extends Component {
-
-   componentDidMount() {
-      this.props.load();
-   }
-
-   render() {
-      return (
-         <PlayersViewPanel source={this.props.players} onMore={this.props.canLoad ? () => this.props.nextPage() : null} />
-      );
-   }
-}
+/**
+ * Scroll panel showing all the players.
+ */
+const PlayersScrollPanel = (props) =>
+   <PlayersDataList source={props.players} onMore={props.canLoad ? () => props.nextPage() : null} />;
 
 PlayersScrollPanel.propTypes = {
-   load: PropTypes.func.isRequired,
    canLoad: PropTypes.bool.isRequired,
    nextPage: PropTypes.func.isRequired,
    players: PropTypes.array.isRequired
@@ -40,7 +32,6 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
    return {
-      load: bindActionCreators(fetch, dispatch),
       nextPage: bindActionCreators(moveNextPage, dispatch)
    };
 };

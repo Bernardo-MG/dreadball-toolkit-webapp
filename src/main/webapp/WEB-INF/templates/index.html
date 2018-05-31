@@ -15,13 +15,12 @@
    <!-- Facebook OpenGraph -->
    <meta property="og:type" content="website"/>
    <meta property="og:url" content="@site.url@"/>
-   <meta property="og:site" content="@project.name@"/>
    <meta property="og:title" content="@project.name@"/>
    <meta property="og:description" content="@project.description@"/>
 
    <!-- Twitter Card -->
    <meta name="twitter:card" content="summary"/>
-   <meta name="twitter:site" content="@social.twitter@"/>
+   <meta name="twitter:creator" content="@social.twitter@"/>
    <meta name="twitter:title" content="@project.name@"/>
    <meta name="twitter:description" content="@project.description@"/>
 
@@ -37,6 +36,8 @@
       <div id="loader" class="loader"></div>
    </div>
 
+   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-120156437-1"></script>
+   <script th:src="@{/resources/js/gtag.js}"></script>
    <script th:src="@{/resources/vendor.bundle.js}"></script>
    <script th:src="@{/resources/bundle.js}"></script>
 

@@ -13,12 +13,17 @@ import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
-import PlayerPanel from 'players/components/PlayerPanel';
+import PlayerDataPanel from 'players/components/PlayerDataPanel';
 
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 
-class PlayersViewPanel extends Component {
+/**
+ * Panel showing a set of players and their data.
+ * 
+ * The data for each player can be shown by clicking on an info button, which will show a modal screen.
+ */
+class PlayersDataList extends Component {
 
    constructor(props) {
       super(props);
@@ -35,16 +40,16 @@ class PlayersViewPanel extends Component {
 
    render() {
       const { selection } = this.state;
-      let detailsLayer;
 
       const select = this._onSelect.bind(this);
-      const deselect = this._onDeselect.bind(this);
 
+      let detailsLayer;
       if (selection) {
+         const deselect = this._onDeselect.bind(this);
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
                <Article size='large'>
-                  <PlayerPanel source={selection} />
+                  <PlayerDataPanel source={selection} />
                </Article>
             </Layer>
          );
@@ -75,10 +80,10 @@ class PlayersViewPanel extends Component {
    }
 }
 
-PlayersViewPanel.propTypes = {
+PlayersDataList.propTypes = {
    source: PropTypes.array.isRequired,
    intl: PropTypes.object.isRequired,
    onMore: PropTypes.func
 };
 
-export default injectIntl(PlayersViewPanel);
+export default injectIntl(PlayersDataList);

@@ -22,6 +22,7 @@ import java.util.Collection;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
@@ -105,8 +106,8 @@ public final class TestSponsorQueryControllerTeamPlayers {
         players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
         players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
-        Mockito.when(service.getTeamPlayerOptions(org.mockito.Matchers.any(),
-                org.mockito.Matchers.any())).thenReturn(players);
+        Mockito.when(service.getTeamPlayerOptions(ArgumentMatchers.any(),
+                ArgumentMatchers.any())).thenReturn(players);
 
         return new SponsorPlayersController(service);
     }

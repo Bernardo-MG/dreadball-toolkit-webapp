@@ -13,12 +13,12 @@ import Table from 'grommet/components/Table';
 import TableHeader from 'grommet/components/TableHeader';
 import TableRow from 'grommet/components/TableRow';
 
-import PlayerPanel from 'players/components/PlayerPanel';
+import PlayerDataPanel from 'players/components/PlayerDataPanel';
 
 import playerMessages from 'i18n/player';
 import playerNameMessages from 'i18n/playerName';
 
-class TeamPlayerViewPanelSmall extends Component {
+class RatedPlayersDataSmallList extends Component {
 
    constructor(props) {
       super(props);
@@ -35,16 +35,16 @@ class TeamPlayerViewPanelSmall extends Component {
 
    render() {
       const { selection } = this.state;
-      let detailsLayer;
 
       const select = this._onSelect.bind(this);
       const deselect = this._onDeselect.bind(this);
 
+      let detailsLayer;
       if (selection) {
          detailsLayer = (
             <Layer closer={true} onClose={deselect}>
                <Article size='large'>
-                  <PlayerPanel source={selection} />
+                  <PlayerDataPanel source={selection} />
                </Article>
             </Layer>
          );
@@ -77,7 +77,7 @@ class TeamPlayerViewPanelSmall extends Component {
    }
 }
 
-TeamPlayerViewPanelSmall.propTypes = {
+RatedPlayersDataSmallList.propTypes = {
    source: PropTypes.array.isRequired,
    onMore: PropTypes.func,
    buttonAction: PropTypes.func.isRequired,
@@ -85,4 +85,4 @@ TeamPlayerViewPanelSmall.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(TeamPlayerViewPanelSmall);
+export default injectIntl(RatedPlayersDataSmallList);

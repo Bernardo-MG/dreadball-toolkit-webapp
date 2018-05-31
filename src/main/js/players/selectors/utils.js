@@ -16,14 +16,3 @@ export const filterByKeys = (map, keys) => {
 
    return result;
 };
-
-/**
- * Returns all the values in the map.
- * 
- * @param map map to acquire the values from
- */
-export const selectAllValues = (map) => {
-   const keys = Object.keys(map);
-
-   return filterByKeys(map, keys);
-};

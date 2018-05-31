@@ -20,7 +20,7 @@ import java.util.Arrays;
 import java.util.Collections;
 
 import org.junit.Test;
-import org.mockito.Matchers;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
@@ -96,8 +96,8 @@ public final class TestSponsorValidationControllerAffinities {
 
         result = new ImmutableSponsorAffinities(Arrays.asList("aff"), 0);
 
-        Mockito.when(
-                sponsorBuilderService.validateSponsorAffinities(Matchers.any()))
+        Mockito.when(sponsorBuilderService
+                .validateSponsorAffinities(ArgumentMatchers.any()))
                 .thenReturn(result);
 
         return new SponsorValidationController(sponsorBuilderService);
@@ -118,8 +118,8 @@ public final class TestSponsorValidationControllerAffinities {
 
         result = new ImmutableSponsorAffinities(Collections.emptyList(), 0);
 
-        Mockito.when(
-                sponsorBuilderService.validateSponsorAffinities(Matchers.any()))
+        Mockito.when(sponsorBuilderService
+                .validateSponsorAffinities(ArgumentMatchers.any()))
                 .thenReturn(result);
 
         return new SponsorValidationController(sponsorBuilderService);

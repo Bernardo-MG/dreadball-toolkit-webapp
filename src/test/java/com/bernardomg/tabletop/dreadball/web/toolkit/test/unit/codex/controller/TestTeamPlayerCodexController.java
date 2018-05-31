@@ -22,6 +22,7 @@ import java.util.Collection;
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Test;
+import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
 import org.springframework.http.MediaType;
@@ -108,7 +109,7 @@ public final class TestTeamPlayerCodexController {
         players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
         players.add(Mockito.mock(AffinityTeamPlayerMixIn.class));
 
-        Mockito.when(service.getAffinityTeamPlayers(org.mockito.Matchers.any()))
+        Mockito.when(service.getAffinityTeamPlayers(ArgumentMatchers.any()))
                 .thenReturn((Iterable) players);
 
         return new TeamPlayerCodexController(service);
