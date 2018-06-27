@@ -121,7 +121,8 @@ public final class TestTeamPlayerCodexController {
      * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_PLAYERS);
+        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_PLAYERS)
+                .contentType(MediaType.APPLICATION_JSON_UTF8);
     }
 
 }
