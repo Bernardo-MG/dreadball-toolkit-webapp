@@ -17,7 +17,7 @@
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.rules;
 
 import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;

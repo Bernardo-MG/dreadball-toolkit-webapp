@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -61,7 +61,7 @@ public final class TestSponsorQueryControllerTeamPlayers {
     /**
      * Sets up the mocked MVC context.
      */
-    @Before
+    @BeforeEach
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
                 .setCustomArgumentResolvers(

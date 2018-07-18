@@ -17,12 +17,18 @@
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.builder.controller;
 
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 import org.springframework.test.context.web.WebAppConfiguration;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -41,6 +47,9 @@ import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTe
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
+@ExtendWith(SpringExtension.class)
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class })
 @ContextConfiguration(
         locations = { "classpath:context/test-servlet-dreadball.xml" })
 @WebAppConfiguration
@@ -68,7 +77,7 @@ public class ITSponsorValidationControllerAffinities
     /**
      * Sets up the mocked MVC context.
      */
-    @Before
+    @BeforeEach
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.webAppContextSetup(context)
                 .alwaysExpect(MockMvcResultMatchers.status().isOk())

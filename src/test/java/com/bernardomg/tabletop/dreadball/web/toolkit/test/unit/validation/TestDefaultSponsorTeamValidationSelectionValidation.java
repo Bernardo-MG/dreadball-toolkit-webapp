@@ -22,8 +22,8 @@ import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamSelection;
@@ -50,7 +50,7 @@ public final class TestDefaultSponsorTeamValidationSelectionValidation {
     /**
      * Sets up the validator for the tests.
      */
-    @Before
+    @BeforeEach
     public final void setUpValidator() {
         validator = createValidator();
     }

@@ -17,8 +17,8 @@
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controller;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
@@ -69,7 +69,7 @@ public final class TestSponsorValidationControllerTeamsValues {
     /**
      * Sets up the mocked MVC context.
      */
-    @Before
+    @BeforeEach
     public final void setUpMockContext() {
         service = getSponsorBuilderService();
         mockMvc = MockMvcBuilders.standaloneSetup(getController(service))

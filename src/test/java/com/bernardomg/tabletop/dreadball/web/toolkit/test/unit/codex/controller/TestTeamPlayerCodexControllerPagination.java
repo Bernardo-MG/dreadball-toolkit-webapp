@@ -20,8 +20,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Pageable;
@@ -76,7 +76,7 @@ public final class TestTeamPlayerCodexControllerPagination {
     /**
      * Sets up the mocked MVC context.
      */
-    @Before
+    @BeforeEach
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders
                 .standaloneSetup(new TeamPlayerCodexController(service))

@@ -618,7 +618,8 @@
       <jackson.version>2.9.5</jackson.version>
       <javaee.api.version>2.2</javaee.api.version>
       <jsonpath.version>2.4.0</jsonpath.version>
-      <junit.version>4.12</junit.version>
+      <junit.jupiter.version>5.2.0</junit.jupiter.version>
+      <junit.platform.version>1.2.0</junit.platform.version>
       <liquibase.version>3.6.1</liquibase.version>
       <log4j.version>2.11.0</log4j.version>
       <mockito.version>2.18.3</mockito.version>
@@ -931,10 +932,17 @@
          <scope>test</scope>
       </dependency>
       <dependency>
-         <!-- Junit -->
-         <groupId>junit</groupId>
-         <artifactId>junit</artifactId>
-         <version>${junit.version}</version>
+         <!-- JUnit Jupiter Engine -->
+         <groupId>org.junit.jupiter</groupId>
+         <artifactId>junit-jupiter-engine</artifactId>
+         <version>${junit.jupiter.version}</version>
+         <scope>test</scope>
+      </dependency>
+      <dependency>
+         <!-- JUnit Jupiter Platform -->
+         <groupId>org.junit.platform</groupId>
+         <artifactId>junit-platform-runner</artifactId>
+         <version>${junit.platform.version}</version>
          <scope>test</scope>
       </dependency>
       <dependency>
