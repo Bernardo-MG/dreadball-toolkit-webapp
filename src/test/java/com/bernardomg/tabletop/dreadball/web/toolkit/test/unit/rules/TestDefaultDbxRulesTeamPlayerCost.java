@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.rules;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -65,7 +65,7 @@ public final class TestDefaultDbxRulesTeamPlayerCost {
         cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.ALLY,
                 player);
 
-        Assert.assertEquals((Integer) 1, cost);
+        Assertions.assertEquals((Integer) 1, cost);
     }
 
     /**
@@ -88,7 +88,7 @@ public final class TestDefaultDbxRulesTeamPlayerCost {
         cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.FRIEND,
                 player);
 
-        Assert.assertEquals((Integer) 2, cost);
+        Assertions.assertEquals((Integer) 2, cost);
     }
 
     /**
@@ -111,7 +111,7 @@ public final class TestDefaultDbxRulesTeamPlayerCost {
         cost = dbxTeamBuilderService.getTeamPlayerCost(AffinityLevel.STRANGER,
                 player);
 
-        Assert.assertEquals((Integer) 3, cost);
+        Assertions.assertEquals((Integer) 3, cost);
     }
 
 }

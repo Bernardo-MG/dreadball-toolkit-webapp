@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.builder.s
 
 import java.util.Arrays;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
@@ -77,7 +77,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(3,
+        Assertions.assertEquals(3,
                 Iterables.size(result.getSponsor().getAffinityGroups()));
     }
 
@@ -93,7 +93,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(0), result.getCurrentRank());
+        Assertions.assertEquals(new Integer(0), result.getCurrentRank());
     }
 
     /**
@@ -108,7 +108,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(0), result.getRankCost());
+        Assertions.assertEquals(new Integer(0), result.getRankCost());
     }
 
     /**
@@ -123,7 +123,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(0), result.getTotalCost());
+        Assertions.assertEquals(new Integer(0), result.getTotalCost());
     }
 
     /**
@@ -144,7 +144,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(8), result.getCurrentRank());
+        Assertions.assertEquals(new Integer(8), result.getCurrentRank());
     }
 
     /**
@@ -165,7 +165,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(2), result.getRankCost());
+        Assertions.assertEquals(new Integer(2), result.getRankCost());
     }
 
     /**
@@ -186,7 +186,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(16), result.getTotalCost());
+        Assertions.assertEquals(new Integer(16), result.getTotalCost());
     }
 
     /**
@@ -201,7 +201,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(0,
+        Assertions.assertEquals(0,
                 Iterables.size(result.getSponsor().getAffinityGroups()));
     }
 
@@ -217,7 +217,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(0, result.getPlayers().size());
+        Assertions.assertEquals(0, result.getPlayers().size());
     }
 
     /**
@@ -237,7 +237,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(2,
+        Assertions.assertEquals(2,
                 Iterables.size(result.getSponsor().getAffinityGroups()));
     }
 
@@ -258,7 +258,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(3, result.getPlayers().size());
+        Assertions.assertEquals(3, result.getPlayers().size());
     }
 
     /**
@@ -278,7 +278,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(baseRank, result.getBaseRank());
+        Assertions.assertEquals(baseRank, result.getBaseRank());
     }
 
     /**
@@ -298,7 +298,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(15),
+        Assertions.assertEquals(new Integer(15),
                 result.getPlayers().get(1).getCost());
     }
 
@@ -318,7 +318,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(new Integer(23),
+        Assertions.assertEquals(new Integer(23),
                 result.getPlayers().get(1).getCost());
     }
 
@@ -337,7 +337,7 @@ public class ITSponsorBuilderServiceValidateTeam
 
         result = service.validateTeam(selection);
 
-        Assert.assertEquals(3, result.getPlayers().size());
+        Assertions.assertEquals(3, result.getPlayers().size());
     }
 
 }

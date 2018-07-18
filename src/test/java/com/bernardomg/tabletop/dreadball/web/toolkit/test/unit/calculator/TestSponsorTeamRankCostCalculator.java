@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.calculator;
 import java.util.HashMap;
 import java.util.Map;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -73,7 +73,7 @@ public final class TestSponsorTeamRankCostCalculator {
         // Creates calculator
         calculator = new SponsorTeamRankCostCalculator(1, 2, 3, 4, 5, 6);
 
-        Assert.assertEquals(calculator.getCost(team), (Integer) 56);
+        Assertions.assertEquals(calculator.getCost(team), (Integer) 56);
     }
 
     /**
@@ -106,7 +106,7 @@ public final class TestSponsorTeamRankCostCalculator {
         // Creates calculator
         calculator = new SponsorTeamRankCostCalculator(1, 2, 3, 4, 5, 6);
 
-        Assert.assertEquals(calculator.getCost(team), (Integer) 4);
+        Assertions.assertEquals(calculator.getCost(team), (Integer) 4);
     }
 
     /**
@@ -139,7 +139,7 @@ public final class TestSponsorTeamRankCostCalculator {
         // Creates calculator
         calculator = new SponsorTeamRankCostCalculator(1, 2, 3, 4, 5, 6);
 
-        Assert.assertEquals(calculator.getCost(team), (Integer) 4);
+        Assertions.assertEquals(calculator.getCost(team), (Integer) 4);
     }
 
 }

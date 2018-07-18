@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.builder.s
 
 import java.util.Collection;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
@@ -69,7 +69,7 @@ public class ITSponsorBuilderServiceAffOptions
 
         result = service.getAffinityOptions();
 
-        Assert.assertEquals(5, result.size());
+        Assertions.assertEquals(5, result.size());
     }
 
 }

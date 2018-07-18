@@ -16,7 +16,7 @@
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.report.controller;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -107,7 +107,7 @@ public class ITReportController extends AbstractJUnit4SpringContextTests {
         content = result.andReturn().getResponse()
                 .getHeader("Content-disposition");
 
-        Assert.assertEquals("inline; filename=EntityReport.pdf", content);
+        Assertions.assertEquals("inline; filename=EntityReport.pdf", content);
     }
 
     /**

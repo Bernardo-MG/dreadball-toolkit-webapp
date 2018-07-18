@@ -21,7 +21,7 @@ import java.util.Set;
 import javax.validation.ConstraintViolation;
 import javax.validation.Validator;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
@@ -74,7 +74,7 @@ public final class TestDefaultSponsorTeamValidationSelectionValidation {
 
         errors = validator.validate(selection);
 
-        Assert.assertEquals(6, errors.size());
+        Assertions.assertEquals(6, errors.size());
     }
 
     /**
@@ -96,7 +96,7 @@ public final class TestDefaultSponsorTeamValidationSelectionValidation {
 
         errors = validator.validate(selection);
 
-        Assert.assertEquals(6, errors.size());
+        Assertions.assertEquals(6, errors.size());
     }
 
     /**

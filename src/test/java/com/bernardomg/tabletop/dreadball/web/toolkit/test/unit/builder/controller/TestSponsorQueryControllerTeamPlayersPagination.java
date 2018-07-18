@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controll
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -100,7 +100,7 @@ public final class TestSponsorQueryControllerTeamPlayersPagination {
 
         pageable = captor.getValue();
 
-        Assert.assertEquals(10, pageable.getPageNumber());
+        Assertions.assertEquals(10, pageable.getPageNumber());
     }
 
     /**
@@ -116,8 +116,8 @@ public final class TestSponsorQueryControllerTeamPlayersPagination {
 
         pageable = captor.getValue();
 
-        Assert.assertEquals(20, pageable.getPageSize());
-        Assert.assertEquals(0, pageable.getPageNumber());
+        Assertions.assertEquals(20, pageable.getPageSize());
+        Assertions.assertEquals(0, pageable.getPageNumber());
     }
 
     /**

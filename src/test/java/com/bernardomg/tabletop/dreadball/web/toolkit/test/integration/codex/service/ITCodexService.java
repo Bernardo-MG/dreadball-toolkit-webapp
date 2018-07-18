@@ -18,7 +18,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.codex.ser
 
 import java.util.Iterator;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
@@ -75,7 +75,7 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
         pageable = PageRequest.of(0, 10);
         result = service.getAffinityTeamPlayers(pageable);
 
-        Assert.assertEquals(4, Iterables.size(result));
+        Assertions.assertEquals(4, Iterables.size(result));
     }
 
     /**
@@ -91,9 +91,9 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
         result = service.getAffinityTeamPlayers(pageable);
         itr = result.iterator();
 
-        Assert.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
-        Assert.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
-        Assert.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
     }
 
     /**
@@ -107,7 +107,7 @@ public class ITCodexService extends AbstractJUnit4SpringContextTests {
         pageable = PageRequest.of(0, 10);
         result = service.getAffinityTeamPlayers(pageable);
 
-        Assert.assertTrue(result instanceof Page);
+        Assertions.assertTrue(result instanceof Page);
     }
 
 }

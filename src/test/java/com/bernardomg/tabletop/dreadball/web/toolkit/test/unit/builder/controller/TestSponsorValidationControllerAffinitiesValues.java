@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controll
 import java.util.Collection;
 import java.util.Collections;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentCaptor;
@@ -90,8 +90,8 @@ public final class TestSponsorValidationControllerAffinitiesValues {
             throws Exception {
         mockMvc.perform(getGetRequest("aff"));
 
-        Assert.assertEquals(1, Iterables.size(captor.getValue()));
-        Assert.assertEquals("aff", captor.getValue().iterator().next());
+        Assertions.assertEquals(1, Iterables.size(captor.getValue()));
+        Assertions.assertEquals("aff", captor.getValue().iterator().next());
     }
 
     /**
@@ -102,7 +102,7 @@ public final class TestSponsorValidationControllerAffinitiesValues {
             throws Exception {
         mockMvc.perform(getGetRequest("[aff1,aff2]"));
 
-        Assert.assertEquals(2, Iterables.size(captor.getValue()));
+        Assertions.assertEquals(2, Iterables.size(captor.getValue()));
     }
 
     /**
@@ -113,7 +113,7 @@ public final class TestSponsorValidationControllerAffinitiesValues {
             throws Exception {
         mockMvc.perform(getGetRequest("[aff,aff]"));
 
-        Assert.assertEquals(2, Iterables.size(captor.getValue()));
+        Assertions.assertEquals(2, Iterables.size(captor.getValue()));
     }
 
     /**
@@ -125,7 +125,7 @@ public final class TestSponsorValidationControllerAffinitiesValues {
             throws Exception {
         mockMvc.perform(getGetRequest());
 
-        Assert.assertEquals(0, Iterables.size(captor.getValue()));
+        Assertions.assertEquals(0, Iterables.size(captor.getValue()));
     }
 
     /**

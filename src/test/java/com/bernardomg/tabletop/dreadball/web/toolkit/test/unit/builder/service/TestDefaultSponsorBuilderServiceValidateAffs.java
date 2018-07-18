@@ -20,7 +20,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.mockito.Mockito;
 
@@ -68,7 +68,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(2, Iterables.size(result.getAffinities()));
+        Assertions.assertEquals(2, Iterables.size(result.getAffinities()));
     }
 
     /**
@@ -90,7 +90,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(0, result.getRank().intValue());
+        Assertions.assertEquals(0, result.getRank().intValue());
     }
 
     /**
@@ -113,7 +113,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(2, Iterables.size(result.getAffinities()));
+        Assertions.assertEquals(2, Iterables.size(result.getAffinities()));
     }
 
     /**
@@ -133,7 +133,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(new Integer(5), result.getRank());
+        Assertions.assertEquals(new Integer(5), result.getRank());
     }
 
     /**
@@ -153,7 +153,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(0, Iterables.size(result.getAffinities()));
+        Assertions.assertEquals(0, Iterables.size(result.getAffinities()));
     }
 
     /**
@@ -172,7 +172,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(new Integer(0), result.getRank());
+        Assertions.assertEquals(new Integer(0), result.getRank());
     }
 
     /**
@@ -193,7 +193,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(0, Iterables.size(result.getAffinities()));
+        Assertions.assertEquals(0, Iterables.size(result.getAffinities()));
     }
 
     /**
@@ -213,7 +213,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(1, result.getRank().intValue());
+        Assertions.assertEquals(1, result.getRank().intValue());
     }
 
     /**
@@ -236,7 +236,7 @@ public final class TestDefaultSponsorBuilderServiceValidateAffs {
 
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(2, Iterables.size(result.getAffinities()));
+        Assertions.assertEquals(2, Iterables.size(result.getAffinities()));
     }
 
     /**

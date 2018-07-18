@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.repositor
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
@@ -73,7 +73,7 @@ public class ITAffinityTeamPlayerRepositoryInList
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
-        Assert.assertEquals(0, result.size());
+        Assertions.assertEquals(0, result.size());
     }
 
     /**
@@ -93,11 +93,11 @@ public class ITAffinityTeamPlayerRepositoryInList
 
         player = result.iterator().next();
 
-        Assert.assertEquals(1, player.getAffinityGroups().size());
+        Assertions.assertEquals(1, player.getAffinityGroups().size());
 
-        Assert.assertEquals(new Integer(23), player.getStrangerCost());
-        Assert.assertEquals(new Integer(15), player.getAllyCost());
-        Assert.assertEquals(new Integer(10), player.getFriendCost());
+        Assertions.assertEquals(new Integer(23), player.getStrangerCost());
+        Assertions.assertEquals(new Integer(15), player.getAllyCost());
+        Assertions.assertEquals(new Integer(10), player.getFriendCost());
     }
 
     /**
@@ -115,7 +115,7 @@ public class ITAffinityTeamPlayerRepositoryInList
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
-        Assert.assertEquals(2, result.size());
+        Assertions.assertEquals(2, result.size());
     }
 
     /**
@@ -133,7 +133,7 @@ public class ITAffinityTeamPlayerRepositoryInList
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
-        Assert.assertEquals(2, result.size());
+        Assertions.assertEquals(2, result.size());
     }
 
     /**
@@ -150,7 +150,7 @@ public class ITAffinityTeamPlayerRepositoryInList
 
         result = repository.findByTemplateNameInOrderByTemplateNameAsc(names);
 
-        Assert.assertEquals(1, result.size());
+        Assertions.assertEquals(1, result.size());
     }
 
 }

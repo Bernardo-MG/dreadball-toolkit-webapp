@@ -19,7 +19,7 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.builder.s
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
@@ -78,8 +78,8 @@ public class ITSponsorBuilderServiceValidateAffs
         affinities.add("rank_increase");
         result = service.validateSponsorAffinities(affinities);
 
-        Assert.assertEquals(6, result.getRank().intValue());
-        Assert.assertEquals(4, Iterables.size(result.getAffinities()));
+        Assertions.assertEquals(6, result.getRank().intValue());
+        Assertions.assertEquals(4, Iterables.size(result.getAffinities()));
     }
 
 }

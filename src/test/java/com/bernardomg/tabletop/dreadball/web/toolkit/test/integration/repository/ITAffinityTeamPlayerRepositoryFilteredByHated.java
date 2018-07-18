@@ -19,8 +19,8 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.integration.repositor
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.Assert;
 import org.junit.Ignore;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
@@ -87,11 +87,11 @@ public class ITAffinityTeamPlayerRepositoryFilteredByHated
                 pageReq);
 
         player = Iterables.get(players, 0);
-        Assert.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
-        Assert.assertEquals(new Integer(23), player.getStrangerCost());
-        Assert.assertEquals(new Integer(15), player.getAllyCost());
-        Assert.assertEquals(new Integer(10), player.getFriendCost());
-        Assert.assertEquals(1, player.getAffinityGroups().size());
+        Assertions.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
+        Assertions.assertEquals(new Integer(23), player.getStrangerCost());
+        Assertions.assertEquals(new Integer(15), player.getAllyCost());
+        Assertions.assertEquals(new Integer(10), player.getFriendCost());
+        Assertions.assertEquals(1, player.getAffinityGroups().size());
     }
 
     /**
@@ -110,7 +110,7 @@ public class ITAffinityTeamPlayerRepositoryFilteredByHated
         players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
 
-        Assert.assertEquals(3, players.getTotalElements());
+        Assertions.assertEquals(3, players.getTotalElements());
     }
 
     /**
@@ -131,7 +131,7 @@ public class ITAffinityTeamPlayerRepositoryFilteredByHated
         players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
 
-        Assert.assertEquals(4, players.getTotalElements());
+        Assertions.assertEquals(4, players.getTotalElements());
     }
 
     /**
@@ -152,7 +152,7 @@ public class ITAffinityTeamPlayerRepositoryFilteredByHated
         players = repository.findAllFilteredByHatedAffinities(affinities,
                 pageReq);
 
-        Assert.assertEquals(4, players.getTotalElements());
+        Assertions.assertEquals(4, players.getTotalElements());
     }
 
 }
