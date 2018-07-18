@@ -627,7 +627,7 @@
       <postgresql.version>42.2.2</postgresql.version>
       <servlet.version>4.0.1</servlet.version>
       <slf4j.version>1.8.0-beta2</slf4j.version>
-      <spring.data.version>2.0.7.RELEASE</spring.data.version>
+      <spring.data.version>2.0.8.RELEASE</spring.data.version>
       <spring.version>5.0.7.RELEASE</spring.version>
       <thymeleaf.version>3.0.9.RELEASE</thymeleaf.version>
       <webappRunner.version>8.5.30.0</webappRunner.version>
