@@ -21,6 +21,7 @@ import java.util.Collection;
 
 import org.junit.Ignore;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.junit.platform.runner.JUnitPlatform;
@@ -116,7 +117,7 @@ public class ITAffinityTeamPlayerRepositoryFilteredByHated
     /**
      * Verifies that when not applying a filter all the affinities are returned.
      */
-    @Ignore
+    @Disabled
     @Test
     public final void
             testFindAll_FilteredByHatedAffinities_NoFilter_AllEntities() {
