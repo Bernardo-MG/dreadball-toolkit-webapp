@@ -22,6 +22,8 @@ import java.util.Collection;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.data.domain.Pageable;
@@ -47,6 +49,7 @@ import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlTeamP
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestTeamPlayerCodexControllerPagination {
 
     /**

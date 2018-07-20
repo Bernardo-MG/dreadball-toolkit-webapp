@@ -21,6 +21,8 @@ import java.util.Collection;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
@@ -36,6 +38,7 @@ import com.bernardomg.tabletop.dreadball.rules.SponsorConstraints;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestDefaultDbxRulesAffinityLevel {
 
     /**

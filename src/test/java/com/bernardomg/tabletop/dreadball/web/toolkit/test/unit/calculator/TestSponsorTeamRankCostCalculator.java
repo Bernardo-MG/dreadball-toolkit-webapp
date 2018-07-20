@@ -21,6 +21,8 @@ import java.util.Map;
 
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dreadball.calculator.SponsorTeamRankCostCalculator;
@@ -35,6 +37,7 @@ import com.bernardomg.tabletop.dreadball.model.team.calculator.DefaultRankCostCa
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestSponsorTeamRankCostCalculator {
 
     /**

@@ -24,6 +24,8 @@ import javax.validation.Validator;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamSelection;
@@ -33,6 +35,7 @@ import com.bernardomg.tabletop.dreadball.model.DefaultSponsorTeamSelection;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestDefaultSponsorTeamValidationSelectionValidation {
 
     /**
