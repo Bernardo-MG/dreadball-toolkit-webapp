@@ -85,13 +85,13 @@ npm run test
 
 ### Packaging the WAR
 
-When creating the WAR file the database connection credentials should be set manually:
+When creating the WAR file the database connection credentials should be read from the environment:
 
 ```
-mvn package -P production,mysql -Ddatabase.username=[username] -Ddatabase.password=[password] -Ddatabase.url=[DB url]
+mvn package -P production,mysql -D database.auth.source=env
 ```
 
-Otherwise the project will try to use the default testing values.
+Check the documentation for more information.
 
 ## Collaborate
 
