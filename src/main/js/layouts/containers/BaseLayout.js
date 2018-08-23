@@ -10,7 +10,7 @@ import { injectIntl } from 'react-intl';
 import App from 'grommet/components/App';
 import Split from 'grommet/components/Split';
 
-import MainSidebar from 'views/containers/MainSidebar';
+import MainSidebar from 'layouts/containers/MainSidebar';
 
 import titleMessages from 'i18n/title';
 import appMessages from 'i18n/app';

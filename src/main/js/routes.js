@@ -5,7 +5,7 @@ import AboutView from 'about/views/AboutView';
 import PlayersListView from 'codex/views/PlayersListView';
 import ContainerDbxTeamBuilder from 'builder/views/containers/ContainerDbxTeamBuilder';
 
-import BaseLayout from 'views/containers/BaseLayout';
+import BaseLayout from 'layouts/containers/BaseLayout';
 
 /**
  * All the routes for the application.
