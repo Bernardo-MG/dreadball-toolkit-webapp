@@ -8,12 +8,16 @@ import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 
 import App from 'grommet/components/App';
+import Box from 'grommet/components/Box';
+import Button from 'grommet/components/Button';
 import Split from 'grommet/components/Split';
 
-import MainSidebar from 'layouts/containers/MainSidebar';
+import MainSidebar from 'views/containers/MainSidebar';
 
 import titleMessages from 'i18n/title';
 import appMessages from 'i18n/app';
+
+import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
 
 import { setSmallScreenStatus } from 'views/actions';
 
@@ -50,8 +54,12 @@ class BaseLayout extends Component {
          links.push({ path: '/about', label: this.props.intl.formatMessage(titleMessages.about) });
 
          const title = this.props.intl.formatMessage(appMessages.name);
+         const footer = <Box>
+            <Box>Dreadball © Mantic</Box>
+            <Box direction='row' align='center'>{APP_VERSION} <Button href={REPO_URL} icon={<SocialGithubIcon/>} /></Box>
+         </Box>;
 
-         nav = <MainSidebar title={title} links={links} />;
+         nav = <MainSidebar title={title} links={links} footer={footer} />;
       }
 
       // Which side has priority
