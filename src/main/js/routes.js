@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, IndexRoute } from 'react-router';
 
-import AboutView from 'about/views/AboutView';
+import AboutView from 'about/containers/About';
 import PlayersListView from 'codex/views/PlayersListView';
 import ContainerDbxTeamBuilder from 'builder/views/containers/ContainerDbxTeamBuilder';
 
