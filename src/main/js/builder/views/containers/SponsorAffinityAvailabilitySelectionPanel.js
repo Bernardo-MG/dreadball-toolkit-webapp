@@ -14,7 +14,7 @@ import { chooseSponsorAffinity } from 'builder/actions';
 
 import { selectAffinityOptions } from 'builder/affinities/selectors';
 
-import AffinityAvailabilitySelect from 'builder/affinities/components/AffinityAvailabilitySelect';
+import Combo from 'components/Combo';
 
 import affinitiesMessages from 'i18n/affinity';
 
@@ -48,7 +48,7 @@ class SponsorAffinityAvailabilitySelectionPanel extends Component {
    render() {
       return (
          <Box>
-            {this.values.map((element, i) => <AffinityAvailabilitySelect index={i} key={i} source={element.options} onChange={this.props.action} />)}
+            {this.values.map((element, i) => <Combo index={i} key={i} source={element.options} onChange={this.props.action} />)}
          </Box>
       );
    }

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import Select from 'grommet/components/Select';
 
-class AffinityAvailabilitySelect extends Component {
+class Combo extends Component {
 
    state = {};
    index;
@@ -50,10 +50,10 @@ class AffinityAvailabilitySelect extends Component {
    }
 }
 
-AffinityAvailabilitySelect.propTypes = {
+Combo.propTypes = {
    onChange: PropTypes.func.isRequired,
    index: PropTypes.number.isRequired,
    source: PropTypes.array.isRequired
 };
 
-export default AffinityAvailabilitySelect;
+export default Combo;
