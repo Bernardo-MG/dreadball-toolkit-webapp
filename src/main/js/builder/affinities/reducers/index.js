@@ -1,4 +1,4 @@
-import * as ActionTypes from 'builder/affinities/actions/actionTypes';
+import * as ActionTypes from 'builder/actions/actionTypes';
 
 const affinities = (
    state = { options: [], chosen: [] }, action) => {
@@ -13,7 +13,7 @@ const affinities = (
    switch (type) {
    case ActionTypes.CLEAR_TEAM:
       return {
-         options: [],
+         ...state,
          chosen: []
       };
    case ActionTypes.SET_AFFINITY_OPTIONS: {
