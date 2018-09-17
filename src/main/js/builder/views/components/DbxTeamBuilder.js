@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import PropTypes from 'prop-types';
 
-import SponsorAffinitiesView from 'builder/views/components/SponsorAffinitiesView';
+import SponsorAffinitiesView from 'builder/views/containers/SponsorAffinitiesView';
 import SponsorTeamView from 'builder/views/components/SponsorTeamView';
 
 class DbxTeamBuilder extends Component {

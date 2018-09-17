@@ -17,6 +17,7 @@ import { selectAffinityOptions } from 'builder/affinities/selectors';
 import Combo from 'components/Combo';
 
 import affinitiesMessages from 'i18n/affinity';
+import teamBuilderMessages from 'i18n/teamBuilder';
 
 function internationalizeOption(option, intl) {
    return { value: option.value, label: intl.formatMessage(affinitiesMessages[option.label]) };
@@ -48,7 +49,7 @@ class SponsorAffinityAvailabilitySelectionPanel extends Component {
    render() {
       return (
          <Box>
-            {this.values.map((element, i) => <Combo index={i} key={i} source={element.options} onChange={this.props.action} />)}
+            {this.values.map((element, i) => <Combo index={i} key={i} placeHolder={this.props.intl.formatMessage(teamBuilderMessages.pick_affinity)} source={element.options} onChange={this.props.action} />)}
          </Box>
       );
    }
