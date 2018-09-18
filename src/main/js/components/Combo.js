@@ -11,7 +11,7 @@ import Select from 'grommet/components/Select';
  * should be a map containing a 'value' and 'label' keys. The first for the stored value, the second for the
  * text shown for the value.
  * 
- * It can receive a listener, as the onChange property, which will be called whenever an option is
+ * It expects a listener, as the onChange property, which will be called whenever an option is
  * selected, using the selected value as argument.
  */
 class Combo extends Component {
@@ -34,10 +34,10 @@ class Combo extends Component {
          option: selected
       });
 
-      if(this.onChange) {
+      if (this.onChange) {
          this.onChange(selected.value);
       }
-   };
+   }
 
    constructor(props) {
       super(props);
