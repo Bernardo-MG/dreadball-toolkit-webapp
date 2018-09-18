@@ -7,7 +7,6 @@ import Select from 'grommet/components/Select';
 class Combo extends Component {
 
    state = {};
-   index;
    onChange;
 
    handleChange = (value) => {
@@ -17,13 +16,12 @@ class Combo extends Component {
          option: selected
       });
 
-      this.onChange(selected.value, this.index);
+      this.onChange(selected.value);
    };
 
    constructor(props) {
       super(props);
 
-      this.index = props.index;
       this.onChange = props.onChange;
    }
 
@@ -40,7 +38,6 @@ class Combo extends Component {
 
 Combo.propTypes = {
    onChange: PropTypes.func.isRequired,
-   index: PropTypes.number.isRequired,
    source: PropTypes.array.isRequired,
    placeHolder: PropTypes.string
 };

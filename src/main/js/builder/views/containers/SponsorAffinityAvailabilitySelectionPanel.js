@@ -49,7 +49,7 @@ class SponsorAffinityAvailabilitySelectionPanel extends Component {
    render() {
       return (
          <Box>
-            {this.values.map((element, i) => <Combo index={i} key={i} placeHolder={this.props.intl.formatMessage(teamBuilderMessages.pick_affinity)} source={element.options} onChange={this.props.action} />)}
+            {this.values.map((element, i) => <Combo key={i} placeHolder={this.props.intl.formatMessage(teamBuilderMessages.pick_affinity)} source={element.options} onChange={(v) => this.props.action(v, i)} />)}
          </Box>
       );
    }
