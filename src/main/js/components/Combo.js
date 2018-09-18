@@ -18,12 +18,13 @@ class Combo extends Component {
 
    /** Component state */
    state = {};
+
    /** Custom value change listener */
    onChange;
 
    /**
     * Handles the value change event. It will set the selected value into the state,
-    * and then send it to the custom change function.
+    * and then send it to the custom change listener.
     * 
     * @param event value change event
     */
