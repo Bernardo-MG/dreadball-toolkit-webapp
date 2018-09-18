@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import NumberInput from 'grommet/components/NumberInput';
 
-class BoundNumberInput extends Component {
+class ObservableNumberInput extends Component {
 
    onChange;
 
@@ -18,6 +18,7 @@ class BoundNumberInput extends Component {
       if (event.target.value) {
          this.onChange(Number.parseInt(event.target.value, 10));
       } else {
+         // No value received, input empty
          this.onChange(0);
       }
    }
@@ -30,7 +31,7 @@ class BoundNumberInput extends Component {
    }
 }
 
-BoundNumberInput.propTypes = {
+ObservableNumberInput.propTypes = {
    onChange: PropTypes.func.isRequired,
    id: PropTypes.string,
    name: PropTypes.string,
@@ -39,4 +40,4 @@ BoundNumberInput.propTypes = {
    value: PropTypes.number
 };
 
-export default BoundNumberInput;
+export default ObservableNumberInput;

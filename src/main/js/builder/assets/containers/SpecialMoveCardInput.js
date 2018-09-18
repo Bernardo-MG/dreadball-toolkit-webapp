@@ -7,12 +7,12 @@ import { bindActionCreators } from 'redux';
 
 import { setSpecialMoveCard } from 'builder/assets/actions';
 
-import BoundNumberInput from 'components/BoundNumberInput';
+import ObservableNumberInput from 'components/ObservableNumberInput';
 
 import { selectSpecialMoveCards } from 'builder/assets/selectors';
 
 const SpecialMoveCardInput = (props) =>
-   <BoundNumberInput id={props.id} name={props.name} value={props.value} min={props.min} max={props.max} onChange={props.onChange} />;
+   <ObservableNumberInput id={props.id} name={props.name} value={props.value} min={props.min} max={props.max} onChange={props.onChange} />;
 
 SpecialMoveCardInput.propTypes = {
    onChange: PropTypes.func.isRequired,
