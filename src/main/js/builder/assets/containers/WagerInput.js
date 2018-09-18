@@ -12,10 +12,15 @@ import BoundNumberInput from 'components/BoundNumberInput';
 import { selectWagers } from 'builder/assets/selectors';
 
 const WagerInput = (props) =>
-   <BoundNumberInput {...props} />;
+   <BoundNumberInput id={props.id} name={props.name} value={props.value} min={props.min} max={props.max} onChange={props.onChange} />;
 
 WagerInput.propTypes = {
-   onChange: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired,
+   id: PropTypes.string,
+   name: PropTypes.string,
+   min: PropTypes.number,
+   max: PropTypes.number,
+   value: PropTypes.number
 };
 
 const mapStateToProps = (state) => {

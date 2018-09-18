@@ -23,16 +23,20 @@ class BoundNumberInput extends Component {
    }
 
    render() {
-      const { onChange, ...rest } = this.props;
       const updateValue = this._onUpdateValue.bind(this);
       return (
-         <NumberInput {...rest} onChange={updateValue} />
+         <NumberInput id={this.props.id} name={this.props.name} value={this.props.value} min={this.props.min} max={this.props.max} onChange={updateValue} />
       );
    }
 }
 
 BoundNumberInput.propTypes = {
-   onChange: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired,
+   id: PropTypes.string,
+   name: PropTypes.string,
+   min: PropTypes.number,
+   max: PropTypes.number,
+   value: PropTypes.number
 };
 
 export default BoundNumberInput;
