@@ -70,7 +70,11 @@ class SponsorTeamView extends Component {
       let view = null;
 
       if (this.state.view === 'addPlayers') {
-         view = <AffinityPlayersOptions />;
+         view =
+            <Box justify='center' align='center' margin='medium'>
+               <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.add_players)}</Heading>
+               <AffinityPlayersOptions />
+            </Box>;
       } else if (this.state.view === 'players') {
          view =
             <Box justify='center' align='center' margin='medium'>
