@@ -73,7 +73,7 @@ class SponsorTeamView extends Component {
          view = <AffinityPlayersOptions />;
       } else if (this.state.view === 'players') {
          view =
-            <Box>
+            <Box justify='center' align='center' margin='medium'>
                <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.team_players)}</Heading>
                <SponsorTeamPlayers />
             </Box>;

@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import PropTypes from 'prop-types';
 
 import { injectIntl } from 'react-intl';
 
 import Article from 'grommet/components/Article';
-import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import CircleInformationIcon from 'grommet/components/icons/base/CircleInformation';
 import Layer from 'grommet/components/Layer';
@@ -59,7 +58,7 @@ class RatedPlayersDataList extends Component {
       headers.push('');
 
       return (
-         <Box>
+         <Fragment>
             {detailsLayer}
             <Table onMore={this.props.onMore}>
                <TableHeader labels={headers} />
@@ -74,7 +73,7 @@ class RatedPlayersDataList extends Component {
                   )}
                </tbody>
             </Table>
-         </Box>
+         </Fragment>
       );
    }
 }
