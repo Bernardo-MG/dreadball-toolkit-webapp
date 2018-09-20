@@ -80,9 +80,7 @@ class SponsorTeamView extends Component {
       } else if (this.state.view === 'assets') {
          view =
             <Box justify='center' align='center' margin='medium'>
-               <Box>
-                  <SponsorNameInput label={this.props.intl.formatMessage(teamBuilderMessages.sponsor_name)} />
-               </Box>
+               <SponsorNameInput label={this.props.intl.formatMessage(teamBuilderMessages.sponsor_name)} />
                <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.assets)}</Heading>
                <SponsorAssetsForm />
             </Box>;
