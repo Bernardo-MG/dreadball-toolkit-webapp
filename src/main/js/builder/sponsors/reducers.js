@@ -1,7 +1,7 @@
 import * as ActionTypes from 'builder/actions/actionTypes';
 
 const sponsor = (
-   state = { sponsorName: 'Sponsor name', rank: 0, baseRank: 0, totalCost: 0, players: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
+   state = { sponsorName: '', rank: 0, baseRank: 0, totalCost: 0, players: [], coachingDice: 0, specialMoveCards: 0, nastySurpriseCards: 0, wagers: 0, mediBots: 0, cheerleaders: 0 },
    action) => {
    const { type, payload } = action;
 
@@ -16,7 +16,7 @@ const sponsor = (
          baseRank: 0,
          totalCost: 0,
          players: [],
-         sponsorName: 'Sponsor name'
+         sponsorName: ''
       };
    case ActionTypes.ADD_TEAM_PLAYER:
       return {
