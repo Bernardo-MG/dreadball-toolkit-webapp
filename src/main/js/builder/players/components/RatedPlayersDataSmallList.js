@@ -35,13 +35,10 @@ class RatedPlayersDataSmallList extends Component {
    render() {
       const { selection } = this.state;
 
-      const select = this._onSelect.bind(this);
-      const deselect = this._onDeselect.bind(this);
-
       let detailsLayer;
       if (selection) {
          detailsLayer = (
-            <Layer closer={true} onClose={deselect}>
+            <Layer closer={true} onClose={::this._onDeselect}>
                <Article size='large'>
                   <PlayerDataPanel source={selection} />
                </Article>
@@ -66,7 +63,7 @@ class RatedPlayersDataSmallList extends Component {
                      <TableRow key={i}>
                         <td><Button onClick={() => this.props.buttonAction(player.templateName)} icon={this.props.buttonIcon} /></td>
                         <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
-                        <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
+                        <td><Button onClick={() => ::this._onSelect(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
                </tbody>

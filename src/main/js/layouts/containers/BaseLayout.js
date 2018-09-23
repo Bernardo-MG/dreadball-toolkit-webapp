@@ -67,11 +67,9 @@ class BaseLayout extends Component {
       // By default the view takes priority (right side)
       const priority = (this.props.navbarVisible && this.props.smallScreen ? 'left' : 'right');
 
-      const toggleResponsive = this._onResponsiveToggleNav.bind(this);
-
       return (
          <App centered={false}>
-            <Split priority={priority} flex='right' separator={true} onResponsive={toggleResponsive}>
+            <Split priority={priority} flex='right' separator={true} onResponsive={::this._onResponsiveToggleNav}>
                {nav}
                {this.props.children}
             </Split>

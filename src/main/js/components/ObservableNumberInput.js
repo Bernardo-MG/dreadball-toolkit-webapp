@@ -35,7 +35,6 @@ class ObservableNumberInput extends Component {
    }
 
    render() {
-      const handleChange = this._onHandleChange.bind(this);
       return (
          <NumberInput
             id={this.props.id}
@@ -43,7 +42,7 @@ class ObservableNumberInput extends Component {
             value={this.props.value}
             min={this.props.min}
             max={this.props.max}
-            onChange={handleChange} />
+            onChange={::this._onHandleChange} />
       );
    }
 }

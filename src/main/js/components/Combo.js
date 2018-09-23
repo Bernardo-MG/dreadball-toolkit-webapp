@@ -47,13 +47,12 @@ class Combo extends Component {
    }
 
    render() {
-      const handleChange = this._onHandleChange.bind(this);
       return (
          <Select
             placeHolder={this.props.placeHolder}
             options={this.props.source}
             value={this.state.option}
-            onChange={handleChange} />
+            onChange={::this._onHandleChange} />
       );
    }
 }
