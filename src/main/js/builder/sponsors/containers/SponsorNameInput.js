@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 
 import FormField from 'grommet/components/FormField';
 
-import DelayedTextInput from 'components/DelayedTextInput';
+import TypingStopInput from 'components/TypingStopInput';
 
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
@@ -15,7 +15,7 @@ import { selectSponsorName } from 'builder/sponsors/selectors';
 
 const SponsorNameInput = (props) =>
    <FormField label={props.label}>
-      <DelayedTextInput id='sponsor_name' name='sponsor_name' type='text' value={props.value} onChange={props.action}/>
+      <TypingStopInput id='sponsor_name' name='sponsor_name' type='text' value={props.value} onChange={props.action}/>
    </FormField>;
 
 SponsorNameInput.propTypes = {
