@@ -25,17 +25,17 @@ import { selectNavbarVisible, selectSmallScreen } from 'views/selectors';
 
 /**
  * Base layout for the application. This will frame all the views.
- * 
+ *
  * It contains a navigation bar on the left side, and the view on the rest of the screen.
  */
 class BaseLayout extends Component {
 
    /**
     * Toggle navigation bar on response to view size changes.
-    * 
+    *
     * It will signal the callback function, telling it the view is small if it goes
     * to a single column.
-    * 
+    *
     * @param columns indicates the number of columns
     */
    _onResponsiveToggleNav(columns) {

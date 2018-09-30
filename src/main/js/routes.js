@@ -9,7 +9,7 @@ import BaseLayout from 'layouts/containers/BaseLayout';
 
 /**
  * All the routes for the application.
- * 
+ *
  * These are composed of three parts:
  * - Path
  * - Class name to mark links as active

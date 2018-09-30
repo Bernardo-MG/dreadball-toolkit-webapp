@@ -20,9 +20,9 @@ import { selectNavbarVisible, selectSidebarVisible, selectSmallScreen } from 'vi
 
 /**
  * View with a side bar.
- * 
+ *
  * It includes a title, a sidebar and the main view.
- * 
+ *
  * Two buttons will be included along the title, to toggle the nav bar and the side bar.
  */
 const SidebarView = (props) => {

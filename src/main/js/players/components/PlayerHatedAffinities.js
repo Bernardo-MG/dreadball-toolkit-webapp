@@ -18,16 +18,15 @@ const PlayerHatedAffinities = (props) => {
    let affinities;
 
    if ((props.source.hatedAffinityGroups) && (props.source.hatedAffinityGroups.length > 0)) {
-      affinities =
-         <Box full='horizontal' separator='top'>
-            <Box justify='center' align='center'>
-               <Title>{props.intl.formatMessage(playerMessages.hated_affinities)}</Title>
-            </Box>
-            <Box direction='row' justify='center' align='center'>
-               {props.source.hatedAffinityGroups.map((a, i) =>
-                  <Box key={i} margin='small'><Label key={i} margin='medium'>{props.intl.formatMessage(affinityMessages[a])}</Label></Box>)}
-            </Box>
-         </Box>;
+      affinities = <Box full='horizontal' separator='top'>
+         <Box justify='center' align='center'>
+            <Title>{props.intl.formatMessage(playerMessages.hated_affinities)}</Title>
+         </Box>
+         <Box direction='row' justify='center' align='center'>
+            {props.source.hatedAffinityGroups.map((a, i) =>
+               <Box key={i} margin='small'><Label key={i} margin='medium'>{props.intl.formatMessage(affinityMessages[a])}</Label></Box>)}
+         </Box>
+      </Box>;
    } else {
       affinities = null;
    }

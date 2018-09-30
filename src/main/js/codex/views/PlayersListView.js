@@ -16,7 +16,7 @@ import titleMessages from 'i18n/title';
 
 /**
  * View for the units codex.
- * 
+ *
  * It also takes care of loading the initial data.
  */
 class PlayersListView extends Component {

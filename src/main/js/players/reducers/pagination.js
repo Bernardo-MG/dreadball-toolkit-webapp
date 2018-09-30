@@ -2,7 +2,7 @@ import paginate from 'api/pagination/reducers';
 
 /**
  * Returns the ids from a request response.
- * 
+ *
  * @param payload the response payload
  */
 const getPlayerIds = (payload) => {

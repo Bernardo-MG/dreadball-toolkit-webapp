@@ -18,9 +18,9 @@ import { selectNavbarVisible } from 'views/selectors';
 
 /**
  * A simple view.
- * 
+ *
  * It includes a title and the main view.
- * 
+ *
  * A button will be included along the title, to toggle the nav bar.
  */
 const SimpleView = (props) => {

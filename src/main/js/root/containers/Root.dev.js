@@ -13,7 +13,7 @@ const locale = Cookie.get('locale') || 'en';
 
 /**
  * Development root application.
- * 
+ *
  * It will include the dev tools.
  */
 const Root = ({ store, history }) => (

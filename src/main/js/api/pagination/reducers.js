@@ -6,10 +6,7 @@ const updatePagination = (state, action, idsMapping, store) => {
    const failureType = `REQUEST_FAILURE_${store}`;
    const fetchingType = `FETCHING_${store}`;
 
-   let replace = false;
-   if (action.replace) {
-      replace = action.replace;
-   }
+   const { replace } = action;
 
    switch (type) {
    case fetchingType:
@@ -18,7 +15,7 @@ const updatePagination = (state, action, idsMapping, store) => {
          isFetching: true
       };
    case successType: {
-      let pagination = action.pagination;
+      let { pagination } = action;
       let ids;
 
       if (!pagination) {

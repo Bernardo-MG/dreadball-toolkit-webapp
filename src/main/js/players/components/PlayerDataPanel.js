@@ -19,7 +19,7 @@ import playerRoleMessages from 'i18n/role';
 
 /**
  * Panel showing all the data for a player.
- * 
+ *
  * It adapts to the data available, as there are several possible configurations for players.
  */
 class PlayerDataPanel extends Component {

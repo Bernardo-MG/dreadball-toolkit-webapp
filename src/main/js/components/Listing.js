@@ -7,7 +7,7 @@ import ListItem from 'grommet/components/ListItem';
 
 /**
  * List component. Creates a list from a collection of items.
- * 
+ *
  * The collection should contain a list of elements to show, which will be rendered
  * into the list.
  */
@@ -15,7 +15,7 @@ class Listing extends Component {
 
    /**
     * Renders an element at the specified index.
-    * 
+    *
     * @param element element to render
     * @param i element index
     */

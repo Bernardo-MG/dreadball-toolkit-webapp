@@ -12,7 +12,7 @@ import playerMessages from 'i18n/player';
 
 /**
  * Panel showing the costs for a player.
- * 
+ *
  * It adapts to the data available, as there are several possible configurations for players.
  */
 const PlayerCosts = (props) => {
@@ -25,34 +25,30 @@ const PlayerCosts = (props) => {
    // Affinity players have three costs: stranger, friend and ally.
    // By default players have a single cost value, but in some cases it may not exist.
    if (props.source.strangerCost) {
-      strangerCost =
-         <Box margin='small'>
-            <Value value={props.source.strangerCost} label={props.intl.formatMessage(playerMessages.stranger_cost)} size='small' />
-         </Box>;
+      strangerCost = <Box margin='small'>
+         <Value value={props.source.strangerCost} label={props.intl.formatMessage(playerMessages.stranger_cost)} size='small' />
+      </Box>;
    } else {
       strangerCost = null;
    }
    if (props.source.friendCost) {
-      friendCost =
-         <Box margin='small'>
-            <Value value={props.source.friendCost} label={props.intl.formatMessage(playerMessages.friend_cost)} size='small' />
-         </Box>;
+      friendCost = <Box margin='small'>
+         <Value value={props.source.friendCost} label={props.intl.formatMessage(playerMessages.friend_cost)} size='small' />
+      </Box>;
    } else {
       friendCost = null;
    }
    if (props.source.allyCost) {
-      allyCost =
-         <Box margin='small'>
-            <Value value={props.source.allyCost} label={props.intl.formatMessage(playerMessages.ally_cost)} size='small' />
-         </Box>;
+      allyCost = <Box margin='small'>
+         <Value value={props.source.allyCost} label={props.intl.formatMessage(playerMessages.ally_cost)} size='small' />
+      </Box>;
    } else {
       allyCost = null;
    }
    if (props.source.cost) {
-      cost =
-         <Box margin='small'>
-            <Value value={props.source.cost} label={props.intl.formatMessage(playerMessages.cost)} size='small' />
-         </Box>;
+      cost = <Box margin='small'>
+         <Value value={props.source.cost} label={props.intl.formatMessage(playerMessages.cost)} size='small' />
+      </Box>;
    } else {
       cost = null;
    }

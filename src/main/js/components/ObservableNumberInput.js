@@ -14,7 +14,7 @@ class ObservableNumberInput extends Component {
 
    /**
     * Handles the value change event. It will send the selected to the custom change listener.
-    * 
+    *
     * @param event value change event
     */
    _onHandleChange(event) {

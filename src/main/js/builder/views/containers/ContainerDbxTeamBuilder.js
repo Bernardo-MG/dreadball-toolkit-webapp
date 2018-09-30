@@ -14,6 +14,7 @@ import DbxTeamBuilder from 'builder/views/components/DbxTeamBuilder';
 class ContainerDbxTeamBuilder extends Component {
 
    props;
+
    validate;
 
    constructor(props) {

@@ -22,7 +22,7 @@ import { selectNavbarVisible } from 'views/selectors';
 
 /**
  * Main application sidebar.
- * 
+ *
  * It contains the main navigation links, along the title and a footer.
  */
 const MainSidebar = (props) =>

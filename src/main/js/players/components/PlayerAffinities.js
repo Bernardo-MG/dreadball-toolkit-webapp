@@ -18,16 +18,15 @@ const PlayerAffinities = (props) => {
    let affinities;
 
    if ((props.source.affinityGroups) && (props.source.affinityGroups.length > 0)) {
-      affinities =
-         <Box full='horizontal' separator='top'>
-            <Box justify='center' align='center'>
-               <Title>{props.intl.formatMessage(playerMessages.affinities)}</Title>
-            </Box>
-            <Box direction='row' justify='center' align='center'>
-               {props.source.affinityGroups.map((a, i) =>
-                  <Box key={i} margin='small'><Label key={i} margin='medium'>{props.intl.formatMessage(affinityMessages[a])}</Label></Box>)}
-            </Box>
-         </Box>;
+      affinities = <Box full='horizontal' separator='top'>
+         <Box justify='center' align='center'>
+            <Title>{props.intl.formatMessage(playerMessages.affinities)}</Title>
+         </Box>
+         <Box direction='row' justify='center' align='center'>
+            {props.source.affinityGroups.map((a, i) =>
+               <Box key={i} margin='small'><Label key={i} margin='medium'>{props.intl.formatMessage(affinityMessages[a])}</Label></Box>)}
+         </Box>
+      </Box>;
    } else {
       affinities = null;
    }

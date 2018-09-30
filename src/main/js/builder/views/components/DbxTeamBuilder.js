@@ -8,6 +8,7 @@ import SponsorTeamView from 'builder/views/components/SponsorTeamView';
 class DbxTeamBuilder extends Component {
 
    state = { affinitiesChosen: false };
+
    onFinishAffinities;
 
    onAcceptAffinities = () => {

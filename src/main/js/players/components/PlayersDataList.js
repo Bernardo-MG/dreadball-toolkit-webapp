@@ -20,7 +20,7 @@ import playerNameMessages from 'i18n/playerName';
 
 /**
  * Panel showing a set of players and their data.
- * 
+ *
  * The data for each player can be shown by clicking on an info button, which will show a modal screen.
  */
 class PlayersDataList extends Component {

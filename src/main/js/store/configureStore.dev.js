@@ -9,7 +9,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 /**
  * Development application middleware.
- * 
+ *
  * It will include a logger.
  */
 const middleware = [
@@ -19,8 +19,8 @@ const middleware = [
 ];
 
 /**
- * Development enhacers.
- * 
+ * Development enhancers.
+ *
  * It will add the dev tools to the middleware.
  */
 const enhancer = compose(

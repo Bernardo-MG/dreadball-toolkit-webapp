@@ -5,10 +5,16 @@ import rootSaga from 'sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 
+/**
+ * Application middleware.
+ */
 const middleware = [
    sagaMiddleware
 ];
 
+/**
+ * Enhancers.
+ */
 const enhancer = applyMiddleware(...middleware);
 
 const configureStore = (initialState) => createStore(

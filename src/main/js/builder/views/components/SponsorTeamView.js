@@ -70,30 +70,26 @@ class SponsorTeamView extends Component {
       let view = null;
 
       if (this.state.view === 'addPlayers') {
-         view =
-            <Box justify='center' align='center' margin='medium'>
-               <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.add_players)}</Heading>
-               <AffinityPlayersOptions />
-            </Box>;
+         view = <Box justify='center' align='center' margin='medium'>
+            <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.add_players)}</Heading>
+            <AffinityPlayersOptions />
+         </Box>;
       } else if (this.state.view === 'players') {
-         view =
-            <Box justify='center' align='center' margin='medium'>
-               <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.team_players)}</Heading>
-               <SponsorTeamPlayers />
-            </Box>;
+         view = <Box justify='center' align='center' margin='medium'>
+            <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.team_players)}</Heading>
+            <SponsorTeamPlayers />
+         </Box>;
       } else if (this.state.view === 'assets') {
-         view =
-            <Box justify='center' align='center' margin='medium'>
-               <SponsorNameInput label={this.props.intl.formatMessage(teamBuilderMessages.sponsor_name)} />
-               <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.assets)}</Heading>
-               <SponsorAssetsForm />
-            </Box>;
+         view = <Box justify='center' align='center' margin='medium'>
+            <SponsorNameInput label={this.props.intl.formatMessage(teamBuilderMessages.sponsor_name)} />
+            <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.assets)}</Heading>
+            <SponsorAssetsForm />
+         </Box>;
       } else if (this.state.view === 'affinities') {
-         view =
-            <Box justify='center' align='center' margin='medium'>
-               <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.affinities)}</Heading>
-               <SponsorAffinitiesList />
-            </Box>;
+         view = <Box justify='center' align='center' margin='medium'>
+            <Heading tag='h2'>{this.props.intl.formatMessage(teamBuilderMessages.affinities)}</Heading>
+            <SponsorAffinitiesList />
+         </Box>;
       }
 
       const options = [];

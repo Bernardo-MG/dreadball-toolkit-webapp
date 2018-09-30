@@ -38,7 +38,7 @@ export const hideNavBarOnSmallScreen = () => {
 
 /**
  * Set the small screen status flag.
- * 
+ *
  * @param small flag to indicate if the UI is on a small screen
  */
 export const setSmallScreenStatus = (small) => {

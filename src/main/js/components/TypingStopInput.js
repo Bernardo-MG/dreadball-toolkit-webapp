@@ -16,7 +16,7 @@ class TypingStopInput extends Component {
    /**
     * Handles the value change event. It use a timer to fire the custom event
     * once the user has stopped typing.
-    * 
+    *
     * @param event value change event
     */
    _onHandleChange(event) {
@@ -24,7 +24,7 @@ class TypingStopInput extends Component {
          clearTimeout(this.timer);
       }
 
-      const value = event.target.value;
+      const { value } = event.target;
 
       this.timer = setTimeout(() => {
          this.onChange(value);

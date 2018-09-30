@@ -31,25 +31,14 @@ function internationalizeOptions(options, intl) {
 
 class SponsorAffinityAvailabilitySelectionPanel extends Component {
 
-   constructor(props) {
-      super(props);
-
-      this.values = [];
-   }
-
    componentDidMount() {
       this.props.load();
-   }
-
-   componentWillReceiveProps(props) {
-      this.values = [];
-      props.source.forEach((set) => this.values.push({ name: set.name, options: internationalizeOptions(set.options, props.intl) }));
    }
 
    render() {
       return (
          <Box>
-            {this.values.map((element, i) => <Combo key={i} placeHolder={this.props.intl.formatMessage(teamBuilderMessages.pick_affinity)} source={element.options} onChange={(v) => this.props.action(v, i)} />)}
+            {this.props.source.map((element, i) => <Combo key={i} placeHolder={this.props.intl.formatMessage(teamBuilderMessages.pick_affinity)} source={internationalizeOptions(element.options, this.props.intl)} onChange={(v) => this.props.action(v, i)} />)}
          </Box>
       );
    }
