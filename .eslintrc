@@ -5,6 +5,9 @@
       "import"
    ],
    "settings": {
+      "react": {
+         "version": "16.5.2"
+      },
       "import/resolver": {
          "webpack": {
             "config": "webpack.common.js"
