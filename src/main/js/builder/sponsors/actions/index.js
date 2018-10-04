@@ -1,14 +1,14 @@
-import * as types from 'builder/sponsors/actions/actionTypes';
+import * as ActionTypes from 'builder/actions/actionTypes';
 
 export const clearTeam = () => {
    return {
-      type: types.CLEAR_TEAM
+      type: ActionTypes.CLEAR_TEAM
    };
 };
 
 export const setSponsorName = (value) => {
    return {
-      type: types.SET_SPONSOR_NAME,
+      type: ActionTypes.SET_SPONSOR_NAME,
       payload: value
    };
 };

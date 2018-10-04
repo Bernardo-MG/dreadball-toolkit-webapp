@@ -18,14 +18,14 @@ import { selectSmallScreen } from 'views/selectors';
 
 /**
  * Side bar containing a list of buttons.
- * 
+ *
  * It renders a close button on smaller screen, to support responsive views.
  */
 class ButtonsSidebar extends Component {
 
    /**
     * Renders a button with the specified options.
-    * 
+    *
     * @param label button text
     * @param action button action
     * @param icon button icon

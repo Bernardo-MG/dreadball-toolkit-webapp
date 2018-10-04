@@ -1,11 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 import PropTypes from 'prop-types';
 
 import { injectIntl } from 'react-intl';
 
 import Article from 'grommet/components/Article';
-import Box from 'grommet/components/Box';
 import Button from 'grommet/components/Button';
 import CircleInformationIcon from 'grommet/components/icons/base/CircleInformation';
 import Layer from 'grommet/components/Layer';
@@ -36,13 +35,10 @@ class RatedPlayersDataSmallList extends Component {
    render() {
       const { selection } = this.state;
 
-      const select = this._onSelect.bind(this);
-      const deselect = this._onDeselect.bind(this);
-
       let detailsLayer;
       if (selection) {
          detailsLayer = (
-            <Layer closer={true} onClose={deselect}>
+            <Layer closer={true} onClose={::this._onDeselect}>
                <Article size='large'>
                   <PlayerDataPanel source={selection} />
                </Article>
@@ -58,7 +54,7 @@ class RatedPlayersDataSmallList extends Component {
       headers.push('');
 
       return (
-         <Box>
+         <Fragment>
             {detailsLayer}
             <Table onMore={this.props.onMore}>
                <TableHeader labels={headers} />
@@ -67,12 +63,12 @@ class RatedPlayersDataSmallList extends Component {
                      <TableRow key={i}>
                         <td><Button onClick={() => this.props.buttonAction(player.templateName)} icon={this.props.buttonIcon} /></td>
                         <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
-                        <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
+                        <td><Button onClick={() => ::this._onSelect(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
                </tbody>
             </Table>
-         </Box>
+         </Fragment>
       );
    }
 }

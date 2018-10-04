@@ -32,6 +32,10 @@ const teamBuilderMessages = defineMessages({
       id: 'builder.text.nastySurpriseCards',
       defaultMessage: 'Nasty surprise cards'
    },
+   pick_affinity: {
+      id: 'builder.text.pick_affinity',
+      defaultMessage: 'Pick affinity'
+   },
    special_move_cards: {
       id: 'builder.text.specialMoveCards',
       defaultMessage: 'Special move cards'

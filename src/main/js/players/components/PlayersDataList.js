@@ -20,7 +20,7 @@ import playerNameMessages from 'i18n/playerName';
 
 /**
  * Panel showing a set of players and their data.
- * 
+ *
  * The data for each player can be shown by clicking on an info button, which will show a modal screen.
  */
 class PlayersDataList extends Component {
@@ -41,13 +41,10 @@ class PlayersDataList extends Component {
    render() {
       const { selection } = this.state;
 
-      const select = this._onSelect.bind(this);
-
       let detailsLayer;
       if (selection) {
-         const deselect = this._onDeselect.bind(this);
          detailsLayer = (
-            <Layer closer={true} onClose={deselect}>
+            <Layer closer={true} onClose={::this._onDeselect}>
                <Article size='large'>
                   <PlayerDataPanel source={selection} />
                </Article>
@@ -70,7 +67,7 @@ class PlayersDataList extends Component {
                   { this.props.source.map((player, i) =>
                      <TableRow key={i}>
                         <td>{this.props.intl.formatMessage(playerNameMessages[player.name])}</td>
-                        <td><Button onClick={() => select(player)} icon={<CircleInformationIcon/>} /></td>
+                        <td><Button onClick={() => ::this._onSelect(player)} icon={<CircleInformationIcon/>} /></td>
                      </TableRow>
                   )}
                </tbody>

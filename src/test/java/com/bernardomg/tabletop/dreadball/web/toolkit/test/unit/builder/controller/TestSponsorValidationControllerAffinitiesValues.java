@@ -19,9 +19,11 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controll
 import java.util.Collection;
 import java.util.Collections;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
@@ -44,6 +46,7 @@ import com.google.common.collect.Iterables;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestSponsorValidationControllerAffinitiesValues {
 
     /**
@@ -72,7 +75,7 @@ public final class TestSponsorValidationControllerAffinitiesValues {
     /**
      * Sets up the mocked MVC context.
      */
-    @Before
+    @BeforeEach
     public final void setUpMockContext() {
         service = getSponsorBuilderService();
         mockMvc = MockMvcBuilders.standaloneSetup(getController(service))
@@ -90,8 +93,8 @@ public final class TestSponsorValidationControllerAffinitiesValues {
             throws Exception {
         mockMvc.perform(getGetRequest("aff"));
 
-        Assert.assertEquals(1, Iterables.size(captor.getValue()));
-        Assert.assertEquals("aff", captor.getValue().iterator().next());
+        Assertions.assertEquals(1, Iterables.size(captor.getValue()));
+        Assertions.assertEquals("aff", captor.getValue().iterator().next());
     }
 
     /**
@@ -102,7 +105,7 @@ public final class TestSponsorValidationControllerAffinitiesValues {
             throws Exception {
         mockMvc.perform(getGetRequest("[aff1,aff2]"));
 
-        Assert.assertEquals(2, Iterables.size(captor.getValue()));
+        Assertions.assertEquals(2, Iterables.size(captor.getValue()));
     }
 
     /**
@@ -113,7 +116,7 @@ public final class TestSponsorValidationControllerAffinitiesValues {
             throws Exception {
         mockMvc.perform(getGetRequest("[aff,aff]"));
 
-        Assert.assertEquals(2, Iterables.size(captor.getValue()));
+        Assertions.assertEquals(2, Iterables.size(captor.getValue()));
     }
 
     /**
@@ -125,7 +128,7 @@ public final class TestSponsorValidationControllerAffinitiesValues {
             throws Exception {
         mockMvc.perform(getGetRequest());
 
-        Assert.assertEquals(0, Iterables.size(captor.getValue()));
+        Assertions.assertEquals(0, Iterables.size(captor.getValue()));
     }
 
     /**

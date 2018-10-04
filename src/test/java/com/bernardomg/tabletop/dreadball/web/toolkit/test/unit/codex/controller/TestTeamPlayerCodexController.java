@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 import org.hamcrest.Matchers;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentMatchers;
 import org.mockito.Mockito;
 import org.springframework.data.web.PageableHandlerMethodArgumentResolver;
@@ -47,6 +49,7 @@ import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlTeamP
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestTeamPlayerCodexController {
 
     /**
@@ -64,7 +67,7 @@ public final class TestTeamPlayerCodexController {
     /**
      * Sets up the mocked MVC context.
      */
-    @Before
+    @BeforeEach
     public final void setUpMockContext() {
         mockMvc = MockMvcBuilders.standaloneSetup(getController())
                 .setCustomArgumentResolvers(
@@ -121,7 +124,8 @@ public final class TestTeamPlayerCodexController {
      * @return a request builder prepared for reading players
      */
     private final RequestBuilder getGetRequest() {
-        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_PLAYERS);
+        return MockMvcRequestBuilders.get(UrlTeamPlayerCodexConfig.URL_PLAYERS)
+                .contentType(MediaType.APPLICATION_JSON_UTF8);
     }
 
 }

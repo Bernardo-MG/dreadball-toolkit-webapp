@@ -1,7 +1,7 @@
 
 /**
  * Returns all the values from the map received in the list.
- * 
+ *
  * @param map map to filter
  * @param keys keys for filtering
  */

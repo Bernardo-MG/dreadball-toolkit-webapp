@@ -7,15 +7,20 @@ import { bindActionCreators } from 'redux';
 
 import { setCheerleaders } from 'builder/assets/actions';
 
-import BoundNumberInput from 'components/BoundNumberInput';
+import ObservableNumberInput from 'components/ObservableNumberInput';
 
 import { selectCheerleaders } from 'builder/assets/selectors';
 
 const CheerleadersInput = (props) =>
-   <BoundNumberInput {...props} />;
+   <ObservableNumberInput id={props.id} name={props.name} value={props.value} min={props.min} max={props.max} onChange={props.onChange} />;
 
 CheerleadersInput.propTypes = {
-   onChange: PropTypes.func.isRequired
+   onChange: PropTypes.func.isRequired,
+   id: PropTypes.string,
+   name: PropTypes.string,
+   min: PropTypes.number,
+   max: PropTypes.number,
+   value: PropTypes.number
 };
 
 const mapStateToProps = (state) => {

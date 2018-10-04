@@ -20,8 +20,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dreadball.build.service.DefaultSponsorBuilderService;
@@ -44,6 +46,7 @@ import com.google.common.collect.Iterables;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public class TestDefaultSponsorBuilderServiceAffOptions {
 
     /**
@@ -65,7 +68,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         options = service.getAffinityOptions();
 
-        Assert.assertEquals(4,
+        Assertions.assertEquals(4,
                 Iterables.size(options.iterator().next().getOptions()));
     }
 
@@ -83,7 +86,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         options = service.getAffinityOptions();
 
-        Assert.assertEquals(5,
+        Assertions.assertEquals(5,
                 Iterables.size(options.iterator().next().getOptions()));
     }
 
@@ -100,7 +103,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         options = service.getAffinityOptions();
 
-        Assert.assertEquals(1, options.size());
+        Assertions.assertEquals(1, options.size());
     }
 
     /**
@@ -115,7 +118,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         options = service.getAffinityOptions();
 
-        Assert.assertEquals("A", options.iterator().next().getName());
+        Assertions.assertEquals("A", options.iterator().next().getName());
     }
 
     /**
@@ -130,7 +133,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
 
         options = service.getAffinityOptions();
 
-        Assert.assertEquals(0, options.size());
+        Assertions.assertEquals(0, options.size());
     }
 
     /**
@@ -150,7 +153,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
         found = options.stream().flatMap((o) -> o.getOptions().stream())
                 .map(Option::getValue)
                 .anyMatch((v) -> v.equals("rank_increase"));
-        Assert.assertFalse(found);
+        Assertions.assertFalse(found);
     }
 
     /**
@@ -169,7 +172,7 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
         found = options.stream().flatMap((o) -> o.getOptions().stream())
                 .map(Option::getValue)
                 .anyMatch((v) -> v.equals("rank_increase"));
-        Assert.assertTrue(found);
+        Assertions.assertTrue(found);
     }
 
     /**

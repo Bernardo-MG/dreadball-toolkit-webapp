@@ -5,6 +5,9 @@
       "import"
    ],
    "settings": {
+      "react": {
+         "version": "16.5.2"
+      },
       "import/resolver": {
          "webpack": {
             "config": "webpack.common.js"
@@ -23,13 +26,13 @@
       "window": false
    },
    "parserOptions": {
-       "ecmaVersion": 6,
-       "sourceType": "module",
-       "ecmaFeatures": {
-          "jsx": true,
-          "blockBindings": true
-       }
-    },
+      "ecmaVersion": 2017,
+      "sourceType": "module",
+      "ecmaFeatures": {
+         "jsx": true,
+         "blockBindings": true
+      }
+   },
    "rules": {
       "quotes": ["error", "single"],
       "react/prop-types": [2],
@@ -42,7 +45,10 @@
       "arrow-parens": ["error", "always"],
       "import/no-extraneous-dependencies": ["error", { "devDependencies": true }],
       "padded-blocks": ["warn", { "classes": "always" }],
-      "class-methods-use-this": ["warn"]
+      "class-methods-use-this": ["warn"],
+      "object-curly-newline": ["error", { "ImportDeclaration": "never" }],
+      "implicit-arrow-linebreak": ["warn"],
+      "function-paren-newline": ["warn"]
    },
    "extends": [
       "plugin:react/recommended",

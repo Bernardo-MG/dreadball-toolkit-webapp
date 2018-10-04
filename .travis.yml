@@ -10,10 +10,15 @@ jdk:
 # JDK 8 is set to deploy the docs and artifacts
   - oraclejdk8
 env:
+  # Doc deployment
   - SERVER=jetty DATABASE=h2 DEPLOY_DOCS=true ENV=development
+  # Production build
   - SERVER=jetty DATABASE=h2 ENV=production
+  # MySQL
   - SERVER=jetty DATABASE=mysql ENV=development
+  # Postgres
   - SERVER=jetty DATABASE=postgres ENV=development
+  # Tomcat
   - SERVER=tomcat7 DATABASE=h2 ENV=development
 dist: precise
 

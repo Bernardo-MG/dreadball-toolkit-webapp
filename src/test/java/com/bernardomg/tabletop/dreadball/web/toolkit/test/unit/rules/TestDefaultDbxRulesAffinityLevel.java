@@ -19,8 +19,10 @@ package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.rules;
 import java.util.ArrayList;
 import java.util.Collection;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dreadball.model.player.AffinityLevel;
@@ -36,6 +38,7 @@ import com.bernardomg.tabletop.dreadball.rules.SponsorConstraints;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestDefaultDbxRulesAffinityLevel {
 
     /**
@@ -63,7 +66,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
 
         aff = dbxTeamBuilderService.getAffinityLevel(player, new ArrayList<>());
 
-        Assert.assertEquals(AffinityLevel.STRANGER, aff);
+        Assertions.assertEquals(AffinityLevel.STRANGER, aff);
     }
 
     /**
@@ -84,7 +87,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
 
         aff = dbxTeamBuilderService.getAffinityLevel(player, new ArrayList<>());
 
-        Assert.assertEquals(AffinityLevel.STRANGER, aff);
+        Assertions.assertEquals(AffinityLevel.STRANGER, aff);
     }
 
     /**
@@ -100,7 +103,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
 
         aff = dbxTeamBuilderService.getAffinityLevel(player, getAffinities());
 
-        Assert.assertEquals(AffinityLevel.STRANGER, aff);
+        Assertions.assertEquals(AffinityLevel.STRANGER, aff);
     }
 
     /**
@@ -126,7 +129,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
 
         aff = dbxTeamBuilderService.getAffinityLevel(player, spnsAffs);
 
-        Assert.assertEquals(AffinityLevel.ALLY, aff);
+        Assertions.assertEquals(AffinityLevel.ALLY, aff);
     }
 
     /**
@@ -147,7 +150,7 @@ public final class TestDefaultDbxRulesAffinityLevel {
 
         aff = dbxTeamBuilderService.getAffinityLevel(player, affs);
 
-        Assert.assertEquals(AffinityLevel.FRIEND, aff);
+        Assertions.assertEquals(AffinityLevel.FRIEND, aff);
     }
 
     /**

@@ -1,20 +1,20 @@
 import affinities from 'builder/affinities/reducers';
-import * as types from 'builder/affinities/actions/actionTypes';
+import * as ActionTypes from 'builder/actions/actionTypes';
 
 describe('Team reducer', () => {
    it('clears affinities', () => {
       expect(
          affinities({ options: ['a', 'b'], chosen: ['c'] }, {
-            type: types.CLEAR_TEAM
+            type: ActionTypes.CLEAR_TEAM
          })
       ).toEqual(
-         { 'chosen': [], 'options': [] }
+         { 'chosen': [], 'options': ['a', 'b'] }
       )
    }),
    it('sets affinities', () => {
       expect(
          affinities({ options: ['a', 'b'], chosen: [] }, {
-            type: types.SET_AFFINITY_OPTIONS,
+            type: ActionTypes.SET_AFFINITY_OPTIONS,
             payload: ['c']
          })
       ).toEqual(
@@ -24,7 +24,7 @@ describe('Team reducer', () => {
    it('sets chosen affinities', () => {
       expect(
          affinities({ chosen: ['a', 'b'] }, {
-            type: types.SET_CHOSEN_AFFINITIES,
+            type: ActionTypes.SET_CHOSEN_AFFINITIES,
             payload: ['c']
          })
       ).toEqual(
@@ -34,7 +34,7 @@ describe('Team reducer', () => {
    it('when choosing overrides chosen', () => {
       expect(
          affinities({ chosen: ['a', 'b'] }, {
-            type: types.CHOOSE_SPONSOR_AFFINITY,
+            type: ActionTypes.CHOOSE_SPONSOR_AFFINITY,
             payload: 'c',
             index: 0
          })
@@ -45,7 +45,7 @@ describe('Team reducer', () => {
    it('when choosing overrides adds chosen', () => {
       expect(
          affinities({ chosen: ['a', 'b'] }, {
-            type: types.CHOOSE_SPONSOR_AFFINITY,
+            type: ActionTypes.CHOOSE_SPONSOR_AFFINITY,
             payload: 'c',
             index: 2
          })

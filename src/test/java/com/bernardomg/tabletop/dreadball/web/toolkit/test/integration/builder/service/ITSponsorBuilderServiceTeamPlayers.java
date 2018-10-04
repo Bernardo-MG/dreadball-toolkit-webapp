@@ -20,15 +20,21 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort.Direction;
 import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.TestExecutionListeners;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests;
+import org.springframework.test.context.support.DependencyInjectionTestExecutionListener;
 
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.model.player.ImmutableAffinityGroup;
@@ -43,6 +49,9 @@ import com.google.common.collect.Iterables;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
+@ExtendWith(SpringExtension.class)
+@TestExecutionListeners({ DependencyInjectionTestExecutionListener.class })
 @ContextConfiguration(
         locations = { "classpath:context/test-service-context.xml" })
 public class ITSponsorBuilderServiceTeamPlayers
@@ -79,8 +88,8 @@ public class ITSponsorBuilderServiceTeamPlayers
         players = service.getTeamPlayerOptions(affinities, pageable);
 
         player = Iterables.get(players, 0);
-        Assert.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
-        Assert.assertEquals(new Integer(15), player.getCost());
+        Assertions.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
+        Assertions.assertEquals(new Integer(15), player.getCost());
     }
 
     /**
@@ -98,7 +107,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         pageable = PageRequest.of(0, 10);
         players = service.getTeamPlayerOptions(affinities, pageable);
 
-        Assert.assertEquals(3, Iterables.size(players));
+        Assertions.assertEquals(3, Iterables.size(players));
     }
 
     /**
@@ -118,8 +127,8 @@ public class ITSponsorBuilderServiceTeamPlayers
         players = service.getTeamPlayerOptions(affinities, pageable);
 
         player = Iterables.get(players, 0);
-        Assert.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
-        Assert.assertEquals(new Integer(23), player.getCost());
+        Assertions.assertEquals(TestValues.PLAYER_A, player.getTemplateName());
+        Assertions.assertEquals(new Integer(23), player.getCost());
     }
 
     /**
@@ -136,7 +145,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         pageable = PageRequest.of(0, 10);
         players = service.getTeamPlayerOptions(affinities, pageable);
 
-        Assert.assertEquals(4, Iterables.size(players));
+        Assertions.assertEquals(4, Iterables.size(players));
     }
 
     /**
@@ -157,9 +166,9 @@ public class ITSponsorBuilderServiceTeamPlayers
 
         itr = players.iterator();
 
-        Assert.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
-        Assert.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
-        Assert.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
     }
 
     /**
@@ -179,9 +188,9 @@ public class ITSponsorBuilderServiceTeamPlayers
 
         itr = players.iterator();
 
-        Assert.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
-        Assert.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
-        Assert.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_A, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_B, itr.next().getTemplateName());
+        Assertions.assertEquals(TestValues.PLAYER_C, itr.next().getTemplateName());
     }
 
     /**
@@ -198,7 +207,7 @@ public class ITSponsorBuilderServiceTeamPlayers
         pageable = PageRequest.of(0, 10);
         players = service.getTeamPlayerOptions(affinities, pageable);
 
-        Assert.assertTrue(players instanceof Page);
+        Assertions.assertTrue(players instanceof Page);
     }
 
 }

@@ -14,6 +14,7 @@ import DbxTeamBuilder from 'builder/views/components/DbxTeamBuilder';
 class ContainerDbxTeamBuilder extends Component {
 
    props;
+
    validate;
 
    constructor(props) {
@@ -32,7 +33,7 @@ class ContainerDbxTeamBuilder extends Component {
 
    render() {
       return (
-         <DbxTeamBuilder onFinishAffinities={ this.onFinishAffinities.bind(this) } onLoadPlayers={ this.props.loadPlayers }
+         <DbxTeamBuilder onFinishAffinities={ ::this.onFinishAffinities } onLoadPlayers={ this.props.loadPlayers }
             onGenerateTeamReport= { this.props.generateReport }/>
       );
    }

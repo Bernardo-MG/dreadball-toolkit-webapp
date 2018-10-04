@@ -8,6 +8,8 @@ import { connect } from 'react-redux';
 import { injectIntl } from 'react-intl';
 
 import App from 'grommet/components/App';
+import Box from 'grommet/components/Box';
+import Button from 'grommet/components/Button';
 import Split from 'grommet/components/Split';
 
 import MainSidebar from 'views/containers/MainSidebar';
@@ -15,23 +17,25 @@ import MainSidebar from 'views/containers/MainSidebar';
 import titleMessages from 'i18n/title';
 import appMessages from 'i18n/app';
 
+import SocialGithubIcon from 'grommet/components/icons/base/SocialGithub';
+
 import { setSmallScreenStatus } from 'views/actions';
 
 import { selectNavbarVisible, selectSmallScreen } from 'views/selectors';
 
 /**
  * Base layout for the application. This will frame all the views.
- * 
+ *
  * It contains a navigation bar on the left side, and the view on the rest of the screen.
  */
 class BaseLayout extends Component {
 
    /**
     * Toggle navigation bar on response to view size changes.
-    * 
+    *
     * It will signal the callback function, telling it the view is small if it goes
     * to a single column.
-    * 
+    *
     * @param columns indicates the number of columns
     */
    _onResponsiveToggleNav(columns) {
@@ -50,8 +54,12 @@ class BaseLayout extends Component {
          links.push({ path: '/about', label: this.props.intl.formatMessage(titleMessages.about) });
 
          const title = this.props.intl.formatMessage(appMessages.name);
+         const footer = <Box>
+            <Box>Dreadball © Mantic</Box>
+            <Box direction='row' align='center'>{APP_VERSION} <Button href={REPO_URL} icon={<SocialGithubIcon/>} /></Box>
+         </Box>;
 
-         nav = <MainSidebar title={title} links={links} />;
+         nav = <MainSidebar title={title} links={links} footer={footer} />;
       }
 
       // Which side has priority
@@ -59,11 +67,9 @@ class BaseLayout extends Component {
       // By default the view takes priority (right side)
       const priority = (this.props.navbarVisible && this.props.smallScreen ? 'left' : 'right');
 
-      const toggleResponsive = this._onResponsiveToggleNav.bind(this);
-
       return (
          <App centered={false}>
-            <Split priority={priority} flex='right' separator={true} onResponsive={toggleResponsive}>
+            <Split priority={priority} flex='right' separator={true} onResponsive={::this._onResponsiveToggleNav}>
                {nav}
                {this.props.children}
             </Split>

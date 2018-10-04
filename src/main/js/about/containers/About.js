@@ -12,7 +12,7 @@ import SimpleView from 'views/containers/SimpleView';
 
 import titleMessages from 'i18n/title';
 
-const AboutView = (props) =>
+const About = (props) =>
    <SimpleView title={props.intl.formatMessage(titleMessages.about)}>
       <Box justify='center' align='center' margin='medium'>
          <Paragraph>I created this application mostly as a way to learn how to create a React application, mixed with Java and Spring. But also because I wanted to create a tool for a game which I like, even if I no longer play it that much.</Paragraph>
@@ -21,8 +21,8 @@ const AboutView = (props) =>
       </Box>
    </SimpleView>;
 
-AboutView.propTypes = {
+About.propTypes = {
    intl: PropTypes.object.isRequired
 };
 
-export default injectIntl(AboutView);
+export default injectIntl(About);

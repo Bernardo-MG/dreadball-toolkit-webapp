@@ -6,15 +6,15 @@
       <Property name="filename">testing.log</Property>
    </Properties>
 
-    <Appenders>
-        <Console name="console" target="SYSTEM_OUT">
-            <PatternLayout pattern="[%p] %d %c %M - %m%n" />
-        </Console>
+   <Appenders>
+      <Console name="console" target="SYSTEM_OUT">
+         <PatternLayout pattern="[%p] %d %c %M - %m%n" />
+      </Console>
 
-        <File name="file" fileName="${filename}">
-            <PatternLayout pattern="[%p] %d %c %M - %m%n" />
-        </File>
-    </Appenders>
+      <File name="file" fileName="${filename}">
+         <PatternLayout pattern="[%p] %d %c %M - %m%n" />
+      </File>
+   </Appenders>
 
    <Loggers>
       <Logger name="com.bernardomg" level="warn" additivity="false">
@@ -53,7 +53,8 @@
       </Logger>
 
       <!-- Jackson -->
-      <logger name="com.fasterxml.jackson" level="warn" additivity="false">
+      <logger name="com.fasterxml.jackson" level="warn"
+         additivity="false">
          <AppenderRef ref="file" />
          <AppenderRef ref="console" />
       </logger>

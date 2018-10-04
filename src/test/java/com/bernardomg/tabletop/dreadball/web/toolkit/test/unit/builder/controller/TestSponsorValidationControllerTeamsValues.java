@@ -16,9 +16,11 @@
 
 package com.bernardomg.tabletop.dreadball.web.toolkit.test.unit.builder.controller;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
 import org.mockito.ArgumentCaptor;
 import org.mockito.Mockito;
 import org.springframework.http.MediaType;
@@ -42,6 +44,7 @@ import com.google.common.collect.Iterables;
  * 
  * @author Bernardo Mart&iacute;nez Garrido
  */
+@RunWith(JUnitPlatform.class)
 public final class TestSponsorValidationControllerTeamsValues {
 
     /**
@@ -69,7 +72,7 @@ public final class TestSponsorValidationControllerTeamsValues {
     /**
      * Sets up the mocked MVC context.
      */
-    @Before
+    @BeforeEach
     public final void setUpMockContext() {
         service = getSponsorBuilderService();
         mockMvc = MockMvcBuilders.standaloneSetup(getController(service))
@@ -86,7 +89,7 @@ public final class TestSponsorValidationControllerTeamsValues {
     public final void testValidateTeam_Multiple_TeamPlayers() throws Exception {
         mockMvc.perform(getGetRequest("[player1,player2]"));
 
-        Assert.assertEquals(2,
+        Assertions.assertEquals(2,
                 Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
@@ -99,7 +102,7 @@ public final class TestSponsorValidationControllerTeamsValues {
             throws Exception {
         mockMvc.perform(getGetRequest());
 
-        Assert.assertEquals(0,
+        Assertions.assertEquals(0,
                 Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
@@ -110,7 +113,7 @@ public final class TestSponsorValidationControllerTeamsValues {
     public final void testValidateTeam_Repeated_TeamPlayers() throws Exception {
         mockMvc.perform(getGetRequest("[player1,player1]"));
 
-        Assert.assertEquals(2,
+        Assertions.assertEquals(2,
                 Iterables.size(captor.getValue().getTeamPlayers()));
     }
 
@@ -122,7 +125,7 @@ public final class TestSponsorValidationControllerTeamsValues {
             throws Exception {
         mockMvc.perform(getGetRequest("player"));
 
-        Assert.assertEquals(1,
+        Assertions.assertEquals(1,
                 Iterables.size(captor.getValue().getTeamPlayers()));
     }
 

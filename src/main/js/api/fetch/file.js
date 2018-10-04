@@ -11,7 +11,7 @@ function saveFile(blob, type, filename) {
       // instead it is necessary to use msSaveOrOpenBlob
       window.navigator.msSaveOrOpenBlob(newBlob);
    } else {
-      // For other browsers: 
+      // For other browsers:
       // Create a link pointing to the ObjectURL containing the blob.
       const data = window.URL.createObjectURL(newBlob);
 

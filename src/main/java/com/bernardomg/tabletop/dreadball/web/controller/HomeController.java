@@ -16,7 +16,9 @@
 
 package com.bernardomg.tabletop.dreadball.web.controller;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 /**
@@ -25,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author Bernardo Mart&iacute;nez Garrido
  */
 @Controller
+@RequestMapping("/**")
 public class HomeController {
 
     /**
@@ -44,7 +47,7 @@ public class HomeController {
      * 
      * @return the welcome view
      */
-    @RequestMapping(value = { "/**" })
+    @GetMapping(produces = MediaType.TEXT_HTML_VALUE)
     public final String showWelcome() {
         return VIEW_WELCOME;
     }

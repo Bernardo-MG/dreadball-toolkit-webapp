@@ -49,6 +49,7 @@ public final class DefaultDreadballReportService
         final ResourceBundle affinitiesMessages;
         final ResourceBundle messages;
 
+        // TODO: Get resource bundles from Spring?
         messages = ResourceBundle.getBundle("messages/report");
         affinitiesMessages = ResourceBundle.getBundle("messages/affinities");
         playersMessages = ResourceBundle.getBundle("messages/playerNames");
