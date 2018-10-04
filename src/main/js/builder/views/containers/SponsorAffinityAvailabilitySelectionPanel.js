@@ -9,7 +9,7 @@ import { connect } from 'react-redux';
 
 import Box from 'grommet/components/Box';
 
-import { fetchAffinityOptions as fetch } from 'builder/affinities/actions';
+import { fetchAffinityOptions as fetch } from 'builder/requests/affinities/actions';
 import { chooseSponsorAffinity } from 'builder/actions';
 
 import { selectAffinityOptions } from 'builder/affinities/selectors';
