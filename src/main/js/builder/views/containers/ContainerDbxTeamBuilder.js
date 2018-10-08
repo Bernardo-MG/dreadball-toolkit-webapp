@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
 import { clearTeam, validateSponsorAffinities } from 'builder/actions';
-import { fetch as fetchPlayers } from 'players/actions/ratedPlayers';
+import { fetch as fetchPlayers } from 'builder/requests/players/actions/ratedPlayers';
 import { requestTeamReport } from 'report/actions';
 
 import DbxTeamBuilder from 'builder/views/components/DbxTeamBuilder';
