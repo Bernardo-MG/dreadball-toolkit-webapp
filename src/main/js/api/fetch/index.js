@@ -53,6 +53,9 @@ const fetchJsonPaginated = (url, params, parse) =>
       handleResponse(response.ok, response.body, parse)
    );
 
+/**
+ * Handles requests for fetching data. This is done through GET operations.
+ */
 export const Fetcher = class {
 
    constructor(url, processor) {

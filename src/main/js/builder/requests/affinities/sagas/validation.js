@@ -1,7 +1,8 @@
 import { put, takeLatest, call, select } from 'redux-saga/effects';
 import * as types from 'builder/actions/actionTypes';
-import { avasValidationFetcher } from 'builder/affinities/requests/fetchers';
-import { validationSuccess, validationFailure } from 'builder/actions';
+import * as requestTypes from 'builder/requests/affinities/actions/actionTypes';
+import { avasValidationFetcher } from 'builder/requests/affinities/fetchers';
+import { validationSuccess, validationFailure } from 'builder/requests/affinities/actions';
 
 import { selectChosenAffinities } from 'builder/affinities/selectors';
 
@@ -32,7 +33,7 @@ function* build(action) {
    }
 }
 
-export const affinitiesSagas = [
+export const validationSagas = [
    takeLatest(types.TEAM_AFFINITIES_VALIDATION, requestValidation),
-   takeLatest(types.REQUEST_SUCCESS_TEAM_VALIDATION_AFFINITIES, build)
+   takeLatest(requestTypes.REQUEST_SUCCESS_TEAM_VALIDATION_AFFINITIES, build)
 ];

@@ -14,17 +14,3 @@ export const validateSponsorAffinities = (affinities = []) => {
       params: { affinities }
    };
 };
-
-export const validationSuccess = (payload) => {
-   return {
-      type: types.REQUEST_SUCCESS_TEAM_VALIDATION_AFFINITIES,
-      payload
-   };
-};
-
-export const validationFailure = (payload) => {
-   return {
-      type: types.REQUEST_FAILURE_TEAM_VALIDATION_AFFINITIES,
-      payload
-   };
-};

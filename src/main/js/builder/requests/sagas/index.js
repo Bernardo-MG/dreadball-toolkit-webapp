@@ -1,5 +1,5 @@
-import { affinitiesSagas } from 'builder/requests/affinities/sagas';
+import { affinityRequestSagas } from 'builder/requests/affinities/sagas';
 
 export const requestSagas = [
-   ...affinitiesSagas
+   ...affinityRequestSagas
 ];
