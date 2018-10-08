@@ -1,4 +1,5 @@
 import { Fetcher } from 'api/fetch';
-import { VALIDATION_REST_ENDPOINT } from 'builder/validations/requests/endpoints';
+
+export const VALIDATION_REST_ENDPOINT = '/rest/builder/validation';
 
 export const teamValidationFetcher = new Fetcher(VALIDATION_REST_ENDPOINT);

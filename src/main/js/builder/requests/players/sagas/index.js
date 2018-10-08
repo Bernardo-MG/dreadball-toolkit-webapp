@@ -52,7 +52,7 @@ export function* build(action) {
    }
 }
 
-export const ratedPlayerSagas = [
+export const ratedPlayerRequestSagas = [
    takeLatest(requestTypes.REQUEST_RATED_PLAYERS, requestCurrentPage),
    takeLatest(requestTypes.REQUEST_SUCCESS_RATED_PLAYERS, build),
    takeLatest(requestTypes.CHANGE_PAGE_NEXT_RATED_PLAYERS, requestNextPage)

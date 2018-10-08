@@ -1,7 +1,9 @@
 import { affinityRequestSagas } from 'builder/requests/affinities/sagas';
-import { ratedPlayerSagas } from 'builder/requests/players/sagas';
+import { ratedPlayerRequestSagas } from 'builder/requests/players/sagas';
+import { validationsRequestSagas } from 'builder/requests/validations/sagas';
 
 export const requestSagas = [
    ...affinityRequestSagas,
-   ...ratedPlayerSagas
+   ...ratedPlayerRequestSagas,
+   ...validationsRequestSagas
 ];
