@@ -24,7 +24,7 @@
 
    <groupId>com.bernardomg.tabletop.dreadball</groupId>
    <artifactId>dreadball-toolkit-webapp</artifactId>
-   <version>0.1.3</version>
+   <version>0.1.3-SNAPSHOT</version>
    <packaging>war</packaging>
 
    <name>Dreadball Toolkit</name>
