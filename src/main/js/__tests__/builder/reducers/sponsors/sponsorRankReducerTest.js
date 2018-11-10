@@ -1,4 +1,4 @@
-import team from 'builder/sponsors/reducers';
+import team from 'builder/reducers/sponsors';
 import * as types from 'builder/actions/actionTypes';
 
 describe('Sponsor reducer', () => {

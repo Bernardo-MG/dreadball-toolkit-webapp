@@ -1,7 +1,7 @@
 import { combineReducers } from 'redux';
-import assets from 'builder/assets/reducers';
-import affinities from 'builder/affinities/reducers';
-import sponsor from 'builder/sponsors/reducers';
+import assets from 'builder/reducers/assets';
+import affinities from 'builder/reducers/affinities';
+import sponsor from 'builder/reducers/sponsors';
 
 const dbxBuilderReducer = combineReducers({ sponsor, assets, affinities });
 

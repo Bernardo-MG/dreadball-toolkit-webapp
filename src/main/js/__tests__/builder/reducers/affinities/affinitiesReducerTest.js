@@ -1,4 +1,4 @@
-import affinities from 'builder/affinities/reducers';
+import affinities from 'builder/reducers/affinities';
 import * as ActionTypes from 'builder/actions/actionTypes';
 
 describe('Team reducer', () => {
