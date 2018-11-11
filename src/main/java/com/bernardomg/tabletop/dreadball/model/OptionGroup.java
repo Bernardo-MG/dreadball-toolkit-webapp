@@ -45,6 +45,6 @@ public interface OptionGroup {
      * @return the group's options
      */
     @JsonProperty
-    public Collection<Option> getOptions();
+    public Collection<String> getOptions();
 
 }

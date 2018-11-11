@@ -37,7 +37,6 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import com.bernardomg.tabletop.dreadball.build.controller.SponsorInitialAffinityOptionsController;
 import com.bernardomg.tabletop.dreadball.build.controller.SponsorPlayersController;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.web.toolkit.test.configuration.UrlDbxTeamBuilderConfig;
 
@@ -100,13 +99,13 @@ public final class TestSponsorQueryControllerAffinities {
         final SponsorBuilderService service;  // Mocked service
         final Collection<OptionGroup> groups; // Returned option groups
         final OptionGroup group;              // Returned option group
-        final Option option;                  // Returned option group
+        final String option;                  // Returned option group
 
         service = Mockito.mock(SponsorBuilderService.class);
 
         groups = new ArrayList<>();
 
-        option = Mockito.mock(Option.class);
+        option = "abc";
 
         group = Mockito.mock(OptionGroup.class);
         Mockito.when(group.getOptions()).thenReturn(Arrays.asList(option));

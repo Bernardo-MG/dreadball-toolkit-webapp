@@ -28,7 +28,6 @@ import org.mockito.Mockito;
 
 import com.bernardomg.tabletop.dreadball.build.service.DefaultSponsorBuilderService;
 import com.bernardomg.tabletop.dreadball.build.service.SponsorBuilderService;
-import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.availability.asset.SponsorAssetsCosts;
 import com.bernardomg.tabletop.dreadball.model.persistence.availability.affinity.PersistentSponsorAffinityGroupAvailability;
@@ -151,7 +150,6 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
         options = service.getAffinityOptions();
 
         found = options.stream().flatMap((o) -> o.getOptions().stream())
-                .map(Option::getValue)
                 .anyMatch((v) -> v.equals("rank_increase"));
         Assertions.assertFalse(found);
     }
@@ -170,7 +168,6 @@ public class TestDefaultSponsorBuilderServiceAffOptions {
         options = service.getAffinityOptions();
 
         found = options.stream().flatMap((o) -> o.getOptions().stream())
-                .map(Option::getValue)
                 .anyMatch((v) -> v.equals("rank_increase"));
         Assertions.assertTrue(found);
     }

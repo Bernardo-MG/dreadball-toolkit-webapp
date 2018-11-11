@@ -34,7 +34,7 @@ public final class ImmutableOptionGroup implements OptionGroup {
     /**
      * Option group options.
      */
-    private final Collection<Option> options;
+    private final Collection<String> options;
 
     /**
      * Constructs an option group.
@@ -45,7 +45,7 @@ public final class ImmutableOptionGroup implements OptionGroup {
      *            option group's options
      */
     public ImmutableOptionGroup(final String groupName,
-            final Collection<Option> groupOptions) {
+            final Collection<String> groupOptions) {
         super();
 
         name = groupName;
@@ -58,7 +58,7 @@ public final class ImmutableOptionGroup implements OptionGroup {
     }
 
     @Override
-    public final Collection<Option> getOptions() {
+    public final Collection<String> getOptions() {
         return options;
     }
 

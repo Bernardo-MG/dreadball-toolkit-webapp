@@ -20,7 +20,7 @@ import affinitiesMessages from 'i18n/affinity';
 import teamBuilderMessages from 'i18n/teamBuilder';
 
 function internationalizeOption(option, intl) {
-   return { value: option.value, label: intl.formatMessage(affinitiesMessages[option.label]) };
+   return { value: option, label: intl.formatMessage(affinitiesMessages[option]) };
 }
 
 function internationalizeOptions(options, intl) {

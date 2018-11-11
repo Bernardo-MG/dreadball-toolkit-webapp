@@ -39,10 +39,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.bernardomg.tabletop.dreadball.calculator.SponsorTeamRankCostCalculator;
-import com.bernardomg.tabletop.dreadball.model.ImmutableOption;
 import com.bernardomg.tabletop.dreadball.model.ImmutableOptionGroup;
 import com.bernardomg.tabletop.dreadball.model.ImmutableSponsorAffinities;
-import com.bernardomg.tabletop.dreadball.model.Option;
 import com.bernardomg.tabletop.dreadball.model.OptionGroup;
 import com.bernardomg.tabletop.dreadball.model.SponsorAffinities;
 import com.bernardomg.tabletop.dreadball.model.SponsorTeamSelection;
@@ -523,18 +521,6 @@ public final class DefaultSponsorBuilderService
     }
 
     /**
-     * Returns an {@link Option} created from the received
-     * {@link AffinityGroup}.
-     * 
-     * @param affinity
-     *            affinity to transform
-     * @return transformed affinity
-     */
-    private final Option toOption(final AffinityGroup affinity) {
-        return new ImmutableOption(affinity.getName(), affinity.getName());
-    }
-
-    /**
      * Returns an {@link OptionGroup} created from the received
      * {@link SponsorAffinityGroupAvailability}.
      * <p>
@@ -548,17 +534,17 @@ public final class DefaultSponsorBuilderService
      */
     private final OptionGroup
             toOptionGroup(final SponsorAffinityGroupAvailability ava) {
-        final Collection<Option> options;
+        final Collection<String> options;
 
         // Creates options from the affinities
-        options = ava.getAffinityGroups().stream().map(this::toOption)
+        options = ava.getAffinityGroups().stream().map(AffinityGroup::getName)
                 .collect(Collectors.toList());
 
         // If the availability allows increasing the rank this is added as an
         // option
         if (ava.isIncludingRankIncrease()) {
             // TODO: Use a constant
-            options.add(new ImmutableOption("rank_increase", "rank_increase"));
+            options.add("rank_increase");
         }
 
         return new ImmutableOptionGroup(ava.getName(), options);
